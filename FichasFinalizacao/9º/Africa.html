@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+		<link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+		<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+
+        <style type="text/css">
+
+        	.cor{
+        		padding: 0;
+        	}
+
+          .lacuna{
+            width: 70%;
+            height: 27px;
+            border: 1px solid lightgrey;
+            padding: 0px;
+            margin: 1px 0 1px 0;
+            font-size: 18px;
+            text-align: left;
+            vertical-align: middle;
+
+          }
+
+          .lacuna2{
+            width: 100%;
+            height: 66px;
+            border: 1px solid lightgrey;
+            padding: 0px;
+            margin: 1px 0 1px 0;
+            font-size: 18px;
+            text-align: left;
+            vertical-align: middle;
+          }
+
+        </style>
+
+		
+	</head>
+	<body>
+		
+		<div id="Cabecalho"> 9º Ano | África </div>
+		</br>
+		
+		<!-- Conteúdo da Ficha -->
+		
+		<div id="Conteudo_Total">
+
+			<center><img src="img/AfricaExe0.jpg"></center>
+			<br><br>
+			"Não chame a floresta que o abriga de selva."
+			<div class="fonte"><font color="orange">Provérbio Africano</font></div>
+
+			<br><br>
+
+			<div class="exercicio">
+				1. Mapa dos países africanos. Localize os países no mapa e pinte-os  conforme o idioma do colonizador. Essa cor deverá ser a mesma da legenda. Atenção:  há alguns países sem o nome  no mapa, mas estão na tabela. Coloque seus nomes no mapa.
+				<br><br>
+				<!--<div id="ferramentasExe1">
+                	<input type="color" id="pickerExe1" style="float:left">
+                	<a class="colorpicker" href="#canvasExe1" data-color='#5d9ca7'><div style=' width:30px; height:30px; 	background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                	<a class="colorpicker" href="#canvasExe1" data-color='#ecebe5'><div style=' width:30px; height:30px; 	background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                	<a class="colorpicker" href="#canvasExe1" data-color='#000000'><div style=' width:30px; height:30px; 	background-color:#000000; border: 1px solid black; float: left'></div></a> 
+                	<br><br>
+                	<div style="clear: both;"></div>
+            	</div>-->
+              <div class="caixa_de_texto" style="float: right; width: 80px; margin-left: 2px"><center><a href="#canvasExe1" data-tool="bucket" class="ferramenta">Balde</a></center></div>&nbsp
+              <div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe1" data-tool="marker" class="ferramenta">Caneta</a></center></div>
+            <center><div id="exe1Div" width="716" height="710"></div>
+           	<table>
+           		<tr>
+           			<th>Cor</th>	<th>Colonizador</th>	<th>Colonizado</th>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#c8db8f;"><a class="colorpicker" href="#canvasExe1" data-color='#c8db8f'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Alemanha</td>	<td>Namíbia, Tanzânia, Burundi e Ruanda</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#d85302;"><a class="colorpicker" href="#canvasExe1" data-color='#d85302'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Bélgica</td>	<td>República Democrática do Congo</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#ffa659;"><a class="colorpicker" href="#canvasExe1" data-color='#ffa659'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Espanha</td>	<td>Saara Ocidental e Guiné equatorial</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#f2cb67;"><a class="colorpicker" href="#canvasExe1" data-color='#f2cb67'><div style=' width:41px; height:77px; float: left'></div></a></td> <td>França</td>	<td>Madagascar, Congo, Gabão, República Centro – Africana, Chade, Níger, Benin, Burkina Faso, Costa do Marfim, Guiné, Mali, Senegal, Mauritânia, Argélia, Marrocos e Djibuti</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#d3ebf2;"><a class="colorpicker" href="#canvasExe1" data-color='#d3ebf2'><div style=' width:41px; height:55px; float: left'></div></a></td> <td>Inglaterra</td>	<td>Egito, Sudão, Uganda, Quênia, Nigéria, Gana, Serra Leoa, Malaui, Zâmbia, Zimbabue, Botsuana, África do Sul, Suasilândia e Lesoto.</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#28b8ce;"><a class="colorpicker" href="#canvasExe1" data-color='#28b8ce'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Itália</td>	<td>Somália, Líbia e Eritreia.</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#1e808e;"><a class="colorpicker" href="#canvasExe1" data-color='#1e808e'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Portugal</td>	<td>Angola, Guiné Bissau e Moçambique.</td>
+           		</tr>
+           		<tr>
+           			<td class="cor" style="background-color:#5d9ca7;"><a class="colorpicker" href="#canvasExe1" data-color='#5d9ca7'><div style=' width:41px; height:33px; float: left'></div></a></td> <td>Independente</td>	<td>Etiópia e Libéria.</td>
+           		</tr>
+           	</table></center>
+
+            <script type="text/javascript">
+                var canvasDiv = document.getElementById('exe1Div');
+                canvasExe1 = document.createElement('canvas');
+                canvasExe1.setAttribute('width', 716);
+                canvasExe1.setAttribute('height', 710);
+                canvasExe1.setAttribute('id', 'canvasExe1');
+                canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                canvasDiv.appendChild(canvasExe1);
+                if(typeof G_vmlCanvasManager != 'undefined') {
+                    canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                }
+                context = canvasExe1.getContext("2d");
+                var img = new Image();
+                img.src = "img/AfricaExe1.jpg";
+                img.onload = function(){
+                    context.drawImage(img, 0, 0, 716, 710);
+                }
+
+                $(function(){$("#canvasExe1").sketch();});
+
+                /*$("#pickerExe1").on("change click", function(){
+                    var cor = this.value;
+                    $("#corExe1").attr("data-color", cor);
+                    $("#corExe1").trigger("click");
+
+                });
+
+                $(".colorirExe1").on("change click", function(){
+                    $("#corExe1").trigger("click");
+
+                });*/
+
+
+
+              </script>
+			</div>
+
+      <br><br>
+
+      <div class="exercicio">
+        2.  É bom saber:
+        <br><br>
+          <b><p>A segunda metade do século XIX foi marcada pela divisão dos territórios africanos pelas potências imperialistas europeias durante a Conferência  de Berlim (1884-1885)</p>
+          <p>A expansão do capitalismo industrial europeu exigia novas fontes de matérias-primas e acirrava a disputa pelo controle da África.</p>
+          <p>Até hoje, a África sofre com as sequelas deixadas pelo imperialismo europeu: guerra civil, pobreza, fome, epidemias, dependência de ajuda internacional.</p></b>
+          <br>
+          • Após a leitura, explique o processo de colonização da África e suas consequências.
+          <textarea class="texto"></textarea>
+      </div>
+
+      <br><br>
+
+      <div class="exercicio">
+        3. Faça ligação entre sujeito e predicado das orações, sendo coerente com o fato histórico:
+        <br><br>
+        <center><table>
+          <tr><td>a. Transnacionais</td><td><input type="text" maxlength="1" class="associacao"> é o transmissor da doença do sono, que causa paralisia e morte.</td></tr>
+          <tr><td>b. África  Subsaariana</td><td><input type="text" maxlength="1" class="associacao"> é habitado por beduínos, povos nômades, originários da Península Arábica. </td></tr>
+          <tr><td>c. Deserto de Saara</td><td><input type="text" maxlength="1" class="associacao"> são indústrias que atuam em solo africano, controlam a produção e ficam com a renda gerada pela exploração de recursos.</td></tr>
+          <tr><td>d. Tsé-Tsé </td><td><input type="text" maxlength="1" class="associacao"> apresenta baixíssimo IDH, mais de 30% dos subsaarianos.</td></tr>                    
+          
+        </table></center>        
+      </div>
+
+      <br><br>
+
+      <div class="exercicio">
+        4. Coloque nos parênteses a letra correta dos fatos históricos:
+        <br><br>
+        <input type="text" maxlength="1" class="associacao"> O processo de descolonização provocou rivalidades entre blocos socialistas e capitalistas da África e Ásia. Estados Unidos e União Soviética apoiaram independência para estabelecer influência política e econômica sobre os nascentes países.<br><br>
+        <input type="text" maxlength="1" class="associacao"> No pós-guerra, o domínio imperialista europeu na Ásia e Europa passou a ser sistematicamente questionado. A Organização das Nações Unidas (ONU) defendia a igualdade entre os países e sua Carta das Nações Unidas queria saber “qual  a melhor forma de conceder a eles autonomia política, econômica e social. <br><br>
+        <input type="text" maxlength="1" class="associacao"> Os movimentos de libertação do norte da África aconteceram em decorrência da consciência nacional.<br><br>
+        <input type="text" maxlength="1" class="associacao"> O processo foi marcado por violentos conflitos entre os colonos franceses e a força de libertação.<br><br>
+        <input type="text" maxlength="1" class="associacao"> Era um movimento também contra o racismo e não simplesmente uma luta contra a dominação “total” da África.<br><br>
+        <br>
+        (A) Guerra da Argélia.<br>
+        (B) A descolonização da África Subsaariana<br>
+        (C) O processo de descolonização<br>  
+        (D) A guerra fria na descolonização<br>
+        (E) A independência do norte da África.<br><br>
+      </div>
+
+      <div class="exercicio">
+        5. Complete as frases, conforme leitura da tabela abaixo:
+        <br><br>
+        <center><table>
+          <tr><td>o fim do  colonialismo português na África.</td></tr>
+          <tr><td>Movimento de Libertação de Angola (MPLA) - Frente Nacional de Libertação de Angola (FNLA) e União Nacional pela Independência Total de Angola (UNITA) - ambos anticomunistas.</td></tr>
+          <tr><td>tendência comunista   -     regime socialista  inspirado na China e nos países do leste europeu.</td></tr>
+          <tr><td>movimento de separação entre brancos e negros, que proibia, entre outras coisas, as relações sexuais e o casamento entre brancos e não brancos (negros, indianos, mestiços).</td></tr>
+          <tr><td>o principal líder do Congresso Nacional Africano (CNA),   -      preso durante vinte e sete anos.</td></tr>
+          <tr><td>país mais rico e desenvolvido do continente, ganhou destaque no cenário internacional e muitos bilhões de dólares com a Copa do Mundo em 2010.</td></tr>
+        </table></center>
+        <br><br>
+        a.  A Revolução dos Cravos- em 1974, em Portugal – colaborou com...
+        <textarea class="lacuna"></textarea>
+        <br><br>
+        b. A Frente de Libertação de Moçambique (Frelimo -1962) tinha uma <textarea class="lacuna"></textarea>, no entanto, em 1975, foi implantado um <textarea class="lacuna"></textarea>
+        <br><br>
+        c. Em Angola, a luta pela independência foi travada por três grupos rivais:
+        <textarea class="lacuna"></textarea>, <textarea class="lacuna"></textarea> e <textarea class="lacuna2"></textarea>
+        <br><br>
+        d. Nelson Mandela era o <textarea class="lacuna"></textarea>, ficou <textarea class="lacuna2"></textarea>
+        <br><br>
+        e.  O apartheid foi um <textarea class="lacuna2"></textarea>
+        <br><br>
+        f. Apesar dos problemas, a África do sul é o <textarea class="lacuna2"></textarea>
+
+      </div>
+
+      <br><br>
+
+      <div class="exercicio">
+        6. Um grande problema de saúde que atinge, hoje, alguns países africanos ( Libéria, Serra Leoa, Nigéria) é o vírus Ebola. O que você sabe sobre ele? O Brasil já registrou essa ocorrência?6. Um grande problema de saúde que atinge, hoje, alguns países africanos ( Libéria, Serra Leoa, Nigéria) é o vírus Ebola. O que você sabe sobre ele? O Brasil já registrou essa ocorrência?
+        <br><br>
+        <center><img src="img/AfricaExe6.jpg"></center>
+        <br><br>
+        <textarea class="texto"></textarea>
+      </div>
+
+      <br><br>
+
+      <div class="exercicio">
+        7. Nosso país recebeu forte influência na língua e usos e costumes dos africanos. Pesquise no celular:
+        <br><br>
+        a. Cinco palavras de origem africana: <textarea class="lacuna"></textarea>
+        <br><br>
+        b. Música/Ritmos/Danças: <textarea class="lacuna"></textarea>
+        <br><br>
+        c. Culinária: <textarea class="lacuna"></textarea>
+        <br><br>
+        <div>
+          <center>
+            <figure style="float: left;">
+              <img src="img/AfricaExe7a.jpg">
+              <figcaption> Moleque</figcaption>
+            </figure>
+            <figure style="float: left;">
+              <img src="img/AfricaExe7b.jpg">
+              <figcaption> Samba</figcaption>
+            </figure>
+            <figure style="float: left;">
+              <img src="img/AfricaExe7c.jpg">
+              <figcaption> Acarajé</figcaption>
+            </figure>
+          </center>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+
+
+
+
+		</div>
+
+		<br><br>
+
+	</body>
+</html>

@@ -1,0 +1,286 @@
+﻿<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">	
+
+var usuario = localStorage.getItem("usuarioTipo");
+var usuarioId = localStorage.getItem("usuarioId");
+var dataChamada = getData("Chamada", null);
+var action;
+var ArrayChamada = [];
+	
+
+/*Botões de fechar as caixas*/
+$(document).ready(function(e) {
+
+	if(usuario == "Aluno"){
+	
+	/*Aqui vai o grupo do usuário logado*/
+		var grupo = dadosUser.grupo.idgrupo;		 
+		
+		//Listagem de alunos do grupo
+		var dataAlunoVariavel = getData("AlunoVariavel/grupo", grupo);		
+
+		var cont = 0;
+		var alunosP = new Array();	 
+		for(var a = 0; a < dataAlunoVariavel.length; a++){			
+			/*Condição para listar os alunos do grupo do usuario*/
+			//if((dataAlunoVariavel[a].grupo != null)&&(grupo == dataAlunoVariavel[a].grupo.idgrupo)){
+				alunosP[cont] = {
+									idAluno: dataAlunoVariavel[a].aluno.idAluno,
+									nomeAluno: dataAlunoVariavel[a].aluno.nome
+								}
+				cont++;
+			//}
+		}	
+		
+		var dataP = new Date();										
+		var diaCorrido = dataP.getFullYear()+"-"+(dataP.getMonth()+1)+"-"+dataP.getDate();
+		var existeAlunoData = false;
+		var dataChamada = getData("Chamada", null);	
+		
+		for(var j = 0; j < dataChamada.length; j++){			
+			for(p=0;p<alunosP.length;p++){					
+				var dtDB = new Date(dataChamada[j].data);
+				dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+
+				if((diaCorrido == dtDB)&&(alunosP[p].idAluno == dataChamada[j].aluno.idAluno)){
+					existeAlunoData = true;
+				}						
+			}
+		}
+		
+		if(existeAlunoData==true){
+			var HtmlContent = "";			
+			for(var j = 0; j < dataChamada.length; j++){			
+				var status="";
+				for(p=0;p<alunosP.length;p++){									
+					var dtDB = new Date(dataChamada[j].data);
+					dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+					if((diaCorrido == dtDB)&&(alunosP[p].idAluno == dataChamada[j].aluno.idAluno)){				
+						if((dataChamada[j].presenca == 0)){
+							status = "unselecionado";														
+						}else{
+							status = "preSelecionado";
+						}	
+						action = "update";
+						HtmlContent += '<input id="'+dataChamada[j].idchamada+'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
+						HtmlContent += '<label for="'+dataChamada[j].idchamada+'" id="'+alunosP[p].idAluno +'"  class="css-label '+status+'">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
+						HtmlContent += '<br>';
+					}			
+				}
+			}
+		}
+		else{
+			var HtmlContent = "";
+			var selecionado="";
+			for(p=0;p<alunosP.length;p++){					
+				action = "create";
+				HtmlContent += '<input id="'+alunosP[p].idAluno +'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
+				HtmlContent += '<label for="'+alunosP[p].idAluno +'" id="'+alunosP[p].idAluno +'"  class="css-label unselecionado">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
+				HtmlContent += '<br>';
+
+			}
+		}
+		
+				
+		$('.presenca_opcao').html(HtmlContent);
+	}
+	$(".css-label").click(function(){		
+		$(this).toggleClass("preSelecionado");
+		$(this).toggleClass("unselecionado")			
+	});	
+		
+	$(".btn_pres").click(function(){
+		ConfirmaPresencaGrupo();
+
+	});
+	
+});
+
+function verificaPresenca(){
+	var dataAtual = new Date();										
+	var dia = dataAtual.getFullYear()+"-"+(dataAtual.getMonth()+1)+"-"+dataAtual.getDate();
+	var existePresencaAnterior = false;
+	var dataChamada = getData("Chamada", null);
+	var cont = 0;
+	var grupoUsuario = dadosUser.grupo.idgrupo;
+	var dataAlunoVariavel = getData("AlunoVariavel/grupo", grupoUsuario);
+	var alunos = new Array();	 
+	for(var a = 0; a < dataAlunoVariavel.length; a++){			
+		/*Condição para listar os alunos do grupo do usuario*/
+		//if((dataAlunoVariavel[a].grupo != null)&&(grupo == dataAlunoVariavel[a].grupo.idgrupo)){
+			alunos[cont] = {
+								idAluno: dataAlunoVariavel[a].aluno.idAluno,
+								nomeAluno: dataAlunoVariavel[a].aluno.nome
+							}
+			cont++;
+		//}
+	}	
+	
+	for(var j = 0; j < dataChamada.length; j++){			
+		for(p=0;p<alunos.length;p++){					
+			var dtDB = new Date(dataChamada[j].data);
+			dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+			if((dia == dtDB)&&(alunos[p].idAluno == dataChamada[j].aluno.idAluno)){
+				existePresencaAnterior = true;
+			}						
+		}
+	}
+
+	return existePresencaAnterior;
+}	
+
+function ConfirmaPresencaGrupo()
+{
+	var elementosAC = $('.preSelecionado');
+	var valores="";
+	//debugger;
+	var presenca = verificaPresenca();
+	//console.log(elementosAC.length);
+	
+	for (var i = 0; i < elementosAC.length; i++) {
+		console.log("iteração " + i + " selecionado");
+		var data = new Date();
+		var diaCorrido = data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate();
+
+		if (presenca == false)
+		{
+			action = "create";
+			valores = "&data="+diaCorrido+"&presenca=1&aluno="+$(elementosAC[i]).attr("id");
+		}
+		
+		else
+		{
+			action = "update";
+			valores = "&data="+diaCorrido+"&presenca=1&aluno="+$(elementosAC[i]).attr("id")+"&id="+$(elementosAC[i]).attr("for");
+		}
+
+		var contAC = 0;
+		$.ajax({
+			type: "POST",
+			crossDomain: true,
+			url: path+"Chamada",
+			data: "action="+action+valores,
+			success: function(retorno){
+				$(elementosAC[contAC]).attr("for", retorno);
+				mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso");
+				console.log(retorno + "---------" + i + "------" + contAC);
+				contAC++;				
+			},
+			error: function(retorno){
+				mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
+			}        
+		});
+	}	
+
+	var elementosN = $('.unselecionado');
+	
+	//console.log(elementosN.length);
+	
+	for (var i = 0; i < elementosN.length; i++) {
+		console.log("iteração " + i + " Não selecionado");
+		var data = new Date();
+		var diaCorrido = data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate();
+		
+		/*if(action=="create"){
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id");
+		}else{
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id")+"&id="+$(elementosN[i]).attr("for");
+		}*/
+
+		if (presenca == false)
+		{
+			action = "create";
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id");
+		}
+		
+		else
+		{
+			action = "update";
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id")+"&id="+$(elementosN[i]).attr("for");
+		}
+		//console.log(action + "---" + valores);
+		
+		//console.log("não selecionado"+valores);
+		contN = 0;	
+		$.ajax({
+			type: "POST",
+			crossDomain: true,
+			url: path+"Chamada",
+			data: "action="+action+valores,
+			success: function(retorno){
+				$(elementosN[contN]).attr("for", retorno);
+				mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso");
+				console.log(retorno + "---------" + i + "------" + contN);
+				contN++;			
+			},
+			error: function(retorno){
+				mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
+			}        
+		});
+	}
+}
+
+function getGrupoId()
+{
+	var dataGrupo = getData("Grupo", null);
+
+	for(var a=0; a<dataGrupo.length; a++)
+	{
+		/*if(dadosUser.grupo.idgrupo)*/
+	}
+}
+
+
+//Function fecha div de Evento e Chamada
+function fecharBox(idBox){
+	$("#"+idBox).hide();
+}
+
+function abreviaNome(nome){
+	nome = nome.split(" ");
+	var nomeFinal = new Array();
+	var nomeAbreviado = "";
+	nome = nome.filter(function(item, index, array){
+		if(item != "de" && item != "De"){
+			return item;
+		}		
+	});	
+	for(var i=0;i<nome.length;i++){
+		if(i<1){
+			nomeFinal[i] = nome[i];
+		}else if(i==nome.length-1){
+			nomeFinal[i] = nome[i];
+		}else{
+			nomeFinal[i] = nome[i].substring(0, 1)+"."; 
+		}
+		nomeAbreviado += nomeFinal[i]+" ";
+	}	
+	return nomeAbreviado;
+}
+
+</script>
+<div id="presenca">                	
+    <form> 
+        <div class="box_nome">                      
+            <p class="presenca_opcao">
+            	<!--O html é carregado aqui através do ajax-->
+            </p>
+        </div>
+        <div class="box_botao">
+            <p class="btn_fechar" onClick="fecharBox('presenca')">X</p>
+            <p ><input class="btn_pres" type="button" value="CONFIRMA"></p>
+        </div>
+    </form>
+</div>
+<div id="Evento">
+    <p id="btn_fechar_evento" onClick="fecharBox('Evento')">X</p>				
+    <div id="Foto_evento"></div>
+    <div id="Evento_Info">					
+        <div></div>
+        <div id="Titulo"></div>
+        <div id="EventDesc"></div>
+        <div id="Horario"><span></span><span></span></div>					
+    </div>				
+</div>

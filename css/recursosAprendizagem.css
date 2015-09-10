@@ -1,0 +1,530 @@
+#PesquisarInserir{
+	width: 67.5%;
+	height: 540px;
+	margin-right: 2.5%;
+	float: left;
+}
+
+#bt_Pesquisar{
+	background-image: url(../img/ic_pesquisar.png);
+	background-repeat: no-repeat;
+	background-position: 94px;
+}
+
+#bt_Inserir{
+	background-image: url(../img/ic_inserir.png);
+	background-repeat: no-repeat;
+	background-position: 110px;
+	display:none;
+}
+
+.bt_Off{
+	width: 49%;
+	padding: 17px 16px 11px 16px;
+	text-align: center;
+	color: white;
+	float: left;
+	cursor: pointer;
+	background-color: #FBB040;
+}
+.bt_Pesquisar_Ativo{
+	width: 49%;
+	padding: 17px 16px 11px 16pxx;
+	text-align: center;	
+	color: white;
+	float: left;
+	cursor: pointer;
+	background-color: #F7941E;
+	margin-right:12px;
+}
+
+.bt_Inserir_Ativo{
+	width: 49%;
+	padding: 17px 16px 11px 16px;
+	text-align: center;
+	margin-left:12px; 
+	color: white;
+	float: left;
+	cursor: pointer;
+	background-color: #F7941E;
+}
+
+#container_Pesquisa{
+	width: 100%;
+	height: 94%;
+	padding: 14px 22px;
+	background-color: #E5E5DC;
+	float: left;
+	overflow:hidden;
+}
+
+#boxResultado{
+	float: left;
+	width: 101%;
+	height:240px;	
+	overflow: auto;
+	margin: 0 5px 0 0;
+}
+
+#resultado{
+	margin: 0 9px 0 0;
+}
+
+#container_Inserir{
+	width: 100%;
+	height: 94%;
+	padding: 14px 22px;
+	background-color: #E5E5DC;
+	float: left;
+	overflow: auto;
+	display: none;
+}
+
+/* CSS da celula grande */
+.celulaGrande{
+	width: 100%;
+	height: 42px;
+	margin-bottom: 0.9%;
+	overflow: auto;
+	border: 2px solid #B6B6B0;
+	float: left;
+	background-color: #F2F1ED;
+	color: #666;
+}
+
+.infoG{
+	width: 20%;
+	height: 100%;
+	padding: 10px;
+	background-color: #C8C8C3;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+.styled-select {
+   width: 80%;
+   height: 100%;
+   overflow: hidden;
+   background-color: #F2F1ED;
+}
+
+.styled-select select{
+	background: url(../img/select-arrow.png) no-repeat right;
+	width: 110%;
+	height: 100%;
+	border: 0;
+	border-radius: 0;
+	-webkit-appearance: none;
+	overflow: hidden;
+	cursor: pointer;
+	color: #666;
+
+
+}
+
+/* - - - Fim do CSS - - -*/
+
+/* CSS do Tipo da Pesquisa */
+#Tipo{
+	width: 100%;
+	height: 84px;
+	float: left;
+	border: 2px solid #B6B6B0;
+	border-right: none;
+	margin-bottom: 0.9%;
+	color: #666;
+}
+
+.infoValueP{
+	width: 19.66%;
+	height: 50%;
+	background-color: #F2F1ED;
+	padding: 14.4px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+.infoValueM{
+	width: 43%;
+	height: 50%;
+	background-color: #F2F1ED;
+	padding: 14.4px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+
+.inputImg{
+	width: 7%;
+	height: 40px;
+	background: url(../img/checkbox-botao.png) no-repeat;
+	background-size: 80px;
+	background-position: 0 0;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+	cursor: pointer;
+}
+
+.BorderBottom{
+	border-bottom: 2px solid #B6B6b0;
+}
+
+/* - - - FIM do CSS - - - */
+
+#bt_Buscar{
+	text-decoration:none;
+	background-color: #F7941E;
+	width: 22%;
+	height: 42px;
+	padding: 12px;
+	margin-bottom: 0.9%;
+	text-align: center;
+	color: white;
+	float: right;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* CSS do box de resultado da pesquisa */
+.itemResultado{
+	width: 100%;
+	height:76px;
+	padding: 1%;
+	background-color: #F2F1ED;
+	border: 2px solid #D1D1CB;
+	margin-bottom: 0.9%;
+	clear: both;
+}
+
+.itemTitulo{
+	width: 96%;
+	font-size: 18px;
+	color: #1E8290;
+	Padding: 5px 0 5px 40px;
+	cursor: pointer;
+}
+
+.itemTitulo a{
+	width: 100%;
+	font-size: 20px;
+	color: #1E8290;
+	Padding: 5px 0 5px 0px;
+	cursor:pointer;
+	text-decoration:none;
+}
+
+.edit {
+	width: 39px;
+	height: 39px;
+	background: url(../img/btEditar.png);
+	float: right;
+	cursor: pointer;
+}
+.item_Pesquisa_Foto{
+	background: url(../img/item_Foto.png) no-repeat;	
+	float: left;
+	background-size: 30px;
+}
+.item_Pesquisa_Video{
+	background: url(../img/item_Video.png) no-repeat;
+	float: left;
+	background-size: 30px;
+}
+.item_Pesquisa_Livro{
+	background: url(../img/item_Livro.png) no-repeat 2px;
+	float: left;
+	background-size: 30px;
+}
+.item_Pesquisa_Link{
+	background: url(../img/item_Link.png) no-repeat;
+	float: left;
+	background-size: 30px;
+}
+.item_Pesquisa_Jogo{
+	background: url(../img/item_Jogo.png) no-repeat;
+	float: left;
+	background-size: 30px;
+	background-position-y: 5px;
+}
+.item_Pesquisa_Audio{
+	background: url(../img/item_Audio.png) no-repeat;
+	float: left;
+	background-size: 30px;
+}
+
+.itemSubtitulo{
+	width: 100%;
+	margin: 38px 0;
+	font-size: 15px;
+	color: #666;
+}
+
+.itemDescricao{
+	width: 100%;
+	color: #666;
+}
+
+#Foto { background: url(../img/ic_foto.png) no-repeat 35px; background-color:#F2F1ED; }
+#Video{ background: url(../img/ic_video.png) no-repeat 24px; background-color:#F2F1ED; }
+#Audio{ background: url(../img/ic_audio.png) no-repeat 22px; background-color:#F2F1ED; }
+#Link{ background: url(../img/ic_pgweb.png) no-repeat 36px; background-color:#F2F1ED; }
+#Jogo{ background: url(../img/ic_jogo.png) no-repeat 28px; background-color:#F2F1ED; }
+#Livro{ background: url(../img/ic_livro2.png) no-repeat 28px; background-color:#F2F1ED;}
+#LinkEscolha{background: url(../img/ic_pgweb.png) no-repeat  183px 11px; background-color:#F2F1ED; }
+#ArquivoEscolha{ background: url(../img/ic_jogo.png) no-repeat 159px 17px; background-color:#F2F1ED; }
+
+input{
+	width: 80%;
+	height: 100%;
+	background: transparent;
+	border: none;
+}
+
+#bt_Salvar{
+	background: url("../img/bt_salvar_laranja.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	width:101px;
+	height: 40px;
+	padding: 12px;
+	margin-top: 0.9%;
+	text-align: center;
+	color: white;
+	float: right;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#PesquisarInserir_Complementar{
+	width: 30%;
+	height: 540px;
+	background-color: #DCD6B7;
+	float: right;
+	padding: 14px;
+	margin-top: 14px;
+}
+
+#like{
+	width: 110%;
+	height: 10%;
+	background: url(../img/like.png) no-repeat;
+	background-size: contain;
+	position: relative;
+	top: -42px;
+	left: -16px;
+	z-index: 10;
+}
+
+#Curtidos{
+	width: 100%;
+	height: 40%;
+	background: cornsilk;
+}
+
+#Curtidos ul{
+	margin: 0;
+	padding: 0;
+	padding-top: 25px;
+	list-style: none;
+	font-size: 90%;
+	background-color: #F4F1E5;
+}
+
+#Curtidos li:nth-child(odd) {
+	background-color: #F9F8F2;
+}
+
+#Curtidos li:nth-child(even) {
+	background-color: #F4F1E5;
+}
+
+#MaisCurtidos{
+	width: 291px;
+	height: 47px;
+	position: absolute;
+	top: 0px;
+	right: -2px;
+	background: url(../img/like.png) no-repeat;
+	background-size: contain;
+}
+#inputArquivo, #inputLink{
+	display: none;
+	margin-top:5px;
+}
+#inputEscolha{
+	width: 100%;
+	height: 44px;
+	float: left;
+	border: 2px solid #B6B6B0;
+	border-right: none;
+	color: #666;
+	display:none;
+}
+.infoValueEscolha{
+	width: 43%;
+	height: 40px;
+	background-color: #F2F1ED;
+	padding: 14.4px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+.submitUpload{
+	display:none;
+}
+
+.item_Foto{
+	background:url(../img/ic_foto.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 56px 8px;
+}
+
+.item_Video{
+	background:url(../img/ic_video.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 56px 8px;
+}
+
+.item_Audio{
+	background:url(../img/ic_audio.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 56px 8px;
+}
+
+.item_Link{
+	background:url(../img/ic_pgweb.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 56px 8px;
+}
+
+.item_Jogo{
+	background:url(../img/ic_jogo.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 42px 8px;
+}
+
+.item_Livro{
+	background:url(../img/ic_livro2.png) no-repeat;
+	background-position: 15px;
+	padding: 12px 56px 8px;
+}
+
+.item_Curtidos{
+	background:url(../img/ic_foto.png) no-repeat;
+}
+
+#Participe{
+	width: 100%;
+	height: 60%;
+	background: url(../img/sugestao.png) no-repeat;
+	background-size: contain;
+	background-position: 0 10px;
+}
+#descricao,#url,#arquivo{
+	color: #666;
+	padding-left: 6px;
+}
+#roteiro,#roteiroIn,#materia,#materiaIn{
+	text-transform:uppercase;	
+}
+#boxBarra{
+	width:100%;
+	overflow: auto;
+}
+.ocultar{
+	display:none;
+}
+.Espaco_Curtir
+{
+	width:20px;
+	height:28px;
+	background-image: url(../img/like_cz_claro.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	float: right;
+}
+.Espaco_Excluir
+{
+	width:20px;
+	height:28px;
+	background-image:url(../img/cancela_x.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	float: right;
+}
+
+.Espaco_Curtir:hover
+{
+ 	background-image: url(../img/like_az.png);
+}
+
+.Curtir_Ativo
+{
+ 	background-image: url(../img/like_az.png) !important;
+}
+
+/*media NetBook*/
+@media (width: 1024px) and (max-height: 509px) {
+	#boxBarra{
+		padding:0px;
+		height:360px;
+		width: 101%;
+		overflow: auto;
+	}
+
+	#PesquisarInserir{
+		margin-right: 0;
+	}
+	#PesquisarInserir_Complementar{
+		margin-right: 7px;
+	}
+	#MaisCurtidos {
+		width: 291px;
+		height: 47px;
+		position: absolute;
+		top: 2px;
+		right: 5px;
+		background: url(../img/like.png) no-repeat;
+		background-size: contain;
+	}
+
+
+}
+/*media NetBook*/
+@media (width: 1024px) and (min-height: 510px) and (max-height: 590px) {
+	#content_central_fixa{
+		height: 440px;
+	}
+}
+/*Media NoteBook sem barra favoritos*/
+@media (min-height: 666px)and (max-height: 667px) {
+	.Espaco_Curtir {
+		top: 7px;
+		right: 15px;
+	}
+	#content_central_fixa{
+		height: 637px;
+	}
+}
+/*Media NoteBook com barra favoritos*/
+@media (min-height: 640px)and (max-height: 665px) {
+	.Espaco_Curtir {
+		top: 7px;
+		right: 15px;
+	}
+	#content_central_fixa{
+		height: 637px;
+	}
+}
+/*Media para note com height 707*/
+@media (min-width: 1280px)and (max-height: 707px){
+	#boxResultado {
+		float: left;
+		width: 101%;
+		height: 240px;
+		margin: 0 5px 0 0;
+	}
+	#content_central_fixa{
+		height: 632px;
+	}
+}

@@ -1,0 +1,45 @@
+.exercicio_texto input{
+	width: 5%;
+	padding: 0.3% 0.3% 0;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+.exercicio_alpha input{
+	width: 3%;
+	padding: 0.3% 0.3% 0;
+	text-align: center;
+}
+
+
+.assinalar_exe1 input{
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	text-align: center;
+	border: 1px solid black;
+	position: relative;
+}
+
+#Exe1{
+	background: url(../img/Dig1.png) no-repeat;
+	width: 458px;
+	height: 389px;
+	background-size: contain;
+}
+
+@media print{
+
+	.assinalar_exe1 input{
+    width: 20%;
+    height: 20px;
+    padding: 0.3% 0.3% 0;
+    border: 0;
+    text-align: left;
+    position: relative;
+    background-color: transparent;
+    color: #FF0000;
+    font-weight: bolder;
+    }
+    
+}

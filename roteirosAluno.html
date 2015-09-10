@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>       
+        <meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+ 		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />	
+        <link rel="stylesheet" type="text/css" href="css/roteirosAluno.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>		                			
+      	<script src="js/jquery-ui.js"></script>        	
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+                {
+                    window.location.assign("mRoteirosAluno.html");
+                }
+            });
+         </script> 
+
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		<script type="text/javascript" src="js/calendario.js"></script>		
+        <script type="text/javascript" src="js/autenticador.js"></script>
+        <script type="text/javascript" src="js/roteiroAluno.js"></script>              
+        <!--Fim JS-->
+        
+	</head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+            
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#" id="area_acesso"></a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>		
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+				<!--Coluna a esquerda-->
+				<div class="Conteudo_Coluna" id="Content_lateral">
+					<!--Menu lateral-->
+					<div id="Content_lateral_Menu">
+                    	<div id="Content_lateral_Menu">
+                        	<div class="Content_lateral_Menu_Opcao">
+                                <a href="planoDeEstudo.html" class="plano">Plano de estudo</a>
+                            </div>
+                            <div class="Content_lateral_Menu_Opcao">
+                                <a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>
+                            </div>
+                            <div class="Content_lateral_Menu_Opcao">
+                                <a href="roteirosAluno.html" class="roteiros">Roteiros</a>
+                            </div>
+                            <div class="Content_lateral_Menu_Opcao">
+                                <a href="forum.html" class="forum">Fórum</a>
+                            </div>
+                            <div class="Content_lateral_Menu_Opcao">
+                                <a href="mensagens.html" class="mensagens">Mensagens</a>
+                            </div>
+                            <div class="Content_lateral_Menu_Opcao" id="menuCalendario">
+                                <a href="pageCalendario.html" class="calendario">Calendário</a>
+                            </div>
+                        </div>   
+                    </div>
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="apontar">Apontar Presença grupo</p>
+						</div>						
+					</div>
+
+				</div>		
+                <div class="Conteudo_Coluna" id="content_central">
+					<div id="conteudo_roteiro_aluno">
+                         <div class="menu_roteiro">
+                            <div class="menu_roteiro_laranja">
+                            	<div class="menu_roteiro_texto">Proposto</div>
+                            	<div class="titulo_infos_roteiro_caixa_laranja_menu"></div>
+                        	</div>                        
+                            <div class="menu_roteiro_verde">
+                                <div class="menu_roteiro_texto">Concluído</div>
+                                <div class="titulo_infos_roteiro_caixa_verde_menu"></div>
+							</div>
+                        </div>                      
+                    	<div class="total"></div>
+                    </div>
+                </div>      
+                <div class="boxCalendario"></div>
+                <div class="boxGlobal"></div>
+                <div id="boxMensagemGeral"></div>
+            </div>             
+		</div><!--Fim Conteudo-->               
+	</body>
+</html>

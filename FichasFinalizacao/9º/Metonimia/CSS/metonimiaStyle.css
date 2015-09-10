@@ -1,0 +1,27 @@
+#texto2a{
+    width: 65%;
+    height: 400px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+}
+
+#texto2c{
+    width: 63%;
+    height: 404px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+}
+
+#texto2d{
+    width: 50%;
+    height: 365px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+}
+
+.textoT{
+    width: 600px;
+}

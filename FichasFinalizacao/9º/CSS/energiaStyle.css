@@ -1,0 +1,47 @@
+#Exercicio3{
+    width: 90%;
+    margin: 0 auto;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 125px;
+    -moz-column-gap: 125px;
+    column-gap: 125px;
+    text-align: justify;
+}
+
+#demo{
+    float: right;
+    cursor: pointer;
+    color: white;
+    background-color: #FF7800;
+
+}
+
+#demo:hover{
+    text-decoration: underline;   
+}
+
+.textoT textarea{
+    width: 600px;
+    height: 150px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+}
+
+.lacuna{
+    width: 100%;
+    height: 27px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding: 0px;
+    margin: 1px 0 1px 0;
+}
+
+@media print{
+    .textoT textarea{
+        border: 0;
+    }
+}
+

@@ -1,0 +1,124 @@
+.lacuna{
+    width: 219px;
+    height: 49px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.lacunaExe1{
+    height: 49px;
+    width: 219px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+
+}
+
+#Exe1{
+    overflow: hidden;
+    width: 800px;
+    height: 500px;
+}
+
+#Exe1 img{
+    margin: -280px 0 0 -200px;
+}
+
+#campo1{
+    position: relative;
+    z-index: 2;
+    top: -479px;
+    left: 67px;
+}
+
+#campo2{
+    position: relative;
+    z-index: 2;
+    top: -389px;
+    left: 228px;
+}
+
+#campo3{
+    position: relative;
+    z-index: 2;
+    top: -285px;
+    left: -28px;
+}
+
+#campo4{
+    position: relative;
+    z-index: 2;
+    top: -255px;
+    left: 31px;
+}
+
+#campo5{
+    position: relative;
+    z-index: 2;
+    top: -169px;
+    left: -40px;
+}
+
+#campoA{
+    position: relative;
+    z-index: 2;
+    top: -531px;
+    left: 25px;
+}
+
+#campoB{
+    position: relative;
+    z-index: 2;
+    top: -405px;
+    left: -199px;
+}
+
+#campoC{
+    position: relative;
+    z-index: 2;
+    top: -306px;
+    left: -423px;
+}
+
+#campoD{
+    position: relative;
+    z-index: 2;
+    top: -252px;
+    left: 25px;
+}
+
+@-moz-document url-prefix(){
+
+    #campo1{
+        top: -479px;
+        left: 66px;
+    }
+
+    #campo2{
+        top: -389px;
+        left: 227px;
+    }
+
+    #campo3{
+        left: -29px;
+    }
+
+    #campo4{
+        top: -250px;
+    }
+
+    #campo5{
+        top: -164px;
+        left: -41px;
+    }
+
+    #campoD{
+        top: -245px;
+    }
+
+
+}

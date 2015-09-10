@@ -1,0 +1,161 @@
+body{
+	color: #666;
+}
+
+.linha{
+	width: 100%;
+	height: auto;
+	margin-bottom: 1.5%;
+	overflow: auto;
+}
+
+/* CSS das celulas grandes(ocupam toda a linha)*/
+.celulaGrande{
+	width: 100%;
+	height: 39px;
+	border: 2px solid #D1D1CB;
+	float: left;
+	background-color: #C8C8C3;
+	margin-top: -2px;
+	overflow:hidden;
+}
+
+.infoG{
+	width: 12%;
+	background-color: #C8C8C3;
+	padding: 8.5px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #D1D1CB;
+	margin-right: 7px;
+}
+
+.infoValueG{
+	width: 88%;
+	background-color: #F2F1ED;
+	float: left;
+}
+
+.infoValueG .styled-select{
+	height: 35px;
+}
+/* Fim do CSS da célula grande*/
+
+.grupoCaixa{
+	width: 95.82%;
+	padding: 0.8%;
+	background-color: #F2F1ED;
+	border: 2px solid #D1D1CB;
+	float: left;
+}
+
+.grupoTitulo{
+	width: 100%;
+	font-size: 20px;
+	color: #1E8290;
+}
+
+.grupo{
+	width: 100%;
+	font-size: 14px;
+	color: #666;
+}
+
+/* CSS das celulas pequenas (cada uma ocupa 1/3 da linha)*/
+.celulaPequena{
+	width: 32.33%;
+	height: 43px;
+	border: 2px solid #B6B6B0;
+	float: left;
+	background-color: #C8C8C3;
+}
+
+.infoP{
+	width: 46.8%;
+	background-color: #C8C8C3;
+	padding: 10.5px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+
+.infoValueP{
+	width: 53.2%;
+	background-color: #F2F1ED;
+	float: left;
+}
+/* Fim do CSS da célula pequena*/
+
+.bts{
+	width: 20.5%;
+	float: left;
+	background-color: #33B8CC;
+	border: 3px solid #2E9EAF;
+	color: white;
+	cursor: pointer;
+}
+
+#btCriarGrupo{
+	background: url(../img/CriarGrupo.png) no-repeat 8px;
+	background-color: #33B8CC;
+	padding: 10px 50px;
+	float: right;
+	
+}
+
+.btEditar{
+	float: right;
+	background: red;
+	height: 39px;
+	width: 4.18%;
+	background: url(../img/btEditar.png) no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+
+select{
+	width: 100%;
+	border: none;
+	background-color: transparent;
+	float: left;
+	padding: 6.5px;
+}
+
+
+/* Margins entre as células */
+
+.ambasMargin{
+	margin: 0 1.5%;
+}
+
+.styled-select select{
+	width: 100%;
+	border: 0;
+	border-radius: 0;
+	height: 38px;
+	-webkit-appearance: none;
+	overflow: hidden;
+	width: 111%;
+	cursor: pointer;
+	color: #666;
+}
+
+.styled-select {
+   width: 100.1%;
+   height: 39px;
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right;
+   background-color: #F2F1ED;
+}
+
+/* Removendo a arrow do <select> no IE*/
+select::-ms-expand {
+    display: none;
+}
+.box_margin_barra{
+	margin-right:11px;
+}
+.tutor_nome{
+	margin: 9px;
+	overflow:hidden;
+}

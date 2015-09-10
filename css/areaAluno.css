@@ -1,0 +1,819 @@
+html, body
+{
+	padding:0;
+	margin:0;
+}
+
+*{-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;}
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+
+/* a{
+	color:rgb(134,134,134);
+} */
+
+ /*--------------------- CONTEUDO AREA ----------------------*/
+
+#Cabecalho_Menu_Area_Menu2{
+	width: 388px;
+}
+
+/* COLUNA2 -----------------------------------------------------------------------------------------*/
+
+#Coluna2 {
+	position: relative;
+    width: 60%;
+    padding: 36px 24px 36px 36px;
+    height: auto;
+    float: left;
+}
+
+
+       /*-PORTIFOLIO-*/
+
+					#aluno_box_tiles
+					{
+						height: auto;
+						background-color: #C6DB87;
+						overflow: scroll;
+						overflow-y: hidden;
+						overflow-x: hidden;
+						padding: 18px;
+					}
+
+
+						#aluno_box_tiles_texto{
+							font-size:18px;
+							text-align:center;
+							width:750px;
+							height:auto;
+							margin-bottom:10px;
+							font-weight:bold;
+							color: rgb(102, 102, 102);
+						}
+
+							.barra
+							{
+								top: 10px;
+								left: 20px;
+								position: relative;
+								height:37px;
+								width:50%;
+								z-index: 1;
+								float:left;
+							}
+							.Objetivos_Semana_Cabecalho_Nome {
+								position: absolute;
+								left: 19px;
+								height: 37px;
+								font-size: 22px;
+								color: rgb(102, 102, 102);
+								z-index: 1;
+							}
+
+							.portfolio_secao 
+							{
+								width: 212px;
+								height: 180px;
+								float:left;
+								padding: 16px 15px;
+							}
+
+							.portfolio_secao_vazio
+							{
+								width: 208px;
+								height: 189px;
+								float:left;
+								padding: 16px 15px;
+								background: url("../img/FotoPortifolioVazio.png");
+								background-position: -2px -5px;
+							}
+
+									.verde {
+										background-color: #9EBA4C;
+										margin-right: 24px;
+									}
+
+									.verdeNoMargin {
+									background-color: #9EBA4C;
+									}
+
+											.roteiro {
+												width:100%;
+												height:85%;
+												background-color: rgb(242, 242, 238);
+												background-repeat: no-repeat;
+												background-position: center;		
+												clear: both;
+												text-align:center;
+												text-align: -webkit-center;
+											}
+
+											.nome_roteiro {
+												width: 100%;
+												height: 20%;
+												margin-top: 5px;
+												float: left;
+												clear: both;
+												color: white;
+												font-size: 12px;
+											}
+
+
+
+							.Block_Conteudo_Portifolio_Image
+							{
+								width: 450px;
+								height: 220px;
+								float: left;
+								background-size: auto 220px;
+								background-repeat: no-repeat;
+								background-image: url("../img/ilustra_portfolio.png");
+							}
+
+							.upLi{margin: -6px 18px 0 0 !important;}
+
+		/*-ROTEIROS-*/
+											
+					#Objetivos_Semana
+					{
+							width:64.8%;
+							height: auto;
+							margin-top: 24px;
+							float: left;
+							background-color: rgb(242, 203, 103);
+							padding: 18px;
+					}
+
+							.Objetivos_Semana_Cabecalho
+							{
+								height:39px;
+								width:100%;
+							}
+
+									.Roteiros_Semana_Cabecalho_Nome
+									{
+										height:39px;
+										width:100%;
+										float:left;										
+										font-size: 22px;
+										color: rgb(102, 102, 102);
+									}
+
+											.Objetivos_Semana_Cabecalho_Image
+											{
+												width:52px;
+												height:54px;
+												float:left;
+												background-image: url("../img/OS1.png");
+												background-repeat: no-repeat;
+												background-position: 0px 8px;
+											}
+
+							.Objetivos_Semana_Conteudo
+							{
+								height:auto;
+							}
+								
+									#boxRoteiros {
+										width:334px;
+										height: 197px;
+										overflow: auto;
+									}
+
+									.Objetivos_Semana_Conteudo_Tarefas_Content
+									{
+											width:98%;
+											height:auto;	
+									}
+
+											.Objetivos_Semana_Conteudo_Tarefas
+											{
+												width:100%;
+												min-height: 62px;
+												height: auto;
+												background-color:#FCF9EF;
+												margin: 4px 0px;
+												padding: 6px 12px;
+											}
+
+												.Objetivos_Semana_Conteudo_Tarefas_Texto
+												{
+													font-size: 12px;
+													color: #88868B;
+													text-transform: uppercase;
+												}
+
+												.tabela_colorida_roteiro_Area_Aluno
+												{
+													float: left;
+													margin-top: 0px;
+													margin-right: 10px;
+												}
+
+												.tabela_colorida_roteiro_Area_Aluno td:nth-child(1){
+													background-color: #8DC63F;
+												}
+
+												/* .td_roteiro_numero_tabela{
+													background-color:#60c9d7;
+													color: #fff;
+													width: 28px !important;
+													height:27px;
+													text-align: center;
+													font-size:12px;
+													float:left;
+													padding-top: 5px;
+													border-right:1px #fff solid;
+												} */
+
+												.td_roteiro_verde{
+													background-color: rgb(141,198,63) !important;
+													width: 18px !important;
+													height: 18px  !important;
+													color: #fff;
+													font-size:12px;
+													text-align: center;
+													border: 0px #FCF5E1 solid;
+												}
+
+												.td_roteiro_verde_tk{
+													background-color: rgb(141,198,63) !important;
+													background-image:url(../img/R_check.png);
+													background-size: cover;
+													width: 18px !important;
+													height: 18px  !important;
+													color: transparent;
+													font-size:12px;
+													text-align: center;
+													border: 0px #FCF5E1 solid;
+												}
+
+												.td_roteiro_branco{
+													background-color:#FCF9EF !important;
+													width: 18px !important;
+													height: 18px  !important;
+													text-align: center;
+													border: 0px #FCF5E1  solid;
+												}
+
+												.td_roteiro_laranja{
+													background-color: rgb(247,148,30)  !important;
+													width: 18px !important;
+													height: 18px  !important;
+													color: #fff;
+													font-size:12px;
+													text-align: center;
+													border: 0px #FCF5E1  solid;
+												}
+
+									.Objetivos_Semana_Conteudo_Grafico
+									{
+											width:88px;
+											height:194px;
+											background-color:#FCF9EF;
+											margin: 4px 0px 0px 0px;
+											float: right;
+											
+									}
+
+												#grafico1
+												{
+													background: url() no-repeat;
+													/*background-color: gainsboro;*/
+													background-color: #FCF9EF;
+												}
+												
+												#grafico2
+												{
+													background: url() no-repeat;
+													/*background-color: scrollbar;*/
+													background-color: #FCF9EF;
+												}
+												
+												#grafico1 p, #grafico2 p 
+												{
+													text-align: center;
+													margin-top: 12px;
+													margin-right: 5px;
+												}
+												
+												#grafico1 span
+												{
+													color: #C31A37;
+												}
+												#grafico2 span{
+													color: #6B66AD;
+												}
+
+													/*Falme*/
+
+													.Grafico_Holder
+													{
+														width:100%;
+														height:100%;
+													}
+
+													/*EndFalme*/
+
+												.graficos_roteiros
+												{
+													width: 100%;
+													height: 50%;
+													margin-top: 0px;
+													float: right;
+													font-size: 9px;
+													text-align: center; 
+												}
+
+
+								    
+
+		/*-MENSAGENS-*/										
+		
+
+					#Mensagens
+					{
+						width:31.8%;
+						height: auto;
+						min-height: 276px;
+						float: left;
+						margin-left: 24px;
+						margin-top: 24px;
+						padding:18px;
+						background-color: rgba(252, 192, 102, 0.8);
+					}
+
+						
+						.user{
+							margin: 0 0 6px 0;	
+						}
+						.Mensagens_Cabecalho_Nome
+							{
+								height:37px;
+								width:100%;
+								float:left;
+								font-size: 22px;
+								color: rgb(102, 102, 102);
+								background: url("../img/OS2.png") no-repeat;
+								background-position: 142px -2px;
+
+
+							}
+							
+							.Mensagens_Cabecalho_Nome a{
+								color: rgb(102, 102, 102);
+								text-decoration: none;
+							}
+
+								.Mensagens_Cabecalho_Imagem_Contador
+								{
+									width:23px;
+									height:23px;
+									border-radius: 50%;
+									background-color: rgb(255, 107, 64);
+									font-size: 12px;
+									color:white;
+									text-align: center;
+									margin-left: 173px;
+									margin-top: -30px;
+    								padding-top: 5px;
+								}
+
+						.mensagensTabela{
+							margin-top: 3px;
+							border-spacing: 4px;
+
+						}
+
+						.Mensagens_Conteudo
+						{
+							width:100%;
+							height:auto;
+							font-size: 12px;
+						}
+
+							#mensagensTabela 
+							{
+							width: 100%;
+							color: #88868B;
+							border-collapse: separate;
+							border-spacing: 0px 4px;
+							}
+
+
+
+							.td_mensagens1
+							{
+								padding: 10px;
+								background: rgb(247, 242, 222);
+								border: 0px 0px;
+							}
+
+
+							.td_mensagens2
+							{
+								padding: 10px;
+								background: rgb(241, 229, 192);
+								border: 0px 0px;
+							}
+
+							.Mensagens_Conteudo_Aviso
+							{
+								background-image: url("../img/OAviso.png");
+								background-repeat: no-repeat;
+								background-position: 4.5px 10px;
+							}
+
+				
+							.Mensagens_Conteudo_Aviso
+							{
+								background-image: url("../img/OAviso.png");
+								background-repeat: no-repeat;
+								background-position: 4.5px 10px;
+							}
+							.dataMsg{
+								padding: 10px !important;
+								 width: 181px;
+							}
+
+
+							.mensagensTabela tr:nth-child(odd) > .dataMsg{
+								background-color:rgb(247, 242, 222);
+							}	
+
+
+							.mensagensTabela tr:nth-child(even) > .dataMsg{
+								background-color:rgb(241, 229, 192);
+							}				
+						
+
+/* COLUNA3 -----------------------------------------------------------------------------------------*/
+
+		#Coluna3
+		{
+			background-color: rgba(129, 205, 211, 0.7);
+			margin-top: 36px;
+			height: 560px;
+			padding: 18px;
+		}
+
+        /*-AGENDA-*/	
+
+
+				#Conteudo_Coluna3_Agenda_Content
+                {
+                    width: 100%;
+                    height: auto;
+                }
+
+                    #Conteudo_Coluna3_Agenda_Content_Nome
+				    {
+                        height:37px;
+						width:100%;
+						float:left;
+						font-size: 22px;
+						color: rgb(102, 102, 102);
+
+				    }
+
+                    .Conteudo_Coluna3_Agenda_Evento
+					{
+						height:auto;
+						width:100%;
+						background-color: white;
+						margin-top: 5px;
+					}
+
+                    #box_agenda
+                    {
+				      position: relative;
+				      height: 483px;
+				      width: 106%;
+				      overflow-y: auto;       
+				    }
+				      
+                    #Conteudo_Coluna3_Agenda_Evento_Content
+                    {
+				      position: relative;
+				      height: auto;
+				      width:95%%;
+			        }
+
+
+						.Conteudo_Coluna3_Agenda_Evento_Titulo
+						{
+							width:100%;
+							height:auto;
+							color:rgb(219, 94, 49);
+							font-size: 18px;
+							padding: 10px 10px 5px 0px;
+						}
+
+						.Conteudo_Coluna3_Agenda_Evento_Conteudo
+						{
+							width:100%;
+							height:auto;
+							color: rgb(102, 102, 102);
+							font-size: 18px;
+							padding: 10px;
+						}
+
+
+		.SlidePort{
+			width: 700px;
+			padding: 0;
+/*			width: auto;
+			padding-right: 100%;*/
+		}
+		.Objetivos_Resultado_Desempenho{
+			background-color:rgb(200,220,141) !important;
+			width: 708px;
+			height: 256px;
+		}
+
+		#content_central{
+				padding: 36px 25px 36px 36px;
+			}
+
+			#content_central_1{
+				overflow:hidden;
+			}
+
+		#content_central_1{
+		overflow:hidden;
+	}
+
+.microfiche-controls{
+	display: none !important;
+}
+
+.microfiche-screen{
+	height: 256px !important;
+}
+
+
+.appear{
+	display: block !important;
+}
+
+#frmCadastroAluno{
+	position: relative;
+	width: 100%;
+	padding: 36px 30px 36px 36px;
+}
+.opcaoFoto {	
+	padding: 36px;
+}
+
+#mCSB_3_scrollbar_vertical{
+	left: 177px;
+}
+
+#boxMensagem {
+	overflow: auto;
+	height: 200px;
+	font-size: 12px;
+	margin-top: 42px;
+	display: block;
+	background: none;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+	margin-top: 0;
+}
+.box_margin_alter {
+    display:none;
+    position: absolute;
+    width: 53%;
+    background-color: #FFF;
+    right: 16.7%;
+    z-index: 10003;
+    height: 627px;
+    overflow: auto;      
+}
+
+@media (width: 1024px) and (max-height: 509px) {
+	#box_agenda {
+		position: relative;
+		height: 485px;
+		width: 106%;
+		overflow-y: auto;
+	}
+	#Conteudo_Coluna3_Agenda_Evento_Content {
+		position: relative;
+		height: 306px;
+		width: 95%;
+		overflow: auto;
+	}
+	.Objetivos_Semana_Cabecalho_Nome {
+		left:20px;
+		position: absolute;
+		height: 37px;
+		font-size: 22px;
+		color: rgb(102, 102, 102);
+		z-index: 999;
+	}
+    .box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 10003;
+        height: 413px;
+        overflow: auto;
+        right:0;
+	}
+}
+
+@media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
+
+	.box_margin_alter{
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 10003;
+        height: 627px;
+        overflow: auto;
+        right:0;
+	}
+
+}
+/*Media para note com height 707*/
+@media (min-width: 1280px)and (max-height: 707px) {
+    .box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 75%;
+        background-color: #FFF;
+        right: 3.1%;
+        z-index: 10003;
+        height: 627px;
+        overflow: auto;
+        top: 36px;
+    }
+}
+/*MEDIA TABLET*/
+@media (min-width: 1024px) and	(max-height: 460px){
+    .box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 10003;
+        height: 627px;
+        overflow: auto;
+        right:0;
+    }
+}
+
+@media (max-width: 1023px), (width: 1024px) and	(max-height: 460px){
+	#Cabecalho_Menu_Area_Menu2{
+		width: 795px;
+	}
+
+	.mCSB_container{
+		height: 100%;
+	}
+
+	.Objetivos_Resultado_Desempenho{
+		width: 100%;
+		height: 25%;
+	}
+
+	#Objetivos_Semana{
+		height: 100%;
+		margin-top: 20px;
+	}
+
+
+	#Mensagens{
+		margin-left: 48px;
+		height: 100%;
+		margin-top: 20px;
+	}
+
+	.Mensagens_Conteudo{
+		height: 100%;
+	}
+
+	#boxMensagem{
+		height: 100%;
+	}
+
+	#Conteudo_Coluna3_Agenda_Content_Nome{
+		height: 67px;
+		font-size: 40px;
+	}
+
+	.Conteudo_Coluna3_Agenda_Evento{
+		height: 26%;
+		width: 85%;
+		margin-left: 26px;
+		margin-top: 15px;
+	}
+
+	#Conteudo_Coluna3_Agenda_Evento_Content{
+		height: 100%;
+	}
+
+	.Conteudo_Coluna3_Agenda_Evento_Conteudo{
+		font-size: 40px;
+	}
+
+	.Conteudo_Coluna3_Agenda_Evento_Titulo{
+		font-size: 35px;
+	}
+
+	.Conteudo_Coluna3_Agenda_Evento_Hora{
+		font-size: 25px;
+	}
+
+	.Objetivos_Semana_Cabecalho_Nome{
+		font-size: 40px;
+	}
+
+	.portfolio_secao{
+		padding-bottom: 35px;
+	}
+
+	.SlidePort{
+		margin: 0 36px;
+	}
+
+	#bullets{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.microfiche-screen{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.microfiche-film{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.example{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.example div{
+		width: 100% !important;
+  		height: 88% !important;
+	}
+
+	.example ul{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.example ul a{
+		width: 100% !important;
+  		height: 100% !important;
+	}
+
+	.example li{
+		margin: 54px 18px 0 0;
+		height: 90%;
+		width: 23%;
+	}
+
+	.nome_roteiro{
+		font-size: 22px;
+	}
+
+	.example li img{
+		height: 100%;
+		width: 100%;
+	}
+
+	.Mensagens_Cabecalho_Nome{
+		font-size: 40px;
+	}
+
+	.dataMsg{
+		width: 426px;
+		line-height: 
+	}
+}
+
+.microfiche-controls {
+    position: absolute;
+    bottom: 441px;
+    left: 634px;
+}

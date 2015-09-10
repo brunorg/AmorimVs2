@@ -1,0 +1,580 @@
+#foto {
+    background-image: url("../img/foto.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: thin solid rgb(180,205,200);
+    border-radius: 5px;
+    cursor: pointer;
+    height: 125px;
+    margin: auto 74px;
+    width: 50%;
+}
+
+#imagem
+{
+    display: none;
+}
+
+    #Arquivo_Foto_Aluno
+    {
+        display:none;
+    }
+#fecharAlter{
+    display:none;
+}
+
+/* CSS para envolver as celulas*/
+#linha1,#linha2,#linha3,#linha4{
+    margin-bottom: 0.25%;
+}
+
+.celulaPequena{
+    width: 32.3%;
+    border:none;
+    background-color: transparent; 
+}
+
+.celulaMedia{
+    width: 66.2%;
+}
+
+.celulaMeio {
+    width: 49.2%;
+    height: auto;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #C8C8C3;
+}
+
+.celulaMeioPs {
+    width: 32.2%;
+    height: auto;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #C8C8C3;
+}
+
+.infoM{
+    width: 21.9%;
+}
+
+.infoValueMm{
+    width: 19%;
+    padding: 10.5px;
+    background-color: #F2F1ED;
+    float: left;
+    text-align: right;
+}
+
+.infoG{
+    width: 14.4%;
+    height: auto;
+    padding: 10px;
+}
+.infoPRes{
+    width: 14.4%;
+    height: auto;
+    padding: 10px;
+    float:left;
+}
+.infoPRes{
+    background-color: rgb(214,228,225);
+    border: none;
+    color: #666;
+    padding: 10px;
+}
+.inputImg{
+    width: 37px;
+    height: 37px;
+    background: url(../img/radio-botao.png) no-repeat;
+    float: left;
+    cursor: pointer;
+}
+.ps {
+    width: 45%;
+    padding: 10px 9px 10px 0px !important;
+}
+
+.psOpcao{
+    width: 15% !important;
+}
+#cadAlunoVar{
+    display:none;   
+}
+#cadUsuario{
+    display:none;
+    margin-top:47px;
+}
+
+/* CSS da célula de Observação */
+#infoObs{
+    width: 14.5%;
+    height: 70px;
+    padding: 8px;
+    background-color: rgb(214, 228, 225);
+    text-align: right;
+    float: left;
+    border:none;
+}
+
+#botaoDesbloquear{
+    text-transform:capitalize;
+}
+
+#infoValueObs{
+    width: 85%;
+    height: 70px;
+    background-color: rgb(250,248,246);
+    float: left;
+    overflow-y: hidden;
+}
+
+#infoValueObs textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    color:#666;
+    background: transparent;
+    padding:11.5px;
+}
+/* Fim do CSS da célula de observação */
+input:-webkit-autofill{
+    background-color:rgb(250,248,246) !important;
+}
+
+input{
+    border: none;
+    width: 100%;
+    padding: 11.5px;
+    background-color: transparent;
+    overflow: hidden;
+    color: #666;
+}
+/* CSS do input tipo date*/
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    color: #666;
+}
+
+input[type=date]{
+    padding: 8.9px;
+    color: #666;
+}
+
+input[type=submit], input[type=button]{
+    background-color: rgba(112, 160, 152, 1);
+    font-size:20px;
+    color:white;
+}
+
+input[type=button]:disabled{
+    opacity: 0.6;
+}
+
+/* ---- FIM ---- */
+
+/* CSS do input tipo radio */
+input[type=radio] {
+    width: 1.86%;
+    height: 1.2%;
+    opacity: 0.01;
+    position: absolute;
+    margin: 11px;
+    cursor: pointer;
+}
+
+input[type=radio]:checked + label span{
+    background: url(../img/radio-botao.png) -38px;
+}
+
+/* CSS para fazer o background do input radio*/
+input[type=radio] + label span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4.204%;
+    background-color: #C8C8C3;
+    float: left;
+    background-image: url(../img/radio-botao.png);
+}
+/* ---- Fim ---- */
+
+/* CSS do input tipo checkbox */
+input[type=checkbox] {
+    width: 1.86%;
+    height: 3%;
+    opacity: 0.01;
+    position: absolute;
+    margin: 11px;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked + label span{
+    background: url(../img/checkbox-botao.png) -38px;
+}
+
+/* CSS para fazer o background do input checkbox*/
+input[type=checkbox] + label span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2.1%;
+    background-color: #C8C8C3;
+    float: left;
+    background-image: url(../img/checkbox-botao.png);
+}
+/* ---- Fim ---- */
+
+
+select{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    float: left;
+    padding: 10.8px;
+    color:#666;
+}
+
+#PaiMae{
+    width: 25%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+#PaiMaeAluno{
+    width: 17%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+#AlunoMaiorAluno{
+    width: 20%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+#OutroAluno{
+    width: 14.6%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+.inputBranco{
+    width: 100%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+}
+
+
+/* CSS das células do inputs checkbox */
+.celulaCheck{
+    width: 83%;
+    height: 41px;
+    overflow: hidden;
+    border:none;
+    float: left;
+}
+
+.infoGG{
+    width: 58.4%;
+    background-color: #C8C8C3;
+    padding: 10px;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoGGValue{
+    width: 15.8%;
+    background-color: #F2F1ED;
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+/* ---- FIM ---- */
+
+
+/* Arrumando padding dos inputs das respectivas linhas */
+#linha19 label span, #linha23 label span, #linha27 label span{
+    padding: 2.5%;
+}
+/* ---- FIM ---- */
+
+
+/* Margins entre as células */
+.ambasMargin{
+    margin: 0 1.5%;
+}
+
+.rightMargin{
+    margin-right: 1.5%;
+}
+
+.styled-select select{
+    width: 116%;
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    -webkit-appearance: none;
+}
+
+.styled-select {
+   width: 100%;
+   height: 39px;
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right rgb(250, 248, 246);
+   background-color: rgb(250, 248, 246);
+  }
+  
+.styled-select input[type=date] {
+    background: url(../img/bt_calendario.png) no-repeat right rgb(250, 248, 246);
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    -webkit-appearance: none;
+}
+
+.styled-select input[type=date]::-webkit-calendar-picker-indicator{
+    opacity: .01;
+}
+
+.box_margin_barra{
+    margin-right:11px;
+}
+
+.infoP, .infoM, .infoG, .infoGG
+{
+    background-color: rgb(214,228,225);
+    border:none;
+    color: #666;
+    padding:10px;
+}
+
+.infoValueP, .infoValueM, .infoValueG, .infoValueGG, .infoGGValue, .infoValueMm
+{
+    background-color: rgb(250,248,246);
+    color: #666;
+    overflow: hidden;
+}
+
+.celulaMeio,.celulaMeioPs{
+    height:37px;
+    color: #666;
+}
+
+
+.celulaMeio, .celulaMedia, .celulaGrande, .celulaMeioPs
+{
+    border: none;
+    overflow: hidden;
+    background-color: rgb(250,248,246);
+    color: #666;
+}
+
+#numeroRANumero
+{
+    background-color: rgb(250,248,246);
+    width:124px;
+}
+
+#numeroRADigito
+{
+    background-color: rgb(250,248,246);
+    width:38px;
+}
+
+#DadosMaeVisualizacao, #DadosPaiVisualizacao, #DadosOutroVisualizacao{
+    display: none;
+}
+
+#RetornoCheckedOutro, #RetornoCheckedMae, #RetornoCheckedPai
+{
+    display: block;
+}
+
+.btn_left{
+    float:right;
+    width:10.6%;
+}
+
+.btnSubmit
+{
+    background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.marginRight{
+    margin-right:15px;
+}
+
+.opcaoFoto{
+     display:none;
+}
+
+.blackPainel
+{
+    display:none;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+
+#JanelaUploadPortifolio
+{
+    width:300px;
+    height:280px;
+    border-radius:10px;
+    border:solid thin;
+    background-color: white;
+    margin:0 auto;
+    top:20%;
+    position:relative;
+}
+
+.Titulo_janela_upload
+{
+    width:100%;
+    height:50px;
+    padding-top:15px;
+    text-align: center;
+    color: #878787;
+}
+
+.areaUpload
+{
+    width:100%;
+    height:140px;
+}
+
+    .UploadButton
+    {
+        width: 50%;
+        height:100%;
+        border:solid thin blue;
+        border-radius:15px;
+        margin: 0 auto;
+    }
+
+.campoConfirmaUpload
+{
+    width: 33%;
+    height: 38px;
+    margin: auto;
+}
+
+    .btn_submit
+    {
+        display:block;
+        width:90px;
+        height:35px;
+        margin:0 auto;
+        background-color:gray;
+        border:none;
+        background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        background-size: cover;
+    }
+
+
+
+    #fotoAluno
+    {
+        display:none;
+    }
+
+#fotoCad {
+    background-image: url("../img/foto.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: thin solid rgb(180,205,200);
+    border-radius: 5px;
+    cursor: pointer;
+    height: 154px;
+    margin: auto 74px;
+    width: 153px;
+    float: left;
+    display: none;
+}
+
+#content_float_upload
+{
+    width:200px;
+    height:150px;
+    background-color:white;
+}
+
+
+.close_upload_producao
+{
+    cursor:pointer;
+    background-image: url("../img/cancela_ativo.png");
+    width:19px;
+    height:19px;
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+
+.titulo_recurso a
+{
+    color:rgb(2, 129, 141);
+}
+
+#LegendaUpload
+{
+    padding:10px;
+    text-align: center;
+    color: #878787;
+}
+
+#box_foto{
+    width:100%;
+    min-height: 37px;
+}
+
+#boxPaiEnd, #boxMaeEnd, #boxRespEnd{
+    display:none;
+}
+
+.desbloquear{
+    width: 19.6%;
+    margin-right: 4px;
+}
+
+.btnProximo{
+    display: none;
+    margin-right: 4px;  
+}
+
+.btnProximo input{
+    width: 100%;
+    text-transform:capitalize;
+}
+
+
+.btnSubmit{
+    background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+#content_central_fixa{
+    width: 100%;
+}

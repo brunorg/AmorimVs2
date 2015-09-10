@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/grupoTutoria.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/relatorioProfessor.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	  	<script src="js/jquery-1.10.2.js"></script>
+      	<script src="js/jquery-ui.js"></script>
+
+      	<script type="text/javascript">
+            $(document).ready(function(){
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+                {
+                    window.location.assign("mGrupoTutoria.html");
+                }
+            });
+         </script>
+
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		<script src="js/Chart.js-master/Chart.js"></script>
+		<script src="js/Chart.js-master/Chart.min.js"></script>
+		<script src="js/Chart.js"></script>
+		<!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+		<script src="js/grupoTutoria.js"></script>
+		<!--Fim JS-->
+    
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+
+			<!--Cabecalho 1 - NavegaÃ§Ã£o-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a id="area_acesso"></a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuÃ¡rio, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuÃ¡rio, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuÃ¡rio-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+					<div id="Content_lateral_Menu"></div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="apontar">Apontar PresenÃ§a grupo</p>
+						</div>
+					</div>                                     
+				</div>
+
+                <div class="Conteudo_Coluna" id="content_central">
+					<div id="Grupos_box">						
+					</div>
+				</div>
+
+				<div class="boxGlobal"></div>
+				<div id="boxMensagemGeral"></div>
+				<div class="boxCalendario"></div>	
+
+			</div>	
+		</div>
+			
+			<!--bloqueio para a rolagem bottom-->
+			<!--Fim Conteudo-->
+	</body>
+</html>

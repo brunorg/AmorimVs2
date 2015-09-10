@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/camposUsodoSoloStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+        
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 6º Ano | Uso do Solo </div>
+        </br>
+
+        <div id="Conteudo_Total">
+            
+            <div class="exercicio">
+                1 – Faça duas ilustrações mostrando como os primeiros seres de nossa espécie (cerca de 100 mil anos atrás) obtinham alimentos e como atualmente os alimentos são obtidos:
+
+                <br><br>
+
+                <span style="position: relative; top: 70px; left:130px">Primeiros seres humanos:</span>
+                <span style="position: relative; top: 70px; left:350px">Atualmente:</span>
+
+                <div id="ferramentasExe1">
+                    <!--<input type="color" id="pickerExe1" style="float:left">!-->
+                    <a class="colorpicker" href="#canvasExe1" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe1" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                    <div style="clear: both;"></div>
+
+                    <div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe1" data-color="#FFFFFF" class="ferramenta">Borracha</a></center></div>
+                    <br><br>
+                    <a id="corExe1" href="#canvasExe1" data-color="#000000"></a>
+                    <div style="clear: both;"></div>
+                </div>
+                <center><div id="exe1Div" width="800" height="400"></div></center>
+                <script type="text/javascript">
+                    var canvasDiv = document.getElementById('exe1Div');
+                    canvasExe1 = document.createElement('canvas');
+                    canvasExe1.setAttribute('width', 800);
+                    canvasExe1.setAttribute('height', 400);
+                    canvasExe1.setAttribute('id', 'canvasExe1');
+                    canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv.appendChild(canvasExe1);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                    }
+                    context = canvasExe1.getContext("2d");
+
+                    $(function(){$("#canvasExe1").sketch();});
+
+                    /*$("#pickerExe1").on("change click", function(){
+                        var cor = this.value;
+                        $("#corExe1").attr("data-color", cor);
+                        $("#corExe1").trigger("click");
+
+                    });
+
+                $(".colorirExe1").on("change click", function(){
+                    $("#corExe1").trigger("click");
+
+                });*/
+                </script>
+
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                2 – Escreva com suas palavras do que se trata o processo de adubar, arar e fertilizar a terra:
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                3 – Quais as alternativas disponíveis para diminuir ou evitar o uso de agrotóxicos nas plantações, segundo estudado no Roteiro?
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                4 - “ No solo também há uma teia alimentar, em que cada animal desempenha sua função.”(Livro Ciências 6º ano p. 269). A partir desta afirmação desenhe e escreva o nome de animais que comumente são encontrados nos solos:
+                <center><canvas id="Exe1" height="400" width="800" style="border: 1px solid lightgrey">
+                </canvas></center>
+            </div>
+
+            <div class="exercicio">
+                5 – Complete o esquema abaixo escrevendo nos quadros os componentes de um solo fértil. Faça um desenho no centro mostrando as camadas de composição deste solo:
+                <br><br>
+                <div id="ferramentasExe5">
+                    <!--<input type="color" id="pickerExe5" style="float:left">!-->
+                    <a class="colorpicker" href="#canvasExe5" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                    <a class="colorpicker" href="#canvasExe5" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                    <div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe5" data-color="#FFFFFF" class="ferramenta">Borracha</a></center></div>
+                    <br><br>
+                    <a id="corExe5" href="#canvasExe5" data-color="#000000"></a>
+                    <div style="clear: both;"></div>
+                </div>
+
+                <center><div id="exe5Div" style="background: url('img/usodoSoloExe5.png') no-repeat; background-position: center; width: 520px; height: 390px; border: 2px solid black"></div></center>
+
+                <textarea class="lacuna" id="campoA"></textarea>
+                <textarea class="lacuna" id="campoB"></textarea>
+                <textarea class="lacuna" id="campoC"></textarea>
+                <textarea class="lacuna" id="campoD"></textarea>
+                <textarea class="lacuna" id="campoE"></textarea>
+                <textarea class="lacuna" id="campoF"></textarea>
+                <textarea class="lacuna" id="campoG"></textarea>
+                <textarea class="lacuna" id="campoH"></textarea>
+
+                <script type="text/javascript">
+                    var canvasDiv = document.getElementById('exe5Div');
+                    canvasExe5 = document.createElement('canvas');
+                    canvasExe5.setAttribute('width', 150);
+                    canvasExe5.setAttribute('height', 171);
+                    canvasExe5.setAttribute('id', 'canvasExe5');
+                    canvasExe5.setAttribute('style', 'border: 2px solid black; padding-left: 0; padding-right: 0; margin-left: auto; margin-right: 185px; display: block; margin-top: 112px;');
+                    canvasDiv.appendChild(canvasExe5);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe5 = G_vmlCanvasManager.initElement(canvasExe5);
+                    }
+                    context = canvasExe5.getContext("2d");
+
+                    $(function(){$("#canvasExe5").sketch();});
+
+                    /*$("#pickerExe5").on("change click", function(){
+                        var cor = this.value;
+                        $("#corExe5").attr("data-color", cor);
+                        $("#corExe5").trigger("click");
+
+                    });
+
+                    $(".colorirExe5").on("change click", function(){
+                        $("#corExe5").trigger("click");
+
+                    });*/
+                </script>
+
+            </div>
+
+            <div class="exercicio">
+                6 – Alguns produtos / objetos que utilizamos no nosso cotidiano são feitos (fabricados) com materiais que podem ou não ser repostos na natureza. Leia a lista abaixo e classifique os objetos de acordo com os materiais usados na sua fabricação, marcando a opção correta:
+                <br><br>
+                <center><table>
+                    <tr><th>Objetos</th><th>Feito com material que pode ser reposto na natureza (recurso renovável)</th><th>Feito com material que não pode ser reposto na natureza (recurso não renovável)</th></tr>
+                    <tr><td>Mesa de madeira</td><td><input type="radio" name="exe6a"></td><td><input type="radio" name="exe6a"></td></tr>
+                    <tr><td>Prancha de surf</td><td><input type="radio" name="exe6b"></td><td><input type="radio" name="exe6b"></td></tr>
+                    <tr><td>Copo de vidro</td><td><input type="radio" name="exe6c"></td><td><input type="radio" name="exe6c"></td></tr>
+                    <tr><td>Régua escolar</td><td><input type="radio" name="exe6d"></td><td><input type="radio" name="exe6d"></td></tr>
+                    <tr><td>Toalha de banho</td><td><input type="radio" name="exe6e"></td><td><input type="radio" name="exe6e"></td></tr>
+                </table></center>
+            </div>
+
+        </div>
+
+        <br><br>
+
+    </body>
+
+</html>

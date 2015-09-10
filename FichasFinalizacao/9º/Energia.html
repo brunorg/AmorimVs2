@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/energiaStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 9º Ano | Energia </div>
+        </br>
+
+            <div id="Conteudo_Total">
+
+                <div class="exercicio">
+                    1- Estudamos três tipos de forças: contato, atração e gravidade. Com base nas imagens escreva um pequeno texto sobre cada uma delas.
+                    </br>
+
+                    <table id="TabelaExe1">
+                        <tr>
+                            <td>
+                                <center><img src="img/energiaExe1a.png" width="200" height="150"></center>
+                            </td>
+                            <td>
+                                <div class="textoT">
+                                    <textarea> </textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><img src="img/energiaExe1b.png" width="200" height="150"></center>
+                            </td>
+                            <td>
+                                <div class="textoT">
+                                    <textarea> </textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><img src="img/energiaExe1c.png" width="200" height="150"></center>
+                            </td>
+                            <td>
+                                <div class="textoT">
+                                    <textarea> </textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </br></br>
+
+
+                <div class="exercicio">
+                    2-a) Explique, de acordo com o roteiro, porque massa e peso não são a mesma coisa.
+                    <textarea class="texto"> </textarea>
+                </div>
+
+                </br></br>
+
+                <div class="exercicio">
+                    2-b)Preencha a tabela com a sua massa o seu peso nos seguintes planetas, considerando que : P=m.g
+                </br></br>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Terra</th>
+                            <th>Marte</th>
+                            <th>Mercúrio</th>
+                            <th>Júpiter</th>
+                        </tr>
+                        <tr>
+                            <th>Força da Gravidade</th>
+                            <td>10m/s²</td>
+                            <td>3,9m/s²</td>
+                            <td>2,8m/s²</td>
+                            <td>25m/s²</td>
+                        </tr>
+                        <tr>
+                            <th>Massa</th>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                        <tr>
+                            <th>Peso</th>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                    </table>
+                </br></br>
+
+                </div>
+
+                
+
+                <div class="exercicio">
+                    2-c) construa um gráfico com as informações da tabela e assinale onde o seu peso é maior e onde é menor e explique porque isso ocorreu.
+                    </br></br>
+                    <span id="demo">demonstração</span>
+                    <br><br>
+                    <div style="position: relative"><img src="img/grafico.gif" id="demoGif" style="position: absolute; top: -16px; left: -51px; visibility: hidden;"></div>
+                    <center><div id="exe1Div" width="676" height="812"></div></center>
+                    <script type="text/javascript">
+                    var canvasDiv = document.getElementById('exe1Div');
+                    canvasExe1 = document.createElement('canvas');
+                    canvasExe1.setAttribute('width', 676);
+                    canvasExe1.setAttribute('height', 812);
+                    canvasExe1.setAttribute('id', 'canvasExe1');
+                    canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv.appendChild(canvasExe1);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                    }
+                    context = canvasExe1.getContext("2d");
+                    var img = new Image();
+                    img.src = "img/energiaExe2.png";
+                    img.onload = function(){
+                        context.drawImage(img, 0, 0, 676, 812);
+                    }
+
+                    drag = false;
+                    barras = [775, 775, 775, 775];
+
+                    function desenharBarra (x, y) {
+                        context.clearRect(0, 0, 676, 812);
+                        context.drawImage(img, 0, 0, 676, 812);
+                        context.fillStyle = "#c8db8f"
+                        context.fillRect(108, barras[0], 226-108, 775-barras[0]);
+                        context.fillStyle = "#ffa659"
+                        context.fillRect(226, barras[1], 343-226, 775-barras[1]);
+                        context.fillStyle = "#f2cb67"
+                        context.fillRect(343, barras[2], 462-343, 775-barras[2]);
+                        context.fillStyle = "#5d9ca7"
+                        context.fillRect(462, barras[3], 584-465, 775-barras[3]);
+
+                        if (x > 108 && x < 226)
+                        {
+                            context.fillStyle = "#c8db8f"
+                            context.fillRect(108, y, 226-108, 775-y);
+                            barras[0] = y;
+                        }
+                        else if (x > 226 && x < 343)
+                        {3
+                            context.fillStyle = "#ffa659"
+                            context.fillRect(226, y, 343-226, 775-y);
+                            barras[1] = y;
+                        }
+                        else if (x > 343 && x < 462)
+                        {
+                            context.fillStyle = "#f2cb67"
+                            context.fillRect(343, y, 462-343, 775-y);
+                            barras[2] = y;
+                        }
+                        else if (x > 462 && x < 584)
+                        {
+                            context.fillStyle = "#5d9ca7"
+                            context.fillRect(462, y, 584-465, 775-y);
+                            barras[3] = y;
+                        }
+                        
+                    }
+
+                    $("#canvasExe1").mousemove(function (event) {
+                        var x = event.pageX - Math.round($("#canvasExe1").offset().left);
+                        var y = event.pageY - Math.round($("#canvasExe1").offset().top);
+                        if(drag)
+                             desenharBarra(x, y);
+                    });
+
+                    $("#canvasExe1").mousedown(function () {
+                        drag = true; 
+                    });
+
+                    $("#canvasExe1").on("mouseup mouseleave",function () {
+                        drag = false;
+                    });
+
+                    $("#demoGif").mousedown(function() {
+                        $("#demoGif").css("visibility", "hidden");
+                    });
+
+                    $("#demo").click(function(){
+                        $("#demoGif").css("visibility", "visible");
+                    });
+
+                    </script>
+
+                    </br></br>
+                    <textarea class="texto"></textarea>
+                    
+                </div>
+
+                </br></br>
+
+                <div class="exercicio" id="Exercicio3">
+                    3- Um pêndulo simples é formado por um fio que tem uma de suas extremidades fixa em um suporte e a outra presa a um corpo qualquer. Se soltarmos o corpo de uma determinada altura ele descreverá um movimento oscilatório. Quanto maior a altura do qual o pendulo for solto, ou seja, quanto maior o angulo mais longo será o caminho percorrido para completar uma oscilação, porém ele ganhará mais velocidade, assim passa mais rápido pelo ponto mais baixo da trajetória e sobe com maior velocidade, portanto apesar de o pendulo percorrer uma distancia maior, a velocidade mais elevada faz com que o tempo de oscilação seja praticamente o mesmo. Se o corpo tiver uma massa grande ele será atraído com maior força pela gravidade, porém mais difícil para esse objeto ser acelerado. Dessa 
+                    forma, podemos afirmar que o período de oscilação do pêndulo não varia perceptivelmente com a mudança do valor da altura (ou ângulo) de soltura do pêndulo nem com  o da massa do corpo.</br></br>
+                    <center><img src="img/energiaExe3.png" width="274" height="244"></center>
+                </div>
+
+                </br></br>
+
+                <div class="exercicio">
+                    a) O período de um pêndulo depende de quais grandezas físicas? Justifique.
+                    <textarea class="texto"></textarea>
+                </div>
+
+                </br></br>
+
+                <div class="exercicio">
+                    b) Se levássemos um balanço para a Lua, ele teria a mesma frequência que na Terra, considerando-se que seja solto da mesma altura? Justifique.
+                    <textarea class="texto"></textarea>
+                </div>
+
+                </br></br>
+
+                <div class="exercicio">
+                    c) Considerando a força da gravidade do exercício 2b, escreva o nome dos planetas em ordem crescente em relação ao período de oscilação dos pêndulos.
+                    <textarea class="texto"></textarea>
+                </div>
+
+                </br></br>
+
+                <div class="exercicio">
+                    4-  leia este texto:</br></br>
+                    <p>"...como, por exemplo, o nosso Sistema Solar que tem um diâmetro aproximado de 100000000000 metros. E isso é muito pequeno se comparado com o tamanho da Galáxia onde vivemos com seus incríveis 100000000000000000000 metros de diâmetro. No entanto, ao lembrarmos que o Universo visível deve ter cerca de 100000000000000000000000000 metros de diâmetro, vemos que tamanhos assombrosos estão incluídos no estudo da Astronomia. Daí pensamos que é melhor estudar biologia pois a molécula do DNA tem apenas 0,0000001 metro, muito mais fácil de lidar. O problema é que a astronomia não é uma profissão perigosa enquanto que a biologia... Imagine que os biólogos têm a coragem de lidar com vírus que medem apenas 0,000000001 metro e são terrivelmente mortais. E se, por distração, um biólogo deixar um desses vírus cair no chão do laboratório? Nunca mais irá encontrá-lo!....".</p>
+                    </br></br>
+                    leia o mesmo texto escrito de outra forma:
+                    </br></br>
+                    <p>"...como, por exemplo, o nosso Sistema Solar que tem um diâmetro aproximado de 100 bilhões de metros. E isso é muito pequeno se comparado com o tamanho da Galáxia onde vivemos com seus incríveis 100 milhões de trilhões de metros de diâmetro. No entanto, ao lembrarmos que o Universo visível deve ter cerca de 100 milhões de bilhões de bilhões de metros de diâmetro, vemos que tamanhos assombrosos estão incluídos no estudo da Astronomia. Daí pensamos que é melhor estudar biologia pois a molécula do DNA tem apenas 1 décimo milionésimo do metro, muito mais fácil de lidar. O problema é que a astronomia não é uma profissão perigosa enquanto que a biologia... Imagine que os biólogos têm a coragem de lidar com vírus que medem apenas 1 bilionésimo do metro e são terrivelmente mortais. E se, por distração, um biólogo deixar um desses vírus cair no chão do laboratório? Nunca mais irá encontrá-lo!...."</p>
+                    </br></br>
+                    Melhorou um pouquinho, não? Entretanto ainda é difícil comparar os números descritos por palavras quando tratamos com valores tão elevados, no caso da astronomia, ou tão pequenos, como ocorre com a biologia. Para facilitar ainda mais a compreensão de textos como esses, os cientistas passaram a usar uma forma compacta para escrever números muito grandes ou muito pequenos, a chamada notação científica ou notação exponencial. A notação científica ajuda a evitar erros quando escrevemos números muito grandes ou muito pequenos e facilita a comparação entre estes números. Esta notação é muito usada nos artigos científicos uma vez que quantidades muito pequenas e muito grandes aparecem frequentemente na Astronomia e na Física.
+                    </br></br>
+                    <div class="fonte">-  http://www.on.br/site_edu_dist_2011/pdf/modulo1/1-numeros.pdf</div>
+                </div>
+
+                Complete a tabela abaixo:
+
+                </br></br>
+
+                <center><table>
+                        <tr>
+                            <th>Número</th>
+                            <th>Escrita Abreviada</th>
+                            <th>Notação Cientifica</th>
+                        </tr>
+                        <tr>
+                            <td>100000000000</td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                        <tr>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td>100 milhões de trilhões</td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                        <tr>
+                            <td>100000000000000000000000000</td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                        <tr>
+                            <td>0,0000001</td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td><textarea class="lacuna"> </textarea></td>
+                        </tr>
+                        <tr>
+                            <td><textarea class="lacuna"> </textarea></td>
+                            <td>1 bilionésimo</td>
+                            <td>10<sup>-9</sup></td>
+                        </tr>
+                    </table></center>
+
+            </div>
+
+            </br></br>
+
+    </body>
+</html>

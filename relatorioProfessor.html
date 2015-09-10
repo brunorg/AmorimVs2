@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/grupoTutoria.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/relatorioProfessor.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	  	<script src="js/jquery-1.10.2.js"></script>
+      	<script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		<script src="js/Chart.js-master/Chart.js"></script>
+		<script src="js/Chart.js-master/Chart.min.js"></script>
+		<script src="js/Chart.js"></script>
+		<!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+		<script src="js/relatorioProfessor.js"></script>
+		<script>
+		/*var doughnutData = [
+			{
+				value: 30,
+				color:"#4465B9",
+				highlight: "#FF5A5E",
+				label: "Red"
+			},
+			{
+				value: 70,
+				color: "#BBB",
+				highlight: "#5AD3D1",
+				label: "Green"
+			}
+			];
+			
+			var doughnutData2 = [
+			{
+				value: 10,
+				color:"#FF8C00",
+				highlight: "#FF5A5E",
+				label: "Red"
+			},
+			{
+				value: 90,
+				color: "#BBB",
+				highlight: "#5AD3D1",
+				label: "Green"
+			}
+			];
+			
+			window.onload = function(){
+				var ctx = document.getElementById("grafico1").getContext("2d");
+				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, 
+				{responsive : true, showTooltips: false, animation: true});
+			
+				var ctx = document.getElementById("grafico2").getContext("2d");
+				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData2, 
+				{responsive : true, showTooltips: false, animation: true});
+			};	*/
+		</script>
+		<!--Fim JS-->
+    
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+
+			 <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#">Área do Professor</a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+					<div id="Content_lateral_Menu"></div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="apontar">Apontar Presença grupo</p>
+						</div>
+					</div>                                     
+				</div>
+                
+
+				<!--Coluna geral central-->
+                <!--bloqueio para a rolagem top-->
+                <div class="Conteudo_Coluna" id="content_central">
+                	<!--Conteudo geral vai aqui quando acrescentar o html apagar o comentario-->
+					<!-- <div id="Tutor_box">
+						<div id="tutor_img"> </div>
+						<div id="nome_tutor"> Marcelo Antunes </div>
+						<div id="turma"> 6 ano - manhã </div>
+						<div id="visualizar_dados"> visualizar dados </div>
+					</div> -->
+					
+					<div id="Grupos_box">
+					
+					<!-- <div class="Grupo_Content">
+					
+						<div id="grupo1">
+							<div id="grupoId"> Grupo6M1: </div>
+							<ul>
+								<li> Joana Silva Pereira </li>
+								<li> Martha Pereira </li>
+								<li> João Castro Borges </li>
+								<li> Adelina Monteiro </li>
+							</ul>
+						</div>
+						
+						<div class="graficos">
+						
+							<div class="Grade_Aluno_Grafico_Content">
+
+								<div class="Grade_Aluno_Grafico_Legenda_Lateral">
+
+									Faltas<br />
+									100<br />
+									90<br />
+									80<br />
+									70<br />
+									60<br />
+									50<br />
+									40<br />
+									30<br />
+									20<br />
+									10<br />
+									0
+
+								</div>
+									
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">15</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+												
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+												
+											</div>
+											
+										</div>
+										
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">1</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">3</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">8</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+									<div class="aluno_foco"> Camila Ferreira Carrenho </div>
+								
+							</div>
+
+						</div>
+
+					</div> -->
+					
+					<!-- <div class="Grupo_Content">
+					
+						<div id="grupo1">
+							<div id="grupoId"> Grupo6M4: </div>
+							<ul>
+								<li> Joana Silva Pereira </li>
+								<li> Martha Pereira </li>
+								<li> João Castro Borges </li>
+								<li> Adelina Monteiro </li>
+							</ul>
+						</div>
+						
+						<div class="graficos">
+						
+							<div class="Grade_Aluno_Grafico_Content">
+
+								<div class="Grade_Aluno_Grafico_Legenda_Lateral">
+
+									Faltas<br />
+									100<br />
+									90<br />
+									80<br />
+									70<br />
+									60<br />
+									50<br />
+									40<br />
+									30<br />
+									20<br />
+									10<br />
+									0
+
+								</div>
+									
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">15</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+												
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+												
+											</div>
+											
+										</div>
+										
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">1</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">3</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">8</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="aluno_foco"> Camila Ferreira Carrenho </div>
+								
+							</div>
+
+						</div>
+
+					</div> -->
+					
+					
+					
+					<!-- <div class="Grupo_Content">
+					
+						<div id="grupo1">
+							<div id="grupoId"> Grupo8M2: </div>
+							<ul>
+								<li> Joana Silva Pereira </li>
+								<li> Martha Pereira </li>
+								<li> João Castro Borges </li>
+								<li> Adelina Monteiro </li>
+							</ul>
+						</div>
+						
+						<div class="graficos">
+						
+							<div class="Grade_Aluno_Grafico_Content">
+
+								<div class="Grade_Aluno_Grafico_Legenda_Lateral">
+
+									Faltas<br />
+									100<br />
+									90<br />
+									80<br />
+									70<br />
+									60<br />
+									50<br />
+									40<br />
+									30<br />
+									20<br />
+									10<br />
+									0
+
+								</div>
+									
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">15</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+												
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+												
+											</div>
+											
+										</div>
+										
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">1</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">3</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">8</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="Grafico_Individual_Aluno">
+										
+									<div class="Grafico_Individual_Aluno_Falta_Numero">4</div>
+										<div id="Grade_Aluno_Grafico_Mask">
+											
+											<div class="Grafico_Individual_Aluno_Escala">
+											
+												<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right">
+													<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido"></div>
+												</div> 
+											</div>
+											
+										</div>
+											
+										<div class="Grafico_Individual_Aluno_Foto_Hover">
+											<img src="img/FotoAluno.png"></img>
+										</div>
+										
+								</div>
+								
+								<div class="aluno_foco"> Camila Ferreira Carrenho </div>
+								
+							</div>
+
+						</div>
+
+					</div> -->
+				
+					<!-- <div id="Correcoes_objetivos">
+						<hr>
+						<div class="titulos"> Correções de objetivos </div>
+							<div class="Grafico_Holder">
+								<canvas id="grafico1"> </canvas>
+							</div>
+						<div id="objetivos"> <span>23</span> objetivos de 154 </div>
+					</div> -->
+					
+					<!-- <div id="Frequencia">
+						<hr>
+						<div class="titulos"> Frequência </div>
+						
+						<div class="box_calendario"> -->
+                                <!--Calendario-->                    
+                                <!-- <div id="box_calendario_relatorio">
+                                    <div id="calendario_relatorio"></div>                                
+                                </div>
+                            </div>
+                            <div id="calendario_legenda">
+                                <p>
+                                    <span class="quad amarelo">&nbsp;</span>
+                                    <span class="leg_titulo">presença</span>
+                                </p>
+                                <p>
+                                    <span class="quad laranja">&nbsp;</span>
+                                    <span class="leg_titulo">falta</span>
+                                </p>
+                                <p>
+                                    <span class="quad branco">&nbsp;</span>
+                                    <span class="leg_titulo">não apontada</span>
+                                </p>
+                            </div>
+							<br><br>
+							<div class="Grafico_Holder">
+								<canvas id="grafico2"> </canvas>
+							</div>
+						<div id="faltas"> <span>2</span> faltas em 180 dias letivos </div>
+					
+					</div> -->
+                
+				
+				<!-- <div id="Observacoes">
+					<div class="titulos"> Observações </div>
+						<div class="observacao_texto">
+							<div class="data_hora"> 23/02/2014 10:40 </div>
+							In ac consectetur nulla. Curabitur elementum nunc ut metus sollicitudin dignissim. Maecenas ligula enim, scelerisque volutpat lacus vel, posuere rhoncus libero. Sed ullamcorper arcu ex, eu commodo mi placerat sed. Ut non pellentesque eros. Vestibulum et arcu leo. Morbi vel velit sed dui blandit placerat pulvinar sit amet purus. Vestibulum porta lorem non ante sodales, id maximus elit posuere. Quisque sit amet ante eget risus consectetur malesuada id sit amet nisl. Integer eu augue dignissim, pretium nunc eget, porta justo. Sed mollis risus eget neque hendrerit, sit amet convallis neque consectetur. Aenean egestas cursus lobortis. Aliquam vulputate, nisl in tincidunt euismod, dui dui porttitor risus, sollicitudin fermentum lacus mi eget lorem. 
+						</div>
+						
+						<div class="observacao_texto">
+							<div class="data_hora"> 23/02/2014 10:42 </div>
+							Integer eu augue dignissim, pretium nunc eget, porta justo. Sed mollis risus eget neque hendrerit, sit amet convallis neque consectetur. Aenean egestas cursus lobortis. Aliquam vulputate, nisl in tincidunt euismod, dui dui porttitor risus, sollicitudin fermentum lacus mi eget lorem. 
+						</div>
+						
+				</div> -->
+			</div>
+			
+			<!--bloqueio para a rolagem bottom-->
+                <div class="boxCalendario"></div>
+				<div class="boxGlobal"></div>
+				<div id="boxMensagemGeral"></div>
+				
+		</div><!--Fim Conteudo-->
+	</body>
+</html>

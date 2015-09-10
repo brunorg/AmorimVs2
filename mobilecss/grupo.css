@@ -1,0 +1,305 @@
+#PesquisarInserir{
+    width:100%;
+    height: 556px;
+    float: left;
+    overflow:hidden;
+}
+
+#bt_Pesquisar{
+    background-image: url(../img/ic_pesquisar.png);
+    background-repeat: no-repeat;
+    background-position: 60px;
+}
+
+#bt_Inserir{
+    background-image: url(../img/icone_criargrupo.png);
+    background-repeat: no-repeat;
+    background-position: 40px;
+}
+
+.bt_Off{
+    width: 31%;
+    padding: 17px 16px 11px 16px;
+    text-align: center;
+    margin-right:12px; 
+    color: white;
+    float: left;
+    cursor: pointer;
+    background-color: #ee7776;
+}
+.bt_Pesquisar_Ativo{
+    width: 31%;
+    padding: 17px 16px 11px 16pxx;
+    text-align: center; 
+    color: white;
+    float: left;
+    cursor: pointer;
+    background-color: #E83F4A;
+}
+
+.bt_Inserir_Ativo_Grupo{
+    width: 31%;
+    padding: 17px 16px 11px 16px;
+    text-align: center;
+    margin-right:12px; 
+    color: white;
+    float: left;
+    cursor: pointer;
+    background-color: #E83F4A;
+}
+
+#container_Pesquisa{
+    width: 100%;
+    height: 94%;
+    padding: 14px 22px;
+    background-color: #E5E5DC;
+    float: left;
+    overflow:hidden;
+    display: none;
+}
+
+#boxResultado{
+    float: left;
+    width: 101%;
+    height:240px;   
+    overflow: auto;
+    margin: 0 5px 0 0;
+}
+
+.boxGlobal img{
+    top: -238px;
+    position: relative;
+    left: 209px;
+}
+
+#resultado{
+    margin: 0 9px 0 0;
+}
+
+#container_Inserir{
+    width: 100%;
+    height: 94%;
+    padding: 14px 22px;
+    background-color: #E5E5DC;
+    float: left;
+    overflow: hidden;   
+}
+
+.linha{
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.25%;
+    overflow: auto;
+}
+#barra_aluno{
+    overflow:auto;
+    height:390px;   
+}
+
+#marginAlunos{
+    margin-right:10px;
+}
+
+/* CSS das celulas grandes(ocupam toda a linha)*/
+.celulaGrande{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #c8c8c3;
+}
+
+.infoG{
+    background-color: #C8C8C3;
+}
+
+.infoValueG{
+    /* width: 85%; */
+    width: 85.4%;
+    background-color: #F2F1ED;
+    float: left;
+}
+/* Fim do CSS da célula grande*/
+
+
+/* CSS das celulas pequenas (cada uma ocupa 1/3 da linha)*/
+.celulaPequena{
+    width: 28.33%;
+    height: auto;
+    /* overflow: auto; */
+    overflow: hidden;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #c8c8c3;
+}
+.celulaMedia{
+    width: 40.3%;
+    height: 43px;
+}
+.infoMG {
+    width: 29.75%;
+    height: 39px;
+    padding: 12px;
+    background-color: #C8C8C3;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+.infoValueM{
+    width: 70.25%;
+}
+.infoP{
+    font-size: 1.5vmax;
+    width: 44.8%;
+    background-color: #C8C8C3;
+    padding: 11.3px;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoValueP{
+    width: 55.2%;
+    background-color: #F2F1ED;
+    float: left;
+}
+/* Fim do CSS da célula pequena*/
+
+select{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    float: left;
+    padding: 8.5px;
+}
+
+
+/* Margins entre as células */
+
+.ambasMargin{
+    margin: 0 1.5%;
+}
+
+.styled-select select{
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    height: 41px;
+    -webkit-appearance: none;
+    overflow: hidden;
+    width: 117%;
+    cursor: pointer;
+    color: #666;
+    font-size:18px;
+}
+
+.styled-select {
+   width: 100%;
+   height: 41px;
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right;
+   background-color: #F2F1ED;
+   background-size: 42px;
+}
+
+.grupoCaixa{
+    width: 95.82%;
+    padding: 0.8%;
+    background-color: #F2F1ED;
+    border: 2px solid #D1D1CB;
+    float: left;
+}
+
+.grupoTitulo{
+    width: 100%;
+    font-size: 20px;
+    color: #e83f49;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+.titulo{
+    color: #912f35;
+}
+.tutor{
+    padding: 4px 2px;
+    float: left;
+    color: #912F35;
+    width: 5%;
+    text-align: right;
+}
+.grupo{
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+}
+/* Removendo a arrow do <select> no IE*/
+select::-ms-expand {
+    display: none;
+}
+.box_margin_barra{
+    margin-right:11px;
+}
+.tutor_nome{
+    margin: 4px 48px;
+    overflow:hidden;
+}
+.btEditar{
+    float: right;
+    background: red;
+    height: 39px;
+    width: 4.18%;
+    background: url(../img/bt_editar.png) no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.btExcluir{
+    background: url("../img/fechar.png") no-repeat scroll -6px center #c9c9c4;
+    cursor: pointer;
+    float: right;
+    height: 30px;
+    margin-right: 0;
+    padding: 18px;
+    width: 4.18%;
+}
+#btAdd{
+    width: 45px;
+    height: 44px;
+    float: right;
+    background: url(../img/btAdd.png) no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+#box_grupo_info_barra{
+    width: 102%;
+    margin-top: 5px;
+    margin-right:10px;
+    height: 390px;
+    overflow: auto;
+}
+#box_grupo_info{
+    margin-right:11px;
+}
+#Add_Grupo_Btn
+{
+    
+    float: right;
+    height: 40px;
+    padding: 10px;
+    width: 101px;
+    background: url("../img/bt_salvar_laranja.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.bt_Salvar {
+    background: url(../img/bt_salvar_vermelho.png) no-repeat;
+    float: right;
+    width: 12.2%;
+    margin-top: 9px;
+}
+#container_Pesquisa .celulaMedia{
+    width: 46.3%;
+}
+
+.checkLimpar{
+    width:50px;
+}

@@ -1,0 +1,146 @@
+@font-face {
+    font-family: proxima;
+    src: url(../FONT/ProximaNovaRegular.otf);
+}
+
+html, body, div, p, span, textarea, ul, li, input, textarea{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    resize: none;
+    border: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "proxima-nova",sans-serif;
+    font-size: 18px;
+}
+
+textarea{
+    overflow: hidden;
+}
+
+html{
+    width: 100%;
+    background-color: #BABABA;
+}
+
+body{
+    width: 25cm;
+    margin: 0 auto;
+    font-size: 115%;
+    color: #666;
+    background-color: #FFF;
+}
+
+p{
+    text-indent: 5%;
+}
+
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+th, td
+{
+    padding: 5px;
+    text-align: center;
+}
+
+#Cabecalho{
+    width: 100%;
+    background-color: #FF7800;
+    color: white;
+    padding: 0.8% 2.5%;
+    font-size: 120%;
+}
+
+#Conteudo_Total{
+    padding: 0 5%;
+}
+
+.texto{
+    width: 100%;
+    height: 150px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.ferramenta:active, .ferramenta:visited, .ferramenta:link{
+    color: black;
+    text-decoration: none;
+}
+
+.colorpicker:active, .colorpicker:visited, .colorpicker:link{
+    text-decoration: none;
+    outline: none;
+}
+
+.titulo{
+    text-align: center;
+    font-weight: bold;
+}
+
+.fonte{
+    font-size: 11px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.itens{
+    margin-left: 7.5%;
+}
+
+.musica{
+    text-align: center;
+}
+
+.caixa_de_texto{
+    border-style: solid;
+    border-width: 2px;
+    padding: 0.3% 0.3% 0;
+}
+
+.list{
+    border: 2px solid lightgrey;
+    width: 45px;
+    text-align: center;
+}
+
+.associacao{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 3px;
+}
+
+@-moz-document url-prefix(){
+    .list{
+        border: none;
+        height: 20px;
+        font-size: 18px;
+    }
+}
+
+@media print{
+    *{-webkit-print-color-adjust: exact;
+    print-color-adjust: exact;}
+
+    div{
+        widows: 6;
+        orphans: 6;
+    }
+
+    .exercicio{
+        page-break-before: auto;
+        page-break-after: auto;
+        page-break-inside: avoid;
+    }
+
+}

@@ -1,0 +1,72 @@
+﻿<div id="form">
+    <form id="frmCadastroAluno">                   
+        <div id="linha3" class="celulaPequenaPes rightMargin">
+            <div class="infoPes">Perfil</div>
+            <div class="infoValueP">
+                <div class="styled-selectPes">
+                    <select id="perfil" onChange="selecao()">
+                        <option value=""></option>
+                        <option value="1" id="aluno">Aluno</option>
+                        <option value="2" id="professor">Professor</option>
+                        <option value="3" id="tutoria">Tutoria</option>                     
+                    </select>
+                </div>
+            </div>        
+        </div>
+        <div id="linha4" class="celulaPequenaPes rightMargin ocultar">
+            <div class="infoPes"> Ano estudo </div>
+            <div class="infoValueP">
+                <div class="styled-selectPes">
+                    <select id="PesqAnoEstudo" onChange="carregaAluno()">
+                    	<option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="linha5" class="celulaPequenaPes ocultar">
+            <div class="infoPes">Período</div>
+            <div class="infoValueP">
+                <div class="styled-selectPes">
+                    <select id="periodo" onChange="carregaAluno()">
+                    	<option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="linha8" class="celulaGrande ocultar">
+            <div class="infoG">Buscar</div>
+            <div class="infoValueG">
+                <div class="">
+                    <input type="text" id="buscaA" value="" onkeyup="buscaAluno()"/>
+                </div>
+            </div>
+        </div>
+        <div id="linha6" class="celulaPequenaPes ocultar">
+            <div class="infoPes">Período</div>
+            <div class="infoValueP">
+                <div class="styled-selectPes">
+                    <select id="periodoP" onChange="carregaProfessor()">
+                    	<option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="linha7" class="celulaMediaPes ocultar">
+            <div class="infoMPes">Tutor</div>
+            <div class="infoValueM">
+                <div class="styled-selectPes">
+                    <select id="Tutores" onchange="carregaTutorandos()">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>    
+</div>
+<div id="tabela">
+	<table>
+        <tbody id="lista">
+        	
+        </tbody>
+    </table>
+</div>

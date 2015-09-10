@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+        <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />
+        <link rel="stylesheet" type="text/css" href="mobilecss/galeriaAluno.css" />  
+       <!-- /*<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
+        <link rel="stylesheet" type="text/css" href="css/cadastroAluno.css" /> */--> 
+        <!--<link rel="stylesheet" type="text/css" href="css/recursosAprendizagem.css">-->
+        <!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                   
+        <!-- <script src="js/jquery-1.10.2.js"></script> -->
+        <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>   
+        <!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+        <script type="text/javascript" src="js/galeriaAluno.js"></script>        
+        
+        
+        <!--Fim JS-->
+    
+    </head>
+
+    <body>
+        <!--Conteudo Geral-->
+        <div id="Container">
+            <div id="Cabecalho_Menu_Area" class="row">
+                <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a href="#" id="area_acesso"></a></div>
+                <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">                   <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+                    <a href="javascript:history.back()">Voltar</a> | 
+                    <a id="logout" href="#">Sair</a>
+                </div>    
+            </div>
+
+            <div id="Cabecalho_Perfil_Area" class="row">
+                <div id="Cabecalho_Perfil_Area_Foto_Content" class="col-1">
+                    <div id="Cabecalho_Perfil_Area_Foto"></div>
+                </div>
+                <div id="Cabecalho_Perfil_Area_Descricao_Content" class="col-1">
+                    <div id="Cabecalho_Perfil_Area_Descricao"></div>
+                </div>
+                <div id="Content_lateral_Menu" class="row col-10">
+                </div>
+            </div>
+
+            <div id="Conteudo_Area">
+                <div class="Conteudo_Coluna" id="content_central">
+                     <div class="linha_aluno">
+                        <div class="FotoAluno"></div>
+                        <div id="dados_col1">
+                            <p class="nome_aluno"></p>
+                            <p class="ano"></p>
+                        </div>
+                        <div id="dados_col2">
+                            <p>
+                                <span class="dados_tutor">Tutor:</span>
+                                <span id="tutor_nome"></span>
+                            </p>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+
+                <div id="producao_aluno_cabecalho">
+                    <div id="cabecalho_portfolio" class="cabecalho_inativo">Portfólio</div>
+                    <div id="cabecalho_atividade" class="cabecalho_inativo">Atividade extra</div>
+                    <div id="cabecalho_fichas"  class="cabecalho_inativo">Fichas de finalização</div>
+                </div>
+                    
+                <div id="producao_aluno_content">
+                        
+                    <div id="Portfolio">
+                        <div id="menu_lateral_portfolio">
+                            <ul>
+                            </ul>
+                        </div>
+                        
+                        <div id="conteudo_principal_portfolio">                            
+                            <div class="imagem_objeto">
+                                <iframe class="imagem_iframe" src=""></iframe>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div id="Atividade">
+                        <div id="menu_lateral_atividade">
+                            <ul>
+                            </ul>
+                        </div>
+                        
+                        <div id="conteudo_principal_atividade">
+                            <div id="objeto_verificar" class="imagem_objeto">
+
+                                <iframe src=""></iframe>
+
+                            </div>
+
+                        <div id="objeto_adicionar" class="imagem_objeto">
+                            
+                            <form id="Cadastro_Form_imagem_PA">
+                                <input type="hidden" id="id" name="id" />
+                                <input type="hidden" id="action" name="action" value="create" />
+                                <input type="hidden" id="Dados_Foto_Aluno" />
+                            
+                            <div id="container_Pesquisa">                       
+                                <div class="celulaGrande"> 
+                                    <div class="infoG"> Atividade </div>
+                                    <div class="infoValueG" style="width: 80%">
+                                        <input type="text" class="" name="atividadeNova" id="atividadeNova" style="width: 100%">
+                                    </div>
+                                </div>                      
+                                <div id="Tipo">
+                                    <div class="infoGTipo"> Tipo de Arquivo</div>
+                                        <div class="infoValueP "> Vídeo </div> <div class="inputImg tipoP " value="video" onchange="carregaForm()"> </div>
+                                        <div class="infoValueP"> Áudio </div> <div class="inputImg tipoP " value="audio" onchange="carregaForm()"> </div>
+                                        <div class="infoValueP" style="background: none;border: none;"> </div> 
+                                        <div style="background:none;border: none; cursor:default"  class="inputImg tipoP vazio" id="3"> </div>
+                                        <div class="infoValueP BorderBottom"> Imagem </div> 
+                                        <div class="inputImg tipoP BorderBottom" value="imagem" onchange="carregaForm()"> </div>
+                                        <div class="infoValueP BorderBottom"> Arquivo </div> 
+                                        <div class="inputImg tipoP BorderBottom" value="arquivo" onchange="carregaForm()"> </div>
+                                        <div class="infoValueP" style="background: none;border: none;"> </div> 
+                                        <div style="background:none;border: none; cursor:default"  class="inputImg tipoP vazio" id="3"> </div>
+                                    </div>                              
+                                    <div class="celulaGrande" id="link" style="display:none">
+                                    <div class="infoG"> Link </div>
+                                    <div class="infoValueG" style="width: 80%">
+                                        <input type="text" class="" name="linkVideo" id="linkVideo" style="width: 100%">
+                                    </div>
+                                </div>                              
+                                <div class="celulaGrande" id='arquivo' style="display:none;height:190px">
+                                    <br/>
+                                    <div id="foto" style="margin: 0 38%;float:none;"></div>
+                                    <div id="LegendaUpload">Aguardando Arquivo</div>
+                                </div>
+                                
+                                <input type="button" id="btn_Sub_AE" value="Salvar" />                           
+                            </div>
+                            
+                                <input type="file" id="Arquivo_Foto_Aluno" name="arquivo1" />
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div id="Fichas">
+                        <div id="menu_lateral_fichas">
+                            <ul></ul>
+                        </div>
+                        
+                        <div id="conteudo_principal_fichas">
+                            <div class="imagem_objeto">
+                                <iframe src=""></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+
+                    <div id="portifolio_aluno_content"> 
+                    </div>  
+                        
+                    <div id="back_black">
+                        <div class="mensagem_Exclusao">
+                            <div class="Mensagem_Texto">
+                                
+                                Você tem certeza que deseja excluir esta atividade?
+                            </div>
+                            <div class="Mensagem_Botoes">
+                                <input type="button" class='btPadrao Fleft' id="btConfirma_Exclusao" value="Excluir" />
+                                <input type="button" class='btPadrao Fright' id="btCancela_Exclusao" value="Cancelar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+            <div class="boxGlobal" style="width: 100%; left: auto;"></div>    
+        </div><!--Fim Conteudo-->     
+    </body>
+</html>

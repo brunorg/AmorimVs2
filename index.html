@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />	
+        <link rel="stylesheet" type="text/css" href="css/loginNovo.css" />	
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css"/>
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">
+			try{
+				Typekit.load();
+			}catch(e){
+				
+			}
+        </script> 
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                			
+      	<script src="js/jquery-ui.js"></script> 
+		<script src="js/login.js"></script>      
+		<!--Fim JS-->
+
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+    
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">         
+			<div id="Conteudo_Area">
+				<div id="Cabecalho">
+					<div id="Login_Box">
+						<div id="Amorim_logo" title="Uma escola que é asa"> </div>
+						<div id="Login">
+							<form name="frm" id="frm" method="POST" >			
+								<input class="Submit_Login" type="submit" value="Entrar" name="btnSubmit" id="btnSubmit"  tabindex=3 />
+								<div id="usuario_">
+									Usuário
+									<input id="usuario" name="usuario" type="text" tabindex=1> </input>
+								</div>
+								<div id="senhaBox">
+									Senha
+									<input id="senha" type="password"  name="senha" tabindex=2 style="cursor: auto;"> </input>
+									<span id="senhaEsqueci" onClick="caixaEsqueci();">Esqueceu a senha?</span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="Menu">
+						<div id="Desenvolvido">
+							<a href="http://muranodesign.com.br/"><img src="img/desenv_murano.png"></a>
+						</div>
+
+						<div class="btnMenu ultimo">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+						<div class="btnMenu">
+							Teste
+						</div>
+
+					</div>
+				</div>
+				<div id="Conteudo_Corpo">
+					<img id="Imagem_Abertura" src="img/login1GL.png">
+					<div id="Texto_Entrada">
+						<p>Há escolas que são gaiolas. Há escolas que são asas[...]</p>
+						<p>Escolas que são asas não amam pássaros engaiolados.</p>
+						<p>O que elas amam são os pássaros em vôo.</p>
+						<p>Existem para dar aos pássaros coragem para voar.</p>
+						<p>Ensinar o vôo, isso elas não podem fazer,</p>
+						<p>porque o vôo já nasce dentro dos pássaros.</p>
+						<p>O vôo não pode ser ensinado.</p>
+						<p>Só pode ser encorajado.</p>
+						<p>&nbsp</p>
+						<p class="naoItalico">Rubem Alves</p>
+					</div>
+					<div id="Creditos_Imagem">
+						<p>desenho gentilmente</p>
+						<p>cedido por <b>guto lacaz</b></p>
+					</div>
+				</div>
+				<div id="esquecisenha" class="boxOverlay">
+					<form>
+					<label>Email</label>
+					
+					<input type="text" id="email">	
+					<input type="button" onClick="cancelar();" value="Cancelar" class="Submit_Login" style="margin-left:4px;">		  
+					<input type="button" onClick="esqueciSenha();" value="Enviar" class="Submit_Login" >
+					</form>
+				</div>
+
+				<script type="text/javascript">
+				$(document).ready(function(){
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+						{
+							window.location.assign("mobile.html");
+						}
+				});		
+				</script>
+			</div>
+            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+			<div class="boxGlobal" style="width: 100%; left: auto;"></div>            
+		</div><!--Fim Conteudo--> 	   
+	</body>
+</html>

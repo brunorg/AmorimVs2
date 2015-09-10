@@ -1,0 +1,416 @@
+/* CSS Document */
+.linha_aluno{	
+	width: 99%;
+	min-height: 138px;
+	background-color: #f2f2ee;
+	border-radius:12px;
+	padding-bottom: 4px;
+	-webkit-border-radius: 12px;
+	-o-border-radius: 12px;
+	-moz-border-radius: 12px;
+}
+
+.FotoAluno{
+	width:120px;
+	height: 120px;	
+	float:left;
+	margin: 8px 10px 10px;
+	padding:4px;
+	border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-o-border-radius: 12px;
+	-moz-border-radius: 12px;
+	background-color: white;
+	overflow: hidden;
+	background-image: url("img/FotoAluno.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border: 1px #fff solid;
+}
+
+#dados_col1{
+	margin: 7px 0;
+	width: 340px;
+	height: 123px;
+	float: left;
+}
+#dados_col1 p,#dados_col2 p{
+	margin:0;
+}
+.nome_aluno, .ano{
+	font-size:20px;
+	color:#939389;	
+}
+.link{
+	margin-top:25px;
+	padding-top: 41px;		
+}
+.link a{
+	text-decoration:none;
+	color:#1E8290;	
+}
+.titulo{
+	font-size:20px;
+	color:#666666;
+	margin:5px 0;
+}
+.plano{
+	float: left;
+	margin: 3px 0;
+}
+.link_plano{
+	float: right;
+	width: 150px;
+	text-align: right;
+	margin: 6px 0;		
+}
+.link_plano a{
+	text-decoration:none;
+	color:#1E8290;
+}
+#dados_col2{
+	margin: 8px 0;
+	width: 384px;
+	height: 123px;
+	float: right;
+}
+.dados_tutor,.dados_grupo{
+	font-size:18px;
+	color:#939389;
+}
+.dados_grupo{
+	width:60px;
+	float:left;	
+}
+.alunos_grupo{
+	width: 315px;
+	float: left;
+	color:#666666;
+	font-size:18px;
+}
+#tutor_nome{
+	color:#666666;
+	font-size:18px;
+	margin-left:5px;	
+}
+.box_geral_baixo{
+	width: 99%;
+}
+.box_aluno_left{
+	width:526px;
+	min-height:600px;
+	float:left;
+	margin:36px 0;
+	border-top:1px solid #666666;	
+}
+.box_aluno_left .linha_roteiro{
+	width:100%;
+	height:81px;
+	border-bottom:1px solid #666666;
+}
+.box_aluno_right{
+	width:332px;
+	min-height:600px;
+	float:right;	
+	margin:36px 0;
+}
+.box_aluno_right .grafico{
+	width:100%;
+	height:111px;
+	border-bottom:1px solid #666666;
+}
+.box_aluno_right .box_grafico{
+	width:100%;
+	height:451px;
+	border-bottom:1px solid #666666;
+}
+.box_grafico{
+	margin-top: -12px;	
+}
+.holder_g{
+	width:80%;
+	height:60%;
+	float:right;
+	margin-top:10px;
+}
+.holder_faltas{
+	width:100%;
+	height:60%;
+	float:right;
+	margin-top:10px;
+}
+.titulo_g{
+	width:100px;
+	font-size:20px;
+	color:#666666;
+	margin:5px 0;
+}
+#chart1,#chart2,#chart3{
+	width: 100px !important;
+	height: 55px !important;
+	float:left !important;
+}
+.res_grafico{
+	float:left;
+	margin-left:-15px;
+	font-size:18px;
+	color:#939389;	
+}
+.res_grafico #res_vermelho{
+	color:#EB5B61;
+}
+.res_grafico #res_azul{
+	color:#4861AA;
+}
+.res_grafico #res_laranja{
+	color:#FF7800;
+}
+.box_aluno_right .box_calendario{
+	width:100%;
+}
+.rot_aluno td{
+	width:22px;
+	height:22px;
+	text-align:center;
+	color:#fff;
+	border:0;
+}
+.verde{
+	background-color:#8DC63F;
+}
+
+.verde_tk{
+	background-color:#8DC63F;
+	background-image:url(../img/R_check.png);
+}
+.laranja{	
+	background-color:#F7941E;
+}
+.cinza{
+	background-color:#DFDED4;	
+}
+.amarelo{
+	background-color:#FFEA86;
+}
+.branco{
+	background-color:#FFF;
+	border:1px solid #E0DFDF;
+}
+.num_plano{
+	font-size: 10px;
+	color: #666;
+	float: left;
+	width: 10px;
+	margin: 0px;
+	text-align: right;
+	padding: 1.2px;
+}
+#bloco_plano {
+	width: 285px;
+	height: 325px;
+	float: left;
+	margin: 12px 0 15px 27px;
+	border: 1px solid #DFDED4;
+}
+#bloco_numeros{
+	width: 15px;
+	float: left;
+	height: 100%;
+	margin: -8px -19px;
+	padding: 9px 0px;
+}
+#bloco_linha{
+	float:left;
+}
+#bloco_plano .plano_linha{
+	border-bottom: 1px solid #DFDED4;
+	float:left;
+	width:290px;
+	height:11px;
+	margin:2px 13px 0 -7px;
+}
+.zero{
+	border-bottom: 2px solid #666666 !important;
+}
+#legenda{
+	width:57%;
+	float:right;	
+	margin-right: 20px;
+}
+#legenda p{
+	width:93px;
+	float:left;
+}
+#legenda .leg_titulo{
+	color:#939389;
+	font-size:18px;
+	margin-left: 5px;
+}
+
+.quad{
+	width:10px;
+	height:10px;
+	float:left;
+	margin-top: 7px;
+}
+#nav{
+	float:left;	
+	width: 335px;
+	margin: -55px 0 0 2px;
+}
+#nav #seta_left{
+	float:left;	
+	font-size:30px;
+	color:#666666;
+}
+#nav #seta_right{
+	float:right;	
+	font-size:30px;
+	color:#666666;
+}
+
+#box_grafico_scroll{
+	width: 285px;
+	height: 325px;
+	float: left;
+	margin: 15px 0 15px 27px;
+	position: absolute;
+}
+.box_info{
+	 height:328px;
+	 width:1400px;	
+}
+.barra{
+	width:24px;
+	height:298px;	
+	float:left;
+}
+.col_barra{
+	height:272px;
+	margin:0;
+	padding-left:4px;
+	position:relative;
+} 
+.barra_proposto{
+	width:4px;
+	position: absolute;
+	bottom: -15px;
+}
+.barra_concluido{
+	width:4px;
+	position: absolute;
+	bottom: -15px;
+	left:11px;
+}
+.dia_plano{	
+	margin: 5px 0 0 2px;
+	font-size:14px;
+	color:#666666;
+	border-right:#666666 1px solid;
+}
+.dia_plano_ultimo{
+	border:0 !important;
+}
+#observacao_box{
+	height:385px;
+	width:99%;
+	background:#ebebe3;
+	margin-bottom:0;
+	padding: 1px 21px;
+}
+#cad_observacoes{
+	margin-bottom:55px;
+}
+#observacao{
+	margin: 0px;
+	height: 60px;
+	width: 893px;
+	background-color:rgb(250,248,246);
+	border:0;
+}
+#btnSalvar{
+	background: url(../img/bt_salvar.png) no-repeat;
+	float: right;
+	width: 101px;
+	height: 41px;
+}
+#observacao #titulo_observacao{
+	padding:0;
+	margin:0;
+	color:#878787;
+	font-size:22px;
+}
+.box_obs{
+	min-height:77px;
+	background:#FFFFFF;
+	padding:12px;
+	margin-bottom: 24px;
+	width: 99%;
+}
+.box_obs p.titulo_obs{
+	padding:0;
+	margin:0;
+	color:#878787;
+	font-size:18px;
+}
+.box_obs .nome{
+	float:left;
+	margin-right:5px
+}
+.box_obs .cargo{
+	font-size:14px !important;
+}
+.box_obs .right{
+	float:right;
+	font-size:14px !important;
+}
+.texto_obs{
+	color:#878787;
+	font-size:18px;
+	margin-top:24px;
+}
+#box_geral_observacao{
+	overflow-y: auto;
+	height: 190px;
+	margin-top: 24px;
+}
+.box_mes{
+	height:317px;
+	margin:0;
+	padding: 0 2px;
+	max-width: 100px;
+	margin:0;
+	float: left;
+}
+.bloco_mes{
+	border-left: 1px solid #666666;
+	height: 41px;
+	min-width: 104px;
+	position: absolute;
+	bottom: 10px;
+	margin-left: -3px;
+}
+.mes{
+	font-size:14px;
+	color:#666666;
+	text-align: center;
+	width: 97px;
+	margin-top: 25px;
+}
+#box_calendario_relatorio{
+	width:198px;
+	margin: 25px auto;
+}
+#calendario_legenda{	
+	width: 100%;
+}
+#calendario_legenda p{
+	float: left;
+	margin-left: 10px;
+}
+#calendario_legenda .leg_titulo{
+	color:#939389;
+	font-size:18px;
+	margin-left: 2px;
+}

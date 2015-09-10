@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/americaStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/camposAmericaStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+        <script type="text/javascript">
+            function copyText(){
+                var x = document.getElementById("campo_a").value;
+                document.getElementById("campo_a2").value = x;
+                document.getElementById("campo_a3").value = x;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div id="Cabecalho"> 8º Ano | América </div>
+        <div id="Conteudo_Total">
+        </br>
+
+            1) Escreva os nomes das principais (ao menos 5)  populações pré-colombianas:
+            </br></br>
+
+            <div id="Exe1" style="position: relative;">
+                <img src="img/america_colonizacao.png", width="824", height="1200">
+                <div class="assinalar_exe">
+                    <input id="campo_a" type="text" onkeyup="copyText()"></input>
+                    </br>
+                    <input id="campo_b" type="text"></input>
+                    </br>
+                    <input id="campo_c" type="text"></input>
+                    </br>
+                    <input id="campo_d" type="text"></input>
+                    </br>
+                    <input id="campo_e" type="text"></input>
+                    </br>
+                    <input id="campo_f" type="text"></input>
+                    </br>
+                    <input id="campo_g" type="text"></input>
+                    </br>
+                    <input id="campo_h" type="text"></input>
+                    </br>
+                    <input id="campo_i" type="text"></input>
+                    </br>
+                    <input id="campo_j" type="text"></input>
+                    </br>
+                    <input id="campo_l" type="text"></input>
+                    </br>
+                    <input id="campo_m" type="text"></input>
+                    </br>
+                    <input id="campo_a2" type="text" readonly></input>
+                    <input id="campo_a3" type="text" readonly></input>
+                </div>
+            </div>
+            </br>
+
+            2)Trace, no mapa, as linhas com setas coloridas que representam a origem e o destino dos colonizadores europeus na América:
+
+            </br></br>
+
+            <div id="ferramentasExe1">
+                <!--<input type="color" id="pickerExe1" style="float:left">!-->
+                <a class="colorpicker" href="#canvasExe1" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                <br><br>
+                <div style="clear: both;"></div>
+            </div>
+            <center><div id="exe1Div" width="737" height="382"></div></center>
+            <script type="text/javascript">
+                var canvasDiv = document.getElementById('exe1Div');
+                canvasExe1 = document.createElement('canvas');
+                canvasExe1.setAttribute('width', 737);
+                canvasExe1.setAttribute('height', 382);
+                canvasExe1.setAttribute('id', 'canvasExe1');
+                canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                canvasDiv.appendChild(canvasExe1);
+                if(typeof G_vmlCanvasManager != 'undefined') {
+                    canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                }
+                context = canvasExe1.getContext("2d");
+                var img = new Image();
+                img.src = "img/earth.png";
+                img.onload = function(){
+                    context.drawImage(img, 0, 0, 737, 382);
+                }
+
+                $(function(){$("#canvasExe1").sketch();});
+
+                /*$("#pickerExe1").on("change click", function(){
+                    var cor = this.value;
+                    $("#corExe1").attr("data-color", cor);
+                    $("#corExe1").trigger("click");
+
+                });
+
+                $(".colorirExe1").on("change click", function(){
+                    $("#corExe1").trigger("click");
+
+                });*/
+
+
+
+                </script>
+
+                <br><br>
+
+            3) Leia as definições abaixo e, de acordo com seus conhecimentos sobre o continente americano, escreva:
+
+            <br><br>
+
+            <div class="caixa_de_texto">
+                Segundo o Dicionário da Língua Portuguesa, Novo Aurélio Século XXI, temos os significados das seguintes palavras:
+                Colônia: 1. Grupo de migrantes que se estabelecem em terra estranha.  2. Região pertencente a um Estado e situada fora do seu âmbito geográfico principal; possessão, domínio. 3. Indivíduos de uma nação que vivem em país ou cidade estrangeira e seus descendentes que lhes conservam as tradições, características culturais, religiosas, etc.
+                Colonizar: 1. Transformar em colônia. 2. Propagar-se ou alastrar-se por; invadir. 3. Exercer domínio. 
+                Colonização: Ato ou processo de colonizar.
+            </div>  
+
+            </br>
+
+            <div class="caixa_de_texto">
+                América Latina – países americanos que falam idiomas de origem latina (como o português, espanhol), exceto alguns países que falam inglês, holandês. 
+                América Anglossaxônica – países americanos (Estados Unidos e Canadá) que falam idiomas de origem anglossaxã (como o inglês). Mas o Canadá, além do inglês, fala francês.
+            </div>
+            </br>
+
+            Como foi a colonização na América Latina e na América Anglossaxônica?
+            <textarea class="texto"> </textarea>
+
+            </br></br>
+
+
+            <div class="exercicio">
+                4) Abaixo temos o mapa do continente americano. Nele, pinte os oceanos de azul, cada região americana de uma cor (Norte, Central e Sul) e faça hachuras para diferenciar a América Latina da América Anglossaxônica. Não esqueça a legenda!
+                </br></br>
+
+                <!--<input type="color" id="pickerExe4" style="float:left">!-->
+                <a class="colorpicker" href="#canvasExe4" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe4" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                <div class="caixa_de_texto" style="float: right; width: 80px; margin-left: 4px;"><center><a href="#canvasExe4" data-tool="bucket" class="ferramenta colorirExe4">Balde</a></center></div>&nbsp
+                <div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe4" data-tool="marker" class="ferramenta colorirExe4">Caneta</a></center></div>
+                <div style="clear: both;"></div>
+
+                <br><br>
+
+                <center><div id="exe4Div" width="702" height="1065"></div></center>
+                <script type="text/javascript">
+                    var canvasDiv4 = document.getElementById('exe4Div');
+                    canvasExe4 = document.createElement('canvas');
+                    canvasExe4.setAttribute('width', 702);
+                    canvasExe4.setAttribute('height', 1065);
+                    canvasExe4.setAttribute('id', 'canvasExe4');
+                    canvasExe4.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv4.appendChild(canvasExe4);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe4 = G_vmlCanvasManager.initElement(canvasExe4);
+                    }
+                    context4 = canvasExe4.getContext("2d");
+                    var img4 = new Image();
+                    img4.src = "img/ContinenteAmericano.png";
+                    img4.onload = function(){
+                        context4.drawImage(img4, 0, 0, 702, 1065);
+                    }
+                </script>
+                <script type="text/javascript">
+                    $(function(){$("#canvasExe4").sketch();});
+
+                    /*$('#pickerExe4').on("change click", function () {
+                        var cor = this.value;
+                        $("#corExe4").attr("data-color", cor);
+                        $("#corExe4").trigger("click");
+                    });
+
+                    $('.colorirExe4').on("change click", function () {
+                        var cor = this.value;
+                        $("#corExe4").attr("data-color", cor);
+                        $("#corExe4").trigger("click");
+                    });*/
+
+                </script>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                5) Observe o mapa abaixo e responda:
+
+                <center><img src="img/Exe5America.jpeg" width="500" height="647"></img></center>
+
+                a) As áreas mais escuras correspondem a qual forma de relevo? Dê exemplos.
+                <textarea class="texto"> </textarea>
+
+                <br><br>
+
+                b) As áreas mais claras correspondem a qual forma do relevo?  Dê exemplos.
+                <textarea class="texto"> </textarea>
+            </div>
+
+            <br><br>
+
+
+        </div>
+
+
+    </body>
+</html>

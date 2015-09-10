@@ -1,0 +1,221 @@
+body{
+	color: #666;
+}
+
+.linha{
+	width: 100%;
+	height: auto;
+	margin-bottom: 1%;
+	overflow: auto;
+}
+
+/* CSS das celulas grandes(ocupam toda a linha)*/
+.celulaGrande{
+	width: 100%;
+	height: auto;
+	overflow: auto;
+	border: 2px solid #B6B6B0;
+	float: left;
+	background-color: #C8C8C3;
+}
+
+.infoG{
+	width: 15.065%;
+	background-color: #C8C8C3;
+	padding: 10.8px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+
+.infoValueG{
+	width: 85%;
+	background-color: #F2F1ED;
+	float: left;
+}
+/* Fim do CSS da célula grande*/
+
+/* CSS info M */
+
+.infoM{
+	width: 30.5%;
+	background-color: #C8C8C3;
+	padding: 10.4px;
+	text-align: right;
+	float: left;
+	border-right: 2px solid #B6B6B0;
+}
+
+.infoValueM{
+	width: 69.5%;
+	background-color: #F2F1ED;
+	float: left;
+}
+/* CSS info M FIM */
+
+
+/* CSS das células meio (ocupam 1/2 da linha) */
+.celulaMeio {
+	width: 49.25%;
+	height: auto;
+	overflow: auto;
+	border: 2px solid #B6B6B0;
+	float: left;
+	 background-color:#C8C8C3;
+}
+/* Fim do CSS da célula meio */
+
+.bts{
+	width: 23.86%;
+	float: left;
+	background-color: #33B8CC;
+	border: 2px solid #2E9EAF;
+	color: white;
+	cursor: pointer;
+}
+
+#btPesquisar{
+	background: url(../img/Pesquisar.png) no-repeat 8px;
+	background-color: #33B8CC;
+	padding: 10px 48px;
+	float: right;
+}
+
+#btInserir {
+	background: url(../img/Inserir.png) no-repeat 8px;
+	background-color: #33B8CC;
+	padding: 10px 50px;
+}
+/* CSS do input tipo radio */
+input[type=radio] {
+	width: 1.7%;
+	height: 3%;
+	opacity: 0.01;
+	position: absolute;
+	margin: 11px;
+	cursor: pointer;
+}
+
+input[type=radio]:checked + label span{
+	background: url(../img/radio-botao.png) -38px;
+}
+
+/* CSS para fazer o background do input radio*/
+input[type=radio] + label span {
+    display: inline-block;
+    vertical-align: middle;
+	padding: 2.08%;
+	background-color: #C8C8C3;
+	float: left;
+	background-image: url(../img/radio-botao.png);
+}
+/* ---- Fim ---- */
+
+/* CSS do input tipo checkbox */
+input[type=checkbox] {
+	width: 1.86%;
+	height: 3%;
+	opacity: 0.01;
+	position: absolute;
+	margin: 11px;
+	cursor: pointer;
+}
+
+input[type=checkbox]:checked + label span{
+	background: url(../img/checkbox-botao.png) -38px;
+}
+
+/* CSS para fazer o background do input checkbox*/
+input[type=checkbox] + label span {
+    display: inline-block;
+    vertical-align: middle;
+	padding: 2.1%;
+	background-color: #C8C8C3;
+	float: left;
+	background-image: url(../img/checkbox-botao.png);
+}
+/* ---- Fim ---- */
+
+
+select{
+	width: 100%;
+	border: none;
+	background-color: transparent;
+	float: left;
+	padding: 8.5px;
+}
+
+.OpcoesPesquisa{
+	width: 9.998%;
+	background-color: #F2F1ED;
+	float: left;
+	padding: 10.8px;
+	text-align: right;
+}
+
+/* ---- FIM ---- */
+
+
+/* Margins entre as células */
+
+.rightMargin{
+	margin-right: 1.5%;
+}
+
+.styled-select select{
+	width: 100%;
+	border: 0;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	overflow: hidden;
+	width: 105.5%;
+	color: #666;
+}
+
+.styled-select {
+   width: 100%;
+   height: 40px;
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right #ddd;
+   background-color: #F2F1ED;
+   background-size: 41px;
+}
+
+/* Removendo a arrow do <select> no IE*/
+select::-ms-expand {
+    display: none;
+}
+
+.itemResultado{
+	width: 100%;
+	padding: 0.5%;
+	background-color: #F2F1ED;
+	border: 2px solid #D1D1CB;
+	margin-bottom: 1%;
+}
+
+.itemTitulo{
+	width: 99%;
+	font-size: 20px;
+	color: #1E8290;
+}
+
+.itemSubtitulo{
+	width: 99%;
+	margin: 0.5% 0;
+	font-size: 16px;
+	color: #666;
+}
+
+.itemDescricao{
+	width: 99%;
+	color: #666;
+}
+
+#Foto { background: url(../img/ic_foto_peq.png) no-repeat 28px; background-color:#F2F1ED; }
+#Video{ background: url(../img/ic_video_peq.png) no-repeat 22px; background-color:#F2F1ED; }
+#Audio{ background: url(../img/ic_audio_peq.png) no-repeat 20px; background-color:#F2F1ED; }
+#Link{ background: url(../img/ic_pgweb_peq.png) no-repeat 34px; background-color:#F2F1ED; }
+#Jogo{ background: url(../img/ic_jogo_peq.png) no-repeat 26px; background-color:#F2F1ED; }
+#Livro{ background: url(../img/ic_livro2_peq.png) no-repeat 26px; background-color:#F2F1ED;}

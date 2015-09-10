@@ -1,0 +1,16 @@
+.textoT{
+    width: 350px;
+    height: 150px;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-top: 8px;
+}
+
+@media print{
+
+    #Recorte{
+        page-break-before: always;
+        page-break-after: always;
+    }
+
+}

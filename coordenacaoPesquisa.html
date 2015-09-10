@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />	
+		<link rel="stylesheet" href="CSS/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/calendario.css" />
+		<link rel="stylesheet" type="text/css" href="css/coordenacaoPesquisa.css" />
+		<!--Fim Style-->        
+        
+		<!--Script JS-->      
+		<script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>    
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
+	  	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>        
+		
+        <!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+        
+        <!--Fim JS-->
+		
+	</head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+            
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#">Área do Aluno</a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+
+					<div id="Content_lateral_Menu"></div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p>Apontar Presença grupo</p>
+						</div>						
+					</div>
+
+				</div>
+
+				<!--Coluna geral central-->
+                <!--bloqueio para a rolagem top-->				
+                <div class="Conteudo_Coluna" id="content_central">
+					<!--Conteudo geral vai aqui quando acrescentar o html apagar o comentario--> 
+
+				<div id="linha1 "class="linha">
+					<div class="celulaGrande">
+						<div class="infoG"> Tipo </div>
+						<div id="Foto" class="OpcoesPesquisa"> Foto </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+						
+						<div id="Video" class="OpcoesPesquisa"> Vídeo </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+								
+						<div id="Audio" class="OpcoesPesquisa"> Áudio </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+								
+						<div id="Link" class="OpcoesPesquisa"> Link </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+								
+						<div id="Jogo" class="OpcoesPesquisa"> Jogo </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+								
+						<div id="Livro" class="OpcoesPesquisa"> Livro </div>
+							<input type="radio" name="RadioGroup1">
+									<label>
+										<span></span>
+									</label>
+								</input>
+						
+
+					</div>
+				</div>
+				
+						<div id="linha2" class="linha">
+							<div class="celulaMeio rightMargin"> 
+								<div class="infoM"> Roteiro </div>
+									<div class="infoValueM">
+										<div class="styled-select">
+											<select>
+												<option> A escrita como parte da cultura </option>
+											</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="celulaMeio">
+								<div class="infoM"> Disciplina </div>
+									<div class="infoValueM">
+										<div class="styled-select">
+											<select>
+												<option> Refletir sobre a diversidade </option>
+											</select>
+									</div>
+								</div>
+							</div>
+						</div>	
+						
+						<div id="linha3" class="linha">
+							
+							
+							<div id="btPesquisar" class="bts"> Pesquisar </div>
+							<!--<div id="btInserir" class="bts"> Inserir </div>-->
+							
+						</div>
+						
+						<div id="Resultado">
+						
+							<div id="linha4" class="linha">
+								<div class="itemResultado">
+									<div class="itemTitulo"> <img src="img/itemVideo.png"></img> Vídeo </div>
+									<div class="itemSubtitulo"> Diversidade Brasileira </div>
+									<div class="itemDescricao"> Vestibulum cursus sagittis nisl vitae tincidunt. Pellentesque quis facilisis dolor. Curabitur libero elit, sollicitudin ac neque non, pellentesque laoreet libero. Vivamus ligula lorem, congue in sapien id, venenatis accumsan neque. Duis dictum nisl quis odio volutpat consequat. Mauris eget lacus non nibh luctus aliquet at a libero. Ut egestas mi eu lectus aliquam condimentum. Mauris et sodales nisl. Etiam in ornare velit, et tristique dui. </div>
+								</div>
+								
+								<div class="itemResultado">
+									<div class="itemTitulo"> <img src="img/itemFoto.png"></img> Fotos </div>
+									<div class="itemSubtitulo"> Jõao Seixas</div>
+									<div class="itemDescricao"> Mauris semper dui at dui sollicitudin tincidunt. Aenean fermentum arcu ac eros semper, sit amet rhoncus massa bibendum. Mauris vitae dolor erat. Donec tincidunt in urna id pretium. Cras dapibus leo diam, sed ultricies dolor vehicula a. Praesent arcu mi, iaculis suscipit nisl in, tempus ornare quam. Suspendisse commodo lacus et sem rhoncus elementum. Nullam volutpat, nulla et fermentum elementum, dolor risus dapibus purus, ut suscipit augue magna eu eros. Proin sagittis eros ac sapien pretium, sed ultrices turpis rhoncus. </div>
+								</div>
+							</div>							
+							<div id="linha5" class="linha"> </div>			
+						</div>					
+				</div>
+                <!--bloqueio para a rolagem bottom-->
+                <div class="boxCalendario"></div>
+				<div class="boxGlobal"></div>
+			</div>             
+		</div><!--Fim Conteudo-->
+	</body>
+</html>

@@ -1,0 +1,391 @@
+#foto {
+    background-image: url("../img/foto.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: thin solid rgb(180,205,200);
+    border-radius: 5px;
+    cursor: pointer;
+    height: 125px;
+    margin: auto 74px;
+    width: 50%;
+}
+
+
+    #Arquivo_Foto_Aluno
+    {
+        display:none;
+    }
+
+/* CSS para envolver as celulas*/
+#linha1,#linha2,#linha3,#linha4{
+    margin-bottom: 0.25%;
+}
+
+.celulaPequena{
+    width: 32.3%;
+    border:none;
+    background-color:transparent;
+}
+
+.celulaMedia{
+    width: 66.2%;
+}
+
+.celulaMeio {
+    width: 48.5%;
+    height: auto;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #C8C8C3;
+}
+
+.infoM{
+    width: 21.9%;
+}
+
+.infoValueMm{
+    width: 19%;
+    padding: 10.5px;
+    background-color: #F2F1ED;
+    float: left;
+    text-align: right;
+}
+
+.infoG{
+    width: 14.4%;
+    height: auto;
+    padding: 10px;
+}
+
+
+/* CSS da cÃ©lula de ObservaÃ§Ã£o */
+#infoObs{
+    width: 14.5%;
+    height: 70px;
+    padding: 8px;
+    /* background-color: #C8C8C3; */
+    background-color: rgb(214, 228, 225);
+    text-align: right;
+    float: left;
+    /* border-right: 2px solid #B6B6B0; */
+    border:none;
+}
+
+#infoValueObs{
+    width: 85%;
+    height: 70px;
+    background-color: #F2F1ED;
+    float: left;
+    overflow-y: hidden;
+}
+
+#infoValueObs textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    background-color: rgb(250,248,246);
+    padding: 11.5px;
+    color: #666;
+}
+/* Fim do CSS da cÃ©lula de observaÃ§Ã£o */
+
+
+input{
+    border: none;
+    width: 100%;
+    padding: 11.5px;
+    background-color: transparent;
+    overflow: hidden;
+    color: #666;
+}
+
+/* CSS do input tipo date*/
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    color: #666;
+}
+
+input[type=date]{
+    padding: 8.9px;
+    color: #666;
+}
+
+input[type=submit], input[type=button]{
+    background-color: rgb(112, 160, 152);
+    /* color: #666; */
+    font-size:20px;
+    color:white;
+}
+
+input[type=submit]:disabled, input[type=button]:disabled{
+    background-color: rgb(112, 160, 152);
+    opacity: 0.6;
+}
+
+#botaoDesbloquear{
+    display: none;
+}
+
+/* ---- FIM ---- */
+
+
+/* CSS para fazer o background do input checkbox*/
+input[type=checkbox] + label span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2.1%;
+    background-color: #C8C8C3;
+    float: left;
+    background-image: url(../img/checkbox-botao.png);
+}
+/* ---- Fim ---- */
+
+
+select{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    float: left;
+    padding: 8.5px;
+    color:#666;
+}
+
+#PaiMae{
+    width: 12.2%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+#AlunoMaior{
+    width: 25%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+#Outro{
+    width: 20%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+.inputBranco{
+    width: 100%;
+    background-color: rgb(250,248,246);
+    /* background: #F2F1ED; */
+    float: left;
+}
+
+
+/* CSS das cÃ©lulas do inputs checkbox */
+.celulaCheck{
+    width: 83%;
+    height: 41px;
+    overflow: hidden;
+    /* border: 2px solid #B6B6B0; */
+    border:none;
+    float: left;
+    margin: 0.5% 0;
+    /* background-color: #C8C8C3; */
+}
+
+.infoGG{
+    width: 58.4%;
+    background-color: #C8C8C3;
+    padding: 10px;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoGGValue{
+    width: 15.9%;
+    background-color: #F2F1ED;
+    float: left;
+    padding: 10px;
+    text-align: right;
+}
+
+/* ---- FIM ---- */
+
+
+/* Arrumando padding dos inputs das respectivas linhas */
+#linha19 label span, #linha23 label span, #linha27 label span{
+    padding: 2.5%;
+}
+/* ---- FIM ---- */
+
+
+/* Margins entre as cÃ©lulas */
+.ambasMargin{
+    margin: 0 1.5%;
+}
+
+.rightMargin{
+    margin-right: 1.5%;
+}
+
+.styled-select select{
+    width: 116%;
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    -webkit-appearance: none;
+}
+
+.styled-select {
+   width: 100%;
+   height: 39px;
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right rgb(250, 248, 246);
+   background-color: rgb(250, 248, 246);
+  }
+  
+ .styled-select input[type=date]{
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    -webkit-appearance: none;
+}
+
+.styled-select input[type=date]::-webkit-calendar-picker-indicator{
+    opacity: .01;
+}
+
+.box_margin_barra{
+    margin-right:11px;
+}
+
+.limiteLinhas
+{
+    width:auto;
+    max-height:130px;
+    height:auto;
+    margin-bottom: 10px;
+}
+
+#submitLicenca{
+    width: 15%;
+}
+
+#btn_cancela_licenca{
+    width: 15%;
+    vertical-align: top;
+}
+
+
+
+.infoP, .infoM, .infoG, .infoGG
+{
+    background-color: rgb(214,228,225);
+    border:none;
+    color: #666;
+    padding:10px;
+}
+
+.infoValueP, .infoValueM, .infoValueG, .infoValueGG, .infoGGValue, .infoValueMm
+{
+    background-color: rgb(250,248,246);
+    color: #666;
+    overflow: hidden;
+}
+
+.celulaMeio
+{
+    height:37px;
+    color: #666;
+}
+
+.celulaMeio, .celulaMedia, .celulaGrande
+{
+    border: none;
+    overflow: hidden;
+    background-color: rgb(250,248,246);
+    color: #666;
+
+}
+
+#numeroRANumero
+{
+    background-color: rgb(250,248,246);
+    width:124px;
+}
+
+#numeroRADigito
+{
+    background-color: rgb(250,248,246);
+    width:108px;
+}
+
+#btn_licenca
+{
+    text-transform:capitalize;
+    height: 39px;
+    padding:0px;
+    /* width: 43%; */
+}
+
+#btn_licenca_parent
+{
+    width: 45%;
+}
+
+
+#DadosMaeVisualizacao, #DadosPaiVisualizacao, #DadosOutroVisualizacao, #RetornoCheckedOutro, #RetornoCheckedMae, #RetornoCheckedPai
+{
+    display: none;
+}
+
+/* .colunaBranca_Esquerda
+{
+    background-color:white;
+    width:55%;
+    text-align: center;
+} */
+
+.btnSubmit
+{
+    background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.btn_left{
+    float:right;
+    width:10.6%;
+}
+
+#btAdd {
+    background: url("../img/btEnv.png") no-repeat scroll 0 0 / contain rgba(0, 0, 0, 0);
+    cursor: pointer;
+    float: right;
+    height: 44px;
+    width: 45px;
+}
+
+#frmCadastroProfessorVariavel{
+    display: none;
+}
+
+#cadUsuarioProfessor{
+    display: none;
+}
+
+.desbloquear{
+    width: 18.6%;
+    margin-right: 4px;
+}
+
+#content_central_fixa{
+    width: 100%;
+}

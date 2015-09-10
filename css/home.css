@@ -1,0 +1,27 @@
+/* CSS Document */
+.professor,.secretaria,.coordenacao,.aluno{
+	border:2px solid #666666;
+	margin:2px 0 15px 0;
+	padding-bottom:25px;
+	width:95%;
+	background-color: rgb(242, 242, 238);
+}
+.professor p,.secretaria p,.coordenacao p,.aluno p{
+	font-size:16px;
+	font-weight:bold;
+	margin-left:25px;
+	color:rgb(102, 102, 102);
+}
+.professor a,.secretaria a,.coordenacao a,.aluno a{
+	display:block;
+	text-decoration:none;
+	color:rgba(22, 190, 207, 36);
+	margin:0;
+	margin-left:75px;	
+}
+.professor a span,.secretaria a span,.coordenacao a span,.aluno a span{
+	font-size:25px;
+}
+.professor a:hover,.secretaria a:hover,.coordenacao a:hover,.aluno a:hover{
+	color:rgb(71, 149, 160);
+}

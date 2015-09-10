@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/cartografiaStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 6º Ano | Cartografia </div>
+        </br>
+
+        <div id="Conteudo_Total">
+            <div class="exercicio">
+                1) Imagine que você esteja no centro da Rosa dos Ventos abaixo. À sua frente o norte, à esquerda o oeste, à direita o leste e atrás o sul. Entre o norte e o leste o nordeste, e assim por diante... Observe objetos e pessoas que estão ao seu redor e de acordo com a localização responda:
+                <br><br>
+
+                <center>
+                    <table>
+                        <tr><td>a) O que está à norte: <textarea class="lacuna"></textarea></td><td rowspan="8"><center><img src="img/cartografiaExe1.png"></center></td></tr>
+                        <tr><td>b) O que está à sul: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>c) O que está à leste: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>d) O que está à oeste: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>e) O que está à nordeste: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>f) O que está à noroeste: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>g) O que está à sudeste: <textarea class="lacuna"></textarea></td></tr>
+                        <tr><td>h) O que está à sudoeste: <textarea class="lacuna"></textarea></td></tr>
+                    </table>
+                </center>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                2) Escreva no mapa abaixo a exata localização dos pontos cardeais: Norte, Sul, Leste e Oeste.
+                <br><br>
+                <center><div id="exe2Div" width="611" height="446"></div></center>
+                <script type="text/javascript">
+                    var canvasDiv = document.getElementById('exe2Div');
+                    canvasExe2 = document.createElement('canvas');
+                    canvasExe2.setAttribute('width', 611);
+                    canvasExe2.setAttribute('height', 446);
+                    canvasExe2.setAttribute('id', 'canvasExe2');
+                    canvasExe2.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv.appendChild(canvasExe2);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe2 = G_vmlCanvasManager.initElement(canvasExe2);
+                    }
+                    context = canvasExe2.getContext("2d");
+                    var img = new Image();
+                    img.src = "img/cartografiaExe2.png";
+                    img.onload = function(){
+                        context.drawImage(img, 0, 0, 611, 446);
+                    }
+
+                    $(function(){$("#canvasExe2").sketch();});
+                </script>
+            </div>
+            <br><br>
+
+            <div class="exercicio">
+                3) Cada ponto equivale a uma coordenada geografica, ou seja, o cruzamento entre um linha de latitude e outra de longitude, que indica um ponto único de localização no planeta Terra.
+                <br><br>
+                Dê as coordenadas geográficas dos seguintes pontos, lembrando que a <b>latitude</b> é norte <u>ou</u> sul e a <b>longitude</b> é leste <u>ou</u> oeste:
+                <br><br>
+                <center><img src="img/cartografiaExe3.png"></center>
+                <br><br>
+                <div class="colunas">
+                    PONTO A: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO B: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO C: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO D: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO E: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO F: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO G: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                    PONTO H: latitude <textarea class="lacuna2"></textarea> e longitude <textarea class="lacuna2"></textarea> <br>
+                </div>
+                <br><br>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                4) Observe a escala do mapa abaixo e calcule as distâncias em quilômetros entre as capitais dos seguintes estados brasileiros:
+                <br><br>
+                <center><img src="img/cartografiaExe4.png" width="666" height="632"></center>
+                <br><br>
+                <div class="colunas">
+                    a) São Paulo e Bahia: <textarea class="lacuna"></textarea><br>
+                    b) Mato Grosso do Sul e Roraima:<textarea class="lacuna"></textarea><br>
+                    c) Espírito Santo e Tocantins:<textarea class="lacuna"></textarea><br>
+                    d) Ceará e Pernambuco:<textarea class="lacuna"></textarea><br>
+                    e) Paraná e Goiás:<textarea class="lacuna"></textarea><br>
+                    f) Minas Gerais e Rio de Janeiro:<textarea class="lacuna"></textarea><br>
+                </div>
+
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                5) O mapa abaixo mostra os fusos horários da Terra. Cada 15° de distância equivale a 1 hora de diferença entre um fuso horário e outro. Lembrando que para leste aumentamos uma hora para cada fuso e para oeste diminuímos uma hora. Observe atentamente as letras e responda:
+                <br><br>
+                <center><img src="img/cartografiaExe5.jpg"></center>
+                <br><br>
+                a) Uma mulher saiu às 12h do país A em direção à península B. Que horas ela chegou?
+                <textarea class="lacuna"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                b) Um garoto saiu às 15h da ilha C em direção à cidade A. Que horas ele chegou?
+                <textarea class="lacuna"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                c) Uma moça saiu às 20h do país X e foi para a ilha C. Que horas ela chegou?
+                <textarea class="lacuna"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                6)STOP GEOGRÁFICO<br>
+                Nome do Grupo: <textarea class="lacuna"></textarea><br>
+                Integrantes:<textarea class="lacuna"></textarea> <textarea class="lacuna"></textarea> <textarea class="lacuna"></textarea> <textarea class="lacuna"></textarea> <textarea class="lacuna"></textarea><br>
+
+                <br><br>
+
+                <center><table>
+                    <tr><th>Letra</th><th>Bairro</th><th>Cidade</th><th>Estado</th><th>Capital (de país ou estado)</th><th>País</th><th>Continente</th><th>Planeta</th><th>Total de Pontos</th></tr>
+
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+                    <tr><td rowspan="2"></td><td><br></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="2"></td></tr>
+                    <tr><td></td><td></td><td></td><td><br></td><td></td><td></td><td></td></tr>
+
+
+                </table></center>
+
+            </div>
+
+        </div>
+
+        <br><br>
+
+    </body>
+</html>

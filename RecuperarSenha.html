@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Recuperar Senha</title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/Login.css" />
+
+	</head>
+
+	<body>
+
+		<!--Conteudo Total-->
+
+		<div id="Container">
+
+			<div id="floater">
+			</div>
+
+			<div class="Floated_Content_Box_Login">
+
+				<div class="Top_Logo">
+				</div>
+				<div class="Login">
+
+					<table class="Tabela_Login">
+						<tr><td colspan="2" style="text-align:center;padding-left:45px;"><b>Recuperar Senha</b></td></tr>
+						<tr><td>Email :</td><td><input class="Input_Text_Login" type="text" id="Email_Recuperar" /></td></tr>
+						<tr><td><a href="Login.html">Logar-se</a></td><td colspan="1"><input class="Submit_Login" type="button" value="Enviar" onclick="SendEmail(); return false" /></td></tr>
+					 
+					</table>
+				</div>
+
+
+
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/script.js"></script>
+
+		<script>
+
+		function SendEmail()
+		{
+			var link = "mailto:" + escape(document.getElementById('Email_Recuperar').value)
+						+ "?cc= "
+						+ "&subject=" + escape("Recuperacao de Senha");
+
+						window.location.href= link;
+
+						window.setTimeout(function(){window.location = "FeedBackRecuperarSenha.html";}, 1000);
+		}
+
+		</script>
+	</body>
+</html>

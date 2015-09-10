@@ -1,0 +1,421 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/aguaStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+
+        <style type="text/css">
+            .textoT{
+                width: 100%;
+                height: 700px;
+                border: 1px solid lightgrey;
+                padding: 4px;
+                margin-top: 8px;
+            }
+
+            th, td
+            {
+                text-align: left;
+            }
+
+            .headText
+            {
+                background-image: url(img/rot_agua.png);
+                height: 390px;
+            }
+
+            #ferramentasExe3{
+                margin-top: 18px;
+            }
+
+            #texto1{
+                position: relative;
+                left: 558px;
+                top: 12px;
+            }
+
+            #fonte1{
+                position: relative;
+                left: 545px;
+                top: 125px;
+                width: 300px;
+            }
+
+            #texto2{
+                position: relative;
+                left: 558px;
+                top: 169px;
+            }
+
+            #fonte2{
+                position: relative;
+                left: 545px;
+                top: 222px;
+                width: 300px;
+            }
+
+            .clear{
+                margin-top: -15px;
+            }
+
+        </style>
+
+        <datalist id="C/E">
+            <option value="C">
+            <option value="E">
+        </datalist>
+
+        <datalist id="V/F">
+            <option value="V">
+            <option value="F">
+        </datalist>
+        
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 6º Ano | Água </div>
+        </br>
+
+        <div id="Conteudo_Total">
+            
+            <div class="headText">
+                <div>
+                    <div id="texto1"><b>“A Terra é azul”</b></div>
+                    <div class="fonte" id="fonte1"> (Yuri Gagarin- primeiro astronauta russo e mundial a enxergar o planeta do espaço)</div>
+                </div>
+                <div>
+                    <div id="texto2"><b>“E a fonte cantar<br>
+                    chuá, chuá...<br>
+                    E a água a correr<br>
+                    Chuê, chuê...”</b></div>
+                    <div class="fonte" id="fonte2">(música popular brasileira antiga, criada antes do fator poluição)</div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="clear">Observando essas duas construções (imagem/texto) e lembrando-se de outros conhecimentos, o que a água representa para todos os seres vivos?
+            <textarea class="texto"></textarea></div>
+
+            <br><br>
+
+            <div class="exercicio">
+                2.Texto: O Passeio da Água pelo Mundo
+                <br><br>
+                “(...) Ao longo de milhões de anos, pouco se perdeu do estoque original de água no Planeta. A mesma água está sempre sendo bombeada no chamado ciclo hidrológico (...) Em determinado momento, esse vapor se condensa e volta à forma líquida transformado em chuva: cerca de dois terços caem sobre o oceano, onde, graças às correntes, as moléculas de água passeiam entre a superfície e o fundo, numa viagem que pode durar mil anos; o restante, se não vai para os lagos e rios, infiltra-se na terra. No subterrâneo, segundo o ciclo natural, o líquido fica de duzentos a dez mil anos, conforme a profundidade do lençol aquático, até borbulhar em alguma nascente ou mesmo jorrar em um fumegante gêiser. Nesse instante, finalmente torna à superfície para, depois de certo tempo – alguns dias ou milhares de anos - , evaporar de novo.”
+                <br><br>
+                <div class="fonte">(Lúcia H. Oliveira)</div>
+                <br><br>
+                Escreva seu entendimento do texto.
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">3. Represente (por imagem) os três estados físicos da água: sólido, líquido e gasoso.
+                <div id="ferramentasExe3">
+                <!--<input type="color" id="pickerExe3" style="float:left">!-->
+                <a class="colorpicker" href="#canvasExe3" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe3" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                <div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe3" data-color="#FFFFFF" class="ferramenta">Borracha</a></center></div>
+                <br><br>
+                <a id="corExe3" href="#canvasExe3" data-color="#000000"></a>
+                <div style="clear: both;"></div>
+                </div>
+                <center><div id="exe3Div" width="847" height="382"></div></center>
+
+                <script type="text/javascript">
+                    var canvasDiv = document.getElementById('exe3Div');
+                    canvasExe3 = document.createElement('canvas');
+                    canvasExe3.setAttribute('width', 847);
+                    canvasExe3.setAttribute('height', 382);
+                    canvasExe3.setAttribute('id', 'canvasExe3');
+                    canvasExe3.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv.appendChild(canvasExe3);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe3 = G_vmlCanvasManager.initElement(canvasExe1);
+                    }
+                    context = canvasExe3.getContext("2d");
+                    var img = new Image();
+                    img.src = "img/earth.png";
+                    img.onload = function(){
+                        context.drawImage(img, 0, 0, 847, 382);
+                    }
+
+                    $(function(){$("#canvasExe3").sketch();});
+
+                    /*$("#pickerExe3").on("change click", function(){
+                        var cor = this.value;
+                        $("#corExe3").attr("data-color", cor);
+                        $("#corExe3").trigger("click");
+
+                    });*/
+
+                    </script>
+
+                <br><br>
+
+            </div>
+
+            <div class="exercicio">
+                4. Preencha as informações de acordo com as  indicações  abaixo:
+                <br><br>
+                (A) – água doce   (B) água salgada   (C) água doce potável
+                <br><br>
+
+                <input class="associacao" type="text" maxlegth="1"> Cobre 97,5% de toda água da Terra<br><br>
+                <input class="associacao" type="text" maxlegth="1"> Própria para beber, é de quantidade mínima no Planeta.<br><br>
+                <input class="associacao" type="text" maxlegth="1"> Estima-se que seja 2,5% da água da Terra.<br><br>
+
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+
+                5. Faça a ligação correta:
+                <br><br>
+                <center>
+                    <table>
+                        <tr><td>1.Rede Hidrográfica</td><td><input type="text" maxlength="1" class="associacao"> Espaço drenado por uma rede de rios.</td></tr>
+                        <tr><td>2.Bacia Hidrográfica</td><td><input type="text" maxlength="1" class="associacao"> Curso d’água engrossado por muitos outros (seus afluentes).</td></tr>
+                        <tr><td>3.Divisores de águas</td><td><input type="text" maxlength="1" class="associacao"> As diversas redes e bacias hidrográficas que se separam por meio de linhas de maior altitude.</td></tr>
+                    </table>
+                </center>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                6. Leia o texto abaixo:
+                <br><br>
+                <p>“ Desde a antiguidade o ser humano utiliza a água para as mais diversas finalidades. É o caso do monjolo(moer grãos) e da roda d’água(mover moinhos), utilizados ainda hoje.</p>
+                <p>A energia produzida a partir da água está relacionada ao movimento que ela é capaz de provocar.</p>
+                <p>Apesar de necessárias, as hidreléticas provocam vários prejuízos ao ambiente (destruição de florestas, morte de animais, modificação dos rios que alimentam a represa).</p>
+                <p>Além disso, depois de um tempo, as represas começam a sofrer um processo chamado assoreamento, em que o material  das margens vai sendo levado para dentro d’água”</p>
+
+                <br>
+
+                A. O que você entendeu do texto acima?
+                <textarea class="texto"></textarea>
+
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                B. Relacione o texto com o desperdício da água. (Alterações do meio-ambiente)
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                7. Mananciais são as fontes de água doce em condições de serem consumidas pelo ser humano. Têm de estar limpas.
+                <br><br>
+                Escreva o que sabe sobre:<br><br>
+                A. Água contaminada por coliformes fecais
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                B. Chuva ácida
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                C. Poluição térmica (alteração de temperatura da água)
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                8. “Cerca de um terço das águas existentes no continente e ilhas são subterrâneas. Juntamente com os rios, as águas subterrâneas representam a nossa principal fonte de água doce ( própria para o consumo).
+                Existem dois tipos de lençol de água subterrânea: o freático e o artesiano.”<br><br>
+                Explique-os:<br><br>
+                A. Lençol Freático:
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                B.Lençol Artesiano:
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                9. Coloque C para certo e E para errado:
+                <br><br>
+                <div class="itens">
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    O ser humano pode viver sem água.<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    Alguns seres vivos podem sobreviver na água.<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    A água poluída faz bem à saúde.<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    Os mamíferos respiram pelos pulmões, já os peixes, moluscos, crustáceos respiram por brânquias<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    O líquido permite transportar substâncias de um local para outro do organismo<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    A semente de uma planta necessita de intensa absorção de água (embebição) pargerminar<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    A água fica estática nos organismos.<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    Jogar lixo no ambiente é natural, não causa mal algum.<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    A água pura é incolor (sem cor), inodora (sem cheiro) e insípida (sem gosto).<br>
+                <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>E</option>
+                    </select>
+                    Vida sem água? Impossível!
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                10. Desidratação se caracteriza pela perda rápida e intensa de grande quantidade de água do corpo por meio de vômitos e/ou diarréias. Para evitá-la, recomenda-se:
+                <br><br>
+                <div class="itens">
+                    # Dar líquidos para a criança várias vezes ao dia.<br>
+                    # Conservar alimentos perecíveis na geladeira, ver data de validade.<br>
+                    # Lavar bem as mãos antes de qualquer atividade.<br>
+                    # Lavar bem frutas e vegetais.<br>
+                    # Vestir roupas leves, de preferência algodão<br>
+                    # Manter as crianças em ambientes bem ventilados (evitar o sol entre às 10.00 e 14.00 h).<br>
+                </div>
+                <br><br>
+                Feita a leitura do texto acima, crie uma história de uma criança desidratada. Como tudo começou? Quais foram os acontecimentos? Como terminou? Dê um título.
+                <textarea class="textoT"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                11) Observe a tabela e responda as questões:
+                <br><br>
+                <center><img src="img/aguaExe11.jpg"></center>
+                <br><br>
+                a) Com a quantidade total de água utilizada durante um mês nesta residência, é possível encher quantos paralelepípedos de 30 cm de comprimento, 1,7 m de largura e 40 cm de largura? Não se esqueça de fazer as conversões necessárias.
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                b) Com a quantidade de água utilizada durante um mês nesta residência para tomar banho, é possível encher quantos cubos de 1,2 cm de aresta? Não se esqueça de fazer as conversões necessárias.
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                c) Olhando a tabela de consumo de água, assinale V se for verdadeiro ou F se for falso:
+                <br><br>
+                <div class="itens">
+                    <select class="list">
+                        <option></option>
+                        <option>V</option>
+                        <option>F</option>
+                    </select>
+                    a) Limpar a casa durante um mês gasta menos água do que tomar banho durante 9 dias.<br>
+                    
+                    <select class="list">
+                        <option></option>
+                        <option>V</option>
+                        <option>F</option>
+                    </select>
+                    b) Tomar banho é uma das atividades que mais gastam água.<br>
+                    
+                    <select class="list">
+                        <option></option>
+                        <option>V</option>
+                        <option>F</option>
+                    </select>
+                    c) A quantidade de  água usada para ingestão durante 6 dias é menor que a quantidade de água usada para lavar roupa em 1 dia.<br>
+                    
+                    <select class="list">
+                        <option></option>
+                        <option>V</option>
+                        <option>F</option>
+                    </select>
+                    d) Considerando o consumo mensal. Usar a descarga do sanitário 4 vezes ao dia ainda gasta mais água do que lavar a louça 3 vezes ao dia.<br>
+                    
+                    <select class="list">
+                        <option></option>
+                        <option>V</option>
+                        <option>F</option>
+                    </select>
+                    e) Escovar os dentes é a atividade que gasta menos água.<br>
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+    </body>
+
+</html>

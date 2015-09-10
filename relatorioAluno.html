@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+
+		<!--Style-->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/relatorioAluno.css" />	
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="js/horizontal-scrollbar/demo_style.css">
+        <link rel="stylesheet" type="text/css" href="js/horizontal-scrollbar/jquery.horizontal.scroll.css">
+        <!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>		
+		<script src="js/jquery-1.10.2.js" type="text/JavaScript" language="javascript"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>             
+      	<script type="text/javascript" src="js/jquery-ui.js"></script>		
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/Chart.js-master/Chart.js"></script>
+		<script type="text/javascript" src="js/Chart.js-master/Chart.min.js"></script>
+        <script type="text/javascript" src="js/horizontal-scrollbar/jquery.horizontal.scroll.js"></script>        
+		<script type="text/javascript" src="js/calendario.js"></script>
+		<script type="text/javascript" src="js/anoLetivo.js"></script>
+				
+        <script type="text/javascript" src="js/funcoes.js"></script>
+        <!--Carrega os dados do usuario logado-->	
+		
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+		<script type="text/javascript" src="js/relatorioAluno.js"></script> 
+        <script type="text/javascript" src="js/calendarioFaltas.js"></script>		
+		<script language="javascript">
+			function imprimir(){ 
+				$(".btnRT").css("display","none");	
+				$(".fechar").css("display","none");
+				$(".n_exibir").css("display","none");
+				$('#subir_div').css("margin","-26px 17px 35px");
+				$("#texto").css({"margin-top":"15px","margin-right":"0px","height": "70%","border":"0",    "background":"none","resize": "none","background-color":"rgb(250,248,246)"});
+                var conteudo1 = $('.linha_aluno').html();
+				var conteudo2 = $('.boxRT').html(); 
+				var win = window.open();
+				win.document.write(conteudo1);
+                win.document.write(conteudo2);
+                var head  = win.document.getElementsByTagName('head')[0];
+                var link  = win.document.createElement('link');
+                link.rel  = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print_rel.css';
+                head.appendChild(link);  
+<<<<<<< .mine
+				setTimeout(function() {
+                	win.print();
+                	win.close();
+				}, 100);
+=======
+				//setTimeout(function() {
+                //win.print();
+                //win.close();}, 500);
+>>>>>>> .r560
+				$("#caixaRelatorio").hide();
+			}			
+		</script>      
+        <!--Fim JS-->
+     </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">            
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#" id="area_acesso"></a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+			
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div class="mudar" id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+
+					<div id="Content_lateral_Menu"></div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="apontar">Apontar Presença grupo</p>
+						</div>                                                 							
+					</div>
+
+				</div>
+	
+                <div class="Conteudo_Coluna" id="content_central">                    			
+					<div class="linha_aluno">
+                        <div id="impressao">
+                            <div class="FotoAluno"></div>
+                            <div id="dados_col1">
+                                <p class="nome_aluno"></p>
+                                <p class="ano"></p>
+                                <p class="link"><a href="#" id="visualizar" onClick="visualizarDados()">Visualizar dados</a> | <a href="" onclick="window.print();">Imprimir</a></p>
+                            </div>
+                            <div id="dados_col2">
+                                
+                                <p class="dados_tutor">Tutor:</p>
+                                <div id="tutor_div"><p id="tutor_nome"></p></div>
+                                <div style="clear: both;"></div>
+                                
+                                <p class="dados_grupo">Grupo:</p>
+                                <div class="alunos_grupo">
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>                                
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+						</div>                        
+                    </div>
+                    <div class="box_geral_baixo">
+                    	<div class="box_aluno_left">
+                        	<!--Aqui é carregado o html via ajax-->                           
+                        </div> 
+                    	<div class="box_aluno_right">
+                        	<div class="grafico graficoL">
+                            	<p class="titulo_g">Roteiros</p>
+                                <div class="holder_g">
+                                    <div id="canvas-holder">
+                                        <canvas id="chart1"></canvas>
+                                    	<p class="res_grafico" id="res_roteiros"> <span id="res_vermelho">2</span> roteiros de 14</p>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="grafico">
+                            	<p class="titulo_g">Objetivos</p>
+                                <div class="holder_g">
+                                    <div id="canvas-holder">
+                                        <canvas id="chart2"></canvas>
+                                        <p class="res_grafico" id="res_objetivos"><span id="res_azul">23</span> objetivos de 154</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="box_grafico">
+                            	<p class="titulo plano">Plano de estudo</p>
+                                <p class="link_plano"><a href="planoDeEstudo.html">abrir</a><p>
+                                <div style="clear:both"></div>
+                                <div id="bloco_plano">
+                                	<div id="bloco_numeros">
+                                        <p class="num_plano">20</p>
+                                        <p class="num_plano">19</p>
+                                        <p class="num_plano">18</p>
+                                        <p class="num_plano">17</p> 
+                                        <p class="num_plano">16</p> 
+                                        <p class="num_plano">15</p> 
+                                        <p class="num_plano">14</p> 
+                                        <p class="num_plano">13</p> 
+                                        <p class="num_plano">12</p> 
+                                        <p class="num_plano">11</p> 
+                                        <p class="num_plano">10</p> 
+                                        <p class="num_plano">9</p> 
+                                        <p class="num_plano">8</p> 
+                                        <p class="num_plano">7</p> 
+                                        <p class="num_plano">6</p> 
+                                        <p class="num_plano">5</p> 
+                                        <p class="num_plano">4</p> 
+                                        <p class="num_plano">3</p> 
+                                        <p class="num_plano">2</p> 
+                                        <p class="num_plano">1</p> 
+                                        <p class="num_plano">0</p>
+                                    </div>
+                                    <div id="bloco_linha">
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha"></p>
+                                        <p class="plano_linha zero"></p>
+									</div>                                        
+                                </div>                     
+                                <div id="legenda">
+                                	<p>
+                                    	<span class="quad laranja">&nbsp;</span>
+                                    	<span class="leg_titulo">proposto</span>
+                                    </p>
+                                    <p>
+                                    	<span class="quad verde">&nbsp;</span>
+                                    	<span class="leg_titulo">concluído</span>
+                                    </p>
+                                </div> 
+                                <div id="box_grafico_scroll">
+                                	<ul id="horiz_container_outer">
+                                        <li id="horiz_container_inner">
+                                            <ul id="horiz_container">												
+                                                <li class="box_info">
+                                                    <!--OBS: o máximo height da barra do gráfico é 271px-->
+                                                    <div class="box_mes">
+                                                    	<!--OBS: o HTML é carregado aqui através do Ajax-->
+                                                   	</div>                                                    
+                                                 </li>
+                                            </ul>                                            
+                                        </li>		
+                                    </ul>                                               
+                                    <div id="scrollbar">
+                                        <a id="left_scroll" class="mouseover_left" href="#"></a>
+                                        <div id="track">
+                                             <div id="dragBar"></div>
+                                        </div>
+                                        <a id="right_scroll" class="mouseover_right" href="#"></a>
+                                    </div>
+                                </div>                                                                                     
+                            </div>
+                            <div class="box_calendario">
+                            	<p class="titulo">Frequência</p>
+                                <!--Calendario-->                    
+                                <div id="box_calendario_relatorio">
+                                    <div id="calendario_relatorio"></div>                                
+                                </div>
+                            </div>
+                            <div id="calendario_legenda">
+                                <p>
+                                    <span class="quad amarelo">&nbsp;</span>
+                                    <span class="leg_titulo">presença</span>
+                                </p>
+                                <p>
+                                    <span class="quad laranja">&nbsp;</span>
+                                    <span class="leg_titulo">falta</span>
+                                </p>
+                                <p>
+                                    <span class="quad branco">&nbsp;</span>
+                                    <span class="leg_titulo">não apontada</span>
+                                </p>
+                            </div>
+                            <div class="holder_faltas">
+                                <div id="canvas-holder">
+                                    <canvas id="chart3"></canvas>
+                                    <p class="res_grafico" id="res_presenca"><span id="res_laranja">2</span> faltas em <span id="letivos">180</span> dias letivos</p>
+                                </div>                                    
+                            </div> 
+                        </div>                        
+                    </div>
+                   <div style="clear:both"></div>
+                    <div id="observacao_box" syule='display:none'>
+                    	<p id="titulo_observacao">Relatórios tutoria</p>
+                        <div id="cad_observacoes">
+                            <form id="obsRelatorio">                                	
+                                <textarea name="relatorio" cols="" rows="" id="observacao"></textarea>
+                                <input type="hidden" name="aluno" id="aluno">
+                                <input type="hidden" name="action" id="action" value="create">
+                                <input type="hidden" name="tutoria" id="tutoria">
+                                <input type="hidden" name="data" id="data">
+                                <input type="button" id="btnSalvar">
+                            </form>
+                        </div>
+                        <div id="box_geral_observacao">                            
+                            <div id="observacoes">
+                            	<!--Aqui vai o html que é alimentado pelo ajax-->
+                            </div>                       
+                        </div>                                           
+                    </div>     
+				</div>
+				<div id="boxMensagemGeral"></div>	
+				<div id="caixaRelatorio"></div>            
+				<div class="boxCalendario"></div>
+				<div class="boxGlobal"></div>
+			</div>             
+		</div><!--Fim Conteudo-->	   	
+	</body>
+</html>

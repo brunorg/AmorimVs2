@@ -1,0 +1,633 @@
+<script src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/alterarCadastroAluno.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
+
+<script>
+	listarEstadoCidade("naturalEstado");
+	listarEstadoCidade("uf");
+	listarEstadoCidade("ufMae");
+	listarEstadoCidade("ufPai");
+	listarEstadoCidade("ufResponsavel");
+	
+	$(document).ready(function () {		
+		//Coloca mascara nos campos do formulário
+		$("#celular").mask("(99)99999-9999");
+		$("#cpf").mask("999.999.999-99");
+		$("#rg").mask("99.999.999");
+		$("#rg").mask("99.999.999");
+		$("#cep").mask("99999-999");
+		$('#cepMae').mask('99999-999');
+		$('#cepPai').mask('99999-999');  
+		$('#cepResponsavel').mask('99999-999');	
+		$('#telefoneCelularResponsavel').mask('(99)99999-9999');
+		$('#telefoneComercialResponsavel').mask('(99)9999-9999');
+		$('#telefoneResidencialResponsavel').mask('(99)9999-9999');
+		$('#telefoneCelularMae').mask('(99)99999-9999');
+		$('#telefoneComercialMae').mask('(99)9999-9999');
+		$('#telefoneResidencialMae').mask('(99)9999-9999');
+		$('#telefoneCelularPai').mask('(99)99999-9999');
+		$('#telefoneResidencialPai').mask('(99)9999-9999');
+		$('#telefoneComercialPai').mask('(99)9999-9999');		
+		
+		listadados();				
+		
+	});	
+	
+</script>
+<form id="frmCadastroAluno">
+	<div id="fecharAlter" onClick="fechaFormAtualizar()" style="float:right;cursor:pointer">
+    	<img src="img/fechar_box.png" width="39" height="33" alt=""/>
+    </div>
+    <input type="hidden" name="action" id="action" value="create"/>
+	<input type="hidden" name="editarId" id="editarId" value=""/>
+	<input type="hidden" name="necessidadeEspecial" id="necessidadeEspecial"  value=""/>
+	<input type="hidden" name="responsaveisResponsavel" id="responsaveisResponsavel" value=""/>
+	<div id="linha1" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP "> Matrícula </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<input type="date" id="dataMatricula" name="dataMatricula" disabled="true"></input>
+				</div>
+			</div>
+		</div>
+        <div class="celulaPequena ambasMargin">
+			<div class="infoP "> EOL </div>
+			<div class="infoValueP">
+				<input id="numeroEol" name="numeroEol" value="" disabled="true" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
+			</div>
+		</div>
+		<div class="celulaPequena" style="display:none;">
+			<div class="infoP "> Status </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select name="ativo" id="ativo">
+						<option value="s">Ativo</option>
+						<option value="n">Inativo</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div id="linha5" class="linha">
+		<div class="celulaMedia rightMargin">
+			<div class="infoM"> Nome </div>
+			<div class="infoValueM">
+				<input id="nome" name="nome" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> RA </div>
+			<div class="infoValueP">
+				<input id="numeroRA" name="numeroRA" value="" disabled="true"  maxlength="45" title="Quantidade de caracteres permitidos: 45"/>
+			</div>
+		</div>
+	</div>
+	<div id="linha6" class="linha">
+		<div class="celulaPequena rightMargin">
+			<div class="infoP"> Celular </div>
+			<div class="infoValueP">
+				<input id="celular" name="celular" value=""></input>
+			</div>
+		</div>
+		<div class="celulaMedia">
+			<div class="infoM"> Email </div>
+			<div class="infoValueM">
+				<input id="email" name="email" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha7" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> Sexo </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="sexo" name="sexo">
+						<option value=""></option>
+						<option value="m">Masculino</option>
+						<option value="f">Feminino</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> Etnia </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="etnia" name="etnia">
+						<option value=""></option>
+						<option value="indigenas">Indígenas</option>
+						<option value="pardos">Pardos</option>
+						<option value="mulatos">Mulatos</option>
+						<option value="caboclos">Caboclos</option>
+						<option value="cafuzos">Cafuzos</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> Nascimento </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<input type="date" id="dataNascimento" name="dataNascimento" onChange="dateAniversario();"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="linha9" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> RG </div>
+			<div class="infoValueP">
+				<input id="rg" name="rg" value=""></input>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> CPF </div>
+			<div class="infoValueP">
+				<input id="cpf" name="cpf" value=""></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha95" class="linha">
+		<div class="celulaMeio rightMargin">
+			<div class="infoP"> Naturalidade UF </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="naturalEstado" name="naturalEstado" onChange="selectCidade('naturalEstado','naturalCidade')"></select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaMeio">
+			<div class="infoP"> Naturalidade Cidade </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="naturalCidade" name="naturalCidade"></select>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>	
+	<div id="linha20" class="linha">
+		<div class="celulaGrande">
+			<div class="infoG">Nome da Mãe</div>
+			<div class="infoValueG">
+				<input id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha24" class="linha">
+		<div class="celulaGrande">
+			<div class="infoG">Nome do Pai</div>
+			<div class="infoValueG">
+				<input id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div>		
+	<div id="linha8" class="linha">
+		<div id="L10L" class="celulaMeio">
+			<div class="infoP"> Necessidade especial </div>
+			<div class="infoValueMm"> Sim </div>
+			<div class="inputImg tipoP" onclick="reset(4);"> </div>
+			<input type="radio" name="enecessidadeEspecial" id="S" value="S">
+			<div class="infoValueMm"> Não </div>
+			<div class="inputImg tipoP" onclick="reset(4);"> </div>
+			<input type="radio" name="enecessidadeEspecial" id="N" value="N">
+		</div>
+	</div>
+	<div id="linha12" class="linha">
+		<div class="celulaMedia rightMargin">
+			<div class="infoM"> Endereço </div>
+			<div class="infoValueM">
+				<input id="endereco" name="endereco" value="" maxlength="250" title="Quantidade de caracteres permitidos: 250"></input>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> País </div>
+			<div class="infoValueP">
+				<input id="naturalPais" name="naturalPais" maxlength="10" value="" title="Quantidade de caracteres permitidos: 10"></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha13" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> Número </div>
+			<div class="infoValueP">
+				<input id="numero" name="numero"  value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> Complem. </div>
+			<div class="infoValueP">
+				<input id="complemento" name="complemento" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> CEP </div>
+			<div class="infoValueP">
+				<input id="cep" name="cep" value=""></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha14" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> Bairro </div>
+			<div class="infoValueP">
+				<input id="bairro" name="bairro" value="" maxlength="50" title="Quantidade de caracteres permitidos: 50"></input>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> Estado </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select value="" id="uf" name="uf" onChange="selectCidade('uf','cidade')"></select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> Cidade </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select name="cidade" id="cidade"></select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="linha15" class="linha">
+		<div class="celulaGrande">
+			<div class="infoPRes"> Responsável </div>
+			<div id="PaiMaeAluno" class="resp"> Pai </div>
+			<div class="inputImg" onclick="reset(1);AA('DadosPaiVisualizacao',true);"> </div>
+			<input type="radio" name="eresponsavelLegalPai" id="eresponsavelLegalPai" value="S">
+			
+            <div id="PaiMaeAluno" class="resp"> Mãe </div>
+			<div class="inputImg" onclick="reset(1);AA('DadosMaeVisualizacao',true);"> </div>
+			<input type="radio" name="eresponsavelLegalMae" id="eresponsavelLegalMae" value="S">
+			
+            <div id="AlunoMaiorAluno" class="resp"> Aluno maior de idade </div>
+			<div class="inputImg" onclick="reset(1);"></div>
+			
+            <div id="OutroAluno" class="resp"> Outro </div>			
+            <div class="inputImg" onclick="reset(1);AA('DadosOutroVisualizacao',true);"> </div>
+			<input type="radio" name="eresponsavelLegalResponsavel" id="eresponsavelLegalResponsavel" value="S">
+            
+		</div>
+	</div>
+	<div id="DadosOutroVisualizacao">
+		<div id="linha16" class="linha">
+			<div class="celulaPequena rightMargin">
+				<div class="infoP"> Parentesco </div>
+				<div class="infoValueP">
+					<div class="styled-select">
+						<select id="parentescoResponsavel" name="parentescoResponsavel">
+							<option value=""></option>
+							<option value="tio">Tio/Tia</option>
+							<option value="tio">Vô/Vó</option>
+							<option value="tio">Irmão/Irmã</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="celulaMedia">
+				<div class="infoM"> Nome Resp.</div>
+				<div class="infoValueM">
+					<input id="nomeResponsavel" name="nomeResponsavel" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha17" class="linha">
+			<div class="celulaPequena rightMargin">
+				<div class="infoP"> Celular </div>
+				<div class="infoValueP">
+					<input id="telefoneCelularResponsavel" name="telefoneCelularResponsavel" value=""></input>
+				</div>
+			</div>
+			<div class="celulaMedia">
+				<div class="infoM"> e-mail </div>
+				<div class="infoValueM">
+					<input id="email1Responsavel" name="email1Responsavel" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha28" class="linha">
+			<div class="celulaGrande">
+				<div class="infoG">Email Resp. 2</div>
+				<div class="infoValueG">
+					<input id="email2Responsavel" name="email2Responsavel"  value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha18" class="linha">
+			<div class="celulaPequena">
+				<div class="infoP"> Residência </div>
+				<div class="infoValueP">
+					<input id="telefoneResidencialResponsavel" name="telefoneResidencialResponsavel" value=""></input>
+				</div>
+			</div>
+			<div class="celulaPequena ambasMargin">
+				<div class="infoP"> Trabalho </div>
+				<div class="infoValueP">
+					<input id="telefoneComercialResponsavel" name="telefoneComercialResponsavel" value=""></input>
+				</div>
+			</div>
+			<div class="celulaPequena">
+				<div class="infoP"> Cep </div>
+				<div class="infoValueP">
+					<input id="cepResponsavel" name="cepResponsavel" value=""></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha19" class="linha">
+			<div class="celulaCheck">
+				<div class="infoGG"> Endereço do responsável é o mesmo do aluno? </div>
+				<div class="infoGGValue"> Sim </div>
+				<div class="inputImg" onclick="reset(2);AA('boxRespEnd', false);"> </div>
+				<div class="infoGGValue"> Não </div>
+				<div class="inputImg" onclick="reset(2);AA('boxRespEnd', true);"> </div>
+			</div>
+		</div>
+		<div id="boxRespEnd">
+			<div id="linha28" class="linha">
+				<div class="celulaGrande">
+					<div class="infoG">Endereço</div>
+					<div class="infoValueG">
+						<input id="enderecoResponsavel" name="enderecoResponsavel" maxlength="250"  value="" title="Quantidade de caracteres permitidos: 250"></input>
+					</div>
+				</div>
+			</div>
+			<div id="linha95" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Número</div>
+					<div class="infoValueP">
+						<input id="numeroResponsavel" name="numeroResponsavel" value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Complemento</div>
+					<div class="infoValueP">
+						<input id="complementoResponsavel" name="complementoResponsavel" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
+					</div>
+				</div>
+			</div>
+			<div id="linha23" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Estado Resp. </div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select id="ufResponsavel" name="ufResponsavel" onChange="selectCidade('ufResponsavel','cidadeResponsavel')">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Cidade Resp.</div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select name="cidadeResponsavel" id="cidadeResponsavel">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="DadosMaeVisualizacao">		
+		<div id="linha21" class="linha">
+			<div class="celulaPequena rightMargin">
+				<div class="infoP">Celular Mãe</div>
+				<div class="infoValueP">
+					<input id="telefoneCelularMae" name="telefoneCelularMae" value=""</input>
+				</div>
+			</div>
+			<div class="celulaMedia">
+				<div class="infoM">E-mail Mãe</div>
+				<div class="infoValueM">
+					<input id="email1Mae" name="email1Mae" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha28" class="linha">
+			<div class="celulaGrande">
+				<div class="infoG">Email Mãe 2</div>
+				<div class="infoValueG">
+					<input id="email2Mae" name="email2Mae"  value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha22" class="linha">
+			<div class="celulaPequena">
+				<div class="infoP">Tel. Residência</div>
+				<div class="infoValueP">
+					<input id="telefoneResidencialMae" name="telefoneResidencialMae" value="">
+					</input>
+				</div>
+			</div>
+			<div class="celulaPequena ambasMargin">
+				<div class="infoP">Tel. Trabalho</div>
+				<div class="infoValueP">
+					<input id="telefoneComercialMae" name="telefoneComercialMae" value="">
+					</input>
+				</div>
+			</div>
+			<div class="celulaPequena">
+				<div class="infoP"> Cep </div>
+				<div class="infoValueP">
+					<input id="cepMae" name="cepMae" value="">
+					</input>
+				</div>
+			</div>
+		</div>
+		<div id="linha23" class="linha">
+			<div class="celulaCheck">
+				<div class="infoGG"> Endereço da mãe é o mesmo do aluno? </div>
+				<div class="infoGGValue"> Sim </div>
+				<div class="inputImg" onclick="reset(2);AA('boxMaeEnd',false);"> </div>
+				<div class="infoGGValue"> Não </div>
+				<div class="inputImg" onclick="reset(2);AA('boxMaeEnd',true);"> </div>
+			</div>
+		</div>
+		<div id="boxMaeEnd">
+			<div id="linha28" class="linha">
+				<div class="celulaGrande">
+					<div class="infoG">Endereço</div>
+					<div class="infoValueG">
+						<input id="enderecoMae" name="enderecoMae"  value="" maxlength="250" title="Quantidade de caracteres permitidos: 250">></input>
+					</div>
+				</div>
+			</div>
+			<div id="linha95" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Número</div>
+					<div class="infoValueP">
+						<input id="numeroMae" name="numeroMae" value="" maxlength="50" title="Quantidade de caracteres permitidos: 10">></input>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Complemento</div>
+					<div class="infoValueP">
+						<input id="complementoMae" name="complementoMae" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
+					</div>
+				</div>
+			</div>
+			<div id="linha23" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Estado Mãe </div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select id="ufMae" name="ufMae" onChange="selectCidade('ufMae','cidadeMae')">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Cidade Mãe</div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select name="cidadeMae" id="cidadeMae">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="DadosPaiVisualizacao">		
+		<div id="linha25" class="linha">
+			<div class="celulaPequena rightMargin">
+				<div class="infoP">Celular Pai</div>
+				<div class="infoValueP">
+					<input id="telefoneCelularPai" name="telefoneCelularPai" value=""></input>
+				</div>
+			</div>
+			<div class="celulaMedia">
+				<div class="infoM">E-mail Pai</div>
+				<div class="infoValueM">
+					<input id="email1Pai" name="email1Pai" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha28" class="linha">
+			<div class="celulaGrande">
+				<div class="infoG">Email Pai 2</div>
+				<div class="infoValueG">
+					<input id="email2Pai" name="email2Pai" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div id="linha26" class="linha">
+			<div class="celulaPequena">
+				<div class="infoP">Tel. Residência</div>
+				<div class="infoValueP">
+					<input id="telefoneResidencialPai" name="telefoneResidencialPai" value="">
+					</input>
+				</div>
+			</div>
+			<div class="celulaPequena ambasMargin">
+				<div class="infoP">Tel. Trabalho</div>
+				<div class="infoValueP">
+					<input id="telefoneComercialPai" name="telefoneComercialPai" value="">
+					</input>
+				</div>
+			</div>
+			<div class="celulaPequena">
+				<div class="infoP"> Cep Pai</div>
+				<div class="infoValueP">
+					<input id="cepPai" name="cepPai" value="" >
+					</input>
+				</div>
+			</div>
+		</div>
+		<div id="linha27" class="linha">
+			<div class="celulaCheck">
+				<div class="infoGG"> Endereço do pai é o mesmo do aluno? </div>
+				<div class="infoGGValue"> Sim </div>
+				<div class="inputImg" onclick="reset(2);AA('boxPaiEnd',false);"> </div>
+				<div class="infoGGValue"> Não </div>
+				<div class="inputImg" onclick="reset(2);AA('boxPaiEnd',true);"> </div>
+			</div>
+		</div>
+		<div id="boxPaiEnd">
+			<div id="linha28" class="linha">
+				<div class="celulaGrande">
+					<div class="infoG">Endereço</div>
+					<div class="infoValueG">
+						<input id="enderecoPai" name="enderecoPai"  value="" maxlength="250" title="Quantidade de caracteres permitidos: 250">
+						</input>
+					</div>
+				</div>
+			</div>
+			<div id="linha95" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Número</div>
+					<div class="infoValueP">
+						<input id="numeroPai" name="numeroPai" value="" maxlength="10" title="Quantidade de caracteres permitidos: 10">
+						</input>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Complemento</div>
+					<div class="infoValueP">
+						<input id="complementoPai" name="complementoPai" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50">
+						</input>
+					</div>
+				</div>
+			</div>
+			<div id="linha27" class="linha">
+				<div class="celulaMeio rightMargin">
+					<div class="infoP"> Estado Pai </div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select id="ufPai" name="ufPai" onChange="selectCidade('ufPai','cidadePai')">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="celulaMeio">
+					<div class="infoP"> Cidade Pai</div>
+					<div class="infoValueP">
+						<div class="styled-select">
+							<select name="cidadePai" id="cidadePai">
+								<option  value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="linha11" class="linha">
+		<div class="celulaGrande">
+			<div id="infoObs"> Observações </div>
+			<div id="infoValueObs">
+				<textarea id="observacao" name="observacao" value=""></textarea>
+			</div>
+		</div>
+	</div>
+	<div id="linha31" class="linha">
+		<div class="celulaPequena btn_left">
+			<input type="button" id="btnSubmit" name="btnSubmit" value="Salvar"  onClick="cadastraEditaAluno()" />
+		</div>
+	</div>
+</form>
+<br>
+<div id="linha8" class="linha opcaoFoto">
+	<div id="UpFoto" class="celulaMeio">
+		<div class="infoP"> Upload Foto Aluno </div>
+		<div class="infoValueMm"> Sim </div>
+		<div class="inputImg tipoP" onclick="reset(6);upFoto('S');"> </div>
+		<input type="radio" name="uploadFoto" id="uploadFotoS" value="S">
+		<div class="infoValueMm"> Não </div>
+		<div class="inputImg tipoP" onclick="reset(6);upFoto('N');"> </div>
+		<input type="radio" name="uploadFoto" id="uploadFotoN" value="N">
+	</div>
+    <div id="box_foto">
+	    <div id="fotoCad"></div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,1436 @@
+/* 
+    Created on : 16/08/2008, 09:10:49
+    Author     : MuranoDesign 
+    Description: Purpose of the stylesheet follows.
+*/
+
+.row{
+    float: left;
+    width: 100%;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.offset-1 {margin-left: 8.33%;}
+.offset-2 {margin-left: 16.66%;}
+.offset-3 {margin-left: 25%;}
+.offset-4 {margin-left: 33.33%;}
+.offset-5 {margin-left: 41.66%;}
+.offset-6 {margin-left: 50%;}
+.offset-7 {margin-left: 58.33%;}
+.offset-8 {margin-left: 66.66%;}
+.offset-9 {margin-left: 75%;}
+.offset-10 {margin-left: 83.33%;}
+.offset-11 {margin-left: 91.66%;}
+
+[class*="col-"] {
+    float: left;
+    padding: 10px;
+}
+
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+
+html, body
+{
+    padding:0;
+    margin:0;
+    font-family: "proxima-nova",sans-serif;
+    background:#d6d6d3;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, .tk-proxima-nova, body, input{
+    outline:none !important;
+}
+#Container{
+    width:100%;
+    margin:0 auto;
+}
+    #Cabecalho_Menu_Area{
+        width:100%;
+        font-size: 1.8vmax;
+        color:#fff;
+        background-color: rgba(22, 190, 207, 36);
+    }
+
+    #Cabecalho_Menu_Area a{
+        color:white;
+        text-decoration: none;
+    }
+
+    #Cabecalho_Menu_Area_Menu1{
+        /*width:500px;
+        float:left;
+        padding-top: 7px; 
+        padding-left:10px;*/
+    }
+
+    #Cabecalho_Menu_Area_Menu2{
+        /*width: 223px;
+        float:right;
+        padding-top: 7px;*/ 
+    }
+
+    #Cabecalho_Perfil_Area{
+        width:100%;
+
+        background-color: rgb(242, 242, 238);
+    }
+
+        #Cabecalho_Perfil_Area_Foto_Content{    
+        }
+            #Cabecalho_Perfil_Area_Foto{
+                float:right;
+                width: 100%;
+                border-radius: 12px;
+                -webkit-border-radius: 12px;
+                -o-border-radius: 12px;
+                -moz-border-radius: 12px;
+                background-color: white;
+                border:solid white;
+                overflow: hidden;
+                background-size: cover;
+                background-position: center;
+            }
+            #Cabecalho_Perfil_Area_Foto_default{
+
+                width:86px;
+                float:right;
+                margin-top: 10px;
+                padding:2.5px;
+                border-radius: 12px;
+                -webkit-border-radius: 12px;
+                -o-border-radius: 12px;
+                -moz-border-radius: 12px;
+                background-color: white;
+                border:solid white;
+                overflow: hidden;
+                background-image: url("../img/img_default_P.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+            #Cabecalho_Perfil_Area_Foto img#_foto{
+                width:100%;
+
+            }           
+            
+        #Cabecalho_Perfil_Area_Descricao_Content{
+
+            float:left;
+            font-size: 1.5vmax;
+            line-height: 1.3;
+            color:rgb(102, 102, 102);
+        }
+
+            #Cabecalho_Perfil_Area_Descricao{
+
+                width:100%;
+                margin-top: 10%;
+                word-break: break-all;
+            }
+
+
+    /*ConteÃºdo geral*/     
+    #Conteudo_Area{
+        width:100%;
+
+        background-color: #FFF;
+        float:left;
+    }
+
+        .Conteudo_Coluna{
+            float:left;
+        }
+
+            /*Coluna Esquerda*/
+            #Content_lateral{
+                background-color: #d2eaf1;
+                margin-left: 172px;
+                margin-bottom: 20px;
+            }
+
+            #Content_lateral_Menu{
+            }
+
+            .Menu_Container{
+                margin-top: -0.5%;
+            }
+
+            .Content_lateral_Menu_Opcao{
+                float: left;
+                background-color: rgba(2, 129, 141, 1);
+                margin-right: 1px;
+                width: 16.5%;
+                letter-spacing: 0.3px;
+                padding-top: 0;
+                /*height: 40%;*/
+            }
+
+            .Content_lateral_Menu_Opcao a{
+                background-repeat: no-repeat;
+                float: left;
+                color: white;
+                font-size: 1.3vmax;
+                width: 100%;
+                text-decoration: none;
+                padding-top: 10%;
+                padding-bottom: 10%;
+            }
+
+            .Content_lateral_Menu_Opcao a span{
+                float: left;
+                width: 74%;
+                padding-left: 10%;
+            }
+        
+                /*Menu Plano de estudo*/
+                .Content_lateral_Menu_Opcao .plano{
+                    background-image: url(../img/ic_plano-ativo.png);
+                    background-position: 0px 14px;
+                    padding-left: 34%;
+                    padding-top: 10%;
+                }
+                
+                .Content_lateral_Menu_Opcao .plano:hover{
+                    background-image: url(../img/ic_plano.png);                 
+                }
+                
+                .Content_lateral_Menu_Opcao .plano-active{
+                    background-image: url(../img/ic_plano.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Plano de estudo*/
+                    
+                /*Menu recurso*/
+                .Content_lateral_Menu_Opcao .recurso{
+                    background-image:url(../img/ic_livro-ativo.png);
+                    background-position: 0px 14px;
+                    padding-left: 34%;
+                    padding-top: 10%;
+                }
+
+                .Content_lateral_Menu_Opcao .recurso span{
+                    width: 100%;
+                }
+
+                .Content_lateral_Menu_Opcao .recurso:hover{
+                    background-image: url(../img/ic_livro.png);
+                }   
+                .Content_lateral_Menu_Opcao .recurso-active{
+                    background-image: url(../img/ic_livro.png);
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }       
+                /*Fim menu recurso*/
+                
+                /*Menu roteiro*/
+                .Content_lateral_Menu_Opcao .roteiros{
+                    background-image:url(../img/ic_roteiro-ativo.png);
+                    background-position: 0px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }   
+                .Content_lateral_Menu_Opcao .roteiros:hover{
+                    background-image:url(../img/ic_roteiro.png);
+                }
+                .Content_lateral_Menu_Opcao .roteiros-active{
+                    background-image: url(../img/ic_roteiro.png);   
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }   
+                /*Fim menu roteiro*/    
+                
+                /*Menu forum*/
+                .Content_lateral_Menu_Opcao .forum{
+                    background-image:url(../img/ic_forum-ativo.png);
+                    background-position: 0px 13px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }                               
+                .Content_lateral_Menu_Opcao .forum:hover{
+                    background-image:url(../img/ic_forum.png);
+                }
+                .Content_lateral_Menu_Opcao .forum-active{
+                    background-image: url(../img/ic_forum.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu forum*/
+                
+                /*Menu mensagens*/              
+                .Content_lateral_Menu_Opcao .mensagens{
+                    background-image: url(../img/Ic_mensagens-ativo.png);
+                    background-position: 0px 11px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .mensagens:hover{
+                    background-image: url(../img/ic_mensagens.png);
+                }
+                .Content_lateral_Menu_Opcao .mensagens-active{
+                    background-image: url(../img/ic_mensagens.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu mensagem*/       
+                
+                /*Menu Tutoria*/
+                .Content_lateral_Menu_Opcao .tutoria{
+                    background-image: url(../img/bt_tutores_normal.png);
+                    background-position: 0px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .tutoria:hover{
+                    background-image: url(../img/bt_tutores_ativo.png);
+                }
+                .Content_lateral_Menu_Opcao .tutoria-active{
+                    background-image: url(../img/bt_tutores_ativo.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Tutoria*/
+                
+                /*Menu Tutores*/
+                .Content_lateral_Menu_Opcao .tutores{
+                    background-image: url(../img/bt_tutores_normal.png);
+                    background-position: 0px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .tutores:hover{
+                    background-image: url(../img/bt_tutores_ativo.png);
+                }
+                .Content_lateral_Menu_Opcao .tutores-active{
+                    background-image: url(../img/bt_tutores_ativo.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Tutores*/
+                
+                /*Menu Grupos*/
+                .Content_lateral_Menu_Opcao .grupos{
+                    background-image: url(../img/bt_grupo_normal.png);
+                    background-position: 0px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .grupos:hover{
+                    background-image: url(../img/bt_grupo_ativo.png);
+                }
+                .Content_lateral_Menu_Opcao .grupos-active{
+                    background-image: url(../img/bt_grupo_ativo.png);   
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Grupos*/
+                
+                /*Menu Cadastro*/
+                .Content_lateral_Menu_Opcao .cadastro{
+                    background-image: url(../img/ic_cadastro-ativo.png);
+                    /*background-position: 0px 0px;*/
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .cadastro:hover{
+                    background-image: url(../img/ic_cadastro.png);
+                }
+                .Content_lateral_Menu_Opcao .cadastro-active{
+                    background-image: url(../img/ic_cadastro.png);  
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Grupos*/
+                
+                /*Menu Agenda*/
+                .Content_lateral_Menu_Opcao .agenda{
+                    background-image: url(../img/agenda-ativo.png);
+                    background-position: 10px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .agenda:hover{
+                    background-image: url(../img/agenda.png);
+                }
+                .Content_lateral_Menu_Opcao .agenda-active{
+                    background-image: url(../img/agenda.png);   
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Agenda*/
+                
+                /*Menu PresenÃ§a*/
+                .Content_lateral_Menu_Opcao .presenca{
+                    background-image: url(../img/presencas-ativo.png);
+                    /*background-position: 0px 10px;*/
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .presenca:hover{
+                    background-image: url(../img/presencas.png);
+                }
+                .Content_lateral_Menu_Opcao .presenca-active{
+                    background-image: url(../img/presencas.png);    
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu PresenÃ§a*/
+                
+                /*Menu Carteirinhas*/
+                .Content_lateral_Menu_Opcao .carteirinhas{
+                    background-image: url(../img/ic_carteirinha-ativo.png);
+                    background-position: 0px 3px;
+                    background-size: 35%;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .carteirinhas:hover{
+                    background-image: url(../img/ic_carteirinha.png);
+                }
+                .Content_lateral_Menu_Opcao .carteirinhas-active{
+                    background-image: url(../img/ic_carteirinha.png);   
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+                /*Fim menu Carteirinhas*/
+                
+                /*Menu NotificaÃ§Ãµes*/
+                .Content_lateral_Menu_Opcao .notificacoes{
+                    background-image: url(../img/ic_plano-ativo.png);
+                    background-position: 0px 10px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+
+                }               
+                .Content_lateral_Menu_Opcao .notificacoes:hover{
+                    background-image: url(../img/ic_plano.png);
+                }
+                .Content_lateral_Menu_Opcao .notificacoes-active{
+                    background-image: url(../img/ic_mensagens.png); 
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+
+                .Content_lateral_Menu_Opcao .calendario{
+                    background-image: url(../img/calendario_azul.png);
+                    background-position: -7px 0px;
+                    padding-left: 34%;
+                    padding-top: 15%;
+                }               
+                .Content_lateral_Menu_Opcao .calendario:hover{
+                    background-image: url(../img/calendario_branco.png);
+                }
+                .Content_lateral_Menu_Opcao .calendario-active{
+                    background-image: url(../img/calendario_branco.png);   
+                    background-color: rgba(22, 190, 207, 0.79);             
+                }
+
+                /*Fim menu NotificaÃ§Ãµes*/
+                
+                .Content_lateral_Menu_Opcao:hover{
+                    background-color: rgba(22, 190, 207, 0.79);
+                    cursor: pointer;
+                }             
+                
+                #menu_recurso{
+                    margin-top: -13px;  
+                }
+            
+                /*Calendario*/
+                #datepicker{
+                    border-collapse: collapse;
+                    padding: 0;
+                    margin: 0;
+                    width: 182px;
+
+                    margin:auto;
+                    font-weight: bold;
+                    font-size: 11px;
+                    background-repeat: no-repeat;
+                    color:rgb(102,102,102);
+                }   
+                
+                /*Style caixa apontar presenÃ§a professor*/
+                #presenca_page{
+                    width: 100%;
+
+                    font-size:22px;
+                }   
+                
+                #presenca_page #barra_busca{
+                    margin-bottom: 9px;
+                }
+                
+                #presenca_page .box_nome{
+                    float: left;
+
+                }
+                #presenca_page #box_botao{
+                    width: 54px;
+
+                    margin-right: 11px;
+                    position: absolute;
+                    bottom: 22px;
+                    right:17px;
+                }
+                #presenca_page #presenca_opcao_box{
+                    width: 99.4%;
+
+                    padding: 1px;
+                    background-color: #EAF8FA;          
+                    overflow: auto;             
+                    border: 2px solid;
+                    border-color: #1E8290;
+                    color:rgb(102, 102, 102);
+                    margin-top: 2px;
+                }
+                #presenca_page .presenca_opcao p{
+                    padding:10px 0;
+                    color:#FFFFFF;
+                }
+                #presenca_page .btn_fechar{
+                    padding: 10px 18px;
+                    position: absolute;
+                    left: 30px;
+                }
+                #periodoPres{
+                    float: right;
+                    width: 33%;
+                    border: 1px solid #000;
+                    margin-right: 6px;
+
+                }
+                /*#presenca_page #btn_confirma{
+                    background: url(../img/confirma_bco.png) no-repeat;
+                    background-size: auto;
+                    float: left;
+                    width: 40px;
+                    margin: 0 6px;
+                }*/
+                #presenca_page #btn_confirma{
+                    background: url(../img/confirma.png) no-repeat;
+                    background-size: auto;  
+                    float: left;
+                    width: 40px;
+                    margin: 0 6px;
+                    cursor:pointer;             
+                }
+                /*#presenca_page #btn_cancela{
+                    background: url(../img/cancela_bco.png) no-repeat;
+                    background-size: auto;
+                    float: left;
+                    width: 40px;
+                    margin: 0 6px;
+                }*/
+                #presenca_page #btn_cancela{
+                    background: url(../img/cancela.png) no-repeat;
+                    background-size: auto;
+                    float: left;
+                    width: 40px;
+                    margin: 0 6px;
+                    cursor:pointer; 
+                }       
+                #presenca_page input[type=checkbox].presenca_check {
+                    position: absolute; 
+                    overflow: hidden; 
+                    clip: rect(0 0 0 0); 
+
+                    width:1px; 
+                    margin:-1px; 
+                    padding:0;
+                    border:0;
+                }               
+                #presenca_page input[type=text].busca_Professores{
+                    background-color: #EAF8FA;
+                    border-color: #1E8290;
+                    width: 96.4%;
+
+                    outline:none;
+                    box-shadow: none;
+                    border: 2px solid;
+                    border-color: #1E8290;
+                    float:left;
+                }                       
+                #presenca_page span.css-label {
+                    padding: 7px 0px 0 34px;
+
+                    display: inline-block;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    margin: 4px 0 0 5px;
+                }   
+                #presenca_page label{
+                    padding: 11px 0px 0 0px;
+
+                    display: inline-block;
+                    line-height: 15px;
+                    background-repeat: no-repeat;
+                    background-position: 0 0;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    font-size: 18px;
+                }                               
+                #presenca_page .selecionado{
+                    background-image: url(../img/radio-botao-Semfundo.png) !important;
+                }                                                           
+                #presenca_page .css-label{
+                    background-size:auto;
+                    background-position:0px 0px;
+                    background-image:url(../img/radio-botao-Semfundo.png);
+                }           
+                
+                #presenca_page #lupa{
+                    background-color: #1E8290;
+                    width: 28px;
+
+                    display: inline;
+                    float: left;
+                }   
+                #presenca_page #img_lupa{
+                    width: 21px;
+
+                    vertical-align: middle;
+                    margin-left: 1px;
+                    margin-right: auto;
+                }
+                /*fim style presenÃ§a professor*/   
+                
+                /*Style caixa apontar presenÃ§a aluno*/
+                #presenca{
+                    width: 480px;
+
+                    background: none repeat scroll 0% 0% #16BECF;
+                    z-index: 1;
+                    position: relative;
+                    top: -248px;
+                    left: 256px;
+                    font-size:22px;
+                    float:left;
+                    display:none;
+                }   
+                #presenca .box_nome{
+                    float: left;
+
+                }
+                #presenca .box_botao{
+                    float: right;
+                    width:118px;
+
+                }
+                #presenca .presenca_opcao{
+                    width:360px;
+                    padding:26px 36px;
+                    color:#FFFFFF;
+                }
+                #presenca .presenca_opcao p{
+                    padding:10px 0;
+                    color:#FFFFFF;
+                }                   
+                #presenca .btn_pres,.btn_fechar,#btn_fechar_evento{
+                    display: inline-block;
+                    background-color: #02818D;
+                    color: #FFFFFF;
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    border: none;                   
+                    margin: 0;  
+                    font-weight:bold;
+                    cursor:pointer;
+                }
+                 #presenca .btn_fechar{ 
+                    font-size: 20px;
+                    padding: 10px 18px;
+                    position: absolute;
+                    width: 50px;
+                    left: 430px;
+                }
+                #presenca .btn_pres{                    
+                    position:absolute;
+                    bottom:0;
+                    right:0;
+                    width: 114px;
+
+                }               
+                #presenca input[type=checkbox].presenca_check {
+                    position: absolute; 
+                    overflow: hidden; 
+                    clip: rect(0 0 0 0); 
+
+                    width:1px; 
+                    margin:-1px; 
+                    padding:0;
+                    border:0;
+                }               
+                #presenca label.css-label {
+                    padding:7px 0px 0 34px;
+
+                    display:inline-block;
+                    line-height:15px;
+                    background-repeat:no-repeat;
+                    background-position: 0 0;
+                    font-size:15px;
+                    vertical-align:middle;
+                    cursor:pointer;
+                    font-size: 22px;
+                    margin: 4px 0 0 5px;
+                    white-space: nowrap;
+                }                               
+                #presenca .preSelecionado{
+                    background-image: url(../img/presenca_check2.png) !important;
+                }                                                           
+                #presenca .css-label{
+                    background-size:auto;
+                    background-image:url(../img/presenca_check1.png);
+                }
+                /*fim style presenÃ§a aluno*/   
+                                        
+
+            /*Coluna central sem divisoes*/
+            /*Coluna central*/  
+            #content_central{
+                position: relative;
+                float:left;
+                overflow:auto;
+            }
+            #content_central_fixa{
+                position: relative;
+                padding: 36px 31px;
+                float:left;
+                overflow:hidden;
+            }
+            #blocoGeral{
+                overflow: auto;
+                z-index: 1;
+                background: #FFF;
+            }
+            #content_central_area{
+                position: relative;
+                float: left;
+                overflow: hidden;
+            }
+            #content_central_area2{
+                position: relative;
+                float: left;
+            }
+            #bloqueio_top_content_central{
+
+                width: 978px;
+                position: absolute;
+                background-color: #fff;
+                margin-left: 256px;
+                z-index:1;
+            }
+            #bloqueio_bottom_content_central{
+
+                width: 978px;
+                position: absolute;
+                background-color: #fff;
+                margin-left: 256px;
+                margin-top:592px;
+                z-index:1;
+            }
+
+            /*Coluna central dividida em duas partes*/
+            
+            /*Coluna esquerda*/ 
+            #content_central_1{
+                position: relative;
+                width: 60%;
+                padding: 36px 14px 36px 36px;
+                float:left;
+                overflow:auto;
+            }
+            #content_central_1_fixo{
+                position: relative;
+                width: 59%;
+                padding: 36px 14px 36px 36px;
+                float:left;
+            }
+            #bloqueio_top_content_central_1{
+
+                width: 748px;
+                position: absolute;
+                background-color: #fff;
+                margin-left: 257px;
+                z-index:1;
+            }
+            #bloqueio_bottom_content_central_1{
+
+                width: 748px;
+                position: absolute;
+                background-color: #fff;
+                margin-left: 257px;
+                margin-top:592px;
+                z-index:1;
+            }
+            
+            /*Coluna a direita*/    
+            #content_central_2{
+                position: relative;
+                padding: 36px 27px 36px 12px;
+
+                float: left;
+            }
+                /*Agenda - Ela sempre vai fazer parte da "#content_central_2"*/
+                #agenda {
+                    padding: 18px;
+
+                    background: #81CDD3;
+                    float: none;
+
+                }
+                #Conteudo_Coluna3_Agenda_Content{
+                    margin: 10% 8%;
+                    width:85%;
+
+                }
+
+                #Conteudo_Coluna3_Agenda_Content_Nome{
+
+                    width:100%;
+                    font-size: 24px;
+                    color: rgb(178, 38, 43);
+                }
+
+                #Conteudo_Coluna3_Agenda_Evento_Content{
+
+                    width:100%;
+                    overflow-y: auto; 
+                }
+
+                    .Conteudo_Coluna3_Agenda_Evento{
+
+                        width:100%;
+                        background-color: white;
+                        margin-top: 5px;
+                    }
+
+                        .Conteudo_Coluna3_Agenda_Evento_Titulo{
+                            width:100%;
+
+                            color:rgb(219, 94, 49);
+                            font-size: 18px;
+                            padding: 10px 10px 5px 10px;
+                        }
+                        
+                        .Conteudo_Coluna3_Agenda_Evento_Hora{
+                            width:100%;
+
+                            color:rgb(219, 94, 49);
+                            font-size: 12px;
+                            padding: 10px 10px 5px 10px;
+                            text-align: right;
+                            padding-right: 8px;
+                            margin-top: -31px;
+                        }
+
+                        .Conteudo_Coluna3_Agenda_Evento_Conteudo{
+                            width:100%;
+
+                            color: rgb(102, 102, 102);
+                            font-size: 18px;
+                            padding: 10px;
+                        }           
+            
+#Evento{
+    width: 350px;
+
+    position: relative;
+    float: left;
+    top: -251px;
+    left: 256px;
+    color: #666;
+    display:none;
+    z-index:1;
+}
+
+.eventoImagem{
+    top: -479px !important;
+
+}
+
+#Foto_evento{
+    width: 100%;
+    padding:59px 24px 0 24px ;
+    background-color: #b0dce7;
+    background: url(../img/foto.jpg) no-repeat #B1DDE6 50% 100%;
+}
+
+#Evento_Info{
+    width: 100%;
+
+    background-color: #b0dce7;
+    padding: 15px 25px;
+    text-align: center;
+    line-height: 170%;
+    font-size: 18px;
+}
+#btn_fechar_evento{
+    font-size: 20px;
+    padding: 10px 18px;
+    position: absolute;
+    width: 50px;
+    left: 300px;
+}
+#Titulo{
+    color: #1E8290;
+}
+
+#Horario span{
+    font-weight: bold;
+}
+
+/* --- --- */
+
+
+/* Evento Inserir */
+#Inserir_Evento{
+    width: 880px;
+
+    background: #BCBDB7;
+    z-index: 1;
+    position: relative;
+    float: left;
+    top: -250px;
+    left: 256px;
+    padding: 40px;
+    color: #666;
+    display: none;
+}
+
+.linha{
+    width: 100%;
+    margin-bottom: 0.5%;
+    overflow: auto;
+}
+
+/* CSS das celulas pequenas (cada uma ocupa 1/3 da linha)*/
+.celulaPequena{
+    width: 33%;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #C8C8C3;
+}
+
+.celulaPequena2{
+    width: 33%;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #C8C8C3;
+}
+
+.infoP{
+    width: 45%;
+
+    padding: 12px;
+    background-color: #C8C8C3;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoValueP{
+    width: 55%;
+
+    background-color: #F2F1ED;
+    float: left;
+}
+
+/* Fim do CSS da cÃ©lula pequena*/
+
+/* CSS das celulas mÃ©dias (cada uma ocupa 2/3 da linha)*/
+.celulaMedia{
+    width: 66%;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #F2F1ED;
+}
+
+.infoM{
+    width: 22.75%;
+
+    padding: 12px;
+    background-color: #C8C8C3;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoValueM{
+    width: 77.25%;
+    background-color: #F2F1ED;
+    float: left;
+}
+/* Fim do CSS da cÃ©lula mÃ©dia*/
+
+
+/* CSS das celulas grandes(ocupam toda a linha)*/
+.celulaGrande{
+    width: 100%;
+    overflow: auto;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background-color: #F2F1ED;
+}
+
+.infoG{
+    width: 14.6%;
+
+    padding: 12px;
+    background-color: #C8C8C3;
+    text-align: right;
+    float: left;
+    border-right: 2px solid #B6B6B0;
+}
+
+.infoValueG{
+    width: 85%;
+    background-color: #F2F1ED;
+    float: left;
+}
+/* Fim do CSS da cÃ©lula grande*/
+
+.right_margin{
+    margin-right: 1%;
+}
+
+.ambas_margin{
+    margin: 0 1%;
+}
+
+input{
+    border: none;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+}
+
+input[type=date]{
+    padding: 10px 6px;
+    color: #666;
+}
+
+select{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    float: left;
+}
+
+.styled-select {
+   width: 85.4%;
+
+   overflow: hidden;
+   background: url(../img/select-arrow.png) no-repeat right #ddd;
+   background-color: #F2F1ED;
+}
+
+.styled-select select{
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+
+    -webkit-appearance: none;
+}
+
+.styled-date {
+   width: 55%;
+
+   overflow: hidden;
+   background: url(../img/ic_calendario_bco.png) no-repeat right #ddd;
+   background-color: #F2F1ED;
+}
+
+.styled-date input[type=date]::-webkit-calendar-picker-indicator{
+    opacity: .01;
+    -webkit-appearance: none;
+}
+
+input[type=date]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    display: none;
+}
+
+#bt_imagem{
+    width: 14%;
+
+    padding: 12px;
+    text-align: right;
+    border: 2px solid #B6B6B0;
+    float: left;
+    background: url(../img/upload.png) no-repeat #C8C8C3 6px;
+    cursor: pointer;
+}
+
+.box_horario{
+    width: 8%;
+
+    padding-top: 12px;
+    background-color: #F2F1ED;
+    border: 2px solid #B6B6B0;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bt_confirma_cancela{
+    width: 6%;
+
+    float: right;
+    font-size: 70%;
+    text-align: center;
+    color: #666;
+    cursor: pointer;
+    padding-top: 25px;
+}
+
+.bt_confirma_cancela:hover{
+    color: white;
+}
+
+#bt_confirma{
+    background: url(../img/confirma_cinza.png) no-repeat 5px;
+}
+
+#bt_confirma:hover{
+    background: url(../img/confirma_bco.png) no-repeat 5px;
+}
+
+#bt_cancela{
+    background: url(../img/cancela_cinza.png) no-repeat 5px;
+}
+
+#bt_cancela:hover{
+    background: url(../img/cancela_bco.png) no-repeat 5px;
+}
+
+/*----Mensagem---------*/
+
+#boxMensagemGeral{
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 9999;
+}
+#caixaRelatorio{
+    width: 80%;
+
+    background-color: rgba(0,0,0,0.7);
+    position: relative;
+    left: 20%;
+    display: none; 
+    z-index:999;
+}
+
+.box_mensagem{
+    width: 400px;
+    background-color: #F2F2EE;
+    position: absolute;
+    margin: 0px 31%;
+    top: 40%;
+    border: 2px solid #FFFFFF;
+}
+
+.txt_mensagem{
+    width: 100%;
+
+    text-align: center;
+    padding: 10px;
+    padding-top: 29px;
+    color: #666;
+    font-size: 18px;
+}
+
+.btn_alterar{
+    background-color: rgba(2, 129, 141, 1);
+}
+
+.btn_alterar:hover{
+    background-color: #76C0E7;
+}
+
+.btn_mensagem{
+    width: 67%;
+    background: none !important;
+    background-color: blue;
+
+    padding: 5px 10px;
+    padding-top: 0px;
+    margin: 0 70px
+}
+
+.btn_mensagem_1 {
+    width: 67%;
+    background: none !important;
+    background-color: blue;
+
+    padding: 5px 10px;
+    padding-top: 0px;
+    margin: 0 130px;
+}
+
+*, .tk-proxima-nova, body, input {
+font-family: "proxima-nova",sans-serif;
+}
+
+.bt_ok{
+    margin-right:10px;  
+}
+.bt_ok, .bt_cancelar{
+
+    background:none !important;
+    background-color: #239daf !important;
+    color:white;
+    width:45%;
+    cursor:pointer;
+}
+
+
+
+#alerta{
+    background: url(../img/OAviso.png) no-repeat;
+    padding: 0px 10px 2px 15px;
+    width: 30px;
+
+}
+#erro{
+    background: url(../img/erro.png) no-repeat;
+    padding: 2px 10px 2px 15px;
+    width: 30px;
+
+}
+#sucesso{
+    background: url(../img/sucesso.png) no-repeat;
+    padding: 2px 10px 2px 15px;
+    width: 30px;
+
+}
+#confirm{
+    background: url(../img/alertaP.png) no-repeat;
+    padding: 6px 18px 2px 15px;
+    width: 30px;
+
+}
+.left{
+    float:left;
+}
+
+.right{
+    float:right;
+}
+
+#content_central_1
+{
+    float: left;
+    overflow: auto;
+    padding: 36px 14px 36px 36px;
+    position: relative;
+    width: 60%;
+}
+#barraDeRolagem{
+    width:80%;
+    overflow: hidden;
+
+}
+/*boxGlobal*/
+#senha{
+    cursor:pointer;
+}
+
+.boxOverlay{
+    display: none;
+    width: 50%;
+    z-index: 1000;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.boxGlobal{
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    padding-top: 21%;
+    padding-bottom: 21%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 9999;
+}
+.marginCaixa{
+    display:block;
+    padding-top:300px;
+}
+.boxForm {
+    width: 61%;
+    height: 40%;
+    position: relative;
+    margin: 10% auto;
+    top: 0%;
+    /*border: 2px solid #FFFFFF;
+    background-color: #F2F2EE;*/
+    z-index: 99;
+    padding: 2%;
+}
+
+.boxForm form{
+    z-index: 999;
+    position: absolute;
+    width: 287%;
+}
+
+
+.celulaMedia{
+    width: 66.2%;
+}
+
+.rightMargin{
+    margin-right: 1.5%;
+}
+
+.infoP, .infoM, .infoG, .infoGG
+{
+    background-color: rgb(214,228,225);
+    border:none;
+    color: #666;
+    padding:10px;
+}
+
+
+
+.infoM{
+    width: 21.9%;
+}
+
+.infoValueP, .infoValueM, .infoValueG, .infoValueGG, .infoGGValue, .infoValueMm
+{
+    background-color: rgb(250,248,246);
+    color: #666;
+    overflow: hidden;
+}
+
+.celulaPequena{
+    width: 32.3%;
+    border:none;
+}
+
+.infoP, .infoM, .infoG, .infoGG
+{
+    background-color: #C8C8C3;
+    border:none;
+    color: #666;
+    padding:10px;
+}
+
+
+.btn_left{
+    float:none;
+    width:10.6%;
+}
+
+.box_margin_alter {
+    display: none;
+    position: fixed;
+    background-color: #FFF;
+    z-index: 9999;
+    float: left;
+    overflow: auto;
+    padding:36px;
+}
+
+#ajax-loader{
+    width: 16px;
+    float: right;
+    margin: 20px 10px 0 0;
+    display:none;
+}
+
+#loader{
+    top:0;
+    background:rgba(0, 0, 0, 0.3);
+    z-index:100;
+    position:absolute;
+    width:100%;
+
+}
+
+#loader h2{
+    position:absolute;
+    padding: 0;
+    margin:0; 
+    width:100%;
+    background:#000000;
+    color:#ffffff;  
+}
+
+.infoTotal{
+    width:100%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+video {
+    max-width: 100%;
+
+}
+
+iframe,embed,object {
+    position: absolute;
+    top: 18%;
+    width: 52.5%;
+
+}
+object{
+    display:none;
+}
+.container {
+    width: 50%;
+    margin:0px auto;
+    background:#fff;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+.vendor {
+    padding: 2%;
+    background: #d1eed1;
+    margin-bottom: 2em;
+}
+.unsupported {
+    background: #fddfde;
+}
+
+.editarCadastro {
+    cursor: pointer;
+}
+
+.mCSB_inside > .mCSB_container{
+    margin-right: 0 !important;
+}
+
+#rodape_calendario{
+    margin: 0;
+}

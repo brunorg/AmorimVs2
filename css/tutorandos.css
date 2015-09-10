@@ -1,0 +1,71 @@
+.total{
+	width: 880px;
+	height: auto;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+		
+.Conteudo_Coluna2_Aluno{
+	height: 104px;
+	width: 100%;
+	margin-top: 5px;
+	background-color: #f2f2ee;
+}
+		
+.Conteudo_Coluna2_Aluno{
+	height: 104px;
+	width: 100%;
+	margin-top: 5px;
+	background-color: #f2f2ee;
+}
+		
+.FotoAlunoCadastro{
+	height: 86px;
+	width: 86px;
+	float: left;
+	margin: 10px;
+	padding:2.5px;
+	border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-o-border-radius: 12px;
+	-moz-border-radius: 12px;
+	background-color: white;
+	overflow: hidden;
+	background-image: url("../img/FotoAluno.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border: #fff solid;
+}
+				
+.Nome_do_Aluno{
+	padding-top: 45px;
+	color:#878787;
+}
+		
+#Conteudo_Inteiro_Rodape{
+	background-color:#dfded4;
+	width:1280px;
+	height:36px;
+	margin: 0 auto;
+	color: rgb(120, 119, 107);
+	bottom: 0;
+	left: 0;
+	float: left;
+	padding:7px;
+	font-size: 18px;
+}
+
+#Conteudo_Inteiro_Rodape_left{
+	float:left;
+}
+
+#Conteudo_Inteiro_Rodape_right{
+	float:right;
+}
+#boxGeralAlunos {
+	margin: 0 12px 0 0;
+}
+.link_rel{
+	text-decoration:none;	
+}

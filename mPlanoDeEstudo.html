@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+        <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+
+        <!--Style-->
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />  
+        <link rel="stylesheet" type="text/css" href="mobilecss/planoDeEstudo.css" />  
+        <!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>        
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>        
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+              
+        <script type="text/javascript" src="js/funcoes.js"></script>       
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+        <script type="text/javascript" src="js/calendario.js"></script>        
+        <script type="text/javascript" src="js/PlanoDeEstudo.js"></script>
+         
+        <script src="js/jquery.secret-source.min.js"></script>
+        <script src="js/bjqs-1.3.min.js"></script> 
+        <script>
+            $(document).ready(function($) {
+                $('#banner-fade').bjqs({
+                    height      : 320,
+                    width       : 620,
+                    responsive  : true
+                });
+                
+                /*$('.bjqs-prev').click(function(){
+                    alert('prev');
+                });
+                
+                $('.bjqs-next').click(function(){
+                    alert('next');
+                })*/
+                
+            });
+         </script>     
+         <!--Fim JS-->
+        
+    </head>
+
+    <body>
+
+        <div id="Container">
+            <div id="Cabecalho_Menu_Area" class="row">
+                <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a href="#">Área do Aluno</a></div>
+                <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">                   <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+                    <a href="javascript:history.back()">Voltar</a> | 
+                    <a id="logout" href="#">Sair</a>
+                </div>    
+            </div>
+
+            <div id="Cabecalho_Perfil_Area" class="row">
+                <div id="Cabecalho_Perfil_Area_Foto_Content" class="col-1">
+                    <div id="Cabecalho_Perfil_Area_Foto"></div>
+                </div>
+                <div id="Cabecalho_Perfil_Area_Descricao_Content" class="col-1">
+                    <div id="Cabecalho_Perfil_Area_Descricao"></div>
+                </div>
+                <div id="Content_lateral_Menu" class="row col-10">
+                </div>
+            </div>
+
+            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+            <div class="boxGlobal" style="width: 100%; left: auto;"></div>
+
+        </div>
+
+        <div id="Conteudo_Area" class="row">
+            <div class="Conteudo_Coluna col-10 offset-1" id="content_central">
+                <div id="conteudo_plano">
+                    <div class="Plano_Estudo_Content_Titulo">
+                        <span class="titulo">Plano de estudo semanal</span>
+                        <span class="botoes">
+                            <a href="#" class="historico"></a>
+                            <a href="#" class="novo"></a>
+                        </span>
+                    </div>
+                    <div id="box_historico" class="esconder">
+                        <div id="container">
+                            <div id="banner-fade">
+                                <ul class="bjqs">
+                                    <li class="bloco_historico _janeiro active">
+                                        <p class="historico_mes">Janeiro</p>
+                                    </li>
+                                    <li class="bloco_historico _fevereiro">
+                                        <p class="historico_mes">Fevereiro</p>
+                                    </li>
+                                    <li class="bloco_historico _marco">
+                                        <p class="historico_mes">Março</p>
+                                    </li>
+                                    <li class="bloco_historico _abril">
+                                        <p class="historico_mes">Abril</p>
+                                    </li>
+                                    <li class="bloco_historico _maio">
+                                        <p class="historico_mes">Maio</p>
+                                    </li>
+                                    <li class="bloco_historico _junho">
+                                        <p class="historico_mes">Junho</p>
+                                    </li>
+                                    <li class="bloco_historico _julho">
+                                        <p class="historico_mes">Julho</p>
+                                    </li>
+                                    <li class="bloco_historico _agosto">
+                                        <p class="historico_mes">Agosto</p>
+                                    </li>
+                                    <li class="bloco_historico _setembro">
+                                        <p class="historico_mes">Setembro</p>
+                                    </li>
+                                    <li class="bloco_historico _outubro">
+                                        <p class="historico_mes">Outubro</p>
+                                    </li>
+                                    <li class="bloco_historico _novembro">
+                                        <p class="historico_mes">Novembro</p>
+                                    </li>
+                                    <li class="bloco_historico _dezembro">
+                                        <p class="historico_mes">Dezembro</p>
+                                    </li>
+
+                                </ul>
+                            </div>      
+                        </div>                        
+                    </div>
+                    <div id="box_novo" class="esconder">
+                        <form>
+                            <div id="linha1" class="bloco_campo">
+                                <div class="input_data"> Ínicio </div>
+                                <div class="input_data_value">
+                                    <input type="text" id="data_inicio">
+                                </div>
+                            </div>
+                            <div id="linha1" class="bloco_campo_fim">
+                                <div class="input_data"> Término </div>
+                                <div class="input_data_value">
+                                    <input type="text" id="data_fim">
+                                </div>
+                            </div>                 
+                        </form>
+                        <div id="botoes">
+                            <input type="submit" id="enviar" value="">
+                            <input type="submit" id="cancelar" value="">
+                        </div>
+                    </div>
+                    <div class="Plano_Estudo_Content">
+                        <input type="hidden" name="id" id="id"  /> 
+                        <input type="hidden" name="action" id="action"  /> 
+                        <input type="hidden" name="dataInicio" id="dataInicio"  />
+                        <input type="hidden" name="status" id="status"  /> 
+                        <input type="hidden" name="dataFim" id="dataFim"  /> 
+                        <input type="hidden" name="aluno" id="aluno"  />
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <a id="L_Novo_Plano" href="#">
+                                <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Calendario"></div>
+                            </a>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1">Semana</div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2" id="Periodo_Plano_Estudo">-</div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Objetivos_Conteudo">
+                            <div class="Plano_Estudo_Content_Objetivos_Conteudo_Titulo">Objetivos tutoria</div>
+                            <div class="Plano_Estudo_Content_Objetivos_Conteudo_Texto"></div>
+                        </div>
+
+                        <div class="Plano_Estudo_Content_Objetivos_Pessoal_Conteudo">
+                            <div class="Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Titulo">Objetivos Pessoais</div>
+                            <div class="Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto"></div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Tarefas_Casa_Content">
+                            <div class="Plano_Estudo_Content_Tarefas_Casa_Content_Titulos">
+                                <div class="Plano_Estudo_Content_Tarefas_Casa_Content_Titulo1">Tarefa de casa</div>                             
+                            </div>
+                            <div class="Plano_Estudo_Content_Tarefas_Casa_Conteudo">
+                                <div class="Plano_Estudo_Content_Tarefas_Casa_Conteudo_Texto"></div>    
+                            </div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <a href="roteirosPlanejamento.html">
+                                <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Planejamento"></div>
+                            </a>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Planejamento</div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Planejamento_Content">
+                            <div class="Plano_Estudo_Content_Planejamento_Content_Titulo">
+                                Objetivos da semana
+                            </div>
+
+                            <div class="Objetivos_Semana_Conteudo_Titulo_Tarefas">
+                                
+                            </div>
+
+                            <div class="Objetivos_Semana_Conteudo_Tarefas_Content">
+                            </div>
+
+                            <div class="Objetivos_Semana_Conteudo_Titulo_Tarefas">
+                            </div>
+
+                            <div class="Objetivos_Semana_Conteudo_Tarefas_Content">
+                            </div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content Bg_Imagem_Registro"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Registro diário</div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Registro_Diario_Content">
+                            <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulos">
+                                <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulo1">Data</div>
+                                <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulo2">O que estudei e aprendi hoje</div>
+                            </div>
+
+                            <table id="Registro_Diario" class="Plano_Estudo_Content_Registro_Diario_Tabela_Parent" cellspacing=0 >
+                            </table>
+                        </div>
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content Bg_Imagem_Avaliacao"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Auto-avaliação</div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Auto_Avaliacao_Content">
+                        </div>
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content Bg_Imagem_Observacao"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Observações do tutor</div>
+                        </div>
+                        <div  class="Plano_Estudo_Content_Registro_Diario_Content">
+                            <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulos">
+                                <div class="Plano_Estudo_Content_Observacoes_Tutor_Content_Titulo">Mensagem</div>
+                            </div>
+                            <table id="Observacoes_Tutor" class="Plano_Estudo_Content_Observacoes_Tutor_Tabela_Parent" style='width: 92% !important;'>
+                                <tr class="Plano_Estudo_Content_Registro_Diario_Tabela">
+                                    <td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content Bg_Imagem_Observacao"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
+                            <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Observação dos pais</div>
+                        </div>
+                        <div class="Plano_Estudo_Content_Registro_Diario_Content" id="Observacao_Pais">
+                            <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulos">
+                                
+                                <div class="Plano_Estudo_Content_Observacoes_Pais_Content_Titulo">Mensagem</div>
+                            </div>
+                            <div class="overtable">
+                                <table class="Plano_Estudo_Content_Observacao_Pais">
+                                    <td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto">
+                                    </td>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Plano_Estudo_Content_Botoes">
+                        <input type="button" id="btnSubmit" class="btPadrao" value="" style="font-size:20px;" />
+                    </div>
+                </div>
+            </div>
+            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+            <div class="boxGlobal" style="width: 100%; left: auto;"></div>
+        </div>
+    </body>
+</html>

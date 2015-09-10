@@ -1,0 +1,36 @@
+.personagem, .fala{
+	border: 1px solid lightgrey;
+	text-align: center;
+	padding: 1px;
+	margin-top: 8px;
+}
+
+.personagem{
+	height: 30px;
+	width: 200px;
+}
+
+.fala{
+	height: 60px;
+	width: 600px;
+	text-align: left;
+}
+
+.lacuna{
+    width: 30%;
+    height: 27px;
+    border: 1px solid lightgrey;
+    padding: 0px;
+    margin: 1px 0 1px 0;
+    vertical-align: middle;
+}
+
+.botao_ex{
+	padding: 4px;
+	margin: 8px;
+	float: right;
+}
+
+.longo{
+	height: 600px;
+}

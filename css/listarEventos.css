@@ -1,0 +1,266 @@
+	.OrderSorting
+{
+	width:86%;
+	height:120px;
+	border:solid thin #D9D9D9;
+	margin:0 auto;
+}
+
+.leftOrder
+{
+	width:100%;
+	height:120px;
+	/*border:solid thin #D9D9D9;*/
+	float:left;
+}
+
+.rightOrder
+{
+	width:100%;
+	height:120px;
+	/*border:solid thin #D9D9D9;*/
+	float:left;
+}
+
+.Conteudo_Coluna2_Evento
+{
+	height:auto;
+	margin:0 auto;
+	background-color: white;
+	border:solid thin whitesmoke;
+	margin-bottom: 20px;
+}
+
+a:visited{color:orange;}
+
+.TituloEvento
+{
+	height:65px;
+	width:100%;
+	color:rgb(219, 94, 49);
+	font-size: 20px;
+	padding:10px;
+	/*color:white;*/
+	background-color:orange;
+}
+
+	.EventoLeftSide
+	{
+		height:100%;
+		width:100%;
+		/*color:rgb(219, 94, 49);*/
+		/*padding:10px;*/
+		/*color:white;*/
+		float:left;
+	}
+
+	.EventoRightSide
+	{
+		height:100%;
+		width:50%;
+		/*color:rgb(219, 94, 49);
+		padding:10px;*/
+		/*color:white;*/
+		/*text-align: right;*/
+		float:left;
+	}
+
+.ContextoEvento
+{
+	height:auto;
+	width:100%;
+	color:rgb(102, 102, 102);
+	font-size: 18px;
+	padding:10px;
+
+}
+#tbConteudo{	
+	border-spacing: 0px;
+	width: 100%;
+	border:1px solid black;
+	color:rgb(102, 102, 102);
+}
+
+#tbConteudo tr{
+	padding: 10px;
+	display: block;
+	height: 40px;
+	width: 100%;
+	border-bottom: solid thin black;
+}
+
+
+#tbConteudo tr:nth-child(even){
+	background-color:#EEE;
+}
+
+#tbConteudo td{
+	width: 13.5%;
+	float: left;
+	min-width: 13.5%;
+	max-width: 13.5%;
+	
+}
+#tbConteudo tr:nth-last-child(1){
+	border-bottom: none;
+	background-color: transparent;
+}
+
+.firstOne td
+{
+	cursor:pointer;
+}
+
+#TabelaPopUp
+{
+	width:880px;
+	height:auto;
+	background-color: rgb(243,241,238);
+	border:solid whitesmoke;
+	position:absolute;
+	left:72px;
+	display:none;
+}
+
+
+.TabelaPopUpHeader
+{
+	text-align:right;
+	width:100%;
+	height:50px;
+	padding:15px;
+}
+
+.TabelaPopUpBody
+{
+	height:auto;
+	width:100%;
+	padding:15px;
+}
+
+.TabelaPopUpBottom
+{
+	height:50px;
+	width:100%;
+	padding:10px;
+}
+
+.BotaoNovo
+{
+	border:none;
+	border-radius:0px;
+	background-color: rgba(22, 190, 207, 0.79);
+	padding:7px 18px;
+	color:white;
+	font-weight: bold;
+	float:left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.FloatRightB
+{
+	float:right;
+}
+
+/*------------------------------------*/
+
+/* CSS da tela manutencao */
+
+#Manutencao_Titulo{
+	width: 33%;
+	margin: 0 auto;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+
+#Manutencao_content ul{
+	font-size: 20px;
+	list-style: none;
+}
+
+#Manutencao_content ul li{
+	display: inline-block;
+	float: left;
+	clear: both;
+	cursor: pointer;
+	margin: 3px 0;
+}
+
+/*-------------------------------------------*/
+
+/* CSS da tela Evento */
+
+#EventoNovo_content textarea {
+	width: 310px;
+	resize: none;
+}
+
+
+.btsSalvarExcluir {
+	background-color: #CCC;
+	color: white;
+	float: left;
+	border: 1px solid black;
+	padding: 5px 20px;
+	margin: 20px 25px 0;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+/*----------------------------------------*/
+/*CSS da tela Pesquisa Resultado*/
+
+#PesquisaResultado_content input{
+	float: right;
+}
+
+.itemResultado {
+	width: 50%;
+	border-bottom: solid thin;
+}
+
+
+
+
+/*------------------------------------*/
+
+.content {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: rgb(243,241,238);
+	padding: 20px;
+	overflow: auto;
+}
+
+input[type="date"]{
+	font-family: "proxima-nova";
+}
+
+#LoadingAjax
+{
+	width:46px;
+	height:46px;
+	position:absolute;
+	z-index:100;
+	left:50%;
+	top:50%;
+	background-image: url("../img/ajax-loader.gif");
+	opacity:0.4;
+	border-radius: 50%;
+	display:none;
+}
+
+.TabelaPopUpBody textarea
+{
+	width:330px;
+	height:75px;
+	max-width: 330px;
+	min-width: 330px;
+	max-height: 75px;
+	min-height: 75px;
+}

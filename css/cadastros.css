@@ -1,0 +1,322 @@
+/* CSS Document */
+#box_cadastro{
+	width: 100.1%;
+	height: 513px;
+	padding:10px 0 10px 10px;
+	float:left;
+	background: #F1F1EC;
+}
+#abas_cadastro{
+	height: 50px;
+	padding: 19px 0 0 0;
+	margin-top: -18px;	
+}
+.abas{
+	width: 230px;
+	background-color: #FBB040;
+	font-size: 20px;
+	color: white;
+	padding:9px;	
+	float:left;
+	margin: 0 11px 0 0;
+	text-align:center;
+	cursor:pointer;
+}
+.abas_ativa{
+	width: 230px;
+	background-color: #F7941E;
+	font-size: 20px;
+	color: white;
+	padding:9px;
+	float:left;	
+}
+.last_aba{
+	margin:0;
+}
+#buscaAluno{
+	float:right;
+	margin-top: 15px;
+}
+.bt_Buscar{
+	text-decoration: none;
+	background-color: #F7941E !important;
+	width: 15%;
+	height: 39px;
+	padding: 9px;
+	margin-bottom: 0.9%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+.ocultar{
+	display:none;
+}
+#form{
+	height: 63px;
+}
+#tabela table{
+	width:100%;
+	border-collapse: collapse;
+}
+#tabela table tbody tr:nth-child(odd){
+   background-color: #F1F1ED;
+}
+#tabela table tbody tr:nth-child(even) {
+	background-color: #EBEAE4;
+}
+#tabela table tbody tr:hover{
+	background-color: #FFDB89;
+}
+#tabela table tbody td{
+	color:#666;
+	font-size:14px;
+	padding:10px;	
+}
+.alunoNome{
+	text-transform: uppercase;
+	width:70%;	
+	cursor: pointer;
+	text-transform:uppercase;
+}
+.alunoAno, .alunoPeriodo{
+	width:15%;	
+}
+.styled-selectPes{
+	width: 100%;
+	height:100%;	
+	background:url(../img/select-arrow.png) no-repeat right;
+	border: 0;
+	border-radius: 0;	
+	cursor: pointer;
+	color: #666;
+	overflow: hidden;
+	-webkit-appearance: none;
+	-moz-appearance: none;	
+}
+.styled-selectPes select{
+	overflow: hidden !important;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.celulaPequenaPes{
+	width: 32.3%;
+	height: 39px;
+	margin-bottom: 0.9%;
+	float: left;
+	background-color: #F2F1ED;
+	color: #666;
+}
+.infoPes{
+	width: 45%;
+	height: 39px;
+	padding: 12px;
+	/*background-color: #C8C8C3;*/
+	background-color: #d6e4e1;
+	text-align: right;
+	float: left;
+	color: #666;
+	padding: 10px;
+}
+#caminho_txt{
+	display:none;
+}
+
+.celulaMediaPes{
+	width: 50%;
+	height: 39px;
+	margin-bottom: 0.9%;
+	float: left;
+	background-color: #F2F1ED;
+	color: #666;
+}
+
+.infoMPes{
+	width: 22.6%;
+	height: 39px;
+	padding: 12px;
+	/*background-color: #C8C8C3;*/
+	background-color: #d6e4e1;
+	text-align: right;
+	float: left;
+	color: #666;
+	padding: 10px;
+}
+
+.infoValueM{
+	width: 77.4%;
+	height: 39px;
+	background-color: #F2F1ED;
+	float: left;
+}
+
+
+.blackback
+{
+	width:100%;
+	height:100%;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	display: none;
+}
+.backPopUpLicenca
+{
+	width:740px;
+	height:auto;
+	border:solid thin;
+	padding:30px;
+	position:fixed;
+	background-color: #dedede;
+	margin-left:100px;
+	top:300px;
+}
+
+.titulo
+{
+	font-size:17px;
+	color: rgb(40,166,209);
+	font-weight: bold;
+}
+
+.inicioCampoFixo,
+.terminoCampoFixo
+{
+	width:40%;
+	float:left;
+	height:100%;
+	padding:10px;
+	background-color: rgb(250, 248, 246);
+}
+
+.editar {
+	background-color: #c9c9c4;
+	background-image: url("../img/bt_editar.png");
+	background-position: 2px center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	float: right;
+	padding: 21px;
+	width: 5%;
+}
+
+.cmp_obrigatorio {
+    background-image:url("../img/atencao.png");
+}
+
+
+#frmCadastroProfessorVariavel,#frmCadastroProfessor
+{
+	-webkit-transition:height .5s;
+    transition:height .5s;
+}
+
+#frmCadastroProfessorVariavel
+{
+	/* display:none; */
+	/* height:0; */
+	overflow-y:hidden;
+	height:260px;
+
+}
+
+#frmCadastroProfessor
+{
+	height:0;
+	overflow-y:hidden;
+	height:430px;
+}
+
+#btn_licenca
+{
+	height: 39px;
+	padding:0px;
+}
+
+.linkRel{
+	display:none;
+}
+
+/*media NetBook*/
+@media (width: 1024px) and (max-height: 509px) {
+	#content_central {
+		position: absolute;
+		width: 100%;
+		height: 454px;
+		overflow: hidden;
+		float: right;
+		z-index: 1;
+		background: #FFF;
+		right: 0;
+		padding: 24px 36px;
+	}
+	#box_cadastro {
+		width: 99.4%;
+		height: 339px;
+		padding: 10px 0 10px 10px;
+		float: left;
+		background: #F1F1EC;
+	}
+	.abas {
+		width: 231px;
+		background-color: #FBB040;
+		font-size: 20px;
+		color: white;
+		padding: 9px;
+		float: left;
+		margin: 0 5px 0 0;
+		text-align: center;
+		cursor:pointer;
+	}	
+}
+@media (width: 1024px) and (min-height: 510px) and (max-height: 693px) {
+	#box_cadastro {
+		width: 100%;
+		height: 430px;
+		padding: 10px 0 10px 10px;
+		float: left;
+		background: #F1F1EC;
+	}
+
+	.abas{	
+		margin: 0 8px 0 0;
+	}
+
+	.last_aba{
+		margin: 0;
+	}
+
+	#content_central{
+		height: 520px;
+	}
+}
+@media (min-height: 650px)and (max-height: 667px){
+	.abas {
+		width: 228px !important;
+	}
+	.abas_ativa{
+		width:228px !important;
+	}
+}
+
+/*Media para note com height 707*/
+@media (min-width: 1280px)and (max-height: 707px){
+	#box_cadastro{
+		width: 99.2%;
+		height: 513px;
+		padding:10px 0 10px 10px;
+		float:left;
+		background: #F1F1EC;
+	}
+	.abas {
+		width: 228.4px;
+		background-color: #FBB040;
+		font-size: 20px;
+		color: white;
+		padding: 9px;
+		float: left;
+		text-align: center;
+	}
+}
+
+
+

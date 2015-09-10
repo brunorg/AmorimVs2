@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Plataforma Amorim</title>
+<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+
+<!--Style-->
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/plugins.css" />
+<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+<link rel="stylesheet" type="text/css" href="mobilecss/style.css" />
+<link rel="stylesheet" type="text/css" href="mobilecss/visualizarDados.css" />
+<link rel="stylesheet" type="text/css" href="mobilecss/cadastroAluno.css" />
+<!--Fim Style-->
+
+<!--Script JS-->
+<script type="text/javascript" src="js/path.js"></script>
+<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="js/calendario.js"></script>
+<script type="text/javascript" src="js/funcoes.js"></script>
+<!--Carrega os dados do usuario logado-->
+
+<script type="text/javascript" src="js/autenticador.js"></script>
+<script type="text/javascript" src="js/visualizarDados.js"></script>
+
+<script>
+    $(document).ready(function () {     
+        if(($("#editar").val()!="")){           
+            listadados();       
+        }           
+    }); 
+    
+</script>
+
+<!--Fim JS-->
+
+</head>
+
+<body>
+    <!--Conteudo Geral-->
+    <div id="Container">
+        <div id="Cabecalho_Menu_Area" class="row">
+            <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a id="area_acesso"></a></div>
+            <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">                   <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+                <a href="javascript:history.back()">Voltar</a> | 
+                <a id="logout" href="#">Sair</a>
+            </div>    
+        </div>
+
+        <div id="Cabecalho_Perfil_Area" class="row">
+            <div id="Cabecalho_Perfil_Area_Foto_Content" class="col-1">
+                <div id="Cabecalho_Perfil_Area_Foto"></div>
+            </div>
+            <div id="Cabecalho_Perfil_Area_Descricao_Content" class="col-1">
+                <div id="Cabecalho_Perfil_Area_Descricao"></div>
+            </div>
+            <div id="Content_lateral_Menu" class="row col-10">
+            </div>
+        </div>
+
+        <div id="Conteudo_Area">
+            <div class="Conteudo_Coluna" id="content_central_fixa">
+                <div id="box_cadastro" style="margin-right: 15px;">
+                    <form id="frmCadastroAluno">    
+                        <div id="linha1" class="linha">
+                            <div class="celulaPequena">
+                                <div class="infoP "> Matrícula </div>
+                                <div class="infoValueP">
+                                    <div class="styled-select">
+                                        <input type="date" readonly id="dataMatricula" name="dataMatricula">
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="celulaPequena ambasMargin">
+                                <div class="infoP "> EOL </div>
+                                <div class="infoValueP">
+                                    <input id="numeroEol" name="numeroEol" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP "> Status </div>
+                                <div class="infoValueP">
+                                    <input id="ativo" name="ativo" value="" readonly >
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha5" class="linha">
+                            <div class="celulaMedia rightMargin">
+                                <div class="infoM"> Nome </div>
+                                <div class="infoValueM">
+                                    <input id="nome" name="nome" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP"> RA </div>
+                                <div class="infoValueP">
+                                    <input id="numeroRA" name="numeroRA" maxlength="9" value="" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha6" class="linha">
+                            <div class="celulaPequena rightMargin">
+                                <div class="infoP"> Celular </div>
+                                <div class="infoValueP">
+                                    <input id="celular" name="celular" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaMedia">
+                                <div class="infoM"> Email </div>
+                                <div class="infoValueM">
+                                    <input id="email" name="email" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha7" class="linha">
+                            <div class="celulaPequena">
+                                <div class="infoP"> Sexo </div>
+                                <div class="infoValueP">
+                                    
+                                        <input id="sexo" name="sexo" value="" readonly >
+                                </div>
+                            </div>
+                            <div class="celulaPequena ambasMargin">
+                                <div class="infoP"> Etnia </div>
+                                <div class="infoValueP">
+                                    <input id="etnia" name="etnia" value="" readonly >
+                                    
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP"> Nascimento </div>
+                                <div class="infoValueP">
+                                    <div class="styled-select">
+                                        <input type="date" id="dataNascimento" name="dataNascimento" readonly >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha9" class="linha">
+                            <div class="celulaPequena">
+                                <div class="infoP"> RG </div>
+                                <div class="infoValueP">
+                                    <input id="rg" name="rg" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena ambasMargin">
+                                <div class="infoP"> CPF </div>
+                                <div class="infoValueP">
+                                    <input id="cpf" name="cpf" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha95" class="linha">
+                            <div class="celulaMeio rightMargin">
+                                <div class="infoP"> Naturalidade UF </div>
+                                <div class="infoValueP">
+                                    <input id="naturalEstado" name="naturalEstado" readonly >
+                                </div>
+                            </div>
+                            <div class="celulaMeio">
+                                <div class="infoP"> Naturalidade Cidade </div>
+                                <div class="infoValueP">
+                                    <input id="naturalCidade" name="naturalCidade" readonly >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="linha20" class="linha">
+                            <div class="celulaGrande">
+                                <div class="infoG">Nome da Mãe</div>
+                                <div class="infoValueG">
+                                    <input id="nomeMae" name="nomeMae" value="" readonly >
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha24" class="linha">
+                            <div class="celulaGrande">
+                                <div class="infoG">Nome do Pai</div>
+                                <div class="infoValueG">
+                                    <input id="nomePai" name="nomePai" value="" readonly >
+                                </div>
+                            </div>
+                        </div>      
+                        <div id="linha8" class="linha">
+                            <div id="L10L" class="celulaMeio">
+                                <div class="infoP"> Necessidade especial </div>
+                                <div class="infoValueP">
+                                    <input id="necessidades" name="necessidades" readonly >
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha12" class="linha">
+                            <div class="celulaMedia rightMargin">
+                                <div class="infoM"> Endereço </div>
+                                <div class="infoValueM">
+                                    <input id="endereco" name="endereco" value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP"> País </div>
+                                <div class="infoValueP">
+                                    <input id="naturalPais" name="naturalPais" value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha13" class="linha">
+                            <div class="celulaPequena">
+                                <div class="infoP"> Número </div>
+                                <div class="infoValueP">
+                                    <input id="numero" name="numero"  value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena ambasMargin">
+                                <div class="infoP"> Complem. </div>
+                                <div class="infoValueP">
+                                    <input id="complemento" name="complemento" value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP"> CEP </div>
+                                <div class="infoValueP">
+                                    <input id="cep" name="cep" value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha14" class="linha">
+                            <div class="celulaPequena">
+                                <div class="infoP"> Bairro </div>
+                                <div class="infoValueP">
+                                    <input id="bairro" name="bairro" value="" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="celulaPequena ambasMargin">
+                                <div class="infoP"> Estado </div>
+                                <div class="infoValueP">
+                                    <input id="uf" name="uf" value="" readonly>
+                                </div>
+                            </div>
+                            <div class="celulaPequena">
+                                <div class="infoP"> Cidade </div>
+                                <div class="infoValueP">
+                                    <input id="cidade" name="cidade" value="" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="linha15" class="linha">
+                            <div class="celulaGrande">
+                                <div class="infoPRes"> Responsável </div>
+                                <div class="infoValueM">
+                                    <input id="responsavelTexto" readonly>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div id="DadosOutroVisualizacao">
+                            <div id="linha16" class="linha">
+                                <div class="celulaPequena rightMargin">
+                                    <div class="infoP"> Parentesco </div>
+                                    <div class="infoValueP">
+                                        <input id="parentescoResponsavel" name="parentescoResponsavel" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaMedia">
+                                    <div class="infoM"> Nome Resp.</div>
+                                    <div class="infoValueM">
+                                        <input id="nomeResponsavel" name="nomeResponsavel" value="" readonly></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha17" class="linha">
+                                <div class="celulaPequena rightMargin">
+                                    <div class="infoP"> Celular </div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneCelularResponsavel" name="telefoneCelularResponsavel" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaMedia">
+                                    <div class="infoM"> e-mail </div>
+                                    <div class="infoValueM">
+                                        <input id="email1Responsavel" name="email1Responsavel" value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha28" class="linha">
+                                <div class="celulaGrande">
+                                    <div class="infoG">Email Resp. 2</div>
+                                    <div class="infoValueG">
+                                        <input id="email2Responsavel" name="email2Responsavel"  value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha18" class="linha">
+                                <div class="celulaPequena">
+                                    <div class="infoP"> Residência </div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneResidencialResponsavel" name="telefoneResidencialResponsavel" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaPequena ambasMargin">
+                                    <div class="infoP"> Trabalho </div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneComercialResponsavel" name="telefoneComercialResponsavel" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaPequena">
+                                    <div class="infoP"> Cep </div>
+                                    <div class="infoValueP">
+                                        <input id="cepResponsavel" name="cepResponsavel" value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha19" class="linha">
+                                <div class="celulaCheck">
+                                    <div class="infoGG"> Endereço do responsável é o mesmo do aluno? </div>
+                                    <div class="infoGGValue"> Sim </div>
+                                    <div class="inputImg"> </div>
+                                    <div class="infoGGValue"> Não </div>
+                                    <div class="inputImg"> </div>
+                                </div>
+                            </div>
+                            <div id="boxRespEnd">
+                                <div id="linha28" class="linha">
+                                    <div class="celulaGrande">
+                                        <div class="infoG">Endereço</div>
+                                        <div class="infoValueG">
+                                            <input id="enderecoResponsavel" name="enderecoResponsavel"  value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha95" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Número</div>
+                                        <div class="infoValueP">
+                                            <input id="numeroResponsavel" name="numeroResponsavel" value="">
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Complemento</div>
+                                        <div class="infoValueP">
+                                            <input id="complementoResponsavel" name="complementoResponsavel" value="casa">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha23" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Estado Resp. </div>
+                                        <div class="infoValueP">
+                                            <input id="ufResponsavel" name="ufResponsavel" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Cidade Resp.</div>
+                                        <div class="infoValueP">
+                                            <input name="cidadeResponsavel" id="cidadeResponsavel" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="DadosMaeVisualizacao">     
+                            <div id="linha21" class="linha">
+                                <div class="celulaPequena rightMargin">
+                                    <div class="infoP">Celular Mãe</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneCelularMae" name="telefoneCelularMae" value="">
+                                    </div>
+                                </div>
+                                <div class="celulaMedia">
+                                    <div class="infoM">E-mail Mãe</div>
+                                    <div class="infoValueM">
+                                        <input id="email1Mae" name="email1Mae" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha28" class="linha">
+                                <div class="celulaGrande">
+                                    <div class="infoG">Email Mãe 2</div>
+                                    <div class="infoValueG">
+                                        <input id="email2Mae" name="email2Mae"  value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha22" class="linha">
+                                <div class="celulaPequena">
+                                    <div class="infoP">Tel. Residência</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneResidencialMae" name="telefoneResidencialMae" value="">
+                                    </div>
+                                </div>
+                                <div class="celulaPequena ambasMargin">
+                                    <div class="infoP">Tel. Trabalho</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneComercialMae" name="telefoneComercialMae" value="">
+                                    </div>
+                                </div>
+                                <div class="celulaPequena">
+                                    <div class="infoP"> Cep </div>
+                                    <div class="infoValueP">
+                                        <input id="cepMae" name="cepMae" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha23" class="linha">
+                                <div class="celulaCheck">
+                                    <div class="infoGG"> Endereço do responsável é o mesmo do aluno? </div>
+                                    <div class="infoGGValue"> Sim </div>
+                                    <div class="inputImg"> </div>
+                                    <div class="infoGGValue"> Não </div>
+                                    <div class="inputImg"> </div>
+                                </div>
+                            </div>
+                            <div id="boxMaeEnd">
+                                <div id="linha28" class="linha">
+                                    <div class="celulaGrande">
+                                        <div class="infoG">Endereço</div>
+                                        <div class="infoValueG">
+                                            <input id="enderecoMae" name="enderecoMae"  value="" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha95" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Número</div>
+                                        <div class="infoValueP">
+                                            <input id="numeroMae" name="numeroMae" value="" readonly>
+
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Complemento</div>
+                                        <div class="infoValueP">
+                                            <input id="complementoMae" name="complementoMae" value="" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha23" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Estado Mãe </div>
+                                        <div class="infoValueP">
+                                            <input id="ufMae" name="ufMae" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Cidade Mãe</div>
+                                        <div class="infoValueP">
+                                                <input name="cidadeMae" id="cidadeMae" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="DadosPaiVisualizacao">     
+                            <div id="linha25" class="linha">
+                                <div class="celulaPequena rightMargin">
+                                    <div class="infoP">Celular Pai</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneCelularPai" name="telefoneCelularPai" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaMedia">
+                                    <div class="infoM">E-mail Pai</div>
+                                    <div class="infoValueM">
+                                        <input id="email1Pai" name="email1Pai" value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha28" class="linha">
+                                <div class="celulaGrande">
+                                    <div class="infoG">Email Pai 2</div>
+                                    <div class="infoValueG">
+                                        <input id="email2Pai" name="email2Pai"  value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha26" class="linha">
+                                <div class="celulaPequena">
+                                    <div class="infoP">Tel. Residência</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneResidencialPai" name="telefoneResidencialPai" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaPequena ambasMargin">
+                                    <div class="infoP">Tel. Trabalho</div>
+                                    <div class="infoValueP">
+                                        <input id="telefoneComercialPai" name="telefoneComercialPai" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="celulaPequena">
+                                    <div class="infoP"> Cep Pai</div>
+                                    <div class="infoValueP">
+                                        <input id="cepPai" name="cepPai" value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="linha27" class="linha">
+                                <div class="celulaCheck">
+                                    <div class="infoGG"> Endereço do responsável é o mesmo do aluno? </div>
+                                    <div class="infoGGValue"> Sim </div>
+                                    <div class="inputImg"> </div>
+                                    <div class="infoGGValue"> Não </div>
+                                    <div class="inputImg"> </div>
+                                </div>
+                            </div>
+                            <div id="boxPaiEnd">
+                                <div id="linha28" class="linha">
+                                    <div class="celulaGrande">
+                                        <div class="infoG">Endereço</div>
+                                        <div class="infoValueG">
+                                            <input id="enderecoPai" name="enderecoPai"  value="" readonly>
+                                            </input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha95" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Número</div>
+                                        <div class="infoValueP">
+                                            <input id="numeroPai" name="numeroPai" value="" readonly>
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Complemento</div>
+                                        <div class="infoValueP">
+                                            <input id="complementoPai" name="complementoPai" value="" readonly>
+                                            </input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="linha27" class="linha">
+                                    <div class="celulaMeio rightMargin">
+                                        <div class="infoP"> Estado Pai </div>
+                                        <div class="infoValueP">
+                                            <input id="ufPai" name="ufPai" readonly >
+                                        </div>
+                                    </div>
+                                    <div class="celulaMeio">
+                                        <div class="infoP"> Cidade Pai</div>
+                                        <div class="infoValueP">
+                                            <input name="cidadePai" id="cidadePai" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div id="linha11" class="linha">
+        <div class="celulaGrande">
+            <div id="infoObs"> Observações </div>
+            <div id="infoValueObs">
+                <textarea id="observacao" name="observacao" value="" readonly></textarea>
+            </div>
+        </div>
+    </div>
+                    
+    <div id="cadAlunoVar">
+        <div id="alunoVariavel">
+            <div id="linha33" class="linha">
+               <div class="celulaPequena">
+                    <div class="infoP"> Período </div>
+                    <div class="infoValueP">
+                        <input id='periodoCadAluno' name='periodo' readonly>
+                    </div>
+                </div>
+                <div class="celulaPequena ambasMargin">
+                    <div class="infoP "> Ano Letivo </div>
+                    <div class="infoValueP">
+                        <input id='anoLetivoCadAluno' readonly>
+                    </div>
+                </div>
+                <div class="celulaPequena">
+                    <div class="infoP"> Ano estudo </div>
+                    <div class="infoValueP">
+                        <input id='anoEstudoCadAluno' readonly>
+                    </div>
+                </div>
+            </div>
+            <div id="linha34" class="linha">
+                <div class="celulaPequena">
+                    <div class="infoP "> Início </div>
+                    <div class="infoValueP">
+                        <div class="styled-select">
+                            <input type="date" id="inicio" name="inicio" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="celulaPequena ambasMargin">
+                    <div class="infoP "> Status </div>
+                    <div class="infoValueP">
+                        <input name="ativoAV" id="ativoAV" readonly>
+                    </div>
+                </div>
+                <div class="celulaPequena">
+                    <div class="infoP">Programa Social</div>
+                    <div class="infoValueP">
+                        <input id='programaSocial' readonly>
+                    </div>
+                </div>                      
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+    <div class="boxGlobal" style="width: 100%; left: auto;"></div>
+
+    <!--Fim Conteudo-->
+</body>
+</html>

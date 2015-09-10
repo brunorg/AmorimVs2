@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+       
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 4º Ano | Brasil, Influência de Muitos Povos</div>
+        </br>
+
+        <div id="Conteudo_Total">
+
+            <div class="exercicio">
+
+                <center><img src="img/brasilInfluenciaExe1.jpg"></center>
+                <br><br>
+                <div class="fonte">historiacomimagens.blogspot.com</div>
+                <br><br>
+
+                1. A imagem acima faz pensar em que época da história da humanidade? Qual o país foi pioneiro nessa atividade? Qual o objetivo das expedições?
+                <textarea class="texto"></textarea>
+                
+            </div>
+
+            <br><br>
+
+
+            <div class="exercicio">
+                
+                <center><img src="img/brasilInfluenciaExe2.jpg"></center>
+                <br><br>
+                <div class="fonte"> jpfba.flogbrasil.terra.com.br</div>
+                <br><br>
+
+                2. A imagem acima representa a chegada dos navegantes em que região? Essa expedição saiu de onde e qual era o seu destino? Em que dia partiram e em qual dia chegaram ao local da imagem? Quem era o comandante da esquadra?
+                <textarea class="texto"></textarea>
+
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                3. Escreva um pouco sobre as tecnologias de navegação e as embarcações utilizadas para as viagens nessa época:
+                <textarea class="texto"></textarea>
+                <br><br>
+                <center><img src="img/brasilInfluenciaExe3.jpg"></center>
+                <br><br>
+                <div class="fonte">Figura 1: Grandes navegações portuguesas e espanholas nos séculos XV e XVI. http://hid0141.blogspot.com/2009/03/grandes-navegacoes-</div>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                4.Escreva sobre os navegadores citados abaixo, explicando quando viajaram, o objetivo de suas viagens, a rota e que país representavam:
+                <br><br>
+                <b>Cristóvão Colombo:</b>
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                <b>Vasco da Gama:</b>
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                5. Pinte o Brasil no Continente Americano e Portugal e Espanha no Continente Europeu:
+                <br><br>
+
+                <!--<input type="color" id="pickerExe5" style="float:left">!-->
+                <a class="colorpicker" href="#canvasExe5" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#b7c12b'><div style=' width:30px; height:30px; background-color:#b7c12b; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#ffa659'><div style=' width:30px; height:30px; background-color:#ffa659; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#d3ebf2'><div style=' width:30px; height:30px; background-color:#d3ebf2; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#28b8ce'><div style=' width:30px; height:30px; background-color:#28b8ce; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#1e808e'><div style=' width:30px; height:30px; background-color:#1e808e; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#5d9ca7'><div style=' width:30px; height:30px; background-color:#5d9ca7; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#ecebe5'><div style=' width:30px; height:30px; background-color:#ecebe5; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe5" data-color='#000000'><div style=' width:30px; height:30px; background-color:#000000; border: 1px solid black; float: left'></div></a>
+                <div style="clear: both;"></div>
+
+                <br><br>
+
+                <center><div id="exe5Div" width="768" height="539"></div></center>
+                <script type="text/javascript">
+                    var canvasDiv5 = document.getElementById('exe5Div');
+                    canvasExe5 = document.createElement('canvas');
+                    canvasExe5.setAttribute('width', 768);
+                    canvasExe5.setAttribute('height', 539);
+                    canvasExe5.setAttribute('id', 'canvasExe5');
+                    canvasExe5.setAttribute('style', 'border: 2px solid black;');
+                    canvasDiv5.appendChild(canvasExe5);
+                    if(typeof G_vmlCanvasManager != 'undefined') {
+                        canvasExe5 = G_vmlCanvasManager.initElement(canvasExe5);
+                    }
+                    context5 = canvasExe5.getContext("2d");
+                    var img5 = new Image();
+                    img5.src = "img/brasilInfluenciaExe5.jpg";
+                    img5.onload = function(){
+                        context5.drawImage(img5, 0, 0, 768, 539);
+                    }
+
+                    $(function(){$("#canvasExe5").sketch();});
+
+                    /*$('#pickerExe5').on("change click", function () {
+                        var cor = this.value;
+                        $("#corExe5").attr("data-color", cor);
+                        $("#corExe5").trigger("click");
+                    });
+
+                    $('.colorirExe5').on("change click", function () {
+                        var cor = this.value;
+                        $("#corExe5").attr("data-color", cor);
+                        $("#corExe5").trigger("click");
+                    });*/
+
+                </script>
+
+                <br><br>
+            </div>
+
+            <div class="exercicio">
+                6. Faça a leitura do texto e explique os seguintes fatos referentes a esse período da História: Tratado de Tordesilhas, como foi dividido e como era governado o Brasil colônia.
+                <br><br>
+                <div class="caixa_de_texto"> 
+                    <div class="titulo">A primeira capitania hereditária do Brasil</div>
+                    A primeira capitania hereditária que o Brasil teve foi Fernando de Noronha. As ilhas foram descobertas por Gonçalo Coelho em 1503. Em 1504, D.Manuel I doou o arquipélago a Fernão de Noronha, navegante e comerciante de pau-brasil. O arquipélago ficou conhecido como a capitania hereditária de São João, a primeira da história do Brasil.<br><br>
+                    <div class="fonte">http://www.historiadomundo.com.br/curiosidades/primeira-capitania-hereditaria.htm</div>
+                </div>
+                <br><br>
+                <textarea class="texto"></textarea>
+            </div>
+            <br><br>
+
+            <div class="exercicio">
+                7. Escreva a partir da leitura da imagem suas aprendizagens sobre “a vida nos engenhos coloniais”.
+                <br><br>
+                <center><img src="img/brasilInfluenciaExe7.jpg"></center>
+                <br><br>
+                <div class="fonte"> www.essaseoutras.xpg.com.br/producao-de-acucar-no-brasil-colonial-estrutura-dos-engenhos</div>
+                <br><br>
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                8.  A partir da imagem abaixo, escreva o que você compreendeu sobre a relação dos povos que já habitavam as terras brasileiras e os portugueses:
+                <br><br>
+                <center><img src="img/brasilInfluenciaExe8.jpg"></center>
+                <br><br>
+                <div class="fonte">fabiopestanaramos.blogspot.com.br</div>
+                <br><br>
+                <textarea class="texto"></textarea>
+            </div>
+
+            <br><br>
+
+            <div class="exercicio">
+                9. Explique o que você aprendeu sobre a escravidão dos africanos no Brasil. Como era o cotidiano dos escravos? Quais as contribuições culturais dos africanos para a cultura brasileira?
+                <textarea class="texto"></textarea>
+            </div>
+            
+        </div>
+
+        <br><br>
+
+    </body>
+
+</html>

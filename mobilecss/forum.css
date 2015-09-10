@@ -1,0 +1,116 @@
+.secao_forum{
+    width:100%;
+    height:auto;
+    clear:both;
+    border:1px solid #FFFFFF;
+}
+a.barra_titulo{
+    margin: 0px;
+    width:100%;
+    padding: 10px;
+    background-color: #D7D5EA;
+    text-transform: uppercase;
+    font-size: 14px;
+    float: left;
+    cursor: pointer;
+    margin-bottom: 2px;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#666;
+    font-size:15px;
+}
+.btn_topico{
+    float: right;
+    text-transform: lowercase;
+    width: 160px;
+    margin-top: -30px;
+    margin-right: 11px;
+    color: #666;
+    cursor: pointer;
+    display:none;
+    height:25px;
+    background: #d7d5ea;
+    padding-left: 20px;
+    position:relative;
+}
+.aparecer{
+    display:block;
+}
+.criar_topico{
+    background:url(../img/mais_icone.png) no-repeat;
+    float: right;
+    height: 25px;
+    width: 17px;
+    margin-top: -3px;
+    text-align: center; 
+}
+#quadro_img{
+    background:url(../img/quadro_forum.png) no-repeat;
+    height:100%;
+    margin-top:36px;
+}
+.direita1{
+    /* margin-left: 266px; */
+    margin-right:5px;
+    float:right;
+}
+.direita2{
+    float: right;
+    /* margin-right: 43px; */
+}
+.esquerda{
+    float:left;
+    width: 436px;
+}
+.btn_forum{
+    text-decoration:none;
+    color:#666;
+}
+.info_secao_forum{
+    font-size: 12px;
+    text-transform: lowercase;
+    margin: 38px -13px 0px 35px;
+    width: 95%;
+    display:none;
+}
+
+.info_secao_forum_div{
+    margin: 0px;
+    min-height: 36px;
+    padding: 11px;
+    color:#666;
+    font-size:16px;
+}
+
+
+.info_secao_forum_div:nth-child(odd){
+    font-size: 16px;
+    text-transform: lowercase;
+    width: 100%;
+    background-color: #f4f3f9;
+    min-height: 36px;
+}
+
+.info_secao_forum_div:nth-child(even){
+    font-size: 16px;
+    text-transform: lowercase;
+    width: 100%;
+    background-color: #e5e4f1;
+    min-height: 36px;
+}
+
+.FontSize14
+{
+    font-size:14px;
+}
+
+.star_forum_prof
+{
+    background-image: url("../img/estrela_icone.png");
+    background-repeat: no-repeat;
+    float: right;
+    height: 30px;
+    margin-left: 7px;
+    width: 16px;
+}
+ 

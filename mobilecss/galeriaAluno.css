@@ -1,0 +1,465 @@
+    #producao_aluno_cabecalho 
+    {
+        width: 100%;
+        height: 10%;
+        position: relative;
+        overflow: auto;
+    }
+            /*-------- bt portifolio ------*/
+            
+            .cabecalho_inativo
+            {
+                background-color: rgb(173, 204, 83);
+            }
+            
+            .cabecalho_ativo
+            {
+                background-color: rgb(143, 174, 56);
+            }
+            
+            #cabecalho_portfolio, #cabecalho_atividade, #cabecalho_fichas
+            {
+                width: 33%;
+                height: 55px;
+                position: relative;
+                font-size: 20px;
+                padding:15px;
+                color: rgb(255, 255, 255);
+                border-color: rgb(255, 255, 255);
+                float: left;
+                cursor:pointer;
+                text-align: center;
+            }
+            
+            #cabecalho_atividade{
+                margin: 0 0.5%;
+            }
+
+            
+        
+        #producao_aluno_content{
+            height: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: #E5E5DC;
+        }
+        
+        #menu_lateral_portfolio,
+        #menu_lateral_atividade, 
+        #menu_lateral_fichas{
+            height: 100%;
+            width: 20%;
+            float: left;
+        }
+        
+        #menu_lateral_portfolio ul,
+        #menu_lateral_atividade ul, 
+        #menu_lateral_fichas ul{
+            list-style: none;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 3px;
+            background-color: white;
+            overflow: auto;
+        }
+        
+        #menu_lateral_portfolio li,
+        #menu_lateral_atividade li, 
+        #menu_lateral_fichas li{
+            background-color: #ECEBE5;
+            min-height: 102px;
+            border-bottom: 3px solid white;
+            padding-top: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        /* 
+            Cor de fundo quando o item do menu 
+            estiver ativo: background-color: #D6E5A9 
+        */
+
+        
+        #menu_lateral_portfolio li:last-child,
+        #menu_lateral_atividade li:last-child
+        #menu_lateral_fichas li:last-child{
+            border-bottom: 0;
+        }
+        
+        #conteudo_principal_portfolio,
+        #conteudo_principal_atividade,
+        #conteudo_principal_fichas{
+            width: 80%;
+            height: 100%;
+            background-color: white;
+            float: left;
+            padding: 5px;
+            overflow: auto;
+        }
+        
+        #Titulo_objeto{
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .imagem_objeto{
+            width: 100%;
+            height: 90%;
+            /*background: url(../img/imgteste.png) 50% 50% no-repeat;*/
+            background-size: contain;
+            margin: 0 auto;
+        }
+        
+        #Portfolio{
+            height: 100%;
+            display:none;
+        }
+        #Atividade,
+        #Fichas
+        {
+            height: 100%;
+            display: none;
+        }
+        
+    /*----Mensagem Exclusao---------*/
+
+    #back_black
+    {
+        width: 100%;
+        height:100%;
+        background-color:rgba(0,0,0,0.4);
+        position:absolute;
+        z-index:2;
+        display: none;
+    }
+    
+
+    .mensagem_Exclusao
+    {
+        width:300px;
+        height:150px;
+        background-color: white;
+        position:relative;
+        margin:0 auto;
+        top:40%;
+    }
+
+    .Mensagem_Texto
+    {
+        width:100%;
+        height:100px;
+        text-align:center;
+        padding:10px;
+        padding-top: 30px;
+        color:rgb(134,134,134);
+    }
+
+    .Mensagem_Botoes
+    {
+        width:100%;
+        /* background-color:blue; */
+        height:50px;
+        padding:5px 10px;
+        padding-top:0px;
+    
+    }
+
+
+    .mCustomScrollBox
+    {
+        background-color: white;
+    }
+
+    /*Falme*/
+
+    .btPadrao
+    {
+        height:42px;
+        background-color: #26b7cd;
+        border:solid 3px #239daf;
+        color:white;
+        width:40%;
+
+    }
+
+    .Fleft
+    {
+        float:left;
+    }
+
+    .Fright
+    {
+        float:right;
+    }
+
+.imagem_objeto iframe
+{
+    width:78%;
+    height:447px;
+    border:none;
+}
+
+
+#objeto_verificar
+{
+    display:block;
+}
+
+#objeto_adicionar 
+{
+    display:none;
+}
+
+#menu_lateral_portfolio a, #menu_lateral_fichas a
+{
+    color: rgb(135, 135, 135);
+    text-decoration: none;
+}
+
+#menu_lateral_atividade a
+{
+    color: black;
+    text-decoration: none;
+}
+
+#LegendaUpload
+{
+    padding:10px;
+    text-align: center;
+}
+
+#container_Pesquisa {
+  width: 100%;
+  height: 94%;
+  padding: 14px 22px;
+  background-color: #E5E5DC;
+  float: left;
+  overflow: hidden;
+}
+
+#btn_Sub_AE{
+    width: 100px;
+    display: block;
+    background: #ADCC53;
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    color:#FFF;
+}
+
+#Tipo {
+  width: 100%;
+  height: 84px;
+  float: left;
+  border-right: none;
+  margin-bottom: 0.9%;
+  color: #666;
+}
+
+.celulaGrande {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 0.9%;
+  overflow: auto;
+  border: 2px solid rgb(173, 204, 83);
+  float: left;
+  background-color: #F2F1ED;
+  color: #666;
+}
+
+.infoG {
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+  background-color:  rgb(214, 229, 169); 
+  text-align: right;
+  float: left;
+  border-right: 2px solid rgb(173, 204, 83);
+}
+
+.infoGTipo {
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+  background-color:  rgb(214, 229, 169); 
+  text-align: right;
+  float: left;
+  border: 2px solid rgb(173, 204, 83);
+}
+
+.BorderBottom {
+  border-bottom:2px solid rgb(173, 204, 83);
+}
+
+
+.inputImg {
+    width: 7%;
+    height: 42px;
+    background: url(../img/checkbox-botao-verde.png) no-repeat;
+    background-size: 80px;
+    background-position: 0 0;
+    float: left;
+    border-top: 2px solid rgb(173, 204, 83);
+    border-right: 2px solid rgb(173, 204, 83);
+    cursor: pointer;
+}
+
+.infoValueP {
+  width: 19.66%;
+  height: 50%;
+  background-color: #F2F1ED;
+  padding: 14.4px;
+  text-align: right;
+  float: left;
+  border-top: 2px solid rgb(173, 204, 83);
+  border-right: 2px solid rgb(173, 204, 83);
+}
+
+#Arquivo_Foto_Aluno
+    {
+        display:none;
+    }
+#foto {
+    background-image: url(../img/foto_verde.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: thin solid rgb(173, 204, 83);
+    border-radius: 5px;
+    cursor: pointer;
+    height: 101px;
+    margin: auto 74px;
+    width: 23%;
+}
+
+.mCSB_scrollTools .mCSB_draggerContainer {
+  position: absolute;
+  top: 0;
+  left: 0px !important;
+  bottom: 0;
+  right: 0;
+  height: auto;
+}
+
+.linha_aluno{   
+    width: 100%;
+    min-height: 82px;
+    background-color: #f2f2ee;
+    border-radius:12px;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 12px;
+    -o-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+.FotoAluno{
+    width:70px;
+    height: 65px;  
+    float:left;
+    margin: 8px 10px 5px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -o-border-radius: 12px;
+    -moz-border-radius: 12px;
+    background-color: white;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    border: solid white;
+}
+#dados_col1{
+    margin: 7px 0;
+    width: 340px;
+    min-height: 36px;
+    float: left;
+}
+#dados_col1 p,#dados_col2 p{
+    margin:0;
+}
+.nome_aluno, .ano{
+    font-size:20px;
+    color:#939389;  
+}
+#dados_col2{
+    margin: 8px 0;
+    width: 384px;
+    min-height: 36px;
+    float: right;
+}
+.dados_tutor,.dados_grupo{
+    font-size:18px;
+    color:#939389;
+}
+.dados_grupo{
+    width:60px;
+    float:left; 
+}
+.alunos_grupo{
+    width: 315px;
+    float: left;
+    color:#666666;
+    font-size:18px;
+}
+#tutor_nome{
+    color:#666666;
+    font-size:18px;
+    margin-left:5px;    
+}
+
+iframe{
+    top: 349px;
+    left: 21.8%;
+}
+
+
+.botao_roteiro_portfolio{
+    background: no-repeat;
+    background-size: 26px;
+    background-position: 50% 4px;
+    color: white;
+    font-size: 12px;
+    height: 55px;
+    width: 50.6%;
+    border: 3px solid white;
+    padding-top: 34px;
+    background-color: rgb(205, 211, 186);
+    display: none;
+}
+
+.botao_roteiro_portfolio:hover{
+    background-color: rgb(182, 187, 164);
+}
+
+.botao_roteiro_portfolio[disabled]{
+    background-color: rgb(191, 194, 184);
+    cursor: default;
+}
+
+.botao_corrigir{
+    border-right: 2px solid white;
+    background-image: url(../img/3_corrigido.png);
+    float: left;
+    margin-left: -3px;
+    padding-left: 9%;
+}
+
+.botao_observacao{
+    float: left;
+    border-left: 1px solid white;
+    background-image: url(../img/2_respondido.png);
+    margin-right: -3px;
+    padding-left: 6%;
+}
+
+.titulo_roteiro_portfolio{
+    margin-bottom: 5px;
+    padding: 0 10px;
+    height: 32px;
+}
+
+#content_central {
+    padding: 24px 20px;
+    width: 100%;
+}

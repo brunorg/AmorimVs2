@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+        
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" href="css/cadastros.css" />
+        <link rel="stylesheet" type="text/css" href="css/cadastroAluno.css" />      
+        <!--Fim Style-->
+		
+		<!--Script JS-->
+		<script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>   
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                   
+        <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>   
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+		<!--Fim JS-->
+	</head>
+<body>
+<script>
+$(document).ready(function(){
+
+    GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
+
+    $('#btn_Sub_AE').click(function(){
+        if($("#Arquivo_Foto_Aluno").val() != "" &&
+            $("#Arquivo_Foto_Aluno").val() != undefined)
+        {
+            $.ajax({
+                url: path+"ProducaoAluno/",
+                type: "POST",
+                crossDomain: true,
+                dataType: 'json',
+                data: "action=create&anoLetivo=8&texto=1&data=21-09-2014&aluno=1&tipo=6&categoria=3&roteiro=20",
+                    success: function(d) {
+                        $('#Cadastro_Form_imagem_PA #id').val(d);
+                        addFileTo(d);
+    
+                    },error: function() {
+                        alert("Não modificado, verifique os campos.");
+                    }
+            }); 
+        } else {
+            alert("Por Favor, adicione um arquivo");
+        }
+    });
+
+});
+
+function addFileTo(ID)
+{
+
+    var formData = new FormData($('#Cadastro_Form_imagem_PA')[0]);
+
+    $.ajax({
+    url: path+"ProducaoAluno/upload/producaoAluno/arquivo/"+ID,
+    type: "POST",
+    mimeType:"multipart/form-data",
+    contentType: false,
+    cache: false,
+    processData:false,
+    data: formData,
+        
+        success: function(d) {
+            alert("Arquivo Salvo.");
+            $('#foto').css("background-image","url(img/foto.png)");
+            $('#Arquivo_Foto_Aluno').val("");
+            $('#Dados_Foto_Aluno').html("");
+            //CarregaProducao();
+        },error: function() {
+            alert("Não modificado, verifique os campos.");
+        }
+    }); 
+}
+
+</script>
+<div class="CadastroAE">
+
+    <div id="foto" style="margin:0 auto;float:none;"></div>
+    
+    <form id="Cadastro_Form_imagem_PA">
+        <input type="hidden" id="id" name="id" />
+        <input type="hidden" id="action" name="action" value="create" />
+        <input type="hidden" id="Dados_Foto_Aluno" />
+        <input type="file" id="Arquivo_Foto_Aluno" name="arquivo" />
+        <input type="button" id="btn_Sub_AE" style="width:100px;display: block;margin: 15px auto !important;" value="Salvar" />
+    </form>
+
+</div>
+</body>
+</html>

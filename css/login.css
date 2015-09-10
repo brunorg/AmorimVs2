@@ -1,0 +1,105 @@
+html, body
+{
+	background-image: url(../img/fundopb.svg);
+	background-repeat: no-repeat;
+	background-size: 170% auto;
+	/* background-size: cover; */
+	/* background-size: contain; */
+	background-position: 60% 60%;
+	/* background-color: #a33641; */
+	background-color: #FFFFFF;
+}
+
+#Container
+{
+	width:100vw;
+	height:100vh;
+}
+
+#floater 
+{
+	float: left;
+	height: 50%;
+	width: 100%;
+	margin-bottom: -150px;
+}
+
+.Floated_Content_Box_Login
+{
+	position: relative;
+	background-color: white;
+	width:400px;
+	height:330px;
+	padding:20px 10px 10px;
+	margin:0 auto;
+	clear: both;
+	border:2px solid #AEAFAF;
+	box-shadow: 3px 3px 8px gray;
+	-webkit-box-shadow:3px 3px 8px gray;
+	-moz-box-shadow:3px 3px 8px gray;
+}
+
+.Top_Logo
+{
+	width:100%;
+	height:145px;
+	background-image:url(../img/Amorim.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 100%;
+	padding-top: 25px;
+
+
+}
+
+.Login
+{
+	width:100%;
+	height:150px;
+	padding-top:25px;
+	text-align: center;
+}
+
+.Senha
+{
+	width:100%;
+	height:100px;
+	padding-top:50px;
+	text-align: center;
+}
+
+.Tabela_Login
+{
+	width:87%;
+	height:125px;
+	float:left;
+}
+
+.Tabela_Login td
+{
+	text-align: right;
+}
+
+.Input_Text_Login, .Input_Text_Senha
+{
+	width:100%;
+	border-radius: 2px;
+	border:thin solid #B0AB99;
+}
+
+.Submit_Login
+{
+	width:70px;
+	height:35px;
+	border:none;
+	background-color:rgb(171, 0, 10);
+	float:right;
+	color:white;
+	border-radius: 2px;
+}
+
+#erro_login{
+	font-weight:bold;
+	color:#a33641;
+	display:none;
+}

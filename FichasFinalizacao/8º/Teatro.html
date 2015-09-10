@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+		<link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+		<link rel="stylesheet" type="text/css" href="CSS/teatroStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+
+	</head>
+
+	<body>
+		
+		<div id="Cabecalho"> 8º Ano | Teatro </div>
+		</br>
+		
+		<!-- Conteúdo da Ficha -->
+		
+		<div id="Conteudo_Total">
+			<center><img src="img/TeatroExe0.jpg"></center>
+			<br><br>
+			<div class="exercicio">
+				1)  a.  No trecho a seguir, da peça teatral “Tarsila” -  de Maria Adelaide Amaral, separe as personagens e suas falas:
+				<br><br>
+				Tarsila – ( Para Oswald) Você tem um Cadillac azul?<br>
+				Oswald – Só comprei porque tinha cinzeiro.<br>
+				Mário – ( Levantando-se ) Por que  não mostramos à dona Tarsila essa maravilha contemporânea?<br>
+				<br><br>
+				<center><table>
+					<tr>
+						<th>Personagem</th><th>Fala</th>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+				</table></center>
+
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				b. A linguagem predominante nesse texto teatral é  mais formal ou informal?
+				<textarea class="lacuna"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				c. Dê exemplos das duas linguagens extraídos do quadro acima.
+				<textarea class="texto"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				d. O que você entende por linguagem formal? E informal o que significa?
+				<textarea class="texto"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				e. Rubrica – é o nome dado à indicação no texto teatral ( ou texto dramático ) de como um ator deve executar um movimento, um gesto ou uma fala da personagem. Retire dessas falas, acima, a rubrica:
+				<textarea class="texto"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				2. Observe a cena, abaixo.  Crie as personagens e suas falas.
+				<br><br>
+				<center><img src="img/TeatroExe2.jpg">
+				<br><br>
+				<table id="tabela">
+					<tr>
+						<th>Personagem</th><th>Fala</th>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+					<tr>
+						<td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td>
+					</tr>
+				</table></center>
+				<input type="button" class="botao_ex" value="Adcionar Linhas" id="bt_adiciona">
+				<input type="button" class="botao_ex" value="Remover Linhas" id="bt_remove">
+
+				<script type="text/javascript">
+					$("#bt_adiciona").click(function(){
+    					$("#tabela").append('<tr class="novaLinha"><td><textarea class="personagem"></textarea></td><td><textarea class="fala"></textarea></td></tr>');
+					});
+
+					$("#bt_remove").click(function(){
+    					$(".novaLinha:last-child").remove();
+					});
+
+				</script>
+
+				<div style="clear: both;"></div>	
+			</div>
+
+			<br><br>				
+
+			<div class="exercicio">
+				3. Depois desses estudos, complete com o número adequado:
+				<br><br>
+				<center><table>
+					<tr>
+						<td>(1) Narrativa em Prosa</td>
+						<td><input type="text" maxlength="1" class="associacao"> estruturada pelos versos e estrofes./td>
+					</tr>
+					<tr>
+						<td>(2) narrativa em verso/estrofes</td>
+						<td><input type="text" maxlength="1" class="associacao"> estruturada pelas rubricas e falasde personagens.</td>
+					</tr>
+					<tr>
+						<td>(3) narrativa do texto </td>
+						<td><input type="text" maxlength="1" class="associacao"> estruturada em parágrafos.</td>
+					</tr>
+					
+				</table></center>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				4.  As peças teatrais geralmente são divididas em <b>atos, quadros e cenas.</b><br><br>
+				<b>Atos</b> – divisão de cenas (pausas) quando a peça é muito longa.<br>
+				<b>Quadros</b> – mudanças mais radicais de cenário.<br>
+				<b>Cenas</b> – são as menores unidades narrativas, um momento da peça.
+				<br><br>				
+				Observe a imagem abaixo e desenvolva as questões (pensamento livre):
+				<br><br>
+				<center><img src="img/TeatroExe4.jpg"></center>
+				<br><br>
+				a. Que título você daria à peça?<br>
+				<textarea class="lacuna"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				b. Quantas personagens?<br>
+				<textarea class="lacuna"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				c. Número de atos:<br>
+				<input type="radio" name="exe4"> 1<br>
+				<input type="radio" name="exe4"> 2<br>
+				<input type="radio" name="exe4"> 3
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				d. Quantos quadros você criaria em cada ato desta peça? Explique cada um deles.
+				<textarea class="texto"></textarea>
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				e. Essa cena lembra:
+				<textarea class="texto"></textarea>
+			</div>
+
+			<br><br>
+
+			<style type="text/css">
+				.circulo{
+                    border-radius: 50%;
+                    border: 1px solid rgb(0, 0, 0);
+                }
+			</style>
+
+			<div class="exercicio">
+				5. Sempre é bom rever:<br><br>
+				a. <b>Vocativo</b> – é o nome que se dá ao termo da frase que contém um  chamamento, um apelo.
+				           <p><b>-Menino</b>, saia da chuva!</p>
+				           <br>
+				b. <b>Sujeito</b> -  é o termo da oração de quem ou de quê se diz alguma coisa.
+				           <p><b>O menino</b> caminhava na chuva.</p>
+				           <br>
+				c. <b>aposto</b> – é um termo que se associa a um nome explicando ou especificando o seu sentido.
+							<p>O menino, <b>aluno do 8º ano</b>, saiu no meio da chuva.</p>
+							<br>
+				d. Aponte-os nas falas, abaixo, circulando-os (clique para circular):<br><br>
+				<p><span class="sublinhavel">Godofredo – </span><span class="sublinhavel">Filhinho,</span><span class="sublinhavel"> beba </span><span class="sublinhavel">o </span><span class="sublinhavel">leite</span>!</p>
+				<p><span class="sublinhavel">Filho – </span><span class="sublinhavel">Não!</span><span class="sublinhavel"> O </span><span class="sublinhavel">leite </span><span class="sublinhavel">está </span><span class="sublinhavel">muito </span><span class="sublinhavel">amargo</span>!</p>
+				<p><span class="sublinhavel">Godofredo – </span><span class="sublinhavel">Engraçado!</span><span class="sublinhavel"> Esse </span><span class="sublinhavel">leite,</span><span class="sublinhavel"> produto </span><span class="sublinhavel">de </span><span class="sublinhavel">primeira </span><span class="sublinhavel">qualidade,</span><span class="sublinhavel"> não </span><span class="sublinhavel">pode </span><span class="sublinhavel">estar </span><span class="sublinhavel">amargo</span>!</p>
+				<br><br>
+
+            	<script type="text/javascript">
+            		$(".sublinhavel").click(function(){
+            		    if($(this).hasClass("circulado"))
+                	        {
+                	            if(!($(this).next().hasClass("circulado") && $(this).prev().hasClass("circulado")))
+                	            {
+                	                $(this).unwrap();
+                	                $(this).removeClass("circulado");
+                	                $(this).parent().children(".circulado").wrapAll("<span class='circulo'></span>")
+                	            }
+                	        }
+                	        else
+                	        {
+                	            if($(this).parent().children(".circulo").length == 0 || $(this).next().hasClass("circulo") || $(this).prev().hasClass("circulo"))
+                	            {
+                	                $(this).parent().children(".circulo").children().unwrap();
+                	                $(this).addClass("circulado");
+                	                $(this).parent().children(".circulado").wrapAll("<span class='circulo'></span>")
+                	            }
+                	        }
+                	});
+            	</script>
+
+			</div>
+
+			<br><br>
+
+			<div class="exercicio">
+				6. Narrando experiências.
+				<center><img src="img/TeatroExe6.jpg"></center>
+				<br><br>
+				Você já assistiu a peças teatrais! Conte  essa experiência.<br>
+				Como era a história? Fale de personagens, conflitos, roupas apresentadas (figurinos), cenários.<br>
+				Que emoções não foram esquecidas? O teatro traz magia?
+				<textarea class="texto longo"></textarea>
+
+			</div>
+
+
+		</div>
+
+		<br><br>
+
+	</body>
+
+</html>

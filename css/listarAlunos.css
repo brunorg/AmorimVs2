@@ -1,0 +1,374 @@
+
+
+				/*#Conteudo_Coluna1_Calendario tr:nth-child(1) td:nth-child(2)
+				{
+					width:130px;
+					
+				}*/
+
+
+		#Coluna2
+		{
+			width: 80%;
+			padding-top: 30px;
+			padding-bottom: 10px;
+			height:auto;
+			float:left;
+		}
+
+		.Conteudo_Aluno{
+			/*width: 880px;
+			height: 104px;*/
+			/*margin-left:10%;*/
+			/*background-color:#f2f2ee;*/
+			/*margin-top: 5px;*/
+			/*margin-top: 50px;*/
+			/*background-color: #fff;*/
+			
+		}
+
+	/*	.Conteudo_Coluna2 img{
+			margin-left: 20px;
+			float:left;
+			border: #fff solid;
+			border-radius: 12px;
+			-webkit-border-radius: 12px;
+			-o-border-radius: 12px;
+			-moz-border-radius: 12px;
+		}*/
+
+		.total{
+			width: 880px;
+			height: auto;
+			margin: 0 auto;
+
+		}
+
+		.Nome_do_Aluno{
+			padding:30px;
+		}
+
+
+
+		.Conteudo_Coluna2_Aluno{
+			height: 104px;
+			width: 100%;
+			margin-top: 5px;
+			background-color: #f2f2ee;
+			/*float:left;*/
+			/*margin-left: 18%;*/
+			/*margin-right: 30px;*/
+		}
+
+
+			#Objetivos_Semana
+			{
+				width:684px;
+				height:auto;
+				margin:0 auto;
+			}
+
+				.Objetivos_Semana_Cabecalho
+				{
+					height:54px;
+					width:100%;
+				}
+
+					.Objetivos_Semana_Cabecalho_Image
+					{
+						width:52px;
+						height:54px;
+						float:left;
+						background-image: url("img/OS1.png");
+						background-repeat: no-repeat;
+						background-position: 0px 8px;
+					}
+
+					.Objetivos_Semana_Cabecalho_Nome
+					{
+						height:54px;
+						width:632px;
+						float:left;
+						font-size: 18px;
+						font-weight: bold;
+						padding-top: 26px;
+						color: rgb(102, 102, 102);
+					}
+
+
+				.Objetivos_Semana_Conteudo
+				{
+					width:100%;
+					height:auto;
+					/*padding-top: 10px;*/
+				}
+
+					.Objetivos_Semana_Conteudo_Titulo_Tarefas
+					{
+						width:100%;
+						height:29px;
+						background-color: rgb(251, 176, 64);
+						font-size: 14px;
+						font-weight: bold;
+						padding-left: 7px;
+						padding-top: 7px;
+						color:white;
+					}
+
+					.Objetivos_Semana_Conteudo_Tarefas_Content
+					{
+						width:100%;
+						height:auto;
+						padding:5px 0 5px 0;
+					}
+
+						.Objetivos_Semana_Conteudo_Tarefas
+						{
+							width:100%;
+							height:24px;
+							margin-top: 5px;
+						}
+
+							.Objetivos_Semana_Conteudo_Tarefas_Numero
+							{
+								width:29px;
+								height:24px;
+								background-color: rgb(251, 176, 64);
+								text-align: center;
+								color:white;
+								font-size: 17px;
+								font-weight: bold;
+								padding-top: 3px;
+								float:left;
+							}
+
+							.Objetivos_Semana_Conteudo_Tarefas_Texto
+							{
+								width:652px;
+								height:24px;
+								font-size: 14px;
+								padding-top:4px;
+								float:left;
+								color:rgb(120, 119, 107);
+								background-color: rgb(242, 242, 238);
+								padding-left: 5px;
+							}
+
+								.Selected_Tarefas
+								{
+									background-color:rgb(141, 198, 63);
+								}
+
+			#Mensagens
+			{
+				width:684px;
+				height:auto;
+				margin:20px auto 0 auto;
+			}
+
+				.Mensagens_Cabecalho
+				{
+					width:100%;
+					height:62px;
+				}
+
+					.Mensagens_Cabecalho_Imagem
+					{
+						width:61px;
+						height:62px;
+						background-image: url("img/OS2.png");
+						background-repeat: no-repeat;
+						background-position: 0px 15px;
+						float:left;
+					}
+
+						.Mensagens_Cabecalho_Imagem_Contador
+						{
+							position:relative;
+							width:23px;
+							height:23px;
+							border-radius: 50%;
+							top:13px;
+							left:33px;
+							background-color: rgb(255, 107, 64);
+							font-size: 12px;
+							color:white;
+							text-align: center;
+							padding-top: 4px;
+						}
+
+					.Mensagens_Cabecalho_Nome
+					{
+						width:623px;
+						height:62px;
+						font-size:18px;
+						font-weight: bold;
+						padding-top:34px;
+						color:rgb(120, 119, 107);
+						float:left;
+					}
+
+				.Mensagens_Conteudo
+				{
+					width:100%;
+					height:auto;
+					font-size: 12px;
+				}
+
+					.Mensagens_Conteudo tr td
+					{
+						padding-left: 10px;
+					}
+
+					.Mensagens_Conteudo tr:nth-child(even) td
+					{
+						height:40px;
+						background-color:rgb(242, 242, 238);
+					}
+
+					.Mensagens_Conteudo tr:nth-child(odd) td
+					{
+						height:40px;
+						background-color:rgb(229, 229, 220);
+					}
+
+					.Mensagens_Conteudo tr:nth-child(1) td
+					{
+						height:33px;
+						color:white;
+						background-color:rgb(201, 201, 196);
+					}
+
+					.Mensagens_Conteudo_Aviso
+					{
+						background-image: url("img/OAviso.png");
+						background-repeat: no-repeat;
+						background-position: 4.5px 10px;
+					}
+
+			.Cadastro_Content
+			{
+				width:674px;
+				height:569px;
+				/*background-color: yellow;*/
+				margin:10px auto;
+			}
+
+				.FotoAlunoCadastro
+				{
+					height: 86px;
+					width:86px;
+					float:left;
+					margin: 10px;
+					/*float:left;*/
+					padding:2.5px;
+					border-radius: 12px;
+					-webkit-border-radius: 12px;
+					-o-border-radius: 12px;
+					-moz-border-radius: 12px;
+					background-color: white;
+					overflow: hidden;
+					background-image: url("img/FotoAluno.png");
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center;
+					border: #fff solid;
+				}
+
+					.tableCadastro
+					{
+						width: 674px;
+					}
+
+					.tableCadastro > *
+					{
+						/*text-align: right;*/
+					}
+
+					.tableCadastro td
+					{
+						padding-bottom: 15px;
+					}
+
+					.tableCadastro input
+					{
+						border-radius: 2px;
+						border:solid thin;
+						border-color: rgb(176, 171, 153);
+						
+					}
+
+						.textfieldQ
+						{
+							width:40px;
+						}
+
+						.ARight
+						{
+							text-align: right;
+							font-size: 14px;
+							color:rgb(147, 147, 137);
+						}
+
+		#Coluna3
+		{
+			background-color: rgba(22, 190, 207, 0.14);
+
+		}
+
+			#Conteudo_Coluna3_Agenda_Content
+			{
+				margin: 10% 8%;
+				width:85%;
+				height:90%;
+				
+			}
+
+				#Conteudo_Coluna3_Agenda_Content_Nome
+				{
+					height:42px;
+					width:100%;
+					font-size: 24px;
+					color: rgb(178, 38, 43);
+				}
+
+				#Conteudo_Coluna3_Agenda_Evento_Content
+				{
+					height:100%;
+					width:100%;
+					overflow-y: auto; 
+				}
+
+					.Conteudo_Coluna3_Agenda_Evento
+					{
+						height:auto;
+						width:100%;
+						background-color: white;
+						margin-top: 5px;
+					}
+
+						.Conteudo_Coluna3_Agenda_Evento_Titulo
+						{
+							width:100%;
+							height:auto;
+							color:rgb(219, 94, 49);
+							font-size: 18px;
+							padding: 10px 10px 5px 10px;
+						}
+
+						.Conteudo_Coluna3_Agenda_Evento_Conteudo
+						{
+							width:100%;
+							height:auto;
+							color: rgb(102, 102, 102);
+							font-size: 18px;
+							padding: 10px;
+						}
+
+
+
+@media (max-width: 500px){
+
+	
+
+}

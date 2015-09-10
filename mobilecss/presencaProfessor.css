@@ -1,0 +1,29 @@
+#content_central_fixa{
+    width: 100%;
+}
+
+#presenca_page input[type=text].busca_Professores{
+    width: 95%;
+    margin-bottom: -1px;
+    padding: 0.4%;
+}
+
+#presenca_page #lupa{
+    width: 41px;
+}
+
+#presenca_page #img_lupa{
+    margin-left: 8px;
+}
+
+#presenca_page span.css-label{
+    height: 27px;
+}
+
+.Content_lateral_Menu_Opcao .mensagens{
+    background-position: 6px 11px;
+}
+
+.Content_lateral_Menu_Opcao .calendario{
+    background-position: -3px 0px;
+}

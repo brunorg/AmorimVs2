@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+
+        <style type="text/css">
+        	.lacuna{
+        	    width: 80%;
+        	    height: 27px;
+        	    border: 1px solid lightgrey;
+        	    padding: 0px;
+        	    margin: 1px 0 1px 0;
+        	    font-size: 18px;
+        	    text-align: left;
+                vertical-align: middle;
+        	}
+        </style>
+
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 9º Ano | Eurásia e Oceania </div>
+        </br>
+
+        <div id="Conteudo_Total">
+        	<center><img src="img/EurasiaeOceaniaExe0.jpg">
+        		<br><br>
+        	Os primeiros europeus a chegarem à Malásia foram os portugueses, no século XV; em seguida os holandeses, em 1641 e, finalmente, os britânicos, no século XIX (1824).</center>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		I. Você empregará três cores na questão, abaixo:
+        		<br><br>
+        		<font color="#c8db8f">- Verde ( Europa )</font><br>
+        		<font color="#f2cb67">- Amarelo ( Ásia )</font> <br>
+        		<font color="#d85302">- Vermelho ( Oceania )</font>
+        		<br><br>
+        		Pinte os continentes e faça uma moldura nas fotos dos habitantes de cada continente com as cores correspondentes.
+        		<br><br>
+        		<div id="ferramentasExe1">
+                <!--<input type="color" id="pickerExe1" style="float:left">!-->
+                <a class="colorpicker" href="#canvasExe1" data-color='#c8db8f'><div style=' width:30px; height:30px; background-color:#c8db8f; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#f2cb67'><div style=' width:30px; height:30px; background-color:#f2cb67; border: 1px solid black; float: left'></div></a>
+                <a class="colorpicker" href="#canvasExe1" data-color='#d85302'><div style=' width:30px; height:30px; background-color:#d85302; border: 1px solid black; float: left'></div></a>
+                <div class="caixa_de_texto" style="float: right; width: 80px; margin-left: 2px"><center><a href="#canvasExe1" data-tool="bucket" class="ferramenta">Balde</a></center></div>&nbsp
+              	<div class="caixa_de_texto" style="float: right; width: 80px;"><center><a href="#canvasExe1" data-tool="marker" class="ferramenta">Caneta</a></center></div>
+                <br><br>
+                <div style="clear: both;"></div>
+            </div>
+            <center><div id="exe1Div" width="534" height="460"></div></center>
+            <script type="text/javascript">
+                var canvasDiv = document.getElementById('exe1Div');
+                canvasExe1 = document.createElement('canvas');
+                canvasExe1.setAttribute('width', 534);
+                canvasExe1.setAttribute('height', 560);
+                canvasExe1.setAttribute('id', 'canvasExe1');
+                canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                canvasDiv.appendChild(canvasExe1);
+                if(typeof G_vmlCanvasManager != 'undefined') {
+                    canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                }
+                context = canvasExe1.getContext("2d");
+                var img1 = new Image();
+                var img2 = new Image();
+                var img3 = new Image();
+                var img4 = new Image();
+                img1.src = "img/EurasiaeOceaniaExe1mapa.jpg";
+                img2.src="img/EurasiaeOceaniaExe1a.jpg"
+                img3.src="img/EurasiaeOceaniaExe1b.jpg"
+                img4.src="img/EurasiaeOceaniaExe1c.jpg"
+                img1.onload = function(){
+                    context.drawImage(img1, 0, 0, 534, 378);
+                }
+                img2.onload = function(){
+                    context.drawImage(img2, 5, 400, 125, 105);
+                }
+                img3.onload = function(){
+                    context.drawImage(img3, 140, 395, 175, 131);
+                }
+                img4.onload = function(){
+                    context.drawImage(img4, 325, 380, 208, 154);
+                }
+
+                $(function(){$("#canvasExe1").sketch();});
+
+                /*$("#pickerExe1").on("change click", function(){
+                    var cor = this.value;
+                    $("#corExe1").attr("data-color", cor);
+                    $("#corExe1").trigger("click");
+
+                });
+
+                $(".colorirExe1").on("change click", function(){
+                    $("#corExe1").trigger("click");
+
+                });*/
+
+
+
+                </script>
+
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		2. Leia as características a seguir e enumere-as corretamente:
+        		<br><br>
+        		( 1 ) Europa           ( 2 ) Ásia          ( 3 ) Oceania
+        		<br><br>
+        		<input type="text" maxlength="1" class="associacao"> é o maior continente do mundo: seus 43.608.000 km² abrangem 30% das terras emersas da Terra.
+        		<br><br>
+				<input type="text" maxlength="1" class="associacao"> ao longo da história, foi sede de grandes civilizações que expandiram suas influências a diferentes regiões do mundo.
+				<br><br>
+				<input type="text" maxlength="1" class="associacao"> tem 8.923.000 km², dos quais 85% correspondem à Austrália, que por isso é chamada de ilha-continente.
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		3. A quais continentes pertencem  as economias dos textos, abaixo?
+        		<br><br>
+				a. “ O uso de processos altamente mecanizados e com tecnologia de ponta  faz dessa economia uma das mais importantes do mundo.<br>
+				Continente: <textarea class="lacuna"></textarea>
+				<br><br>
+				b. “ Destaca-se  pela produção de ovinos e lã. Cultiva-se também o trigo, cana-de-açúcar, frutas, algodão e cevada. Seus recursos naturais são a bauxita, o zinco, o carvão mineral, o cobre,  a prata e o ouro. “
+				Continente: <textarea class="lacuna"></textarea>
+				<br><br>
+				c. “  Em linhas gerais, O Extremo Oriente  apresenta um bom nível de desenvolvimento . A região abrange uma das maiores potências econômicas do planeta (o Japão) e o país do crescimento mais acelerado do século XXI (a China).<br>
+				Continente: <textarea class="lacuna"></textarea>
+        	</div>
+
+        	<div class="exercicio">
+        		4. Leia os textos, abaixo:
+        		<br><br>
+				<p>“ Cerca de 60 milhões de pessoas deixaram a Europa no início do século XIX  às primeiras décadas  do século XX. Após a Segunda Guerra Mundial, a Europa tornou-se um  importante destino para emigrantes...”</p>
+				<p>“ No continente asiático ocorre a maior concentração populacional do planeta. Diversas línguas e dialetos são falados; os mais difundidos são o mandarim, o híndi, o árabe, o japonês, idiomas eslavos (Rússia asiática) e o inglês.  Muitas são também as religiões praticadas: o islamismo, o hinduísmo, o budismo, o xintoísmo (Japão) e o cristianismo.“</p>
+				<p>“ A Oceania é o menos populoso dos continentes, habitado por povos nativos com diferentes costumes, línguas, culturas em suas milhares de ilhas. A colonização europeia na região se deu do fim do  século XVIII ao século XIX e promoveu o domínio da civilização ocidental sobre os nativos. “</p>
+				<br><br>
+				Podemos dizer que:
+				<br><br><input type="checkbox"> a Europa é um continente de grandes migrações.
+				<br><br><input type="checkbox"> a Ásia possui uma população pequena, constituída de povos pobres.
+				<br><br><input type="checkbox"> a Oceania tem muitas ilhas, com povos nativos de diferentes costumes.
+				<br><br><input type="checkbox"> hoje, a Europa atrai grande número de pessoas que busca aperfeiçoamento, tecnologia, bons salários.
+				<br><br><input type="checkbox"> na Ásia, há uma diversidade de línguas e dialetos, como também, de religiões.
+				<br><br><input type="checkbox"> na Oceania, só existem nativos.
+
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		5. Nesta afirmação: “ Alguns acontecimentos bastante significativos marcaram os de 1960 e 1970 de maneira negativa, criando um clima de contestação. Ela introduz informações sobre a contracultura. 
+        		<br><br>
+        		<center><img src="img/EurasiaeOceaniaExe5.jpg"></center>
+        		<br><br>
+        		Que movimento foi esse?
+        		<textarea class="texto"></textarea>
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		6. Faça uma relação,  colocando dentro da caixa de títulos,  a letra da alternativa:
+        		<br><br>
+				<p>a. “ As políticas da companhia britânica desestabilizaram muitas sociedades tradicionais e empobreceram a maior parte dos indianos, que foram obrigados a importar tecidos ingleses e fornecer matéria- prima. Houve abusos de autoridade, crises de abastecimento e fome. “</p>
+				<p>b. “ A China tentou impedir , na primeira metade do século XIX, a venda do ópio, produzido e comercializado pela Companhia Inglesa das Índias Orientais. “</p>
+				<p>c. O vício destruiu indivíduos e famílias, e muitos camponeses deixaram de cultivar alimentos para plantar papoulas... A China se rendeu e assinou, em agosto de 1842, um tratado que estabelecia a abertura de alguns portos chineses ao comércio com a Grã-Bretanha e transferiu  Hong Kong ao domínio britânico.</p>
+				<br><br>
+				<center>
+					<figure style="float: left;">
+						<img src="img/EurasiaeOceaniaExe6a.jpg">
+						<figcaption>Revolta dos Sipaios – 1857 e 1858 <input type="text" maxlength="1" class="associacao"></figcaption>
+					</figure>
+					<figure style="float: left;">
+						<img src="img/EurasiaeOceaniaExe6b.jpg">
+						<figcaption>Tratado de Nanjing – 1842 <input type="text" maxlength="1" class="associacao"></figcaption>
+					</figure>
+					<figure style="float: left;">
+						<img src="img/EurasiaeOceaniaExe6c.jpg">
+						<figcaption>Guerra do Ópio  - 1839 a 1842 <input type="text" maxlength="1" class="associacao"></figcaption>
+					</figure>
+				</center>
+
+        	</div>
+
+        	<div style="clear: both;"></div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		7. Leia o trecho abaixo:
+        		<br><br>
+				<p>“ Com o fim da União Soviética, os Estados Unidos se converteram na única superpotência do planeta. O poderio econômico, militar, cultural e científico-tecnológico dos Estados Unidos justificava a supremacia do país e o poder de decidir, quase unilateralmente, questões políticas e econômicas do restante do mundo. “</p>
+				<br><br>
+				Complete, com suas palavras:
+				<br><br>
+				a. Uma superpotência<br>
+				pode <textarea class="lacuna"></textarea> 
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		b. Os Estados Unidos conseguiram<br>
+        		um <textarea class="lacuna"></textarea>
+        	</div>
+
+        	<br><br>
+
+        	<div class="exercicio">
+        		c. Todos os outros países ficam subordinados ao poder americano<br>
+        		porque <textarea class="lacuna"></textarea>
+        	</div>
+
+
+        </div>
+
+        <br><br>
+
+    </body>
+
+</html>

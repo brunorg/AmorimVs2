@@ -1,0 +1,28 @@
+ .alterar {
+	cursor: pointer; 
+	background: white;
+	font-size:14px !important;
+}
+
+.inputNovaSenha{
+	height:39px;
+	width: 85%;
+}
+#novaSenha{
+	width: 150px;
+	border-style: ridge;
+	padding: 5.5px;
+	color: #666;
+	float: left;
+	margin-top: 3px;
+}
+.btnSubmit{
+	width: 120px; 
+	margin-left:20px;
+	margin-top:3px;
+	cursor:pointer; 
+	background: url('../img/bt_salvar_pequeno.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.celulaGrande {
+  border: 1px solid #B6B6B0 !important;
+}

@@ -1,0 +1,90 @@
+#campo_a{
+    position: absolute;
+    top: 62px;
+    left: 236px;
+}
+
+#campo_b{
+    position: absolute;
+    top: 330px;
+    left: 232px;
+}
+
+#campo_c{
+    position: absolute;
+    transform: rotate(31.5deg);
+    top: 408px;
+    left: 209px;
+}
+
+#campo_d{
+    position: absolute;
+    top: 412px;
+    left: 306px;
+}
+
+#campo_e{
+    position: absolute;
+    transform: rotate(-43.7deg);
+    top: 337px;
+    left: 380px;
+}
+
+#campo_f{
+    position: absolute;
+    transform: rotate(-62.7deg);
+    top: 591px;
+    left: 405px;
+}
+
+#campo_g{
+    position: absolute;
+    transform: rotate(34deg);
+    top: 630px;
+    left: 530px;
+}
+
+#campo_h{
+    position: absolute;
+    transform: rotate(33deg);
+    top: 647px;
+    left: 480px;
+}
+
+#campo_i{
+    position: absolute;
+    top: 760px;
+    left: 624px;
+}
+
+#campo_j{
+    position: absolute;
+    transform: rotate(-49deg);
+    top: 806px;
+    left: 646px;
+}
+
+#campo_l{
+    position: absolute;
+    top: 1000px;
+    left: 254px;
+}
+
+#campo_m{
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 911px;
+    left: 507px;
+}
+
+#campo_a2{
+    position: absolute;
+    top: 166px;
+    left: 336px; 
+}
+
+#campo_a3{
+    position: absolute;
+    top: 228px;
+    left: 414px; 
+}

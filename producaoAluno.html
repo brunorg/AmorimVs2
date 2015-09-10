@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="css/producaoAluno.css" />  
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+       <!-- /*<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
+        <link rel="stylesheet" type="text/css" href="css/cadastroAluno.css" /> */--> 
+		<!--<link rel="stylesheet" type="text/css" href="css/recursosAprendizagem.css">-->
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
+	  	<!-- <script src="js/jquery-1.10.2.js"></script> -->
+      	<script src="js/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+                {
+                    window.location.assign("mProducaoAluno.html");
+                }
+            }); 
+        </script>
+
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>   
+        <!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+        <script type="text/javascript" src="js/producaoAluno.js"></script>        
+		
+        
+        <!--Fim JS-->
+    
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+            
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#">Área do Aluno</a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+					<div id="Content_lateral_Menu">
+						<div class="Content_lateral_Menu_Opcao">
+						    <a href="planoDeEstudo.html" class="plano">Plano de estudo</a>
+						</div>
+
+						<div class="Content_lateral_Menu_Opcao">
+						    <a href="recursosAprendizagem.html?id=aluno" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>
+						</div>
+						<div class="Content_lateral_Menu_Opcao">
+						    <a href="roteirosAluno.html" class="roteiros">Roteiros</a>
+						</div>
+						<div class="Content_lateral_Menu_Opcao">
+						    <a href="forum.html" class="forum">Fórum</a>
+						</div>
+						<div class="Content_lateral_Menu_Opcao">
+						    <a href="mensagens.html" class="mensagens">Mensagens</a>
+						</div>
+					</div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="apontar">Apontar Presença grupo</p>
+						</div>                                                 							
+					</div>                                     
+				</div>
+                
+
+				<!--Coluna geral central-->
+                <!--  bloqueio para a rolagem top-->				
+                <div class="Conteudo_Coluna" id="content_central">
+				
+                	<div id="producao_aluno_cabecalho">
+                		<div id="cabecalho_portfolio" class="cabecalho_inativo">Portfólio</div>
+                		<div id="cabecalho_atividade" class="cabecalho_inativo">Atividade extra</div>
+                		<div id="cabecalho_fichas"  class="cabecalho_inativo">Fichas de finalização</div>
+                	</div>
+					
+                	<div id="producao_aluno_content">
+						
+					<!-- Conteudo da aba de Portfolio -->
+					<div id="Portfolio">
+						<div id="menu_lateral_portfolio">
+							<ul>
+								<!-- <li> As transformações dos materiais no </li>
+								<li> Cartografia </li>
+								<li> Conto popular </li>
+								<li> Civilizações não europeias </li>
+								<li> Defender ideias e argumentar </li>
+								<li> Clima e vegetação </li>
+								<li> O ciclo de vida </li>
+								<li> </li>
+								<li> </li> -->
+							</ul>
+						</div>
+						
+						<div id="conteudo_principal_portfolio">
+							<!-- <div id="Titulo_objeto">
+								Civilizações europeias
+							</div> -->
+							
+							<div class="imagem_objeto">
+
+								<iframe src=""></iframe>
+							
+							</div>
+						</div>
+					</div>
+						
+					<!-- Conteudo da aba de Atividade extra -->
+					<div id="Atividade">
+						<div id="menu_lateral_atividade">
+							<ul>
+								<!-- <li> Item 1 </li>
+								<li> Item 2 </li>
+								<li> Item 3 </li>
+								<li> Item 4 </li>
+								<li> Item 5 </li>
+								<li> Item 6 </li>
+								<li> Item 7 </li>
+								<li> </li>
+								<li> </li> -->
+							</ul>
+						</div>
+						
+						<div id="conteudo_principal_atividade">
+							<!-- <div id="Titulo_objeto">
+								Civilizações não europeias
+							</div> -->
+							
+							<div id="objeto_verificar" class="imagem_objeto">
+
+								<iframe src=""></iframe>
+
+							</div>
+
+							<div id="objeto_adicionar" class="imagem_objeto">
+							
+							<form id="Cadastro_Form_imagem_PA">
+							    <input type="hidden" id="id" name="id" />
+							    <input type="hidden" id="action" name="action" value="create" />
+							    <input type="hidden" id="Dados_Foto_Aluno" />
+							
+							<div id="container_Pesquisa">						
+                                <div class="celulaGrande"> 
+                                    <div class="infoG"> Atividade </div>
+									<div class="infoValueG" style="width: 80%">
+										<input type="text" class="" name="atividadeNova" id="atividadeNova" style="width: 100%">
+									</div>
+                                </div>
+                                
+                                <div style="margin-bottom: 14%; color: #666">
+                                    <div class="infoGTipo"> Categoria</div>
+                                    <div id="opcoesCategoria">
+                                    	<!--  <div class="infoValueP BorderBottom " style="height: 40px"> Público </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 40px " value="0"> </div>
+                                    	<div class="infoValueP BorderBottom" style="height: 40px"> Privado </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 40px" value="1"> </div>-->
+                                    </div>
+								</div>
+                                
+                                <div id="Tipo">
+                                    <div class="infoGTipo"> Tipo de Arquivo</div>
+                                    <div class="infoValueP "> Vídeo </div> <div class="inputImg tipoP " value="video" onchange="carregaForm()"> </div>
+                                    <div class="infoValueP"> Áudio </div> <div class="inputImg tipoP " value="audio" onchange="carregaForm()"> </div>
+									<div class="infoValueP" style="background: none;border: none;"> </div> 
+                                    <div style="background:none;border: none; cursor:default"  class="inputImg tipoP vazio" id="3"> </div>
+                                    <div class="infoValueP BorderBottom"> Imagem </div> <div class="inputImg tipoP BorderBottom" value="imagem" onchange="carregaForm()"> </div>
+                                    <div class="infoValueP BorderBottom"> Arquivo </div> <div class="inputImg tipoP BorderBottom" value="arquivo" onchange="carregaForm()"> </div>
+									<div class="infoValueP" style="background: none;border: none;"> </div> 
+                                    <div style="background:none;border: none; cursor:default"  class="inputImg tipoP vazio" id="3"> </div>
+                                </div>								
+									<div class="celulaGrande" id="link" style="display:none">
+								   	<div class="infoG"> Link </div>
+									<div class="infoValueG" style="width: 80%">
+										<input type="text" class="" name="linkVideo" id="linkVideo" style="width: 100%">
+									</div>
+								</div>								
+								<div class="celulaGrande" id='arquivo' style="display:none;height:190px; margin: 0px;">
+									<br/>
+									<div id="foto" style="margin: 0 38%;float:none;"></div>
+								    <div id="LegendaUpload">Aguardando Arquivo</div>
+								</div>
+								
+								<!--<div><a href="#" id="bt_Buscar">Buscar</a></div>                            -->
+								<input type="button" id="btn_Sub_AE" value="Salvar" />                           
+                                
+                            </div>
+							
+								<input type="file" id="Arquivo_Foto_Aluno" name="arquivo1" />
+							</div>
+						</div>
+					</div>
+						
+					<!-- Conteudo da aba das Fichas de finalização -->
+					<div id="Fichas">
+						<div id="menu_lateral_fichas">
+							<ul></ul>
+						</div>
+						
+						<div id="conteudo_principal_fichas">
+							<div class="imagem_objeto">
+        					 	<iframe src=""></iframe>
+							</div>
+						</div>
+					</div>
+                	</div>		
+
+                	<div id="portifolio_aluno_content">
+						
+                	</div>	
+						
+						<div id="back_black">
+							<div class="mensagem_Exclusao">
+								<div class="Mensagem_Texto">
+									
+									Você tem certeza que deseja excluir esta atividade?
+
+								</div>
+								<div class="Mensagem_Botoes">
+									<input type="button" class='btPadrao Fleft' id="btConfirma_Exclusao" value="Excluir" />
+									<input type="button" class='btPadrao Fright' id="btCancela_Exclusao" value="Cancelar" />
+								</div>
+							</div>
+						</div>
+
+              	</div>                
+                <div id="boxMensagemGeral"></div>
+                <div class="boxCalendario"></div>
+				<div class="boxGlobal"></div> 
+			</div>             
+		</div><!--Fim Conteudo-->     
+	</body>
+</html> 

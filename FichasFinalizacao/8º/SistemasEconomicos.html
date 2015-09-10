@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="../../img/Amorim_favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="CSS/padroesStyle.css"/>
+        <script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="JS/floodFill.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+        
+    </head>
+
+    <body>
+        <div id="Cabecalho"> 8º Ano | Sistemas Econômicos </div>
+        </br>
+
+        <div id="Conteudo_Total">
+
+            A. As frases abaixo referem-se aos conceitos de capitalismo e socialismo. Leia-as com atenção, em seguida, escreva (C) para aquela que se referir ao Capitalismo e (S) para a frase que se referir ao Socialismo:
+            </br></br>
+
+            <div class="itens">
+
+                1) Propriedade privada: Os meios de produção pertencem a uma pessoa ou a um grupo de pessoas. 
+                    <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>S</option>
+                    </select>
+                </br></br>
+                2) Economia planificada: As atividades econômicas devem seguir uma planificação idealizada e executada pelo Estado.
+                    <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>S</option>
+                    </select>
+                </br></br>
+                3) Lucro: É o principal objetivo da organização da produção. Para aumentar o lucro, os donos dos meios de produção procuram produzir suas mercadorias com o menor custo possível.
+                    <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>S</option>
+                    </select>
+                </br></br>
+                4) Sistema de organização política e econômica de uma sociedade que propõe a construção de uma sociedade sem classes e sem desigualdade.
+                    <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>S</option>
+                    </select>
+                </br></br>
+                5) A sociedade é marcada pela tensão entre duas classes sociais: a burguesia e o proletariado. A burguesia detém os meios de produção (máquinas, equipamentos, etc.), o proletariado (os trabalhadores), não possuem os meios de produção, vendem sua força de trabalho.
+                    <select class="list">
+                        <option></option>
+                        <option>C</option>
+                        <option>S</option>
+                    </select>
+                </br></br>
+            </div>
+
+            B. Leia os trechos de um texto e de duas letras de música, e responda às questões:
+
+            <div class="caixa_de_texto">
+                <div class="titulo">Texto 1:   A EXPLORAÇÃO CAPITALISTA (1968)</div>
+                </br></br>
+                “Todo operário sabe que é explorado. O que talvez não saiba é que esta exploração é da natureza do sistema capitalista, e que só a eliminação do sistema capitalista eliminará a exploração. (...)  Por isto o operário consciente não luta apenas contra o seu patrão, mas luta contra o sistema. E a luta contra o sistema é forte só quando é coletiva e organizada. (...) O operário vê e sabe que o seu trabalho enriquece o patrão, enquanto ele mesmo recebe um salário apenas suficiente para sobreviver. Isto quer dizer que o fruto do trabalho não beneficia quem trabalhou, mas beneficia o patrão, o capitalista, que se apropria dele. Pois bem, a apropriação do fruto do trabalho alheio é o que chamamos de exploração.”  
+                (...) O trabalhador não tem o que vender, além da sua força de trabalho, e precisa vendê-la, para sobreviver. Portanto, é forçado pela fome, ou mesmo pela repressão organizada, a concordar com o salário que os patrões propõem. Entretanto, no espaço de um dia, de uma semana ou de um mês de trabalho, o trabalhador produz muito mais do que o seu salário. Esta diferença, chamada mais-valia, é embolsada pela classe capitalista, e é a substância de toda a sua riqueza. Assim como o boi produz mais do que come, e enriquece o seu dono, a classe trabalhadora produz mais do que consome, e enriquece os proprietários dos meios de produção. Deste modo, os trabalhadores são bois do sistema capitalista: consomem apenas uma parte do que produzem, a parte necessária para que continuem vivos e trabalhando; a outra parte, a mais-valia, é apropriada pela burguesia, que vive às custas da classe trabalhadora (...)”
+                </br></br>
+                <div class="fonte">Fonte: Roberto SCHWARZ, “Didatismo e Literatura” in O Pai de Família. São Paulo, Companhia das Letras, 1989.</div>
+            </div>
+            </br>
+            1. De acordo com os trechos acima, quais são as duas classes sociais antagônicas do sistema capitalista?
+            <textarea class="texto"> </textarea>
+
+            </br></br>
+
+            <div class="exercicio">
+                2. Quais características do Capitalismo, as quais você estudou, refletem esta situação: “O operário vê e sabe que o seu trabalho enriquece o patrão, enquanto ele mesmo recebe um salário apenas suficiente para sobreviver.”? Explique:
+                <textarea class="texto"> </textarea>
+
+                </br></br>
+            </div>
+
+            C. As respostas para as seguintes frases encontram-se no caça-palavras, assinale-as:
+            <div class="itens">
+                1. Período de grande conflito ideológico entre o socialismo e o capitalismo.</br>
+                2. Maior potência capitalista.</br>
+                3. Sinônimo de trabalhadores.</br>
+                4. Aqueles que detêm os meios de produção.</br>
+                5. Todo capitalista busca.</br>
+                6. No capitalismo é comum a _________________.</br>
+                7. Quando o meio de produção passa para o controle do Estado.</br>
+                8. Quando o meio de produção passa para o controle privado.</br>
+                9. 3ª fase do capitalismo.</br>
+                10. País onde ocorreu a Revolução Industrial.</br>
+                11. Sistema econômico que se opõe ao sistema capitalista.</br>
+                12. Foi grande potência do capitalismo comercial.</br>
+            </div>
+            </br></br>
+
+            <center><div id="exe1Div" width="500" height="497"></div></center>
+            <script type="text/javascript">
+                var canvasDiv = document.getElementById('exe1Div');
+                canvasExe1 = document.createElement('canvas');
+                canvasExe1.setAttribute('width', 500);
+                canvasExe1.setAttribute('height', 497);
+                canvasExe1.setAttribute('id', 'canvasExe1');
+                canvasExe1.setAttribute('style', 'border: 2px solid black;');
+                canvasDiv.appendChild(canvasExe1);
+                if(typeof G_vmlCanvasManager != 'undefined') {
+                    canvasExe1 = G_vmlCanvasManager.initElement(canvasExe1);
+                }
+                context = canvasExe1.getContext("2d");
+                var img = new Image();
+                img.src = "img/Sis1.png";
+                img.onload = function(){
+                    context.drawImage(img, 0, 0, 500, 497);
+                }
+
+                $(function(){$("#canvasExe1").sketch();});
+            </script>
+
+            </br></br>
+
+
+        </div>
+    </body>
+
+</html>

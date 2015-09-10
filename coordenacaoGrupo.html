@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="CSS/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+		<link rel="stylesheet" type="text/css" href="css/coordenacaoGrupo.css" />
+		<!--Fim Style-->
+        
+		<!--Script JS-->
+		<script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script> 
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	  	<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/coordenacaoGrupoAdd.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		
+        <!--Carrega os dados do usuario logado-->
+        <script type="text/javascript" src="js/autenticador.js"></script> 
+        
+        <!--Fim JS-->
+		
+	</head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+                    
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#">Área da Coordenação</a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+
+				<!--Aluno | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>
+				
+			</div>
+            
+			<div id="Conteudo_Area">
+
+				<!--Coluna a esquerda-->
+
+				<div class="Conteudo_Coluna" id="Content_lateral">
+
+					<!--Menu lateral-->
+
+					<div id="Content_lateral_Menu"></div>
+
+					<!--Calendario-->                    
+					<div id="Content_lateral_Calendario">
+						<div id="datepicker"></div>
+						<div id="rodape_calendario">
+							<p id="presenca_prof">Apontar Presença grupo</p>
+						</div>						
+					</div>
+
+				</div>
+
+				<!--Coluna geral central-->
+                <!--bloqueio para a rolagem top-->
+                <div class="Conteudo_Coluna" id="content_central">
+					<!--Conteudo geral vai aqui quando acrescentar o html apagar o comentario-->
+					
+					<div id="linha1" class="linha">
+						<div class="celulaPequena">
+							<div class="infoP"> Ano estudo </div>
+							<div class="infoValueP">
+								<div class="styled-select">
+									<select></select>
+								</div>
+							</div>
+						</div>
+						<div class="celulaPequena ambasMargin">
+							<div class="infoP"> Período </div>
+							<div class="infoValueP">
+								<div class="styled-select">
+									<select></select>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					</br></br>
+					<div id="linha2" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> TUTOR </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha3" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> Aluno </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha4" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> Aluno </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha5" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> Aluno </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha6" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> Aluno </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha7" class="linha">
+						<div class="celulaGrande">
+							<div class="infoG"> Aluno </div>
+								<div class="infoValueG"> 
+									<div class="styled-select">
+										<select></select>
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<div id="linha8" class="linha">
+						<div id="btAdd"></div>
+					</div>
+					
+				</div>
+                <!--bloqueio para a rolagem bottom-->
+                <div class="boxCalendario"></div>
+				<div class="boxGlobal"></div>   
+			</div>             
+		</div><!--Fim Conteudo-->
+	</body>
+</html>

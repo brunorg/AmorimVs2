@@ -1,0 +1,88 @@
+﻿<script type="text/javascript">	
+
+/*Botões de fechar as caixas*/
+$(document).ready(function(e) {				
+	$(".btn_fechar").click(function(){
+		$("#presenca").hide();
+	});	
+	
+	$("#btn_fechar_evento").click(function(){
+		$("#Evento").hide();
+	});		
+	
+	/*Listagem de alunos do grupo*/
+	$.ajax({
+		type: "GET",
+		crossDomain: true,
+		url: path+"AlunoVariavel"			
+	}).then(function(data) {
+		var limite = data.length;
+		/*Aqui vai o grupo do usuário logado*/
+		var grupo = 1;
+		var HtmlContent = "";	 
+		for(var a = 0; a < limite; a++){
+			/*Condição para listar os alunos do grupo do usuario*/
+			if(grupo == data[a].grupo.idgrupo){
+				HtmlContent += '<input id="'+data[a].aluno.idAluno+'" type="checkbox" name="presenca_opcao" value="alu_1"  class="presenca_check">';
+				HtmlContent += '<label for="'+data[a].aluno.idAluno+'" id="'+data[a].aluno.idAluno+'"  class="css-label">'+data[a].aluno.nome+'</label>';
+				HtmlContent += '<br>';
+			}
+		}
+		$('.presenca_opcao').html(HtmlContent);
+	});
+
+		
+	$(".btn_pres").click(function(){
+		var elementos = $('.selecionado');
+		for (var i = 0; i < elementos.length; i++) {
+			var data = new Date();		
+			var diaCorrido = data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate();
+			/*$.ajax({
+				type: "POST",
+				crossDomain: true,
+				url: path+"Chamada",
+				data: "{'diaCorrido':'"+diaCorrido+"','idProfessor':'" +elementos[i].id+"','presenca':'1'}",
+				success: function(retorno){
+					alert(retorno);
+				},
+				error: function(retorno){
+					alert("Professor");
+				}        
+			});*/
+		}		
+	});	
+	
+	window.setTimeout(function(){selecionado();}, 1000);
+	
+	function selecionado(){
+		$(".css-label").click(function(){		
+			$(this).toggleClass("selecionado");			
+		});	
+	}	
+});
+
+
+</script>
+<div id="presenca">                	
+    <form> 
+        <div class="box_nome">                      
+            <p class="presenca_opcao">
+            	<!--O html é carregado aqui através do ajax-->
+            </p>
+        </div>
+        <div class="box_botao">
+            <p class="btn_fechar">X</p>
+            <p ><input class="btn_pres" type="button" value="CONFIRMA"></p>
+        </div>
+    </form>
+</div>
+<div id="Evento">
+    <p id="btn_fechar_evento">X</p>				
+    <div id="Foto_evento"></div>
+    <div id="Evento_Info">					
+        <div></div>
+        <div id="Titulo"></div>
+        <div id="EventDesc"></div>
+        <div id="Horario"><span></span><span></span></div>					
+    </div>				
+</div>

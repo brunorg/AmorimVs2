@@ -1,0 +1,63 @@
+.lacuna{
+    width: 90px;
+    height: 40px;
+    padding: 0px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+#campoA{
+    z-index: 2;
+    position: relative;
+    top: -346px;
+    left: 182px;
+}
+
+#campoB{
+    z-index: 2;
+    position: relative;
+    top: -368px;
+    left: 276px;
+}
+
+#campoC{
+    z-index: 2;
+    position: relative;
+    top: -346px;
+    left: 381px;
+}
+
+#campoD{
+    z-index: 2;
+    position: relative;
+    top: -238px;
+    left: 286px;
+}
+
+#campoE{
+    z-index: 2;
+    position: relative;
+    top: -130px;
+    left: 192px;
+}
+
+#campoF{
+    z-index: 2;
+    position: relative;
+    top: -54px;
+    left: -97px;
+}
+
+#campoG{
+    z-index: 2;
+    position: relative;
+    top: -130px;
+    left: -386px;
+}
+
+#campoH{
+    z-index: 2;
+    position: relative;
+    top: -238px;
+    left: -482px;
+}

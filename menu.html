@@ -1,0 +1,27 @@
+﻿<script type="text/javascript">
+    $(document).ready(function($){
+		
+        var url = window.location.href;
+	    var retorno = url.split("/"); 
+		var classe = $('.Content_lateral_Menu_Opcao a[href="'+retorno[5]+'"]').attr("class");
+		
+        $('.Content_lateral_Menu_Opcao a[href="'+retorno[5]+'"]').addClass(classe+'-active');
+    });
+</script>
+
+<!--Menu lateral-->
+<div class="Content_lateral_Menu_Opcao">
+    <a href="planoDeEstudo.html" class="plano">Plano de estudo</a>
+</div>
+<div class="Content_lateral_Menu_Opcao">
+    <a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>
+</div>
+<div class="Content_lateral_Menu_Opcao">
+    <a href="roteirosAluno.html" class="roteiros">Roteiros</a>
+</div>
+<div class="Content_lateral_Menu_Opcao">
+    <a href="forum.html" class="forum">Fórum</a>
+</div>
+<div class="Content_lateral_Menu_Opcao">
+    <a href="mensagens.html" class="mensagens">Mensagens</a>
+</div>

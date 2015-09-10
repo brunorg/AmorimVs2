@@ -1,0 +1,17 @@
+.assinalar_exe input{
+    width: 82px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid black;
+    text-align: left;
+    position: relative;
+    background-color: white;
+    color: #FF0000;
+    font-weight: bolder;
+}
+
+@media print{
+    .assinalar_exe input{
+        border: none;
+    }
+}
