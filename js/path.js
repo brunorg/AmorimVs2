@@ -1,6 +1,6 @@
 //Path aponta para o banco 'amorim_testV2' 
 //muito cuidado ao alterar este script
-var path = "http://plataformaamorim.org/WebServicePlataformaAmorimTesteV2/";
+var path = "http://plataformaamorim.org/WebServicePlataformaAmorimTeste/";
 
 function loading(estado) {
     if(estado == "inicial"){
