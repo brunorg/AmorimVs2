@@ -204,7 +204,7 @@ function CarregaServicoMensagens(){
 
 //Carrega a tabela PlanejamentoRoteiro
 
-function CarregaServicoPlanejamentoRoteiro()
+/*function CarregaServicoPlanejamentoRoteiro()
 {
 
 	HtmlContent="";
@@ -279,7 +279,7 @@ function CarregaServicoPlanejamentoRoteiro()
 	{
 		ordenaPorRoteiro(servicePlanejamentoRoteiro);
 	}
-}
+}*/
 
 
 
@@ -410,6 +410,81 @@ function AtivaBotoesPortfolio(){
 	});
 
 }
+//------------------------------------------------------------------------------------------------------------------------
+
+//Preencher Mural
+function CarregarMural() {
+	var muralNomes = ["Luciana Caparro", "Massumi", "Cássia"];
+	var muralData = "23/02/2014";
+	var muralHorario = "10:40";
+	var muralMsgs = [
+		"A partir de maio as oficinas de matemática serão na sala de informática.",
+		"Para a próxima aula tragam garrafas pet e tampas de plástico colorido.",
+		"Hoje faremos uma contação de histórias na sala de aula."
+	];
+
+	for (var i = 0; i < muralNomes.length; i++) {
+		var muralLinha = '<div class="Mural_Conteudo_Linha">'+
+					'<div class="Mural_Linha_Cabecalho">'+
+						'<span class="Mural_Nome">'+muralNomes[i]+'</span>'+
+						'<span class="Mural_Data"> '+muralData+'</span>'+
+						'<span class="Mural_Horario"> '+muralHorario+'</span>'+
+					'</div>'+
+					'<div class="Mural_Linha_Texto">'+
+						'<p class="Mural_Texto">'+muralMsgs[i]+'</p>'+
+					'</div>'+
+				'</div>';
+		$("#Mural_Conteudo_Container").append(muralLinha);
+	};
+};
+//------------------------------------------------------------------------------------------------------------------------
+
+//Preencher Plano de Estudos
+function CarregarPlanos() {
+	var planoNome = "As transformações dos materiais";
+	for (var i = 0; i < 5; i++) {
+		var planoLinha = '<div class="PlanoEstudo_Linha">'+
+							'<div class="PlanoEstudo_Linha_Cabecalho">'+
+								'<p class="PlanoEstudo_Nome">'+planoNome+'</p>'+
+							'</div>'+
+							'<div class="PlanoEstudo_Linha_Conteudo">'+
+								'<div class="PlanoEstudo_Num iniciado revisado">1</div>'+
+								'<div class="PlanoEstudo_Num iniciado">2</div>'+
+								'<div class="PlanoEstudo_Num iniciado">3</div>'+
+								'<div class="PlanoEstudo_Num iniciado">4</div>'+
+								'<div class="PlanoEstudo_Num iniciado">5</div>'+
+								'<div class="PlanoEstudo_Num iniciado">6</div>'+
+							'</div>'+
+						'</div>';
+		$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
+	};
+};
+
+//------------------------------------------------------------------------------------------------------------------------
+
+//Preencher Oficinas
+function CarregarOficinas() {
+	var oficinasNomes = ["Matematica", "Leitura_Escrita", "Artes", "Ingles", "Matematica", "Leitura_Escrita", "Artes", "Ingles"];
+	var oficinasTemas = [
+		"ADIÇÃO COM NÚMEROS INTEIROS",
+		"CONTOS BRASILEIROS",
+		"MOLDAGEM COM ARGILA",
+		"ANIMALS",
+		"ADIÇÃO COM NÚMEROS INTEIROS",
+		"CONTOS BRASILEIROS",
+		"MOLDAGEM COM ARGILA",
+		"ANIMALS"
+	];
+	for (var i = 0; i <= oficinasNomes.length*2; i++) {
+		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha">' +
+					'<div class="Oficina_Nome" id="Oficina_Nome_'+oficinasNomes[i]+'">'+oficinasNomes[i].toUpperCase()+'</div>'+
+					'<div class="Oficina_Tema" id="Oficina_Tema_'+oficinasNomes[i]+'">'+
+						'<p class="Oficina_Tema_Texto">'+oficinasTemas[i]+'</p>'+
+					'</div>'+
+				'</div>';
+		$(".Oficinas_Conteudo_Container").append(oficinaLinha);
+	};
+};
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -424,8 +499,10 @@ $(document).ready(function() {
 
 	CarregaServicoCalendarioEventos();
 	CarregaServicoMensagens();
-	CarregaServicoPlanejamentoRoteiro();
+	CarregarMural();
+	CarregarPlanos();
 	CarregaServicoProducaoAluno();
+	CarregarOficinas()
 	AtivaBotoesPortfolio();
 
 });
