@@ -58,37 +58,45 @@ $(document).ready(function(){
 											'<a href="recursosAprendizagem.html" class="recurso">Recursos de aprendizagem</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
-											'<a href="roteirosAluno.html" class="roteiros">Roteiros</a>'+
+											'<a href="tutoriaAluno.html" class="tutoria">Tutoria</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
-											'<a href="forum.html" class="forum">Fórum</a>'+
+											'<a href="oficinas.html" class="oficinas">Oficinas</a>'+
+										'</div>'+
+										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											'<a href="producoesAluno.html" class="prodAluno">Produções do aluno</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
 											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
 										'</div>'+
-										'<div class="Content_lateral_Menu_Opcao col-2 col-height" id="menuCalendario" style="display: block">'+
-											'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
+										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											'<a href="forum.html" class="forum">Fórum</a>'+
 										'</div>';
 			        }
 			        else
 			        {
-			            menu = '<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="planoDeEstudo.html" class="plano">Plano de estudo</a>'+
+			            menu = '<div class="Content_lateral_Menu_Opcao plano">'+
+									'<a href="planoDeEstudo.html">Plano de estudo</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
+								'<div class="Content_lateral_Menu_Opcao rows2 recurso">'+
+									'<a href="recursosAprendizagem.html"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="roteirosAluno.html" class="roteiros">Roteiros</a>'+
+								'<div class="Content_lateral_Menu_Opcao tutoria">'+
+									'<a href="tutoriaAluno.html">Tutoria</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="forum.html" class="forum">Fórum</a>'+
+								'<div class="Content_lateral_Menu_Opcao oficinas">'+
+									'<a href="oficinas.html">Oficinas</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
+								'<div class="Content_lateral_Menu_Opcao prodAluno">'+
+									'<a href="producoesAluno.html">Produções do aluno</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao" id="menuCalendario">'+
-									'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
+								'<div class="Content_lateral_Menu_Opcao mensagens">'+
+									'<div class="label" id="num_msg_nLidas"></div>'+ // <-- Essa linha gera os labels
+									'<a href="mensagens.html">Mensagens</a>'+
+								'</div>'+
+								'<div class="Content_lateral_Menu_Opcao forum">'+
+									'<div class="label" id="num_forum_nLidas"></div>'+ // <-- Essa linha gera os labels
+									'<a href="forum.html">Fórum</a>'+
 								'</div>';
 			        }
 

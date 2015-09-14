@@ -48,7 +48,9 @@ html, body
 			height:36px;
 			float:left;
 			padding-top: 7px; 
-			padding-left:10px;
+		    padding-left: 76px;
+		    background: url(../img/logo_icon_sm.png) no-repeat;
+		    background-position: 40px 50%;
 		}
 
 		#Cabecalho_Menu_Area_Menu2{
@@ -56,6 +58,7 @@ html, body
 			height:36px;
 			float:right;
 			padding-top: 7px; 
+			margin-right: 40px;
 		}
 
 	#Cabecalho_Perfil_Area{
@@ -68,7 +71,6 @@ html, body
 			height: 100%;
 			width:10%;
 			float:left;
-			/*background-color: red;*/
 		}
 			#Cabecalho_Perfil_Area_Foto{
 				height: 86px;
@@ -149,211 +151,146 @@ html, body
 			}
 
 			.Content_lateral_Menu_Opcao{
-				width:100%;
-				height:75px;
-				margin-bottom:1px;
+				position: relative;
+				box-sizing: border-box;
+				float: left;
+				width: 100%;
+				max-width: 256px;
+				height: 50px;
+				margin-bottom: 1px;
 				background-color: rgba(2, 129, 141, 1);
+				font-size: 19px;
+				font-weight: 300;
+				text-decoration: none;
+				padding: 15px 10px 15px 70px;
+				word-break: keep-all;
+				background-repeat: no-repeat;
+				background-position: 21px 50%;
 			}
-		
+			
+			.rows2 { 
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			line-height: .95em;
+			}
+
+			.Content_lateral_Menu_Opcao a { color: #fff; text-decoration: none; }
+
+				.label {
+					position: absolute;
+				    width: 22px;
+				    height: 22px;
+				    left: 35px;
+				    top: 5px;
+				    background-color: #ff6b3f;
+				    color: #fff;
+				    font-size: 10px;
+				    letter-spacing: .5px;
+				    text-align: center;
+				    line-height: 10px;
+				    padding: 4.5px;
+				    border-radius: 50%;
+				}
+
 				/*Menu Plano de estudo*/
-				.Content_lateral_Menu_Opcao .plano{
-					background-image: url(../img/ic_plano-ativo.png);
-					background-repeat: no-repeat;
-					background-position: 21px 26px;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					padding: 26px 0px 25px 66px;
-				}
+				.plano { background-image: url(../img/ic_plano-ativo.png); }
 				
-				.Content_lateral_Menu_Opcao .plano:hover{
-					background-image: url(../img/ic_plano.png);					
-				}
+				.plano:hover { background-image: url(../img/ic_plano.png); }
 				
-				.Content_lateral_Menu_Opcao .plano-active{
+				.plano-active {
 					background-image: url(../img/ic_plano.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu Plano de estudo*/
 					
 				/*Menu recurso*/
-				.Content_lateral_Menu_Opcao .recurso{
-					background-image:url(../img/ic_livro-ativo.png);
-					background-repeat: no-repeat;
-					background-position: 21px 22px;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					padding: 12px 0px 25px 66px;
-				}
-				.Content_lateral_Menu_Opcao .recurso:hover{
-					background-image: url(../img/ic_livro.png);
-				}	
-				.Content_lateral_Menu_Opcao .recurso-active{
+				.recurso { background-image: url(../img/ic_livro-ativo.png); }
+
+				.recurso:hover { background-image: url(../img/ic_livro.png); }
+
+				.recurso-active {
 					background-image: url(../img/ic_livro.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}		
-				/*Fim menu recurso*/
 				
-				/*Menu roteiro*/
-				.Content_lateral_Menu_Opcao .roteiros{
-					background-image:url(../img/ic_roteiro-ativo.png);
-					background-repeat: no-repeat;
-					background-position:21px 22px;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					padding:25px 0px 25px 66px;
-				}	
-				.Content_lateral_Menu_Opcao .roteiros:hover{
-					background-image:url(../img/ic_roteiro.png);
+				/*Menu oficinas*/
+				.oficinas { background-image: url(../img/ic_oficinas.png); }
+
+				.oficinas:hover { background-image: url(../img/ic_oficinas-ativo.png); }
+
+				.oficinas-active {
+					background-image: url(../img/ic_roteiro.png);	
+					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				.Content_lateral_Menu_Opcao .roteiros-active{
+
+				/*Menu Produções do aluno*/
+				.prodAluno { background-image: url(../img/ic_prodAluno.png); }
+
+				.prodAluno:hover { background-image: url(../img/ic_prodAluno-ativo.png); }
+
+				.prodAluno-active {
 					background-image: url(../img/ic_roteiro.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}	
-				/*Fim menu roteiro*/	
 				
 				/*Menu forum*/
-				.Content_lateral_Menu_Opcao .forum{
-					background-image:url(../img/ic_forum-ativo.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 25px 26px;
-					padding: 25px 0px 25px 66px;
-				}								
-				.Content_lateral_Menu_Opcao .forum:hover{
-					background-image:url(../img/ic_forum.png);
-				}
-				.Content_lateral_Menu_Opcao .forum-active{
+				.forum { background-image: url(../img/ic_forum-ativo.png); }
+
+				.forum:hover { background-image: url(../img/ic_forum.png); }
+
+				.forum-active {
 					background-image: url(../img/ic_forum.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu forum*/
 				
 				/*Menu mensagens*/				
-				.Content_lateral_Menu_Opcao .mensagens{
-					background-image: url(../img/Ic_mensagens-ativo.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 21px 22px;
-					padding: 25px 0px 25px 66px;
-				}				
-				.Content_lateral_Menu_Opcao .mensagens:hover{
-					background-image: url(../img/ic_mensagens.png);
-				}
-				.Content_lateral_Menu_Opcao .mensagens-active{
+				.mensagens { background-image: url(../img/Ic_mensagens-ativo.png); }
+
+				.mensagens:hover { background-image: url(../img/ic_mensagens.png); }
+
+				.mensagens-active {
 					background-image: url(../img/ic_mensagens.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
-				}
-				/*Fim menu mensagem*/		
+				}		
 				
 				/*Menu Tutoria*/
-				.Content_lateral_Menu_Opcao .tutoria{
-					background-image: url(../img/bt_tutores_normal.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 21px 21px;
-					padding: 25px 0px 25px 66px;
-				}				
-				.Content_lateral_Menu_Opcao .tutoria:hover{
-					background-image: url(../img/bt_tutores_ativo.png);
-				}
-				.Content_lateral_Menu_Opcao .tutoria-active{
-					background-image: url(../img/bt_tutores_ativo.png);	
+				.tutoria { background-image: url(../img/ic_tutoria-ativo.png); }
+
+				.tutoria:hover { background-image: url(../img/ic_tutoria.png); }
+
+				.tutoria-active {
+					background-image: url(../img/ic_tutores_ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu Tutoria*/
 				
 				/*Menu Tutores*/
-				.Content_lateral_Menu_Opcao .tutores{
-					background-image: url(../img/bt_tutores_normal.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 21px 21px;
-					padding: 25px 0px 25px 66px;
-				}				
-				.Content_lateral_Menu_Opcao .tutores:hover{
-					background-image: url(../img/bt_tutores_ativo.png);
-				}
-				.Content_lateral_Menu_Opcao .tutores-active{
+				.tutores { background-image: url(../img/bt_tutores_normal.png); }
+
+				.tutores:hover { background-image: url(../img/bt_tutores_ativo.png); }
+
+				.tutores-active {
 					background-image: url(../img/bt_tutores_ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu Tutores*/
 				
 				/*Menu Grupos*/
-				.Content_lateral_Menu_Opcao .grupos{
-					background-image: url(../img/bt_grupo_normal.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 21px 26px;
-					padding: 25px 0px 25px 66px;
-				}				
-				.Content_lateral_Menu_Opcao .grupos:hover{
-					background-image: url(../img/bt_grupo_ativo.png);
-				}
-				.Content_lateral_Menu_Opcao .grupos-active{
+				.grupos { background-image: url(../img/bt_grupo_normal.png); }
+
+				.grupos:hover { background-image: url(../img/bt_grupo_ativo.png); }
+
+				.grupos-active {
 					background-image: url(../img/bt_grupo_ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu Grupos*/
 				
 				/*Menu Cadastro*/
-				.Content_lateral_Menu_Opcao .cadastro{
-					background-image: url(../img/ic_cadastro-ativo.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 15px 13px;
-					padding: 25px 0px 25px 66px;
-				}				
-				.Content_lateral_Menu_Opcao .cadastro:hover{
-					background-image: url(../img/ic_cadastro.png);
-				}
-				.Content_lateral_Menu_Opcao .cadastro-active{
+				.cadastro { background-image: url(../img/ic_cadastro-ativo.png); }
+
+				.cadastro:hover { background-image: url(../img/ic_cadastro.png); }
+
+				.cadastro-active {
 					background-image: url(../img/ic_cadastro.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
-				/*Fim menu Grupos*/
 				
 				/*Menu Agenda*/
 				.Content_lateral_Menu_Opcao .agenda{
@@ -366,7 +303,6 @@ html, body
 					font-size: 21px;
 					text-decoration: none;
 					background-position: 21px 20px;
-					padding: 25px 0px 25px 66px;
 				}				
 				.Content_lateral_Menu_Opcao .agenda:hover{
 					background-image: url(../img/agenda.png);
@@ -381,14 +317,7 @@ html, body
 				.Content_lateral_Menu_Opcao .presenca{
 					background-image: url(../img/presencas-ativo.png);
 					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
 					background-position: 14px 12px;
-					padding: 25px 0px 25px 66px;
 				}				
 				.Content_lateral_Menu_Opcao .presenca:hover{
 					background-image: url(../img/presencas.png);
@@ -403,14 +332,7 @@ html, body
 				.Content_lateral_Menu_Opcao .carteirinhas{
 					background-image: url(../img/ic_carteirinha-ativo.png);
 					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
 					background-position: 12px 11px;
-					padding: 25px 0px 25px 66px;
 				}				
 				.Content_lateral_Menu_Opcao .carteirinhas:hover{
 					background-image: url(../img/ic_carteirinha.png);
@@ -425,14 +347,7 @@ html, body
 				.Content_lateral_Menu_Opcao .notificacoes{
 					background-image: url(../img/ic_plano-ativo.png);
 					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
 					background-position: 21px 26px;
-					padding: 25px 0px 25px 66px;
 				}				
 				.Content_lateral_Menu_Opcao .notificacoes:hover{
 					background-image: url(../img/ic_plano.png);
