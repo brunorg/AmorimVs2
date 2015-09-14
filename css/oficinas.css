@@ -1,0 +1,94 @@
+html, body
+{
+	padding:0;
+	margin:0;
+}
+#lista_oficinas{
+	height: 55px;
+}
+table{
+	width:100%;
+}
+table tr{	
+	background:#EBEBE3;
+}
+table td{
+	width:122px;
+	height:27px; 
+	font-size:13px;
+	color:#78786B;
+	padding:0;
+}
+p{
+	padding:0;
+	margin:0;
+}
+.titulo_of{	
+	width: 100%;
+    height: 21px;
+    margin-left: 5px;
+    padding-top: 4px;
+}
+.barra_cor_of{
+	width:100%;
+	height:7px;
+}
+.of_Qdr{
+	width:49%;
+	height: 495px;
+	margin-top: 13px;
+}
+.cx_left{
+	float:left;
+	background:#EBEBE3;
+}
+.cx_right{
+	float:right;
+}
+.cx_conteudo{
+	width:100%;
+	height:251px;
+	padding:19px;
+}
+.cx_titulo{
+	margin-bottom:16px;
+	text-transform:uppercase;
+	color:#666666;
+	font-size: 18px;
+}
+.cx_foto{
+	width:226px;
+	margin-right:11px;
+	float: left;
+}
+.cx_texto{
+	float: right;
+    width: 190px;
+    height: 169px;
+}
+.cx_tema_1{
+	width:100%;
+	height:237px;
+	margin-bottom: 19px;
+	padding:18px;
+}
+.cx_tema_1 ul{
+	list-style:none;
+}
+.cx_tema_1 li{
+	margin-left: -41px;
+	height: 25px;
+}
+.tema_texto{
+	color:#666666;
+}
+.quadrado{
+	font-size: 25px;
+}
+.cx_tema_2{
+	width:100%;
+	height:237px;
+	padding:18px;
+}
+
+

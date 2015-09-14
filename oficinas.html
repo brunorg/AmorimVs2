@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Oficinas</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />			
+        <link rel="stylesheet" type="text/css" href="css/oficinas.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>  
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>  
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                                   
+        <script src="js/jquery-ui.js"></script>         
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>                     
+        <script type="text/javascript" src="js/autenticador.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+					window.location.assign("mRoteiros.html");
+			}); 
+        </script>    
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container">
+            
+            <!--Cabecalho 1 - Navegação-->
+			<div id="Cabecalho_Menu_Area">
+				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#" id="area_acesso"></a></div>
+				<div id="Cabecalho_Menu_Area_Menu2">
+					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+					<a href="javascript:history.back()">Voltar</a> | 
+					<a id="logout" href="#">Sair</a>
+				</div>	
+			</div>
+
+			<!--Perfil do usuário, neste caso, o aluno-->
+			<div id="Cabecalho_Perfil_Area">
+				<div id="Cabecalho_Perfil_Area_Foto_Content">
+					<!--Foto do usuário, neste caso, do aluno-->
+					<div id="Cabecalho_Perfil_Area_Foto"></div>
+				</div>
+				<!--Nome | Serie do usuário-->
+                <div id="Cabecalho_Perfil_Area_Descricao_Content">
+					<div id="Cabecalho_Perfil_Area_Descricao"></div>
+				</div>				
+			</div>            
+			<div id="Conteudo_Area"> 
+            	<!--Coluna a esquerda-->
+                <div class="Conteudo_Coluna" id="Content_lateral">                
+                    <!--Menu lateral-->
+                    <div id="Content_lateral_Menu"></div>
+                    <!--Calendario-->                    
+                    <div id="Content_lateral_Calendario">
+                        <div id="datepicker"></div>
+                        <div id="rodape_calendario">
+                            <p id="apontar">Apontar Presença grupo</p>
+                        </div>                      
+                    </div>
+                </div>
+            	<!--Coluna geral central-->			
+                <div class="Conteudo_Coluna" id="content_central">
+					<div id="box_oficinas">
+                    	<div id="lista_oficinas">
+                        	 <table>
+                                <tr>
+                                    <td>
+                                    	<p class="titulo_of">Educação Física</p> 
+                                        <p class="barra_cor_of" style="background:#F3835D;">&nbsp;</p>
+                                    </td>	
+                                    <td>
+                                    	<p class="titulo_of ">Matemátca</p>
+                                        <p class="barra_cor_of" style="background:#F35955;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Artes</p>                             
+                                    	<p class="barra_cor_of" style="background:#BF4C69;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Leitura e escrita</p>
+                                    	<p class="barra_cor_of" style="background:#765C92;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Latin</p>
+                                    	<p class="barra_cor_of" style="background:#37D1BB;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Consciência Fund</p>
+                                    	<p class="barra_cor_of" style="background:#1AA1E1;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Inglês</p>
+                                   		<p class="barra_cor_of" style="background:#3F5CA9;">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    	<p class="titulo_of">Música</p>
+                                    	<p class="barra_cor_of" style="background:#009E9D;">&nbsp;</p>
+                                    </td>
+                                </tr>
+                               <!-- <tr>
+                                	<td>
+                                    	<p class="titulo_of">Música</p>
+                                    	<p class="barra_cor_of" style="background:#009E9D;">&nbsp;</p>
+                                    </td>
+                                </tr>-->
+                            </table>                       
+                        </div>
+                        <div class="of_Qdr cx_left">
+                        	<div class="cx_conteudo">
+                            	<p class="cx_titulo">Visita ao catavento</p>
+                                <p class="cx_foto">
+                                	<img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
+                                </p>
+                                <p class="cx_texto">
+                                	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                    Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                </p>
+                            </div>
+                            <div class="cx_conteudo">
+                            	<p class="cx_titulo">Visita ao catavento</p>
+                                <p class="cx_foto">
+                                	<img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
+                                </p>
+                                <p class="cx_texto">
+                                	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                    Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
+                                </p>
+                            </div>
+                        </div>
+                        <div class="of_Qdr cx_right"> 
+                        	<div class="cx_tema_1">
+                            	<p class="cx_titulo">Temas Abordados</p>
+                                <ul>
+                                	<li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                    <li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                    <li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                    <li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                    <li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                    <li>
+                                    	<span class="quadrado" style="color:#F35955">&#9632;</span>
+                                        <span class="tema_texto">Uma história muito antiga</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="cx_tema_2">
+                            	<p class="cx_titulo">Rotina</p>
+                                <p>
+                                	Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                    Ic tem nos diorehent quamus del in cum quae et 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="boxMensagemGeral" ></div>
+                <div class="boxGlobal"></div> 
+				<div class="boxCalendario"></div> 
+			</div>             
+		</div><!--Fim Conteudo-->                     
+	</body>
+</html>
