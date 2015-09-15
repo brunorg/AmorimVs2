@@ -37,6 +37,15 @@ h1,h2,h3,h4,h5,h6{
     height: auto;
     width: 100%;
     box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*border: 1px solid blue;*/
+}
+.boxLinha:first-of-type {
+	padding-top: 0;	
+}
+.boxLinha:last-of-type {
+	padding-bottom: 0;	
 }
 .boxLinha::after {
 	content: "";
@@ -46,8 +55,8 @@ h1,h2,h3,h4,h5,h6{
 div[class*="box_col"] {
 	float: left;
     /*border: 1px solid red;*/
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 div[class*="box_col"]:first-of-type {
 	padding-left: 0;
@@ -70,433 +79,223 @@ div[class*="box_col"]:last-of-type {
 
 /*-PORTIFOLIO-*/
 
-			#aluno_box_tiles
-			{
-				height: auto;
-				background-color: #C6DB87;
-				overflow: scroll;
-				overflow-y: hidden;
-				overflow-x: hidden;
-				padding: 18px;
-			}
+#aluno_box_tiles {
+	height: auto;
+	background-color: #C6DB87;
+	overflow: scroll;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	padding: 18px;
+}
 
 
-				#aluno_box_tiles_texto{
-					font-size:18px;
-					text-align:center;
-					width:750px;
-					height:auto;
-					margin-bottom:10px;
-					font-weight:bold;
-					color: rgb(102, 102, 102);
-				}
+#aluno_box_tiles_texto {
+	font-size:18px;
+	text-align:center;
+	width:750px;
+	height:auto;
+	margin-bottom:10px;
+	font-weight:bold;
+	color: rgb(102, 102, 102);
+}
+.barra {
+	top: 10px;
+	left: 20px;
+	position: relative;
+	height:37px;
+	width:50%;
+	z-index: 1;
+	float:left;
+}
+.Objetivos_Semana_Cabecalho_Nome {
+	height: 37px;
+	font-size: 22px;
+	z-index: 1;
+}
+.Objetivos_Semana_Cabecalho_Nome a{
+	color: #52853f;
+}
+.portfolio_secao {
+	width: 212px;
+	height: 180px;
+	float:left;
+	padding: 16px 15px;
+}
+.portfolio_secao_vazio {
+	width: 208px;
+	height: 189px;
+	float:left;
+	padding: 16px 15px;
+	background: url("../img/FotoPortifolioVazio.png");
+	background-position: -2px -5px;
+}
+.verde {
+	background-color: #90b957;
+	margin-right: 24px;
+}
+.verdeNoMargin {
+	background-color: #9EBA4C;
+}
+.roteiro {
+	width:100%;
+	height:85%;
+	background-color: rgb(242, 242, 238);
+	background-repeat: no-repeat;
+	background-position: center;		
+	clear: both;
+	text-align:center;
+	text-align: -webkit-center;
+}
 
-					.barra
-					{
-						top: 10px;
-						left: 20px;
-						position: relative;
-						height:37px;
-						width:50%;
-						z-index: 1;
-						float:left;
-					}
-					.Objetivos_Semana_Cabecalho_Nome {
-						position: absolute;
-						left: 19px;
-						height: 37px;
-						font-size: 22px;
-						color: rgb(102, 102, 102);
-						z-index: 1;
-					}
-
-					.portfolio_secao 
-					{
-						width: 212px;
-						height: 180px;
-						float:left;
-						padding: 16px 15px;
-					}
-
-					.portfolio_secao_vazio
-					{
-						width: 208px;
-						height: 189px;
-						float:left;
-						padding: 16px 15px;
-						background: url("../img/FotoPortifolioVazio.png");
-						background-position: -2px -5px;
-					}
-
-							.verde {
-								background-color: #9EBA4C;
-								margin-right: 24px;
-							}
-
-							.verdeNoMargin {
-							background-color: #9EBA4C;
-							}
-
-									.roteiro {
-										width:100%;
-										height:85%;
-										background-color: rgb(242, 242, 238);
-										background-repeat: no-repeat;
-										background-position: center;		
-										clear: both;
-										text-align:center;
-										text-align: -webkit-center;
-									}
-
-									.nome_roteiro {
-										width: 100%;
-										height: 20%;
-										margin-top: 5px;
-										float: left;
-										clear: both;
-										color: white;
-										font-size: 12px;
-									}
+.nome_roteiro {
+	width: 100%;
+	height: 20%;
+	margin-top: 5px;
+	float: left;
+	clear: both;
+	color: white;
+	font-size: 12px;
+}
 
 
 
-					.Block_Conteudo_Portifolio_Image
-					{
-						width: 450px;
-						height: 220px;
-						float: left;
-						background-size: auto 220px;
-						background-repeat: no-repeat;
-						background-image: url("../img/ilustra_portfolio.png");
-					}
+.Block_Conteudo_Portifolio_Image {
+	width: 450px;
+	height: 220px;
+	float: left;
+	background-size: auto 220px;
+	background-repeat: no-repeat;
+	background-image: url("../img/ilustra_portfolio.png");
+}
 
-					.upLi{margin: -6px 18px 0 0 !important;}
-/* Rotina Semanal*/	
-	#box_rotinaSemanal {
-		width: 100%;}
+.upLi{ margin: -6px 18px 0 0 !important; }
 
-		/*-ROTEIROS-*/
-											
-					#Objetivos_Semana
-					{
-							width: 100%;
-							height: auto;
-							margin-top: 24px;
-							float: left;
-							background-color: rgb(244, 123, 84);
-							padding: 18px;
-					}
-					#Objetivos_Semana > .Objetivos_Semana_Cabecalho > .Roteiros_Semana_Cabecalho_Nome {
-						color: #943b19;
-					}
-							.Objetivos_Semana_Cabecalho
-							{
-								height:39px;
-								width:100%;
-							}
+.SlidePort{
+	width: 574px !important;
+	padding: 0;
+}
+.Objetivos_Resultado_Desempenho{
+	background-color:rgb(190,221,145) !important;
+	width: 100%;
+	height: 256px;
+	padding: 18px;
+}
 
-									.Roteiros_Semana_Cabecalho_Nome
-									{
-										height:39px;
-										width:100%;
-										float:left;										
-										font-size: 22px;
-										color: rgb(102, 102, 102);
-									}
+#content_central{
+	padding: 36px 25px 36px 36px;
+}
 
-											.Objetivos_Semana_Cabecalho_Image
-											{
-												width:52px;
-												height:54px;
-												float:left;
-												background-image: url("../img/OS1.png");
-												background-repeat: no-repeat;
-												background-position: 0px 8px;
-											}
+#content_central_1{
+	overflow:hidden;
+}
 
-							.Objetivos_Semana_Conteudo
-							{
-								height:auto;
-							}
-								
-									#boxRoteiros {
-										width: 100%;
-										height: 197px;
-										overflow: auto;
-									}
+#content_central_1{
+	overflow:hidden;
+}
 
-									.Objetivos_Semana_Conteudo_Tarefas_Content
-									{
-											width:98%;
-											height:auto;	
-									}
+.microfiche-controls{
+	display: none !important;
+}
+.microfiche-film {
+	width: 500px !important;
+}
+.microfiche-screen{
+	height: 256px !important;
+}
+.example li {
+	height: 180px;
+	width: 212px;
+	display: block;
+	float: left;
+	margin: 18px 18px 0 0;
+	padding: 0;
+} 
 
-											.Objetivos_Semana_Conteudo_Tarefas
-											{
-												width:100%;
-												min-height: 62px;
-												height: auto;
-												background-color:#FCF9EF;
-												margin: 4px 0px;
-												padding: 6px 12px;
-											}
-											.Objetivos_Semana_Conteudo_Tarefas:first-of-type {
-												margin-top: 0;
-											}
+/* Rotina Semanal */
+#Rotina_Semanal {
+	width: 100%;
+	height: 256px;
+	background-color: rgb(184,226,231);
+	float: left;
+}
+#Rotina_Semanal_Nome {
+    height: 43px;
+    width: 100%;
+    font-size: 22px;
+    padding: 11px 0 0px 18px;
+}
+#Rotina_Semanal_Nome a {
+	color: #1c828c;
+	text-decoration: none;
+}
+table#Rotina_Semanal_Tabela {
+	width: 100%;
+	border: 1.5px solid #fff;
+	background-color: #fff;
+	text-align: center;
+	font-size: 12px;
+	border-spacing: 0;
+	border-collapse: none;
+}
+table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
+	height: 32px;
+	border: inherit;
+}
+.Rotina_Semanal_Linha_Recreio {
+	background-color: rgb(223,222,212)
+}
+table#Rotina_Semanal_Tabela>thead>tr {
+	background-color: #23BECD;
+	color: #fff;
+	height: 32px;
+	font-size: 15px;	
+}
+.Rotina_Semanal_btn_Seta {
+	background-color: #129fad;
+	cursor: pointer;
+}
+.Rotina_Semanal_Horario {
+	background-color: rgb(236,235,229);
+	color: #78776b;
+}
+.Rotina_Semanal_Materia { color: #fff; }
 
-												.Objetivos_Semana_Conteudo_Tarefas_Texto
-												{
-													font-size: 12px;
-													color: #88868B;
-													text-transform: uppercase;
-												}
+table#Rotina_Semanal_Tabela td, table#Rotina_Semanal_Tabela th { 
+	border: 1.5px solid #fff;
+	padding-left: 3px;
+    padding-right: 3px;
+    width: 95px;
+    line-height: 1em;
+}
 
-												.tabela_colorida_roteiro_Area_Aluno
-												{
-													float: left;
-													margin-top: 0px;
-													margin-right: 10px;
-												}
+table#Rotina_Semanal_Tabela td:first-of-type, table#Rotina_Semanal_Tabela th:first-of-type,
+table#Rotina_Semanal_Tabela td:last-of-type, table#Rotina_Semanal_Tabela th:last-of-type 
+{ 
+	width: 56px;
+}
 
-												.tabela_colorida_roteiro_Area_Aluno td:nth-child(1){
-													background-color: #8DC63F;
-												}
+tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 
-												/* .td_roteiro_numero_tabela{
-													background-color:#60c9d7;
-													color: #fff;
-													width: 28px !important;
-													height:27px;
-													text-align: center;
-													font-size:12px;
-													float:left;
-													padding-top: 5px;
-													border-right:1px #fff solid;
-												} */
+.Rotina_Pesquisa { background-color: #1c828e; }
 
-												.td_roteiro_verde{
-													background-color: rgb(141,198,63) !important;
-													width: 18px !important;
-													height: 18px  !important;
-													color: #fff;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1 solid;
-												}
+.Rotina_Artes { background-color: #bf4b69; }
 
-												.td_roteiro_verde_tk{
-													background-color: rgb(141,198,63) !important;
-													background-image:url(../img/R_check.png);
-													background-size: cover;
-													width: 18px !important;
-													height: 18px  !important;
-													color: transparent;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1 solid;
-												}
+.Rotina_Matematica { background-color: #f25954; }
 
-												.td_roteiro_branco{
-													background-color:#FCF9EF !important;
-													width: 18px !important;
-													height: 18px  !important;
-													text-align: center;
-													border: 0px #FCF5E1  solid;
-												}
+.Rotina_Leitura_Escrita { background-color: #755b91; }
 
-												.td_roteiro_laranja{
-													background-color: rgb(247,148,30)  !important;
-													width: 18px !important;
-													height: 18px  !important;
-													color: #fff;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1  solid;
-												}
+.Rotina_Ingles { background-color: #3f5ba8; }
 
-									.Objetivos_Semana_Conteudo_Grafico
-									{
-											width:88px;
-											height:194px;
-											background-color:#FCF9EF;
-											margin: 4px 0px 0px 0px;
-											float: right;
-											
-									}
+.Rotina_Roda_Conversa { background-color: #f68f46; }
 
-												#grafico1
-												{
-													background: url() no-repeat;
-													/*background-color: gainsboro;*/
-													background-color: #FCF9EF;
-												}
-												
-												#grafico2
-												{
-													background: url() no-repeat;
-													/*background-color: scrollbar;*/
-													background-color: #FCF9EF;
-												}
-												
-												#grafico1 p, #grafico2 p 
-												{
-													text-align: center;
-													margin-top: 12px;
-													margin-right: 5px;
-												}
-												
-												#grafico1 span
-												{
-													color: #C31A37;
-												}
-												#grafico2 span{
-													color: #6B66AD;
-												}
+.Rotina_Semanal_Professor { background-color: rgba(255, 255, 255, .5); }
 
-													/*Falme*/
+.Rotina_Semanal_Local { background-color: rgba(255, 255, 255, .7); }
 
-													.Grafico_Holder
-													{
-														width:100%;
-														height:100%;
-													}
-
-													/*EndFalme*/
-
-												.graficos_roteiros
-												{
-													width: 100%;
-													height: 50%;
-													margin-top: 0px;
-													float: right;
-													font-size: 9px;
-													text-align: center; 
-												}
-
-
-								    
-
-		/*-MENSAGENS-*/										
-		
-
-					#Mensagens {
-					    width: 100%;
-					    height: auto;
-					    min-height: 272px;
-					    float: left;
-					    margin-top: 24px;
-					    padding: 18px;
-					    background-color: #ffa659;
-					}
-
-						
-						.user{
-							margin: 0 0 6px 0;	
-						}
-						.Mensagens_Cabecalho_Nome
-							{
-								height:37px;
-								width:100%;
-								float:left;
-								font-size: 22px;
-								color: rgb(102, 102, 102);
-								background: url("../img/OS2.png") no-repeat;
-								background-position: 142px -2px;
-
-
-							}
-							
-							.Mensagens_Cabecalho_Nome a{
-								color: rgb(102, 102, 102);
-								text-decoration: none;
-							}
-
-								.Mensagens_Cabecalho_Imagem_Contador
-								{
-									width:23px;
-									height:23px;
-									border-radius: 50%;
-									background-color: rgb(255, 107, 64);
-									font-size: 12px;
-									color:white;
-									text-align: center;
-									margin-left: 173px;
-									margin-top: -30px;
-    								padding-top: 5px;
-								}
-
-						.mensagensTabela{
-							margin-top: 3px;
-							border-spacing: 4px;
-							width: 100%;
-						}
-
-						.Mensagens_Conteudo
-						{
-							width:100%;
-							height:auto;
-							font-size: 12px;
-						}
-
-							#mensagensTabela 
-							{
-							width: 100%;
-							color: #88868B;
-							border-collapse: separate;
-							border-spacing: 0px 4px;
-							}
-
-
-
-							.td_mensagens1
-							{
-								padding: 10px;
-								background: rgb(247, 242, 222);
-								border: 0px 0px;
-							}
-
-
-							.td_mensagens2
-							{
-								padding: 10px;
-								background: rgb(241, 229, 192);
-								border: 0px 0px;
-							}
-
-							.Mensagens_Conteudo_Aviso
-							{
-								background-image: url("../img/OAviso.png");
-								background-repeat: no-repeat;
-								background-position: 4.5px 10px;
-							}
-
-				
-							.Mensagens_Conteudo_Aviso
-							{
-								background-image: url("../img/OAviso.png");
-								background-repeat: no-repeat;
-								background-position: 4.5px 10px;
-							}
-							.dataMsg{
-								padding: 10px !important;
-								 width: 181px;
-							}
-
-
-							.mensagensTabela tr:nth-child(odd) > .dataMsg{
-								background-color:rgb(247, 242, 222);
-							}	
-
-
-							.mensagensTabela tr:nth-child(even) > .dataMsg{
-								background-color:rgb(241, 229, 192);
-							}
 /* MURAL */
 	#Mural {
-		box-sizing: border-box;
 		width: 100%;
 		height: 273px;
-		margin-top: 24px;
 		background-color: rgb(244, 123, 84);
 		float: left;
 		padding: 18px;
@@ -556,10 +355,9 @@ div[class*="box_col"]:last-of-type {
 
 /* PLANO DE ESTUDOS */
 	#PlanoEstudo {
-		box-sizing: border-box;
 		width: 100%;
 	    height: 273px;
-	    margin-top: 24px;
+	 
 	    background-color: #ffa659;
         float: left;
 		padding: 18px;
@@ -583,7 +381,6 @@ div[class*="box_col"]:last-of-type {
 		overflow: auto;
 	}
 	.PlanoEstudo_Linha {
-		box-sizing: border-box;
 		width: 98%;
 		height: 50px;
 		margin: 5px 0;
@@ -606,7 +403,6 @@ div[class*="box_col"]:last-of-type {
     	margin-bottom: 5px;
 	}
 	.PlanoEstudo_Num {
-	    box-sizing: border-box;
 	    text-align: center;
 	    display: inline-block;
 	    width: 26px;
@@ -626,10 +422,9 @@ div[class*="box_col"]:last-of-type {
 
 /* OFICINAS */
 	#Oficinas {
-		box-sizing: border-box;
 		width: 100%;
 	    height: 273px;
-	    margin-top: 24px;
+	 
 	    background-color: #d6d6c9;
         float: left;
 		padding: 18px;
@@ -649,7 +444,6 @@ div[class*="box_col"]:last-of-type {
 		overflow: auto;
 	}
 	.Oficinas_Conteudo_Linha {
-		box-sizing: border-box;
 		width: 98%;
 		height: 44px;
 		margin: 5px 0;
@@ -664,7 +458,6 @@ div[class*="box_col"]:last-of-type {
 		width: 100%;
 	}
 	.Oficina_Nome {
-		box-sizing: border-box;
 		letter-spacing: .5px;
 		padding: 5px;
 		height: 22px;
@@ -684,7 +477,6 @@ div[class*="box_col"]:last-of-type {
 			background-color: #3f5ba8;
 		}
 	.Oficina_Tema {
-		box-sizing: border-box;
 		height: 22px;
 		padding: 5px;
 	}
@@ -693,126 +485,19 @@ div[class*="box_col"]:last-of-type {
 		color: #000;
 		margin: 0;
 	}
-		#Oficina_Tema_Matematica {
-			background-color: rgb(251, 205, 204);
-		}
-		#Oficina_Tema_Leitura_Escrita {
-			background-color: rgb(214, 206, 221);
-		}
-		#Oficina_Tema_Artes {
-			background-color: rgb(236, 201, 210);
-		}
-		#Oficina_Tema_Ingles {
-			background-color: rgb(197, 206, 229);
-		}
+		#Oficina_Tema_Matematica { background-color: rgb(251, 205, 204); }
+
+		#Oficina_Tema_Leitura_Escrita { background-color: rgb(214, 206, 221); }
+
+		#Oficina_Tema_Artes { background-color: rgb(236, 201, 210); }
+
+		#Oficina_Tema_Ingles { background-color: rgb(197, 206, 229); }
+
 	#mCSB_4_scrollbar_vertical {
 		right: -5px;
 	}
 
-/* COLUNA3 -----------------------------------------------------------------------------------------*/
-
-		#Coluna3
-		{
-			background-color: rgba(129, 205, 211, 0.7);
-			margin-top: 36px;
-			height: 560px;
-			padding: 18px;
-		}
-
-        /*-AGENDA-*/	
-
-
-				#Conteudo_Coluna3_Agenda_Content
-                {
-                    width: 100%;
-                    height: auto;
-                }
-
-                    #Conteudo_Coluna3_Agenda_Content_Nome
-				    {
-                        height:37px;
-						width:100%;
-						float:left;
-						font-size: 22px;
-						color: rgb(102, 102, 102);
-
-				    }
-
-                    .Conteudo_Coluna3_Agenda_Evento
-					{
-						height:auto;
-						width:100%;
-						background-color: white;
-						margin-top: 5px;
-					}
-
-                    #box_agenda
-                    {
-				      position: relative;
-				      height: 483px;
-				      width: 106%;
-				      overflow-y: auto;       
-				    }
-				      
-                    #Conteudo_Coluna3_Agenda_Evento_Content
-                    {
-				      position: relative;
-				      height: auto;
-				      width:95%%;
-			        }
-
-
-						.Conteudo_Coluna3_Agenda_Evento_Titulo
-						{
-							width:100%;
-							height:auto;
-							color:rgb(219, 94, 49);
-							font-size: 18px;
-							padding: 10px 10px 5px 0px;
-						}
-
-						.Conteudo_Coluna3_Agenda_Evento_Conteudo
-						{
-							width:100%;
-							height:auto;
-							color: rgb(102, 102, 102);
-							font-size: 18px;
-							padding: 10px;
-						}
-
-
-		.SlidePort{
-			width: 700px;
-			padding: 0;
-/*			width: auto;
-			padding-right: 100%;*/
-		}
-		.Objetivos_Resultado_Desempenho{
-			background-color:rgb(200,220,141) !important;
-			width: 100%;
-			height: 256px;
-		}
-
-		#content_central{
-				padding: 36px 25px 36px 36px;
-			}
-
-			#content_central_1{
-				overflow:hidden;
-			}
-
-		#content_central_1{
-		overflow:hidden;
-	}
-
-.microfiche-controls{
-	display: none !important;
-}
-
-.microfiche-screen{
-	height: 256px !important;
-}
-
+/* -------------------------------------------------------------------- */
 
 .appear{
 	display: block !important;
@@ -868,8 +553,6 @@ div[class*="box_col"]:last-of-type {
 		overflow: auto;
 	}
 	.Objetivos_Semana_Cabecalho_Nome {
-		left:20px;
-		position: absolute;
 		height: 37px;
 		font-size: 22px;
 		color: rgb(102, 102, 102);
@@ -1071,5 +754,5 @@ div[class*="box_col"]:last-of-type {
 .microfiche-controls {
     position: absolute;
     bottom: 441px;
-    left: 634px;
+    left: 540px;
 }
