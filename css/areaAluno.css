@@ -170,6 +170,16 @@ div[class*="box_col"]:last-of-type {
 
 .upLi{ margin: -6px 18px 0 0 !important; }
 
+#bullets {
+	width: 100% !important;
+	height: 184px !important;
+}
+
+.microfiche-screen{
+	height: 100% !important;
+	width: 100% !important;
+}
+
 .SlidePort{
 	width: 574px !important;
 	padding: 0;
@@ -199,9 +209,7 @@ div[class*="box_col"]:last-of-type {
 .microfiche-film {
 	width: 500px !important;
 }
-.microfiche-screen{
-	height: 256px !important;
-}
+
 .example li {
 	height: 180px;
 	width: 212px;
