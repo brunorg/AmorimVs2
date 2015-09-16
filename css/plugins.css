@@ -197,6 +197,7 @@
 	text-align: center;
 	padding: 0;
 	border: 0;
+	margin-top:88px;
 }	
 #calendario_relatorio .ui-datepicker .ui-datepicker-next {
 	background-repeat:no-repeat !important;
