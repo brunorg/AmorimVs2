@@ -35,8 +35,6 @@
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function () {
-
-	CarregaServicoCalendarioEventos();
 	CarregaServicoMural();
 
 	if (verificaTutor(IDProfessor) == 1) {	
@@ -61,63 +59,6 @@ $(document).ready(function () {
 });
 
 //------------------------------------------------------------------------------------------------------------------------
-
-//Carrega a tabela CalendarioEventos
-
-function CarregaServicoCalendarioEventos()
-{
-	HtmlContent = "";
-	var dataCalendario 	=	getData("Calendario/Evento", 46);
-
-	for(var a = 0; a < dataCalendario.length; a++)
-	{			
-		if (a<5){
-		HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento">';
-
-		HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Conteudo">'+ dataCalendario[a].evento;
-		HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Titulo">' + 
-		dataCalendario[a].dataInicio.substring(8, 10)+"/"+ dataCalendario[a].dataInicio.substring(5, 7)+"/"+ dataCalendario[a].dataInicio.substring(0, 4)+
-		'</div>';
-		HtmlContent +='<div class="Conteudo_Coluna3_Agenda_Evento_Hora">'+
-			dataCalendario[a].hora+
-		'</div>';
-				
-		if(dataCalendario[a].imagem != "" && dataCalendario[a].imagem != null && dataCalendario[a].imagem != undefined){HtmlContent +='<br /><img src="'+dataCalendario[a].imagem+'" width="80%" style="margin-left: 14px;"/>';}
-		HtmlContent+='</div>';
-
-		HtmlContent += "</div>";
-		}
-		else{
-
-		 HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento AgendaNulo">';
-
-		HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Titulo">' + 
-		dataCalendario[a].dataInicio.substring(8, 10)+"/"+ dataCalendario[a].dataInicio.substring(5, 7)+"/"+ dataCalendario[a].dataInicio.substring(0, 4)+ '</div>';
-
-
-		HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Conteudo">'+ dataCalendario[a].evento;
-		if(dataCalendario[a].imagem != "" && dataCalendario[a].imagem != null && dataCalendario[a].imagem != undefined){HtmlContent +='<br />'+dataCalendario[a].imagem;}
-		HtmlContent+='</div>';
-
-		HtmlContent += "</div>";
-
-		}
-	}
-	
-	$('#Light_Eventos_Tabela').append(HtmlContent);
-	OrdenarPor("Conteudo_Coluna3_Agenda_Evento_Titulo");
-	$(".Conteudo_Coluna3_Agenda_Evento").css("display","none");
-	for(var l = 0; l < 5; l++)
-	{
-		if (document.getElementsByClassName("Conteudo_Coluna3_Agenda_Evento")[l]!=undefined)
-		{
-			document.getElementsByClassName("Conteudo_Coluna3_Agenda_Evento")[l].style.display="block";
-		}
-
-	}
-}
-
-
 function CarregaServicoMural()
 {
 	HtmlContent = "";

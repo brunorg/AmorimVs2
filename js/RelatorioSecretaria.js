@@ -149,6 +149,7 @@ function gerarRelatorio(){
 											'<input value="'+d[aux[i][1]+j]+'" maxlength="200" title="Quantidade de caracteres permitidos: 200" disabled></input>'+
 										'</div>'+
 									'</div>';
+									console.log(campos[j]);
 						}
 
 						html += 	'<div style="clear:both"></div>'+    

@@ -240,10 +240,15 @@ $(document).ready(function() {
 		axis:"y" // vertical and horizontal scrollbar
 	});	
 	
-	$("#boxRoteiros").mCustomScrollbar({
+	$("#Mural_Conteudo").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
 	});
-
+	$(".Oficinas_Conteudo").mCustomScrollbar({
+		axis:"y" // vertical scrollbar
+	})
+	$("#PlanoEstudo_Conteudo").mCustomScrollbar({
+		axis:"y" // vertical scrollbar
+	})
 	$(".Light_Eventos_Conteudo").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
 	});

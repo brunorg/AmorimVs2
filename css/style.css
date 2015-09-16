@@ -159,17 +159,18 @@ html, body
 				height: 50px;
 				margin-bottom: 1px;
 				background-color: rgba(2, 129, 141, 1);
-				font-size: 19px;
+				font-size: 17px;
 				font-weight: 300;
 				text-decoration: none;
-				padding: 15px 10px 15px 70px;
+				padding: 10px 10px 15px 70px;
 				word-break: keep-all;
 				background-repeat: no-repeat;
 				background-position: 21px 50%;
+				background-size:25px;
 			}
 			
 			.rows2 { 
-    			padding-top: 5px;
+    			padding-top: 3px;
     			padding-bottom: 5px;
     			line-height: .95em;
 			}
@@ -178,8 +179,8 @@ html, body
 
 				.label {
 					position: absolute;
-				    width: 22px;
-				    height: 22px;
+				    width: 15px;
+				    height: 15px;
 				    left: 35px;
 				    top: 5px;
 				    background-color: #ff6b3f;
@@ -223,7 +224,9 @@ html, body
 				}
 
 				/*Menu Produções do aluno*/
-				.prodAluno { background-image: url(../img/ic_prodAluno.png); }
+				.prodAluno { background-image: url(../img/ic_prodAluno.png);
+						background-size:21px;
+				 }
 
 				.prodAluno:hover { background-image: url(../img/ic_prodAluno-ativo.png); }
 
@@ -1987,7 +1990,7 @@ font-family: "proxima-nova",sans-serif;
 	.Content_lateral_Menu_Opcao .plano {
 		background-position: 8px 11px;
 		font-size: 12px;
-		padding: 12px 0px 0px 28px;
+		padding: 10px 0px 0px 28px;
 		width: 126px;
 		height: 38px;
 		background-size: 14% auto;
@@ -2315,7 +2318,7 @@ font-family: "proxima-nova",sans-serif;
 		height: 56%;
 	}
 	.Content_lateral_Menu_Opcao {
-		height: 18%;
+		height: 13%;
 	}
 	.Content_lateral_Menu_Opcao .plano {
 		background-position: 22px 13px;
@@ -2726,7 +2729,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 	#Content_lateral_Menu {
 		width: 100%;
-		height: 56%;
+		height: 40%;
 	}
 	.Content_lateral_Menu_Opcao {
 		height: 18%;
