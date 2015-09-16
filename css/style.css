@@ -147,7 +147,7 @@ html, body
 
 			#Content_lateral_Menu{
 				width:100%;
-				height:63%;
+				height:47%;
 			}
 
 			.Content_lateral_Menu_Opcao{
@@ -194,7 +194,8 @@ html, body
 				}
 
 				/*Menu Plano de estudo*/
-				.plano { background-image: url(../img/ic_plano-ativo.png); }
+				.plano { background-image: url(../img/ic_plano-ativo.png);
+					 }
 				
 				.plano:hover { background-image: url(../img/ic_plano.png); }
 				
@@ -204,17 +205,29 @@ html, body
 				}
 					
 				/*Menu recurso*/
-				.recurso { background-image: url(../img/ic_livro-ativo.png); }
+				.recurso { background-image: url(../img/ic_livro-ativo.png); 
+					}
 
 				.recurso:hover { background-image: url(../img/ic_livro.png); }
 
 				.recurso-active {
 					background-image: url(../img/ic_livro.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
+				}	
+				/* Menu roteiros */
+				.roteiros { background-image: url(../img/ic_tutoria-ativo.png); 
+					}
+
+				.roteiros:hover { background-image:  url(../img/ic_tutoria-ativo.png) }
+
+				.roteiros-active {
+					background-image:  url(../img/ic_tutoria-ativo.png);	
+					background-color: rgba(22, 190, 207, 0.79);				
 				}		
 				
 				/*Menu oficinas*/
-				.oficinas { background-image: url(../img/ic_oficinas.png); }
+				.oficinas { background-image: url(../img/ic_oficinas.png); 
+					}
 
 				.oficinas:hover { background-image: url(../img/ic_oficinas-ativo.png); }
 
@@ -225,7 +238,7 @@ html, body
 
 				/*Menu Produções do aluno*/
 				.prodAluno { background-image: url(../img/ic_prodAluno.png);
-						background-size:21px;
+						
 				 }
 
 				.prodAluno:hover { background-image: url(../img/ic_prodAluno-ativo.png); }
@@ -236,7 +249,8 @@ html, body
 				}	
 				
 				/*Menu forum*/
-				.forum { background-image: url(../img/ic_forum-ativo.png); }
+				.forum { background-image: url(../img/ic_forum-ativo.png);
+						 }
 
 				.forum:hover { background-image: url(../img/ic_forum.png); }
 
@@ -246,7 +260,8 @@ html, body
 				}
 				
 				/*Menu mensagens*/				
-				.mensagens { background-image: url(../img/Ic_mensagens-ativo.png); }
+				.mensagens { background-image: url(../img/Ic_mensagens-ativo.png);
+						 }
 
 				.mensagens:hover { background-image: url(../img/ic_mensagens.png); }
 
@@ -256,7 +271,8 @@ html, body
 				}		
 				
 				/*Menu Tutoria*/
-				.tutoria { background-image: url(../img/ic_tutoria-ativo.png); }
+				.tutoria { background-image: url(../img/ic_tutoria-ativo.png);
+						 }
 
 				.tutoria:hover { background-image: url(../img/ic_tutoria.png); }
 
@@ -266,7 +282,8 @@ html, body
 				}
 				
 				/*Menu Tutores*/
-				.tutores { background-image: url(../img/bt_tutores_normal.png); }
+				.tutores { background-image: url(../img/bt_tutores_normal.png);
+						 }
 
 				.tutores:hover { background-image: url(../img/bt_tutores_ativo.png); }
 
@@ -276,7 +293,8 @@ html, body
 				}
 				
 				/*Menu Grupos*/
-				.grupos { background-image: url(../img/bt_grupo_normal.png); }
+				.grupos { background-image: url(../img/bt_grupo_normal.png);
+						 }
 
 				.grupos:hover { background-image: url(../img/bt_grupo_ativo.png); }
 
@@ -296,51 +314,40 @@ html, body
 				}
 				
 				/*Menu Agenda*/
-				.Content_lateral_Menu_Opcao .agenda{
+				.agenda{
 					background-image: url(../img/agenda-ativo.png);
-					background-repeat: no-repeat;
-					width: 256px;
-					height: 75px;
-					float: left;
-					color: white;
-					font-size: 21px;
-					text-decoration: none;
-					background-position: 21px 20px;
 				}				
-				.Content_lateral_Menu_Opcao .agenda:hover{
+				.agenda:hover{
 					background-image: url(../img/agenda.png);
 				}
-				.Content_lateral_Menu_Opcao .agenda-active{
+				.agenda-active{
 					background-image: url(../img/agenda.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
 				/*Fim menu Agenda*/
 				
 				/*Menu PresenÃ§a*/
-				.Content_lateral_Menu_Opcao .presenca{
+				.presenca{
 					background-image: url(../img/presencas-ativo.png);
-					background-repeat: no-repeat;
-					background-position: 14px 12px;
 				}				
-				.Content_lateral_Menu_Opcao .presenca:hover{
+				.presenca:hover{
 					background-image: url(../img/presencas.png);
 				}
-				.Content_lateral_Menu_Opcao .presenca-active{
+				.presenca-active{
 					background-image: url(../img/presencas.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
 				/*Fim menu PresenÃ§a*/
 				
 				/*Menu Carteirinhas*/
-				.Content_lateral_Menu_Opcao .carteirinhas{
+				.carteirinhas{
 					background-image: url(../img/ic_carteirinha-ativo.png);
-					background-repeat: no-repeat;
-					background-position: 12px 11px;
+					
 				}				
-				.Content_lateral_Menu_Opcao .carteirinhas:hover{
+				.carteirinhas:hover{
 					background-image: url(../img/ic_carteirinha.png);
 				}
-				.Content_lateral_Menu_Opcao .carteirinhas-active{
+				.carteirinhas-active{
 					background-image: url(../img/ic_carteirinha.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
@@ -1535,6 +1542,17 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 11% auto;
 		-moz-background-size: 11% auto;
 	}
+	.Content_lateral_Menu_Opcao .tutoria{
+		background-position: 10px 8px;
+		font-size: 12px;
+		padding: 11px 33px 8px 35px;
+		width: 256px;
+		height: 52px;
+		background-size: 9% auto;
+		-webkit-background-size: 9% auto;
+		-o-background-size: 9% auto;
+		-khtml-background-size: 9% auto;
+		-moz-background-size: 9% auto;
 	.Content_lateral_Menu_Opcao .forum {
 		background-position: 6px 10px;
 		font-size: 12px;
@@ -1548,6 +1566,18 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
 	}
+	.Content_lateral_Menu_Opcao .grupos{
+		background-position: 8px 11px;
+		font-size: 12px;
+		padding: 13px 33px 8px 38px;
+		width: 256px;
+		height: 52px;
+		background-size: 10% auto;
+		-webkit-background-size: 10% auto;
+		-o-background-size: 10% auto;
+		-khtml-background-size: 10% auto;
+		-moz-background-size: 10% auto;
+	}
 	.Content_lateral_Menu_Opcao .mensagens {
 		background-position: 4px 12px;
 		font-size: 12px;
@@ -1560,17 +1590,6 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
 	}
-	.Content_lateral_Menu_Opcao .tutoria{
-		background-position: 10px 8px;
-		font-size: 12px;
-		padding: 11px 33px 8px 35px;
-		width: 256px;
-		height: 52px;
-		background-size: 9% auto;
-		-webkit-background-size: 9% auto;
-		-o-background-size: 9% auto;
-		-khtml-background-size: 9% auto;
-		-moz-background-size: 9% auto;
 	}
 	.Content_lateral_Menu_Opcao .tutores{
 		background-position: 10px 8px;
@@ -1583,18 +1602,6 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 9% auto;
 		-khtml-background-size: 9% auto;
 		-moz-background-size: 9% auto;
-	}
-	.Content_lateral_Menu_Opcao .grupos{
-		background-position: 8px 11px;
-		font-size: 12px;
-		padding: 13px 33px 8px 38px;
-		width: 256px;
-		height: 52px;
-		background-size: 10% auto;
-		-webkit-background-size: 10% auto;
-		-o-background-size: 10% auto;
-		-khtml-background-size: 10% auto;
-		-moz-background-size: 10% auto;
 	}
 	.Content_lateral_Menu_Opcao .cadastro{
 		background-position: 5px 5px;
@@ -2736,7 +2743,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.Content_lateral_Menu_Opcao .plano {
 		background-position: 22px 13px;
-		font-size: 14px;
+		font-size: 17px;
 		padding: 17px 39px 20px 54px;
 		width: 256px;
 		height: 53px;

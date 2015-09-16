@@ -97,7 +97,10 @@ $(document).ready(function(){
 								'<div class="Content_lateral_Menu_Opcao forum">'+
 									'<div class="label" id="num_forum_nLidas"></div>'+ // <-- Essa linha gera os labels
 									'<a href="forum.html">Fórum</a>'+
-								'</div>';
+								'</div>'+
+							'<div class="Content_lateral_Menu_Opcao calendario" id="menuCalendario">'+
+								'<a href="pageCalendario.html">Calendário</a>'+
+							'</div>';
 			        }
 
 			       if(dadosUsuario.banner == 0){
@@ -124,7 +127,7 @@ $(document).ready(function(){
 				case "Professor":
 					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
                 	{
-                		menu = '<div class="row">'+
+                		menu = '<div class="row">'+                				
                 					'<div class="row-height Menu_Container">'+
                 						'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
 											'<a href="grupoTutoria.html" class="tutoria">Tutoria</a>'+
@@ -140,30 +143,32 @@ $(document).ready(function(){
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
 											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
-										'</div>'+
-										'<div class="Content_lateral_Menu_Opcao col-2 col-height" id="menuCalendario" style="display: block">'+
-											'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
 										'</div>';
                 	}
                 	else
                 	{
-						menu = '<div class="Content_lateral_Menu_Opcao">'+
-								   '<a href="grupoTutoria.html" class="tutoria">Tutoria</a>'+
+						menu = '<div class="Content_lateral_Menu_Opcao plano">'+
+    							'<a href="planoDeAula.html">Plano de aula</a>'+
+    							'</div>'+
+								'<div class="Content_lateral_Menu_Opcao rows2 recurso">'+
+									'<a href="recursosAprendizagem.html"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
+								'<div class="Content_lateral_Menu_Opcao roteiros">'+
+									'<a href="roteirosProfessor.html">Roteiros de aula</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="roteirosProfessor.html" class="roteiros">Roteiros</a>'+
+								'<div class="Content_lateral_Menu_Opcao tutores">'+
+								   '<a href="grupoTutoria.html">Tutoria</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="forum.html" class="forum">Fórum</a>'+
+								'<div class="Content_lateral_Menu_Opcao grupos">'+
+    							'<a href="gruposProfessor.html">Grupos</a>'+
+    							'</div>'+
+								'<div class="Content_lateral_Menu_Opcao mensagens">'+
+								'<div class="label" id="num_msg_nLidas"></div>'+
+									'<a href="mensagens.html">Mensagens</a>'+
 								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao">'+
-									'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
-								'</div>'+
-								'<div class="Content_lateral_Menu_Opcao" id="menuCalendario">'+
-									'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
+								'<div class="Content_lateral_Menu_Opcao forum">'+
+								'<div class="label" id="num_msg_nLidas"></div>'+
+									'<a href="forum.html">Fórum</a>'+
 								'</div>';
 					}	
 							
@@ -198,31 +203,25 @@ $(document).ready(function(){
 											'<a href="grupo.html" class="grupos">Grupos</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
-											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
-										'</div>'+
-										'<div class="Content_lateral_Menu_Opcao col-2 col-height" id="menuCalendario">'+
-											'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
-										'</div>';
+											'<a href="mensagens.html" class="mensagens">Mensagens</a>';
 					}	
 					else
 					{
-						menu = '<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="tutorias.html" class="tutores">Tutores</a>'+
+						menu = '<div class="Content_lateral_Menu_Opcao tutores">'+
+								'<a href="tutorias.html">Tutores</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
+							'<div class="Content_lateral_Menu_Opcao rows2 recurso">'+
+								'<a href="recursosAprendizagem.html"><span id="menu_recurso">Recursos de aprendizagem</span></a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="roteiros.html" class="roteiros">Roteiros</a>'+
+							'<div class="Content_lateral_Menu_Opcao roteiros">'+
+								'<a href="roteiros.html">Roteiros</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="grupo.html" class="grupos">Grupos</a>'+
+							'<div class="Content_lateral_Menu_Opcao grupos">'+
+								'<a href="grupo.html">Grupos</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
-							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao" id="menuCalendario">'+
-								'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
+							'<div class="Content_lateral_Menu_Opcao mensagens">'+
+							'<div class="label" id="num_msg_nLidas"></div>'+
+								'<a href="mensagens.html">Mensagens</a>'+
 							'</div>';
 					}
 												
@@ -236,20 +235,20 @@ $(document).ready(function(){
 					$("#box_geral_observacao").css("height","308px");
 				break;
 				case "Secretaria":
-					menu = '<div class="Content_lateral_Menu_Opcao">'+
-							   '<a href="cadastros.html" class="cadastro">Cadastro</a>'+
+					menu = '<div class="Content_lateral_Menu_Opcao cadastro">'+
+							   '<a href="cadastros.html">Cadastro</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="agenda.html" class="agenda">Agenda</a>'+
+							'<div class="Content_lateral_Menu_Opcao agenda">'+
+								'<a href="agenda.html">Agenda</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="presenca.html" class="presenca">Presença</a>'+
+							'<div class="Content_lateral_Menu_Opcao presenca">'+
+								'<a href="presenca.html">Presença</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao" style="pointer-events: none;cursor: default;">'+
-								'<a href="carteirinhas.html" class="carteirinhas">Carterinhas</a>'+
+							'<div class="Content_lateral_Menu_Opcao carteirinhas" style="pointer-events: none;cursor: default;">'+
+								'<a href="carteirinhas.html">Carterinhas</a>'+
 							'</div>'+
-							'<div class="Content_lateral_Menu_Opcao">'+
-								'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
+							'<div class="Content_lateral_Menu_Opcao mensagens">'+
+								'<a href="mensagens.html">Mensagens</a>'+
 							'</div>'+
 							'<div class="Content_lateral_Menu_Opcao" id="menuCalendario">'+
 								'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
