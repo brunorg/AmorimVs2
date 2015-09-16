@@ -248,7 +248,7 @@ function CarregaServicoProducaoAluno()
 	    ContadorPA = 0;
 
 		HtmlContent = "";
-		HtmlContent += '<div class="example"><div><ul class="SlidePort">';
+		HtmlContent += '<div class="Portfolio_Conteudo_Container"><div><ul class="SlidePort">';
 	    for(var a = 0; a < dataProducaoAluno.length; a++)
 	    {
 			var apresentacao = "";
@@ -298,8 +298,8 @@ function CarregaServicoProducaoAluno()
 	    
 	    HtmlContent += '</ul></div></div>';	
 	    		        
-	    $('#bullets').append(HtmlContent);
-	    $('#bullets').microfiche({ bullets: false });
+	    $('#Portfolio_Conteudo').append(HtmlContent);
+	    $('#Portfolio_Conteudo').microfiche({ bullets: false });
 
 	    document.getElementsByClassName("SlidePort")[0].style.width = largura+'px';
 	   	document.getElementsByClassName("microfiche-film")[0].style.width = largura+'px';
