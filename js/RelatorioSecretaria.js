@@ -97,6 +97,8 @@ function gerarRelatorio(){
 		campos[j] = $("#"+campoId).text();
 		j++;
 	});
+
+	console.log(valores);
 	
 	if(existe == true){		
 		var html="",count=0,k=0;
@@ -112,6 +114,9 @@ function gerarRelatorio(){
 				//loading("inicial");
 			},				
 			success: function(d) {
+
+
+
 				if(d[0] == "não há valores"){
 					$(".dadosBusca").css("display","block").html("NÃO HÁ VALORES");
 				}
