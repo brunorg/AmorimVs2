@@ -42,25 +42,26 @@ $(document).ready(function(){
 		        	
 		        	confTutor = false;
 				}			
-			}				
+			}		
+			
+			$.ajax({
+				url: path+"Mensagens/ProprietarioCount/"+dadosUsuario.idusuario,
+				type: "GET",
+				async:false,
+				crossDomain: true,
+				success: function(d) {
+					//mensagensNaoLidas = d;
+					if (d > 0){
+		        		textoMsgNLida = '<div class="label" id="num_msg_nLidas">'+d+'</div>';
+		        	}else textoMsgNLida = '';
+				}		
+			});
 
 			switch (usuario){
 			    case "Aluno":	
 			    	var textoMsgNLida;
 			    	var alunoId = localStorage.setItem("alunoId",dadosUsuario.aluno.idAluno);			
 			        var aluno = abreviaNome(dadosUsuario.aluno.nome)+" | "+dadosUser.anoEstudo.ano+"º ano";
-			        $.ajax({
-						url: path+"Mensagens/ProprietarioCount/"+getAlunoByUsuario(dadosUsuario.idusuario),
-						type: "GET",
-						async:false,
-						crossDomain: true,
-						success: function(d) {
-							//mensagensNaoLidas = d;
-							if (d > 0){
-				        		textoMsgNLida = '<div class="label" id="num_msg_nLidas">'+d+'</div>';
-				        	}else textoMsgNLida = '';
-						}		
-					});
 			        
 			        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
 			        {
@@ -87,7 +88,9 @@ $(document).ready(function(){
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
 											'<a href="forum.html" class="forum">Fórum</a>'+
-										'</div>';
+										'</div>'+
+									'</div>'+
+								'</div>';
 			        }
 			        else
 			        {
@@ -160,8 +163,11 @@ $(document).ready(function(){
 											'<a href="forum.html" class="forum">Fórum</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											textoMsgNLida+
 											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
-										'</div>';
+										'</div>'+
+									'</div>'+
+								'</div>';
                 	}
                 	else
                 	{
@@ -181,7 +187,7 @@ $(document).ready(function(){
     							'<a href="gruposProfessor.html">Grupos</a>'+
     							'</div>'+
 								'<div class="Content_lateral_Menu_Opcao mensagens">'+
-								'<div class="label" id="num_msg_nLidas"></div>'+
+									textoMsgNLida+
 									'<a href="mensagens.html">Mensagens</a>'+
 								'</div>'+
 								'<div class="Content_lateral_Menu_Opcao forum">'+
@@ -221,7 +227,11 @@ $(document).ready(function(){
 											'<a href="grupo.html" class="grupos">Grupos</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
-											'<a href="mensagens.html" class="mensagens">Mensagens</a>';
+											textoMsgNLida+
+											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
+										'<div>'+
+									'</div>'+
+								'</div>';
 					}	
 					else
 					{
@@ -238,7 +248,7 @@ $(document).ready(function(){
 								'<a href="grupo.html">Grupos</a>'+
 							'</div>'+
 							'<div class="Content_lateral_Menu_Opcao mensagens">'+
-							'<div class="label" id="num_msg_nLidas"></div>'+
+								textoMsgNLida+
 								'<a href="mensagens.html">Mensagens</a>'+
 							'</div>';
 					}
@@ -267,6 +277,7 @@ $(document).ready(function(){
 							'</div>'+
 							'<div class="Content_lateral_Menu_Opcao mensagens">'+
 								'<a href="mensagens.html">Mensagens</a>'+
+								textoMsgNLida+
 							'</div>'+
 							'<div class="Content_lateral_Menu_Opcao" id="menuCalendario">'+
 								'<a href="pageCalendario.html" class="calendario">Calendário</a>'+
