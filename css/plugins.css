@@ -10,7 +10,8 @@
 	text-align: center;
 	padding: 0;
 	border: 0;
-}	
+	margin-top:88px;
+}
 #Content_lateral_Calendario .ui-datepicker{
 	height:auto !important;
 	width: 182px !important
@@ -196,6 +197,7 @@
 	text-align: center;
 	padding: 0;
 	border: 0;
+	margin-top:88px;
 }	
 #calendario_relatorio .ui-datepicker .ui-datepicker-next {
 	background-repeat:no-repeat !important;

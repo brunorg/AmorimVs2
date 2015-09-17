@@ -76,5 +76,37 @@ $(document).ready(function() {
     $("#btnSubmit").click(function() {
         logar()
     });
+    $('.btnMenu.Active').click(function(){
+        console.log($(this).index());
+        trocarConteudoInicial($(this).index());
+    });
+
+    
+    $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem').mouseover(function(){
+        $(this).addClass("MouseHover");
+    }).mouseout(function(){
+        $(this).removeClass("MouseHover");
+    });
+
+    $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo').click(function(){
+        trocarConteudoInicial($(this).index()+8);
+    });
+
+    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close').click(function(){
+        trocarConteudoInicial(4);
+    });
+
+    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide').click(function(){
+        $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide').css("border-bottom-width","0px");
+        $(this).css("border-bottom-width","5px");
+        SelecionarItem($(this).index());
+        console.log($(this).index());
+    });
+
+    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
+        NextFrameSlide($(this).index());
+    
+    });
+
     localStorage.getItem("usuarioTipo"), localStorage.getItem("usuarioId")
 });
