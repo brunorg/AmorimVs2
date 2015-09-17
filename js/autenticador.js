@@ -43,10 +43,25 @@ $(document).ready(function(){
 		        	confTutor = false;
 				}			
 			}				
+
 			switch (usuario){
 			    case "Aluno":	
-			        var alunoId = localStorage.setItem("alunoId",dadosUsuario.aluno.idAluno);			
+			    	var textoMsgNLida;
+			    	var alunoId = localStorage.setItem("alunoId",dadosUsuario.aluno.idAluno);			
 			        var aluno = abreviaNome(dadosUsuario.aluno.nome)+" | "+dadosUser.anoEstudo.ano+"º ano";
+			        $.ajax({
+						url: path+"Mensagens/ProprietarioCount/"+getAlunoByUsuario(dadosUsuario.idusuario),
+						type: "GET",
+						async:false,
+						crossDomain: true,
+						success: function(d) {
+							//mensagensNaoLidas = d;
+							if (d > 0){
+				        		textoMsgNLida = '<div class="label" id="num_msg_nLidas">'+d+'</div>';
+				        	}else textoMsgNLida = '';
+						}		
+					});
+			        
 			        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
 			        {
 			            menu = '<div class="row">'+
@@ -67,6 +82,7 @@ $(document).ready(function(){
 											'<a href="producoesAluno.html" class="prodAluno">Produções do aluno</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											textoMsgNLida+
 											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
@@ -75,6 +91,8 @@ $(document).ready(function(){
 			        }
 			        else
 			        {
+			        	
+			        	
 			            menu = '<div class="Content_lateral_Menu_Opcao plano">'+
 									'<a href="planoDeEstudo.html">Plano de estudo</a>'+
 								'</div>'+
@@ -91,7 +109,7 @@ $(document).ready(function(){
 									'<a href="producoesAluno.html">Produções do aluno</a>'+
 								'</div>'+
 								'<div class="Content_lateral_Menu_Opcao mensagens">'+
-									'<div class="label" id="num_msg_nLidas"></div>'+ // <-- Essa linha gera os labels
+									textoMsgNLida+
 									'<a href="mensagens.html">Mensagens</a>'+
 								'</div>'+
 								'<div class="Content_lateral_Menu_Opcao forum">'+
