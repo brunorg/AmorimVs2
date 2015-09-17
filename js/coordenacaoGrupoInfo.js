@@ -317,11 +317,11 @@ function grupoNovo(){
 			crossDomain: true,
 			dataType: 'json',
 			contentType: false,	
+			data:"action=create&status=0&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&lider=0&id=0"+"&idPeriodo="+periodoId,
 			beforeSend: function(){
 				//$('.boxGlobal').css("display","block");
 				loading("inicial");
-			},
-			data:"action=create&status=0&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&lider=0&id=0"+"&idPeriodo="+periodoId,
+			},			
 			success: function(data) {	
 				loading("inicial");
 				//aqui pego todos os elementos por classe				
@@ -550,7 +550,7 @@ function editarGrupoFun(){
 		crossDomain: true,
 		dataType: 'json',
 		contentType: false,			
-		data:"action=update&id="+grupoId+"&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&tutoria="+tutoria+"&lider="+lider,				
+		data:"action=update&id="+grupoId+"&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&tutoria="+tutoria+"&lider="+lider+"&idPeriodo="+periodoId,				
 		
 		success: function(d){
 			//aqui pego todos os elementos por classe
