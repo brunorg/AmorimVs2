@@ -117,11 +117,12 @@ function buscaForum () {
 			}
     	});
 	else
+		carregaForumCompleto();
 }
 
 function carregaForumCompleto () {
 	$.ajax({
-        url: path + "Roteiro/ListaLikeRoteiro/" + $('#buscaForum').val(),
+        url: path + "Roteiro",
 		type: "GET",
 		async: false,
 		crossDomain: true,
