@@ -198,92 +198,6 @@ function CarregaServicoMensagens(){
 	});
 }
 
-
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carrega a tabela PlanejamentoRoteiro
-
-/*function CarregaServicoPlanejamentoRoteiro()
-{
-
-	HtmlContent="";
-	antes = "";
-	depois = "";
-
-	var contadorPR = 0;
-	var servicePlanejamentoRoteiro = dataPlanejamentoRoteiro;
-	
-	for(var a = 0; a < servicePlanejamentoRoteiro.length; a++)
-	{
-		HtmlContent = "";
-			
-		if(servicePlanejamentoRoteiro[a].objetivo.roteiro.anoEstudo.idanoEstudo == AnoEstudoID && 
-			servicePlanejamentoRoteiro[a].objetivo.roteiro.ativo == "1" && 
-			servicePlanejamentoRoteiro[a].objetivo.ativo == "1"){
-
-			if($("#" + servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro).length > 0)
-			{
-				if(servicePlanejamentoRoteiro[a].status == 1 && servicePlanejamentoRoteiro[a].planoEstudo.idplanoEstudo == getUltimoPE(alunoID))
-	    		{
-	    			HtmlContent += '<td class="td_roteiro_laranja">'+ 	servicePlanejamentoRoteiro[a].objetivo.numero+'</td>';
-	    		} else if(servicePlanejamentoRoteiro[a].status == 2){
-	    			HtmlContent += '<td class="td_roteiro_verde">'+ servicePlanejamentoRoteiro[	a].objetivo.numero+'</td>';
-	    		} else if(servicePlanejamentoRoteiro[a].status == 3){
-	    			HtmlContent += '<td class="td_roteiro_verde_tk">'+ 	servicePlanejamentoRoteiro[a].objetivo.numero+'</td>';
-	    		}
-
-	    		$("#" + servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro + " .tabela_colorida_roteiro_Area_Aluno").last().append(HtmlContent);
-
-	    		if ($("#" + servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro + " .tabela_colorida_roteiro_Area_Aluno td").length % 13 == 0)
-	    		{
-	    			$("#" + servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro + " tbody").append('<tr class="tabela_colorida_roteiro_Area_Aluno"></tr>');
-	    		}
-
-			}
-			else
-			{
-				HtmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas" id="'+	servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro+'">';
-			    	HtmlContent += '<table>';
-			       		HtmlContent += '<tr>';
-			       			HtmlContent += '<td class="Objetivos_Semana_Conteudo_Tarefas_Texto">';
-			       			 	HtmlContent += servicePlanejamentoRoteiro[a].objetivo.roteiro.nome;
-			       			HtmlContent += '</td>';
-			       		HtmlContent += "</tr>";
-			       		HtmlContent += '<tr class="tabela_colorida_roteiro_Area_Aluno">';
-			       		HtmlContent += '</tr>';
-			       	HtmlContent += '</table>';
-			    HtmlContent += '</div>';
-
-			    $('.Objetivos_Semana_Conteudo_Tarefas_Content').append(HtmlContent);
-
-			    HtmlContent = "";
-
-			    if(servicePlanejamentoRoteiro[a].status == 1 && servicePlanejamentoRoteiro[a].planoEstudo.idplanoEstudo == getUltimoPE(alunoID))
-	    		{
-	    			HtmlContent += '<td class="td_roteiro_laranja">'+ 	servicePlanejamentoRoteiro[a].objetivo.numero+'</td>';
-	    		} else if(servicePlanejamentoRoteiro[a].status == 2){
-	    			HtmlContent += '<td class="td_roteiro_verde">'+ servicePlanejamentoRoteiro[	a].objetivo.numero+'</td>';
-	    		} else if(servicePlanejamentoRoteiro[a].status == 3){
-	    			HtmlContent += '<td class="td_roteiro_verde_tk">'+ 	servicePlanejamentoRoteiro[a].objetivo.numero+'</td>';
-	    		}
-
-	    		$("#" + servicePlanejamentoRoteiro[a].objetivo.roteiro.idroteiro + " .tabela_colorida_roteiro_Area_Aluno").last().append(HtmlContent);
-			}
-		}
-	}
-
-	VerificaObjetivosCompletos();
-
-	if(document.getElementsByClassName("Objetivos_Semana_Conteudo_Tarefas_Texto")[1]!=undefined)
-	{
-		ordenaPorRoteiro(servicePlanejamentoRoteiro);
-	}
-}*/
-
-
-
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -334,7 +248,7 @@ function CarregaServicoProducaoAluno()
 	    ContadorPA = 0;
 
 		HtmlContent = "";
-		HtmlContent += '<div class="example"><div><ul class="SlidePort">';
+		HtmlContent += '<div class="Portfolio_Conteudo_Container"><div><ul class="SlidePort">';
 	    for(var a = 0; a < dataProducaoAluno.length; a++)
 	    {
 			var apresentacao = "";
@@ -383,10 +297,9 @@ function CarregaServicoProducaoAluno()
 	    }
 	    
 	    HtmlContent += '</ul></div></div>';	
-
-		$('#bullets').append('<div class="barra"></div>');		        
-	    $('#bullets').append(HtmlContent);
-	    $('#bullets').microfiche({ bullets: false });
+	    		        
+	    $('#Portfolio_Conteudo').append(HtmlContent);
+	    $('#Portfolio_Conteudo').microfiche({ bullets: false });
 
 	    document.getElementsByClassName("SlidePort")[0].style.width = largura+'px';
 	   	document.getElementsByClassName("microfiche-film")[0].style.width = largura+'px';
@@ -410,6 +323,55 @@ function AtivaBotoesPortfolio(){
 	});
 
 }
+//------------------------------------------------------------------------------------------------------------------------
+
+//Preencher Rotina Semanal
+function CarregarRotina() {
+	var professores1 = ['Flávia','Bruna','Maria Eugênia','','Luciana','Luciana Cássia'];
+	var professores2 = ['Luciana Cássia','Maria','Kevyn','','Luciana','Flávia'];
+
+	var materias1 = ['Pesquisa', 'Artes', 'Inglês', '', 'Roda de Conversa', 'Pesquisa'];
+	var materiasIDs1 = ['Rotina_Pesquisa', 'Rotina_Artes', 'Rotina_Ingles', '', 'Rotina_Roda_Conversa', 'Rotina_Pesquisa'];
+
+	var materias2 = ['Matemática', 'Artes', 'Leitura e Escrita','', 'Roda de Conversa', 'Pesquisa'];
+	var materiasIDs2 = ['Rotina_Matematica', 'Rotina_Artes', 'Rotina_Leitura_Escrita','', 'Rotina_Roda_Conversa', 'Rotina_Pesquisa'];
+
+	var locais = ['Salão','Ateliê','Sala 12','','Salão','Salão'];
+	var dia = 'segunda';
+								
+	var linhas = document.getElementById("Rotina_Semanal_Tabela").getElementsByClassName("Rotina_Semanal_Linha");
+	$("#Rotina_Seta_Proximo").click(function() {
+		if (dia === 'segunda') {
+			dia = 'terça';
+			for ( var i = 0; i < linhas.length; i++ ) {
+				if ( i !== 3 ) {
+					$($('.Rotina_Semanal_Linha').get(i)).removeClass(materiasIDs1[i]);
+					$($('.Rotina_Semanal_Linha').get(i)).addClass(materiasIDs2[i]);
+					$('#Rotina_Semanal_Dia').html(dia.toUpperCase());
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Materia').html(materias2[i]);
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Professor').html(professores2[i]);
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Local').html(locais[i]);
+				}
+			}
+		}
+	});
+	$("#Rotina_Seta_Anterior").click(function() {
+		if (dia === 'terça') {
+			dia = 'segunda';
+			for ( var i = 0; i < linhas.length; i++ ) {
+				if ( i !== 3 ) {
+					$($('.Rotina_Semanal_Linha').get(i)).removeClass(materiasIDs2[i]);
+					$($('.Rotina_Semanal_Linha').get(i)).addClass(materiasIDs1[i]);
+					$('#Rotina_Semanal_Dia').html(dia.toUpperCase());
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Materia').html(materias1[i]);
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Professor').html(professores1[i]);
+					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Local').html(locais[i]);
+				}
+			}
+		}
+	});
+}
+
 //------------------------------------------------------------------------------------------------------------------------
 
 //Preencher Mural
@@ -499,6 +461,7 @@ $(document).ready(function() {
 
 	CarregaServicoCalendarioEventos();
 	CarregaServicoMensagens();
+	CarregarRotina();
 	CarregarMural();
 	CarregarPlanos();
 	CarregaServicoProducaoAluno();

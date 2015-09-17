@@ -23,11 +23,7 @@
 //Carrega a funçao de Load do JQuery
 
 	$(document).ready(function() {	
-	    CarregaServicoMensagens();
-	    CarregaServicoForum();
-	    CarregaServicoMural();
-	    CarregaServicoCalendarioEventos();	    
-	    	
+	    CarregaServicoMural();	    
 		var intervalo = window.setInterval(function() {
 			$('.boxGrafico').css("display","block"); 
 		}, 50);
@@ -41,111 +37,8 @@
 
 //------------------------------------------------------------------------------------------------------------------------
 
-//Carrega a tabela Mensagens
-
-	function CarregaServicoMensagens()
-	{
-		var dataMensagens =	getData("Mensagens/Proprietario",userID);
-		if(typeof dataMensagens != "undefined"){
-			Limite = dataMensagens.length;			       
-			HtmlContent = '<table class="mensagensTabela">';
-			contador=0;
-						
-			for(var b=0; b<dataMensagens.length; b++)
-			{
-				if(dataMensagens[b].lida == "N" && dataMensagens[b].cxEntrada == "S" && dataMensagens[b].cxEnviada == "N")
-				{
-					contador++;
-				}
-			}
-	
-			for(var a = Limite-1; a >=0 ; a--)
-			{				
-				if(dataMensagens[a].lida == "N" && dataMensagens[a].cxEntrada == "S" && dataMensagens[a].cxEnviada == "N")
-				{
-					HtmlContent += '<tr>';
-			
-					HtmlContent += '<td class="dataMsg" onClick="window.location=\'mensagens.html?ID='+dataMensagens[a].idmensagens+'\';"><h4 class="user">'+ (dataMensagens[a].remetente.aluno != null ? dataMensagens[a].remetente.aluno.nome:dataMensagens[a].remetente.professor.nome) +'</h4>'+ dataMensagens[a].assunto.substring(0,40)+(dataMensagens[a].assunto.length<40 ? "</td>":"...</td>");
-					
-					HtmlContent += "</tr>";
-				}
-			}
-	
-			HtmlContent += "</table>";
-			
-			$('.Mensagens_Conteudo').append(HtmlContent);
-			
-			if(contador <= 9){
-				$('.Mensagens_Cabecalho_Imagem_Contador').html(contador);
-			} else {
-				$('.Mensagens_Cabecalho_Imagem_Contador').html("9+");
-			}
-		}
-	}
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carrega a tabela CalendarioEventos
-
-	function CarregaServicoCalendarioEventos()
-	{
-		HtmlContent = "";
-		var dataCalendario 	=	getData("Calendario/Evento", 46);
-	
-		for(var a = 0; a < dataCalendario.length; a++)
-		{			
-			if (a<5){
-				
-			var data = dataCalendario[a].dataInicio;
-			var dia = data.substring(data.length-2);
-			var mes = retornaMesByNumero(parseInt(data.substring(5,7)));
-			HtmlContent += '<td class="dataMsg Conteudo_Coluna3_Agenda_Evento" style="line-height: 13px;">';
-	
-		//	
-			//HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Titulo">' +
-			HtmlContent += '<h2 class="muralData">'+dia+' de '+mes+'</h2>';
-			HtmlContent += '<h3 class="muralTitulo">'+ dataCalendario[a].evento+'</h3>';
-//			HtmlContent +='<div class="Conteudo_Coluna3_Agenda_Evento_Hora">'+
-//				dataCalendario[a].hora+
-	//		'</div>';
-					
-			if(dataCalendario[a].imagem != "" && dataCalendario[a].imagem != null && dataCalendario[a].imagem != undefined){HtmlContent +='<br /><img src="'+dataCalendario[a].imagem+'" width="80%" style="margin-left: 14px;"/>';}
-			HtmlContent+='</td>';
-	
-			HtmlContent += "</div>";
-			}
-			else{
-	
-			HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento AgendaNulo">';
-	
-			HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Titulo">' + 
-			dataCalendario[a].dataInicio.substring(8, 10)+"/"+ dataCalendario[a].dataInicio.substring(5, 7)+"/"+ dataCalendario[a].dataInicio.substring(0, 4)+ '</div>';
-	
-	
-			HtmlContent += '<div class="Conteudo_Coluna3_Agenda_Evento_Conteudo">'+ dataCalendario[a].evento;
-			if(dataCalendario[a].imagem != "" && dataCalendario[a].imagem != null && dataCalendario[a].imagem != undefined){HtmlContent +='<br />'+dataCalendario[a].imagem;}
-			HtmlContent+='</div>';
-	
-			HtmlContent += "</div>";
-	
-			}
-		}
-		
-		$('#Light_Eventos_Tabela').append(HtmlContent);
-		OrdenarPor("Conteudo_Coluna3_Agenda_Evento_Titulo");
-		$(".Conteudo_Coluna3_Agenda_Evento").css("display","none");
-		for(var l = 0; l < 5; l++)
-		{
-			if (document.getElementsByClassName("Conteudo_Coluna3_Agenda_Evento")[l]!=undefined)
-			{
-				document.getElementsByClassName("Conteudo_Coluna3_Agenda_Evento")[l].style.display="block";
-			}
-	
-		}
-	}
-
-
-	function CarregaServicoMural()
+//Carrega a tabela Mural	
+function CarregaServicoMural()
 	{
 		HtmlContent = "";
 		var dataCalendarioM 	=	getData("Calendario/Evento", 44);
@@ -168,27 +61,6 @@
 	
 		$('#Light_MuralTabela').html(HtmlContent);
 	}
-	
-	
-	function CarregaServicoForum()
-	{
-		HtmlContent = "";
-		var dataForum 	=	getData("ForumQuestao/topN", 6);
-		
-		//console.log(dataForum);
-		
-		for(var a=0; a< dataForum.length; a++){
-			var dataMensagens = getData("ForumResposta/TotalParcial", dataForum[a].idforumQuestao);
-			//console.log(dataMensagens);
-			HtmlContent += '<div class="caixaForum" onClick="window.location=\'forumSecao.html?IdRoteiro='+base64_encode(""+dataForum[a].roteiro.idroteiro)+'&IdQuestao='+base64_encode(""+dataForum[a].idforumQuestao)+'\'">';
-			HtmlContent += '<div class="infoForum">'+dataMensagens.Total+' Respostas | <strong>Professor: '+dataMensagens.Professor+'</strong></div>';
-			HtmlContent += '<div class="forumQuestao">'+dataForum[a].questao+'</div></div>';
-			//HtmlContent += '<h4 style="color:rgb(218,93,48); margin-top:0px;">'+ dataForum[a].roteiro.nome+'</h4><span style="margin-bottom:0px;">'+dataForum[a].questao.substring(0,40)+(dataForum[a].questao.length<40 ? "</span></div>":"...</span></div>");
-		 }
-	
-		$('#Light_ForumTabela').html(HtmlContent);
-	}
-
 
 //------------------------------------------------------------------------------------------------------------------------
 
