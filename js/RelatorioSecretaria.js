@@ -149,7 +149,7 @@ function gerarRelatorio(){
 							}
 
 							html+= '<div class="celulaGrande">'+
-										'<div class="infoM">'+campos[j]+'</div>'+
+										'<div class="infoM">'+campos[j]+'|</div>'+
 										'<div class="infoValueM">'+
 											'<input value="'+d[aux[i][1]+j]+'" maxlength="200" title="Quantidade de caracteres permitidos: 200" disabled></input>'+
 										'</div>'+
