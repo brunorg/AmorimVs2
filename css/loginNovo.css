@@ -197,7 +197,7 @@
 #Conteudo_Corpo .Selecao7{display: block;}
 
 #Conteudo_Corpo .leftSide{
-	background-image: url("../img/img1note.png");
+	background-image: url("../siteAmorim/img/img1note.png");
 	background-position: -10px -10px;
     background-repeat: no-repeat;
     background-size: auto 606px;
@@ -246,59 +246,59 @@
 
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(3){
-	background-image: url("../img/btn1_texto.png"), 
-						url("../img/btn1.png");
+	background-image: url("../siteAmorim/img/btn1_texto.png"), 
+						url("../siteAmorim/img/btn1.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(2){
-	background-image: url("../img/btn2_texto.png"), 
-						url("../img/btn2.png");
+	background-image: url("../siteAmorim/img/btn2_texto.png"), 
+						url("../siteAmorim/img/btn2.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(1){
-	background-image: url("../img/btn3_texto.png"), 
-						url("../img/btn3.png");
+	background-image: url("../siteAmorim/img/btn3_texto.png"), 
+						url("../siteAmorim/img/btn3.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(4){
-	background-image: url("../img/btn4_texto.png"), 
-						url("../img/btn4.png");
+	background-image: url("../siteAmorim/img/btn4_texto.png"), 
+						url("../siteAmorim/img/btn4.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(5){
-	background-image: url("../img/btn5_texto.png"), 
-						url("../img/btn5.png");
+	background-image: url("../siteAmorim/img/btn5_texto.png"), 
+						url("../siteAmorim/img/btn5.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(6){
-	background-image: url("../img/btn6_texto.png"), 
-						url("../img/btn6.png");
+	background-image: url("../siteAmorim/img/btn6_texto.png"), 
+						url("../siteAmorim/img/btn6.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(7){
-	background-image: url("../img/btn7_texto.png"), 
-						url("../img/btn7.png");
+	background-image: url("../siteAmorim/img/btn7_texto.png"), 
+						url("../siteAmorim/img/btn7.png");
 
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(10){
 
-	background-image: url("../img/btn2_texto.png"), 
-	url("../img/btn2.png");
+	background-image: url("../siteAmorim/img/btn2_texto.png"), 
+	url("../siteAmorim/img/btn2.png");
 }
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(9){
-	background-image: url("../img/btn6_texto.png"), 
-	url("../img/btn6.png");
+	background-image: url("../siteAmorim/img/btn6_texto.png"), 
+	url("../siteAmorim/img/btn6.png");
 }
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(8){
-	background-image: url("../img/btn8_texto.png"), 
-	url("../img/btn8.png");
+	background-image: url("../siteAmorim/img/btn8_texto.png"), 
+	url("../siteAmorim/img/btn8.png");
 }
 
 
@@ -465,7 +465,7 @@
 	height:110px;
 	float:left;
 	margin-right:10px;
-	background-image: url("../img/btn_slide2.png");
+	background-image: url("../siteAmorim/img/btn_slide2.png");
 	background-size: cover;
 	cursor:pointer;
 	border-bottom: solid #21aebb 0px;
@@ -474,28 +474,28 @@
 }
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(1){
-	background-image: url("../img/btn_slide1.png");
+	background-image: url("../siteAmorim/img/btn_slide1.png");
 	border-bottom-width: 5px;
 }
 
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(3){
-	background-image: url("../img/btn_slide3.png");
+	background-image: url("../siteAmorim/img/btn_slide3.png");
 }
 
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(4){
-	background-image: url("../img/btn_slide4.png");
+	background-image: url("../siteAmorim/img/btn_slide4.png");
 }
 
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(5){
-	background-image: url("../img/btn_slide5.png");
+	background-image: url("../siteAmorim/img/btn_slide5.png");
 }
 
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(6){
-	background-image: url("../img/btn_slide6.png");
+	background-image: url("../siteAmorim/img/btn_slide6.png");
 	margin-right:0px;
 }
 
