@@ -639,7 +639,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 .microfiche-prev-button, .microfiche-next-button {
 	display: inline-block;
 	position: absolute;
-	top: 136px;
+	top: 136px !important;
 	width: 13px;
 	margin: 0 !important;
 	cursor: pointer;
@@ -651,33 +651,6 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 .microfiche-next-button {
 	left: 597px;
 }
-
-.microfiche-screen{
-    height: 100% !important;
-    width: 93.2% !important;
-    margin: 0px auto;
-}
-
-.microfiche-film {
-    height: 100% !important;
-    margin: 0px 2px !important;
-    transition: transform 0.35s;
-}
-
-
-
-.Portfolio_Conteudo_Container {
-	width: 569px !important;
-	height: 100% !important;
-	margin: 0 auto;
-	margin-right: 18px;
-}
-
-.SlidePort{
-	width: 100% !important;
-	padding: 0;
-}
-
 }
 
 @media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
@@ -697,10 +670,31 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         right:0;
 	}
-
+	#Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
 }
+.microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
+}
+
 /*Media para note com height 707*/
 @media (min-width: 1280px)and (max-height: 707px) {
+
     .box_margin_alter {
         display: none;
         position: absolute;
@@ -712,6 +706,26 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         top: 36px;
     }
+    #Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
+}
+    .microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
 }
 /*MEDIA TABLET*/
 @media (min-width: 1024px) and	(max-height: 460px){
@@ -725,6 +739,26 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         right:0;
     }
+    #Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
+}
+    .microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
 }
 
 @media (max-width: 1023px), (width: 1024px) and	(max-height: 460px){
