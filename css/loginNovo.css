@@ -128,26 +128,14 @@
 	width : 102px;
   	height : 24px;
   	margin-right: 5px;
-  	background-color: gray;
-  	/*background-color: white;*/
+  	/*background-color: #21AEBB;*/
+  	background-color: white;
   	float: right;
-  	/*padding-left: 2.3%;*/
-  	padding-top: 0.3%;
+  	padding-left: 2.3%;
+  	padding-top: 0.5%;
   	color: white;
   	cursor: pointer;
-  	text-align: center;
 }
-
-.btnMenu.Active{
-  	background-color: #21AEBB;
-
-}
-
-.btnMenu.Active:hover{
-  	background-color: #13818c;
-
-}
-
 .ultimo{
 	margin-right: 36px;
 }
@@ -193,10 +181,7 @@
 	top: 74px;
 }
 
-
-@media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
-
-
+@media (width: 1024px) and (min-height: 509px) and (max-height: 639px){
 	#Conteudo_Area{
 		height: 509px;
 	}
@@ -206,18 +191,21 @@
 	}
 
 	#Amorim_logo{
-		height: 65px;
+		height: 75px;
 	}
 	#Login{
-		width: 632px;
-		height: 90%;
-		margin-left: -2.5%;
-		padding-top: 2.5%;
-		padding-left: 0%;
+		width: 635px;
+		height: 100%;
+		margin-left: 0;
+		padding-top: 2.1%;
+		padding-left: 2%;
+		padding-right: 2.9%;
+		background-color: #EBEBE4;
+		float: right;
 	}
 
 	#usuario_, #senhaBox{
-		width: 240px;
+		width: 215px;
 		margin-right: -1.6%;
 	}
 	
@@ -244,7 +232,7 @@
 	}
 	
 	#Desenvolvido{
-		margin-left: 7.5%;
+		margin-left: 11.3%;
 	}
 
 	#Conteudo_Corpo{
@@ -268,10 +256,10 @@
 		top: 53px;
 	}
 
+
 }
 
 @media (min-height: 666px) and (max-height: 667px){
-
 
 	#Texto_Entrada{
 		top: -394px;
@@ -287,7 +275,6 @@
 
 @media (min-width: 1280px) and (max-height: 707px){
 
-
 	#Imagem_Abertura{
 		width: 40%;
 		left: 768px;
@@ -298,7 +285,6 @@
 
 @media (min-height: 640px) and (max-height: 768px){
 
-	
 	#Cabecalho{
 		height: 27.6%;
 	}
