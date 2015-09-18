@@ -243,69 +243,78 @@ function CarregaServicoProducaoAluno()
 	    ContadorPA = 0;
 
 		HtmlContent = "";
-		HtmlContent += '<div class="Portfolio_Conteudo_Container"><div><ul class="SlidePort">';
-	    for(var a = 0; a < dataProducaoAluno.length; a++)
-	    {
-			var apresentacao = "";
-	    	if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5)
-	    	{
-	    		if(dataProducaoAluno[a].arquivo != null){
-					var arquivo = dataProducaoAluno[a].arquivo;
-					arquivo =  arquivo.split(".");
-					
-					if(arquivo[4]=="pdf"){
-						apresentacao = '<img src="img/icone_portfolio.png" width="182px" height="126px"/>';
-					}else if(arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif"){
-						apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="182px" height="126px"/>';
-					}else if(arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg"){
-						apresentacao = '<img src="img/icone_audio.png" width="182px" height="126px"/>';
-					}else if(arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
-						apresentacao = '<img src="img/icone_video.png" width="182px" height="126px"/>';
+		for (var a = 0; a < dataProducaoAluno.length; a++) {			
+			if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5) {
+				if ( ContadorPA != 2 ) {
+					if ( ContadorPA == 0 ) {
+						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
 					}
+
+					var apresentacao = "";
+
+		    		if(dataProducaoAluno[a].arquivo != null) {
+
+
+						var arquivo = dataProducaoAluno[a].arquivo;
+						arquivo =  arquivo.split(".");
+						
+						if(arquivo[4]=="pdf"){
+							apresentacao = '<img src="img/icone_portfolio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif") {
+							apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg") {
+							apresentacao = '<img src="img/icone_audio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
+							apresentacao = '<img src="img/icone_video.png" width="auto" height="100%"/>';
+						}
+						
+					}
+						HtmlContent += '<div class="Portfolio_Conteudo_Box">';
+			        	HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+						HtmlContent += '<div class="Nome_Roteiro">';
+						HtmlContent += dataProducaoAluno[a].roteiro.nome;
+						HtmlContent += '</div>';
+						HtmlContent += '<div class="Img_Roteiro">';
+						HtmlContent += apresentacao;
+						HtmlContent += '</div>';
+						HtmlContent += '</a>';
+						HtmlContent += '</div>';
 					
+					ContadorPA++;
+
+				} else {
+					HtmlContent += '</div>';
+					ContadorPA = 0;
 				}
-
-	        	HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
-	        	HtmlContent += '<li>';
-	        	HtmlContent += '<div class="portfolio_secao verde">';
-	        	HtmlContent += '<div class="roteiro">';
-				//HtmlContent += '<img src="data:image/png;base64,'+serviceProducaoAluno[a].imagem+'" width="182px" height="126px"/>';
-				HtmlContent += apresentacao;
-				HtmlContent += '</div>';
-				HtmlContent += '<div class="nome_roteiro">';
-				HtmlContent += dataProducaoAluno[a].roteiro.nome;
-				HtmlContent += '</div>';
-				HtmlContent += '</div>';
-				HtmlContent += '</li>';
-				HtmlContent += '</a>';
-				largura += 235;
-				ContadorPA++;
 			}
-	    }
+		}
 
-	    if(ContadorPA < 2)
-	    {
-	    	largura += 420;
-	    	HtmlContent +='<li class="upLi"><div class="Block_Conteudo_Portifolio_Image"></div></li>';
-	    } else if(ContadorPA > 3){
-	    	window.setTimeout(function(){someImagemGaroto();}, 1000);
-	    }
-	    
-	    HtmlContent += '</ul></div></div>';	
-	    		        
-	    $('#Portfolio_Conteudo').append(HtmlContent);
-	    $('#Portfolio_Conteudo').microfiche({ bullets: false });
+		
+		$('#Portfolio_Conteudo').append(HtmlContent);
+		$('#Portfolio_Conteudo').microfiche({ bullets: false });
 
-	    document.getElementsByClassName("SlidePort")[0].style.width = largura+'px';
-	   	document.getElementsByClassName("microfiche-film")[0].style.width = largura+'px';
+	$('.microfiche-next-button').click(function() {
+		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/293 > - ($('.microfiche-film .Portfolio_Conteudo_Container').length - 1)))
+			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -592) + ',0)');
+	});
+
+	$('.microfiche-prev-button').prop("disabled", false);
+
+	$('.microfiche-prev-button').click(function() {
+		console.log("Teste");
+		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
+			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 592) + ',0)');
+	});
+
+	$('.microfiche-film').css('width', '5000px');
 
 }
 
 //------------------------------------------------------------------------------------------------------------------------
 
-function AtivaBotoesPortfolio(){
+function AtivaBotoesPortfolio(a){
 
-	$('.microfiche-next-button').click(function() {
+	/*$('.microfiche-next-button').click(function() {
 		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/232 > - ($('.SlidePort a').length - 3)))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -232) + ',0)');
 	});
@@ -315,7 +324,7 @@ function AtivaBotoesPortfolio(){
 	$('.microfiche-prev-button').click(function() {
 		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 232) + ',0)');
-	});
+	});*/
 
 }
 //------------------------------------------------------------------------------------------------------------------------
@@ -482,7 +491,6 @@ function CarregarOficinas() {
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function() {
-
 	//Chamada de funcoes dos serviços
 
 	contadorRoteirosTotal = contagemRoteiro();
@@ -495,7 +503,7 @@ $(document).ready(function() {
 	CarregarPlanos();
 	CarregaServicoProducaoAluno();
 	CarregarOficinas()
-	AtivaBotoesPortfolio();
+	AtivaBotoesPortfolio("oi");
 
 });
 

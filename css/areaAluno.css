@@ -111,50 +111,13 @@ div[class*="box_col"]:last-of-type {
 	height: 37px;
 	font-size: 22px;
 	z-index: 1;
+	padding: 0 18px;
 }
 .Objetivos_Semana_Cabecalho_Nome a{
 	color: #52853f;
 }
-.portfolio_secao {
-	width: 212px;
-	height: 180px;
-	float:left;
-	padding: 16px 15px;
-}
-.portfolio_secao_vazio {
-	width: 208px;
-	height: 189px;
-	float:left;
-	padding: 16px 15px;
-	background: url("../img/FotoPortifolioVazio.png");
-	background-position: -2px -5px;
-}
-.verde {
-	background-color: #90b957;
-	margin-right: 24px;
-}
 .verdeNoMargin {
 	background-color: #9EBA4C;
-}
-.roteiro {
-	width:100%;
-	height:85%;
-	background-color: rgb(242, 242, 238);
-	background-repeat: no-repeat;
-	background-position: center;		
-	clear: both;
-	text-align:center;
-	text-align: -webkit-center;
-}
-
-.nome_roteiro {
-	width: 100%;
-	height: 20%;
-	margin-top: 5px;
-	float: left;
-	clear: both;
-	color: white;
-	font-size: 12px;
 }
 
 
@@ -174,31 +137,53 @@ div[class*="box_col"]:last-of-type {
 
 
 
-
-
-
-
-
 .Objetivos_Resultado_Desempenho{
 	background-color:rgb(190,221,145) !important;
 	width: 100%;
 	height: 256px;
-	padding: 18px;
+	padding: 18px 0;
 }
 
 #Portfolio_Conteudo {
+	position: relative;
 	width: 100% !important;
 	height: 184px !important;
 }
-
-.microfiche-screen{
-	height: 100% !important;
-	width: 100% !important;
+.microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
 }
 
+.microfiche-screen{
+    height: 100% !important;
+    width: 93.2% !important;
+    margin: 0px auto;
+}
+
+.microfiche-film {
+    height: 100% !important;
+    margin: 0px 2px !important;
+    transition: transform 0.35s;
+}
+
+
+
 .Portfolio_Conteudo_Container {
-	width: 100% !important;
+	width: 569px !important;
 	height: 100% !important;
+	margin: 0 auto;
+	margin-right: 18px;
 }
 
 .SlidePort{
@@ -207,24 +192,13 @@ div[class*="box_col"]:last-of-type {
 }
 
 
-#content_central{
-	padding: 36px 25px 36px 36px;
-}
+#content_central{ padding: 36px 25px 36px 36px; }
 
-#content_central_1{
-	overflow:hidden;
-}
+#content_central_1{ overflow:hidden; }
 
-#content_central_1{
-	overflow:hidden;
-}
+#content_central_1{ overflow:hidden; }
 
-.microfiche-controls{
-	display: none !important;
-}
-.microfiche-film {
-	width: 500px !important;
-}
+.microfiche-controls{ display: none !important; }
 
 .Portfolio_Conteudo_Container li {
 	height: 180px;
@@ -233,7 +207,53 @@ div[class*="box_col"]:last-of-type {
 	float: left;
 	margin: 18px 18px 0 0;
 	padding: 0;
-} 
+}
+.Portfolio_Conteudo_Box {
+	float: left;
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+}
+
+.Portfolio_Conteudo_Box:first-of-type { padding-right: 9px; }
+
+.Portfolio_Conteudo_Box:last-of-type { padding-left: 9px; }
+
+.Portfolio_Conteudo_Box > a {
+	float: left;
+	display: inline-block;
+	background-color: #90b957;
+	width: 100%;
+	height: 100%;
+	padding: 18px;
+}
+
+.Nome_Roteiro {
+	float: left;
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	color: white;
+	line-height: 1.5em;
+	font-size: 16px;
+	text-align: left;
+	font-weight: normal;
+	padding-right: 9px;
+}
+
+.Nome_Roteiro::first-line { line-height: 1em; }
+
+.Img_Roteiro {
+	float: right;
+	display: inline-block;
+	width:50%;
+	height:100%;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+	text-align: center;
+}
 
 
 
