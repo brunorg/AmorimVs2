@@ -86,7 +86,7 @@ $.ajax({
 function CarregaServicoCalendarioEventos()
 {
 	$.ajax({
-		url: path+"Calendario/Evento/"+46,
+		url: path+"Calendario/Evento/" + 46,
 		type: "GET",
 		async:true,
 		crossDomain: true,
@@ -177,10 +177,6 @@ function CarregaServicoMensagens(){
 				if(dataMensagens[a].cxEntrada == "S" && dataMensagens[a].lida == "N" && usuario == "Aluno")
 				{	
 					cB++;
-					/*if(cB == 3)
-					{
-						cB = contador;
-					}*/
 					HtmlContent += '<tr>';
 					HtmlContent += '<td class="dataMsg" onClick="window.location=\'mensagens.html?ID='+dataMensagens[a].idmensagens+'\';" style=" line-height: 13px;""><h4 class="user">'+ (dataMensagens[a].remetente.aluno != null ? dataMensagens[a].remetente.aluno.nome:dataMensagens[a].remetente.professor.nome) +'</h4>'+ dataMensagens[a].assunto.substring(0,40)+(dataMensagens[a].assunto.length<40 ? "</td>":"...</td>");
 					HtmlContent += "</tr>";
@@ -197,7 +193,6 @@ function CarregaServicoMensagens(){
 		}
 	});
 }
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -403,6 +398,40 @@ function CarregarMural() {
 
 //Preencher Plano de Estudos
 function CarregarPlanos() {
+
+	//Carregar plano de estudo mais recente
+	var dataPlanoEstudo;
+
+	$.ajax({
+		url: path+"PlanoEstudo/aluno/"+alunoID,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(d) {
+			dataPlanoEstudo = d[0];			
+		}
+	});
+
+	//Colocar Data
+	var semanaPlano = dataPlanoEstudo.dataInicio.split('-')[1] + '/' +  dataPlanoEstudo.dataInicio.split('-')[2] + " - " + dataPlanoEstudo.dataFim.split('-')[1] + '/' +  dataPlanoEstudo.dataFim.split('-')[2]
+	$('#PlanoEstudo_Semana').html(semanaPlano);
+
+	//Carregar planejamentos referentes a esse plano
+
+	var dataPlanejamento;
+
+	$.ajax({
+		url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.id,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(d) {
+			dataPlanoEstudo = d[0];
+		}
+	});
+
+	//
+
 	var planoNome = "As transformações dos materiais";
 	for (var i = 0; i < 5; i++) {
 		var planoLinha = '<div class="PlanoEstudo_Linha">'+
@@ -473,184 +502,6 @@ $(document).ready(function() {
 
 
 //------------------------------------------------------------------------------------------------------------------------
-
-
-
-/* Chart.js */
-
-		$(document).ready(function() {
-			var Limite;
-			var HtmlContent;
-			var ListaRoteiros = new Array();
-			var RoteirosCompleto = new Array();
-			var contadorRoteiros;
-
-				nobjetivosfeitos = 0;
-				nobjetivos = 0;
-				contadorRoteiros = 0;
-
-				for(var a=0; a<dataPlanejamentoRoteiro.length;a++)
-				{
-					if(
-						dataPlanejamentoRoteiro[a].objetivo.roteiro.ativo == "1" && 
-						dataPlanejamentoRoteiro[a].objetivo.ativo == "1" && 
-						dataPlanejamentoRoteiro[a].objetivo.roteiro.anoEstudo.idanoEstudo == AnoEstudoID)
-					{
-						nobjetivos++;
-
-						if(dataPlanejamentoRoteiro[a].status == 2 || dataPlanejamentoRoteiro[a].status == 3)
-						{
-							nobjetivosfeitos++;
-						}
-
-						for(var b = 0; b<ListaRoteiros.length; b++)
-						{
-							var RoteiroEncontrado = false;
-
-							if(dataPlanejamentoRoteiro[a].objetivo.roteiro.idroteiro == ListaRoteiros[b])
-							{
-								RoteiroEncontrado = true;
-							}
-
-						}
-
-						if(!RoteiroEncontrado)
-						{ 
-							/*Modificavel*/
-							
-							RoteirosCompleto[ListaRoteiros.length] = GetBooleanRoteiroCompleto(dataPlanejamentoRoteiro[a].objetivo.roteiro.idroteiro);
-							
-
-							ListaRoteiros[ListaRoteiros.length] = dataPlanejamentoRoteiro[a].objetivo.roteiro.idroteiro; 
-							
-
-						}
-
-					}
-				}
-
-				for(var c=0;c < ListaRoteiros.length; c++)
-				{
-					if(RoteirosCompleto[c])
-					{
-						contadorRoteiros++;
-					}
-				}
-
-				//console.log(nobjetivos,nobjetivosfeitos);
-
-				if(nobjetivos>0)
-				{
-
-					var porcObj = (((nobjetivosfeitos+ObjetivoCompletosAdd)/(contadorObjetivosTotal))*100);
-
-					var doughnutData2 = [
-					{
-						value: porcObj,
-						color:"#4861AA",
-						highlight: "#5AD3D1",
-						label: "Red"
-					},
-					{
-						value: (100-porcObj),
-						color: "#C5C4B1",
-						highlight: "#FF5A5E",
-						label: "Green"
-					}
-					];
-
-					var ctx = document.getElementById("chart2").getContext("2d");
-					window.myDoughnut = new Chart(ctx).Doughnut(doughnutData2, 
-					{responsive : true, showTooltips: false, animation: true});
-
-					$('#_objCompletos_Chart').html((nobjetivosfeitos+ObjetivoCompletosAdd));
-					$('#_objTotal_Chart').html(contadorObjetivosTotal);
-			
-				} 
-				else 
-				{
-					var doughnutData2 = [
-					{
-						value: 0,
-						color:"#4861AA",
-						highlight: "#5AD3D1",
-						label: "Red"
-					},
-					{
-						value: 100,
-						color: "#C5C4B1",
-						highlight: "#FF5A5E",
-						label: "Green"
-					}
-					];
-
-					var ctx = document.getElementById("chart2").getContext("2d");
-					window.myDoughnut = new Chart(ctx).Doughnut(doughnutData2, 
-					{responsive : true, showTooltips: false, animation: true});
-			
-					$('#_objCompletos_Chart').html("0");
-					$('#_objTotal_Chart').html("0");
-				}
-
-
-
-
-				if(ListaRoteiros.length>0)
-				{				
-
-					var porcRot = (((contadorRoteiros+RoteirosCompletosAdd)/(contadorRoteirosTotal))*100);
-
-					var doughnutData = [
-						{
-							value: porcRot,
-							color:"#EB5B61",
-							highlight: "#5AD3D1",
-							label: "Red"
-						},
-						{
-							value: (100-porcRot),
-							color: "#C5C4B1",
-							highlight: "#FF5A5E",
-							label: "Green"
-						}
-					];
-
-				
-
-					$('#_rotCompletos_Chart').html((contadorRoteiros+RoteirosCompletosAdd));
-					$('#_rotTotal_Chart').html(contadorRoteirosTotal);
-				} else 
-				{
-
-
-					var doughnutData = [
-						{
-							value: 0,
-							color:"#EB5B61",
-							highlight: "#5AD3D1",
-							label: "Red"
-						},
-						{
-							value: 100,
-							color: "#C5C4B1",
-							highlight: "#FF5A5E",
-							label: "Green"
-						}
-					];
-
-					$('#_rotCompletos_Chart').html("0");
-					$('#_rotTotal_Chart').html("0");
-				}
-
-					
-
-				var ctx = document.getElementById("chart1").getContext("2d");
-				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, 
-				{responsive : true, showTooltips: false, animation: true});			
-				
-
-			   			    
-			});		
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -775,7 +626,7 @@ function getUltimoPE(ID)
 	$.ajax({
 		url: path+"PlanoEstudo/aluno/"+ID,
 		type: "GET",
-		async:false,
+		async: false,
 		crossDomain: true,
 		success: function(d) {
 			max = d;			

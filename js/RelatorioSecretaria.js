@@ -97,6 +97,8 @@ function gerarRelatorio(){
 		campos[j] = $("#"+campoId).text();
 		j++;
 	});
+
+	console.log(valores);
 	
 	if(existe == true){		
 		var html="",count=0,k=0;
@@ -112,6 +114,9 @@ function gerarRelatorio(){
 				//loading("inicial");
 			},				
 			success: function(d) {
+
+
+
 				if(d[0] == "não há valores"){
 					$(".dadosBusca").css("display","block").html("NÃO HÁ VALORES");
 				}
@@ -144,7 +149,7 @@ function gerarRelatorio(){
 							}
 
 							html+= '<div class="celulaGrande">'+
-										'<div class="infoM">'+campos[j]+'</div>'+
+										'<div class="infoM">'+campos[j]+'|</div>'+
 										'<div class="infoValueM">'+
 											'<input value="'+d[aux[i][1]+j]+'" maxlength="200" title="Quantidade de caracteres permitidos: 200" disabled></input>'+
 										'</div>'+

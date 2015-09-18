@@ -65,54 +65,113 @@ $(document).ready(function(){
 				
 	});
 
-	HtmlContent = "";
+	carregaForumCompleto();
+	carregaAnoEstudo();
 
+	$('#PesqAnoEstudo').change(function() {
+		recarregaForumAnoEstudo($(this).val());
+	});
 
-	for(var a=0; a< dataRoteiro.length; a++)
-	{
-		HtmlContent+= '<div class="secao_forum" id="btn'+dataRoteiro[a].idroteiro+'">';
-		HtmlContent+= '<a href="#" class="barra_titulo accordion"><span id="'+dataRoteiro[a].idroteiro+'">'+dataRoteiro[a].nome+'</span></a>';
-		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-        {
-            HtmlContent+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+dataRoteiro[a].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-        }
-        else
-        {
-        	HtmlContent+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+dataRoteiro[a].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-        }
-		HtmlContent+= '<div class="info_secao_forum">';
-
-		HtmlContent+= getResultadoForumQuestao(dataRoteiro[a].idroteiro);
-
-		HtmlContent+= '</div>';
-		HtmlContent+= '</div>';
-	}
-
-	$('#box_forum').html(HtmlContent);
-	window.setTimeout(function(){
-		abreAcoordion();
-	}, 1000);
-
-		
-	function abreAcoordion(){	
-		$('a.accordion').click(function(){
-			//alert('t');
-			$(this).toggleClass('aparecer');
-			$(this).parent().find('div.info_secao_forum').slideToggle("slow");
-			var btn = $(this).closest('div.secao_forum').attr('id') ;
-			$("#"+btn+" .btn_topico").toggleClass("aparecer")
-		});
-	}
-
-	window.setTimeout(function(){
-		$(".info_secao_forum p").each(function(){
-			//$(this).css("height", 36 + 18 * Math.floor(($(this).find(".esquerda").html().length)/45));
-			//$(this).parent().siblings('a.accordion').trigger("click");
-			//$(this).css("height", 18 + $(this).find(".esquerda").height());
-			//$(this).parent().siblings('a.accordion').trigger("click");
-		});
-	}, 1000);
 });
+
+function buscaForum () {
+	if ($('#buscaForum').val() != "")
+		$.ajax({
+    	    url: path + "Roteiro/ListaLikeRoteiro/" + $('#buscaForum').val(),
+			type: "GET",
+			async: false,
+			crossDomain: true,
+			dataType: 'json',
+			beforeSend: function() {
+				loading('inicial');
+			},
+			success: function (forumBusca) {
+				HtmlContentBusca = '';
+				for (var i = 0; i < forumBusca.length; i++) {
+					HtmlContentBusca+= '<div class="secao_forum" id="btn'+forumBusca[i].idroteiro+'">';
+					HtmlContentBusca+= '<a href="#" class="barra_titulo accordion"><span id="'+forumBusca[i].idroteiro+'">'+forumBusca[i].nome+'</span></a>';
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+    	    		{
+    	        		HtmlContentBusca+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+    	    		}
+    	    		else
+    	    		{
+    	    			HtmlContentBusca+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+    	    		}
+					HtmlContentBusca+= '<div class="info_secao_forum">';
+	
+					HtmlContentBusca+= getResultadoForumQuestao(forumBusca[i].idroteiro);
+	
+					HtmlContentBusca+= '</div>';
+					HtmlContentBusca+= '</div>';
+				}
+	
+				$('#box_forum').html(HtmlContentBusca);
+				window.setTimeout(function(){
+					abreAcoordion();
+				}, 1000);
+	
+			},
+			complete: function() {
+				loading('final');
+			}
+    	});
+	else
+		carregaForumCompleto();
+}
+
+function carregaForumCompleto () {
+	$.ajax({
+        url: path + "Roteiro",
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function (forumData) {
+			Html = '';
+			for (var i = 0; i < forumData.length; i++) {
+				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
+				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span></a>';
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+        		{
+            		Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+        		else
+        		{
+        			Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+				Html+= '<div class="info_secao_forum">';
+
+				Html+= getResultadoForumQuestao(forumData[i].idroteiro);
+
+				Html+= '</div>';
+				Html+= '</div>';
+			}
+
+			$('#box_forum').html(Html);
+			window.setTimeout(function(){
+				abreAcoordion();
+			}, 1000);
+
+		},
+		complete: function() {
+			loading('final');
+		}
+    });
+}
+
+function abreAcoordion(){	
+	$('a.accordion').click(function(){
+		//alert('t');
+		$(this).toggleClass('aparecer');
+		$(this).parent().find('div.info_secao_forum').slideToggle("slow");
+		var btn = $(this).closest('div.secao_forum').attr('id') ;
+		$("#"+btn+" .btn_topico").toggleClass("aparecer")
+	});
+}
 
 
 function getResultadoForumQuestao(ID)
@@ -144,6 +203,63 @@ function getResultadoForumQuestao(ID)
 	}
 
 	return HtmlContent;
+}
+
+function carregaAnoEstudo(){
+	/*lista anoEstudo*/
+	var dataAnoEstudo = getData("AnoEstudo", null);	
+	HtmlContent = ""; 
+	for(var b=0;b<dataAnoEstudo.length; b++)
+	{
+		HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"'>"+(dataAnoEstudo[b].ano)+"º</option>";
+	}
+	$('#PesqAnoEstudo').html("<option></option>"+HtmlContent);
+}
+
+function recarregaForumAnoEstudo (ano) {
+	console.log(ano);
+	var HtmlContentRecarregar = '';
+	$.ajax({
+		url: path + "Roteiro/RoteiroAno/" + ano,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function (forumAno) {
+			for (var i = 0; i < forumAno.length; i++) {
+				HtmlContentRecarregar+= '<div class="secao_forum" id="btn'+forumAno[i].idroteiro+'">';
+				HtmlContentRecarregar+= '<a href="#" class="barra_titulo accordion"><span id="'+forumAno[i].idroteiro+'">'+forumAno[i].nome+'</span></a>';
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+        		{
+            		HtmlContentRecarregar+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+        		else
+        		{
+        			HtmlContentRecarregar+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+				HtmlContentRecarregar+= '<div class="info_secao_forum">';
+
+				HtmlContentRecarregar+= getResultadoForumQuestao(forumAno[i].idroteiro);
+
+				HtmlContentRecarregar+= '</div>';
+				HtmlContentRecarregar+= '</div>';
+			}
+
+			$('#box_forum').html(HtmlContentRecarregar);
+			window.setTimeout(function(){
+				abreAcoordion();
+			}, 1000);
+
+		},
+		complete: function() {
+			loading('final');
+		}
+
+	});
+	
+
 }
 
 function getResultadoForumResposta(ID, usuario)
