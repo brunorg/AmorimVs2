@@ -231,7 +231,7 @@
 	cursor: pointer;
 	background-repeat: no-repeat, no-repeat;
 	background-position: center, center;
-	background-size:auto auto, auto 120%;
+	background-size:90% auto, auto 120%;
 	font-size:16px;
 	opacity:0.5;
 	/*color:white;
@@ -310,7 +310,7 @@
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem.MouseHover{
 	
-	background-size:auto auto, auto 100%;
+	background-size:90% auto, auto 100%;
 }
 
 
@@ -319,6 +319,7 @@
 	width:100%;
 	background-color:#EBEBE4;
     height: 232px;
+    padding: 20px 0 0 10px;
     /*padding: 60px;*/
 }
 
@@ -328,7 +329,7 @@
     font-size: 26px;
     height: 100%;
     padding: 0px 10px;
-    width: 50%;
+    width: 38%;
     font-weight: 400;
 }
 
@@ -338,15 +339,14 @@
 
 #Conteudo_Corpo .rightSide .contentLeftSide .texto{
 	height:100%;
-	width:45.4%;
+	width: 58%;
 	float:left;
     padding: 0px 10px;
-    display: table;
+    
 }
 
 #Conteudo_Corpo .rightSide .contentLeftSide .texto span{
-  display: table-cell;
-  vertical-align: middle;
+  
 }
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao{
@@ -619,7 +619,7 @@
 	}
 
 	#Conteudo_Corpo .rightSide .contentLeftSide {
-    	height: 37%;
+    	height: 32%;
     	padding: 15px;
 	}
 
@@ -632,7 +632,7 @@
 	#Conteudo_Corpo .rightSide .contentRightSide .contentItem {
 	    width: 135px;
 	    height: 135px;
-   		margin: 0 18px 10px 0px;
+   		margin: 0 18px 11px 0px;
 	}
 
 	#Conteudo_Corpo .rightSide .contentRightSide {
@@ -692,6 +692,10 @@
 	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close {
 	    position: absolute;
 	    right: 35px;
+	}
+
+	#Conteudo_Corpo .rightSide .contentLeftSide .titulo {
+		font-size: 22px;
 	}
 
 	#Cabecalho{
