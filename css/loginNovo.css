@@ -216,16 +216,17 @@
 #Conteudo_Corpo .rightSide .contentRightSide{
 	height:70%;
 	width:100%;
-	padding-top: 10px;
+	padding-top: 32px;
 	/*padding:0px 10px 0px 60px;*/
 	
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem{
-	width:141px;
-	height:141px;
+
+	width: 131px;
+    height: 131px;
+    margin: 0 23px 20px 0px;
 	float:left;
-	margin: 0 10px 10px 0px;
 	transition:background-size 0.5s;
 	cursor: pointer;
 	background-repeat: no-repeat, no-repeat;
@@ -236,6 +237,7 @@
 	/*color:white;
 	text-align:center;
 	font-weight: bold;*/
+
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo{
@@ -285,12 +287,18 @@
 
 }
 
-#Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(8),
-#Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(9),
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(10){
-	background-image: url("../img/btn8_texto.png"), 
-						url("../img/btn8.png");
 
+	background-image: url("../img/btn2_texto.png"), 
+	url("../img/btn2.png");
+}
+#Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(9){
+	background-image: url("../img/btn6_texto.png"), 
+	url("../img/btn6.png");
+}
+#Conteudo_Corpo .rightSide .contentRightSide .contentItem:nth-child(8){
+	background-image: url("../img/btn8_texto.png"), 
+	url("../img/btn8.png");
 }
 
 
@@ -310,7 +318,7 @@
 #Conteudo_Corpo .rightSide .contentLeftSide{
 	width:100%;
 	background-color:#EBEBE4;
-    height: 280px;
+    height: 232px;
     /*padding: 60px;*/
 }
 
@@ -321,13 +329,11 @@
     height: 100%;
     padding: 0px 10px;
     width: 50%;
-    font-weight: 600;
-    display: table;
+    font-weight: 400;
 }
 
 #Conteudo_Corpo .rightSide .contentLeftSide .titulo span {
-  display: table-cell;
-  vertical-align: middle;
+
 }
 
 #Conteudo_Corpo .rightSide .contentLeftSide .texto{
@@ -443,6 +449,7 @@
 	top:0;
 	width:96%;
 	height:380px;
+	float:left;
 }
 
 
@@ -679,6 +686,7 @@
 
 	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe {
 	    height: 320px;
+	    float:none;
 	}
 
 	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close {
