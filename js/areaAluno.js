@@ -430,18 +430,43 @@ function CarregarPlanos() {
 	var dataPlanejamento;
 
 	$.ajax({
-		url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.id,
+		url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.idplanoEstudo,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		success: function(d) {
-			dataPlanoEstudo = d[0];
+			dataPlanejamento = d;
 		}
 	});
 
-	//
+	//Colocar planejamentos no quadro
 
-	var planoNome = "As transformações dos materiais";
+	for (var i  = 0; i < dataPlanejamento.length; i++)
+	{
+		planoLinha = ''
+		if ($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).length > 0)
+		{
+			if($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Num").length %7 == 0)
+			{
+				$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).append('<div class="PlanoEstudo_Linha_Conteudo"></div>');
+			}
+			$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
+		}
+		else
+		{
+			planoLinha = '<div class="PlanoEstudo_Linha" id="Roteiro' + dataPlanejamento[i].objetivo.roteiro.idroteiro + '">' +
+								'<div class="PlanoEstudo_Linha_Cabecalho">'+
+									'<p class="PlanoEstudo_Nome">'+dataPlanejamento[i].objetivo.roteiro.nome+'</p>'+
+								'</div>'+
+								'<div class="PlanoEstudo_Linha_Conteudo">' +
+								'</div>' +
+							'</div>';
+			$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
+			$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
+		}
+	}
+
+	/*var planoNome = "As transformações dos materiais";
 	for (var i = 0; i < 5; i++) {
 		var planoLinha = '<div class="PlanoEstudo_Linha">'+
 							'<div class="PlanoEstudo_Linha_Cabecalho">'+
@@ -457,11 +482,27 @@ function CarregarPlanos() {
 							'</div>'+
 						'</div>';
 		$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
-	};
+	};*/
 };
 
 //------------------------------------------------------------------------------------------------------------------------
 
+function getPlanejamento (planejamento) {
+	var planejamentoContent = '';
+
+	if(planejamento.status == 1)
+	{
+	    planejamentoContent += '<div class="PlanoEstudo_Num">'+ planejamento.objetivo.numero + '</div>';
+	} else if(planejamento.status == 2){
+	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado">'+ planejamento.objetivo.numero+'</div>';
+	} else if(planejamento.status == 3){
+	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado revisado">'+ 	planejamento.objetivo.numero+'</div>';
+	}
+
+	return planejamentoContent;
+}
+
+//------------------------------------------------------------------------------------------------------------------------
 //Preencher Oficinas
 function CarregarOficinas() {
 	var oficinasNomes = ["Matematica", "Leitura_Escrita", "Artes", "Ingles", "Matematica", "Leitura_Escrita", "Artes", "Ingles"];

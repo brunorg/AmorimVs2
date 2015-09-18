@@ -433,10 +433,13 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	}
 	.PlanoEstudo_Linha {
 		width: 98%;
-		height: 50px;
+		height: auto;
 		margin: 5px 0;
 		background-color: #fff;
 		padding: 5px 10px 10px;
+	}
+	.PlanoEstudo_Linha_Conteudo{
+		margin-bottom: 5px;
 	}
 	.PlanoEstudo_Linha:first-of-type {
 		margin-top: 0;
@@ -459,16 +462,18 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	    width: 26px;
 	    height: 20px;
 	    margin-right: 3px;
-	    background-color: #acacac;
+	    background-color: rgb(255, 167, 89);
 	    color: #fff;
 	    padding-top: 2px;
 	    cursor: pointer;
 	}
 	.iniciado {
-		background-color: rgb(255, 167, 89);
+		background-color: rgb(141, 192, 63);
 	}
 	.revisado {
-		background-color: rgb(141, 192, 63);
+		background-image:url(../img/R_check.png);
+		background-size: cover;
+		background-position: 1px -1px;
 	}
 
 /* OFICINAS */
