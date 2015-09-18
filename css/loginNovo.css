@@ -197,10 +197,10 @@
 #Conteudo_Corpo .Selecao7{display: block;}
 
 #Conteudo_Corpo .leftSide{
-	background-image: url("../img/right_producao.png");
-	background-position: 0 -53px;
+	background-image: url("../img/img1note.png");
+	background-position: -10px -10px;
     background-repeat: no-repeat;
-    background-size: auto 646px;
+    background-size: auto 606px;
     float: left;
     height: 100%;
     width: 480px;
@@ -384,14 +384,16 @@
 	background-color:#ebebe4;
 	float:left;
 	padding:10px 36px 36px 31px;
+	position:relative;
 }
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close{
 	width:17px;
 	height:17px;
-	float:right;
 	background-image: url("../img/fecharSairVoltar.png");
 	cursor:pointer;
+	position: absolute;
+	right: 35px;
 }
 
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide{
@@ -399,7 +401,7 @@
 	height:400px;
 	float:right;
 	position:relative;
-	padding:10px 0;
+	padding:0 0;
 	text-align: center;
 }
 
@@ -407,7 +409,7 @@
 	width:10%;
 	height:100%;
 	background-color:#ebebe4;
-	top:10px;
+	/* top:10px; */
 	position:absolute;
 	background-image: url("../img/Arrow_pq_mod.png");
 	background-repeat: no-repeat;
@@ -439,7 +441,7 @@
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe{
 	position:relative;
 	top:0;
-	width:100%;
+	width:96%;
 	height:380px;
 }
 
@@ -598,14 +600,15 @@
 @media (min-height: 640px) and (max-height: 768px){
 
 	#Conteudo_Corpo .leftSide{
-		background-position: 0 -123px;
-	    background-size: auto 594px;
-	    width: 440px;
+		background-position: 30px -45px;
+	    background-repeat: repeat-x;
+	    background-size: auto 514px;
+	    width: 480px;
 	}
 	
 	#Conteudo_Corpo .rightSide {
-	    padding-left: 60px;
-    	width: 840px;
+	    padding-left: 20px;
+    	width: 800px;
 	}
 
 	#Conteudo_Corpo .rightSide .contentLeftSide {
@@ -652,11 +655,35 @@
 	}
 
 	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide {
-	    height: 280px;
+	    height: 312px;
 	}
 
 	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
 	    height: 280px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+    	height: 280px;
+    	margin: 0 auto;
+	}
+	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	    float: none;
+	    height: 400px;
+	    width: 81%;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	    height: 320px;
+	    margin: 0 auto;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe {
+	    height: 320px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close {
+	    position: absolute;
+	    right: 35px;
 	}
 
 	#Cabecalho{
