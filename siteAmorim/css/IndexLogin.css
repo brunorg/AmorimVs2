@@ -1,4 +1,28 @@
 
+.btnMenu{
+	width : 102px;
+  	height : 24px;
+  	margin-right: 5px;
+  	background-color: gray;
+  	/*background-color: white;*/
+  	float: right;
+  	/*padding-left: 2.3%;*/
+  	padding-top: 0.3%;
+  	color: white;
+  	cursor: pointer;
+  	text-align: center;
+}
+
+.btnMenu.Active{
+  	background-color: #21AEBB;
+
+}
+
+.btnMenu.Active:hover{
+  	background-color: #13818c;
+
+}
+
 #Conteudo_Corpo .Selecoes{display: none;}
 #Conteudo_Corpo .Selecao7{display: block;}
 
