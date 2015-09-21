@@ -312,23 +312,6 @@ function CarregaServicoProducaoAluno()
 
 //------------------------------------------------------------------------------------------------------------------------
 
-function AtivaBotoesPortfolio(a){
-
-	/*$('.microfiche-next-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/232 > - ($('.SlidePort a').length - 3)))
-			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -232) + ',0)');
-	});
-
-	$('.microfiche-prev-button').prop("disabled", false);
-
-	$('.microfiche-prev-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
-			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 232) + ',0)');
-	});*/
-
-}
-//------------------------------------------------------------------------------------------------------------------------
-
 //Preencher Rotina Semanal
 function CarregarRotina() {
 	var professores1 = ['Flávia','Bruna','Maria Eugênia','','Luciana','Luciana Cássia'];
@@ -390,7 +373,7 @@ function CarregarMural() {
 	];
 
 	for (var i = 0; i < muralNomes.length; i++) {
-		var muralLinha = '<div class="Mural_Conteudo_Linha">'+
+		var muralLinha = '<div class="Mural_Conteudo_Linha '+ (muralNomes.length > 2 ? 'Linha_Scroll' : '') +'">'+
 					'<div class="Mural_Linha_Cabecalho">'+
 						'<span class="Mural_Nome">'+muralNomes[i]+'</span>'+
 						'<span class="Mural_Data"> '+muralData+'</span>'+
@@ -517,7 +500,7 @@ function CarregarOficinas() {
 		"ANIMALS"
 	];
 	for (var i = 0; i <= oficinasNomes.length*2; i++) {
-		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha">' +
+		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha '+ (oficinasNomes.length > 4 ? 'Linha_Scroll' : '') +'">' +
 					'<div class="Oficina_Nome" id="Oficina_Nome_'+oficinasNomes[i]+'">'+oficinasNomes[i].toUpperCase()+'</div>'+
 					'<div class="Oficina_Tema" id="Oficina_Tema_'+oficinasNomes[i]+'">'+
 						'<p class="Oficina_Tema_Texto">'+oficinasTemas[i]+'</p>'+
