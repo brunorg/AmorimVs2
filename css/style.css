@@ -162,7 +162,7 @@ html, body
 				font-size: 17px;
 				font-weight: 300;
 				text-decoration: none;
-				padding: 10px 10px 15px 70px;
+				padding: 15px 10px 15px 70px;
 				word-break: keep-all;
 				background-repeat: no-repeat;
 				background-position: 21px 50%;
@@ -170,8 +170,8 @@ html, body
 			}
 			
 			.rows2 { 
-    			padding-top: 3px;
-    			padding-bottom: 5px;
+    			padding-top: 7px;
+    			padding-bottom: 7px;
     			line-height: .95em;
 			}
 
@@ -2230,6 +2230,29 @@ font-family: "proxima-nova",sans-serif;
 		background: #FFF;
 		right: 0;
 	}
+	.Content_lateral_Menu_Opcao{
+		position: relative;
+		box-sizing: border-box;
+		float: left;
+		width: 100%;
+		max-width: 256px;
+		height: 50px;
+		margin-bottom: 1px;
+		background-color: rgba(2, 129, 141, 1);
+		font-size: 17px;
+		font-weight: 300;
+		text-decoration: none;
+		padding: 10px 10px 15px 70px;
+		word-break: keep-all;
+		background-repeat: no-repeat;
+		background-position: 21px 50%;
+		background-size:25px;
+	}	
+	.rows2 { 
+		padding-top: 3px;
+		padding-bottom: 5px;
+		line-height: .95em;
+	}
 	#content_central_fixa{
 		overflow: hidden;
 		padding:37px;
@@ -2633,6 +2656,29 @@ font-family: "proxima-nova",sans-serif;
 		z-index: 1;
 		background: #FFF;
 		right: 0;
+	}
+	.Content_lateral_Menu_Opcao{
+		position: relative;
+		box-sizing: border-box;
+		float: left;
+		width: 100%;
+		max-width: 256px;
+		height: 50px;
+		margin-bottom: 1px;
+		background-color: rgba(2, 129, 141, 1);
+		font-size: 17px;
+		font-weight: 300;
+		text-decoration: none;
+		padding: 10px 10px 15px 70px;
+		word-break: keep-all;
+		background-repeat: no-repeat;
+		background-position: 21px 50%;
+		background-size:25px;
+	}		
+	.rows2 { 
+		padding-top: 3px;
+		padding-bottom: 5px;
+		line-height: .95em;
 	}
 	#content_central_fixa{
 		padding: 36px 34px 36px 36px;
@@ -3067,6 +3113,29 @@ font-family: "proxima-nova",sans-serif;
 	#Conteudo_Area{
 		height: 504px;
 		float:left;
+	}
+	.Content_lateral_Menu_Opcao{
+		position: relative;
+		box-sizing: border-box;
+		float: left;
+		width: 100%;
+		max-width: 256px;
+		height: 50px;
+		margin-bottom: 1px;
+		background-color: rgba(2, 129, 141, 1);
+		font-size: 17px;
+		font-weight: 300;
+		text-decoration: none;
+		padding: 10px 10px 15px 70px;
+		word-break: keep-all;
+		background-repeat: no-repeat;
+		background-position: 21px 50%;
+		background-size:25px;
+	}		
+	.rows2 { 
+		padding-top: 3px;
+		padding-bottom: 5px;
+		line-height: .95em;
 	}
 	#content_central {
 		overflow: auto;
