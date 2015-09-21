@@ -66,7 +66,7 @@ function CarregaServicoMural()
 
 //Carrega a tabela ProfessorFuncionario
 
-	function CarregaServicoProfessorFuncionario(){		
+	/*function CarregaServicoProfessorFuncionario(){		
 		var Faltas;		
 		var idTutoria;
 		var totalObjetivos;
@@ -162,7 +162,7 @@ function CarregaServicoMural()
 				$('.boxGrafico').css("display","none");	
 			}
 		});	
-	}
+	}*/
 
 //------------------------------------------------------------------------------------------------------------------------
 

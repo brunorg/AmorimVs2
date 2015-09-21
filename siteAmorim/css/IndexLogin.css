@@ -2,12 +2,9 @@
 .btnMenu{
 	width : 102px;
   	height : 24px;
-  	margin-right: 5px;
   	background-color: gray;
-  	/*background-color: white;*/
   	float: right;
-  	/*padding-left: 2.3%;*/
-  	padding-top: 0.3%;
+  	padding: 0.2% 0.3%;
   	color: white;
   	cursor: pointer;
   	text-align: center;
@@ -226,7 +223,7 @@
 #Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close{
 	width:17px;
 	height:17px;
-	background-image: url("../img/fecharSairVoltar.png");
+	background-image: url("../../img/fecharSairVoltar.png");
 	cursor:pointer;
 	position: absolute;
 	right: 35px;
@@ -247,7 +244,7 @@
 	background-color:#ebebe4;
 	/* top:10px; */
 	position:absolute;
-	background-image: url("../img/Arrow_pq_mod.png");
+	background-image: url("../../img/Arrow_pq_mod.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	display:none;

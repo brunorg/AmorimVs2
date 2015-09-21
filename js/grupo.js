@@ -1,25 +1,13 @@
-$(document).ready(function(){	
-	/*Abre a aba de pesquisar para o perfil que tem acesso*/
-	$("#bt_Pesquisar").click(function(){
-		if($("#bt_Pesquisar").hasClass("bt_Pesquisar_Inserir") == false)
-		{
-			$("#bt_Pesquisar").addClass("bt_Pesquisar_Ativo");
-			$("#bt_Inserir").removeClass("bt_Inserir_Ativo_Grupo");
-			$("#container_Pesquisa").css("display", "block");
-			$("#container_Inserir").css("display", "none");
-		}
-	});
-	
-	/*Abre a aba de inserir para o perfil que tem acesso*/
-	$("#bt_Inserir").click(function(){
-		if($("#bt_Inserir").hasClass("bt_Pesquisar_Inserir") == false)
-		{
-			$("#bt_Inserir").addClass("bt_Inserir_Ativo_Grupo");
-			$("#bt_Pesquisar").removeClass("bt_Pesquisar_Ativo");
-			$("#container_Inserir").css("display", "block");
-			$("#container_Pesquisa").css("display", "none");
-		}
-	});
+$(document).ready(function(){
+	/*Sistema de abas*/
+	$(".btn_abas").click(function(){ 
+		$(".btn_abas").removeClass("bt_Ativo");
+		$(this).addClass("bt_Ativo"); 
+		$('#cx_conteudo div').removeClass('selecionado');
+		containerAtivo = $(this).attr('id');
+		$('#container_'+containerAtivo).addClass('selecionado');
+	}); 
+
 	
 	/*Efeito do checkbox com imagem*/
 	$("div.inputImg").click(function(){
