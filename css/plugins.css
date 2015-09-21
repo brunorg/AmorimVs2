@@ -353,14 +353,14 @@
 	width: 4px !important;
 }
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-	background-color: #fff !important;
+	background-color: #ccc !important;
 	border-radius: 0 !important;
 }	
 .mCSB_inside > .mCSB_container {
 	margin-right: 5px !important;
 }
 .mCSB_scrollTools {
-	width: 4px !important;
+	width: 16px !important;
 }
 
 .mCSB_scrollTools .mCSB_buttonUp, .mCSB_scrollTools .mCSB_buttonDown, .mCSB_scrollTools .mCSB_buttonLeft, .mCSB_scrollTools .mCSB_buttonRight {
@@ -377,7 +377,7 @@
 	background-position: -3px -19px !important;
 }
 .mCSB_scrollTools_vertical {
-	right: 0px !important;
+	right: -2px !important;
 }
 
 @media (max-device-width :1024px){

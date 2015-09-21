@@ -895,6 +895,18 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     left: 540px;
 }
 
-.Linha_Scroll {
-	width: 99% !important;
-}
+/* Barra de rolagem */
+
+	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+		background-color: #fff !important;
+		border-radius: 0 !important;
+	}
+	.mCSB_scrollTools {
+		width: 4px !important;
+	}
+	.mCSB_scrollTools_vertical {
+		right: 0px !important;
+	}
+	.Linha_Scroll {
+		width: 99% !important;
+	}
