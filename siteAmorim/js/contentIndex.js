@@ -19,7 +19,7 @@ function SelecionarItem(numero)
 		$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<iframe src="https://player.vimeo.com/video/139168939" width="800" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'); }
 	else{
 		$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow').css("display","block");
-		$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<img width="auto" height="100%" src="img/'+dirSlides[numero]+'/img1.jpg">');
+		$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<img width="auto" height="100%" src="siteAmorim/img/'+dirSlides[numero]+'/img1.jpg">');
 	}
 }
 
@@ -35,5 +35,5 @@ function NextFrameSlide(numero)
 
 	}
 	
-	$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<img width="auto" height="100%" src="img/'+dirSlides[SlideAtual]+'/img'+FrameAtual+'.jpg">');
+	$('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<img width="auto" height="100%" src="siteAmorim/img/'+dirSlides[SlideAtual]+'/img'+FrameAtual+'.jpg">');
 }

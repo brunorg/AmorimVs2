@@ -365,23 +365,20 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto; 
 	}
 	.Mural_Conteudo_Linha {
-		box-sizing: border-box;
-		width: 98%;
+		width: 100%;
 		height: 67px;
 		margin: 5px 0;
 		background-color: #fff;
 		text-align: right;
 		padding: 5px 10px 10px;
 	}
-	.Mural_Conteudo_Linha:first-of-type {
-		margin-top: 0;
-	}
-	.Mural_Conteudo_Linha:last-of-type {
-		margin-bottom: 0;
-	}
-	.Mural_Linha_Cabecalho {
-		margin-bottom: 5px;
-	}
+	
+	.Mural_Conteudo_Linha:first-of-type { margin-top: 0; }
+	
+	.Mural_Conteudo_Linha:last-of-type { margin-bottom: 0; }
+	
+	.Mural_Linha_Cabecalho { margin-bottom: 5px; }	
+
 	.Mural_Linha_Cabecalho > span {
 		color: #78776b;
 		font-size: 12px;
@@ -399,9 +396,6 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     	-webkit-margin-after: 0;
     	-webkit-margin-start: 0;
     	-webkit-margin-end: 0;
-	}
-	#mCSB_2_scrollbar_vertical {
-		right: -5px;
 	}
 
 /* PLANO DE ESTUDOS */
@@ -432,7 +426,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto;
 	}
 	.PlanoEstudo_Linha {
-		width: 98%;
+		width: 100%;
 		height: auto;
 		margin: 5px 0;
 		background-color: #fff;
@@ -500,7 +494,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto;
 	}
 	.Oficinas_Conteudo_Linha {
-		width: 98%;
+		width: 100%;
 		height: 44px;
 		margin: 5px 0;
 	}
@@ -624,6 +618,33 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         right:0;
 	}
+	.Objetivos_Resultado_Desempenho{
+	background-color:rgb(190,221,145) !important;
+	width: 100%;
+	height: 256px;
+	padding: 18px 0;
+}
+
+#Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
+}
+.microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
 }
 
 @media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
@@ -643,10 +664,31 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         right:0;
 	}
-
+	#Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
 }
+.microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
+}
+
 /*Media para note com height 707*/
 @media (min-width: 1280px)and (max-height: 707px) {
+
     .box_margin_alter {
         display: none;
         position: absolute;
@@ -658,6 +700,26 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         top: 36px;
     }
+    #Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
+}
+    .microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
 }
 /*MEDIA TABLET*/
 @media (min-width: 1024px) and	(max-height: 460px){
@@ -671,6 +733,26 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         overflow: auto;
         right:0;
     }
+    #Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	height: 184px !important;
+}
+    .microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px !important;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 999;
+}
+.microfiche-prev-button {
+	left: 4px;
+}
+.microfiche-next-button {
+	left: 597px;
+}
 }
 
 @media (max-width: 1023px), (width: 1024px) and	(max-height: 460px){
@@ -811,4 +893,8 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     position: absolute;
     bottom: 441px;
     left: 540px;
+}
+
+.Linha_Scroll {
+	width: 99% !important;
 }
