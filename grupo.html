@@ -33,8 +33,8 @@
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>        
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>               
         <script type="text/javascript" src="js/grupo.js"></script>  
-        <script type="text/javascript" src="js/coordenacaoGrupoInfo.js"></script>     	  
-        <script type="text/javascript" src="js/coordenacaoGrupo.js"></script> 
+        <!--<script type="text/javascript" src="js/coordenacaoGrupoInfo.js"></script>     	  
+        <script type="text/javascript" src="js/coordenacaoGrupo.js"></script>-->
         
 		<script type="text/javascript" src="js/funcoes.js"></script>
 		<script type="text/javascript" src="js/autenticador.js"></script>
@@ -96,122 +96,143 @@
                 <div class="Conteudo_Coluna" id="content_central_fixa">
 					<!--Conteudo geral vai aqui quando acrescentar o html apagar o comentario-->
 					<div id="PesquisarInserir">
-						<div id="bt_Inserir" class="bt_Inserir_Ativo_Grupo bt_Off"> CRIAR GRUPO </div>
-						<div id="bt_Pesquisar" class="bt_Off"> PESQUISAR </div>		
-						<div id="container_Inserir">						
-                        	<form id="frmCadastroGrupo"> 
-                                <div id="linha1" class="linha">
-                                    <div class="celulaPequena">
-                                        <div class="infoP"> Ano estudo </div>
-                                        <div class="infoValueP">
-                                            <div class="styled-select">
-                                                <select id="S_AnoEstudo" name="S_AnoEstudo"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="celulaPequena ambasMargin">
-                                        <div class="infoP"> Período </div>
-                                        <div class="infoValueP">
-                                            <div class="styled-select">
-                                                <select id="S_Periodo" name="S_Periodo"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </br></br>
-                                <div id="boxAlunos">    
-                                    <div id="barra_aluno">                                     
-                                        <input type="hidden" name="grupo" id="grupo" value=""/>
-                                        <input type="hidden" name="nomeGrupo" id="nomeGrupo" value=""/>
-                                        <div id="marginAlunos">                                       
-                                            <div id="linha2" class="linha">
-                                                <div class="celulaGrande">
-                                                    <div class="infoG"> TUTOR </div>
-                                                        <div class="infoValueG"> 
-                                                            <div class="styled-select">
-                                                                <select class="tutoria" id="tutoria" name="tutoria"></select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>                                        
-                                            <div id="linha3" class="linha">
-                                                <div class="celulaGrande">
-                                                    <div class="infoG"><input type="checkbox" id="limpar1" class="checkLimpar" onClick="alimentaCombo('S_Aluno1');">Aluno </div>
-                                                        <div class="infoValueG"> 
-                                                            <div class="styled-select">
-                                                                <select class="S_Aluno" id="S_Aluno1"></select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>                                        
-                                            <div id="linha4" class="linha">
-                                                <div class="celulaGrande">
-                                                    <div class="infoG"><input type="checkbox" id="limpar2" class="checkLimpar" onClick="alimentaCombo('S_Aluno2');">Aluno </div>
-                                                        <div class="infoValueG"> 
-                                                            <div class="styled-select">
-                                                                <select class="S_Aluno" id="S_Aluno2"></select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>                                        
-                                            <div id="linha5" class="linha">
-                                                <div class="celulaGrande">
-                                                    <div class="infoG"><input type="checkbox" id="limpar3" class="checkLimpar" onClick="alimentaCombo('S_Aluno3');">Aluno </div>
-                                                        <div class="infoValueG"> 
-                                                            <div class="styled-select">
-                                                                <select class="S_Aluno" id="S_Aluno3"></select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>                                        
-                                            <div id="linha6" class="linha">
-                                                <div class="celulaGrande">
-                                                    <div class="infoG"><input type="checkbox" id="limpar4" class="checkLimpar" onClick="alimentaCombo('S_Aluno4');">Aluno </div>
-                                                        <div class="infoValueG"> 
-                                                            <div class="styled-select">
-                                                                <select class="S_Aluno" id="S_Aluno4"></select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>                                            
-                                            <div id="linha7" class="linha">
-                                            <div class="celulaGrande">
-                                                <div class="infoG"><input type="checkbox" id="limpar5" class="checkLimpar" onClick="alimentaCombo('S_Aluno5');">Aluno </div>
-                                                    <div class="infoValueG"> 
-                                                        <div class="styled-select">
-                                                            <select class="S_Aluno" id="S_Aluno5"></select>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>                                        
-                                        <div class="linha">
-                                            <div id="btAdd"></div>
-                                        </div>                                    
-                                        </div> 
-                                        <div>                                                                      
-                                            <input type="button" id="editarGrupo" class="bt_Salvar" onClick="editarGrupoFun()" style="font-size:20px;display:none;">                              			
-                                            <input type="button" id="cadastrarGrupo" class="bt_Salvar" onClick="grupoNovo()" style="font-size:20px;">						
-                                        </div>
-                                    </div> 
-                                </div>   
-                            </form>
-						</div>
-                        <div id="container_Pesquisa">						
-                        	<div class="box_margin_barra">					
-                                <div id="linha1" class="linha">
-                                    <div class="celulaMedia">
-                                        <div class="infoMG"> Tutorias </div>
-                                        <div class="infoValueM">
-                                            <div class="styled-select">
-                                            	<select class="tutoriaT"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-								</div>
-                                <div id="box_grupo_info_barra">
-                                	<div id="box_grupo_info"><!--AQUI CARREGA OS DADOS QUE RETORNA DA BUSCA--></div>
+						
+                        <div id="Grupo" class="btn_abas bt_Off bt_Ativo"> 
+                            CRIAR GRUPO 
+                        </div>
+                        <div id="Oficina" class="btn_abas bt_Off"> 
+                            CRIAR OFICINA 
+                        </div>
+                        <div id="Tutoria" class="btn_abas bt_Off"> 
+                            CRIAR TUTORIA 
+                        </div>
+						<div id="Pesquisa" class="btn_abas bt_Off"> 
+                            PESQUISAR 
+                        </div>						
+                        <div id='cx_conteudo'>
+                            <div id="container_Grupo" class="selecionado"> 						
+                            	Grupo oficina
+    						</div>
+                            <div id="container_Oficina">                      
+                                <div class="box_margin_barra">                  
+                                    <p>Teste</p>                    
                                 </div>                      
-                            </div>                      
+                            </div>
+                            <div id="container_Tutoria">                      
+                                <form id="frmCadastroGrupo"> 
+                                    <div id="linha1" class="linha">
+                                        <div class="celulaPequena">
+                                            <div class="infoP"> Ano estudo </div>
+                                            <div class="infoValueP">
+                                                <div class="styled-select">
+                                                    <select id="S_AnoEstudo" name="S_AnoEstudo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="celulaPequena ambasMargin">
+                                            <div class="infoP"> Período </div>
+                                            <div class="infoValueP">
+                                                <div class="styled-select">
+                                                    <select id="S_Periodo" name="S_Periodo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </br></br>
+                                    <div id="boxAlunos">    
+                                        <div id="barra_aluno">                                     
+                                            <input type="hidden" name="grupo" id="grupo" value=""/>
+                                            <input type="hidden" name="nomeGrupo" id="nomeGrupo" value=""/>
+                                            <div id="marginAlunos">                                       
+                                                <div id="linha2" class="linha">
+                                                    <div class="celulaGrande">
+                                                        <div class="infoG"> TUTOR </div>
+                                                            <div class="infoValueG"> 
+                                                                <div class="styled-select">
+                                                                    <select class="tutoria" id="tutoria" name="tutoria"></select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>                                        
+                                                <div id="linha3" class="linha">
+                                                    <div class="celulaGrande">
+                                                        <div class="infoG"><input type="checkbox" id="limpar1" class="checkLimpar" onClick="alimentaCombo('S_Aluno1');">Aluno </div>
+                                                            <div class="infoValueG"> 
+                                                                <div class="styled-select">
+                                                                    <select class="S_Aluno" id="S_Aluno1"></select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>                                        
+                                                <div id="linha4" class="linha">
+                                                    <div class="celulaGrande">
+                                                        <div class="infoG"><input type="checkbox" id="limpar2" class="checkLimpar" onClick="alimentaCombo('S_Aluno2');">Aluno </div>
+                                                            <div class="infoValueG"> 
+                                                                <div class="styled-select">
+                                                                    <select class="S_Aluno" id="S_Aluno2"></select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>                                        
+                                                <div id="linha5" class="linha">
+                                                    <div class="celulaGrande">
+                                                        <div class="infoG"><input type="checkbox" id="limpar3" class="checkLimpar" onClick="alimentaCombo('S_Aluno3');">Aluno </div>
+                                                            <div class="infoValueG"> 
+                                                                <div class="styled-select">
+                                                                    <select class="S_Aluno" id="S_Aluno3"></select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>                                        
+                                                <div id="linha6" class="linha">
+                                                    <div class="celulaGrande">
+                                                        <div class="infoG"><input type="checkbox" id="limpar4" class="checkLimpar" onClick="alimentaCombo('S_Aluno4');">Aluno </div>
+                                                            <div class="infoValueG"> 
+                                                                <div class="styled-select">
+                                                                    <select class="S_Aluno" id="S_Aluno4"></select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>                                            
+                                                <div id="linha7" class="linha">
+                                                <div class="celulaGrande">
+                                                    <div class="infoG"><input type="checkbox" id="limpar5" class="checkLimpar" onClick="alimentaCombo('S_Aluno5');">Aluno </div>
+                                                        <div class="infoValueG"> 
+                                                            <div class="styled-select">
+                                                                <select class="S_Aluno" id="S_Aluno5"></select>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>                                        
+                                            <div class="linha">
+                                                <div id="btAdd"></div>
+                                            </div>                                    
+                                            </div> 
+                                            <div>                                                                      
+                                                <input type="button" id="editarGrupo" class="bt_Salvar" onClick="editarGrupoFun()" style="font-size:20px;display:none;">                                        
+                                                <input type="button" id="cadastrarGrupo" class="bt_Salvar" onClick="grupoNovo()" style="font-size:20px;">                       
+                                            </div>
+                                        </div> 
+                                    </div>   
+                                </form>
+                            </div>
+                            <div id="container_Pesquisa">						
+                            	<div class="box_margin_barra">					
+                                    <div id="linha1" class="linha">
+                                        <div class="celulaMedia">
+                                            <div class="infoMG"> Tutorias </div>
+                                            <div class="infoValueM">
+                                                <div class="styled-select">
+                                                	<select class="tutoriaT"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+    								</div>
+                                    <div id="box_grupo_info_barra">
+                                    	<div id="box_grupo_info"><!--AQUI CARREGA OS DADOS QUE RETORNA DA BUSCA--></div>
+                                    </div>                      
+                                </div>                      
+                            </div>
                         </div>
 					</div>					              					
 				</div>

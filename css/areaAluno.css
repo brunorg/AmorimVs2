@@ -365,23 +365,20 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto; 
 	}
 	.Mural_Conteudo_Linha {
-		box-sizing: border-box;
-		width: 98%;
+		width: 100%;
 		height: 67px;
 		margin: 5px 0;
 		background-color: #fff;
 		text-align: right;
 		padding: 5px 10px 10px;
 	}
-	.Mural_Conteudo_Linha:first-of-type {
-		margin-top: 0;
-	}
-	.Mural_Conteudo_Linha:last-of-type {
-		margin-bottom: 0;
-	}
-	.Mural_Linha_Cabecalho {
-		margin-bottom: 5px;
-	}
+	
+	.Mural_Conteudo_Linha:first-of-type { margin-top: 0; }
+	
+	.Mural_Conteudo_Linha:last-of-type { margin-bottom: 0; }
+	
+	.Mural_Linha_Cabecalho { margin-bottom: 5px; }	
+
 	.Mural_Linha_Cabecalho > span {
 		color: #78776b;
 		font-size: 12px;
@@ -399,9 +396,6 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     	-webkit-margin-after: 0;
     	-webkit-margin-start: 0;
     	-webkit-margin-end: 0;
-	}
-	#mCSB_2_scrollbar_vertical {
-		right: -5px;
 	}
 
 /* PLANO DE ESTUDOS */
@@ -432,7 +426,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto;
 	}
 	.PlanoEstudo_Linha {
-		width: 98%;
+		width: 100%;
 		height: auto;
 		margin: 5px 0;
 		background-color: #fff;
@@ -500,7 +494,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		overflow: auto;
 	}
 	.Oficinas_Conteudo_Linha {
-		width: 98%;
+		width: 100%;
 		height: 44px;
 		margin: 5px 0;
 	}
@@ -900,3 +894,19 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     bottom: 441px;
     left: 540px;
 }
+
+/* Barra de rolagem */
+
+	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+		background-color: #fff !important;
+		border-radius: 0 !important;
+	}
+	.mCSB_scrollTools {
+		width: 4px !important;
+	}
+	.mCSB_scrollTools_vertical {
+		right: 0px !important;
+	}
+	.Linha_Scroll {
+		width: 99% !important;
+	}

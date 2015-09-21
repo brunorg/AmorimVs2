@@ -312,23 +312,6 @@ function CarregaServicoProducaoAluno()
 
 //------------------------------------------------------------------------------------------------------------------------
 
-function AtivaBotoesPortfolio(a){
-
-	/*$('.microfiche-next-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/232 > - ($('.SlidePort a').length - 3)))
-			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -232) + ',0)');
-	});
-
-	$('.microfiche-prev-button').prop("disabled", false);
-
-	$('.microfiche-prev-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
-			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 232) + ',0)');
-	});*/
-
-}
-//------------------------------------------------------------------------------------------------------------------------
-
 //Preencher Rotina Semanal
 function CarregarRotina() {
 	var professores1 = ['Flávia','Bruna','Maria Eugênia','','Luciana','Luciana Cássia'];
@@ -390,7 +373,7 @@ function CarregarMural() {
 	];
 
 	for (var i = 0; i < muralNomes.length; i++) {
-		var muralLinha = '<div class="Mural_Conteudo_Linha">'+
+		var muralLinha = '<div class="Mural_Conteudo_Linha '+ (muralNomes.length > 2 ? 'Linha_Scroll' : '') +'">'+
 					'<div class="Mural_Linha_Cabecalho">'+
 						'<span class="Mural_Nome">'+muralNomes[i]+'</span>'+
 						'<span class="Mural_Data"> '+muralData+'</span>'+
@@ -421,49 +404,61 @@ function CarregarPlanos() {
 		}
 	});
 
-	//Colocar Data
-	var semanaPlano = dataPlanoEstudo.dataInicio.split('-')[1] + '/' +  dataPlanoEstudo.dataInicio.split('-')[2] + " - " + dataPlanoEstudo.dataFim.split('-')[1] + '/' +  dataPlanoEstudo.dataFim.split('-')[2]
-	$('#PlanoEstudo_Semana').html(semanaPlano);
-
-	//Carregar planejamentos referentes a esse plano
-
-	var dataPlanejamento;
-
-	$.ajax({
-		url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.idplanoEstudo,
-		type: "GET",
-		async: false,
-		crossDomain: true,
-		success: function(d) {
-			dataPlanejamento = d;
-		}
-	});
-
-	//Colocar planejamentos no quadro
-
-	for (var i  = 0; i < dataPlanejamento.length; i++)
+	if (Date.UTC(dataPlanoEstudo.dataFim.split('-')[0], dataPlanoEstudo.dataFim.split('-')[1], dataPlanoEstudo.dataFim.split('-')[2]) >= Date.UTC(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()))
 	{
-		planoLinha = ''
-		if ($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).length > 0)
-		{
-			if($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Num").length %7 == 0)
-			{
-				$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).append('<div class="PlanoEstudo_Linha_Conteudo"></div>');
+		//Colocar Data
+		var semanaPlano = dataPlanoEstudo.dataInicio.split('-')[1] + '/' +  dataPlanoEstudo.dataInicio.split('-')[2] + " - " + dataPlanoEstudo.dataFim.split('-')[1] + '/' +  dataPlanoEstudo.dataFim.split('-')[2]
+		$('#PlanoEstudo_Semana').html(semanaPlano);
+	
+		//Carregar planejamentos referentes a esse plano
+	
+		var dataPlanejamento;
+	
+		$.ajax({
+			url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.idplanoEstudo,
+			type: "GET",
+			async: false,
+			crossDomain: true,
+			success: function(d) {
+				dataPlanejamento = d;
 			}
-			$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
-		}
-		else
+		});
+	
+		//Colocar planejamentos no quadro
+	
+		for (var i  = 0; i < dataPlanejamento.length; i++)
 		{
-			planoLinha = '<div class="PlanoEstudo_Linha" id="Roteiro' + dataPlanejamento[i].objetivo.roteiro.idroteiro + '">' +
-								'<div class="PlanoEstudo_Linha_Cabecalho">'+
-									'<p class="PlanoEstudo_Nome">'+dataPlanejamento[i].objetivo.roteiro.nome+'</p>'+
-								'</div>'+
-								'<div class="PlanoEstudo_Linha_Conteudo">' +
-								'</div>' +
-							'</div>';
-			$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
-			$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
+			planoLinha = ''
+			if ($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).length > 0)
+			{
+				if($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Num").length %7 == 0)
+				{
+					$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).append('<div class="PlanoEstudo_Linha_Conteudo"></div>');
+				}
+				$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
+			}
+			else
+			{
+				planoLinha = '<div class="PlanoEstudo_Linha" id="Roteiro' + dataPlanejamento[i].objetivo.roteiro.idroteiro + '">' +
+									'<div class="PlanoEstudo_Linha_Cabecalho">'+
+										'<p class="PlanoEstudo_Nome">'+dataPlanejamento[i].objetivo.roteiro.nome+'</p>'+
+									'</div>'+
+									'<div class="PlanoEstudo_Linha_Conteudo">' +
+									'</div>' +
+								'</div>';
+				$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
+				$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Linha_Conteudo:last-of-type").append(getPlanejamento(dataPlanejamento[i]));
+			}
 		}
+	
+		$('.PlanoEstudo_Num').click(function(){
+			alteraEstado($(this));
+		});
+	}
+	else
+	{
+		//adcionar botão
+		
 	}
 
 	/*var planoNome = "As transformações dos materiais";
@@ -487,16 +482,68 @@ function CarregarPlanos() {
 
 //------------------------------------------------------------------------------------------------------------------------
 
+function alteraEstado (planejamento) {
+	if (!planejamento.hasClass('revisado'))
+		mensagem("Deseja alterar o estado desse planejamento?","Cancelar","bt_cancelar","confirm", '', planejamento.prop('id'), "alteraEstadoIndividual");
+}
+
+function alteraEstadoIndividual (servico, id) {
+	var dataPlanejamento;
+
+	$.ajax({
+	    url: path+"PlanejamentoRoteiro/" + id,
+	    type: "GET",
+	    async: false,
+	    crossDomain: true,
+	    dataType: 'json',
+	    success: function(d) {
+	    	dataPlanejamento = d;
+	    }
+	});
+
+	if(dataPlanejamento.status == 1)
+		statusVariavel = 2;
+	else
+		statusVariavel = 1;
+	$.ajax({
+	    url: path+"PlanejamentoRoteiro/",
+	    type: "POST",
+	    crossDomain: true,
+	    dataType: 'json',
+	    data: "id="+dataPlanejamento.idplanejamentoRoteiro+"&action=update&status="+statusVariavel+"&objetivo="+dataPlanejamento.objetivo.idobjetivo+"&planoEstudo="+dataPlanejamento.planoEstudo.idplanoEstudo+"&idAluno="+alunoID,
+	    beforeSend: function() {
+	    	$( "#boxMensagemGeral" ).hide();
+	    	loading('inicial');
+	    },
+	    success: function() {
+	    	mensagem("Dados alterados com sucesso!!","OK","bt_ok","sucesso");
+	    },
+	    error: function() {
+	    	mensagem("Não modificado.","OK","bt_ok","erro");
+	    },
+	    complete: function() {
+	    	loading('final');
+	    }
+	});
+	if (statusVariavel == 1)
+	    $("#"+id).removeClass('iniciado');
+	else
+	    $("#"+id).addClass('iniciado');
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+
 function getPlanejamento (planejamento) {
 	var planejamentoContent = '';
 
 	if(planejamento.status == 1)
 	{
-	    planejamentoContent += '<div class="PlanoEstudo_Num">'+ planejamento.objetivo.numero + '</div>';
+	    planejamentoContent += '<div class="PlanoEstudo_Num" id="' + planejamento.idplanejamentoRoteiro + '">'+ planejamento.objetivo.numero + '</div>';
 	} else if(planejamento.status == 2){
-	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado">'+ planejamento.objetivo.numero+'</div>';
+	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado" id="' + planejamento.idplanejamentoRoteiro + '">'+ planejamento.objetivo.numero+'</div>';
 	} else if(planejamento.status == 3){
-	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado revisado">'+ 	planejamento.objetivo.numero+'</div>';
+	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado revisado" id="' + planejamento.idplanejamentoRoteiro + '">'+ 	planejamento.objetivo.numero+'</div>';
 	}
 
 	return planejamentoContent;
@@ -517,7 +564,7 @@ function CarregarOficinas() {
 		"ANIMALS"
 	];
 	for (var i = 0; i <= oficinasNomes.length*2; i++) {
-		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha">' +
+		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha '+ (oficinasNomes.length > 4 ? 'Linha_Scroll' : '') +'">' +
 					'<div class="Oficina_Nome" id="Oficina_Nome_'+oficinasNomes[i]+'">'+oficinasNomes[i].toUpperCase()+'</div>'+
 					'<div class="Oficina_Tema" id="Oficina_Tema_'+oficinasNomes[i]+'">'+
 						'<p class="Oficina_Tema_Texto">'+oficinasTemas[i]+'</p>'+
@@ -544,7 +591,7 @@ $(document).ready(function() {
 	CarregarPlanos();
 	CarregaServicoProducaoAluno();
 	CarregarOficinas()
-	AtivaBotoesPortfolio("oi");
+	AtivaBotoesPortfolio();
 
 });
 

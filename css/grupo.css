@@ -5,28 +5,44 @@
 	overflow:hidden;
 }
 
-#bt_Pesquisar{
-	background-image: url(../img/ic_pesquisar.png);
-	background-repeat: no-repeat;
-	background-position: 72px;
-}
-
-#bt_Inserir{
+#Grupo{
 	background-image: url(../img/icone_criargrupo.png);
 	background-repeat: no-repeat;
-	background-position: 53px;
+	background-position: 20px;
+}
+#Oficina{
+	background-image: url(../img/ic_oficinas-ativo.png);
+	background-repeat: no-repeat;
+	background-position: 29px;
+	background-size: 20px;
+}
+#Tutoria{
+	background-image: url(../img/bt_tutores_ativo.png);
+	background-repeat: no-repeat;
+	background-position: 20px;
+	background-size: 23px;
+}
+#Pesquisa{
+	background-image: url(../img/ic_pesquisar.png);
+	background-repeat: no-repeat;
+	background-position: 39px;
 }
 
 .bt_Off{
-	width: 31%;
+	width: 234px;
 	padding: 17px 16px 11px 16px;
 	text-align: center;
-	margin-right:12px; 
+	margin-right:3px; 
 	color: white;
 	float: left;
 	cursor: pointer;
 	background-color: #ee7776;
 }
+
+.bt_Off:hover:hover{
+	background-color: #E83F4A;
+}
+
 .bt_Pesquisar_Ativo{
 	width: 31%;
 	padding: 17px 16px 11px 16pxx;
@@ -37,25 +53,52 @@
 	background-color: #E83F4A;
 }
 
-.bt_Inserir_Ativo_Grupo{
-	width: 31%;
-	padding: 17px 16px 11px 16px;
-	text-align: center;
-	margin-right:12px; 
-	color: white;
-	float: left;
+.bt_Ativo{
 	cursor: pointer;
 	background-color: #E83F4A;
 }
 
 #container_Pesquisa{
-	width: 100%;
+	width: 99.6%;
 	height: 94%;
 	padding: 14px 22px;
 	background-color: #E5E5DC;
 	float: left;
 	overflow:hidden;
 	display: none;
+}
+
+#container_Oficina{
+	width: 99.6%;
+	height: 94%;
+	padding: 14px 22px;
+	background-color: #E5E5DC;
+	float: left;
+	overflow:hidden;
+	display: none;
+}
+
+#container_Grupo{
+	width: 99.6%;
+	height: 94%;
+	padding: 14px 22px;
+	background-color: #E5E5DC;
+	float: left;
+	overflow: hidden;
+	display: none;
+}
+#container_Tutoria{
+	width: 99.6%;
+	height: 94%;
+	padding: 14px 22px;
+	background-color: #E5E5DC;
+	float: left;
+	overflow: hidden;
+	display: none;
+}
+
+.selecionado{
+	display: block !important;
 }
 
 #boxResultado{
@@ -74,15 +117,6 @@
 
 #resultado{
 	margin: 0 9px 0 0;
-}
-
-#container_Inserir{
-	width: 100%;
-	height: 94%;
-	padding: 14px 22px;
-	background-color: #E5E5DC;
-	float: left;
-	overflow: hidden;	
 }
 
 .linha{
