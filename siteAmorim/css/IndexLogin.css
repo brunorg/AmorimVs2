@@ -2,11 +2,12 @@
 .btnMenu{
 	width : 102px;
   	height : 24px;
-  	margin-right: 5px;
+  	/*margin-right: 5px;*/
   	background-color: gray;
   	/*background-color: white;*/
   	float: right;
   	/*padding-left: 2.3%;*/
+  	padding-left: 0px !important;
   	padding-top: 0.3%;
   	color: white;
   	cursor: pointer;
@@ -43,6 +44,7 @@
     width: 800px;
 }
 
+
 #Conteudo_Corpo .rightSide .contentRightSide{
 	height:70%;
 	width:100%;
@@ -57,11 +59,11 @@
     height: 131px;
     margin: 0 23px 20px 0px;
 	float:left;
-	transition:background-size 0.5s;
 	cursor: pointer;
 	background-repeat: no-repeat, no-repeat;
 	background-position: center, center;
 	background-size:90% auto, auto 120%;
+	transition:background-size 0.5s;
 	font-size:16px;
 	opacity:0.5;
 	/*color:white;
@@ -330,6 +332,190 @@
 }
 
 
+
+#Conteudo_Corpo .Selecao5.leftSide{
+	background-image: url("../img/gutolacazGRANDE_nome.png");
+	background-position: -80px 30px;
+    background-repeat: repeat;
+    background-size: auto 606px;
+    float: left;
+    height: 100%;
+    width: 480px;
+}
+#Conteudo_Corpo .Selecao5.rightSide{
+	background-color: #f2f1ed;
+    float: left;
+    height: 100%;
+    padding-left: 20px;
+    width: 800px;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo{
+	background-color: #f2f1ed;
+    float: left;
+    height: 100%;
+    padding-left: 0px;
+    width: 510px;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .imagemSuperior {
+	width:490px;
+	height:258px;
+	background-image: url("../img/amorimFestaGDE.png");
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .textoMeio {
+
+	width:490px;
+	height:190px;
+	padding:10px;
+
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones {
+	width:490px;
+	height:110px;
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone{
+	background-color: blue;
+    float: left;
+    height: 110px;
+    margin-left: 4px;
+    margin-right: 10px;
+    width: 110px;
+    background-repeat: no-repeat;
+    background-position: center, center;
+    background-size: auto, 120%;
+    cursor:pointer;
+    transition:background-size 0.5s;
+
+}
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone:hover{
+    background-size: auto, 100%;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone:nth-child(1){
+	
+	background-image: url("../img/cal_txt1.png"),
+							url("../img/cal_1.png");
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone:nth-child(2){
+	background-image: url("../img/cal_txt2.png"),
+							url("../img/cal_2.png");
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone:nth-child(3){
+	background-image: url("../img/cal_txt3.png"),
+							url("../img/cal_3.png");
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone:nth-child(4){
+	background-image: url("../img/cal_txt4.png"),
+							url("../img/cal_4.png");
+	margin-right: 0px;
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario{
+	background-color: #95d4d8;
+    float: left;
+    height: 100%;
+    padding-top: 54px;
+    width: 270px;
+    position:relative;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .header{
+    height: 40px;
+    left: 12px;
+    margin: 0 auto;
+    position: absolute;
+    top: 14px;
+    width: 240px;
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .left{
+	float:left;
+	width:34px;
+	height:40px;
+	background-color: rgb(2, 129, 141);
+	background-image: url("../img/leftArrowG.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .right{
+	float:left;
+	width:34px;
+	height:40px;
+	background-color: rgb(2, 129, 141);
+	background-repeat: no-repeat;
+	background-image: url("../img/rightArrowG.png");
+	background-position: center;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .center{
+	float:left;
+	height:40px;
+	width:172px;
+	background-color: rgb(71, 149, 160);
+	font-weight: bold;
+	text-align:center;
+	color:white;
+	padding-top: 12px;
+	text-transform: uppercase;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos{
+	height: 534px;
+    margin: 0 auto;
+    overflow-y: auto;
+    width: 260px;
+
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info{
+	
+	height:auto;
+	width:240px;
+	background-color:white;
+	margin: 10px auto;
+	padding:20px;
+
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Titulo{
+	color:rgb(219, 94, 49);
+	font-weight:600;
+	font-size:15px;
+	text-transform: uppercase;
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .SubTitulo{
+	color:rgb(102, 102, 102);
+	/*font-weight:600;*/
+	font-size:15px;
+	text-transform: uppercase;
+
+}
+
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Texto{
+	color:rgb(102, 102, 102);
+	font-size:14px;
+
+}
+
+
+
 @media (min-height: 640px) and (max-height: 768px){
 
 	#Conteudo_Corpo .leftSide{
@@ -423,4 +609,25 @@
 	#Conteudo_Corpo .rightSide .contentLeftSide .titulo {
 		font-size: 22px;
 	}
+
+	#Conteudo_Corpo .Selecao5.leftSide{
+		background-position: -80px -60px;
+		
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .imagemSuperior {
+	height:190px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .textoMeio {
+
+		height:147px;
+
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos{
+		height: 409px;
+
+	}
+
 }

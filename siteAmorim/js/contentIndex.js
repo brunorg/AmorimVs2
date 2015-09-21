@@ -4,6 +4,12 @@ var numeroSlides = [0,4,5,5,7,3];
 var SlideAtual = 0;
 var FrameAtual = 1;
 
+(function($){
+        $(window).load(function(){
+            $('#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos').mCustomScrollbar();
+        });
+    })(jQuery);
+
 function trocarConteudoInicial(numero)
 {
 	$('#Conteudo_Corpo .Selecoes').css('display','none');
