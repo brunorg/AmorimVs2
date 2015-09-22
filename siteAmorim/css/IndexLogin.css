@@ -1,4 +1,8 @@
 
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: #ffffff !important;
+}
+
 .btnMenu{
 	width : 102px;
   	height : 24px;
@@ -356,13 +360,18 @@
     width: 510px;
 }
 
-#Conteudo_Corpo .Selecao5.rightSide .Conteudo .imagemSuperior {
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas{
+	width:490px;
+	height:448px;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .imagemSuperior {
 	width:490px;
 	height:258px;
 	background-image: url("../img/amorimFestaGDE.png");
 }
 
-#Conteudo_Corpo .Selecao5.rightSide .Conteudo .textoMeio {
+#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .textoMeio {
 
 	width:490px;
 	height:190px;
@@ -482,7 +491,7 @@
 #Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info{
 	
 	height:auto;
-	width:240px;
+	width:239px;
 	background-color:white;
 	margin: 10px auto;
 	padding:20px;
@@ -613,11 +622,15 @@
 		
 	}
 
-	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .imagemSuperior {
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas{
+		height:337px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .imagemSuperior {
 	height:190px;
 	}
 
-	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .textoMeio {
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .textoMeio {
 
 		height:147px;
 
@@ -627,5 +640,163 @@
 		height: 409px;
 
 	}
+
+}
+
+@media (width: 1024px) and (min-height: 509px) and (max-height: 639px){
+
+	#Amorim_logo {
+    	height: 63px;
+    	width: 261px;
+	}
+
+	#Login {
+	    width: 707px;
+	    padding-left: 14%;
+	}
+
+	#Cabecalho {
+	    height: 25.6%;
+	}
+
+	#Login_Box, #Acesso {
+    	height: 94px;
+	}
+
+	#Conteudo_Corpo {
+	    height: 74.4%;
+	}
+
+	.btnMenu {
+    	    width: 95.3px;
+	}
+
+	.ultimo {
+	    margin-right: 10px;
+	}
+
+	#Desenvolvido {
+	    margin-left: 6.6%;
+	}
+
+	#Texto_Entrada {
+	    left: 66px;
+	}
+
+	#Imagem_Abertura {
+	    top: 84px;
+	}
+	
+	#Conteudo_Corpo .rightSide .contentLeftSide {
+	    height: 112px;
+	}
+
+	#Conteudo_Corpo .rightSide .contentLeftSide .titulo {
+    	font-size: 19px;
+	}
+
+	#Conteudo_Corpo .rightSide .contentLeftSide .texto {
+	    font-size: 14px;
+	}
+
+	#Conteudo_Corpo .rightSide .contentRightSide {
+    	padding-top: 5px;
+	}
+	#Conteudo_Corpo .rightSide .contentRightSide .contentItem {
+		margin-bottom:15px; 
+	    width: 120px;
+	    height: 120px;
+	}
+
+	#Conteudo_Corpo .Selecao4.leftSide,
+	#Conteudo_Corpo .Selecao5.leftSide{
+	    background-position: -110px -50px;
+	    background-size: auto 476px;
+	    width: 298px;
+	}
+
+	#Conteudo_Corpo .Selecao4.leftSide{
+    	background-position: -10px -16px;
+    	background-size: auto 396px;
+	}
+
+	#Conteudo_Corpo .Selecao4.rightSide,  
+	#Conteudo_Corpo .Selecao5.rightSide {    
+	    width: 726px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo {
+	    width: 486px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas {
+	    width: 376px;
+	    height: 448px;
+	    float: left;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .imagemSuperior {
+	    width: 370px;
+	    height: 228px;
+	    background-position: top center;
+	    background-image: url("../img/amorimFEstaNet.png");
+	    background-size: 100%;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .AmorimFestas .textoMeio {
+	    width: 370px;
+	    font-size: 15px;
+	}
+
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones {
+	    width: 100px;
+	    height: 380px;
+	    float: left;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone {
+    	float: left;
+		height: 83px;
+		margin-bottom: 10px;
+		width: 100px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario {
+    	width: 220px;
+    	padding-top: 49px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .header {
+    	width: 195px;
+    	height:35px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .left {
+    	width: 24px;
+    	height:35px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .right {
+    	width: 24px;
+    	height:35px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .header .center {
+	    width: 142px;
+    	height:35px;
+    	padding-top: 10px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos {
+	    height: 324px;
+	    width: 195px;
+	}
+
+	#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info {
+	    width: 187px;
+	}
+
+
 
 }
