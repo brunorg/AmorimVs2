@@ -1,3 +1,5 @@
+* { box-sizing: border-box !important; }
+
 #PesquisarInserir{
 	width:100%;
 	height: 556px;
@@ -29,7 +31,7 @@
 }
 
 .bt_Off{
-	width: 234px;
+	width: 236px;
 	padding: 17px 16px 11px 16px;
 	text-align: center;
 	margin-right:3px; 
@@ -78,15 +80,163 @@
 	display: none;
 }
 
-#container_Grupo{
-	width: 99.6%;
-	height: 94%;
-	padding: 14px 22px;
-	background-color: #E5E5DC;
-	float: left;
-	overflow: hidden;
-	display: none;
-}
+/* Tela Criar Grupo */
+	#container_Grupo{
+		width: 99.6%;
+		height: 94%;
+		padding: 14px 22px;
+		background-color: #E5E5DC;
+		float: left;
+		overflow: hidden;
+		display: none;
+	}
+	.Area_Select_Grupo {
+		width: 100%;
+		height: 65px;
+		padding: 12px 0;
+	}
+	.Box_Area_Select {
+		display: inline-block;
+		float: left;
+    	width: 296px;
+    	height: 40px;
+    	margin-right: 7px;
+    	background-color: rgb(201,201,196);
+    	border: 1px solid rgb(174,174,166);
+	}
+
+	.Box_Area_Select > * { border: 1px solid rgb(174,174,166); }
+
+	.Select_Grupo_Ciclo, .Select_Grupo_Periodo {
+		text-align: right;
+		display: inline-block;
+		float: left;
+		width: 119px;
+		height: 100%;
+    	padding: 8px 5px;
+	    line-height: 1.2em;
+	    color: #656565;
+	    font-size: 18px;
+		-webkit-margin-before: 0em;
+    	-webkit-margin-after: 0em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;
+	}
+	.Select_Grupo_Input {
+		display: inline-block;
+		background-color: #FFF;
+		height: 100%;
+		width: 175px;
+	}
+	.Box_Area_Select select {
+		display: inline-block;
+		height: 100%;
+		width: 100%;
+		float: right !important;
+		border-radius: 0;
+		background-color: rgb(242,242,238);
+		padding: 5px 8px;
+		-webkit-appearance: none;
+		color: rgb(102,102,102);
+		cursor: pointer;
+	    font-size: 18px;
+    	background: url(../img/select-arrow.png) no-repeat right;
+	}
+
+	.Box_Area_Select select > option::before { margin: 30px 0; }
+
+	#Area_Alunos_Container {
+		height: 330px;
+    	overflow: hidden;
+	}
+	.Grupo_Aluno_Linha {
+		width: 100%;
+		height: 47px;
+		padding: 14px 10px;
+	}
+
+	.Grupo_Aluno_Linha:nth-of-type(even) { background-color: rgb(242,242,238); }
+
+	.Grupo_Aluno_Linha:nth-of-type(odd) { background-color: rgb(236,235,229); }
+
+	.Grupo_Aluno_Linha span {
+		font-size: 18px;
+		color: #656565;
+		display: inline-block;
+		height: 100%;
+	}
+
+	.Linha_Scroll { width: 99.5%; }
+
+	.Nome_Aluno {
+		float: left;
+		width: 740px;
+	}
+	.Ano_Aluno {
+		float: right;
+		width: 60px;
+	}
+	.Aluno_Ano_Check {
+		display: none;
+		float: right;
+	}
+
+	.Aluno_Ano_Check + label span {
+		float: right;
+		display: inline-block;
+	    width: 22px;
+	    height: 22px;
+	    background: url(../img/checkbox_criarGrupo.png) left top no-repeat;
+	    margin-right: 20px;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    overflow: visible;
+	}
+
+	.Aluno_Ano_Check:checked + label span { background: url(../img/checkbox_criarGrupo.png) -24px top no-repeat; }
+	
+	.Area_Botoes_Grupo {
+		width: 100%;
+	    height: 75px;
+	    padding: 25px 0 11px;
+	}
+
+	.btns_grupo {
+		background-color: #ee7776 !important;
+		border-radius: 0;
+		color: #fff;
+		height: 40px;
+		padding: 10px;
+		font-size: 20px;
+		text-align: right;
+		border: 0;
+		cursor: pointer;
+		float: right;
+	}
+	.btns_grupo:hover { background-color: #E83F4A !important; }
+
+	.btn_Salvar_Grupo {
+		width: 100px;
+		background: url(../img/ic_salvar.png) no-repeat 10px 6px; 
+	}
+
+/* Criar Oficina */
+	.Select_Grupo_Oficina {
+		text-align: right;
+		display: inline-block;
+		float: left;
+		width: 119px;
+		height: 100%;
+    	padding: 8px 5px;
+	    line-height: 1.2em;
+	    color: #656565;
+	    font-size: 18px;
+		-webkit-margin-before: 0em;
+    	-webkit-margin-after: 0em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;
+	}
+
 #container_Tutoria{
 	width: 99.6%;
 	height: 94%;
@@ -321,7 +471,7 @@ select::-ms-expand {
     height: 40px;
     padding: 10px;
     width: 101px;
-    background: url("../img/bt_salvar_laranja.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: url(../img/bt_salvar_laranja.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 .bt_Salvar {
 	background: url(../img/bt_salvar_vermelho.png) no-repeat;
@@ -348,3 +498,18 @@ select::-ms-expand {
 .checkLimpar{
 	width:50px;
 }
+
+/* Barra de rolagem */
+	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+		background-color: #fff !important;
+		border-radius: 0 !important;
+	}
+	.mCSB_scrollTools {
+		width: 4px !important;
+	}
+	.mCSB_scrollTools_vertical {
+		right: 0px !important;
+	}
+	.Linha_Scroll {
+		width: 99% !important;
+	}

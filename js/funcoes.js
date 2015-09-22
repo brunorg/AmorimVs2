@@ -235,6 +235,10 @@ $(document).ready(function() {
 	$("#boxMensagem").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar	
 	});	
+	
+	$("#Area_Alunos_Container").mCustomScrollbar({
+		axis:"y" // vertical and horizontal scrollbar	
+	});	
 		
 	$("#menu_lateral_atividade").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
