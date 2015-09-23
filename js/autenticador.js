@@ -3,10 +3,28 @@ var usuario = localStorage.getItem("usuarioTipo");
 var usuarioId = localStorage.getItem("usuarioId");
 var confTutor;
 var dadosUser;
+var retorno;
 
-if(usuario == "Aluno"){	
+function getAlunoByUsuario(){
 	$.ajax({
-		url: path+"AlunoVariavel/aluno/"+getAlunoByUsuario(usuarioId),
+		url: path+'Usuario/'+usuarioId,
+		type: "GET",
+		async:false,
+		success: function(d) {
+			if(usuario == "Aluno" && d.aluno != null){
+				retorno = d.aluno.idAluno;			
+			} else if(usuario == "Professor" && d.professor != null){
+				retorno = d.professor.idprofessorFuncionario;			
+			}
+		}
+	});
+	return retorno;
+}
+
+
+if(usuario == "Aluno"){
+	$.ajax({
+		url: path+"AlunoVariavel/aluno/"+getAlunoByUsuario(),
 		type: "GET",
 		async:false,
 		crossDomain: true,
