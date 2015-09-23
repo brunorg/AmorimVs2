@@ -17,8 +17,6 @@
 
 //Carrega os valores utilizados do BD
 
-	var dataRoteiro 				=	getData("Roteiro", null);
-	var dataForumQuestao 			=	getData("ForumQuestao", null);
 	var dataForumResposta 			=	getData("ForumResposta", null);
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -178,10 +176,26 @@ function getResultadoForumQuestao(ID)
 {
 	HtmlContent = "";
 
-	for(var b=0; b< dataForumQuestao.length; b++)
+	var dataForumQuestao;
+
+	$.ajax({
+		url: path + 'ForumQuestao/ListaPorRoteiro/' + ID,
+		crossDomain: true,
+		async: false,
+		type: "GET",
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function(d) {
+			dataForumQuestao = d;
+		},
+		complete: function() {
+			loading('final');
+		}
+	});
+
+	for(var b = 0; b < dataForumQuestao.length; b++)
 	{
-		if(dataForumQuestao[b].roteiro.idroteiro == ID)
-		{
 
 			HtmlContent+= '<div class="info_secao_forum_div">';
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
@@ -198,8 +212,6 @@ function getResultadoForumQuestao(ID)
 			HtmlContent+= '		<div style="clear:both"></div>';
 			HtmlContent+= '	</a>';
 			HtmlContent+= '</div>';
-
-		}
 	}
 
 	return HtmlContent;

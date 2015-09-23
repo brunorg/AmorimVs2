@@ -96,7 +96,7 @@ function VerificaObjetivosCompletos()
 
 	
 
-	for(var a=0; a < $('.roteiro_nome_tabela_selecionado').length+1; a++)
+	for(var a=0; a < $('.roteiro_nome_tabela_selecionado').length; a++)
 	{
 
 		NaoEncontrado = false;
@@ -119,7 +119,7 @@ function VerificaObjetivosCompletos()
 		if(!NaoEncontrado)
 		{
 			//Roteiro_Id_
-			//SubstituirObjetivos($(document.getElementsByClassName('roteiro_nome_tabela_selecionado')[a]).find('td').parent());
+			SubstituirObjetivos($(document.getElementsByClassName('roteiro_nome_tabela_selecionado')[a]).find('td').parent());
 		}
 	}
 
@@ -131,31 +131,117 @@ function VerificaObjetivosCompletos()
 
 function SubstituirObjetivos(Classe)
 {
+	var RoteiroID = ($(Classe).closest( ".roteiro_nome_tabela_selecionado" ).attr("id")).substring(11);
 	$(Classe).empty();
 	$(Classe).attr("Cmpl","true");
-  if($(Classe).closest( ".roteiro_nome_tabela_selecionado" ).attr("id") != undefined)
-  { 
-  	var PortifolioExistenteUpload 	= verificaProducaoExistente(1, ($(Classe).closest( ".roteiro_nome_tabela_selecionado" ).attr("id")).substring(11));
-  	var FichasExistenteUpload 		= verificaProducaoExistente(2, ($(Classe).closest( ".roteiro_nome_tabela_selecionado" ).attr("id")).substring(11));
-   
-   	if(PortifolioExistenteUpload == "" && FichasExistenteUpload == "")
-    {
-    	$(Classe).append('<td id="producaoTD" style="color:white;font-style:italic;">Roteiro Completo e Corrigido</td>');
-    } else if(PortifolioExistenteUpload != "" && FichasExistenteUpload != "") {
-    	$(Classe).append('<td id="producaoTD">'+PortifolioExistenteUpload+' | '+FichasExistenteUpload+'</td>');
-    } else {
-    	$(Classe).append('<td id="producaoTD">'+PortifolioExistenteUpload+' '+FichasExistenteUpload+'</td>');
-    }
-  }  
+  	if($(Classe).closest( ".roteiro_nome_tabela_selecionado" ).attr("id") != undefined)
+  	{ 
+  		var PortifolioExistenteUpload 	= verificaProducaoExistente(5, RoteiroID);
+  		var FichasExistenteUpload 		= verificaProducaoExistente(4, RoteiroID);
+
+  	  	HtmlContent = "";
+  	  	HtmlContent += ('<td id="producaoTD">');
+  	  	if (PortifolioExistenteUpload == undefined)
+  	  	{
+  	  		HtmlContent += ('<a style="text-align:right;color:white" onclick="showUpload(1,'+RoteiroID+');" href="#"><div class="botoesPortfolio">Portfólio </div></a>');
+  	  	}
+  	  	else
+  	  	{
+  	  		switch (PortifolioExistenteUpload[Object.keys(PortifolioExistenteUpload)[0]])
+  	  		{
+  	  			case 1:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio">Portfólio<div class="icone entregue"></div></div>');
+  	  				break;
+  	  			}
+
+  	  			case 2:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio">Portfólio<div class="icone observacao" onclick="responderObservacao('+PortifolioExistenteUpload.mensagens.idmensagens+')"></div></div>');
+  	  				break;
+  	  			}
+
+  	  			case 3:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio">Portfólio<div class="icone corrigido"></div></div>');
+  	  				break;
+  	  			}
+  	  		}
+  	  	}
+  	  	var existeFicha;
+  	  	$.ajax({
+  	  		url: path + "FichaFinalizacao/" + RoteiroID,
+  	  		async: false,
+  	  		crossDomain: true,
+  	  		type: "GET",
+  	  		success: function(data){
+  	  			existeFicha = data;
+  	  		}
+  	  	});
+  	  	if (FichasExistenteUpload == undefined && existeFicha.length > 0)
+  	  	{
+  	  		HtmlContent += ('<a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+RoteiroID+');"><div class="botoesPortfolio">Ficha de Finalização | </div></a>');
+  	  	}
+  	  	else if (existeFicha.length > 0)
+  	  	{
+  	  		switch (FichasExistenteUpload[Object.keys(FichasExistenteUpload)])
+  	  		{
+  	  			case 1:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio">Ficha de Finalização<div class="icone entregue"></div></div>');
+  	  				break;
+  	  			}
+
+  	  			case 2:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio">Ficha de Finalização<div class="icone observacao" onclick="responderObservacao('+FichasExistenteUpload.mensagens.idmensagens+')"></div></div>');
+  	  				break;
+  	  			}
+
+  	  			case 3:
+  	  			{
+  	  				HtmlContent += ('<div class="botoesPortfolio"> Ficha de Finalização<div class="icone corrigido"></div></div>');
+  	  				break;
+  	  			}
+  	  		}
+  	  	}
+  	  	HtmlContent += ("</td>");
+  	  	$(Classe).append(HtmlContent);
+  	} 
+
+
 }
 
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-function verificaProducaoExistente(Numero, IDRoteiroLocal)
+function verificaProducaoExistente(tipo, IDRoteiroLocal)
+{
+	var producao;
+
+	$.ajax({
+		url: path + "ProducaoAluno/alunoTipoProducao/"+ alunoID + "/" + IDRoteiroLocal + "/" + tipo,
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		success: function(data){
+			producao = data;
+		}
+	});
+
+	return producao;
+
+}
+
+/*function verificaProducaoExistente(Numero, IDRoteiroLocal)
 {
 	var Encontrado = false;
+
+
+	alunoTipoProducao/{idAluno}/{idRoteiro}/{idTipo}
+
+
 
 	if(Numero==1)
 	{
@@ -170,7 +256,8 @@ function verificaProducaoExistente(Numero, IDRoteiroLocal)
 			}
 		}
 		
-		if(!Encontrado){return '<a style="text-align:right;color:white" onclick="showUpload(1,'+IDRoteiroLocal+');" href="#">Portifolio</a>';}
+		if(!Encontrado)
+			return '<a style="text-align:right;color:white" onclick="showUpload(1,'+IDRoteiroLocal+');" href="#">Portifolio</a>';
 
 	} else if(Numero==2) {
 		for(var a=0;a< dataProducaoAluno.length; a++)
@@ -187,7 +274,7 @@ function verificaProducaoExistente(Numero, IDRoteiroLocal)
 
 
 	return "";
-}
+}*/
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -379,39 +466,12 @@ function LoadRoteiro(){
 	//Fim roteiros atribuidos
 
 	htmlPopUpContent = '<div class="blackPainel">'+
-							'<div id="JanelaUploadPortifolio">'+
-								'<div class="Titulo_janela_upload">'+
-									'Upload de Portifolios'+
-									'<div class="close_upload_producao">'+
-									'</div>'+
-								'</div>'+
-								'<div id="foto">'+
-								'</div>'+
-								'<div id="LegendaUpload">Aguardando Arquivo</div>'+
-								'<form id="Cadastro_Producao_Aluno">'+
-									'<input type="hidden" id="id" name="id" />'+
-									'<input type="hidden" id="action" name="action" value="create" />'+
-									'<input type="hidden" id="Dados_Foto_Aluno" />'+
-									'<input type="file" id="Arquivo_Foto_Aluno" name="arquivo1" />'+
-									'<div class="campoConfirmaUpload">'+
-										'<input class="btn_submit" onclick="SalvarPortifolio()" type="button" value="" />'+
-									'</div>'+
-								'</form>'+
-							'</div>'+
 						'</div>';
 
 	$('.total').append(htmlPopUpContent);
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
 		$("#LegendaUpload").html("Arquivo Carregado");
-	});
-
-	$('.close_upload_producao').click(function(){
-		$('.blackPainel').hide();
-		$('#Dados_Foto_Aluno').val('');
-		$('#Arquivo_Foto_Aluno').val('');
-		$('#foto').css("background-image","url(img/foto.png)");
-		$("#LegendaUpload").html("Aguardando Arquivo");
 	});
 	
 	LoadAtividade();
@@ -439,6 +499,9 @@ function SalvarPortifolio(){
 				success: function(d) {
 					addFileTo(d);	
 					$('.blackPainel').hide();
+				},
+				complete: function () {
+					loading("final");
 				}
 			}); 
 		} else {
@@ -496,12 +559,44 @@ function addFileTo(ID){
 function showUpload(Numero, ID)
 {
 	$(".boxGlobal").css("display","none");
+
+	var HtmlContentUpload = '<div id="JanelaUploadPortifolio">'+
+								'<div class="Titulo_janela_upload">'+
+									'Upload de Portifolios'+
+									'<div class="close_upload_producao">'+
+									'</div>'+
+								'</div>'+
+								'<div id="foto">'+
+								'</div>'+
+								'<div id="LegendaUpload">Aguardando Arquivo</div>'+
+								'<form id="Cadastro_Producao_Aluno">'+
+									'<input type="hidden" id="id" name="id" />'+
+									'<input type="hidden" id="action" name="action" value="create" />'+
+									'<input type="hidden" id="Dados_Foto_Aluno" />'+
+									'<input type="file" id="Arquivo_Foto_Aluno" name="arquivo1" />'+
+									'<div class="campoConfirmaUpload">'+
+										'<input class="btn_submit" onclick="SalvarPortifolio()" type="button" value="" />'+
+									'</div>'+
+								'</form>'+
+							'</div>';
+
+	$('.blackPainel').html1(HtmlContentUpload);
+
+	$('.close_upload_producao').click(function(){
+		$('.blackPainel').hide();
+		$('#Dados_Foto_Aluno').val('');
+		$('#Arquivo_Foto_Aluno').val('');
+		$('#foto').css("background-image","url(img/foto.png)");
+		$("#LegendaUpload").html("Aguardando Arquivo");
+	});
+
 	if(Numero == 1)
 	{
 		$('.blackPainel').css("display","block");
 		PortifolioVariavel = 5;
+	}
 
-	} else if(Numero == 2)
+	else if(Numero == 2)
 	{
 		$('.blackPainel').css("display","block");
 		PortifolioVariavel = 4;
@@ -642,20 +737,6 @@ function ApareceAtiv(IdAtivs)
 
 }
 
-function trocarObjetivoStatusBefore(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoRoteiro)
-{
-
-	if(Objeto.className == "titulo_infos_roteiro_caixa_verde")
-	{
-		alert("P");	
-	} else {
-		trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoRoteiro)
-	}
-
-
-
-}
-///alterarrrrr códigooooo
 function trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoRoteiro){
 	var corVariavel;
 	var action;
@@ -668,11 +749,13 @@ function trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoR
 		corVariavel = "laranja";
 		statusVariavel = 1;
 		action = "create";	
-	}else if(Objeto.className == "titulo_infos_roteiro_caixa_laranja"){
+	}
+	else if(Objeto.className == "titulo_infos_roteiro_caixa_laranja"){
 	 	corVariavel = "verde";
 		statusVariavel = 2;
 		action = "update";	
-	}else if(Objeto.className == "titulo_infos_roteiro_caixa_verde"){
+	}
+	else if(Objeto.className == "titulo_infos_roteiro_caixa_verde"){
 		corVariavel = "branco";
 		action = "deletar";	
 	}	 

@@ -945,6 +945,22 @@ function cancelaAlter(){
 	$( "#boxMensagemGeral").css("display","none");
 }
 
+function diasEntre( data1, data2 ) {
+  //Get 1 day in milliseconds
+  var diaEmMilisegundos=1000*60*60*24;
+
+  // Convert both dates to milliseconds
+  var data1milisegundos = data1.getTime();
+  var data2milisegundos = data2.getTime();
+
+  // Calculate the difference in milliseconds
+  var diferencamilisegundos = data2milisegundos - data1milisegundos;
+    
+  // Convert back to days and return
+  return Math.round(diferencamilisegundos/diaEmMilisegundos); 
+}
+
+
 function alterarSenha(){
 	
 	var user = $("#user").val();

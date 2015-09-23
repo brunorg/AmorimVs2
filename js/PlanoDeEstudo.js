@@ -138,6 +138,11 @@ $(document).ready(function() {
 			 mensagem("Data ínicio deve ser maior que a data de hoje!","OK","bt_ok","erro");
 			 erro = true;
 		}
+		if (diasEntre(new Date(dataInicio.split("/")[2], dataInicio.split("/")[1] - 1, dataInicio.split("/")[0]), new Date(dataFim.split("/")[2], dataFim.split("/")[1] - 1, dataFim.split("/")[0])) > 15)
+		{
+			mensagem("O plano não deve durar mais do que 15 dias","OK","bt_ok","erro");
+			erro = true;
+		}
 		
 		if (erro == true){
 			return false;
@@ -153,6 +158,7 @@ $(document).ready(function() {
 					$(".novo").removeClass("novo_ativo");
 					$("#box_novo").css("height", "130px");
 					$("#botoes").hide();
+					$(".planoPassado").removeClass("planoPassado");
 					$('#data_inicio').val("");
 					$('#data_fim').val("");
 				},
@@ -622,21 +628,6 @@ function InitSetPlanoEstudo()
 					confData = dataFinal;		
 					$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','roteirosPlanejamento.html');
 				}
-				
-				
-					
-					
-					
-						
-						//
-						//$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').css('cursor','default');
-					// }else{
-						
-						
-						//$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').css('cursor','pointer');
-					// }
-				//}
-	
 			}
 		});    	
 
@@ -646,7 +637,6 @@ function InitSetPlanoEstudo()
 
 
 		$('.Plano_Estudo_Content_Planejamento_Content').empty();
-        //var planejamentos = dataPlanejamentoRoteiro;
         var htmlcontent = '';
 		var titulo ='';
 		var m;
@@ -735,12 +725,6 @@ function VerificaObjetivosCompletos()
 				}
 			}
 		}    
-
-		//Esta parte foi comentada porque estava ocultando os roteiros completos
-		/*if(!NaoEncontrado)
-		{
-			$('.box_roteiros:nth-child('+(a+1)+')').hide();
-		}*/
 	}
 
 }

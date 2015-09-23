@@ -70,7 +70,7 @@ $.ajax({
 
 var dataProducaoAluno;
 $.ajax({
-	url: path+"ProducaoAluno/Aluno/"+alunoID,
+	url: path+"ProducaoAluno/alunoPortifolio/"+alunoID,
 	type: "GET",
 	async:false,
 	crossDomain: true,
@@ -244,7 +244,6 @@ function CarregaServicoProducaoAluno()
 
 		HtmlContent = "";
 		for (var a = 0; a < dataProducaoAluno.length; a++) {			
-			if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5) {
 				if ( ContadorPA != 2 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
@@ -284,17 +283,50 @@ function CarregaServicoProducaoAluno()
 
 				} else {
 					HtmlContent += '</div>';
-					ContadorPA = 0;
+					HtmlContent += '<div class="Portfolio_Conteudo_Container">';
+					var apresentacao = "";
+
+		    		if(dataProducaoAluno[a].arquivo != null) {
+
+
+						var arquivo = dataProducaoAluno[a].arquivo;
+						arquivo =  arquivo.split(".");
+						
+						if(arquivo[4]=="pdf"){
+							apresentacao = '<img src="img/icone_portfolio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif") {
+							apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg") {
+							apresentacao = '<img src="img/icone_audio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
+							apresentacao = '<img src="img/icone_video.png" width="auto" height="100%"/>';
+						}
+						
+					}
+					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
+			        HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+					HtmlContent += '<div class="Nome_Roteiro">';
+					HtmlContent += dataProducaoAluno[a].roteiro.nome;
+					HtmlContent += '</div>';
+					HtmlContent += '<div class="Img_Roteiro">';
+					HtmlContent += apresentacao;
+					HtmlContent += '</div>';
+					HtmlContent += '</a>';
+					HtmlContent += '</div>';
+					ContadorPA = 1;
+
 				}
-			}
 		}
+
+		if (ContadorPA == 1)
+			HtmlContent += '</div>';
 
 		
 		$('#Portfolio_Conteudo').append(HtmlContent);
 		$('#Portfolio_Conteudo').microfiche({ bullets: false });
 
 	$('.microfiche-next-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/293 > - ($('.microfiche-film .Portfolio_Conteudo_Container').length - 1)))
+		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/592 > - ($('.microfiche-film .Portfolio_Conteudo_Container').length - 1)))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -592) + ',0)');
 	});
 
