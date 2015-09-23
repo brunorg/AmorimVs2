@@ -531,6 +531,143 @@
 
 
 
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto{
+	width:422px;
+	height:768px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
+	font-size: 14px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
+	font-size: 12px;
+	background-color: transparent;
+	bottom: 0;
+	color:#666;
+	padding: 0;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .anos
+{
+	width:230px;
+	height:768px;
+	background-color:#f0efea;
+	float:left;
+	padding: 10px; 
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno
+{
+	width:160px;
+	height:auto;
+	background-color:#e2e1d8;
+	margin-bottom: 2px;
+	padding:10px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Titulo
+{
+	width:100%;
+	height:auto;
+	margin-bottom: 10px;
+}
+
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Imagem
+{
+	width:100%;
+	height:auto;
+	max-height: 60px;
+	overflow: hidden;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide
+{
+	width:628px;
+	height:768px;
+	float:left;
+	background-color:#f4f3ef;
+	padding:20px 0px;
+	position:relative;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide
+{
+	width:100%;
+	height:300px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .AnoTitulo
+{
+	width:100%;
+	font-size:20px;
+	height:30px;
+	text-align:center;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain
+{
+	width:100%;
+	height:350px;
+	text-align: center;	
+	position: relative;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
+{
+	width:100%;
+	padding: 5px 10%;
+	font-size: 12px;
+	background-color:rgba(0,0,0,0.8);
+	color:white;
+	position:absolute;
+	bottom:0;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow{
+	width:10%;
+	height:100%;
+	background-color:#f4f3ef;
+	top:0px; 
+	position:absolute;
+	background-image: url("../../img/Arrow_pq_mod.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	display:block;
+	cursor:pointer;
+}
+
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Left{
+	transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Right{
+	right:0px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .SelectionSlides{
+	height:46px;
+	width: 80%;
+	margin: 5px auto;
+	overflow: hidden;
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide{
+	width: 48px;
+    height: 48px;
+    float: left;
+    margin-right: 1px;
+    margin-left: 1px;
+	background-image: url("../img/cal_4.png");
+}
+
+
+
 @media (min-height: 640px) and (max-height: 768px){
 
 	#Conteudo_Corpo .leftSide{
@@ -648,6 +785,144 @@
 		height: 409px;
 
 	}
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto{
+		width:447px;
+		height:463px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
+    	font-size: 14px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
+    	font-size: 12px;
+    	background-color: transparent;
+    	bottom: 0;
+    	color:#666;
+    	padding: 0;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos
+	{
+		width:205px;
+		height:463px;
+		background-color:#f0efea;
+		float:left;
+		padding: 10px; 
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno
+	{
+		width:160px;
+		height:auto;
+		background-color:#e2e1d8;
+		margin-bottom: 2px;
+		padding:10px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Titulo
+	{
+		width:100%;
+		height:auto;
+		margin-bottom: 10px;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Imagem
+	{
+		width:100%;
+		height:auto;
+		max-height: 60px;
+		overflow: hidden;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide
+	{
+		width:628px;
+		height:463px;
+		float:left;
+		background-color:#f4f3ef;
+		padding:20px 0px;
+		position:relative;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide
+	{
+		width:100%;
+		height:300px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .AnoTitulo
+	{
+		width:100%;
+		font-size:20px;
+		height:30px;
+		text-align:center;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain
+	{
+		width:100%;
+		height:350px;
+		text-align: center;	
+		position: relative;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
+	{
+		width:100%;
+		padding: 5px 10%;
+		font-size: 12px;
+		background-color:rgba(0,0,0,0.8);
+		color:white;
+		position:absolute;
+		bottom:0;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow{
+		width:10%;
+		height:100%;
+		background-color:#f4f3ef;
+		top:0px; 
+		position:absolute;
+		background-image: url("../../img/Arrow_pq_mod.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		display:block;
+		cursor:pointer;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Left{
+		transform:rotate(180deg);
+		-webkit-transform:rotate(180deg);
+		-moz-transform:rotate(180deg);
+		-o-transform:rotate(180deg);
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Right{
+		right:0px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .SelectionSlides{
+		height:46px;
+		width: 80%;
+    	margin: 5px auto;
+    	overflow: hidden;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide{
+		width: 48px;
+	    height: 48px;
+	    float: left;
+	    margin-right: 1px;
+	    margin-left: 1px;
+		background-image: url("../img/cal_4.png");
+	}
+
+
 
 }
 
@@ -843,6 +1118,7 @@
 	{
 		width:100%;
 		height:auto;
+		margin-bottom: 10px;
 	}
 
 
@@ -850,6 +1126,8 @@
 	{
 		width:100%;
 		height:auto;
+		max-height: 40px;
+		overflow: hidden;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide
@@ -871,16 +1149,28 @@
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .AnoTitulo
 	{
 		width:100%;
-		height:20px;
+		font-size:20px;
+		height:30px;
 		text-align:center;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain
 	{
 		width:100%;
-		height:280px;
+		height:270px;
 		text-align: center;	
 		position: relative;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
+	{
+		width:100%;
+		padding: 5px 10%;
+		font-size: 12px;
+		background-color:rgba(0,0,0,0.8);
+		color:white;
+		position:absolute;
+		bottom:0;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow{
@@ -911,16 +1201,17 @@
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .SelectionSlides{
 		height:46px;
 		width: 80%;
-    	margin: 10px auto;
-		background-color: red;
+    	margin: 5px auto;
+    	overflow: hidden;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide{
-		width:46px;
-		height:46px;
-    	float:left;
-    	margin-right:2px;
-		background-color: blue;
+		width: 48px;
+	    height: 48px;
+	    float: left;
+	    margin-right: 1px;
+	    margin-left: 1px;
+		background-image: url("../img/cal_4.png");
 	}
 
 
