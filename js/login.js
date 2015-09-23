@@ -77,8 +77,10 @@ $(document).ready(function() {
         logar()
     });
     $('.btnMenu.Active').click(function(){
-        console.log($(this).index());
         trocarConteudoInicial($(this).index());
+
+        $(".btnMenu.Active").removeClass("btClicked");
+        $(this).addClass("btClicked");
     });
 
     
@@ -89,21 +91,31 @@ $(document).ready(function() {
     });
 
     $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo').click(function(){
-        trocarConteudoInicial($(this).index()+8);
+        $('#Conteudo_Corpo .Selecoes').css('display','none');
+        $('.Selecoes.PopupProducao').css('display','block');
     });
 
-    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close').click(function(){
+
+    $('#Conteudo_Corpo .Selecao5 .Conteudo .Icones .Icone').click(function(){
+        $('#Conteudo_Corpo .Selecoes').css('display','none');
+        $('.Selecoes.PopupCalendario').css('display','block');
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .btn_close').click(function(){
         trocarConteudoInicial(4);
     });
 
-    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide').click(function(){
-        $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide').css("border-bottom-width","0px");
-        $(this).css("border-bottom-width","5px");
-        SelecionarItem($(this).index());
-        console.log($(this).index());
+    $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .btn_close').click(function(){
+        trocarConteudoInicial(5);
     });
 
-    $('#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
+    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide').click(function(){
+        $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide').css("border-bottom-width","0px");
+        $(this).css("border-bottom-width","5px");
+        SelecionarItem($(this).index());
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
         NextFrameSlide($(this).index());
     
     });

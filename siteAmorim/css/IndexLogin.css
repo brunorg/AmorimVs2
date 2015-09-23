@@ -4,7 +4,7 @@
 }
 
 .btnMenu{
-	width : 102px;
+	width : 120px;
   	height : 24px;
   	background-color: gray;
   	float: right;
@@ -20,6 +20,9 @@
   	background-color: #21AEBB;
 
 }
+
+.btClicked{background-color: #13818c !important;}
+  	
 
 .btnMenu.Active:hover{
   	background-color: #13818c;
@@ -183,12 +186,12 @@
   
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao{
+#Conteudo_Corpo .Selecoes.PopupProducao{
 	width:100%;
 	height:590px;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto{
+#Conteudo_Corpo .Selecoes .contentTexto{
 	width:500px;
 	height:591px;
 	background-color:#f2f1ed;
@@ -197,15 +200,15 @@
 	padding:16px 29px 20px 36px;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto h2{
+#Conteudo_Corpo .Selecoes .contentTexto h2{
 	margin:0;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto p:nth-child(2){
+#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(2){
 	font-size:16px;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto p:nth-child(4){
+#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(4){
 	font-size:14px;
 	font-weight:600;
 
@@ -218,7 +221,7 @@
 
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide{
 	width:780px;
 	height:591px;
 	background-color:#ebebe4;
@@ -227,16 +230,22 @@
 	position:relative;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .btn_close,
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .btn_close {
 	width:17px;
 	height:17px;
 	background-image: url("../../img/fecharSairVoltar.png");
 	cursor:pointer;
 	position: absolute;
 	right: 35px;
+	top: 10px;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide{
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .btn_close {
+	top:20px;
+}
+
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide{
 	width:100%;
 	height:400px;
 	float:right;
@@ -245,7 +254,7 @@
 	text-align: center;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow{
 	width:10%;
 	height:100%;
 	background-color:#ebebe4;
@@ -259,18 +268,18 @@
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow:nth-child(1){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow:nth-child(1){
 	transform:rotate(180deg);
 	-webkit-transform:rotate(180deg);
 	-moz-transform:rotate(180deg);
 	-o-transform:rotate(180deg);
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .Arrow:nth-child(2){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow:nth-child(2){
 	right:0px;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain{
 	width:100%;
 	height:400px;
 	float:right;
@@ -278,7 +287,7 @@
 	overflow: hidden;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe{
 	position:relative;
 	top:0;
 	width:96%;
@@ -287,14 +296,14 @@
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides{
 	width:100%;
 	height:400px;
 	float:right;
 	padding:25px 0;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide{
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide{
 	width:110px;
 	height:110px;
 	float:left;
@@ -307,28 +316,28 @@
 	transition:	border-bottom-width 0.2s;
 }
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(1){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(1){
 	background-image: url("../img/btn_slide1.png");
 	border-bottom-width: 5px;
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(3){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(3){
 	background-image: url("../img/btn_slide3.png");
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(4){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(4){
 	background-image: url("../img/btn_slide4.png");
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(5){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(5){
 	background-image: url("../img/btn_slide5.png");
 }
 
 
-#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(6){
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(6){
 	background-image: url("../img/btn_slide6.png");
 	margin-right:0px;
 }
@@ -386,7 +395,6 @@
 
 
 #Conteudo_Corpo .Selecao5.rightSide .Conteudo .Icones .Icone{
-	background-color: blue;
     float: left;
     height: 110px;
     margin-left: 4px;
@@ -558,16 +566,16 @@
 	    padding-top: 10px;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto,
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide {
+	#Conteudo_Corpo .Selecoes .contentTexto,
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide {
 	    height: 464px;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto p:nth-child(2) {
+	#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(2) {
 	    font-size: 14px;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentTexto p:nth-child(4){
+	#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(4){
 
 		background-color: rgba(0, 0, 0, 0.5);
 	    bottom: 72px;
@@ -580,35 +588,35 @@
 
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide {
 	    height: 312px;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain {
 	    height: 280px;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain {
     	height: 280px;
     	margin: 0 auto;
 	}
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain {
 	    float: none;
 	    height: 400px;
 	    width: 81%;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain {
 	    height: 320px;
 	    margin: 0 auto;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe {
 	    height: 320px;
 	    float:none;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao8.PopupProducao .contentSlide .btn_close {
+	#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .btn_close {
 	    position: absolute;
 	    right: 35px;
 	}
@@ -668,7 +676,7 @@
 	}
 
 	.btnMenu {
-    	    width: 95.3px;
+    	    width: 112px;
 	}
 
 	.ultimo {
@@ -795,6 +803,124 @@
 
 	#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info {
 	    width: 187px;
+	}
+
+
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto{
+		width:342px;
+		height:381px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
+    	font-size: 14px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
+    	font-size: 12px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos
+	{
+		width:164px;
+		height:381px;
+		background-color:#f0efea;
+		float:left;
+		padding: 10px; 
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno
+	{
+		width:144px;
+		height:auto;
+		background-color:#e2e1d8;
+		margin-bottom: 2px;
+		padding:10px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Titulo
+	{
+		width:100%;
+		height:auto;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Imagem
+	{
+		width:100%;
+		height:auto;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide
+	{
+		width:518px;
+		height:381px;
+		float:left;
+		background-color:#f4f3ef;
+		padding:20px 40px;
+		position:relative;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide
+	{
+		width:100%;
+		height:300px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .AnoTitulo
+	{
+		width:100%;
+		height:20px;
+		text-align:center;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain
+	{
+		width:100%;
+		height:280px;
+		text-align: center;	
+		position: relative;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow{
+		width:10%;
+		height:100%;
+		background-color:#f4f3ef;
+		top:0px; 
+		position:absolute;
+		background-image: url("../../img/Arrow_pq_mod.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		display:block;
+		cursor:pointer;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Left{
+		transform:rotate(180deg);
+		-webkit-transform:rotate(180deg);
+		-moz-transform:rotate(180deg);
+		-o-transform:rotate(180deg);
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow.Right{
+		right:0px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .SelectionSlides{
+		height:46px;
+		width: 80%;
+    	margin: 10px auto;
+		background-color: red;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide{
+		width:46px;
+		height:46px;
+    	float:left;
+    	margin-right:2px;
+		background-color: blue;
 	}
 
 
