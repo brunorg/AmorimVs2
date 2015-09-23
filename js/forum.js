@@ -17,8 +17,6 @@
 
 //Carrega os valores utilizados do BD
 
-	var dataRoteiro 				=	getData("Roteiro", null);
-	var dataForumQuestao 			=	getData("ForumQuestao", null);
 	var dataForumResposta 			=	getData("ForumResposta", null);
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -134,7 +132,7 @@ function carregaForumCompleto () {
 			Html = '';
 			for (var i = 0; i < forumData.length; i++) {
 				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
-				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span></a>';
+				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span><span class="label_titulo">00</span></a>';
 				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
         		{
             		Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
@@ -165,9 +163,9 @@ function carregaForumCompleto () {
 
 function abreAcoordion(){	
 	$('a.accordion').click(function(){
-		//alert('t');
 		$(this).toggleClass('aparecer');
 		$(this).parent().find('div.info_secao_forum').slideToggle("slow");
+		$(this).find('.label_titulo').toggleClass('label_escondido');
 		var btn = $(this).closest('div.secao_forum').attr('id') ;
 		$("#"+btn+" .btn_topico").toggleClass("aparecer")
 	});
@@ -178,10 +176,26 @@ function getResultadoForumQuestao(ID)
 {
 	HtmlContent = "";
 
-	for(var b=0; b< dataForumQuestao.length; b++)
+	var dataForumQuestao;
+
+	$.ajax({
+		url: path + 'ForumQuestao/ListaPorRoteiro/' + ID,
+		crossDomain: true,
+		async: false,
+		type: "GET",
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function(d) {
+			dataForumQuestao = d;
+		},
+		complete: function() {
+			loading('final');
+		}
+	});
+
+	for(var b = 0; b < dataForumQuestao.length; b++)
 	{
-		if(dataForumQuestao[b].roteiro.idroteiro == ID)
-		{
 
 			HtmlContent+= '<div class="info_secao_forum_div">';
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
@@ -198,8 +212,6 @@ function getResultadoForumQuestao(ID)
 			HtmlContent+= '		<div style="clear:both"></div>';
 			HtmlContent+= '	</a>';
 			HtmlContent+= '</div>';
-
-		}
 	}
 
 	return HtmlContent;

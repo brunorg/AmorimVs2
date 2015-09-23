@@ -8,9 +8,9 @@
 
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
 		<link rel="stylesheet" type="text/css" href="css/grupo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<!--Fim Style-->
         
@@ -35,6 +35,8 @@
         <script type="text/javascript" src="js/grupo.js"></script>  
         <!--<script type="text/javascript" src="js/coordenacaoGrupoInfo.js"></script>     	  
         <script type="text/javascript" src="js/coordenacaoGrupo.js"></script>-->
+        <script type="text/javascript" src="js/criar_agrupamento.js"></script>
+        <script type="text/javascript" src="js/criar_oficina.js"></script>
         
 		<script type="text/javascript" src="js/funcoes.js"></script>
 		<script type="text/javascript" src="js/autenticador.js"></script>
@@ -111,12 +113,145 @@
                         </div>						
                         <div id='cx_conteudo'>
                             <div id="container_Grupo" class="selecionado"> 						
-                            	Grupo oficina
+                                <div class="Area_Select_Grupo">
+                                    <div class="Box_Area_Select">
+                                        <p class="Select_Grupo_Ciclo">Ciclo</p>
+                                        <span class="Select_Grupo_Input">
+                                            <select name="Ciclo" id="cicloGrupo" class="Ciclo_Select" >
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="Box_Area_Select">
+                                        <p class="Select_Grupo_Periodo">Período</p>
+                                        <span class="Select_Grupo_Input">
+                                            <select name="Periodo" id="periodoGrupo" class="Periodo_Select">
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="Area_Alunos_Container">
+                                    <div id="Area_Alunos">
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_1" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_1">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_2" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_2">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_3" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_3">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_4" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_4">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_5" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_5">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_6" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_6">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_7" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_7">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_8" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_8">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_8" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_8">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_8" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_8">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                        <div class="Grupo_Aluno_Linha">
+                                            <span class="Nome_Aluno">Miriam de Oliveira</span>
+                                            <input type="checkbox" id="Aluno_Check_8" class="Aluno_Ano_Check" />
+                                            <label for="Aluno_Check_8">
+                                                <span></span>
+                                            </label>
+                                            <span class="Ano_Aluno">1&#186; ano</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Area_Botoes_Grupo">
+                                    <button type="button" class="btns_grupo btn_Salvar_Grupo">Salvar</button>
+                                </div>
     						</div>
-                            <div id="container_Oficina">                      
-                                <div class="box_margin_barra">                  
-                                    <p>Teste</p>                    
-                                </div>                      
+                            <div id="container_Oficina">                 
+                                <div class="Area_Select_Grupo">
+                                    <div class="Box_Area_Select">
+                                        <p class="Select_Grupo_Ciclo">Ciclo</p>
+                                        <span class="Select_Grupo_Input">
+                                            <select name="Ciclo" id="cicloOficina" class="Ciclo_Select">
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="Box_Area_Select">
+                                        <p class="Select_Grupo_Periodo">Período</p>
+                                        <span class="Select_Grupo_Input">
+                                            <select name="Periodo" id="periodoOficina" class="Periodo_Select">
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="Box_Area_Select">
+                                        <p class="Select_Grupo_Oficina">Oficina</p>
+                                        <span class="Select_Grupo_Input">
+                                            <select name="Oficina" id="oficinaOficina" class="Oficina_Select">
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="Area_Botoes_Grupo">
+                                        <button type="button" class="btns_grupo btn_Salvar_Grupo">Salvar</button>
+                                </div>                    
                             </div>
                             <div id="container_Tutoria">                      
                                 <form id="frmCadastroGrupo"> 
@@ -149,7 +284,7 @@
                                                         <div class="infoG"> TUTOR </div>
                                                             <div class="infoValueG"> 
                                                                 <div class="styled-select">
-                                                                    <select class="tutoria" id="tutoria" name="tutoria"></select>
+                                                                    <select class="tutor" id="tutoria" name="tutoria"></select>
                                                                 </div>
                                                             </div>
                                                     </div>

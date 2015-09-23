@@ -93,10 +93,6 @@ $(document).ready(function(){
 
 	if(PlanoEstudoSessionID == 0 && usuario == "Aluno")
 	{
-		/*mensagem("Primeiro, precisa criar um Plano de Estudo","OK","bt_ok","erro");
-		window.setTimeout(function(){
-			window.location = "planoDeEstudo.html";
-		},5000);*/
 
 		mensagemF("Primeiro, precisa criar um Plano de Estudo","OK","bt_ok","alerta","redirect();");
 	}

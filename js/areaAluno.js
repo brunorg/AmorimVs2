@@ -70,7 +70,7 @@ $.ajax({
 
 var dataProducaoAluno;
 $.ajax({
-	url: path+"ProducaoAluno/Aluno/"+alunoID,
+	url: path+"ProducaoAluno/alunoPortifolio/"+alunoID,
 	type: "GET",
 	async:false,
 	crossDomain: true,
@@ -244,7 +244,6 @@ function CarregaServicoProducaoAluno()
 
 		HtmlContent = "";
 		for (var a = 0; a < dataProducaoAluno.length; a++) {			
-			if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5) {
 				if ( ContadorPA != 2 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
@@ -284,24 +283,56 @@ function CarregaServicoProducaoAluno()
 
 				} else {
 					HtmlContent += '</div>';
-					ContadorPA = 0;
+					HtmlContent += '<div class="Portfolio_Conteudo_Container">';
+					var apresentacao = "";
+
+		    		if(dataProducaoAluno[a].arquivo != null) {
+
+
+						var arquivo = dataProducaoAluno[a].arquivo;
+						arquivo =  arquivo.split(".");
+						
+						if(arquivo[4]=="pdf"){
+							apresentacao = '<img src="img/icone_portfolio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif") {
+							apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg") {
+							apresentacao = '<img src="img/icone_audio.png" width="auto" height="100%"/>';
+						} else if (arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
+							apresentacao = '<img src="img/icone_video.png" width="auto" height="100%"/>';
+						}
+						
+					}
+					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
+			        HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+					HtmlContent += '<div class="Nome_Roteiro">';
+					HtmlContent += dataProducaoAluno[a].roteiro.nome;
+					HtmlContent += '</div>';
+					HtmlContent += '<div class="Img_Roteiro">';
+					HtmlContent += apresentacao;
+					HtmlContent += '</div>';
+					HtmlContent += '</a>';
+					HtmlContent += '</div>';
+					ContadorPA = 1;
+
 				}
-			}
 		}
+
+		if (ContadorPA == 1)
+			HtmlContent += '</div>';
 
 		
 		$('#Portfolio_Conteudo').append(HtmlContent);
 		$('#Portfolio_Conteudo').microfiche({ bullets: false });
 
 	$('.microfiche-next-button').click(function() {
-		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/293 > - ($('.microfiche-film .Portfolio_Conteudo_Container').length - 1)))
+		if ((parseInt($('.microfiche-film').css('transform').split(',')[4])/592 > - ($('.microfiche-film .Portfolio_Conteudo_Container').length - 1)))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) -592) + ',0)');
 	});
 
 	$('.microfiche-prev-button').prop("disabled", false);
 
 	$('.microfiche-prev-button').click(function() {
-		console.log("Teste");
 		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 592) + ',0)');
 	});
@@ -363,28 +394,35 @@ function CarregarRotina() {
 
 //Preencher Mural
 function CarregarMural() {
-	var muralNomes = ["Luciana Caparro", "Massumi", "Cássia"];
-	var muralData = "23/02/2014";
-	var muralHorario = "10:40";
-	var muralMsgs = [
-		"A partir de maio as oficinas de matemática serão na sala de informática.",
-		"Para a próxima aula tragam garrafas pet e tampas de plástico colorido.",
-		"Hoje faremos uma contação de histórias na sala de aula."
-	];
 
-	for (var i = 0; i < muralNomes.length; i++) {
-		var muralLinha = '<div class="Mural_Conteudo_Linha '+ (muralNomes.length > 2 ? 'Linha_Scroll' : '') +'">'+
-					'<div class="Mural_Linha_Cabecalho">'+
-						'<span class="Mural_Nome">'+muralNomes[i]+'</span>'+
-						'<span class="Mural_Data"> '+muralData+'</span>'+
-						'<span class="Mural_Horario"> '+muralHorario+'</span>'+
-					'</div>'+
-					'<div class="Mural_Linha_Texto">'+
-						'<p class="Mural_Texto">'+muralMsgs[i]+'</p>'+
-					'</div>'+
-				'</div>';
-		$("#Mural_Conteudo_Container").append(muralLinha);
-	};
+	$.ajax({
+		url: path+"Mural/RangeData/"+alunoVariavelID.idalunoVariavel,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dadosMural) {
+			for (var i = 0; i < dadosMural.length; i++) {
+				var dataMural = dadosMural[0].data.split('-');
+				var ano = dataMural[0];
+				var mes = dataMural[1];
+				var dia = dataMural[2]; 
+				dataMural = dia+'/'+mes+'/'+ano;
+
+				var muralLinha = '<div class="Mural_Conteudo_Linha '+ (dadosMural.length > 2 ? 'Linha_Scroll' : '') +'">'+
+							'<div class="Mural_Linha_Cabecalho">'+
+								'<span class="Mural_Nome">'+abreviaNome(dadosMural[i].professor.nome)+'</span>'+
+								'<span class="Mural_Data"> '+dataMural+'</span>'+
+								'<span class="Mural_Horario"></span>'+
+							'</div>'+
+							'<div class="Mural_Linha_Texto">'+
+								'<p class="Mural_Texto">'+dadosMural[i].mensagem+'</p>'+
+							'</div>'+
+						'</div>';
+				$("#Mural_Conteudo_Container").append(muralLinha);
+			};
+
+		}
+	});	
 };
 //------------------------------------------------------------------------------------------------------------------------
 

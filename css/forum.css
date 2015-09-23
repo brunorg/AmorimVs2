@@ -117,7 +117,7 @@ a.barra_titulo{
 .infoPes{
 	width: 45%;
 	height: 39px;
-	background-color: #EEE4FD;
+	background-color: #E1DFF5;
 	text-align: right;
 	float: left;
 	color: #666;
@@ -162,7 +162,7 @@ select{
 }
 
 .infoG{
-	background-color: #EEE4FD;
+	background-color: #E1DFF5;
 	border:none;
 	color: #666;
 	padding:10px;
@@ -172,7 +172,8 @@ select{
 
 .celulaGrande{
 	width: 64%;
-  	overflow: auto;
+  	overflow: hidden;
+  	height: 39px;
     float: left;
   	background-color: rgb(250,248,246);
   	border: none;
@@ -272,6 +273,20 @@ input{
 	}
 }
 
+.label_titulo {
+	background: url(../img/label_nova_forum.png) no-repeat;
+	display: inline-block;
+	height: 17px;
+	width: 30px;
+	margin-left: 8px;
+	font-size: 10px;
+    line-height: 1.5em;
+    padding: 2px 0px 0px 2.5px;
+    text-align: center;
+}
+.label_escondido {
+	display: none;
+}
 
 /*Media NoteBook com barra favoritos*/
 /*@media (min-height: 640px)and (max-height: 665px) {
