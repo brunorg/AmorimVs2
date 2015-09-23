@@ -87,7 +87,7 @@ function buscaForum () {
 				HtmlContentBusca = '';
 				for (var i = 0; i < forumBusca.length; i++) {
 					HtmlContentBusca+= '<div class="secao_forum" id="btn'+forumBusca[i].idroteiro+'">';
-					HtmlContentBusca+= '<a href="#" class="barra_titulo accordion"><span id="'+forumBusca[i].idroteiro+'">'+forumBusca[i].nome+'</span></a>';
+					HtmlContentBusca+= '<a href="#" class="barra_titulo accordion"><span id="'+forumBusca[i].idroteiro+'">'+forumBusca[i].nome+'</span>' + getCountQuestoes(forumBusca[i].idroteiro) + '</a>';
 					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
     	    		{
     	        		HtmlContentBusca+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
@@ -132,7 +132,7 @@ function carregaForumCompleto () {
 			Html = '';
 			for (var i = 0; i < forumData.length; i++) {
 				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
-				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span><span class="label_titulo">00</span></a>';
+				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
 				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
         		{
             		Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
@@ -153,7 +153,6 @@ function carregaForumCompleto () {
 			window.setTimeout(function(){
 				abreAcoordion();
 			}, 1000);
-
 		},
 		complete: function() {
 			loading('final');
@@ -224,7 +223,7 @@ function carregaAnoEstudo(){
 	for(var b=0;b<dataAnoEstudo.length; b++)
 	{
 		HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"'>"+(dataAnoEstudo[b].ano)+"º</option>";
-	}
+	} 
 	$('#PesqAnoEstudo').html("<option></option>"+HtmlContent);
 }
 
@@ -242,7 +241,7 @@ function recarregaForumAnoEstudo (ano) {
 		success: function (forumAno) {
 			for (var i = 0; i < forumAno.length; i++) {
 				HtmlContentRecarregar+= '<div class="secao_forum" id="btn'+forumAno[i].idroteiro+'">';
-				HtmlContentRecarregar+= '<a href="#" class="barra_titulo accordion"><span id="'+forumAno[i].idroteiro+'">'+forumAno[i].nome+'</span></a>';
+				HtmlContentRecarregar+= '<a href="#" class="barra_titulo accordion"><span id="'+forumAno[i].idroteiro+'">'+forumAno[i].nome+'</span>' + getCountQuestoes(forumAno[i].idroteiro) + '</a>';
 				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
         		{
             		HtmlContentRecarregar+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
@@ -278,18 +277,56 @@ function getResultadoForumResposta(ID, usuario)
 {
 	var Numero = 0;
 
-	for(var a=0; a< dataForumResposta.length; a++)
-	{
-		if(dataForumResposta[a].forumQuestao.idforumQuestao == ID)
-		{
-			if(usuario == "aluno")
+	$.ajax({
+		url: path + "ForumResposta/ListarPorQuestao/" + ID,
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		beforeSend: function() {
+			loading("inicial");
+		},
+		success: function(d) {
+			for(var a=0; a< d.length; a++)
 			{
-				Numero++;
-			} else if(usuario == "professor" && dataForumResposta[a].usuario.perfil.perfil == "Professor"){
-				Numero++;
+				if(usuario == "aluno")
+				{
+					Numero++;
+				}
+				else if(usuario == "professor" && d[a].usuario.perfil.perfil == "Professor"){
+					Numero++;
+				}
 			}
+		},
+		complete: function() {
+			loading("final");
 		}
-	}
+	});
 
 	return Numero;
+}
+
+function getCountQuestoes(ID) {
+
+	HtmlContent = "";
+
+	var count;
+
+	$.ajax({
+		url: path + 'ForumQuestao/ListaPorRoteiro/' + ID,
+		crossDomain: true,
+		async: false,
+		type: "GET",
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function(d) {
+			count = d.length;
+		},
+		complete: function() {
+			loading('final');
+		}
+	});
+
+	return count > 0? '<span class="label_titulo">' + count + '</span>' : '';
+
 }
