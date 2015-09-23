@@ -333,7 +333,6 @@ function CarregaServicoProducaoAluno()
 	$('.microfiche-prev-button').prop("disabled", false);
 
 	$('.microfiche-prev-button').click(function() {
-		console.log("Teste");
 		if ((parseInt($('.microfiche-film').css('transform').split(',')[4]) < 0))
 			$('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 592) + ',0)');
 	});
@@ -395,28 +394,35 @@ function CarregarRotina() {
 
 //Preencher Mural
 function CarregarMural() {
-	var muralNomes = ["Luciana Caparro", "Massumi", "Cássia"];
-	var muralData = "23/02/2014";
-	var muralHorario = "10:40";
-	var muralMsgs = [
-		"A partir de maio as oficinas de matemática serão na sala de informática.",
-		"Para a próxima aula tragam garrafas pet e tampas de plástico colorido.",
-		"Hoje faremos uma contação de histórias na sala de aula."
-	];
 
-	for (var i = 0; i < muralNomes.length; i++) {
-		var muralLinha = '<div class="Mural_Conteudo_Linha '+ (muralNomes.length > 2 ? 'Linha_Scroll' : '') +'">'+
-					'<div class="Mural_Linha_Cabecalho">'+
-						'<span class="Mural_Nome">'+muralNomes[i]+'</span>'+
-						'<span class="Mural_Data"> '+muralData+'</span>'+
-						'<span class="Mural_Horario"> '+muralHorario+'</span>'+
-					'</div>'+
-					'<div class="Mural_Linha_Texto">'+
-						'<p class="Mural_Texto">'+muralMsgs[i]+'</p>'+
-					'</div>'+
-				'</div>';
-		$("#Mural_Conteudo_Container").append(muralLinha);
-	};
+	$.ajax({
+		url: path+"Mural/RangeData/"+alunoVariavelID.idalunoVariavel,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dadosMural) {
+			for (var i = 0; i < dadosMural.length; i++) {
+				var dataMural = dadosMural[0].data.split('-');
+				var ano = dataMural[0];
+				var mes = dataMural[1];
+				var dia = dataMural[2]; 
+				dataMural = dia+'/'+mes+'/'+ano;
+
+				var muralLinha = '<div class="Mural_Conteudo_Linha '+ (dadosMural.length > 2 ? 'Linha_Scroll' : '') +'">'+
+							'<div class="Mural_Linha_Cabecalho">'+
+								'<span class="Mural_Nome">'+abreviaNome(dadosMural[i].professor.nome)+'</span>'+
+								'<span class="Mural_Data"> '+dataMural+'</span>'+
+								'<span class="Mural_Horario"></span>'+
+							'</div>'+
+							'<div class="Mural_Linha_Texto">'+
+								'<p class="Mural_Texto">'+dadosMural[i].mensagem+'</p>'+
+							'</div>'+
+						'</div>';
+				$("#Mural_Conteudo_Container").append(muralLinha);
+			};
+
+		}
+	});	
 };
 //------------------------------------------------------------------------------------------------------------------------
 
