@@ -7,6 +7,7 @@ var FrameAtual = 1;
 (function($){
     $(window).load(function(){
         $('#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos').mCustomScrollbar();
+        $('#Conteudo_Corpo .Selecoes.PopupCalendario .anos').mCustomScrollbar();
     });
 })(jQuery);
 
