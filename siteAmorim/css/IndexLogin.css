@@ -540,7 +540,7 @@
 }
 
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
-	font-size: 14px;
+	font-size: 18px;
 }
 
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
@@ -622,7 +622,7 @@
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
 {
 	width:100%;
-	padding: 5px 10%;
+	padding: 5px 11%;
 	font-size: 12px;
 	background-color:rgba(0,0,0,0.8);
 	color:white;
@@ -669,6 +669,12 @@
     margin-right: 1px;
     margin-left: 1px;
 	background-image: url("../img/cal_4.png");
+}
+
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda {
+    background-color: #f4f3ef;
+    color: #222;
+    text-align: left;
 }
 
 
@@ -798,15 +804,15 @@
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
-    	font-size: 14px;
+    	font-size: 15px;
 	}
 
-	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
-    	font-size: 12px;
-    	background-color: transparent;
-    	bottom: 0;
-    	color:#666;
-    	padding: 0;
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4){
+	    font-size: 12px;
+	    background-color: rgba(0,0,0,0.8);
+	    bottom: 56px;
+	    color: white;
+	    padding: 5px;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .anos
@@ -878,7 +884,7 @@
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
 	{
 		width:100%;
-		padding: 5px 10%;
+		padding: 5px 11%;
 		font-size: 12px;
 		background-color:rgba(0,0,0,0.8);
 		color:white;
@@ -1098,10 +1104,18 @@
 	    font-size: 12px;
 	}
 
-	#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(4) {
+	#Conteudo_Corpo .Selecoes .contentTexto p:nth-child(4){
 	    font-size: 12px;
 	    background-color: rgba(0,0,0,0.8);
 	    bottom: 66px;
+	    color: white;
+	    padding: 5px;
+	}
+
+	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4){
+	    font-size: 12px;
+	    background-color: rgba(0,0,0,0.8);
+	    bottom: 52px;
 	    color: white;
 	    padding: 5px;
 	}
@@ -1148,7 +1162,7 @@
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(2) {
-    	font-size: 14px;
+    	font-size: 12px;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4) {
@@ -1224,7 +1238,7 @@
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
 	{
 		width:100%;
-		padding: 5px 10%;
+		padding: 5px 11%;
 		font-size: 12px;
 		background-color:rgba(0,0,0,0.8);
 		color:white;
