@@ -7,22 +7,12 @@ var alunoID = getAlunoByUsuario(userID);
 
 //Carrega os valores utilizados do BD
 
-var dataUsuario 				=	getData("Usuario/aluno", alunoID);
-var dataAlunoVariavel 			=	getAlunoVariavelByAluno();
 
 var dataObjetivo 				=	getData("Objetivo", null);
 var dataAtividade 				=	getData("Atividade", null);
 
 var dataProducaoAluno 			=	getData("ProducaoAluno", null);
 var dataPlanejamentoRoteiro 	=	getData("PlanejamentoRoteiro/aluno" , alunoID); 
-
-
-if(dataAlunoVariavel.constructor !== Array){
-	
-	var aux = dataAlunoVariavel;
-	dataAlunoVariavel = new Array(1);
-	dataAlunoVariavel[0] = aux;
-}
 
 var dataRecursoAprendizagem 	=	getData("RecursoAprendizagem", null);
 
