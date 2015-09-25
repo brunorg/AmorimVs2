@@ -30,6 +30,15 @@ function SelecionarItem(numero)
 	}
 }
 
+function SelecionarItemCalendario(numero)
+{
+	SlideAtual = numero;
+	FrameAtual = 1;
+	
+	$('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain img').attr("src","siteAmorim/img/desenho/img"+(SlideAtual+1)+".jpg");
+	
+}
+
 function NextFrameSlide(numero)
 {
 	if(numero == 0)
@@ -43,4 +52,23 @@ function NextFrameSlide(numero)
 	}
 	
 	$('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<img width="auto" height="100%" src="siteAmorim/img/'+dirSlides[SlideAtual]+'/img'+FrameAtual+'.jpg">');
+}
+
+function NextFrameSlideCalendario(numero)
+{
+
+	if(numero == 3)
+	{
+		FrameAtual--;
+		if(FrameAtual < 0){ FrameAtual = 6; }
+	} else {
+		FrameAtual++;
+		if(FrameAtual > 6){ FrameAtual = 0; }
+
+	}
+
+	$('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide').css("border-bottom-width","0px");
+    $($('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide').get(FrameAtual)).css("border-bottom-width","5px");
+	
+	$('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain img').attr("src","siteAmorim/img/desenho/img"+(FrameAtual+1)+".jpg");
 }
