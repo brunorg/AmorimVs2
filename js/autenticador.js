@@ -53,11 +53,9 @@ $(document).ready(function(){
 			localStorage.setItem("user",dadosUsuario.login);
 			
 			if ((usuario == 'Professor')||(usuario == 'Coordenacao')){	
-				
 				if (verificaTutor(dadosUsuario.professor.idprofessorFuncionario) == 1) {
 					confTutor = true;
 				}else {
-		        	
 		        	confTutor = false;
 				}			
 			}		
@@ -74,6 +72,35 @@ $(document).ready(function(){
 		        	}else textoMsgNLida = '';
 				}		
 			});
+			if ((usuario == 'Professor')||(usuario == 'Aluno')){	
+				var totalForum = 0;
+				$.ajax({
+					url: path+"ForumQuestao/RespostasNVistas/"+dadosUsuario.idusuario,
+					type: "GET",
+					async:false,
+					crossDomain: true,
+					success: function(t1) {
+						//mensagensNaoLidas = d;
+						totalForum+=t1;
+					}		
+				});
+				
+				$.ajax({
+					url: path+"ForumQuestao/RangeDataCount/",
+					type: "GET",
+					async:false,
+					crossDomain: true,
+					success: function(t2) {
+						totalForum+=t2;
+					}		
+				});
+				
+				if (totalForum == 0){
+					textoForum = '';
+				}else{
+					textoForum = '<div class="label" id="num_msg_nLidas">'+totalForum+'</div>';
+				}
+			}
 
 			switch (usuario){
 			    case "Aluno":	
@@ -105,6 +132,7 @@ $(document).ready(function(){
 											'<a href="mensagens.html" class="mensagens">Mensagens</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											textoForum+
 											'<a href="forum.html" class="forum">Fórum</a>'+
 										'</div>'+
 									'</div>'+
@@ -134,7 +162,7 @@ $(document).ready(function(){
 									'<a href="mensagens.html">Mensagens</a>'+
 								'</div>'+
 								'<div class="Content_lateral_Menu_Opcao forum">'+
-									'<div class="label" id="num_forum_nLidas"></div>'+ // <-- Essa linha gera os labels
+									textoForum+
 									'<a href="forum.html">Fórum</a>'+
 								'</div>'+
 							'<div class="Content_lateral_Menu_Opcao calendario" id="menuCalendario">'+
@@ -178,6 +206,7 @@ $(document).ready(function(){
 											'<a href="roteirosProfessor.html" class="roteiros">Roteiros</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
+											textoForum+
 											'<a href="forum.html" class="forum">Fórum</a>'+
 										'</div>'+
 										'<div class="Content_lateral_Menu_Opcao col-2 col-height">'+
@@ -209,7 +238,7 @@ $(document).ready(function(){
 									'<a href="mensagens.html">Mensagens</a>'+
 								'</div>'+
 								'<div class="Content_lateral_Menu_Opcao forum">'+
-								'<div class="label" id="num_msg_nLidas"></div>'+
+									textoForum+
 									'<a href="forum.html">Fórum</a>'+
 								'</div>';
 					}	
