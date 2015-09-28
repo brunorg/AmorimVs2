@@ -626,6 +626,7 @@
 	height:460px;
 	text-align: center;	
 	position: relative;
+	overflow: hidden;
 }
 
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .ConteudoMain .legenda
@@ -684,7 +685,8 @@
 	cursor: pointer;
 }
 
-#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide:nth-child(1){
+/*#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide:nth-child(1){*/
+#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide.borderBottom{
 	border-bottom-width: 5px;
 }
 
@@ -943,15 +945,12 @@
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .SelectionSlides{
-		
 		width: 80%;
     	margin: 5px auto;
     	overflow: hidden;
 	}
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide{
-		
-	    
 	    float: left;
 	    margin-left: 1px;
 		background-image: url("../img/cal_4.png");

@@ -74,8 +74,9 @@ function botoes(a, b) {
 }
 $(document).ready(function() {
     $("#btnSubmit").click(function() {
-        logar()
+        logar();
     });
+
     $('.btnMenu.Active').click(function(){
         trocarConteudoInicial($(this).index());
 
@@ -91,16 +92,12 @@ $(document).ready(function() {
     });
 
     $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo').click(function(){
-        $('#Conteudo_Corpo .Selecoes').css('display','none');
-        $('.Selecoes.PopupProducao').css('display','block');
+        ShowPopUp("PopupProducao");
     });
 
 
     $('#Conteudo_Corpo .Selecao5 .Conteudo .Icones .Icone.Ativo').click(function(){
-        $('#Conteudo_Corpo .Selecoes').css('display','none');
-        $('.Selecoes.PopupCalendario').css('display','block');
-        FrameAtual = 0;
-        SlideAtual = 1;
+        ShowPopUp("PopupCalendario");
     });
 
     $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .btn_close').click(function(){
@@ -117,21 +114,12 @@ $(document).ready(function() {
         SelecionarItem($(this).index());
     });
 
-    $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide').click(function(){
-        $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide').css("border-bottom-width","0px");
-        $(this).css("border-bottom-width","5px");
-        SelecionarItemCalendario($(this).index());
-    });
-
     $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
         NextFrameSlide($(this).index());
-    
     });
 
     $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow').click(function(){
         NextFrameSlideCalendario($(this).index());
-
-    
     });
 
     localStorage.getItem("usuarioTipo"), localStorage.getItem("usuarioId")
