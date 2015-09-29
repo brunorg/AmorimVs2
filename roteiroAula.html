@@ -5,7 +5,7 @@
         <title>Plataforma Amorim</title>
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
  
-        <!--Style-->
+        <!--Style!-->
         <link rel="stylesheet" type="text/css" href="css/style.css" />          
         <link rel="stylesheet" type="text/css" href="css/home.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
@@ -131,9 +131,9 @@
                 <div class="Conteudo_Coluna" id="content_central">
                 
                     <div id="roteiros_cabecalho">
-                        <div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">Roteiro</div>
-                        <div id="cabecalho_pesquisa" class="cabecalho_ativo pesquisaMargin">Pesquisa</div>
-                        </div>
+                        <div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">CRIAR ROTEIRO AULA</div>
+                        <div id="cabecalho_pesquisa" class="pesquisaMargin">PESQUISAR</div>
+                    </div>
                     
                     <div id="roteiros_content">                     
                         <!-- Conteudo da aba de Roteiro -->
@@ -160,19 +160,23 @@
                                     </div>
 
                                     <div class="linha3"> 
-                                        <div class="celulaGrandeOB" style="display:none">
-                                            <div class="infoM"> Objetivo </div>
-                                            <div id="val_objetivo_1" class="infoValueM objetivos">
-                                                <input type="text" >
-                                            </div>   
+                                       <div id="box_objetivoAula">
+                                            <div class="celulaGrandeOB" style="display:none">
+                                                <div class="infoM"> Objetivo </div>
+                                                <div>
+                                                    <input type="text" id="val_objetivo_1" class="infoValueM objetivos">
+                                                </div>   
+                                            </div>
                                         </div>
                                     </div>
+                                     
                                 </div>
                                 <div>                                    
                                      <p id="btnSalvar" value=""> Salvar </p>
 
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
+                                    <p id="btnEdit" style="display:none" value="">Editar</p>
                                 </div>
                                 <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
                                 <div class="boxROA"> 
@@ -182,11 +186,14 @@
                         </div>                                                                      
                     
                     <!-- Conteudo da aba de Pesquisa -->
-                      <div id="Pesquisa" class="aba_roteiro">
+                      <div id="Pesquisa" class="aba_pesquisa">
                             <div id="conteudo_principal_pesquisa">                                
                                 <div id="Inserir_pesquisa">
-                                    <p>teste</p>
-                                  </div>       
+                                    <div id="box_roteiroAula">
+                                        <!--carrega os valores do-->
+                                    </div>
+
+                                </div>       
                             </div>
                         </div>
                     </div>

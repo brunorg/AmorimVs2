@@ -159,7 +159,14 @@ $(document).ready(function() {
 		scrollButtons:{
 			enable:true
 		}
-	});		
+	});	
+
+	$("#Inserir_pesquisa").mCustomScrollbar({
+		axis:"y", // vertical and horizontal scrollbar
+		scrollButtons:{
+			enable:true
+		}
+	});			
 	
 	$("#box_geral_observacao").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
@@ -473,7 +480,7 @@ function base64_decode(data) {
  */ 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 {	
-	
+	console.log(class_btn);
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+

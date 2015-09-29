@@ -126,6 +126,18 @@
 		    margin: 0 5px;
 		    float: right;
 		}
+		#btnEdit{
+			width: 11%;
+		    background-color: #29B8CE;
+		    background-size: 20px;
+		    background-position: 12px 10px;
+		    color: white;
+		    text-align: right;
+		    padding: 10px;
+		    cursor: pointer;
+		    margin: 0 5px;
+		    float: right;
+		}
 		#btnNovoOB{
 			width: 11%;
 			background-color: #29B8CE;
@@ -236,6 +248,20 @@
 			margin: 1% 0;
 		}
 		
+		#Inserir_pesquisa{
+			overflow: auto;
+    		height: 475px;
+		}
+
+		.roteiroAula{
+			height: 23px;
+		    border-bottom: 1px solid #FFF;
+		    cursor: pointer;
+		    margin-bottom: 5px;
+		    padding: 0 3px;
+		    width: 98%;
+		}
+
 		#nomeAtv{
 			background-color: white;
 			border: 1px solid lightgrey;
