@@ -519,6 +519,8 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 			botoes(tipo_btn,class_btn);
 		}, 1000);
 	}
+	//Chama uma função diferente para cada opção possível do usuário
+	//Ambas as funções devem ter os mesmos argumentos
 	else if(tipo_msg=="opcao")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
