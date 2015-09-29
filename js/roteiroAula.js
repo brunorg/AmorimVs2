@@ -138,7 +138,7 @@ function exibirRoteiro(idRoteiroAula){
 $("#btnEdit").click(function(){
 
 		var roteiro= $("#val_roteiro").val();
-		var descricao= $("#val_descricao").val(););
+		var descricao= $("#val_descricao").val();
     	var IdRoteiro = $('#idRoteiro').val();
 
     	console.log(roteiro,descricao,IdRoteiro);
