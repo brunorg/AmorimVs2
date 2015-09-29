@@ -3,6 +3,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 }
 .celulaPequena, .celulaMedia, .celulaGrande{
 	border: none;
+	padding:0;	
 }
 
 #roteiros_cabecalho 

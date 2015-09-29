@@ -103,7 +103,7 @@
                                     </div>
 
                                     <div class="linha3"> 
-                                       <div id="box_objetivoAula">
+                                       	<div id="box_objetivoAula">
                                             <div class="celulaGrandeOB" style="display:none">
                                                 <div class="infoM"> Objetivo </div>
                                                 <div>
@@ -113,8 +113,9 @@
                                         </div>
                                     </div>                                     
                                 </div>
-                                <div>                                    
-                                     <p id="btnSalvar" value=""> Salvar </p>
+                                <div>  
+                                	<input type="hidden" id="idRoteiro" value="">                                  
+                                    <p id="btnSalvar" value=""> Salvar </p>
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
                                     <p id="btnEdit" style="display:none" value="">Editar</p>
@@ -127,8 +128,14 @@
                       <div id="Pesquisa" class="aba_pesquisa">
                             <div id="conteudo_principal_pesquisa">                                
                                 <div id="Inserir_pesquisa">
-                                    <div id="box_roteiroAula">
-                                        
+                                	<div class="celulaGrande">
+                                        <div class="infoG"> Pesquisa </div>
+                                        <div class="infoValueG">
+                                          	<input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                        </div>
+                                    </div>
+                                    <div id="box_barra" style="margin-top:50px;">
+                                        <div id="box_roteiroAula"></div>
                                     </div>
                                 </div>       
                             </div>
