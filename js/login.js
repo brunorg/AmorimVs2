@@ -108,12 +108,6 @@ $(document).ready(function() {
         trocarConteudoInicial(5);
     });
 
-    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide').click(function(){
-        $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide').css("border-bottom-width","0px");
-        $(this).css("border-bottom-width","5px");
-        SelecionarItem($(this).index());
-    });
-
     $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
         NextFrameSlide($(this).index());
     });

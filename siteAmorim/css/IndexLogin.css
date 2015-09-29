@@ -287,6 +287,17 @@
 	float:right;
 	text-align: center;
 	overflow: hidden;
+	display:relative;
+}
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain .legenda{
+	background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    color: white;
+    font-size: 12px;
+    left: 10%;
+    padding: 5px 11%;
+    position: absolute;
+    width: 80%;
 }
 
 #Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain iframe{
@@ -313,38 +324,19 @@
 	background-image: url("../img/btn_slide2.png");
 	background-size: cover;
 	cursor:pointer;
-	border-bottom: solid #21aebb 0px;
 	border-bottom-width: 0px;
+	border-bottom: solid #21aebb 0px;
 	transition:	border-bottom-width 0.2s;
 }
 
-#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(1){
-	background-image: url("../img/btn_slide1.png");
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide.borderBottom{
 	border-bottom-width: 5px;
 }
 
 
-#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(3){
-	background-image: url("../img/btn_slide3.png");
-}
-
-
-#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(4){
-	background-image: url("../img/btn_slide4.png");
-}
-
-
-#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(5){
-	background-image: url("../img/btn_slide5.png");
-}
-
-
-#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:nth-child(6){
-	background-image: url("../img/btn_slide6.png");
+#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides .IconSlide:last-child{
 	margin-right:0px;
 }
-
-
 
 #Conteudo_Corpo .Selecao5.leftSide{
 	background-image: url("../img/gutolacazGRANDE_nome.png");
@@ -578,6 +570,7 @@
 	background-color:#e2e1d8;
 	margin-bottom: 2px;
 	padding:10px;
+	cursor:pointer;
 }
 
 #Conteudo_Corpo .Selecoes.PopupCalendario .anos .boxAno .Titulo
