@@ -1,3 +1,4 @@
+/*   ----------------------------------  Barras de Rolagem  ----------------------------------   */
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
     background-color: #ffffff !important;
@@ -6,6 +7,8 @@
 #Conteudo_Corpo .Selecoes.PopupCalendario .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
     background-color: #aaa !important;
 }
+
+/*/----------------------------------- Menu Superior ------------------------------------/*/
 
 .btnMenu{
 	width : 120px;
@@ -44,6 +47,7 @@
     height: 100%;
     width: 480px;
 }
+
 #Conteudo_Corpo .rightSide{
 	background-color: #f2f1ed;
     float: left;
@@ -56,13 +60,10 @@
 #Conteudo_Corpo .rightSide .contentRightSide{
 	height:70%;
 	width:100%;
-	padding-top: 32px;
-	/*padding:0px 10px 0px 60px;*/
-	
+	padding-top: 32px;	
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem{
-
 	width: 131px;
     height: 131px;
     margin: 0 23px 20px 0px;
@@ -74,10 +75,6 @@
 	transition:background-size 0.5s;
 	font-size:16px;
 	opacity:0.5;
-	/*color:white;
-	text-align:center;
-	font-weight: bold;*/
-
 }
 
 #Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo{
@@ -160,7 +157,6 @@
 	background-color:#EBEBE4;
     height: 232px;
     padding: 20px 0 0 10px;
-    /*padding: 60px;*/
 }
 
 #Conteudo_Corpo .rightSide .contentLeftSide .titulo{
@@ -517,19 +513,15 @@
 
 #Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .SubTitulo{
 	color:rgb(102, 102, 102);
-	/*font-weight:600;*/
 	font-size:15px;
 	text-transform: uppercase;
-
 }
 
 
 #Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Texto{
 	color:rgb(102, 102, 102);
 	font-size:14px;
-
 }
-
 
 
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto{
@@ -678,7 +670,6 @@
 	cursor: pointer;
 }
 
-/*#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide:nth-child(1){*/
 #Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .IconSlide.borderBottom{
 	border-bottom-width: 5px;
 }
@@ -697,6 +688,84 @@
 	bottom:0;
 }
 
+	/* Gremio */
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.leftSide
+	{
+		background-image: url("../img/img_comissao_.png");
+	    background-position: -35px -30px;
+	    background-size: auto 647px;
+	    width: 480px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide {
+	    padding-left: 17px;
+	    width: 800px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
+	{
+		height:200px;
+		padding-top:12px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .titulo span
+	{
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .texto span
+	{
+		font-size:17px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide
+	{
+		height: 51%;
+    	padding-top: 12px;
+    	width: 100%;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
+	{
+		height:380px;
+		width:38%;
+		float:left;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao
+	{
+		width:100%;
+		height:auto;
+		padding:5px;
+		font-size: 12px;
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
+	{
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
+	{
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
+	{
+		height:380px;
+		width:62%;
+		float:left;
+		padding:10px;
+	}
+
+
+
+	/* fim gremio */
 
 
 @media (min-height: 640px) and (max-height: 768px){
@@ -949,6 +1018,83 @@
 		background-image: url("../img/cal_4.png");
 	}
 
+	/* Gremio */
+
+	
+	#Conteudo_Corpo .Selecoes.Selecao3.leftSide
+	{
+		background-image: url("../img/img_comissao_.png");
+	    background-position: -35px -30px;
+	    background-size: auto 647px;
+	    width: 480px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide {
+	    padding-left: 17px;
+	    width: 800px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
+	{
+		height:200px;
+		padding-top:12px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .titulo span
+	{
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .texto span
+	{
+		font-size:16px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide
+	{
+		height: 51%;
+    	padding-top: 12px;
+    	width: 100%;
+	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
+	{
+		height:250px;
+		width:38%;
+		float:left;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao
+	{
+		width:100%;
+		height:auto;
+		padding:5px;
+		font-size: 12px;
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
+	{
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
+	{
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
+	{
+		height:250px;
+		width:62%;
+		float:left;
+		padding:10px;
+	}
+
+	/* fim gremio */
+
 
 
 }
@@ -1127,6 +1273,79 @@
 	    color: white;
 	    padding: 5px;
 	}
+
+
+/* Gremio */
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.leftSide
+	{
+		background-image: url("../img/img_comissao_.png");
+		background-position: -35px -30px;
+    	background-size: auto 457px;
+    	width:300px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide {
+	    padding-left: 17px;
+	    width: 724px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
+	{
+		height:134px;
+		padding-top:12px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .titulo span
+	{
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .texto span
+	{
+		font-size:13px;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
+	{
+		height:240px;
+		width:38%;
+		float:left;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao
+	{
+		width:100%;
+		height:auto;
+		padding:5px;
+		font-size: 12px;
+		color:#21AEBB;
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
+	{
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
+	{
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
+	{
+		height:240px;
+		width:62%;
+		float:left;
+		padding:10px;
+	}
+
+
+/* Fim Gremio */
+
+
 
 	#Conteudo_Corpo .Selecoes.PopupCalendario .contentTexto p:nth-child(4){
 	    font-size: 12px;

@@ -116,5 +116,9 @@ $(document).ready(function() {
         NextFrameSlideCalendario($(this).index());
     });
 
+    $("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao").click(function(){
+        List($(this).index());
+    });
+
     localStorage.getItem("usuarioTipo"), localStorage.getItem("usuarioId")
 });

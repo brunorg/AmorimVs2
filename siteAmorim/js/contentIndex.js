@@ -68,7 +68,8 @@ var db = {
 				]
 			}
 		]
-	}
+	},
+	"Gremio": ["fasjdfi asdf asdf oajsd asdf asfd f","fqw efqw fqwe qwefqwefqewf q fqwe f"," uijk ghj kg kjghjk gh kjk gh jkjg kghjk jk "]
 }
 
 
@@ -236,4 +237,12 @@ function SelecionarImagemProducao(obj, numero)
 		$('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow').css("display","none");
 		$('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .ConteudoMain').html('<iframe src="'+db.Producao.OficinaCinema[numero].Video+'" width="800" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
     }
+}
+
+
+/** paisd oiajd ioad */
+
+function List(numero)
+{
+	$("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao").html(db.Gremio[numero]);
 }
