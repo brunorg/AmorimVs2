@@ -161,7 +161,7 @@ $(document).ready(function() {
 		}
 	});	
 
-	$("#Inserir_pesquisa").mCustomScrollbar({
+	$("#box_barra").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
 		scrollButtons:{
 			enable:true

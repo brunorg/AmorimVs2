@@ -251,32 +251,22 @@ function CarregaServicoProducaoAluno()
 
 					var apresentacao = "";
 
-		    		if(dataProducaoAluno[a].arquivo != null) {
-
-
-						var arquivo = dataProducaoAluno[a].arquivo;
-						arquivo =  arquivo.split(".");
-						
-						if(arquivo[4]=="pdf"){
-							apresentacao = '<img src="img/icone_portfolio.png" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif") {
-							apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg") {
-							apresentacao = '<img src="img/icone_audio.png" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
-							apresentacao = '<img src="img/icone_video.png" width="auto" height="100%"/>';
-						}
-						
+		    		if(dataProducaoAluno[a].capa != null) {
+						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" width="auto" height="100%"/>';
+					}
+					else
+					{
+						apresentacao = '<img src="img/foto.png" width="100%" height="auto"/>';
 					}
 						HtmlContent += '<div class="Portfolio_Conteudo_Box">';
-			        	HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+			        	HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
 						HtmlContent += '<div class="Nome_Roteiro">';
 						HtmlContent += dataProducaoAluno[a].roteiro.nome;
 						HtmlContent += '</div>';
-						HtmlContent += '<div class="Img_Roteiro">';
+						HtmlContent += '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">';
 						HtmlContent += apresentacao;
 						HtmlContent += '</div>';
-						HtmlContent += '</a>';
+						HtmlContent += '</div>';
 						HtmlContent += '</div>';
 					
 					ContadorPA++;
@@ -286,32 +276,22 @@ function CarregaServicoProducaoAluno()
 					HtmlContent += '<div class="Portfolio_Conteudo_Container">';
 					var apresentacao = "";
 
-		    		if(dataProducaoAluno[a].arquivo != null) {
-
-
-						var arquivo = dataProducaoAluno[a].arquivo;
-						arquivo =  arquivo.split(".");
-						
-						if(arquivo[4]=="pdf"){
-							apresentacao = '<img src="img/icone_portfolio.png" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="png" || arquivo[4]=="jpg" || arquivo[4]=="jpeg" || arquivo[4]=="gif") {
-							apresentacao = '<img src="'+dataProducaoAluno[a].arquivo+'" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="mp3" || arquivo[4]=="wma" || arquivo[4]=="wav" || arquivo[4]=="ogg") {
-							apresentacao = '<img src="img/icone_audio.png" width="auto" height="100%"/>';
-						} else if (arquivo[4]=="mp4" || arquivo[4]=="avi" || arquivo[4]=="wmv"){
-							apresentacao = '<img src="img/icone_video.png" width="auto" height="100%"/>';
-						}
-						
+		    		if(dataProducaoAluno[a].capa != null) {
+						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" class="capa" width="auto" height="100%"/>';
+					}
+					else
+					{
+						apresentacao = '<img src="img/foto.png" class="upload_capa" width="100%" height="auto"/>';
 					}
 					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
-			        HtmlContent += '<a href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+			        HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
 					HtmlContent += '<div class="Nome_Roteiro">';
 					HtmlContent += dataProducaoAluno[a].roteiro.nome;
 					HtmlContent += '</div>';
-					HtmlContent += '<div class="Img_Roteiro">';
+					HtmlContent += '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">';
 					HtmlContent += apresentacao;
 					HtmlContent += '</div>';
-					HtmlContent += '</a>';
+					HtmlContent += '</div>';
 					HtmlContent += '</div>';
 					ContadorPA = 1;
 
@@ -498,24 +478,6 @@ function CarregarPlanos() {
 		//adcionar botão
 		
 	}
-
-	/*var planoNome = "As transformações dos materiais";
-	for (var i = 0; i < 5; i++) {
-		var planoLinha = '<div class="PlanoEstudo_Linha">'+
-							'<div class="PlanoEstudo_Linha_Cabecalho">'+
-								'<p class="PlanoEstudo_Nome">'+planoNome+'</p>'+
-							'</div>'+
-							'<div class="PlanoEstudo_Linha_Conteudo">'+
-								'<div class="PlanoEstudo_Num iniciado revisado">1</div>'+
-								'<div class="PlanoEstudo_Num iniciado">2</div>'+
-								'<div class="PlanoEstudo_Num iniciado">3</div>'+
-								'<div class="PlanoEstudo_Num iniciado">4</div>'+
-								'<div class="PlanoEstudo_Num iniciado">5</div>'+
-								'<div class="PlanoEstudo_Num iniciado">6</div>'+
-							'</div>'+
-						'</div>';
-		$("#PlanoEstudo_Conteudo_Container").append(planoLinha);
-	};*/
 };
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -614,6 +576,91 @@ function CarregarOficinas() {
 
 //------------------------------------------------------------------------------------------------------------------------
 
+function AtivaUploadCapa () {
+	$('.portfolio_link').click(function() {
+		var linkPortfolio = window.open($(this).attr('href'), '_blank');
+		if(linkPortfolio){
+		    linkPortfolio.focus();
+		}
+	});
+
+	$('.Img_Roteiro').click(function(e) {
+		e.stopPropagation();
+		uploadCapa($(this).attr('id'))
+	});
+
+	$('#blocoGeral').append('<div class="blackPainel"></div>');
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+
+function uploadCapa (id) {
+	var HtmlContentUpload = '<div id="JanelaUploadPortifolio">'+
+                           	    '<div class="Titulo_janela_upload">'+
+                           	        'Upload de Capa'+
+                           	        '<div class="close_upload_producao">'+
+                           	        '</div>'+
+                           	    '</div>'+
+                           	    '<div id="foto">'+
+                           	    '</div>'+
+                           	    '<div id="LegendaUpload">Aguardando Arquivo</div>'+
+                           	    '<form id="Cadastro_Producao_Aluno">'+
+                           	        '<input type="hidden" id="id" name="id"/>'+
+                           	        '<input type="hidden" id="action" name="action" value="create" />'+
+                           	        '<input type="hidden" id="Dados_Foto_Capa" />'+
+                           	        '<input type="file" id="Arquivo_Foto_Capa" name="arquivo1" style="display:none"/>'+
+                           	        '<div class="campoConfirmaUpload">'+
+                           	            '<input class="btn_submit" onclick="SalvarCapa('+id+')" type="button" value="" />'+
+                           	        '</div>'+
+                           	    '</form>'+
+                           	'</div>';
+
+    $('.blackPainel').html(HtmlContentUpload);
+    $('.blackPainel').css('display', 'block');
+
+    GerarUpload($("#foto"), $("#Arquivo_Foto_Capa"), $("#Dados_Foto_Capa"));
+
+    $('.close_upload_producao').click(function(){
+            $('.blackPainel').hide();
+            $('#Dados_Foto_Aluno').val('');
+            $('#Arquivo_Foto_Aluno').val('');
+            $('#foto').css("background-image","url(img/foto.png)");
+            $("#LegendaUpload").html("Aguardando Arquivo");
+    });
+}
+
+function SalvarCapa (id) {
+    var formData = new FormData($('#Cadastro_Producao_Aluno')[0]);
+    formData.append("fotoAluno", Arquivo);
+
+    $.ajax({
+        url: path+"ProducaoAluno/upload/capa/"+id,
+        type: "POST",
+        mimeType:"multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData:false,
+        data: formData,
+        dataType: 'json',
+        beforeSend: function() {
+        	loading('inicial');
+        },   
+        success: function(d) {
+        	$('.blackPainel').css('display', 'none');
+        	$("#"+id).html('<img src="'+d.capa+'" class="capa" width="auto" height="100%">')
+            mensagem("Arquivo enviado com sucesso!","OK","bt_ok","sucesso");          
+        },error: function() {
+            mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
+        },
+        complete: function() {
+        	loading('final');
+        }
+
+    });
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function() {
@@ -628,8 +675,8 @@ $(document).ready(function() {
 	CarregarMural();
 	CarregarPlanos();
 	CarregaServicoProducaoAluno();
-	CarregarOficinas()
-	AtivaBotoesPortfolio();
+	AtivaUploadCapa();
+	CarregarOficinas();
 
 });
 

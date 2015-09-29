@@ -17,48 +17,10 @@
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
         <script src="js/jquery-1.10.2.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-                    window.location.assign("mRoteiros.html");
-            }); 
-        </script>
         <script type="text/javascript" src="js/autenticador.js"></script> 
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>  
         <script type="text/javascript" src="js/roteiroAula.js"></script>
-        <style>
-            .multiselect {
-                width: 100%;
-            }
-            .selectBox {
-                position: relative;
-            }
-            .selectBox select {
-                width: 100%;
-                font-weight: bold;
-            }
-            .overSelect {
-                position: absolute;
-                left: 0; right: 0; top: 0; bottom: 0;
-            }
-            .checkboxes {
-                display: none;
-                border: 1px #dadada solid;
-                height: 100px;
-                overflow: auto;
-            }
-            .checkboxes label {
-                display: block;
-            }
-            .checkboxes label input{
-                width: 20px;            
-            }
-            .checkboxes label:hover {
-                background-color: #1e90ff;
-            }
-        </style>     
     </head>
 
     <body>
@@ -97,24 +59,7 @@
                     <!--Menu lateral-->
                     <div id="Content_lateral_Menu">
                         <div id="Content_lateral_Menu">
-                            <div class="Content_lateral_Menu_Opcao">
-                                <a href="planoDeEstudo.html" class="plano">Plano de estudo</a>
-                            </div>
-                            <div class="Content_lateral_Menu_Opcao">
-                                <a href="recursosAprendizagem.html" class="recurso"><span id="menu_recurso">Recursos de aprendizagem</span></a>
-                            </div>
-                            <div class="Content_lateral_Menu_Opcao">
-                                <a href="roteirosAluno.html" class="roteiros">Roteiros</a>
-                            </div>
-                            <div class="Content_lateral_Menu_Opcao">
-                                <a href="forum.html" class="forum">Fórum</a>
-                            </div>
-                            <div class="Content_lateral_Menu_Opcao">
-                                <a href="mensagens.html" class="mensagens">Mensagens</a>
-                            </div>
-                            <div class="Content_lateral_Menu_Opcao" id="menuCalendario">
-                                <a href="pageCalendario.html" class="calendario">Calendário</a>
-                            </div>
+                            
                         </div>   
                     </div>
                     <!--Calendario-->                    
@@ -128,13 +73,11 @@
                 </div>  
                 <!--Coluna geral central-->
                 <!--  bloqueio para a rolagem top-->                
-                <div class="Conteudo_Coluna" id="content_central">
-                
+                <div class="Conteudo_Coluna" id="content_central">                
                     <div id="roteiros_cabecalho">
                         <div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">CRIAR ROTEIRO AULA</div>
                         <div id="cabecalho_pesquisa" class="pesquisaMargin">PESQUISAR</div>
-                    </div>
-                    
+                    </div>                    
                     <div id="roteiros_content">                     
                         <!-- Conteudo da aba de Roteiro -->
                         <div id="Roteiro" class="aba_roteiro">
@@ -160,7 +103,7 @@
                                     </div>
 
                                     <div class="linha3"> 
-                                       <div id="box_objetivoAula">
+                                       	<div id="box_objetivoAula">
                                             <div class="celulaGrandeOB" style="display:none">
                                                 <div class="infoM"> Objetivo </div>
                                                 <div>
@@ -168,31 +111,32 @@
                                                 </div>   
                                             </div>
                                         </div>
-                                    </div>
-                                     
+                                    </div>                                     
                                 </div>
-                                <div>                                    
-                                     <p id="btnSalvar" value=""> Salvar </p>
-
+                                <div>  
+                                	<input type="hidden" id="idRoteiro" value="">                                  
+                                    <p id="btnSalvar" value=""> Salvar </p>
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
                                     <p id="btnEdit" style="display:none" value="">Editar</p>
                                 </div>
                                 <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
-                                <div class="boxROA"> 
-                                    <div id="roteiros_listados"><!--Listagem de roteiros carregada pelo JS--></div>
-                                </div>                                                      
                             </div>
                         </div>                                                                      
                     
-                    <!-- Conteudo da aba de Pesquisa -->
+                      <!-- Conteudo da aba de Pesquisa -->
                       <div id="Pesquisa" class="aba_pesquisa">
                             <div id="conteudo_principal_pesquisa">                                
                                 <div id="Inserir_pesquisa">
-                                    <div id="box_roteiroAula">
-                                        <!--carrega os valores do-->
+                                	<div class="celulaGrande">
+                                        <div class="infoG"> Pesquisa </div>
+                                        <div class="infoValueG">
+                                          	<input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                        </div>
                                     </div>
-
+                                    <div id="box_barra" style="margin-top:50px;">
+                                        <div id="box_roteiroAula"></div>
+                                    </div>
                                 </div>       
                             </div>
                         </div>
@@ -210,25 +154,6 @@
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
-        <script type="text/javascript">         
-            $(document).ready(function(){
-                 $("body").delegate(".op", "click", function() {
-                     if($(this).hasClass('checado') == false){
-                        $(this).addClass('checado');
-                     }else{
-                        $(this).removeClass('checado');
-                     }
-                 });
-            })
-
-            function showCheckboxes(comboRoteiro) {
-                if ($('.'+comboRoteiro).is(":visible") == true){
-                    $('.'+comboRoteiro).css("display","none");
-                } else {
-                    $('.'+comboRoteiro).css("display","block");
-                }
-            }
-        </script>
         <!--Carrega os dados do usuario logado-->          
     </body>
 </html>
