@@ -219,7 +219,7 @@ div[class*="box_col"]:last-of-type {
 
 .Portfolio_Conteudo_Box:last-of-type { padding-left: 9px; }
 
-.Portfolio_Conteudo_Box > a {
+.Portfolio_Conteudo_Box > div {
 	float: left;
 	display: inline-block;
 	background-color: #90b957;
@@ -254,13 +254,6 @@ div[class*="box_col"]:last-of-type {
 	overflow: hidden;
 	text-align: center;
 }
-
-
-
-
-
-
-
 
 /* Rotina Semanal */
 #Rotina_Semanal {
