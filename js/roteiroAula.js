@@ -38,8 +38,6 @@ $(document).ready(function(){
 		cont++;
 	});	
 
-
-
 	$("#btnSalvar").click(function(){
 
 		var roteiro= $("#val_roteiro").val();

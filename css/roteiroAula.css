@@ -1,7 +1,6 @@
 input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_atividade, .titulo_objetivo, .titulo_roteiro{
 	color: #666;
 }
-
 .celulaPequena, .celulaMedia, .celulaGrande{
 	border: none;
 }
