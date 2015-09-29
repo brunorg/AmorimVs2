@@ -93,7 +93,7 @@ $(document).ready(function(){
     	var objetivos = $('.objetivos');
     	var IdRoteiro = $('#idRoteiro').val();
 
-		$.ajax({
+		/*$.ajax({
 			url: path + "RoteiroAula",
 			type: "POST",
 			async: false,
@@ -105,7 +105,7 @@ $(document).ready(function(){
 				$('#linha3').html('<input type="hidden" id="idObjetivo" value="'+data+'">');
 				mensagem('Alterações salvas com sucesso!','OK','bt_ok','sucesso');
 			}
-		});
+		});*/
 	});
 
 });//fecha document jquery
