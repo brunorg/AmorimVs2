@@ -9,7 +9,7 @@ $(document).ready(function(){
   		$("#Roteiro").css("display","none");
   		carregaRoteiro();
 	});
- 	$("#cabecalho_roteiro").click(function(){
+ 	$("#cabecalho_roteiro").click(function(){		
   		$("#cabecalho_pesquisa").removeClass('cabecalho_ativo');
   		$(this).addClass('cabecalho_ativo');
   		$("#Roteiro").css("display","block");
@@ -124,11 +124,12 @@ function carregaRoteiro(){
 		crossDomain: true,
 		dataType: 'json',
 		success: function (data) {
-
 			for (var i = 0 ; i < data.length; i++) {
-				roteiroHTML += '<div class="roteiroAula" onclick="exibirRoteiro('+data[i].idroteiro_aula+')">'+
-	                             '<p id="roteiroId_'+data[i].idroteiro_aula+'" ><span>Roteiro:</span>'+data[i].roteiro+'</p>'+
-	                           '</div>';
+				roteiroHTML += '<div class="item">'+
+					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
+					'<span class="editar" onclick="exibirRoteiro('+data[i].idroteiro_aula+')"></span>'+
+					'<span class="excluir" onclick="excluirRoreiro('+data[i].idroteiro_aula+')"></span>'+
+					'</div>';	
 			};
 
 			$('#box_roteiroAula').html(roteiroHTML);
@@ -139,6 +140,9 @@ function carregaRoteiro(){
 function exibirRoteiro(idRoteiroAula){
 	$("#Pesquisa").css("display","none");
 	$("#Roteiro").css("display","block");
+	$("#cabecalho_pesquisa").removeClass('cabecalho_ativo');
+  	$("#cabecalho_roteiro").addClass('cabecalho_ativo');
+	
 	$("#box_objetivoAula").html('');
 	$.ajax({
 		url: path+"ObjetivoAula/ListarPorRoteiro/"+idRoteiroAula,
