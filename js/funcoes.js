@@ -518,40 +518,25 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);
 		}, 1000);
-	}	
-}
-function confirmMsg(texto)
-{
-	var resp;
-	var HtmlContent = '<div class="box_mensagem">'+
-					'<div class="txt_mensagem">'+
-						'<span id="alerta"></span>'+texto
-					+'</div>'+
-					'<div class="btn_mensagem">'+
-						'<input type="button" class="bt_ok left" value="OK" />'+
-						'<input type="button" class="bt_cancelar left" value="Cancelar" />'+
-					'</div>'+
-				'</div>';
+	}
+	else if(tipo_msg=="opcao")
+	{
+		var HtmlContent = '<div class="box_mensagem">'+
+								'<div class="txt_mensagem">'+
+									'<span id="'+tipo_msg+'"></span>'+texto
+								+'</div>'+
+								'<div class="btn_mensagem">'+
+									'<input type="button" class="bt_ok left" value="'+tipo_btn+'" onclick="'+funcao[0]+'(\''+servico+'\',\''+id+'\')"/>'+
+									'<input type="button" class="bt_cancelar left" value="'+class_btn+'" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
+								'</div>'+
+							'</div>';
 
-	$( "#boxMensagemGeral" ).html(HtmlContent).show();
-	window.setTimeout(function(){
-		resp = botoesConfirm();
-	}, 1000);
-	
-	return resp;
-}
-function botoesConfirm(){
-	var opcao;
-	$(".bt_ok").click(function(){
-		$( "#boxMensagemGeral" ).hide();
-		opcao = "true";
-	});	
-	
-	$(".bt_cancelar").click(function(){
-		$( "#boxMensagemGeral" ).hide();
-		opcao = "false";
-	});	
-	return opcao;	
+		$( "#boxMensagemGeral" ).html(HtmlContent).show();
+
+		window.setTimeout(function(){
+			botoes(tipo_btn,class_btn);
+		}, 1000);
+	}	
 }
 
 function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)

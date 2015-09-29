@@ -511,8 +511,8 @@ function SalvarCapa (id) {
             loading('inicial');
         },     
         success: function(d) {
-            $('.blackPainel').css('display', 'none');
-            mensagem("Arquivo enviado com sucesso!","OK","bt_ok","sucesso");        
+            $('.blackPainel').css('display', 'none')
+;            mensagem("Arquivo enviado com sucesso!","OK","bt_ok","sucesso");        
         },error: function() {
             mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
         },
@@ -728,87 +728,81 @@ function trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoR
     var data = new Date();
     var dataAtual = (data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate());
 
-    if(Objeto.className == "titulo_infos_roteiro_caixa_branco"){    
-        corVariavel = "laranja";
-        statusVariavel = 1;
-        action = "create";  
-    }
-    else if(Objeto.className == "titulo_infos_roteiro_caixa_laranja"){
-        corVariavel = "verde";
-        statusVariavel = 2;
-        action = "update";  
-    }
-    else if(Objeto.className == "titulo_infos_roteiro_caixa_verde"){
-        corVariavel = "branco";
-        action = "deletar"; 
-    }    
-
-    
-    if(Objeto.className != "titulo_infos_roteiro_caixa_verde_tk")
+    switch(Objeto.className)
     {
-        if(action=="create")
+        case ("titulo_infos_roteiro_caixa_branco"):
         {
             $.ajax({
                 url: path+"PlanejamentoRoteiro/",
                 type: "POST",
                 crossDomain: true,
                 dataType: 'json',
-                data: "id=1&action=create&status="+statusVariavel+"&dataStatusPlanejado="+dataAtual+"&objetivo="+IDobjetivo+"&planoEstudo="+PlanoEstudoSessionID+"&idAluno="+alunoID,
+                data: "id=1&action=create&status=1&dataStatusPlanejado="+dataAtual+"&objetivo="+IDobjetivo+"&planoEstudo="+PlanoEstudoSessionID+"&idAluno="+alunoID,
                 beforeSend: function(){
                     loading("inicial");
                 },
                 success: function(d) {
-                document.getElementById('td_roteiro_squr_'+IDobjetivo).className = "td_roteiro_"+corVariavel;
-                    Objeto.className = "titulo_infos_roteiro_caixa_"+corVariavel;
+                document.getElementById('td_roteiro_squr_'+IDobjetivo).className = "td_roteiro_laranja";
+                    Objeto.className = "titulo_infos_roteiro_caixa_laranja";
                     reSetObjetivo(IDobjetivo);
                     
                     
                 },error: function(a, b , c) {
-                
-                    alert("id=1&action=create&status="+statusVariavel+"&dataStatusPlanejado="+dataAtual+"&objetivo="+IDobjetivo+"&planoEstudo="+PlanoEstudoSessionID+"&idAluno="+alunoID);
+                   mensagem("Erro ao criar Planajamento!","OK","bt_ok","erro");
                 },
                 complete: function(){
                     loading("final");
                 }
             });
-        }else if(action == "update"){
-            $.ajax({
-                url: path+"PlanejamentoRoteiro/StatusPlanejamento",
-                type: "POST",
-                crossDomain: true,
-                data: "id="+IDplanejamentoRoteiro+"&status=2",             
-               /* data: "id="+IDplanejamentoRoteiro+"&action=update&"+(statusVariavel == 1 ? "dataStatusPlanejado="+dataAtual+"&":"dataStatusEntregue="+dataAtual+"&")+"status="+statusVariavel+"&objetivo="+IDobjetivo+"&planoEstudo="+PlanoEstudoSessionID+"&idAluno="+alunoID,*/
-                beforeSend: function(){
-                    loading("inicial");
-                },
-                success: function(d) {
-                    document.getElementById('td_roteiro_squr_'+IDobjetivo).className = "td_roteiro_"+corVariavel;
-                    Objeto.className = "titulo_infos_roteiro_caixa_"+corVariavel;
-                    VerificaObjetivosCompletos();
-                },error: function() {
-                    alert("Não modificado, verifique os campos.6.");
-                },
-                complete: function(){
-                    loading("final");
-                }
-            }); 
-        }else if(action == "deletar"){
-            mensagem("Deseja realmente excluir este planejamento?","Cancelar","bt_cancelar","confirm",IDobjetivo,IDplanejamentoRoteiro,"deletarPlanejamento");
+            break;
         }
+
+        case ("titulo_infos_roteiro_caixa_laranja"):
+        {
+            var deletaEntregaFunctions = ['entregarPlanejamento', 'deletarPlanejamento'];
+            mensagem("Deseja excluir ou entregar esse planejamento?", "Entregar","Excluir","opcao", IDplanejamentoRoteiro, IDobjetivo, deletaEntregaFunctions);
+            break;
+        }
+
     }
 }
 
-function deletarPlanejamento(IDobjetivo,id){
+function entregarPlanejamento (IDplanejamentoRoteiro, IDobjetivo) {
+    $.ajax({
+        url: path+"PlanejamentoRoteiro/StatusPlanejamento",
+        type: "POST",
+        crossDomain: true,
+        data: "id="+IDplanejamentoRoteiro+"&status=2",             
+       /* data: "id="+IDplanejamentoRoteiro+"&action=update&"+(statusVariavel == 1 ? "dataStatusPlanejado="+dataAtual+"&":"dataStatusEntregue="+dataAtual+"&")+"status="+statusVariavel+"&objetivo="+IDobjetivo+"&planoEstudo="+PlanoEstudoSessionID+"&idAluno="+alunoID,*/
+        beforeSend: function(){
+            loading("inicial");
+        },
+        success: function(d) {
+            document.getElementById('td_roteiro_squr_'+IDobjetivo).className = "td_roteiro_verde";
+            document.getElementById('td_objetivo_squr_'+IDobjetivo).className = "titulo_infos_roteiro_caixa_verde";
+            $( "#boxMensagemGeral" ).hide();
+            VerificaObjetivosCompletos();
+        },error: function() {
+            $( "#boxMensagemGeral" ).hide();
+            alert("Não modificado, verifique os campos");
+        },
+        complete: function(){
+            loading("final");
+        }
+    }); 
+}
+
+function deletarPlanejamento(IDplanejamentoRoteiro, IDobjetivo){
     $.ajax({
         type: "GET",
         crossDomain: true,
         dataType:"text",
         async: false,
-        url: path+"PlanejamentoRoteiro/delete/"+id,
+        url: path+"PlanejamentoRoteiro/delete/"+IDplanejamentoRoteiro,
         statusCode: {
             405: function() {
-                $('#td_objetivo_squr_'+IDobjetivo).removeClass('titulo_infos_roteiro_caixa_verde').addClass('titulo_infos_roteiro_caixa_branco');
-                $('#td_roteiro_squr_'+IDobjetivo).removeClass('td_roteiro_verde').addClass('td_roteiro_branco');    
+                $('#td_objetivo_squr_'+IDobjetivo).removeClass('titulo_infos_roteiro_caixa_laranja').addClass('titulo_infos_roteiro_caixa_branco');
+                $('#td_roteiro_squr_'+IDobjetivo).removeClass('td_roteiro_laranja').addClass('td_roteiro_branco');    
                 $("#boxMensagemGeral").css("display","none");
             }
         }
