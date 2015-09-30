@@ -688,84 +688,91 @@
 	bottom:0;
 }
 
-	/* Gremio */
+/* Gremio */
 
 
-	#Conteudo_Corpo .Selecoes.Selecao3.leftSide
-	{
-		background-image: url("../img/img_comissao_.png");
-	    background-position: -35px -30px;
-	    background-size: auto 647px;
-	    width: 480px;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.leftSide
+{
+	background-image: url("../img/img_comissao_.png");
+    background-position: -35px -30px;
+    background-size: auto 647px;
+    width: 480px;
+}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide {
-	    padding-left: 17px;
-	    width: 800px;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide {
+    padding-left: 17px;
+    width: 800px;
+}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
-	{
-		height:200px;
-		padding-top:12px;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
+{
+	height:200px;
+	padding-top:12px;
+}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .titulo span
-	{
-		color:#21AEBB;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .titulo span
+{
+	color:#21AEBB;
+}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .texto span
-	{
-		font-size:17px;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide .texto span
+{
+	font-size:17px;
+}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide
-	{
-		height: 51%;
-    	padding-top: 12px;
-    	width: 100%;
-	}
-
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
-	{
-		height:380px;
-		width:38%;
-		float:left;
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao
-	{
-		width:100%;
-		height:auto;
-		padding:5px;
-		font-size: 12px;
-		color:#21AEBB;
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
-	{
-		background-color: rgba(0, 0, 0, 0.4);
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
-	{
-		background-color: rgba(0, 0, 0, 0.2);
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide
+{
+	height: 51%;
+	padding-top: 12px;
+	width: 100%;
+}
 
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
-	{
-		height:380px;
-		width:62%;
-		float:left;
-		padding:10px;
-	}
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
+{
+	height:380px;
+	width:38%;
+	float:left;
+}
+
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao
+{
+	width:100%;
+	height:auto;
+	padding:5px;
+	font-size: 12px;
+	color:#21AEBB;
+	cursor:pointer;
+}
+
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
+{
+	background-color: #ebebe9;
+}
+
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
+{
+	background-color: #f2f1f0;
+}
+
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao.Ativo
+{
+	background-color: #f7f6f5;
+
+}
+
+
+#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
+{
+	height:380px;
+	width:62%;
+	float:left;
+	padding:10px;
+}
 
 
 
-	/* fim gremio */
+/* fim gremio */
 
 
 @media (min-height: 640px) and (max-height: 768px){
@@ -1024,7 +1031,7 @@
 	#Conteudo_Corpo .Selecoes.Selecao3.leftSide
 	{
 		background-image: url("../img/img_comissao_.png");
-	    background-position: -35px -30px;
+	    background-position: -35px -120px;
 	    background-size: auto 647px;
 	    width: 480px;
 	}
@@ -1036,7 +1043,7 @@
 
 	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentLeftSide
 	{
-		height:200px;
+		height:185px;
 		padding-top:12px;
 	}
 
@@ -1052,7 +1059,7 @@
 
 	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide
 	{
-		height: 51%;
+		height: 59%;
     	padding-top: 12px;
     	width: 100%;
 	}
@@ -1060,7 +1067,7 @@
 
 	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao
 	{
-		height:250px;
+		height:265px;
 		width:38%;
 		float:left;
 	}
@@ -1074,20 +1081,10 @@
 		color:#21AEBB;
 	}
 
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
-	{
-		background-color: rgba(0, 0, 0, 0.4);
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
-	{
-		background-color: rgba(0, 0, 0, 0.2);
-	}
-
 
 	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .infoComissao
 	{
-		height:250px;
+		height:265px;
 		width:62%;
 		float:left;
 		padding:10px;
@@ -1321,16 +1318,6 @@
 		padding:5px;
 		font-size: 12px;
 		color:#21AEBB;
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(odd)
-	{
-		background-color: rgba(0, 0, 0, 0.4);
-	}
-
-	#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao:nth-child(even)
-	{
-		background-color: rgba(0, 0, 0, 0.2);
 	}
 
 

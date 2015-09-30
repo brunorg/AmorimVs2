@@ -117,6 +117,8 @@ $(document).ready(function() {
     });
 
     $("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao").click(function(){
+        $("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao").removeClass("Ativo");
+        $(this).addClass("Ativo");
         List($(this).index());
     });
 
