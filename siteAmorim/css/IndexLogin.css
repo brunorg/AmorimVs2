@@ -1249,7 +1249,18 @@
 
 	/* Fim Escolas */
 
+	/* PROJETO */
 
+
+
+	#Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoRight .texto {
+   		height: 317px;
+   	}
+
+
+	#Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoLeft .imagem {
+		height: 280px;
+	}
 
 
 }
