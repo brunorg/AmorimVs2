@@ -21,6 +21,7 @@
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>  
         <script type="text/javascript" src="js/roteiroAula.js"></script>
+        <script type="text/javascript" src="js/cadastroRoteiro.js"></script>
     </head>
 
     <body>
@@ -143,22 +144,61 @@
                         </div>                                                                      
                          
                       <!-- Conteudo da aba de Pesquisa -->
-                      <div id="PesquisaOficial" class="aba_roteiro">
-                            <div id="conteudo_principal_pesquisaOficial">                                
-                                <div id="Inserir_pesquisaOficial">
-                                	<div class="celulaGrande">
+                        <div id="PesquisaOficial">
+                            <div id="conteudo_principal_pesquisaOficial">                           
+                                <div id="Inserir_roteiro">
+                                    <div id="linha5"> 
+                                        <div class="celulaPequena">
+                                            <div class="infoP"> Busca </div>
+                                            <div class="infoValueP" id="valueAnoE">
+                                                <div class="styled-select">
+                                                    <select id="buscaRoteiro">
+                                                        <option></option>
+                                                        <option value="oficina">Oficina</option>
+                                                        <option value="professor">Professor</option>
+                                                    </select> 
+                                                </div>
+                                           
+                                        </div>                              
+                                    </div>
+                                    <div > 
+                                        <div class="celulaPequena" id="linha6" style="display:none" value="" >
+                                            <div class="infoP"> Oficina </div>
+                                            <div class="infoValueP" id="valueAnoE">
+                                                <div class="styled-select">
+                                                    <select id="selOficina" class='selOficinaPesquisa' onChange="fltRoteiro()"></select>
+                                                </div>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                    <div > 
+                                        <div class="celulaPequena" id="linha7" style="display:none" value="">
+                                            <div class="infoP"> Ciclo </div>
+                                            <div class="infoValueP" id="valueAnoE">
+                                                <div class="styled-select">
+                                                     <select name="anoEAtv" id="anoEAtv" onChange="listaRoteiro('anoEAtv','roteiroAtv')"></select>
+                                                </div>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                    <input type="hidden" id="id"> </input>
+                                    <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
+                                </div>
+                                <div class="celulaGrande" id="linha8" style="display:none" value="">
                                         <div class="infoG"> Pesquisa </div>
                                         <div class="infoValueG">
-                                          	<input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                            <input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
                                         </div>
                                     </div>
                                     <div id="box_barra" style="margin-top:50px;">
                                         <div id="box_roteiroAula"></div>
                                     </div>
-                                </div>       
+                                <div class="boxROA"> 
+                                    <div id="roteiros_listados"><!--Listagem de roteiros carregada pelo JS--></div>
+                                </div>                                                      
                             </div>
+                            
                         </div>
-                    </div>
                 </div>
                 <div id="boxMensagemGeral" ></div>
                 <div class="boxGlobal"></div> 

@@ -131,6 +131,19 @@ $(document).ready(function(){
     	};	
 	});
 
+	$('#buscaRoteiro').change(function(){
+		var comboBusca = $('#buscaRoteiro option:selected').val();
+		if(comboBusca=="oficina"){
+			$("#linha6,#linha7").css("display","block");
+			$("#linha8").css("display","none");
+		}
+		if(comboBusca=="professor"){
+			$("#linha8").css("display","block");
+			$("#linha6,#linha7").css("display","none");
+		}
+	});
+	
+
 });//fecha document jquery
 
 function MostrarObjetivo(){
@@ -160,7 +173,7 @@ function carregaRoteiro(){
 }
 
 function excluirRoreiroAula(idRoteiroA){
-	mensagem('Alterações salvas com sucesso!','Cancelar','bt_cancelar','confirm','RoteiroAula',idRoteiroA,'excluirROT');
+	mensagem('Deseja excluir roteiro? ','Cancelar','bt_cancelar','confirm','RoteiroAula',idRoteiroA,'excluirROT');
 }
 
 /*function excluirROT(idRoteiro.Aula){

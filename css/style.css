@@ -928,11 +928,14 @@ html, body
 
 /* CSS das celulas grandes(ocupam toda a linha)*/
 .celulaGrande{
+	position:relative;
+	bottom:-8px;
 	width: 100%;
 	overflow: auto;
 	border: 2px solid #B6B6B0;
 	float: left;
 	background-color: #F2F1ED;
+	margin-bottom: 6px;
 }
 
 .infoG{
