@@ -16,10 +16,13 @@ var db = {
 				]
 			},
 			{"Ano" : 2013, "Tema" : "C", "ImagemCapa": "siteAmorim/img/IMG_6401.jpg", "SlideImg" : [
+					{"Imagem" : "siteAmorim/img/desenho/img2.jpg", "Descricao" : "in Lorem dolor sit amet, consectetur adipiscing elit. Aliquam ac tempor nisi. Sed venenatis at eros in ipsum. Donec maximus metus finibus dui consectetur,"}
 					
 				]
 			},
 			{"Ano" : 2012, "Tema" : "D", "ImagemCapa": "siteAmorim/img/IMG_6401.jpg", "SlideImg" : [
+					{"Imagem" : "siteAmorim/img/desenho/img7.jpg", "Descricao" : "ac ipsum dolor sit amet, consectetur Donec Lorem. Aliquam ac tempor nisi. Sed adipiscing at eros in sagittis. Donec maximus metus finibus dui consectetur,"},
+					{"Imagem" : "siteAmorim/img/desenho/img2.jpg", "Descricao" : "in Lorem dolor sit amet, consectetur adipiscing elit. Aliquam ac tempor nisi. Sed venenatis at eros in ipsum. Donec maximus metus finibus dui consectetur,"}
 					
 				]
 			}
@@ -27,7 +30,7 @@ var db = {
 	},
 	"Producao": {
 		"OficinaCinema" : [
-			{"Categoria" : "Chamada", 			"Tipo" : "Video",	"ImagemCapa":"btn_slide1.png",	"SlideImg": [], "Video" : "https://player.vimeo.com/video/139168939"},
+			{"Categoria" : "Chamada", 	"Tipo" : "Video",	"ImagemCapa":"btn_slide1.png",	"SlideImg": [], "Video" : "https://player.vimeo.com/video/139168939"},
 			{"Categoria" : "Efeitos Visuais", 	"Tipo" : "Imagem",	"ImagemCapa":"btn_slide2.png",	"SlideImg": [
 					{ "Image" : "efeitos/img1.jpg", "Descricao" : "sagittis ipsum venenatis sit amet, consectetur adipiscing elit. Aliquam ac tempor nisi. elit elit at eros dolor sagittis. Donec maximus metus finibus dui Sed,"},
 					{ "Image" : "efeitos/img2.jpg", "Descricao" : "elit ipsum Lorem elit amet, venenatis elit Donec. Aliquam ac elit nisi. venenatis venenatis at eros venenatis sagittis. Donec maximus elit elit dui Sed,"},
@@ -35,7 +38,7 @@ var db = {
 					{ "Image" : "efeitos/img4.jpg", "Descricao" : "dolor ipsum metus sit amet, consectetur finibus elit. Aliquam ac ipsum nisi. venenatis amet at eros elit sagittis. Aliquam maximus metus finibus dui Sed,"}
 				]
 			},
-			{"Categoria" : "Stop-Motion", 		"Tipo" : "Imagem",	"ImagemCapa":"btn_slide3.png",	"SlideImg": [
+			{"Categoria" : "Stop-Motion", "Tipo" : "Imagem",	"ImagemCapa":"btn_slide3.png",	"SlideImg": [
 					{ "Image" : "stopmotion/img1.jpg", "Descricao" : "nisi ipsum Lorem sit venenatis, consectetur eros sagittis. Aliquam ac tempor maximus. venenatis elit at eros dolor sagittis. Donec maximus metus finibus dui Sed,"},
 					{ "Image" : "stopmotion/img2.jpg", "Descricao" : "Lorem ipsum Lorem adipiscing amet, consectetur adipiscing elit. Aliquam ac tempor nisi. venenatis venenatis at eros dolor venenatis. Donec maximus metus dolor dui Donec,"},
 					{ "Image" : "stopmotion/img3.jpg", "Descricao" : "elit ipsum amet sit amet, adipiscing adipiscing elit. Aliquam nisi tempor nisi. venenatis venenatis at elit sit sagittis. Donec elit metus finibus tempor Sed,"},
@@ -43,7 +46,7 @@ var db = {
 					{ "Image" : "stopmotion/img5.jpg", "Descricao" : "eros ipsum dolor sit amet, consectetur adipiscing maximus. Aliquam ac tempor dui. venenatis elit at eros ipsum sagittis. Donec maximus amet finibus elit Sed,"}
 				]
 			},
-			{"Categoria" : "Filmagem", 			"Tipo" : "Imagem",	"ImagemCapa":"btn_slide4.png",	"SlideImg": [
+			{"Categoria" : "Filmagem", 	"Tipo" : "Imagem",	"ImagemCapa":"btn_slide4.png",	"SlideImg": [
 					{ "Image" : "filmagem/img1.jpg", "Descricao" : "Aliquam ipsum Lorem sit amet, consectetur adipiscing venenatis. Aliquam ac tempor nisi. venenatis venenatis at eros dolor sagittis. at maximus sagittis finibus dui Sed,"},
 					{ "Image" : "filmagem/img2.jpg", "Descricao" : "Donec ipsum Lorem sit amet, consectetur adipiscing elit. Aliquam ac Lorem nisi. venenatis elit at eros dolor sagittis. Donec maximus metus finibus dui Sed,"},
 					{ "Image" : "filmagem/img3.jpg", "Descricao" : "nisi ipsum Lorem venenatis amet, consectetur adipiscing dolor. Aliquam ac tempor nisi. venenatis venenatis at metus dolor sagittis. Donec dui metus elit dui Donec,"},
@@ -51,7 +54,7 @@ var db = {
 					{ "Image" : "filmagem/img5.jpg", "Descricao" : "elit ipsum Lorem sit amet, consectetur adipiscing elit. Aliquam ac tempor nisi. venenatis venenatis at eros dolor sagittis. sit maximus eros finibus dui Sed,"}
 				]
 			},
-			{"Categoria" : "Desenho", 			"Tipo" : "Imagem",	"ImagemCapa":"btn_slide5.png",	"SlideImg": [
+			{"Categoria" : "Desenho", 	"Tipo" : "Imagem",	"ImagemCapa":"btn_slide5.png",	"SlideImg": [
 					{ "Image" : "desenho/img1.jpg", "Descricao" : "maximus ipsum Lorem sit amet, consectetur adipiscing elit. Aliquam ac tempor nisi. venenatis venenatis at eros dolor sagittis. Donec maximus metus finibus dui Sed,"},
 					{ "Image" : "desenho/img2.jpg", "Descricao" : "Sed ipsum Lorem sit amet, finibus adipiscing elit. Aliquam ac tempor nisi. venenatis venenatis at eros dolor Aliquam. Donec elit metus sagittis dui Sed,"},
 					{ "Image" : "desenho/img3.jpg", "Descricao" : "venenatis ipsum Lorem sit amet, consectetur adipiscing elit. Donec ac tempor nisi. venenatis metus at elit dolor sagittis. Donec maximus metus finibus dui Sed,"},
@@ -161,6 +164,8 @@ function ShowPopUp(classe)
 {
 	$('#Conteudo_Corpo .Selecoes').css('display','none');
     $('.Selecoes.'+classe).css('display','block');
+
+    var SelecionarRecente = -1;
 	
 	if(classe == "PopupCalendario")
 	{
@@ -169,10 +174,15 @@ function ShowPopUp(classe)
 
 		for(var a = 0; a< db.Calendario.FestaDaCultura.length; a++)
 		{
-			$("#Conteudo_Corpo .Selecoes.PopupCalendario .anos").append('<div class="boxAno" onclick="SelecionarSlideCalendario('+a+')"><div class="Titulo">'+db.Calendario.FestaDaCultura[a].Ano+' - '+db.Calendario.FestaDaCultura[a].Tema+'</div><div class="Imagem"><img width="100%" height="auto" src="'+db.Calendario.FestaDaCultura[a].ImagemCapa+'"></div></div>');
+			if(db.Calendario.FestaDaCultura[a].SlideImg.length > 0)
+			{
+				$("#Conteudo_Corpo .Selecoes.PopupCalendario .anos").append('<div class="boxAno" onclick="SelecionarSlideCalendario('+a+')"><div class="Titulo">'+db.Calendario.FestaDaCultura[a].Ano+' - '+db.Calendario.FestaDaCultura[a].Tema+'</div><div class="Imagem"><img width="100%" height="auto" src="'+db.Calendario.FestaDaCultura[a].ImagemCapa+'"></div></div>');
+				if(SelecionarRecente == -1){ SelecionarRecente = a;}
+			}
 		}
 
-		SelecionarSlideCalendario(0);
+		if(SelecionarRecente != -1){SelecionarSlideCalendario(SelecionarRecente);}
+		else{ $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide').html("Não há imagens nessa galeria");}
 
 	} else if(classe == "PopupProducao"){
 		$('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .SelectionSlides').html('');
