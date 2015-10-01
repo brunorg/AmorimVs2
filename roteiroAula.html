@@ -75,10 +75,27 @@
                 <!--  bloqueio para a rolagem top-->                
                 <div class="Conteudo_Coluna" id="content_central">                
                     <div id="roteiros_cabecalho">
-                        <div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">CRIAR ROTEIRO AULA</div>
-                        <div id="cabecalho_pesquisa" class="pesquisaMargin">PESQUISAR</div>
+                        <div id="cabecalho_pesquisa" class="pesquisaMargin cabecalho_aba">MEUS ROTEIROS</div>
+                        <div id="cabecalho_roteiro" class="roteiroMargin cabecalho_aba">CRIAR ROTEIRO AULA</div>
+                        <div id="cabecalho_pesquisaOficial" class="pesquisaOficialMargin cabecalho_aba">PESQUISA</div>
                     </div>                    
-                    <div id="roteiros_content">                     
+                    <div id="roteiros_content"> 
+                        <!-- Conteudo da aba de Menu Roteiro -->
+                        <div id="Pesquisa" class="aba_roteiro">
+                            <div id="conteudo_principal_pesquisa">                                
+                                <div id="Inserir_pesquisa">
+                                    <div class="celulaGrande">
+                                        <div class="infoG"> Pesquisa </div>
+                                        <div class="infoValueG">
+                                            <input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                        </div>
+                                    </div>
+                                    <div id="box_barra" style="margin-top:50px;">
+                                        <div id="box_roteiroAula"></div>
+                                    </div>
+                                </div>       
+                            </div>
+                        </div>                    
                         <!-- Conteudo da aba de Roteiro -->
                         <div id="Roteiro" class="aba_roteiro">
                             <div id="conteudo_principal_roteiro">                           
@@ -118,16 +135,17 @@
                                     <p id="btnSalvar" value=""> Salvar </p>
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
-                                    <p id="btnEdit" style="display:none" value="">Editar</p>
+                                    <p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>
+                                    <p id="btnEditRot" style="display:none" value="">Editar</p>
                                 </div>
                                 <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
                             </div>
                         </div>                                                                      
-                    
+                         
                       <!-- Conteudo da aba de Pesquisa -->
-                      <div id="Pesquisa" class="aba_pesquisa">
-                            <div id="conteudo_principal_pesquisa">                                
-                                <div id="Inserir_pesquisa">
+                      <div id="PesquisaOficial" class="aba_roteiro">
+                            <div id="conteudo_principal_pesquisaOficial">                                
+                                <div id="Inserir_pesquisaOficial">
                                 	<div class="celulaGrande">
                                         <div class="infoG"> Pesquisa </div>
                                         <div class="infoValueG">

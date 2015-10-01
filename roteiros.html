@@ -17,7 +17,6 @@
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
         <script src="js/jquery-1.10.2.js"></script>
-
         <script type="text/javascript">
             $(document).ready(function(){
                 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
@@ -133,146 +132,212 @@
 				
                 	<div id="roteiros_cabecalho">
                 		<div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">Roteiro</div>
-                		<div id="cabecalho_objetivo" class="cabecalho_inativo">Objetivo</div>
-						<div id="cabecalho_atividade" class="cabecalho_inativo ambasMargin"> Atividade </div>
+                		<div id="cabecalho_objetivo" class="cabecalho_inativo">Pesquisa</div>
                         <div id="cabecalho_roteiroExtra" class="cabecalho_inativo"> Atribuir Roteiro Extra </div>
                 	</div>
 					
-                	<div id="roteiros_content">						
-                        <!-- Conteudo da aba de Roteiro -->
-                        <div id="Roteiro">
-                            <div id="conteudo_principal_roteiro">							
-                                <div id="Inserir_roteiro">
-                                    <div id="linha1"> 
-                                        <div class="celulaPequena">
-                                            <div class="infoP"> Ano estudo </div>
-                                            <div class="infoValueP" id="valueAnoE">
-                                                <div class="styled-select">
-                                                    <select id="anoEstudo" class='anoEstudoRoteiro' onChange="fltRoteiro()"></select>
+                	<div id="roteiros_content">	
+                        <div id="roteiros_content_container">				
+                            <!-- Conteudo da aba de Roteiro -->
+                            <div id="Roteiro">
+                                <div id="conteudo_principal_roteiro">
+                                    <div id="Formulario_Roteiro">
+                                        <div id="Inserir_roteiro" class="Roteiro_Linha">
+                                            <div class="Roteiro_Linha No_Padding">
+                                                <div class="Roteiro_Col_12">
+                                                    <div id="Inserir_Roteiro_Topo">
+                                                        <h1 class="Cabecalho_Inserir_Roteiro">INSERIR NOVO ROTEIRO</h1>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>                              
+                                            <div class="Roteiro_Linha No_Padding">
+                                                <div class="Roteiro_Col_4">
+                                                    <div class="Roteiro_Linha No_Padding">
+                                                        <div class="Roteiro_Col_5">
+                                                            <div class="Ano_Inserir_Info">Ano estudo</div>
+                                                        </div>
+                                                        <div class="Roteiro_Col_7">
+                                                            <div class="Ano_Inserir_Select" id="valueAnoE">
+                                                                <div class="styled-select">
+                                                                    <select id="anoEstudo" class='anoEstudoRoteiro' onChange="fltRoteiro()"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="Roteiro_Linha No_Padding">
+                                                <div class="Roteiro_Col_12">                      
+                                                    <input type="hidden" id="id"></input>
+                                                    <input id="nome" placeholder="Nome do roteiro" required> </input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="Cabecalho_Roteiro_Inserido" class="Roteiro_Linha No_Padding">
+                                            <div class="Roteiro_Col_12">
+                                                <h1 class="Nome_Roteiro_Inserido"></h1>
+                                            </div>
+                                            <div class="Roteiro_Col_12">
+                                                <h2 class="Ano_Roteiro_Inserido"></h2>
+                                            </div>
+                                        </div>
+                                        <div id="Roteiro_Inserido" class="Roteiro_Linha">
+                                            <div id="Objetivos_Inseridos">
+                                                <div id="Objetivos_Inseridos_Container">
+                                                </div>
+                                            </div>
+                                            <div id="Inserir_objetivo">
+                                                <div class="Roteiro_Linha">
+                                                    <div class="Roteiro_Col_8">
+                                                        <div class="Roteiro_Linha No_Padding">
+                                                            <div class="Roteiro_Col_3">
+                                                                <input type="hidden" class="idObj"> </input>  
+                                                                <div id="Nome_Objetivo1" class="Nome_Objetivo_Info">Objetivo</div>
+                                                            </div>
+                                                            <div class="Roteiro_Col_9">
+                                                                <input id="nomeObj1" name="nomeObj" class="nomeObj Nome_Objetivo_Input" placeholder="Objetivo do roteiro" required> </input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Roteiro_Col_4">
+                                                        <div class="Roteiro_Linha No_Padding">
+                                                            <div class="Roteiro_Col_5">
+                                                                <div class="Numero_Objetivo_Info">Número</div>
+                                                            </div>
+                                                            <div class="Roteiro_Col_7">
+                                                                <input type="text" class="Numero_Objetivo_Input numeroObj" id="numeroObj1" value="1"></input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="Inserir_Atividade">
+                                                    <div id="Inserir_Atividades_Container">
+                                                        <div class="Atividade_Linha" id="atv1">
+                                                            <div class="Roteiro_Linha No_Padding">
+                                                                <div class="Roteiro_Col_12">
+                                                                    <input type="hidden" class="idAtv"> </input>                    
+                                                                    <input class="nomeAtv" id="nomeAtv1" placeholder="Inserir nova atividade" required> </input>
+                                                                </div>
+                                                            </div>
+                                                            <div class="Roteiro_Linha">
+                                                                <div class="Roteiro_Col_4">
+                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                        <div class="Roteiro_Col_5">
+                                                                            <div class="Atividade_Info" class="numeroAtvInfo">Número</div>
+                                                                        </div>
+                                                                        <div class="Roteiro_Col_7">
+                                                                            <div class="Atividade_Input" class="valueNumero"><input class="numeroAtv" id="numeroAtv1" value="1"></input></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="Roteiro_Col_4">
+                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                        <div class="Roteiro_Col_5">
+                                                                            <div class="Atividade_Info"> Página Livro</div>
+                                                                        </div>
+                                                                        <div class="Roteiro_Col_7">
+                                                                            <div class="Atividade_Input"><input class="paginaAtv" id="paginaAtv1"></input></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="Roteiro_Col_4">
+                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                        <div class="Roteiro_Col_5">
+                                                                            <div class="Atividade_Info"> Livro </div>
+                                                                        </div>
+                                                                        <div class="Roteiro_Col_7">
+                                                                            <div class="Atividade_Input"><input class="livroAtv" id="livroAtv1"></input></div>    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Roteiro_Linha">
+                                                        <div class="Roteiro_Col_12">
+                                                            <div id="Bt_Add_Atividade" onClick="adicionarAtividade()"></div>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                            </div>                      
+                                            <!--<div class="boxObj"> 
+                                                <div id="objetivos_listados">Listagem de objetivos pelo JS</div>
+                                            </div>-->
+                                        </div>
+                                        <div id="Roteiro_Botoes" class="Roteiro_Linha">
+                                            <div id="btnInserirRoteiro" value="" onClick="inserirRoteiro()"> Inserir </div>
+                                            <div id="btnSalvarObj" value="" onClick="inserirObjetivo()"> Salvar </div>
+                                           <!-- <div id="btnSalvarObjetivo" value=""> Salvar </div>
+                                            <div id="btnEditarObjetivo" value="" onClick="alterarROA('Objetivo')"> Salvar </div> -->
+                                        </div>
                                     </div>
-                                    <input type="hidden" id="id"> </input>
-                                    <input id="nome" placeholder="Inserir novo roteiro" required> </input>
-                                    <div id="btnSalvar" value=""> Salvar </div>
-                                    <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
                                 </div>
-                                <div class="boxROA"> 
-                                    <div id="roteiros_listados"><!--Listagem de roteiros carregada pelo JS--></div>
-                                </div>                                                      
                             </div>
-                            
-                        </div>
-					
-                        <!-- Conteudo da aba de Objetivo -->
-                        <div id="Objetivo">
-                            <div id="conteudo_principal_objetivo">                                
-                                <div id="Inserir_objetivo">
-                                <div class="linha"> 
+    					
+                            <!-- Conteudo da aba de Pesquisa -->
+                            <div id="Pesquisa">
+                                <div id="conteudo_principal_pesquisa">
+                                    <div class="boxROA"> 
+                                        <div id="roteiros_listados">
+                                            <!--Listagem de roteiros carregada pelo JS-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    					
+                            <!-- Conteudo da aba de Atividades -->
+                            <div id="Atividade">
+                                <div id="Inserir_atividade">
                                     <div class="celulaPequena rightMargin">
                                         <div class="infoP"> Ano estudo </div>
                                         <div class="infoValueP">
                                             <div class="styled-select">
-                                                <select name="anoE" id="anoEObj" onChange="listaRoteiro('anoEObj','roteiroObj')"></select>
+                                                <select name="anoEAtv" id="anoEAtv" onChange="listaRoteiro('anoEAtv','roteiroAtv')"></select>
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                
                                     <div class="celulaMedia">
                                         <div class="infoM"> Roteiro </div>
                                         <div class="infoValueM">
                                             <div class="styled-select">
-                                                <select id="roteiroObj" class="styled-select" onChange="fltRoteiroObjetivo()"> </select>
+                                                <select id="roteiroAtv" class="styled-select" onChange="listagemObjetivo('objetivoAtv')"> </select>
                                             </div>
                                         </div>
                                     </div>
-                                </div>	
-                                    <input type="hidden" id="idObj"> </input>						
-                                    <input id="nomeObj" name="nomeObj" placeholder="Inserir novo objetivo"> </input>
-                                    <div class="celulaPequena">
-                                        <div class="infoP"> Número </div>
-                                        <div class="infoValueP">
+                                    
+                                    <div class="celulaGrande">
+                                        <div class="infoG"> Objetivo </div>
+                                        <div class="infoValueG">
                                             <div class="styled-select">
-                                                <input type="text" id="numeroObj"></input>
+                                                <select id="objetivoAtv" class="styled-select" onChange="fltAtividades()"> </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="btnSalvarObjetivo" value=""> Salvar </div>
-                                    <div id="btnEditarObjetivo" value="" onClick="alterarROA('Objetivo')"> Salvar </div>
-                                </div>							
-                                <div class="boxObj"> 
-                                    <div id="objetivos_listados"><!--Listagem de objetivos pelo JS--></div>
-                                </div>			
-                            </div>
-                        </div>
-					
-                        <!-- Conteudo da aba de Atividades -->
-                        <div id="Atividade">
-                            <div id="Inserir_atividade">
-                                <div class="celulaPequena rightMargin">
-                                    <div class="infoP"> Ano estudo </div>
-                                    <div class="infoValueP">
-                                        <div class="styled-select">
-                                            <select name="anoEAtv" id="anoEAtv" onChange="listaRoteiro('anoEAtv','roteiroAtv')"></select>
-                                        </div>
-                                    </div>
+                                   <div id="btnSalvarAtividade" value=""> Salvar </div>
+                                   <div id="btnEditarAtividade" value="" onClick="alterarROA('Atividade')"> Salvar </div>
                                 </div>
+                                <!--<div class="boxAtv"> 
+                                    <div id="atividades_listadas">
+                                        Listagem de atividades pelo JS
+                                    </div>
+                                </div>-->
+                            </div>	
                             
-                                <div class="celulaMedia">
-                                    <div class="infoM"> Roteiro </div>
-                                    <div class="infoValueM">
-                                        <div class="styled-select">
-                                            <select id="roteiroAtv" class="styled-select" onChange="listagemObjetivo('objetivoAtv')"> </select>
+                            <!-- Conteudo da aba de Roteiro Extra -->
+                            <div id="RoteiroExtra">
+                                <div id="conteudo_principal_roteiroExtra">                                
+                                    <div id="Inserir_roteiroExtra">
+                                        <input id="pesquisaAluno" placeholder="Buscar Aluno" required> </input>
+                                    </div>	                                    					
+                                    <div class="boxAluno"> 
+                                        <div id="alunos_listados">
+                                        	
                                         </div>
-                                    </div>
+                                    </div>			
                                 </div>
-                                
-                                <div class="celulaGrande">
-                                    <div class="infoG"> Objetivo </div>
-                                    <div class="infoValueG">
-                                        <div class="styled-select">
-                                            <select id="objetivoAtv" class="styled-select" onChange="fltAtividades()"> </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="idAtv"> </input>	                 
-                                <input id="nomeAtv" placeholder="Inserir nova atividade" required> </input>
-                                <div id="linha13" class="linha">
-                                    <div class="celulaPequena">
-                                        <div class="infoP" id="numero"> Número </div>
-                                        <div class="infoValueP" id="valueNumero"><input id="numeroAtv"></input></div>
-                                    </div>
-                                    <div class="celulaPequena ambasMargin">
-                                        <div class="infoP"> Página Livro</div>
-                                        <div class="infoValueP"><input id="paginaAtv"></input></div>
-                                    </div>
-                                    <div class="celulaPequena">
-                                        <div class="infoP"> Livro </div>
-                                        <div class="infoValueP"><input id="livroAtv"></input></div>
-                                    </div>                        
-                               </div>	
-                               <div id="btnSalvarAtividade" value=""> Salvar </div>
-                               <div id="btnEditarAtividade" value="" onClick="alterarROA('Atividade')"> Salvar </div>
                             </div>
-                            <div class="boxAtv"> 
-                                <div id="atividades_listadas"><!--Listagem de atividades pelo JS--></div>
-                            </div>					
-                        </div>	
-                        
-                        <!-- Conteudo da aba de Roteiro Extra -->
-                        <div id="RoteiroExtra">
-                            <div id="conteudo_principal_roteiroExtra">                                
-                                <div id="Inserir_roteiroExtra">
-                                    <input id="pesquisaAluno" placeholder="Buscar Aluno" required> </input>
-                                </div>	                                    					
-                                <div class="boxAluno"> 
-                                    <div id="alunos_listados">
-                                    	
-                                    </div>
-                                </div>			
-                            </div>
-                        </div>							
+                        </div>						
                     </div>
                 </div>
                 <div id="boxMensagemGeral" ></div>

@@ -582,6 +582,7 @@ function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)
 }
 
 function botoes(tipo_btn,class_btn){
+
 	switch (tipo_btn){
 		case "OK":
 			$("."+class_btn).click(function(){

@@ -189,7 +189,7 @@ html, body
 				    letter-spacing: .5px;
 				    text-align: center;
 				    line-height: 10px;
-				    padding: 4.5px;
+				  	padding: 2px;
 				    border-radius: 50%;
 				}
 
@@ -1421,12 +1421,12 @@ font-family: "proxima-nova",sans-serif;
 		height: 40px;
 	}
 	.Content_lateral_Menu_Opcao {
-    width: 126px;
-    height: 80px;
-    margin-right: 1px;
-    background-color: #02818D;
-    float: left;
-}
+	    width: 126px;
+	    height: 80px;
+	    margin-right: 1px;
+	    background-color: #02818D;
+	    float: left;
+	}
 	.visivel{
 		display: block !important;
 	}
@@ -2235,6 +2235,9 @@ font-family: "proxima-nova",sans-serif;
 		padding-bottom: 5px;
 		line-height: .95em;
 	}
+
+	.label { padding: 4.5px; }
+
 	#content_central_fixa{
 		overflow: hidden;
 		padding:37px;
@@ -2658,6 +2661,9 @@ font-family: "proxima-nova",sans-serif;
 		padding-bottom: 5px;
 		line-height: .95em;
 	}
+
+	.label { padding: 4.5px; }
+
 	#content_central_fixa{
 		padding: 36px 34px 36px 36px;
 		overflow: hidden;
@@ -3097,6 +3103,9 @@ font-family: "proxima-nova",sans-serif;
 		padding-bottom: 5px;
 		line-height: .95em;
 	}
+
+	.label { padding: 4.5px; }
+
 	#content_central {
 		overflow: auto;
 		padding: 28px 37px;

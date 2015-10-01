@@ -14,8 +14,8 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	overflow: auto;
 }
 /*-------- bts cabecalho ------*/
-#cabecalho_roteiro,#cabecalho_pesquisa{
-	width: 49.7%;
+#cabecalho_roteiro,#cabecalho_pesquisa,#cabecalho_pesquisaOficial{
+	width: 32.95%;
 	height: 50px;
 	position: relative;
 	padding: 18px;
@@ -28,14 +28,17 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 .cabecalho_ativo,#cabecalho_roteiro:hover,#cabecalho_pesquisa:hover{
 	background-color: #29B8CE !important;
 }
-
+#cabecalho_pesquisaOficial{
+	background: #87CFDE url(../img/Pesquisar.png) no-repeat;
+    background-position: 70px 9px;
+}
 #cabecalho_roteiro{
 	background: #87CFDE url(../img/ic_tutoria.png) no-repeat;
-    background-position: 113px 12px;
+    background-position: 30px 12px;
 }
 #cabecalho_pesquisa{
 	background: #87CFDE url(../img/Pesquisar.png) no-repeat;
-    background-position: 153px 9px;
+    background-position: 50px 9px;
 }
 #roteiros_content{
 	height: 500px;
@@ -124,7 +127,19 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	margin: 0 5px;
 	float: right;
 }
-#btnEdit{
+#btnEditOB{
+	width: 11%;
+	background-color: #29B8CE;
+	background-size: 20px;
+	background-position: 12px 10px;
+	color: white;
+	text-align: right;
+	padding: 10px;
+	cursor: pointer;
+	margin: 0 5px;
+	float: right;
+}
+#btnEditRot{
 	width: 11%;
 	background-color: #29B8CE;
 	background-size: 20px;
@@ -224,6 +239,7 @@ div.item:nth-child(even){
 
 .roteiroMargin{
 	margin-right: 5.3px !important;
+	margin-left: 5.3px !important;
 }
 
 #Inserir_objetivo input{
