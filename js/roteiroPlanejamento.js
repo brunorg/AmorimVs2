@@ -760,7 +760,7 @@ function trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoR
         case ("titulo_infos_roteiro_caixa_laranja"):
         {
             var deletaEntregaFunctions = ['entregarPlanejamento', 'deletarPlanejamento'];
-            mensagem("Deseja excluir ou entregar esse planejamento?", "Entregar","Excluir","opcao", IDplanejamentoRoteiro, IDobjetivo, deletaEntregaFunctions);
+            mensagem("Deseja excluir ou entregar esse planejamento?", "Entregar","<E></E>xcluir","opcao", IDplanejamentoRoteiro, IDobjetivo, deletaEntregaFunctions);
             break;
         }
 

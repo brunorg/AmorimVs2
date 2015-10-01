@@ -15,11 +15,8 @@ var data = new Date();
 
 var dataAtual = Date.UTC(ano, mes, dia);  
 
-
-//var IdentificadorPlanoEstudo;
 var IdentificadorPlanoEstudo = getUltimoPlanoEstudo();
 //Carregas as variaveis padrao
-var PermitidoSalvarRegistro = false;
 var Salvo = false;
 var UltimoIdRegistroDiario;
 var campos;
@@ -419,15 +416,43 @@ function editar() {
 	});
 }
 
+function SalvaRegistros () {
+	var registros = ".Plano_Estudo_Content_Registro_Diario_Tabela";
+	var registrosData = ".Plano_Estudo_Content_Registro_Diario_Tabela_Data";
+	var registrosText = ".Plano_Estudo_Content_Registro_Diario_Tabela_Textarea";
 
-function editarRegistroDiario(Identificador, DataRegistro, Contador)
+	for (var a = 0; a < registros.length; a++)
+	{
+		if($(registros + ' ' + registrosText)[a].id != "")
+		{
+			var diaMes = $(registros + ' ' + registrosText)[a].getAttribute("mes") + "-" + $(registros + ' ' + registrosText)[a].getAttribute("dia");
+			editarRegistroDiario($(registros + ' ' + registrosText)[a].id, diaMes)
+		}
+		else
+		{
+			if ($(registros + ' ' + registrosText)[a].value != '')
+			{
+				var diaMes = $(registros + ' ' + registrosText)[a].getAttribute("mes") + "-" + $(registros + ' ' + registrosText)[a].getAttribute("dia");
+				criarRegistroDiario(diaMes)
+			}
+		}
+	}
+}
+
+function editarRegistroDiario(Identificador, DataRegistro)
 {
 	//Edicao do Registro diário específico
+
+	var dataPostagem = new Date().getFullYear() + "-" + DataRegistro;
+	var DataCampoDia = DataRegistro.split('-')[1];
+	var DataCampoMes = DataRegistro.split('-')[0];
+	var campoTexto = $('[dia='+DataCampoDia+'][mes='+DataCampoMes+']');
+
 	$.ajax({
 		url: path+"RegistroDiario/",
 		type: "POST",
 		crossDomain: true,
-		data: "id="+Identificador+"&action=update&registro="+$('#Registro_Diario_Novo').val()+"&planoEstudo="+IdentificadorPlanoEstudo,
+		data: "id="+Identificador+"&action=update&registro="+$('#'+Identificador).val()+"&planoEstudo="+IdentificadorPlanoEstudo+"&data="+dataPostagem,
 		beforeSend: function(){
 			loading("inicial");	
 		},success: function(d) {
@@ -440,16 +465,19 @@ function editarRegistroDiario(Identificador, DataRegistro, Contador)
 	});	
 
 }
-function criarRegistroDiario()
+function criarRegistroDiario(DataRegistro)
 {
-	var UltimoRegistro;
+	var dataPostagem = new Date().getFullYear() + "-" + DataRegistro;
+	var DataCampoDia = DataRegistro.split('-')[1];
+	var DataCampoMes = DataRegistro.split('-')[0];
+	var campoTexto = $('[dia='+DataCampoDia+'][mes='+DataCampoMes+']');
 
 	$.ajax({
 		url: path+"RegistroDiario/",
 		type: "POST",
 		crossDomain: true,
 		async: false,
-		data: "action=create&registro="+$('#Registro_Diario_Novo').val()+"&planoEstudo="+IdentificadorPlanoEstudo,
+		data: "action=create&registro="+campoTexto.val()+"&planoEstudo="+IdentificadorPlanoEstudo+"&data="+dataPostagem,
 		beforeSend: function(){
 			loading("inicial");	
 		},success: function(d) {
@@ -461,11 +489,10 @@ function criarRegistroDiario()
 			console.log("Não Criados, verifique os campos.");
 		}
 	});	    
-    return UltimoRegistro;
 }
 
 /*Criação de um novo Registro diário de acordo com o dia atual*/
-function criaRegistroDiario()
+/*function criaRegistroDiario()
 {
 	var NumeroContavel= 1;
 	var permitido = true;
@@ -483,7 +510,7 @@ function criaRegistroDiario()
 		document.getElementById('botaoChange').style.backgroundImage="url(img/enviar_bco.png)";
 		$('#content_btn_Registro_Diario').parent().parent().before('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">'+d.getDate()+'/'+(d.getMonth()+1)+'</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" id="Registro_Diario_Novo"></textarea></td></tr>');
 	}
-}
+}*/
 
 
 
@@ -509,26 +536,24 @@ function MudarNovoPlano(IdPlanoNovo)
 	InitSetPlanoEstudo();	
 }
 
-function VerificaAcaoBtnRegistroDiario(){
-	
-	console.log(PermitidoSalvarRegistro);
-	
-	if(!PermitidoSalvarRegistro){
+/*function VerificaAcaoBtnRegistroDiario(){
+
+	/*if(!PermitidoSalvarRegistro){
 		criaRegistroDiario(); 
 		PermitidoSalvarRegistro=true;
-	}else if(PermitidoSalvarRegistro && !Salvo){
+	}
+	else if(PermitidoSalvarRegistro && !Salvo){
     	UltimoIdRegistroDiario = criarRegistroDiario(); 
     	Salvo = true;
-    }else if(PermitidoSalvarRegistro && Salvo){
+    }else if(	 && Salvo){
 		editarRegistroDiario(UltimoIdRegistroDiario, $('#Registro_Diario_Novo').val(), 1);
 	}
-}
+}*/
 
 
 
 function InitSetPlanoEstudo()
 {
-	PermitidoSalvarRegistro = false;
 	Salvo = false;
 	
 	if(IdentificadorPlanoEstudo > 0){
@@ -841,9 +866,31 @@ function callRegistroHtml(PrimeiraData, SegundaData, IdentificadorPlano, Identif
 		async:false,
 		crossDomain: true,
 		success: function(dataRegistroDiario) {
-			for(var a=0; a<dataRegistroDiario.length; a++){				
+			for(var a = 0; Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a) <= Date.UTC(d.getFullYear() , d.getMonth(), d.getDate()); a++)
+			{
+				var dataRegistro = new Date(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a);
+				dataRegistro = new Date(dataRegistro.getTime() /*+ (24 * 60 * 60 * 1000)*/);
+				setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + dataRegistro.getDate() +'/'+ (dataRegistro.getMonth() + 1) + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea textarea_top" id="" dia="'+dataRegistro.getDate()+'" mes ="'+(dataRegistro.getMonth() + 1)+'"></textarea></td></tr>');
+				$('#Registro_Diario').append(getRetornoRD());
+			}
+			for(var a=0; a<dataRegistroDiario.length; a++){
+				var DataCampoDia = parseInt(dataRegistroDiario[a].data.split('-')[2]);
+				var DataCampoMes = parseInt(dataRegistroDiario[a].data.split('-')[1]);
+				var DataCampoAno = parseInt(dataRegistroDiario[a].data.split('-')[0]);
+				var getRegistroDia = '[dia='+DataCampoDia+'][mes='+DataCampoMes+']';
+				$(getRegistroDia).html(dataRegistroDiario[a].registro);
+				$(getRegistroDia).attr('id', dataRegistroDiario[a].idregistroDiario);
+				/*if(DataCampoDia == d.getDate() && DataCampoMes == (d.getMonth()+1))
+				{
+					setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" id="'+dataRegistroDiario[a].idregistroDiario+'" dia="'+dataRegistro.getDate()+'" mes ="'+(dataRegistro.getMonth() + 1)+'">'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
+					$('#Registro_Diario').append(getRetornoRD());
+					PermitidoSalvarRegistro=true;
+					Salvo = true;
+				}*/
+
+				console.log("oi");
 					
-				var DataCampoDia = parseInt(dataRegistroDiario[a].data.substring(8));
+				/*var DataCampoDia = parseInt(dataRegistroDiario[a].data.substring(8));
 				var DataCampoMes = parseInt(dataRegistroDiario[a].data.substring(5,7));
 				var DataCampoAno = parseInt(dataRegistroDiario[a].data.substring(0,4));
 
@@ -856,37 +903,30 @@ function callRegistroHtml(PrimeiraData, SegundaData, IdentificadorPlano, Identif
 
 						setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" id="Registro_Diario_Novo">'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
 
-						PermitidoSalvarRegistro=true;
 						UltimoIdRegistroDiario = dataRegistroDiario[a].idregistroDiario; 
 						Salvo = true;
 
 					} else {
 
-						setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea textarea_top" id="Registro_'+a+'" disabled>'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
+						setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea textarea_top" id="Registro_'+dataRegistroDiario[a].idregistroDiario+'">'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
 					}
 
 					$('#Registro_Diario').append(getRetornoRD());
 
-				}
+				}*/
 			}
 
-			//console.log(d.getDate()+(d.getMonth()+1)+(d.getFullYear()),SegundaData.getDate()+(SegundaData.getMonth()+1)+(SegundaData.getFullYear()));
-			
-			/*console.log(d.getDate()+"-"+(PrimeiraData.getMonth()+1) <= "0"+SegundaData.getDate()+"-"+(SegundaData.getMonth()+1));
-			console.log((d.getMonth()+1)," >= ",PrimeiraData.getMonth()+1);
-			console.log((d.getMonth()+1)," <= ",SegundaData.getMonth()+1);*/
+			$('#Registro_Diario').append('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td></td><td><div id="content_btn_Registro_Diario"><div id="botaoChange" class="add_Registro_Btn" onclick="SalvaRegistros();"></div></div></td></tr>');
+			document.getElementById('botaoChange').style.backgroundImage="url(img/enviar_bco.png)";
 
-			/*if((d.getDate() >= PrimeiraData.getDate() && d.getDate() <= SegundaData.getDate()) &&
-			((d.getMonth()+1) >= SegundaData.getMonth()+1 && (d.getMonth()+1) <= SegundaData.getMonth()+1))*/			
-			
-			if (Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) >= Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate()) &&
+			/*if (Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) >= Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate()) &&
 				Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) <= Date.UTC(SegundaData.getFullYear(), SegundaData.getMonth(), SegundaData.getDate()))
 			{
 				$('#Registro_Diario').append('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td></td><td><div id="content_btn_Registro_Diario"><div id="botaoChange" class="add_Registro_Btn" onclick="VerificaAcaoBtnRegistroDiario();"></div></div></td></tr>');
-				if(Salvo && PermitidoSalvarRegistro){
+				if($(getRegistroDia).length <= 0){
 					document.getElementById('botaoChange').style.backgroundImage="url(img/enviar_bco.png)";
 				}
-			}			
+			}*/			
 		},error: function() {
 			retorno = "erro";
 		}
