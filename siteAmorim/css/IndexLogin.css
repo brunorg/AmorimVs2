@@ -782,6 +782,15 @@
 
 /* Projeto */
 
+#Conteudo_Corpo .Selecoes.Selecao6.leftSide{
+	background-image: url("../img/ilustraProj_.png");
+	background-position: -10px 0px;
+	background-size: auto 646px;
+	background-repeat: repeat;
+	
+}
+
+
 #Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoLeft{
 	width:300px;
 	height:100%;
@@ -799,7 +808,8 @@
 #Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoLeft .imagem{
 	width:100%;
 	height:440px;
-	background-image: url("../img/amorimFestaGDE.png");
+	background-image: url("../img/imgProj.png");
+	background-size: cover;
 }
 
 #Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoRight{
@@ -832,6 +842,7 @@
 	float:left;
 	margin: 0 11px 30px;
 	text-align:center;
+	padding-top: 3px;
 	color:white;
 	font-size:13px;
 	text-transform: uppercase;
@@ -1251,6 +1262,9 @@
 
 	/* PROJETO */
 
+	#Conteudo_Corpo .Selecoes.Selecao6.leftSide{
+		background-position: -10px -130px;
+	}
 
 
 	#Conteudo_Corpo .Selecoes.Selecao6.rightSide .ConteudoRight .texto {
