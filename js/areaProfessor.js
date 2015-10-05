@@ -261,8 +261,6 @@ function CarregaServicoMural()
 						HTMLContente+='</div></a></div>';
 
 					}
-			//	}
-			//}
 		}
 
 

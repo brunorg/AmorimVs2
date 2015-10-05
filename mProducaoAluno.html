@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
     <head>
         <meta charset="UTF-8" />
         <title>Plataforma Amorim</title>
@@ -29,7 +29,12 @@
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>   
         <!--Carrega os dados do usuario logado-->
-        <script type="text/javascript" src="js/autenticador.js"></script> 
+        <script type="text/javascript" src="js/autenticador.js"></script>
+                        
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
         <script type="text/javascript" src="js/producaoAluno.js"></script>        
         
         
@@ -39,7 +44,7 @@
 
     <body>
         <!--Conteudo Geral-->
-        <div id="Container">
+		<div id="Container" ng-controller="geralCTRL">
             <div id="Cabecalho_Menu_Area" class="row">
                 <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a href="#">Área do Aluno</a></div>
                 <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">                   <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 

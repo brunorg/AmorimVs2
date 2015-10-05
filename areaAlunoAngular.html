@@ -33,22 +33,26 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+                        
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
         
         <script type="text/javascript" src="js/calendario.js"></script>
 		<script type="text/javascript" src="js/alterarCadastro.js"></script> 
 		<script type="text/javascript" src="js/areaAluno.js"></script>                  
-        <!--Fim JS-->  
-        
+        <!--Fim JS-->         
      </head>
 
 	<body>
 
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-
+            <!--Cabecalho 1 - Navegação-->
 			<div>
                 <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
+                    <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="areaAluno.html">Área do Aluno</a></div>
                     <div id="Cabecalho_Menu_Area_Menu2">
                         <a id="senha" onClick="atualizarCadastroModal('aluno');">Atualizar Cadastro</a> |
                         <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
@@ -61,12 +65,12 @@
                     <div id="Cabecalho_Perfil_Area_Foto_Content">
                         <!--Foto do usuário, neste caso, do aluno-->
                         <div id="Cabecalho_Perfil_Area_Foto">                        	
-                        	<img id='_foto' src='{{usuarioFoto}}'/>
+                        	<img id='_foto' src='{{dadosUsuario.aluno.fotoAluno}}'/>
                         </div>
                     </div>
                     <!--Nome | Serie do usuário-->
                     <div id="Cabecalho_Perfil_Area_Descricao_Content">
-                        <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div>
+                        <div id="Cabecalho_Perfil_Area_Descricao">{{aluno}}</div>
                     </div>
                 </div>
             </div>
@@ -77,8 +81,6 @@
                         <div id="Content_lateral_Menu">    
                         	<div  ng-repeat="menu in menuHTML">                        	
                                 <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
                                     <a href="{{menu.href}}">{{menu.label}}</a>
                                 </div>
                             </div>
@@ -89,10 +91,8 @@
                             <div id="rodape_calendario">
                                 <p id="apontar">Apontar Presença grupo</p>
                             </div>						
-                        </div>
-    
-                    </div>
-    
+                        </div>    
+                    </div>    
                     <!--Coluna geral central-->
 					<div id="blocoGeral">
 						<div class="boxLinha">

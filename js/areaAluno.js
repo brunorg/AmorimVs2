@@ -18,21 +18,9 @@ var RoteirosCompletosAdd = 0;
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
-
-var alunoID = getAlunoByUsuario(usuarioId);
 localStorage.setItem("alunoEdt",alunoID);
 
-var alunoVariavelID;
-$.ajax({
-	url: path+"AlunoVariavel/aluno/"+ alunoID,
-	type: "GET",
-	async:false,
-	crossDomain: true,
-	success: function(data)
-	{
-		alunoVariavelID = data;
-	}
-});
+var alunoVariavelID = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
 
 var dataPlanejamentoRoteiro;
 $.ajax({

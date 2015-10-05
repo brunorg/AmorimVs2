@@ -2,7 +2,6 @@
 <html ng-app="app">
 	<head>
 		<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,user-scalable=no">
 		<title>Plataforma Amorim</title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
  
@@ -16,7 +15,7 @@
 			
     	<!--Fim Style-->
         
-         <!--Script JS-->
+        <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}
@@ -30,13 +29,15 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/loginCTRL.js"></script>							        
-		<!--Fim JS-->	
+		<!--Fim JS-->
+        
+		<meta name="viewport" content="width=device-width,user-scalable=no">
     
     </head>
 
 	<body ng-view ng-controller="loginCTRL">
 		<!--Conteudo Geral-->
-		<div id="Container">         
+		<div id="Container" ng-controller="geralCTRL">         
 			<div id="Conteudo_Area">
 				<div id="Cabecalho">
 					<div id="Login_Box">
@@ -62,13 +63,13 @@
 						</div>
    
    
-						<div class="btnMenu Active ultimo">
+						<div class="btnMenu ultimo">
 							escolas
 						</div>
-						<div class="btnMenu" style="display:none;">
-							quero saber
+						<div class="btnMenu">
+							saber quero
 						</div>
-						<div class="btnMenu Active">
+						<div class="btnMenu">
 							grêmio
 						</div>
 						<div class="btnMenu Active">
@@ -77,11 +78,11 @@
 						<div class="btnMenu Active">
 							calendário
 						</div>
-						<div class="btnMenu Active">
+						<div class="btnMenu">
 							projeto
 						</div>
 
-						<div class="btnMenu Active btClicked">
+						<div class="btnMenu Active">
 							início
 						</div>
 
@@ -108,34 +109,6 @@
 						</div>
 
 
-					<!-- Projeto -->
-
-						<div class="Selecoes Selecao6 leftSide"></div>
-						<div class="Selecoes Selecao6 rightSide">
-							<div class="ConteudoLeft">
-
-								<div class="titulo">Amorim Lima <br /> “A Escola é de Todos Nós”</div>
-								<div class="imagem"></div>
-								
-							</div>
-							<div class="ConteudoRight">
-								<div class="texto">Lici aut volectur, nim qui quia quiate cus aceatus eossi nobis idero voluptur?
-Vollia dolore molupiet que conemol uptatibust, que plictem idipietur, volum aut am, nonsed etur, omnis dellore natinveles et volenih illoressimin pel ipsundaniet et andigna tquias am, cone dipsam abor sumquo moluptia coreped estiis dolendae lam, sam volupist, solor sin cone atur alis eaqui officia erspediae volo ommostrum quati verum illum con nobitiur? Ut re nonsecaborum id ut dist laborer chillandae ex exeriti berio volor mos peditis eatibus quiate nitio. Nam utentium, et ipsam entur?
-Henis dolori aturepe rsperum ventibus maxim vendant eum quiasped ut que nonsequ iscipsam illiquis ma simaxim cori aut eicieni simusan diosam, imusda dolupiti quiasin parum re posaecum adis rem eaquis delitectus eture, sae omnist labo. Nem rerum voluptam, ut pore, omni dis verumque bo. </div>
-								<div class="menuProjeto">
-									<div class="opcao"><span> história</span></div>
-									<div class="opcao"><span> Projeto Político Pedagógico</span></div>
-									<div class="opcao"><span> Roteiros</span></div>
-									<div class="opcao"><span> Carta de princípios</span></div>
-									<div class="opcao"><span> equipe</span></div>
-									<div class="opcao"><span> contato</span></div>
-								</div>
-							</div>
-							
-						</div>
-
-
-
 					<!-- Calendario -->
 
 						<div class="Selecoes Selecao5 leftSide"></div>
@@ -146,13 +119,17 @@ Henis dolori aturepe rsperum ventibus maxim vendant eum quiasped ut que nonsequ 
 								<div class="AmorimFestas">
 									
 									<div class="imagemSuperior"></div>
-									<div class="textoMeio">
-										Nist aut rerum que porporis rerfers pelest vOlumqui rae. Nequam ex et optior sapita consequi occum volorit imus qui tem faccuptis pre la comnis maion provita spernam et aut es Xerum aliqui aute sequodias velent lamusci tasint volorrum eate sam, ime doluptibus autatiam sam, quo doluptur. Ectem ut odition sequias quae sidesenho 
-									</div>
+									<div class="textoMeio">Nist aut rerum que porporis rerfers pelest vOlumqui
+rae. Nequam ex et optior sapita consequi
+occum volorit imus qui tem faccuptis pre la
+comnis maion provita spernam et aut es Xerum
+aliqui aute sequodias velent lamusci tasint volorrum
+eate sam, ime doluptibus autatiam sam,
+quo doluptur. Ectem ut odition sequias quae sidesenho </div>
 								</div>
-
+								
 								<div class="Icones">
-									<div class="Icone Ativo"></div>
+									<div class="Icone"></div>
 									<div class="Icone"></div>
 									<div class="Icone"></div>
 									<div class="Icone"></div>
@@ -248,116 +225,9 @@ Henis dolori aturepe rsperum ventibus maxim vendant eum quiasped ut que nonsequ 
 							
 						</div>
 
-					<!-- Gremio -->
-
-
-						<div class="Selecoes Selecao3 leftSide"></div>
-						<div class="Selecoes Selecao3 rightSide">
-							<div class="contentLeftSide">
-								<div class="titulo">
-									
-									<span>
-										Projetos e eventos que
-										necessitam da ajuda da
-										comunidade
-									</span>
-								</div>
-								<div class="texto">
-									<span>
-										
-										Aqui no Amorim , todo mundo pode
-										ajudar a construir uma escola melhor,
-										normalmente os familiares se organizam
-										em comissões, pessoas que se juntam
-										para realizar projetos de melhorias na
-										nossa escola. Existem atualmente as
-										seguintes Comissões que precisam de
-										mais gente ajudando, mas quem quiser
-										pode oferecer outros projetos que
-										considere pertinentes e que visem o
-										melhor para todos os alunos da escola:
-									</span>
-								</div>
-							</div>
-							<div class="contentRightSide">
-								<div class="listaComissao">
-									<div class="opcaoComissao Ativo">Comissão de Festas Organização,</div>
-									<div class="opcaoComissao">Comissão de Prendas da Festa Junina</div>
-									<div class="opcaoComissao">Comissão de Comunicação mural, site,</div>
-									<div class="opcaoComissao">Comissão da Alimentação melhoria</div>
-									<div class="opcaoComissao">Comissão de horta e compostagem:</div>
-									<div class="opcaoComissao">Comissão do Bazar Arrecadação,</div>
-									<div class="opcaoComissao">Comissão da Biblioteca a escola não</div>
-									<div class="opcaoComissao">Comissão de Arrecadação No Amorim</div>
-									<div class="opcaoComissao">Comissão de Formatura</div>
-								</div>
-								<div class="infoComissao">
-									
-									 lkajsdkl jalkssd jalksdj klshilusdh aishf iah fiah iuh <br />
-									 <img src="siteAmorim/img/Cartaz.jpg" width="230">
-
-								</div>
-							</div>
-							
-						</div>
-
-					<!-- Escolas -->
-
-
-						<div class="Selecoes Selecao1 leftSide"></div>
-						<div class="Selecoes Selecao1 rightSide">
-							<div class="ConteudoLeft">A experiência pedagógica de educação democrática desenvolvida por duas escolas de São Paulo, a EMEF Desembargador Amorim Lima, no Butantã, e a EMEF Campos Salles, em Heliópolis, inspirou o projeto Escolas que Inovam, criado pela Fundação Telefônica em parceria com o Instituto Natura para apoiar a inovação educacional em curso nas escolas com a introdução das TIC (tecnologias de informação e comunicação) no projeto pedagógico. Somando esforços, o projeto busca desenvolver cidadãos plenos aptos a enfrentar os desafios do mundo que os cerca.<br /><br />
-A parceria entre práticas pedagógicas inovadoras, uso de tecnologia e foco na individualização da formação do aluno geram resultados positivos. As matérias regulares convivem com a capacitação para as competências do século XXI e a avaliação dos resultados são os pilares do projeto.</div>
-							<div class="ConteudoRight">
-								<div class="imagemInst"></div>
-								<div class="imagemCred"></div>
-							</div>
-							
-						</div>
 					<!-- PopUp Calendario -->
 
-						<div class="Selecoes PopupCalendario">
-							<div class="contentTexto">
-								<h2>Festa da cultura</h2>
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id risus porttitor, laoreet ipsum in, tincidunt dui. Sed in metus nibh metus nibh metus nibh metus nibh metus nibh porttitor, laoreet ipsum in, tin laoreet ipsum in, tincidunt dui. Sed in metus nibh metus nibh metus nibh metus nibh metus .</p>
-
-								<img width="100%" height="auto" src="siteAmorim/img/IMG_6401.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id risus porttitor.</p>
-
-							</div>
-
-							<div class="anos">
-
-							</div>
-
-							<div class="contentSlide">
-								
-								<div class="MainSlide">
-
-
-									<div class="AnoTitulo"></div>
-
-									<div class="ConteudoMain">
-										<img width="auto" height="100%" src="">
-										<div class="legenda"></div>
-										<div class="Arrow Right"></div>
-										<div class="Arrow Left"></div>
-									</div>
-
-									<div class="SelectionSlides">
-										
-									</div>
-								</div>
-								<div class="btn_close"></div>
-							</div>
-
-
-						</div>
-
-					<!-- PopUp Producao -->
-
-						<div class="Selecoes PopupProducao">
+						<div class="Selecoes Selecao9 PopupProducao">
 							<div class="contentTexto">
 								<h2>Oficina de Cinema</h2>
 
@@ -380,7 +250,48 @@ A parceria entre práticas pedagógicas inovadoras, uso de tecnologia e foco na 
 
 								</div>
 								<div class="SelectionSlides">
-									
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+								</div>
+								<div class="btn_close"></div>
+							</div>
+						</div>
+
+					<!-- PopUp Producao -->
+
+						<div class="Selecoes Selecao8 PopupProducao">
+							<div class="contentTexto">
+								<h2>Oficina de Cinema</h2>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id risus porttitor, laoreet ipsum in, tincidunt dui. Sed in metus nibh. Aliquam varius massa nec fermentum luctus. Vestibulum consectetur egestas sollicitudin. Maecenas gravida in libero sit amet convallis. Phasellus mauris arcu, sollicitudin id lorem eu, blandit fringilla quam.</p>
+
+								<img width="100%" height="auto" src="siteAmorim/img/IMG_6401.jpg">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id risus porttitor.</p>
+
+							</div>
+							<div class="contentSlide">
+								
+								<div class="MainSlide">
+
+									<div class="Arrow"></div>
+									<div class="Arrow"></div>
+
+									<div class="ConteudoMain">
+										<iframe src="https://player.vimeo.com/video/139168939" width="800" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+									</div>
+
+								</div>
+								<div class="SelectionSlides">
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
+									<div class="IconSlide"></div>
 								</div>
 								<div class="btn_close"></div>
 							</div>
