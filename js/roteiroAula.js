@@ -82,7 +82,7 @@ $(document).ready(function(){
 				dataType: 'json',
 				data:'action=create&objetivo='+objetivos[i].value+ '&status=1&roteiro='+IdRoteiro,
 				success: function (data) {
-					$('#linha3').html('<input type="hidden" id="idObjetivo" value="'+data+'">');
+					$('#linha3').html('');
 				}
 			});
 
@@ -124,7 +124,7 @@ $(document).ready(function(){
 				dataType: 'json',
 				data:'action=update&objetivo='+objetivos[i].value+ '&roteiro='+IdRoteiro+'&id='+objetivos[i].id,
 				success: function (data) {
-					$('#linha3').html('<input type="hidden" id="idObjetivo" value="'+data+'">');
+					$('#linha3').html('');
 					mensagem('Alterações salvas com sucesso!','OK','bt_ok','sucesso');
 				}
 			});
@@ -134,16 +134,20 @@ $(document).ready(function(){
 	$('#buscaRoteiro').change(function(){
 		var comboBusca = $('#buscaRoteiro option:selected').val();
 		if(comboBusca=="oficina"){
-			$("#linha6,#linha7").css("display","block");
-			$("#linha8").css("display","none");
+			$("#linha6").css("display","block");
+			$("#linha8,#Inserir_pesquisa,#linha10").css("display","none");
 		}
 		if(comboBusca=="professor"){
-			$("#linha8").css("display","block");
-			$("#linha6,#linha7").css("display","none");
+			$("#linha8,#linha10").css("display","block");
+			$("#linha6,#linha7,#Inserir_pesquisa").css("display","none");
 		}
 	});
-	
-
+	$("#oficina").change(function(){
+		$("#linha7").css("display","block");
+	});
+	carregaCiclo();
+	carregaPeriodo();
+	carregaOficina();	
 });//fecha document jquery
 
 function MostrarObjetivo(){
@@ -164,26 +168,12 @@ function carregaRoteiro(){
 				roteiroHTML += '<div class="item">'+
 					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
 					'<span class="editar" onclick="exibirRoteiro('+data[i].idroteiro_aula+')"></span>'+
-					'<span class="excluir" onclick="excluirRoreiroAula('+data[i].idroteiro_aula+')"></span>'+
 					'</div>';	
 			};
 			$('#box_roteiroAula').html(roteiroHTML);
 		}
 	});	
 }
-
-function excluirRoreiroAula(idRoteiroA){
-	mensagem('Deseja excluir roteiro? ','Cancelar','bt_cancelar','confirm','RoteiroAula',idRoteiroA,'excluirROT');
-}
-
-/*function excluirROT(idRoteiro.Aula){
-	$.ajax({
-		url: path+"RoteiroAula"+"/delete/"+idRoteiro.Aula
-	  	type: "GET",
-	  	crossDomain: true,
-	  	async: false,
-  	});
-}*/
 function exibirRoteiro(idRoteiroAula){
 	$("#Pesquisa").css("display","none");
 	$("#Roteiro").css("display","block");
@@ -213,7 +203,6 @@ function exibirRoteiro(idRoteiroAula){
 	});
 }
 
-
 function addObjetivo(objetivoA,idObjetivoA){
 	$("#box_objetivoAula").append('<div class="linha3">'+
 		'<div class="celulaGrandeOB">'+
@@ -237,4 +226,53 @@ function buscaRoteirAula(){
 		   $('#box_roteiroAula').html(data);
 		}
     });   
+}
+function carregaOficina(){
+	var HtmlConteudo;
+	$.ajax({
+		url: path + "Oficina",
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		success: function (dataOF) {
+			for (var i = 0; i < data.length; i++) {
+				HtmlConteudo += '<option class="opcaoOF" value="'+dataOF[i].idoficina+'">'+dataOF[i].nome+'</option>';
+			};
+		}
+	});
+	$('#oficina').append(HtmlConteudo);
+}
+function carregaPeriodo(){
+	var HtmlPeriodo;
+	$.ajax({
+		url: path + "Periodo",
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		success: function (dataP) {
+			for (var i = 0; i < data.length; i++) {
+				HtmlPeriodo += '<option class="opcaoPE" value="'+dataP[i].idperiodo+'">'+dataP[i].periodo+'</option>';
+			};
+		}
+	});
+	$('#periodo').append(HtmlPeriodo);
+}
+function carregaCiclo(){
+	var HtmlCiclo;
+	$.ajax({
+		url: path + "Ciclo",
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		success: function (dataC) {
+			console.log(dataC);
+			for (var i = 0; i < dataC.length; i++) {
+				HtmlCiclo += '<option class="opcaoCI" value="'+dataC[i].idciclos+'">'+dataC[i].ciclo+'</option>';
+			};
+		}
+	});
+	$('#ciclo').append(HtmlCiclo);
 }

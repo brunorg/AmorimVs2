@@ -19,7 +19,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	width: 32.95%;
 	height: 50px;
 	position: relative;
-	padding: 18px;
+	padding: 22px;
 	color: rgb(255, 255, 255);
 	border-color: rgb(255, 255, 255);
 	float: left;
@@ -30,19 +30,19 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	background-color: #29B8CE !important;
 }
 #cabecalho_pesquisaOficial{
-	background: #87CFDE url(../img/Pesquisar.png) no-repeat;
-    background-position: 70px 9px;
+	background: #87CFDE url(../img/ic_pesquisa.png) no-repeat;
+    background-position: 90px 12px;
 }
 #cabecalho_roteiro{
-	background: #87CFDE url(../img/ic_tutoria.png) no-repeat;
-    background-position: 30px 12px;
+	background: #87CFDE url(../img/ic_novo_roteiro.png) no-repeat;
+    background-position: 32px 14px;
 }
 #cabecalho_pesquisa{
-	background: #87CFDE url(../img/Pesquisar.png) no-repeat;
-    background-position: 50px 9px;
+	background: #87CFDE url(../img/ic_roteiro.png) no-repeat;
+    background-position: 54px 14px;
 }
 #roteiros_content{
-	height: 500px;
+	height: 600px;
 	padding: 20px;
 	background-color: #E5E5DC;
 }
@@ -113,9 +113,6 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	font-size: 18px;
 }
 
-#linha1{
-	overflow: auto;
-}
 #seletor{
 	background-color: #ffffff;
     position: absolute;
@@ -235,13 +232,12 @@ div.item:nth-child(even){
 }
 
 .editar{
-	width: 5%;
 	float: right;
 	padding: 21px;
 	background-color: #C9C9C4;
-	background-image: url(../img/bt_editar.png);
+	background-image: url(../img/ic_clonar.png);
 	background-repeat: no-repeat;
-	background-position: 2px;
+	background-position: 8px;
 	cursor: pointer;
 }
 
@@ -287,8 +283,10 @@ div.item:nth-child(even){
 }
 
 #Inserir_pesquisa{
+	position:relative;
 	overflow: auto;
 	height: 475px;
+	width: 100%
 }
 
 .roteiroAula{
@@ -320,6 +318,7 @@ div.item:nth-child(even){
 .celulaGrandeOB {
 width: 100%;
 overflow: auto;
+margin-top: 7px;
 padding: 1px;
 float: left;
 background-color: #F2F1ED;
@@ -376,8 +375,6 @@ background-color: #F2F1ED;
 {
 	background-color: white;
 }
-
-/*Falme*/
 
 .btPadrao
 {

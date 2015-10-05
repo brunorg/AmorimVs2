@@ -45,7 +45,7 @@ function carregaCiclo(){
 		crossDomain: true,
 		dataType: 'json',
 		success: function (dataC) {
-			for (var i = 0; i < data.length; i++) {
+			for (var i = 0; i < dataC.length; i++) {
 				HtmlCiclo += '<option class="opcaoCI" value="'+dataC[i].idciclos+'">'+dataC[i].ciclo+'</option>';
 			};
 		}
