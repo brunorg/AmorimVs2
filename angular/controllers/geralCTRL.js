@@ -38,6 +38,7 @@ app.controller('geralCTRL',function($scope,$http){
 				
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
+				$scope.oficina   = JSON.parse(localStorage.getItem("oficinaProfessor")); 
 				
 				$scope.menuHTML = [ 
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano'}, 

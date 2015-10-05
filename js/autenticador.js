@@ -26,9 +26,10 @@ switch (usuario){
 	break;
 	
 	case 'Professor':
-		verificaUsuarioTurtor(dadosUsuario.professor.idprofessorFuncionario);
+		verificaUsuarioTurtor(dadosUsuario.professor.idprofessorFuncionario);		
 		msgNaoVistas(usuarioId);
 		dadosForum(usuarioId);
+		localStorage.setItem("oficinaProfessor", JSON.stringify(oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario)));
 	break;
 	
 	case 'Coordenacao':
@@ -71,6 +72,21 @@ function msgNaoVistas(usuarioId){
 				textoMsgNLida = '';
 		}		
 	});
+}
+
+//Lista oficina do professor logado
+function oficinaProfessor(idProfessor){
+	var objetoOficina;
+	$.ajax({
+		url: path+"OficinaProfessor/listarProfessor/"+idProfessor,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(d) {
+			objetoOficina = d;
+		}		
+	});
+	return objetoOficina;
 }
 
 //Lista as questões criadas nos ultimos 3 meses,
