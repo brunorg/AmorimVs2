@@ -112,38 +112,36 @@ $(document).ready(function(){
 		}
 			
 		return false;
-	});	
-	
-	$("#roteiros_cabecalho div").click(function(){
-		$("#roteiros_cabecalho div").css("background", "#87CFDE");
-		$(this).css("background-color", "#29B8CE");
-	
-		/* Mudando estado da aba (ativando a aba clicada e inativando a outra)*/
-		if($(this).attr("id") == "cabecalho_roteiro"){
-			$("#Roteiro").show();
-			$("#Objetivo").hide();
-			$("#Atividade").hide();
-			$("#RoteiroExtra").hide();
-		} 
-		else if($(this).attr("id") == "cabecalho_objetivo"){
-			$("#Roteiro").hide();
-			$("#Objetivo").show();
-			$("#Atividade").hide();
-			$("#RoteiroExtra").hide();
-		}
-		else if($(this).attr("id") == "cabecalho_atividade"){
-			$("#Roteiro").hide();
-			$("#Objetivo").hide();
-			$("#Atividade").show();
-			$("#RoteiroExtra").hide();
-		}
-		else{
-			$("#Roteiro").hide();
-			$("#Objetivo").hide();
-			$("#Atividade").hide();
-			$("#RoteiroExtra").show();
-		}
 	});
+	
+/* Mudando estado da aba (ativando a aba clicada e inativando a outra)*/
+	var abasCabecalho = $("#roteiros_cabecalho .Cabecalho_Roteiro_Item");
+	var conteudoAbas = $("#roteiros_content .Conteudo_Aba_Cabecalho");
+
+	function mostrarConteudoAba(aba) {
+		for (var i = 0; i < abasCabecalho.length; i++) {
+			if(abasCabecalho[i] == aba) {
+				$($(abasCabecalho).get(i)).addClass('Item_Ativo');
+				$($(conteudoAbas).get(i)).show();
+			} else {
+				$($(abasCabecalho).get(i)).removeClass('Item_Ativo');
+				$($(conteudoAbas).get(i)).hide();
+			}
+		}
+	}
+
+	mostrarConteudoAba(abasCabecalho[0]);
+
+	for (var i = 0; i < abasCabecalho.length; i++) {
+		$($(abasCabecalho).get(i)).click(function() {
+			mostrarConteudoAba(this);
+			return false;
+		});
+		$($(abasCabecalho).get(i)).focus(function() {
+			mostrarConteudoAba(this);
+			return false;
+		});
+	}
 	
 	/* Selecionando item dos menus */
 	$("body").on("click", ".item", function(){
@@ -585,12 +583,19 @@ function inserirObjetivo () {
 		            '<div class="Roteiro_Linha Objetivo_Inserido_Linha No_Padding">'+
 		                '<div class="Obj_Inserido_Nome_Container">'+
 		                    '<div id="Obj_Inserido_Nome'+objIndex+'" class="Obj_Inserido_Nome">'+
-		                    	'<span class="Num_Obj_Inserido">'+numObj+'</span>'+
-		                    	'<span class="Nome_Obj_Inserido">'+objetivoNome+'</span>'+
+		                    	'<span id="Num_Obj_Inserido'+objIndex+'" class="Obj_Inserido_Info Num_Obj_Inserido">'+
+		                    		'<span id="Num_Obj_Info'+objIndex+'" class="Num_Obj_Info">'+numObj+'</span>'+
+		                    		'<input type="text" value="" id="Input_Obj_Num'+objIndex+'" class="Input_Linha_Obj Input_Obj_Num" "></input>'+
+		                    	'</span>'+
+		                    	'<span id="Nome_Obj_Inserido'+objIndex+'" class="Obj_Inserido_Info Nome_Obj_Inserido">'+
+		                    		'<span id="Nome_Obj_Info'+objIndex+'" class="Nome_Obj_Info">'+objetivoNome+'</span>'+
+		                    		'<input type="text" value="" id="Input_Obj_Nome'+objIndex+'" class="Input_Linha_Obj Input_Obj_Nome" "></input>'+
+		                    	'</span>'+
 		                    '</div>'+
 		                '</div>'+
 		                '<div class="Obj_Inserido_Btns">'+
 		                    '<div class="Obj_Inserido_Btn Btn_Editar_Objetivo" id="btn_editar_'+objIndex+'" onclick="editarObjetivo('+objIndex+')"></div>'+
+		                    '<div class="Obj_Inserido_Btn Btn_Atualizar_Objetivo" id="btn_atualizar_'+objIndex+'" onclick="atualizarObjetivo('+objIndex+')"></div>'+
 		                    '<div class="Obj_Inserido_Btn Btn_Excluir_Objetivo" id="btn_excluir_'+objIndex+'" onclick="excluirObjetivo(\'btn_excluir_'+objIndex+'\')"></div>'+
 		                '</div>'+
 		            '</div>';
@@ -610,15 +615,39 @@ function excluirObjetivo(btnId) {
 
 // Editar objetivo
 function editarObjetivo(btnId) {
-	var numObj = $("#"+btnId.toString()).closest($(".Num_Obj_Inserido")).text();
-	var nomeObj = $("#"+btnId.toString()).closest($(".Nome_Obj_Inserido")).text();
-	var inputNum = '<input type="number" value="'+numObj+'" class="Input_Linha_Obj Input_Obj_Num" "></input>';
-	var inputNome = '<input type="text" value="'+nomeObj+'"" class="Input_Linha_Obj Input_Obj_Nome" "></input>';
-	console.log("Oi");
-	$("#Obj_Inserido_Nome"+btnId.toString()).find($(".Num_Obj_Inserido")).html(inputNum);
-	$("#Obj_Inserido_Nome"+btnId.toString()).find($(".Nome_Obj_Inserido")).html(inputNome);
+	var NomeObjInfo = $("#Nome_Obj_Info"+btnId.toString()).text();
+	var NumObjInfo = $("#Num_Obj_Info"+btnId.toString()).text();
+
+	$("#Obj_Inserido_Nome"+btnId.toString()).closest($(".Objetivo_Inserido_Linha")).css('height', '65px');
+	$("#btn_excluir_"+btnId.toString()).css('height', '63px');
+	$("#btn_atualizar_"+btnId.toString()).css('height', '63px');
+	$("#btn_editar_"+btnId.toString()).hide();
+	$("#btn_atualizar_"+btnId.toString()).show();
+	$("#Input_Obj_Nome"+btnId.toString()).val(NomeObjInfo);
+	$("#Input_Obj_Num"+btnId.toString()).val(NumObjInfo);
+	$("#Nome_Obj_Info"+btnId.toString()).hide();
+	$("#Num_Obj_Info"+btnId.toString()).hide();
+	$("#Input_Obj_Nome"+btnId.toString()).show();
+	$("#Input_Obj_Num"+btnId.toString()).show();
 }
 
+// Atualizar objetivo
+function atualizarObjetivo(btnId) {
+	var NomeObjInfo = $("#Input_Obj_Nome"+btnId.toString()).val();
+	var NumObjInfo = $("#Input_Obj_Num"+btnId.toString()).val();
+
+	$("#Obj_Inserido_Nome"+btnId.toString()).closest($(".Objetivo_Inserido_Linha")).css('height', '39px');
+	$("#btn_excluir_"+btnId.toString()).css('height', '37px');
+	$("#btn_editar_"+btnId.toString()).css('height', '37px');
+	$("#btn_editar_"+btnId.toString()).show();
+	$("#btn_atualizar_"+btnId.toString()).hide();
+	$("#Nome_Obj_Info"+btnId.toString()).text(NomeObjInfo);
+	$("#Num_Obj_Info"+btnId.toString()).text(NumObjInfo);
+	$("#Nome_Obj_Info"+btnId.toString()).show();
+	$("#Num_Obj_Info"+btnId.toString()).show();
+	$("#Input_Obj_Nome"+btnId.toString()).hide();
+	$("#Input_Obj_Num"+btnId.toString()).hide();
+}
 
 // Adicionar Atividade
 

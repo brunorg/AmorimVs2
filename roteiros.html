@@ -134,30 +134,38 @@
 				<!--Coluna geral central-->
                 <!--  bloqueio para a rolagem top-->				
                 <div class="Conteudo_Coluna" id="content_central">
-				
+				    
                 	<div id="roteiros_cabecalho">
-                		<div id="cabecalho_roteiro" class="cabecalho_ativo roteiroMargin">Roteiro</div>
-                		<div id="cabecalho_objetivo" class="cabecalho_inativo">Pesquisa</div>
-                        <div id="cabecalho_roteiroExtra" class="cabecalho_inativo"> Atribuir Roteiro Extra </div>
+                        <div class="Roteiro_Linha No_Padding Less_Padding_Itens">
+            		        <div class="Roteiro_Col_4">
+                                <div id="cabecalho_roteiro" class="Cabecalho_Roteiro_Item">Roteiro</div>
+                            </div>
+                		    <div class="Roteiro_Col_4">
+                                <div id="cabecalho_objetivo" class="Cabecalho_Roteiro_Item">Pesquisa</div>
+                            </div>
+                            <div class="Roteiro_Col_4">
+                                <div id="cabecalho_roteiroExtra" class="Cabecalho_Roteiro_Item"> Atribuir Roteiro Extra </div>
+                            </div>
+                        </div>
                 	</div>
 					
                 	<div id="roteiros_content">	
                         <div id="roteiros_content_container">				
                             <!-- Conteudo da aba de Roteiro -->
-                            <div id="Roteiro">
+                            <div id="Roteiro" class="Conteudo_Aba_Cabecalho">
                                 <div id="conteudo_principal_roteiro">
                                     <div id="Formulario_Roteiro">
                                         <div id="Inserir_roteiro" class="Roteiro_Linha">
-                                            <div class="Roteiro_Linha No_Padding">
+                                            <div class="Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_12">
                                                     <div id="Inserir_Roteiro_Topo">
                                                         <h1 class="Cabecalho_Inserir_Roteiro">INSERIR NOVO ROTEIRO</h1>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="Roteiro_Linha No_Padding">
+                                            <div class="Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_4">
-                                                    <div class="Roteiro_Linha No_Padding">
+                                                    <div class="Roteiro_Linha No_Padding_Itens">
                                                         <div class="Roteiro_Col_5">
                                                             <div class="Ano_Inserir_Info">Ano estudo</div>
                                                         </div>
@@ -171,14 +179,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="Roteiro_Linha No_Padding">
+                                            <div class="Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_12">                      
                                                     <input type="hidden" id="id"></input>
                                                     <input id="nome" placeholder="Nome do roteiro" required> </input>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="Cabecalho_Roteiro_Inserido" class="Roteiro_Linha No_Padding">
+                                        <div id="Cabecalho_Roteiro_Inserido" class="Roteiro_Linha No_Padding_Itens">
                                             <div class="Roteiro_Col_12">
                                                 <h1 class="Nome_Roteiro_Inserido"></h1>
                                             </div>
@@ -194,7 +202,7 @@
                                             <div id="Inserir_objetivo">
                                                 <div class="Roteiro_Linha">
                                                     <div class="Roteiro_Col_8">
-                                                        <div class="Roteiro_Linha No_Padding">
+                                                        <div class="Roteiro_Linha No_Padding_Itens">
                                                             <div class="Roteiro_Col_3">
                                                                 <input type="hidden" class="idObj"> </input>  
                                                                 <div id="Nome_Objetivo1" class="Nome_Objetivo_Info">Objetivo</div>
@@ -205,7 +213,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="Roteiro_Col_4">
-                                                        <div class="Roteiro_Linha No_Padding">
+                                                        <div class="Roteiro_Linha No_Padding_Itens">
                                                             <div class="Roteiro_Col_5">
                                                                 <div class="Numero_Objetivo_Info">Número</div>
                                                             </div>
@@ -218,7 +226,7 @@
                                                 <div id="Inserir_Atividade">
                                                     <div id="Inserir_Atividades_Container">
                                                         <div class="Atividade_Linha" id="atv1">
-                                                            <div class="Roteiro_Linha No_Padding">
+                                                            <div class="Roteiro_Linha No_Padding_Itens">
                                                                 <div class="Roteiro_Col_12">
                                                                     <input type="hidden" class="idAtv"> </input>                    
                                                                     <input class="nomeAtv" id="nomeAtv1" placeholder="Inserir nova atividade" required> </input>
@@ -226,7 +234,7 @@
                                                             </div>
                                                             <div class="Roteiro_Linha">
                                                                 <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                    <div class="Roteiro_Linha No_Padding_Itens">
                                                                         <div class="Roteiro_Col_5">
                                                                             <div class="Atividade_Info" class="numeroAtvInfo">Número</div>
                                                                         </div>
@@ -236,7 +244,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                    <div class="Roteiro_Linha No_Padding_Itens">
                                                                         <div class="Roteiro_Col_5">
                                                                             <div class="Atividade_Info"> Página Livro</div>
                                                                         </div>
@@ -246,7 +254,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding">
+                                                                    <div class="Roteiro_Linha No_Padding_Itens">
                                                                         <div class="Roteiro_Col_5">
                                                                             <div class="Atividade_Info"> Livro </div>
                                                                         </div>
@@ -280,7 +288,7 @@
                             </div>
     					
                             <!-- Conteudo da aba de Pesquisa -->
-                            <div id="Pesquisa">
+                            <div id="Pesquisa" class="Conteudo_Aba_Cabecalho">
                                 <div id="conteudo_principal_pesquisa">
                                     <div class="boxROA"> 
                                         <div id="roteiros_listados">
@@ -330,7 +338,7 @@
                             </div>	
                             
                             <!-- Conteudo da aba de Roteiro Extra -->
-                            <div id="RoteiroExtra">
+                            <div id="RoteiroExtra" class="Conteudo_Aba_Cabecalho">
                                 <div id="conteudo_principal_roteiroExtra">                                
                                     <div id="Inserir_roteiroExtra">
                                         <input id="pesquisaAluno" placeholder="Buscar Aluno" required> </input>

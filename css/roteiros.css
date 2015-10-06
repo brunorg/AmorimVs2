@@ -5,7 +5,38 @@
 	.celulaPequena, .celulaMedia, .celulaGrande{
 		border: none;
 	}
-	
+
+/* Cabeçalho do conteúdo principal */
+	#roteiros_cabecalho {
+		background-color: #fff;
+		width: 100%;
+		height: 10%;
+		position: relative;
+		overflow: auto;
+	}
+
+/* Botões cabeçalho */
+	.Cabecalho_Roteiro_Item {
+		width: 100%;
+		height: 55px;
+		position: relative;
+		font-size: 20px;
+		padding: 17px;
+		color: #fff;
+		float: left;
+		cursor: pointer;
+		text-align: center;
+		background-color: #87CFDE;
+	}
+	.Cabecalho_Roteiro_Item:hover {
+		background-color: #29B8CE;
+	}
+	.Item_Ativo {
+		background-color: #29B8CE;
+		cursor: default;
+	}
+
+/* Linhas */
 	.Roteiro_Linha { 
 		width: 100%;
 		padding: 5px 0;
@@ -16,21 +47,15 @@
 		display: block;
 		clear: both;
 	}
-
-	div[class*="Roteiro_Col_"] {
-		float: left;
-		height: auto;
-		margin: 0 !important;
-		display: inline-block;
-		padding: 0 7.5px;
-	}
-	div[class*="Roteiro_Col_"]:first-child {
-		padding-left: 0;
-	}
-	div[class*="Roteiro_Col_"]:last-child {
-		padding-right: 0;
+	.Less_Padding {
+		padding: 2.5px !important;
 	}
 
+	.No_Padding {
+		padding: 0 !important;
+	}
+
+/* Itens das linhas */
 	.Roteiro_Col_1 { width: 8.33%; }
 	.Roteiro_Col_2 { width: 16.66%; }
 	.Roteiro_Col_3 { width: 25%; }
@@ -43,42 +68,27 @@
 	.Roteiro_Col_10 { width: 83.33%; }
 	.Roteiro_Col_11 { width: 91.66%; }
 	.Roteiro_Col_12 { width: 100%; }
-	
-	#roteiros_cabecalho 
-	{
-		width: 100%;
-		height: 10%;
-		position: relative;
-		overflow: auto;
-	}.No_Padding > * {
+
+	div[class*="Roteiro_Col_"] {
+		float: left;
+		height: auto;
+		margin: 0 !important;
+		display: inline-block;
+		padding: 0 7.5px;
+	}
+	.Less_Padding_Itens > * {
+		padding-left: 2.5px !important;
+		padding-right: 2.5px !important;
+	}
+	.No_Padding_Itens > * {
 		padding: 0 !important;
 	}
-
-			/*-------- bts cabecalho ------*/
-			
-			.cabecalho_inativo
-			{
-				background-color: #87CFDE;
-			}
-			
-			.cabecalho_ativo
-			{
-				background-color: #29B8CE;
-			}
-			
-			#cabecalho_roteiro, #cabecalho_objetivo, #cabecalho_atividade, #cabecalho_roteiroExtra
-			{
-				width: 24.6%;
-				height: 55px;
-				position: relative;
-				font-size: 20px;
-				padding:15px;
-				color: rgb(255, 255, 255);
-				border-color: rgb(255, 255, 255);
-				float: left;
-				cursor:pointer;
-				text-align: center;
-			}
+	div[class*="Roteiro_Col_"]:first-child {
+		padding-left: 0 !important;
+	}
+	div[class*="Roteiro_Col_"]:last-child {
+		padding-right: 0 !important;
+	}
 
 		#roteiros_content{
 			height: 500px;
@@ -189,6 +199,8 @@
 
 		.Btn_Excluir_Objetivo { background: url(../img/ic_delete.png) no-repeat 50% 50%; }
 
+		.Btn_Atualizar_Objetivo { background: url(../img/ic_delete.png) no-repeat 50% 50%; display: none;}
+
 		.Obj_Inserido_Btn {
 			width: 37px;
 			height: 37px;
@@ -225,10 +237,6 @@
 			text-align: right;
 		}
 
-		.Divisor_Obj_Inserido{
-			
-		}
-
 		.Numero_Objetivo_Input {
 			width: 100%;
 		    height: 39px;
@@ -262,15 +270,16 @@
 		}
 
 		.Input_Linha_Obj {
+			display: none;
 		    border: 1px solid #bfbca8;
-		    font-size: 12px;
+		    font-size: 18px;
 		    border-radius: 0;
 		    background-color: #fff;
-		    color: #444;
-		    padding: 2px;
+		    color: #888;
 		}
+
 		.Input_Obj_Num {
-			width: 35px;
+			width: 50px;
 		}
 		.Input_Obj_Nome {
 			width: 600px;
