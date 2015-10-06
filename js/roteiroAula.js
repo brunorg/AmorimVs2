@@ -1,7 +1,7 @@
 var userID = usuarioId;
 var IDProfessor = localStorage.getItem("professorId");
 var objetoOficina =	JSON.parse(localStorage.getItem("oficinaProfessor"));
-var IDOficina = objetoOficina[0].oficina.idoficina;
+var IDOficinaProfessor = objetoOficina[0].idoficina_professor;
 
 $(document).ready(function(){
 	var cont=2;
@@ -12,11 +12,12 @@ $(document).ready(function(){
 	trocaAba(cabecalhoItem[0]);	
 
 	function trocaAba(abaClicada) {
-		if(abaClicada.id=="cabecalho_pesquisa"){
+		if(abaClicada.id=="cabecalho_pesquisaOficial"){
 			carregaRoteiroPesquisa();
+		}else if(abaClicada.id=="cabecalho_pesquisa"){
+			carregaRoteiro();
 		}
 		for(var i = 0; i < cabecalhoItem.length; i++) {
-
 			if(cabecalhoItem[i] === abaClicada) {
 				$(abas[i]).show();
 				$(cabecalhoItem[i]).addClass("cabecalho_ativo");
@@ -169,12 +170,13 @@ function MostrarObjetivo(){
 function carregaRoteiro(){
 	var roteiroHTML="";
 	$.ajax({
-		url: path + "RoteiroAula/"+IDOficina,
+		url: path + "RoteiroAula/ListarPorOficinaProfessor/"+IDOficinaProfessor,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		dataType: 'json',
 		success: function (data) {
+			console.log(data);
 			for (var i = 0 ; i < data.length; i++) {
 				roteiroHTML += '<div class="item">'+
 					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
@@ -195,7 +197,6 @@ function carregaRoteiroPesquisa(){
 		crossDomain: true,
 		dataType: 'json',
 		success: function (data) {
-			console.log(data);
 			for (var i = 0 ; i < data.length; i++) {
 				roteiroHTML += '<div class="item">'+
 					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
@@ -243,15 +244,13 @@ function exibirListaOficina(idOficina,idCiclo,IDProfessor){
 		crossDomain:true,
 		dataType: 'json',
 		success: function(data){
-			console.log(data);
 			for (var i = 0 ; i < data.length; i++) {
 				oficinaHTML += '<div class="item">'+
 					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
 					'<span class="utilizarRoteiro" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
 					'</div>';	
 			};
-			$('#box_oficinaAula').html(oficinaHTML);
-
+			$('#boxRoteiroAulaPesquisa').html(oficinaHTML);
 		}
 	});
 }
@@ -274,7 +273,6 @@ function buscaRoteirAula(){
 		crossDomain: true,
 		dataType: 'html',
 		success: function (data) {
-			console.log(data);
 		   $('#box_roteiroAula').html(data);
 		}
     });   
@@ -320,7 +318,6 @@ function carregaCiclo(){
 		crossDomain: true,
 		dataType: 'json',
 		success: function (dataC) {
-			console.log(dataC);
 			for (var i = 0; i < dataC.length; i++) {
 				HtmlCiclo += '<option class="opcaoCI" value="'+dataC[i].idciclos+'">'+dataC[i].ciclo+'</option>';
 			};

@@ -44,7 +44,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuHTML = [ 
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso'},
-					{label: 'Roteiros de aula', href: 'roteirosProfessor.html', class: 'roteiros'},
+					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'roteiros'},
 					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'tutores'},
 					{label: 'Grupos do Aluno', href: 'gruposProfessor.html', class: 'grupos'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
