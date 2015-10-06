@@ -31,6 +31,7 @@ app.controller('geralCTRL',function($scope,$http){
 			
 			case "Professor":	
 				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);							
+									
 				$scope.usuarioCabecalho = abreviaNome(dadosUsuario.professor.nome);
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Àrea do Professor";

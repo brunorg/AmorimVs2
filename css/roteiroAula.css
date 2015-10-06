@@ -231,11 +231,21 @@ div.item:nth-child(even){
 	padding: 12px;
 }
 
-.editar{
+.utilizarRoteiro{
 	float: right;
 	padding: 21px;
 	background-color: #C9C9C4;
 	background-image: url(../img/ic_clonar.png);
+	background-repeat: no-repeat;
+	background-position: 8px;
+	cursor: pointer;
+}
+
+.editar{
+	float: right;
+	padding: 21px;
+	background-color: #C9C9C4;
+	background-image: url(../img/bt_editar.png);
 	background-repeat: no-repeat;
 	background-position: 8px;
 	cursor: pointer;
@@ -432,4 +442,14 @@ background-color: #F2F1ED;
 #roteiroSalvo,#desricaoSalvo{
 	margin:0;
 	display:none;
+}
+
+#boxRoteiroAulaPesquisa{
+	background: #000 !important;
+	border:1px solid;
+	width: 100%;
+	height: 500px;
+}
+#Inserir_roteiro{
+	display: none;
 }
