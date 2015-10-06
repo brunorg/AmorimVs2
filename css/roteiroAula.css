@@ -234,25 +234,27 @@ div.item:nth-child(even){
 }
 
 .editar{
-	float: right;
-	padding: 21px;
-	background-color: #C9C9C4;
-	background-image: url(../img/bt_editar.png);
-	background-repeat: no-repeat;
-	background-position: 8px;
-	cursor: pointer;
+	position: relative;
+    right: 44px;
+    float: right;
+    padding: 21px;
+    background-color: #C9C9C4;
+    background-image: url(../img/bt_editar.png);
+    background-repeat: no-repeat;
+    background-position: 3px;
+    cursor: pointer;	
 }
 
 .excluir{
-	width: 5%;
-	float: right;
-	padding: 21px;
-	background-color: #C9C9C4;
-	background-image: url(../img/fechar.png);
-	background-repeat: no-repeat;
-	background-position: -3px;
-	cursor: pointer;
-	margin-right:5px;
+	position: absolute;
+    right: 57px;
+    float: right;
+    padding: 21px;
+    background-color: #C9C9C4;
+    background-image: url(../img/fechar.png);
+    background-repeat: no-repeat;
+    background-position: -4px;
+    cursor: pointer;
 }
 
 .selecionado{
