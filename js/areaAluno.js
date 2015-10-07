@@ -56,18 +56,6 @@ $.ajax({
 	}
 });
 
-var dataProducaoAluno;
-$.ajax({
-	url: path+"ProducaoAluno/alunoPortifolio/"+alunoID,
-	type: "GET",
-	async:false,
-	crossDomain: true,
-	success: function(data)
-	{
-		dataProducaoAluno = data;
-	}
-});
-
 //------------------------------------------------------------------------------------------------------------------------
 //Carrega a tabela Calendario Eventos
 
@@ -231,6 +219,19 @@ function CarregaServicoProducaoAluno()
 	    ContadorPA = 0;
 
 		HtmlContent = "";
+
+		var dataProducaoAluno;
+		$.ajax({
+			url: path+"ProducaoAluno/alunoPortifolio/"+alunoID,
+			type: "GET",
+			async:false,
+			crossDomain: true,
+			success: function(data)
+			{
+				dataProducaoAluno = data;
+			}
+		});
+
 		for (var a = 0; a < dataProducaoAluno.length; a++) {			
 				if ( ContadorPA != 2 ) {
 					if ( ContadorPA == 0 ) {
@@ -238,20 +239,23 @@ function CarregaServicoProducaoAluno()
 					}
 
 					var apresentacao = "";
+					var capaDiv;
 
 		    		if(dataProducaoAluno[a].capa != null) {
-						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" width="auto" height="100%"/>';
+		    			capaDiv = '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
+						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" class="capa" width="auto" height="100%"/>';
 					}
 					else
 					{
-						apresentacao = '<img src="img/foto.png" width="100%" height="auto"/>';
+						capaDiv = '<div class="Img_Roteiro uploadAtivo" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
+						apresentacao = '<img src="img/foto.png" class="upload_capa" width="100%" height="auto"/>';
 					}
 						HtmlContent += '<div class="Portfolio_Conteudo_Box">';
 			        	HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
 						HtmlContent += '<div class="Nome_Roteiro">';
 						HtmlContent += dataProducaoAluno[a].roteiro.nome;
 						HtmlContent += '</div>';
-						HtmlContent += '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">';
+						HtmlContent += capaDiv;
 						HtmlContent += apresentacao;
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
@@ -263,12 +267,15 @@ function CarregaServicoProducaoAluno()
 					HtmlContent += '</div>';
 					HtmlContent += '<div class="Portfolio_Conteudo_Container">';
 					var apresentacao = "";
+					var capaDiv;
 
 		    		if(dataProducaoAluno[a].capa != null) {
+		    			capaDiv = '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
 						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" class="capa" width="auto" height="100%"/>';
 					}
 					else
 					{
+						capaDiv = '<div class="Img_Roteiro uploadAtivo" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
 						apresentacao = '<img src="img/foto.png" class="upload_capa" width="100%" height="auto"/>';
 					}
 					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
@@ -276,7 +283,7 @@ function CarregaServicoProducaoAluno()
 					HtmlContent += '<div class="Nome_Roteiro">';
 					HtmlContent += dataProducaoAluno[a].roteiro.nome;
 					HtmlContent += '</div>';
-					HtmlContent += '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">';
+					HtmlContent += capaDiv;
 					HtmlContent += apresentacao;
 					HtmlContent += '</div>';
 					HtmlContent += '</div>';
@@ -572,9 +579,11 @@ function AtivaUploadCapa () {
 		}
 	});
 
+	$('.uploadAtivo').click(function(e) {
+		uploadCapa($(this).attr('id'))
+	});
 	$('.Img_Roteiro').click(function(e) {
 		e.stopPropagation();
-		uploadCapa($(this).attr('id'))
 	});
 
 	$('#blocoGeral').append('<div class="blackPainel"></div>');
