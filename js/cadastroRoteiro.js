@@ -594,9 +594,9 @@ function inserirObjetivo () {
 		                    '</div>'+
 		                '</div>'+
 		                '<div class="Obj_Inserido_Btns">'+
-		                    '<div class="Obj_Inserido_Btn Btn_Editar_Objetivo" id="btn_editar_'+objIndex+'" onclick="editarObjetivo('+objIndex+')"></div>'+
-		                    '<div class="Obj_Inserido_Btn Btn_Atualizar_Objetivo" id="btn_atualizar_'+objIndex+'" onclick="atualizarObjetivo('+objIndex+')"></div>'+
 		                    '<div class="Obj_Inserido_Btn Btn_Excluir_Objetivo" id="btn_excluir_'+objIndex+'" onclick="excluirObjetivo(\'btn_excluir_'+objIndex+'\')"></div>'+
+		                    '<div class="Obj_Inserido_Btn Btn_Editar_Objetivo" id="btn_editar_'+objIndex+'" onclick="editarObjetivo('+objIndex+')"></div>'+
+							'<div class="Obj_Inserido_Btn Btn_Atualizar_Objetivo" id="btn_atualizar_'+objIndex+'" onclick="atualizarObjetivo('+objIndex+')"></div>'+
 		                '</div>'+
 		            '</div>';
 		$("#Objetivos_Inseridos_Container").append(linhaObj);
@@ -663,7 +663,7 @@ function adicionarAtividade () {
 			        '</div>'+
 			        '<div class="Roteiro_Linha">'+
 			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding">'+
+			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
 			                    '<div class="Roteiro_Col_5">'+
 			                        '<div class="Atividade_Info" class="numeroAtvInfo">Número</div>'+
 			                    '</div>'+
@@ -673,7 +673,7 @@ function adicionarAtividade () {
 			                '</div>'+
 			            '</div>'+
 			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding">'+
+			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
 			                    '<div class="Roteiro_Col_5">'+
 			                        '<div class="Atividade_Info"> Página Livro</div>'+
 			                    '</div>'+
@@ -683,7 +683,7 @@ function adicionarAtividade () {
 			                '</div>'+
 			            '</div>'+
 			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding">'+
+			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
 			                    '<div class="Roteiro_Col_5">'+
 			                        '<div class="Atividade_Info"> Livro </div>'+
 			                    '</div>'+

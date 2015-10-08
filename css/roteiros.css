@@ -199,7 +199,7 @@
 
 		.Btn_Excluir_Objetivo { background: url(../img/ic_delete.png) no-repeat 50% 50%; }
 
-		.Btn_Atualizar_Objetivo { background: url(../img/ic_delete.png) no-repeat 50% 50%; display: none;}
+		.Btn_Atualizar_Objetivo { background: url(../img/ic_salvar_b.png) no-repeat 50% 50%; display: none;}
 
 		.Obj_Inserido_Btn {
 			width: 37px;
