@@ -579,26 +579,7 @@ function inserirObjetivo () {
 		var atvCount = $(".Atividade_Linha");
 		objetivoNome = $("#nomeObj1").val();
 		numObj = $("#numeroObj1").val();
-		var linhaObj =
-		            '<div class="Roteiro_Linha Objetivo_Inserido_Linha No_Padding">'+
-		                '<div class="Obj_Inserido_Nome_Container">'+
-		                    '<div id="Obj_Inserido_Nome'+objIndex+'" class="Obj_Inserido_Nome">'+
-		                    	'<span id="Num_Obj_Inserido'+objIndex+'" class="Obj_Inserido_Info Num_Obj_Inserido">'+
-		                    		'<span id="Num_Obj_Info'+objIndex+'" class="Num_Obj_Info">'+numObj+'</span>'+
-		                    		'<input type="text" value="" id="Input_Obj_Num'+objIndex+'" class="Input_Linha_Obj Input_Obj_Num" "></input>'+
-		                    	'</span>'+
-		                    	'<span id="Nome_Obj_Inserido'+objIndex+'" class="Obj_Inserido_Info Nome_Obj_Inserido">'+
-		                    		'<span id="Nome_Obj_Info'+objIndex+'" class="Nome_Obj_Info">'+objetivoNome+'</span>'+
-		                    		'<input type="text" value="" id="Input_Obj_Nome'+objIndex+'" class="Input_Linha_Obj Input_Obj_Nome" "></input>'+
-		                    	'</span>'+
-		                    '</div>'+
-		                '</div>'+
-		                '<div class="Obj_Inserido_Btns">'+
-		                    '<div class="Obj_Inserido_Btn Btn_Excluir_Objetivo" id="btn_excluir_'+objIndex+'" onclick="excluirObjetivo(\'btn_excluir_'+objIndex+'\')"></div>'+
-		                    '<div class="Obj_Inserido_Btn Btn_Editar_Objetivo" id="btn_editar_'+objIndex+'" onclick="editarObjetivo('+objIndex+')"></div>'+
-							'<div class="Obj_Inserido_Btn Btn_Atualizar_Objetivo" id="btn_atualizar_'+objIndex+'" onclick="atualizarObjetivo('+objIndex+')"></div>'+
-		                '</div>'+
-		            '</div>';
+		var linhaObj = '';
 		$("#Objetivos_Inseridos_Container").append(linhaObj);
 		console.info("Ao clicar em salvar, o objetivo que o(a) coordenador(a) acabou de criar é salvo dentro do roteiro "+nomeRoteiro+", além de aparecer na listagem acima do formulário.");
 		console.info("Se o formulário para inserir atividade estiver em branco, ele é ignorado.");
@@ -615,38 +596,10 @@ function excluirObjetivo(btnId) {
 
 // Editar objetivo
 function editarObjetivo(btnId) {
-	var NomeObjInfo = $("#Nome_Obj_Info"+btnId.toString()).text();
-	var NumObjInfo = $("#Num_Obj_Info"+btnId.toString()).text();
-
-	$("#Obj_Inserido_Nome"+btnId.toString()).closest($(".Objetivo_Inserido_Linha")).css('height', '65px');
-	$("#btn_excluir_"+btnId.toString()).css('height', '63px');
-	$("#btn_atualizar_"+btnId.toString()).css('height', '63px');
-	$("#btn_editar_"+btnId.toString()).hide();
-	$("#btn_atualizar_"+btnId.toString()).show();
-	$("#Input_Obj_Nome"+btnId.toString()).val(NomeObjInfo);
-	$("#Input_Obj_Num"+btnId.toString()).val(NumObjInfo);
-	$("#Nome_Obj_Info"+btnId.toString()).hide();
-	$("#Num_Obj_Info"+btnId.toString()).hide();
-	$("#Input_Obj_Nome"+btnId.toString()).show();
-	$("#Input_Obj_Num"+btnId.toString()).show();
 }
 
 // Atualizar objetivo
 function atualizarObjetivo(btnId) {
-	var NomeObjInfo = $("#Input_Obj_Nome"+btnId.toString()).val();
-	var NumObjInfo = $("#Input_Obj_Num"+btnId.toString()).val();
-
-	$("#Obj_Inserido_Nome"+btnId.toString()).closest($(".Objetivo_Inserido_Linha")).css('height', '39px');
-	$("#btn_excluir_"+btnId.toString()).css('height', '37px');
-	$("#btn_editar_"+btnId.toString()).css('height', '37px');
-	$("#btn_editar_"+btnId.toString()).show();
-	$("#btn_atualizar_"+btnId.toString()).hide();
-	$("#Nome_Obj_Info"+btnId.toString()).text(NomeObjInfo);
-	$("#Num_Obj_Info"+btnId.toString()).text(NumObjInfo);
-	$("#Nome_Obj_Info"+btnId.toString()).show();
-	$("#Num_Obj_Info"+btnId.toString()).show();
-	$("#Input_Obj_Nome"+btnId.toString()).hide();
-	$("#Input_Obj_Num"+btnId.toString()).hide();
 }
 
 // Adicionar Atividade
@@ -654,7 +607,7 @@ function atualizarObjetivo(btnId) {
 var index = 2;
 function adicionarAtividade () {
 	var atvLinha =
-			    '<div class="Atividade_Linha" id="atv'+index+'">'+
+			    /*'<div class="Atividade_Linha" id="atv'+index+'">'+
 			        '<div class="Roteiro_Linha No_Padding">'+
 			            '<div class="Roteiro_Col_12">'+
 			                '<input type="hidden" class="idAtv"> </input>'+                  
@@ -693,7 +646,7 @@ function adicionarAtividade () {
 			                '</div>'+
 			            '</div>'+
 			        '</div>'+
-			    '</div>';
+			    '</div>';*/
 	index++;
 	$("#Inserir_Atividades_Container").append(atvLinha);
 }
