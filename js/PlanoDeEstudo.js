@@ -1,5 +1,7 @@
 var userID = usuarioId;
-var alunoID = RetornaAlunoPlano();	
+var alunoID = RetornaAlunoPlano();
+
+var usuarioPerfil = ((dadosUsuario.aluno == null)? 'Professor' : 'Aluno');
 
 //Procedimento para pegar a data atual
 var data = new Date();
@@ -81,7 +83,7 @@ $(document).ready(function() {
 	});
 
 	$(".novo").click(function(){
-		if(usuario == "Aluno")
+		if(usuarioPerfil == "Aluno")
 		{
 			if($('#box_novo').hasClass("exibir"))
 			{
@@ -258,7 +260,7 @@ $(document).ready(function() {
 	MudarNovoPlano();
 	
 
-	if(usuario == "Professor" || usuario == "Coordenacao")
+	if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao")
 	{
 		$(".novo").css("opacity","0.5");
 		$(".Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a").removeAttr('href');
@@ -491,29 +493,6 @@ function criarRegistroDiario(DataRegistro)
 	});	    
 }
 
-/*Criação de um novo Registro diário de acordo com o dia atual*/
-/*function criaRegistroDiario()
-{
-	var NumeroContavel= 1;
-	var permitido = true;
-
-	var d = new Date();
-
-	while($('#Registro_'+NumeroContavel).length != 0){
-		if(d.getDate()+'/'+(d.getMonth()+1) == $('#Registro_'+NumeroContavel).parent().parent().find('.Plano_Estudo_Content_Registro_Diario_Tabela_Data').html()){
-			permitido = false;
-		}
-		NumeroContavel++;
-	}
-	
-	if(permitido){
-		document.getElementById('botaoChange').style.backgroundImage="url(img/enviar_bco.png)";
-		$('#content_btn_Registro_Diario').parent().parent().before('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">'+d.getDate()+'/'+(d.getMonth()+1)+'</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" id="Registro_Diario_Novo"></textarea></td></tr>');
-	}
-}*/
-
-
-
 function MudarNovoPlano(IdPlanoNovo)
 {
 	for(var a=0;a< List.length; a++)
@@ -535,22 +514,6 @@ function MudarNovoPlano(IdPlanoNovo)
 	$('#content_btn_Registro_Diario').empty();
 	InitSetPlanoEstudo();	
 }
-
-/*function VerificaAcaoBtnRegistroDiario(){
-
-	/*if(!PermitidoSalvarRegistro){
-		criaRegistroDiario(); 
-		PermitidoSalvarRegistro=true;
-	}
-	else if(PermitidoSalvarRegistro && !Salvo){
-    	UltimoIdRegistroDiario = criarRegistroDiario(); 
-    	Salvo = true;
-    }else if(	 && Salvo){
-		editarRegistroDiario(UltimoIdRegistroDiario, $('#Registro_Diario_Novo').val(), 1);
-	}
-}*/
-
-
 
 function InitSetPlanoEstudo()
 {
@@ -582,9 +545,9 @@ function InitSetPlanoEstudo()
 				//preenche campo OBJETIVO TUTORIA
 				$('.Plano_Estudo_Content_Objetivos_Conteudo_Texto').empty(); 
 	
-				if(usuario == "Aluno"){
+				if(usuarioPerfil == "Aluno"){
 					$('.Plano_Estudo_Content_Objetivos_Conteudo_Texto').append("<input type='hidden' name='objetivoTutoria' id='objetivoTutoria' value='"+data.objetivoTutoria+"' />"+data.objetivoTutoria);
-				} else if(usuario == "Professor" || usuario == "Coordenacao"){
+				} else if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao"){
 					$('.Plano_Estudo_Content_Objetivos_Conteudo_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='objetivoTutoria' id='objetivoTutoria'>"+data.objetivoTutoria+"</textarea>");
 				} 
 	
@@ -592,10 +555,10 @@ function InitSetPlanoEstudo()
 				//preenche campo OBJETIVO Persona
 				$('.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto').empty(); 
 				//$('.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto').append(data.objetivoPessoal); 
-				if(usuario == "Aluno"){
+				if(usuarioPerfil == "Aluno"){
 					$('.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='objetivoPessoal' id='objetivoPessoal'>"+data.objetivoPessoal+"</textarea>");
 				}
-				else if(usuario == "Professor" || usuario == "Coordenacao")	{
+				else if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao")	{
 					$('.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto').append("<input type='hidden' name='objetivoPessoal' id='objetivoPessoal' value='"+data.objetivoPessoal+"' />"+data.objetivoPessoal);
 				} 
 	
@@ -610,21 +573,21 @@ function InitSetPlanoEstudo()
 				//preenche campo OBSERVACOES TUTOR
 				$('#Observacoes_Tutor .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').empty();  
 	
-				if(usuario == "Professor" || usuario == "Coordenacao")	{$('#Observacoes_Tutor .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='observacoesTutor' id='observacoesTutor'>"+data.observacoesTutor+"</textarea>");}
-				else if(usuario == "Aluno")	{$('#Observacoes_Tutor .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<input type='hidden' name='observacoesTutor' id='observacoesTutor' value='"+data.observacoesTutor+"' />"+data.observacoesTutor);} 
+				if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao")	{$('#Observacoes_Tutor .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='observacoesTutor' id='observacoesTutor'>"+data.observacoesTutor+"</textarea>");}
+				else if(usuarioPerfil == "Aluno")	{$('#Observacoes_Tutor .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<input type='hidden' name='observacoesTutor' id='observacoesTutor' value='"+data.observacoesTutor+"' />"+data.observacoesTutor);} 
 	
 	
 				//preenche campo OBSERVACOES PAIS
 				$('#Observacao_Pais .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').empty(); 
 	
-				if(usuario == "Aluno")			{$('#Observacao_Pais .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='observacoesPais' id='observacoesPais'>"+data.observacoesPais+"</textarea>");}
-				else if(usuario == "Professor" || usuario == "Coordenacao")	{$('#Observacao_Pais .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<input type='hidden' name='observacoesPais' id='observacoesPais' value='"+data.observacoesPais+"' />"+data.observacoesPais);} 
+				if(usuarioPerfil == "Aluno")			{$('#Observacao_Pais .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<textarea class='Plano_Estudo_Content_Registro_Diario_Tabela_Textarea' name='observacoesPais' id='observacoesPais'>"+data.observacoesPais+"</textarea>");}
+				else if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao")	{$('#Observacao_Pais .Plano_Estudo_Content_Registro_Diario_Tabela_Texto').append("<input type='hidden' name='observacoesPais' id='observacoesPais' value='"+data.observacoesPais+"' />"+data.observacoesPais);} 
 	
 				//preenche campo Auto Avaliacao
 				$('.Plano_Estudo_Content_Auto_Avaliacao_Content').empty(); 
 	
-				if(usuario == "Aluno")			{$('.Plano_Estudo_Content_Auto_Avaliacao_Content').append('<textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" name="autoAvaliacao" id="autoAvaliacao">'+data.autoAvaliacao+'</textarea>');}
-				else if(usuario == "Professor" || usuario == "Coordenacao")	{$('.Plano_Estudo_Content_Auto_Avaliacao_Content').append("<input type='hidden' name='autoAvaliacao' id='autoAvaliacao' value='"+data.autoAvaliacao+"' />"+data.autoAvaliacao);}
+				if(usuarioPerfil == "Aluno")			{$('.Plano_Estudo_Content_Auto_Avaliacao_Content').append('<textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" name="autoAvaliacao" id="autoAvaliacao">'+data.autoAvaliacao+'</textarea>');}
+				else if(usuarioPerfil == "Professor" || usuarioPerfil == "Coordenacao")	{$('.Plano_Estudo_Content_Auto_Avaliacao_Content').append("<input type='hidden' name='autoAvaliacao' id='autoAvaliacao' value='"+data.autoAvaliacao+"' />"+data.autoAvaliacao);}
 			
 				$('#Periodo_Plano_Estudo').empty();
 				
