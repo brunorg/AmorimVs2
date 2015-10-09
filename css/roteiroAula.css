@@ -205,8 +205,17 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 .item{
 	width: 98%;
 	float: left;
-	margin-bottom: 2px;
+	height: 40px;
+	margin-bottom: 1px;
 	cursor: pointer;
+}
+
+.aparecer{
+	display:block !important;
+}
+
+.escondido{
+	display: none;
 }
 
 div.item:nth-child(odd){
@@ -218,6 +227,8 @@ div.item:nth-child(even){
 }
 
 .titulo_roteiro, .titulo_objetivo, .titulo_atividade{
+	position: relative;
+    left: 2%;
 	width: 95%;
 	float: left;
 	padding: 12px;
@@ -225,31 +236,66 @@ div.item:nth-child(even){
 
 .utilizarRoteiro{
 	float: right;
-	padding: 21px;
-	background-color: #C9C9C4;
-	background-image: url(../img/ic_clonar.png);
-	background-repeat: no-repeat;
-	background-position: 8px;
-	cursor: pointer;
+    position: relative;
+    top: -42px;
+    padding: 20px;
+    background-color: #C9C9C4;
+    background-image: url(../img/ic_clonar.png);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    cursor: pointer;
 }
-
+.listarObjetivo{
+	float: left;
+    position: relative;
+    right:95%;
+    padding: 21px;
+    background-color: #6666;
+    background-image: url(../img/ic_seta_baixo.png);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    cursor: pointer;
+}
+.voltarObjetivo{
+	float: left;
+    position: relative;
+    right:95%;
+    padding: 21px;
+    background-color: #6666;
+    background-image: url(../img/ic_seta_cima.png);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    cursor: pointer;
+}
+.objetivoExpandido{
+    background-image: url(../img/ic_seta_cima.png);
+}
 .editar{
 	position: relative;
     right: 44px;
     float: right;
-    padding: 21px;
+    padding: 29px 26px 11px 15px;
     background-color: #C9C9C4;
     background-image: url(../img/bt_editar.png);
     background-repeat: no-repeat;
     background-position: 3px;
     cursor: pointer;	
 }
-
+.nomeObj{
+	background-color: #dfded4;
+    position: relative;
+    left: 2%;
+    width: 95%;
+    float: left;
+    padding: 12px;
+    margin: 0px;
+    border: 1px solid #e5e5dc;
+}
 .excluir{
 	position: absolute;
-    right: 57px;
+    right: 19px;
     float: right;
-    padding: 21px;
+    padding: 29px 26px 11px 15px;
     background-color: #C9C9C4;
     background-image: url(../img/fechar.png);
     background-repeat: no-repeat;
@@ -295,6 +341,14 @@ div.item:nth-child(even){
 #box_barra{
 	margin-top: 5px;
     height: 318px;
+}
+#box_barra1{
+	margin-top: 5px;
+    height: 420px;
+}
+#box_barra2{
+	margin-top: 5px;
+    height: 420px;
 }
 .mCustomScrollBox {
 	background-color:#F9F9F7 !important;

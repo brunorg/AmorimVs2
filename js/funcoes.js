@@ -166,6 +166,18 @@ $(document).ready(function() {
 		scrollButtons:{
 			enable:true
 		}
+	});
+	$("#box_barra1").mCustomScrollbar({
+		axis:"y", // vertical and horizontal scrollbar
+		scrollButtons:{
+			enable:true
+		}
+	});	
+	$("#box_barra2").mCustomScrollbar({
+		axis:"y", // vertical and horizontal scrollbar
+		scrollButtons:{
+			enable:true
+		}
 	});			
 	
 	$("#box_geral_observacao").mCustomScrollbar({
