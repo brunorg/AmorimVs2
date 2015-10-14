@@ -11,6 +11,7 @@ var a;
 var contador;
 var largura;
 var ContadorPA;
+var idPlanoEstudoSession;
 var d = new Date();
 var ObjetivoCompletosAdd =0;
 var RoteirosCompletosAdd = 0;
@@ -417,7 +418,9 @@ function CarregarPlanos() {
 		}
 	});
 
-	if (Date.UTC(dataPlanoEstudo.dataFim.split('-')[0], dataPlanoEstudo.dataFim.split('-')[1], dataPlanoEstudo.dataFim.split('-')[2]) >= Date.UTC(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()))
+	idPlanoEstudoSession = dataPlanoEstudo.idplanoEstudo;
+
+	if (getUTC(dataPlanoEstudo.dataFim) >= Date.UTC(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()))
 	{
 		//Colocar Data
 		var semanaPlano = dataPlanoEstudo.dataInicio.split('-')[1] + '/' +  dataPlanoEstudo.dataInicio.split('-')[2] + " - " + dataPlanoEstudo.dataFim.split('-')[1] + '/' +  dataPlanoEstudo.dataFim.split('-')[2]
@@ -428,7 +431,7 @@ function CarregarPlanos() {
 		var dataPlanejamento;
 	
 		$.ajax({
-			url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+dataPlanoEstudo.idplanoEstudo,
+			url: path+"PlanejamentoRoteiro/RoteirosAtivos/"+idPlanoEstudoSession,
 			type: "GET",
 			async: false,
 			crossDomain: true,
@@ -444,7 +447,7 @@ function CarregarPlanos() {
 			planoLinha = ''
 			if ($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).length > 0)
 			{
-				if($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Num").length %7 == 0)
+				if($("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro + " .PlanoEstudo_Num").length % 8 == 0)
 				{
 					$("#Roteiro" + dataPlanejamento[i].objetivo.roteiro.idroteiro).append('<div class="PlanoEstudo_Linha_Conteudo"></div>');
 				}
@@ -464,14 +467,55 @@ function CarregarPlanos() {
 			}
 		}
 	
-		$('.PlanoEstudo_Num').click(function(){
+		$('.planejado').click(function(){
 			alteraEstado($(this));
 		});
+
+		// carregar registros
+		var dataRegistros
+
+		d = new Date();
+		for (var i = 5; i >= 1; i--)
+		{
+			var daysBefore = new Date(d.getTime());
+			daysBefore.setDate(daysBefore.getDate() - i);
+
+			if (Date.UTC(daysBefore.getFullYear(), daysBefore.getMonth() + 1, daysBefore.getDate()) >= getUTC(dataPlanoEstudo.dataInicio))
+			{
+				HtmlContent = '<div class="dia_registro_box"><div class="dia_registro" id="'+ (daysBefore.getMonth() + 1) + '-' + daysBefore.getDate() +'">'+ daysBefore.getDate() + '/' + (daysBefore.getMonth() + 1) +'</div></div>'
+				//inserir
+			}
+			$('.linha_datas_registro').append(HtmlContent);
+		}
+
+		HtmlContent = '<div class="dia_registro_box"><div class="dia_registro dia_ativo" id="'+ (d.getMonth() + 1) + '-' + d.getDate() +'">'+ d.getDate() + '/' + (d.getMonth() + 1) +'</div></div>';
+		$('.linha_datas_registro').append(HtmlContent);
+		getRegistroDia((d.getMonth() + 1) + '-' + d.getDate());
+
+		$('.dia_registro').click(function() {
+			$('.dia_ativo').removeClass('dia_ativo');
+			$(this).addClass('dia_ativo');
+			getRegistroDia($(this)[0].id);
+		});
+		$('.editar_button').click(function() {
+			salvarRegistroAtual();
+		});
+
+		$('.textarea_registro textarea').removeAttr('disabled');
 	}
 	else
 	{
-		//adcionar botão
-		
+		HtmlContent = '<div class="botao_novo_plano">' +
+                      	'<img src="img/plano_estudo_novo_normal.png">' +
+                      '</div>'+
+                      '<div style="clear: both"></div>';
+		$('.PlanoEstudo_Cabecalho_Nome').append(HtmlContent);
+		HtmlContentData = '<div class="dia_registro_box"><div class="dia_registro">'+ (new Date()).getDate() + '/' + ((new Date()).getMonth() + 1) +'</div></div>'
+		$('.linha_datas_registro').append(HtmlContentData);
+		$('.botao_novo_plano').click(function () {
+			localStorage.setItem("novoPlano", 'true');
+    		window.location.href = "planoDeEstudo.html";
+		});
 	}
 };
 
@@ -479,7 +523,7 @@ function CarregarPlanos() {
 
 function alteraEstado (planejamento) {
 	if (!planejamento.hasClass('revisado'))
-		mensagem("Deseja alterar o estado desse planejamento?","Cancelar","bt_cancelar","confirm", '', planejamento.prop('id'), "alteraEstadoIndividual");
+		mensagem("Deseja entregar esse planejamento?","Cancelar","bt_cancelar","confirm", '', planejamento.prop('id'), "alteraEstadoIndividual");
 }
 
 function alteraEstadoIndividual (servico, id) {
@@ -534,7 +578,7 @@ function getPlanejamento (planejamento) {
 
 	if(planejamento.status == 1)
 	{
-	    planejamentoContent += '<div class="PlanoEstudo_Num" id="' + planejamento.idplanejamentoRoteiro + '">'+ planejamento.objetivo.numero + '</div>';
+	    planejamentoContent += '<div class="PlanoEstudo_Num planejado" id="' + planejamento.idplanejamentoRoteiro + '">'+ planejamento.objetivo.numero + '</div>';
 	} else if(planejamento.status == 2){
 	    planejamentoContent += '<div class="PlanoEstudo_Num iniciado" id="' + planejamento.idplanejamentoRoteiro + '">'+ planejamento.objetivo.numero+'</div>';
 	} else if(planejamento.status == 3){
@@ -671,6 +715,7 @@ $(document).ready(function() {
 	CarregarRotina();
 	CarregarMural();
 	CarregarPlanos();
+	//CarregarRegistros();
 	CarregaServicoProducaoAluno();
 	AtivaUploadCapa();
 	CarregarOficinas();
@@ -789,6 +834,62 @@ function someImagemGaroto(){
 
 //Funcao pra ordenar as classes e afins pela sua ordem alfabetica
 
+function getRegistroDia (dia) {
+	$.ajax({
+		url: path + "RegistroDiario/PlanoEstudoData/" + idPlanoEstudoSession + "/" + (new Date()).getFullYear() + "-" + dia,
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function(dataRegistroDiario) {
+			if (dataRegistroDiario.length > 0)
+			{
+				$('.textarea_registro textarea').html(dataRegistroDiario[0].registro);
+				$('.textarea_registro textarea').attr('id', dataRegistroDiario[0].idregistroDiario);
+			}
+			else
+			{
+				$('.textarea_registro textarea').html('');
+				$('.textarea_registro textarea').removeAttr('id');
+			}			
+		},
+		complete: function() {
+			loading('final');
+		}
+	});
+}
+
+function salvarRegistroAtual () {
+
+	var identificador = $('.textarea_registro textarea').attr('id');
+	var registro = $('.textarea_registro textarea').val();
+	var dataPostagem = (new Date()).getFullYear() + '-' + $('.dia_ativo')[0].id;
+	var action;
+
+	if (identificador != undefined)
+		action = 'update';
+	else
+		action = 'create';
+	$.ajax({
+		url: path+"RegistroDiario/",
+		type: "POST",
+		crossDomain: true,
+		data: "id="+identificador+"&action="+action+"&registro="+registro+"&planoEstudo="+idPlanoEstudoSession+"&data="+dataPostagem,
+		beforeSend: function(){
+			loading("inicial");	
+		},success: function(d) {
+			mensagem("Alterado com sucesso!","OK","bt_ok","sucesso");
+			if (action = 'create')
+				$('.textarea_registro textarea').attr('id', d);
+		},complete: function(){
+			loading("final");	
+		},
+	});	
+	
+}
+
 function OrdenarPor(TString)
 {				
 
@@ -869,3 +970,6 @@ function contagemObjetivo()
 	return contagem;
 }
 
+function getUTC (data) {
+	return Date.UTC(data.split('-')[0], data.split('-')[1], data.split('-')[2])
+}

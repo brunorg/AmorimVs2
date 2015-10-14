@@ -904,3 +904,8 @@ function reSetObjetivo(IDObjetivo)
     $('#td_objetivo_squr_'+IDObjetivo).attr('onclick', 'trocarObjetivoStatus(this,'+IDObjetivo+','+PlanoEstudoSessionID+','+IDplanejRoteiro+')');
 
 }
+
+function responderObservacao (idMensagem) {
+    localStorage.setItem("respostaObservacao", idMensagem);
+    window.location.href = "mensagens.html";
+}

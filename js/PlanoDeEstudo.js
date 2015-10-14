@@ -253,7 +253,6 @@ $(document).ready(function() {
 	/*fim menu*/
 
 	/*Inicia o banco*/
-
 	
 	//InitSetPlanoEstudo();  // No MudarNovoPlano() já chama essa função!! 
 	loadHistorico();
@@ -275,7 +274,12 @@ $(document).ready(function() {
 
 	}
 
+	if(localStorage.getItem("novoPlano") != null && localStorage.getItem("novoPlano") != "")
+	{
+		$('.novo')[0].click();
+	}
 
+	localStorage.setItem("novoPlano", '');
 
 });
 
