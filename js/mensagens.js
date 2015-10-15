@@ -352,9 +352,7 @@ function setMSGSend(Numero)
 		{
 
 			if(Numero == 1)
-			{
-			
-				
+			{			
 				$("#Resp_frame").show();
 				
 
@@ -583,7 +581,7 @@ function ListarCaixaEntrada(inicio,fim){
 				var dataMSG = (dataMensagensEntrada[a].data.substr(8, 2))+'/'+(dataMensagensEntrada[a].data.substr(5, 2))+'/'+(dataMensagensEntrada[a].data.substr(0, 4));
 	
 				//Se o Aluno Existir nessa lista de Usuários
-				if(usuario == "Aluno" && dataMensagensEntrada[a].proprietario.aluno != null)
+				if(usuario == "Aluno" && (dataMensagensEntrada[a].proprietario.aluno != null || dataMensagensEntrada != ''))
 				{
 					//Se a mensagem for para este usuário e se estiver na caixa de Entrada
 					if(dataMensagensEntrada[a].proprietario.idusuario == userID && dataMensagensEntrada[a].cxEntrada == "S")
@@ -598,7 +596,7 @@ function ListarCaixaEntrada(inicio,fim){
 					}
 	
 				//Se o Professor Existir nessa lista de Usuários
-				} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && dataMensagensEntrada[a].proprietario.professor != null){
+				} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && (dataMensagensEntrada[a].proprietario.professor != null || dataMensagensEntrada == '')){
 					//Se a mensagem for para este usuário e se estiver na caixa de Entrada
 					if(dataMensagensEntrada[a].proprietario.idusuario == userID && dataMensagensEntrada[a].cxEntrada == "S")
 					{
@@ -647,7 +645,7 @@ function ListarEnviadas(ultima,inicio,fim)
 					var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
 			
 					//Se o Aluno Existir nessa lista de Usuários
-					if(usuario == "Aluno" && dataMensagensSaida[a].remetente.aluno != null)
+					if(usuario == "Aluno" && (dataMensagensSaida[a].remetente.aluno != null || dataMensagensSaida !=''))
 					{
 						//Se a mensagem for para este usuário e se estiver na caixa de Saída
 						if(dataMensagensSaida[a].remetente.idusuario == userID && dataMensagensSaida[a].cxEnviada == "S")
@@ -661,7 +659,7 @@ function ListarEnviadas(ultima,inicio,fim)
 										   '</div>';
 						}
 						//Se o Professor Existir nessa lista de Usuários
-					} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && dataMensagensSaida[a].remetente.professor != null){
+					} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && (dataMensagensSaida[a].remetente.professor != null || dataMensagensSaida != '')){
 						//Se a mensagem for para este usuário e se estiver na caixa de Saída
 						if(dataMensagensSaida[a].remetente.idusuario == userID && dataMensagensSaida[a].cxEnviada == "S")
 						{
@@ -690,6 +688,7 @@ function ListarEnviadas(ultima,inicio,fim)
 				}
 				
 			}else{
+				//$('#Col_CaixaDeMensagens').html('');
 				return 0;
 			}
 		}
