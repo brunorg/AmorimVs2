@@ -16,7 +16,7 @@ var funcao;
 
 var htmlContent;
 
-var dataObjetivo 			=	getData("Objetivo", null);
+var dataObjetivo =	getData("Objetivo", null);
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -25,56 +25,57 @@ var dataObjetivo 			=	getData("Objetivo", null);
 $(document).ready(function(){
 	if(usuario == "Coordenacao")
 	{
-		initCoordena();
+		initCoordena(dadosUsuario.professor.idprofessorFuncionario);
 	} else if(usuario == "Professor")
 	{
-		initProfessor();
+		initProfessor(dadosUsuario.professor.idprofessorFuncionario);
 	}
 });
 
-function getTutoria(IDtutor)
-{
+function getTutoria(idProfFuncionario){
+	
 	var returnTutor = [];
-	if(dataTutoria.length > 0){
-		for(var i = 0; i < dataTutoria.length; i++)
-		{
-			if(dataTutoria[i].tutor.idprofessorFuncionario == IDtutor)
-			{
-				returnTutor[returnTutor.length] = dataTutoria[i].idtutoria;
-			}
+	$.ajax({
+		url: path+"Tutoria/Professor/"+idProfFuncionario+"/2015",
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(d) {
+			returnTutor[returnTutor.length] = d[0].idtutoria;
 		}		
-	}else{
-		returnTutor[0] = "Este professor não possui grupos!"
-	}
+	});
+	//console.log(returnTutor);
 	return returnTutor;
 }
 
 function getGrupo(IDtutor)
 {
-
-  	for (var i = 0; i < dataGrupo.length;i++)
-  	{
-  		if(dataGrupo[i].tutoria.idtutoria == IDtutor)
-  		{
-  			gruposProfessor[gruposProfessor.length]=dataGrupo[i];
-  		}
-
-  	}
-
+	
+	$.ajax({
+		url: path+"Grupo/GrupoTutoria/"+IDtutor,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(dataGrupo) {
+			for (var i = 0; i < dataGrupo.length;i++)
+			{
+				gruposProfessor[gruposProfessor.length]=dataGrupo[i];
+			}
+		}		
+	});
 }
 
 function getAlunos(grupos)
 {
+	console.log(grupos);
 	var aux = [];
 	var auxAlunos = [];
 	//var alunVar = [];
-		if(grupos.constructor == Array){
-	
-		for (var a = 0; a < grupos.length ; a++){	
-	
-		aux = getData("AlunoVariavel/grupo",grupos[a].idgrupo);
-		//console.log(aux);	
-		auxAlunos =	auxAlunos.concat(aux);		
+	if(grupos.constructor == Array){	
+		for (var a = 0; a < grupos.length ; a++){		
+			aux = getData("AlunoVariavel/grupo",grupos[a].idgrupo);
+			//console.log(aux);	
+			auxAlunos =	auxAlunos.concat(aux);		
 		}	
 	}
 	return auxAlunos;
@@ -85,14 +86,12 @@ function getAlunos(grupos)
 
 	
 //Inicia se Coordenador esta logado
-function initCoordena()
+function initCoordena(idProfFuncionario)
 {
-	dataUsuario 				=	getData("Usuario", professorID);
+	dataUsuario 				=	dadosUsuario.idusuario;
 	dataTutoria 				=	getData("Tutoria", null);
 	dataGrupo 					=	getData("Grupo", null);
-	professorID 				= 	getProfessorByUsuario(usuarioId);
-	dataProfessorFuncionario 	=	getData("ProfessorFuncionario", professorID);
-	dataAlunoVariavel			=	getData("AlunoVariavel", null);
+	professorID 				= 	getProfessorByUsuario();
 	
 	Tutor = base64_decode(GetURLParameter('ID'));
 
@@ -100,11 +99,7 @@ function initCoordena()
 
 	drawBoxProfessor(Tutor);
 
-	dataTutoria 	=	getData("Tutoria", null);
-	dataGrupo =	getData("Grupo", null);
-	dataProfessorFuncionario 	=	getData("ProfessorFuncionario", Tutor);
-
-	tutoria = 	getTutoria(dataProfessorFuncionario.idprofessorFuncionario);
+	tutoria = 	getTutoria(idProfFuncionario);
 
 	for(var i = 0; i< tutoria.length;i++){
 		getGrupo(tutoria[i]);
@@ -117,16 +112,13 @@ function initCoordena()
 }
 
 //Inicia se professor esta logado
-function initProfessor()
+function initProfessor(idProfFuncionario)
 {
-	dataUsuario 				=	getData("Usuario", professorID);
+	dataUsuario 				=	dadosUsuario.idusuario;
 	dataTutoria 				=	getData("Tutoria", null);
-	dataGrupo 					=	getData("Grupo", null);
-	professorID 				= 	getProfessorByUsuario(usuarioId);
-	dataProfessorFuncionario 	=	getData("ProfessorFuncionario", professorID);
-	dataAlunoVariavel			=	getData("AlunoVariavel", null);
+	professorID 				= 	getProfessorByUsuario();
 	
-	tutoria = 	getTutoria(dataProfessorFuncionario.idprofessorFuncionario);
+	tutoria = 	getTutoria(idProfFuncionario);
 	for(var i = 0; i< tutoria.length;i++){
 		
 		getGrupo(tutoria[i]);
@@ -210,41 +202,30 @@ function initProfessor()
 
 					var dataAlunoVariavel = getAlunoVariavel(alunos[j].aluno.idAluno);
 
-					var roteirosAtribuidos;
-    				$.ajax({
-    					    type: "GET",
-    					    async:false,
-    					    crossDomain: true,
-    					    url: path+"AtribuicaoRoteiroExtra/aluno/"+dataAlunoVariavel.aluno.idAluno          
-						}).then(function(data) {
-							roteirosAtribuidos = data;
-					});
-
 					var NumeroRetornoPlanejamento = getNumeroPlanejamento(alunos[j].aluno.idAluno,1);
 					
 					var LimiteTT =0;
 					var LimiteAnterior = 0;
 					var LimiteProximo = 0;
 
-					for(var b=0; b< dataObjetivo.length;b++)
-					{
-						if(dataObjetivo[b].ativo == "1" && dataObjetivo[b].roteiro.ativo == "1" && dataObjetivo[b].roteiro.anoEstudo.idanoEstudo == dataAlunoVariavel.anoEstudo.idanoEstudo)
-						{
-							LimiteTT++;
+					$.ajax({
+						url:path+"PlanejamentoRoteiro/ListarTotal/"+dataAlunoVariavel.aluno.idAluno ,
+						type:"GET",
+						async:false,
+						success: function(data){
+							LimiteTT = data;
 						}
-						else
-						{
-							for (var k = 0; k < roteirosAtribuidos.length; k++)
-								{
-									if(dataObjetivo[b].ativo == "1" && dataObjetivo[b].roteiro.idroteiro == roteirosAtribuidos[k].idroteiro && dataObjetivo[b].roteiro.anoEstudo.ano < dataAlunoVariavel.anoEstudo.ano)
-										{LimiteAnterior++;}
-									else if(dataObjetivo[b].ativo == "1" && dataObjetivo[b].roteiro.idroteiro == roteirosAtribuidos[k].idroteiro && dataObjetivo[b].roteiro.anoEstudo.ano > dataAlunoVariavel.anoEstudo.ano)
-										{LimiteProximo++;}
-								}
+					});
+					
+					$.ajax({
+						url: path+"PlanejamentoRoteiro/HashAtribuicao/"+dataAlunoVariavel.aluno.idAluno,
+						type:"GET",
+						async:false,
+						success: function(data){
+							LimiteAnterior = data.LimiteAnterior;
+							LimiteProximo =  data.LimiteProximo;
 						}
-					}
-
-					dataPlanejamentoRoteiro = getData('PlanejamentoRoteiro/aluno', dataAlunoVariavel.aluno.idAluno);
+					})
 
 					var completos = 0;
 					var completosAnterior = 0;
@@ -252,38 +233,41 @@ function initProfessor()
 					var SerieAtualCorrigidoCont = 0;
 					var SerieAnteriorCorrigidoCont = 0;
 					var SerieProximaCorrigidoCont = 0;
-
-					for(var c = 0; c < dataPlanejamentoRoteiro.length; c++)
-					{
-						if (dataPlanejamentoRoteiro[c].status == "2")
-						{
-							if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano == dataAlunoVariavel.anoEstudo.ano) 
-								{completos++;}
-							else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano < dataAlunoVariavel.anoEstudo.ano)
-								{completosAnterior++;}
-							else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano > dataAlunoVariavel.anoEstudo.ano)
-								{completosProximo++;}
+					var completoshash2 = 0;
+					var completosAnteriorhash2 = 0;
+					var completosProximohash2 = 0;
+					var completoshash3 = 0;
+					var completosAnteriorhash3 = 0;
+					var completosProximohash3 = 0;
+					
+					$.ajax({
+						url: path+"PlanejamentoRoteiro/HashStatus2/"+dataAlunoVariavel.aluno.idAluno,
+						type:"GET",
+						async:false,
+						success: function(data){						
+							completoshash2 = data.completos;
+							completosAnteriorhash2 = data.completosAnterior;
+							completosProximohash2 = data.completosProximo;
+							
 						}
-						else if (dataPlanejamentoRoteiro[c].status == "3")
-						{
-						if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano == dataAlunoVariavel.anoEstudo.ano) 
-							{
-								completos++;
-								SerieAtualCorrigidoCont++;
-							}
-						else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano < dataAlunoVariavel.anoEstudo.ano)
-							{
-								completosAnterior++;
-								SerieAnteriorCorrigidoCont++;
-							}
-						else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano > dataAlunoVariavel.anoEstudo.ano)
-							{
-								completosProximo++;
-								SerieProximaCorrigidoCont++;
-							}
+					})
+					
+					$.ajax({
+						url: path+"PlanejamentoRoteiro/HashStatus3/"+dataAlunoVariavel.aluno.idAluno,
+						type:"GET",
+						async:false,
+						success: function(data){			
+							completoshash3 = data.completos;
+							SerieAtualCorrigidoCont = data.completos;	
+							completosAnteriorhash3 = data.completosAnterior;
+							SerieAnteriorCorrigidoCont = data.completosAnterior;	
+							completosProximohash3 = data.completosProximo;
+							SerieProximaCorrigidoCont =data.completosProximo;
 						}
-					}
-
+					})
+					
+					completos = completoshash2 + completoshash3;
+				
 					var barrasExercicios = "";
 
 					if(LimiteProximo != 0)
@@ -297,7 +281,6 @@ function initProfessor()
 						{
 							SerieAtual = (completos/LimiteTT) * 100;
 							SerieAtualCorrigido = (SerieAtualCorrigidoCont/completos) * 100;
-							console.log(SerieAtualCorrigidoCont/completos + " " + SerieAtualCorrigidoCont + " " + completos)
 							barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Left" style="height:'+(SerieAtual)+'%;">';
 							barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
 							barrasExercicios+='</div>';
@@ -314,7 +297,6 @@ function initProfessor()
 						{
 							SerieAtual = (completos/LimiteTT) * 100;
 							SerieAtualCorrigido = (SerieAtualCorrigidoCont/completos) * 100;
-							console.log(SerieAtualCorrigidoCont/completos + " " + SerieAtualCorrigidoCont + " " + completos)
 							barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right" style="height:'+(SerieAtual)+'%;">';
 							barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
 							barrasExercicios+='</div>';
@@ -324,7 +306,6 @@ function initProfessor()
 					{
 						SerieAtual = (completos/LimiteTT) * 100;
 						SerieAtualCorrigido = (SerieAtualCorrigidoCont/completos) * 100;
-						console.log(SerieAtualCorrigidoCont/completos + " " + SerieAtualCorrigidoCont + " " + completos)
 						barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Center" style="height:'+(SerieAtual)+'%;">';
 						barrasExercicios+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
 						barrasExercicios+='</div>';
@@ -432,28 +413,24 @@ function drawBoxProfessor(Tutor)
 /* External */
 
 
-function getProfessorByUsuario(IDusuario)
+function getProfessorByUsuario()
 {
-	for(var a=0; a< dataUsuario.length; a++)
-	{
-		if(dataUsuario[a].idusuario == IDusuario)
-		{
-			return dataUsuario[a].professor.idprofessorFuncionario;
-		}
-	}
+	return dadosUsuario.professor.idprofessorFuncionario;	
 }
 
-function getAlunoVariavel(IDaluno)
-{
-	if(dataAlunoVariavel.length > 0){
-		for(var a=0; a< dataAlunoVariavel.length; a++)
+function getAlunoVariavel(IDaluno){
+	var retorno;
+	$.ajax({
+		url: path+"AlunoVariavel/aluno/"+IDaluno,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(data)
 		{
-			if(dataAlunoVariavel[a].aluno.idAluno == IDaluno)
-			{
-				return dataAlunoVariavel[a];
-			}
+			retorno = data;
 		}
-	}
+	});
+	return retorno;	
 }
 
 

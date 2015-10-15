@@ -1557,6 +1557,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 9% auto;
 		-khtml-background-size: 9% auto;
 		-moz-background-size: 9% auto;
+	}
 	.Content_lateral_Menu_Opcao .forum {
 		background-position: 6px 10px;
 		font-size: 12px;
@@ -1594,7 +1595,7 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
 	}
-	}
+	
 	.Content_lateral_Menu_Opcao .tutores{
 		background-position: 10px 8px;
 		font-size: 12px;

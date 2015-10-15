@@ -159,26 +159,7 @@ $(document).ready(function() {
 		scrollButtons:{
 			enable:true
 		}
-	});	
-
-	$("#box_barra").mCustomScrollbar({
-		axis:"y", // vertical and horizontal scrollbar
-		scrollButtons:{
-			enable:true
-		}
-	});
-	$("#box_barra1").mCustomScrollbar({
-		axis:"y", // vertical and horizontal scrollbar
-		scrollButtons:{
-			enable:true
-		}
-	});	
-	$("#box_barra2").mCustomScrollbar({
-		axis:"y", // vertical and horizontal scrollbar
-		scrollButtons:{
-			enable:true
-		}
-	});			
+	});		
 	
 	$("#box_geral_observacao").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
@@ -254,24 +235,15 @@ $(document).ready(function() {
 	$("#boxMensagem").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar	
 	});	
-	
-	$("#Area_Alunos_Container").mCustomScrollbar({
-		axis:"y" // vertical and horizontal scrollbar	
-	});	
 		
 	$("#menu_lateral_atividade").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
 	});	
 	
-	$("#Mural_Conteudo").mCustomScrollbar({
+	$("#boxRoteiros").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
 	});
-	$(".Oficinas_Conteudo").mCustomScrollbar({
-		axis:"y" // vertical scrollbar
-	})
-	$("#PlanoEstudo_Conteudo").mCustomScrollbar({
-		axis:"y" // vertical scrollbar
-	})
+
 	$(".Light_Eventos_Conteudo").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
 	});
@@ -492,7 +464,7 @@ function base64_decode(data) {
  */ 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 {	
-	console.log(class_btn);
+	
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
@@ -530,27 +502,40 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);
 		}, 1000);
-	}
-	//Chama uma função diferente para cada opção possível do usuário
-	//Ambas as funções devem ter os mesmos argumentos
-	else if(tipo_msg=="opcao")
-	{
-		var HtmlContent = '<div class="box_mensagem">'+
-								'<div class="txt_mensagem">'+
-									'<span id="'+tipo_msg+'"></span>'+texto
-								+'</div>'+
-								'<div class="btn_mensagem">'+
-									'<input type="button" class="bt_ok left" value="'+tipo_btn+'" onclick="'+funcao[0]+'(\''+servico+'\',\''+id+'\')"/>'+
-									'<input type="button" class="bt_cancelar left" value="'+class_btn+'" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
-								'</div>'+
-							'</div>';
-
-		$( "#boxMensagemGeral" ).html(HtmlContent).show();
-
-		window.setTimeout(function(){
-			botoes(tipo_btn,class_btn);
-		}, 1000);
 	}	
+}
+function confirmMsg(texto)
+{
+	var resp;
+	var HtmlContent = '<div class="box_mensagem">'+
+					'<div class="txt_mensagem">'+
+						'<span id="alerta"></span>'+texto
+					+'</div>'+
+					'<div class="btn_mensagem">'+
+						'<input type="button" class="bt_ok left" value="OK" />'+
+						'<input type="button" class="bt_cancelar left" value="Cancelar" />'+
+					'</div>'+
+				'</div>';
+
+	$( "#boxMensagemGeral" ).html(HtmlContent).show();
+	window.setTimeout(function(){
+		resp = botoesConfirm();
+	}, 1000);
+	
+	return resp;
+}
+function botoesConfirm(){
+	var opcao;
+	$(".bt_ok").click(function(){
+		$( "#boxMensagemGeral" ).hide();
+		opcao = "true";
+	});	
+	
+	$(".bt_cancelar").click(function(){
+		$( "#boxMensagemGeral" ).hide();
+		opcao = "false";
+	});	
+	return opcao;	
 }
 
 function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)
@@ -594,7 +579,6 @@ function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)
 }
 
 function botoes(tipo_btn,class_btn){
-
 	switch (tipo_btn){
 		case "OK":
 			$("."+class_btn).click(function(){
@@ -713,15 +697,17 @@ function presencaAluno(IDaluno){
 
 	if(saveChamada == null || saveChamada == undefined)
 	{
-		saveChamada = getData("Chamada", null);
-	}
-
-	for (var i = 0; i < saveChamada.length ; i++){
-		if(saveChamada[i].aluno.idAluno == IDaluno && saveChamada[i].presenca == 0){
-			counter++;
-		}
-	}
-	
+		$.ajax({
+			url: path+"Chamada/faltas/"+IDaluno,
+			type: "GET",
+			async:false,
+			crossDomain: true,
+			success: function(saveChamada)
+			{
+				counter = saveChamada;
+			}
+		});
+	}	
 	return counter;
 }
 
@@ -951,22 +937,6 @@ function fechaFormAtualizar(){
 function cancelaAlter(){
 	$( "#boxMensagemGeral").css("display","none");
 }
-
-function diasEntre( data1, data2 ) {
-  //Get 1 day in milliseconds
-  var diaEmMilisegundos=1000*60*60*24;
-
-  // Convert both dates to milliseconds
-  var data1milisegundos = data1.getTime();
-  var data2milisegundos = data2.getTime();
-
-  // Calculate the difference in milliseconds
-  var diferencamilisegundos = data2milisegundos - data1milisegundos;
-    
-  // Convert back to days and return
-  return Math.round(diferencamilisegundos/diaEmMilisegundos); 
-}
-
 
 function alterarSenha(){
 	

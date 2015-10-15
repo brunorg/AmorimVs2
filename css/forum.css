@@ -58,9 +58,9 @@ a.barra_titulo{
 	float: right;
 	/* margin-right: 43px; */
 }
-.esquerda{
-	float:left;
-	width: 436px;
+.esquerda {
+    float: left;
+    width: 640px;
 }
 .btn_forum{
 	text-decoration:none;

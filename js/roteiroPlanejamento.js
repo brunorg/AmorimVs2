@@ -1,11 +1,13 @@
 //Murano Design
 //Get Usuario Efetivado
 var userID = usuarioId;
-var anoEstudo = getAnoEstudoByAluno();
+if(usuario=="Aluno"){
+	var alunoID = dadosUsuario.aluno.idAluno;	
+}
+var anoEstudo = getAnoEstudoByAluno(alunoID);
 var PlanoEstudoSessionID = getUltimoPlanoEstudo();
 //----------------------------------------------------------------------------------------------------------------
 //Carrega os valores utilizados do BD
-var alunoID = getAlunoByUsuario(userID);
 var dataRecursoAprendizagem     =   getData("RecursoAprendizagem", null);
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -598,6 +600,7 @@ function trocarObjetivoStatus(Objeto, IDobjetivo, IDplanoEstudo, IDplanejamentoR
 }
 
 function entregarPlanejamento (IDplanejamentoRoteiro, IDobjetivo) {
+	$("#boxMensagemGeral").css("display","none");
     $.ajax({
         url: path+"PlanejamentoRoteiro/StatusPlanejamento",
         type: "POST",
@@ -863,7 +866,7 @@ function ApareceAtiv (idObjetivo) {
     $('.Obj_' + idObjetivo + ' .conteudo_do_roteiro').toggle();
 }
 
-function getAnoEstudoByAluno()
+function getAnoEstudoByAluno(alunoID)
 {   
     var retorno;
     $.ajax({

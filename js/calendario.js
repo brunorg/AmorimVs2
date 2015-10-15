@@ -180,7 +180,7 @@ function getSelectedDates()
 	var eventos = new Array();
     
 	$.ajax({
-        url: path+'Calendario',
+        url: path+'Calendario/Range',
         dataType: 'json',
         async: false,
         success: function(data){
