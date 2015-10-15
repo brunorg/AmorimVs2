@@ -96,7 +96,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	padding: 2%;
 	margin: 2% 0;
 	overflow: hidden;
-	height:467px;
+	height:100%;
 }
 
 #Inserir_roteiro input{
@@ -123,7 +123,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	text-align: right;
 	padding: 10px;
 	cursor: pointer;
-	margin: 0 5px;
+	margin: 5px 0px 0px 0px;
 	float: right;
 }
 #btnBuscar{
@@ -140,16 +140,18 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	margin: 0 5px;
 	float: right;
 }
-#btnEditOB{
+#btnEdit{
 	width: 11%;
 	background-color: #29B8CE;
+    background-image: url(../img/OI7.png);
+    background-repeat: no-repeat;
 	background-size: 20px;
 	background-position: 12px 10px;
 	color: white;
 	text-align: right;
 	padding: 10px;
 	cursor: pointer;
-	margin: 0 5px;
+	margin: 5px 3px 0px 0px;
 	float: right;
 }
 #btnEditRot{
@@ -166,15 +168,17 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 }
 #btnNovoOB{
 	width: 11%;
-	background-color: #29B8CE;
-	background-size: 20px;
-	background-position: 12px 10px;
-	color: white;
-	float: right;
-	text-align: right;
-	padding: 10px;
-	cursor: pointer;
-	margin: 0;
+    background-color: #29B8CE;
+    background-image: url(../img/ic_addG_branco.png);
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: 17px 10px;
+    color: white;
+    float: right;
+    text-align: right;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px 0px 0px 0px;
 }
 #btnSalvarObjetivo{
 	width: 11%;
@@ -187,7 +191,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	text-align: right;
 	padding: 10px;
 	cursor: pointer;
-	margin: 0 5px;
+	margin: 5px 3px 0px 0px;
 	float: right;		
 }
 
@@ -212,10 +216,17 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 
 .aparecer{
 	display:block !important;
+    width: 100%;
+    height: 200px;
+    transition:height 1s;   
 }
 
 .escondido{
-	display: none;
+	display: block;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    transition:height 1s;
 }
 
 div.item:nth-child(odd){
@@ -228,10 +239,17 @@ div.item:nth-child(even){
 
 .titulo_roteiro, .titulo_objetivo, .titulo_atividade{
 	position: relative;
-    left: 2%;
+    
 	width: 95%;
 	float: left;
 	padding: 12px;
+}
+.titulo_roteiro1{
+    position: relative;
+    left: 2%;
+    width: 95%;
+    float: left;
+    padding: 12px;
 }
 
 .utilizarRoteiro{
@@ -267,9 +285,7 @@ div.item:nth-child(even){
     background-position: 8px;
     cursor: pointer;
 }
-.objetivoExpandido{
-    background-image: url(../img/ic_seta_cima.png);
-}
+
 .editar{
 	position: relative;
     right: 44px;
@@ -391,9 +407,7 @@ div.item:nth-child(even){
 #Atividade div:nth-child(3){
 	float: right;
 }
-		
-		
-		
+
 /*----Mensagem Exclusao---------*/
 
 #back_black

@@ -92,17 +92,16 @@
                             <div id="Inserir_roteiro">
                                 <div id="conteudo_principal_roteiroExtra">                                
                                     <div id="Inserir_roteiroExtra">
-                                        <input id="pesquisaRoteiro" placeholder="Buscar Roteiro" required> </input>
+                                        <input id="pesquisaRoteiro" placeholder="Buscar Roteiro" oninput="carregaRoteiro('like')" required> </input>
                                     </div>                                                          
-                                    <div class="box_barra1"> 
-                                        <div id="alunos_listados">
-                                            
-                                        </div>
-                                    </div>          
+                          
                                 </div>
                                 <div id="box_barra1">
                                     <div id="box_roteiroAula"></div>
                                 </div>
+                                <div id="box_barra1" style="margin-top:50px;">
+                                        <div id=""></div>
+                                    </div>
                             </div>
                         </div>                    
                         <!-- Conteudo da aba de Roteiro -->
@@ -143,8 +142,8 @@
                                     <p id="btnSalvar" value=""> Salvar </p>
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
-                                    <p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>
-                                    <p id="btnEditRot" style="display:none" value="">Editar</p>
+                                    <!--<p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>-->
+                                    <p id="btnEdit" style="display:none" value="">Editar</p>
                                 </div>                                    
                                 </div>
                                 
@@ -212,7 +211,7 @@
                                         <div class="celulaGrande">
                                             <div class="infoG"> Pesquisa </div>
                                             <div class="infoValueG">
-                                                <input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                                <input type="text" id="pesqRoteiro" style="margin-top: 4px;" oninput="carregaRoteiroPesquisa('like')">
                                             </div>
                                         </div>                                        
                                     </div> 
@@ -226,7 +225,7 @@
                                 <div class="celulaGrande" id="linha8" style="display:none" value="">
                                         <div class="infoG"> Pesquisa </div>
                                         <div class="infoValueG">
-                                            <input type="text" id="pesqRoteiro" style="margin-top: 4px;" onKeyUp="buscaRoteirAula()">
+                                            <input type="text" id="pesqRoteiro" style="margin-top: 4px;" oninput="buscaRoteirAula()">
                                         </div>
                                     </div>
                                     <div id="box_barra" style="margin-top:50px;">
