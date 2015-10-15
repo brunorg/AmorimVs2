@@ -178,7 +178,7 @@ div[class*="box_col"]:last-of-type {
 
 .microfiche-film {
     height: 100% !important;
-    margin: 0px 2px !important;
+    margin: 0px 25px !important;
     transition: transform 0.35s;
 }
 
@@ -216,48 +216,50 @@ div[class*="box_col"]:last-of-type {
 .Portfolio_Conteudo_Box {
 	float: left;
 	display: inline-block;
-	width: 50%;
+	width: 27%;
 	height: 100%;
+	margin-right: 31px;
 }
 
-.Portfolio_Conteudo_Box:first-of-type { padding-right: 9px; }
-
-.Portfolio_Conteudo_Box:last-of-type { padding-left: 9px; }
+.Portfolio_Conteudo_Box:last-of-type { margin-right: 0px; }
 
 .Portfolio_Conteudo_Box > div {
 	float: left;
 	display: inline-block;
-	background-color: #90b957;
+	background-color: white;
 	width: 100%;
 	height: 100%;
-	padding: 18px;
+	padding: 15px;
 }
 
 .Nome_Roteiro {
-	float: left;
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	height: 100%;
-	color: white;
-	line-height: 1.5em;
-	font-size: 16px;
+	color: #666666;
+	line-height: 1.2em;
+	margin-top: 5px;
+	font-size: 10px;
 	text-align: left;
 	font-weight: normal;
-	padding-right: 9px;
 }
 
 .Nome_Roteiro::first-line { line-height: 1em; }
 
 .Img_Roteiro {
-	float: right;
 	display: inline-block;
-	width:50%;
-	height:100%;
+	width:123px;
+	height:123px;
 	background-color: #fff;
 	background-repeat: no-repeat;
 	background-position: center;
 	overflow: hidden;
 	text-align: center;
+	border: 1px solid #666666;
+}
+
+.uploadAtivo{
+	cursor: pointer;
 }
 
 /* Rotina Semanal */
@@ -772,10 +774,10 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	z-index: 999;
 }
 .microfiche-prev-button {
-	left: 4px;
+	left: 18px;
 }
 .microfiche-next-button {
-	left: 597px;
+	left: 584px;
 }
 }
 /*MEDIA TABLET*/

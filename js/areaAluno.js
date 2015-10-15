@@ -234,7 +234,7 @@ function CarregaServicoProducaoAluno()
 		});
 
 		for (var a = 0; a < dataProducaoAluno.length; a++) {			
-				if ( ContadorPA != 2 ) {
+				if ( ContadorPA != 3 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
 					}
@@ -253,11 +253,11 @@ function CarregaServicoProducaoAluno()
 					}
 						HtmlContent += '<div class="Portfolio_Conteudo_Box">';
 			        	HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+			        	HtmlContent += capaDiv;
+						HtmlContent += apresentacao;
+						HtmlContent += '</div>';
 						HtmlContent += '<div class="Nome_Roteiro">';
 						HtmlContent += dataProducaoAluno[a].roteiro.nome;
-						HtmlContent += '</div>';
-						HtmlContent += capaDiv;
-						HtmlContent += apresentacao;
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
@@ -281,11 +281,11 @@ function CarregaServicoProducaoAluno()
 					}
 					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
 			        HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+			        HtmlContent += capaDiv;
+					HtmlContent += apresentacao;
+					HtmlContent += '</div>';
 					HtmlContent += '<div class="Nome_Roteiro">';
 					HtmlContent += dataProducaoAluno[a].roteiro.nome;
-					HtmlContent += '</div>';
-					HtmlContent += capaDiv;
-					HtmlContent += apresentacao;
 					HtmlContent += '</div>';
 					HtmlContent += '</div>';
 					HtmlContent += '</div>';
