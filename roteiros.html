@@ -120,7 +120,7 @@
                 <div class="Conteudo_Coluna" id="content_central">
 				    
                 	<div id="roteiros_cabecalho">
-                        <div class="Roteiro_Linha No_Padding Less_Padding_Itens">
+                        <div class="Roteiro_Linha Less_Padding_Itens">
             		        <div class="Roteiro_Col_4">
                                 <div id="cabecalho_roteiro" class="Cabecalho_Roteiro_Item">Roteiro</div>
                             </div>
@@ -147,11 +147,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="Roteiro_Linha No_Padding_Itens">
+                                            <div class="Item_Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_4">
                                                     <div class="Roteiro_Linha No_Padding_Itens">
                                                         <div class="Roteiro_Col_5">
-                                                            <div class="Ano_Inserir_Info">Ano estudo</div>
+                                                            <div class="Ano_Inserir_Info Input_Info">Ano estudo</div>
                                                         </div>
                                                         <div class="Roteiro_Col_7">
                                                             <div class="Ano_Inserir_Select" id="valueAnoE">
@@ -163,125 +163,141 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="Roteiro_Linha No_Padding_Itens">
+                                            <div class="Item_Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_12">                      
                                                     <input type="hidden" id="id"></input>
-                                                    <input id="nome" placeholder="Nome do roteiro" required> </input>
+                                                    <input id="nome" class="Input_Area" placeholder="Nome do roteiro" required> </input>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="Cabecalho_Roteiro_Inserido" class="Roteiro_Linha No_Padding_Itens">
-                                            <div class="Roteiro_Col_12">
-                                                <h1 class="Nome_Roteiro_Inserido"></h1>
-                                            </div>
-                                            <div class="Roteiro_Col_12">
-                                                <h2 class="Ano_Roteiro_Inserido"></h2>
-                                            </div>
-                                        </div>
-                                        <div id="Roteiro_Inserido" class="Roteiro_Linha">
-                                            <div id="Objetivos_Inseridos">
-                                                <div id="Objetivos_Inseridos_Container">
-
-                                                    <div class="Roteiro_Linha Objetivo_Inserido_Linha No_Padding">
-                                                        <div class="Obj_Inserido_Nome_Container">
-                                                            <div id="Obj_Inserido_Nome1" class="Obj_Inserido_Nome">
-                                                                <span id="Num_Obj_Inserido1" class="Obj_Inserido_Info Num_Obj_Inserido">
-                                                                    <span id="Num_Obj_Info1" class="Num_Obj_Info"></span>
-                                                                    <input type="text" value="" id="Input_Obj_Num1" class="Input_Linha_Obj Input_Obj_Num"></input>
-                                                                </span>
-                                                                <span id="Nome_Obj_Inserido1" class="Obj_Inserido_Info Nome_Obj_Inserido">
-                                                                    <span id="Nome_Obj_Info1" class="Nome_Obj_Info"></span>
-                                                                    <input type="text" value="" id="Input_Obj_Nome1" class="Input_Linha_Obj Input_Obj_Nome"></input>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="Obj_Inserido_Btns">
-                                                            <div class="Obj_Inserido_Btn Btn_Excluir_Objetivo" id="btn_excluir_'+objIndex+'" onclick="excluirObjetivo(\'btn_excluir_'+objIndex+'\')"></div>
-                                                            <div class="Obj_Inserido_Btn Btn_Editar_Objetivo" id="btn_editar_'+objIndex+'" onclick="editarObjetivo('+objIndex+')"></div>
-                                                            <div class="Obj_Inserido_Btn Btn_Atualizar_Objetivo" id="btn_atualizar_'+objIndex+'" onclick="atualizarObjetivo('+objIndex+')"></div>
+                                        <div id="Objetivos_Inseridos" class="Roteiro_Linha">
+                                            <div id="Objetivos_Inseridos_Container">
+                                                <div id="Obj_Inserido_1" class="Obj_Inserido">
+                                                    <div id="Obj_Inserido_Info_1" class="Obj_Inserido_Info" onclick="expandirObj(1)">
+                                                        <div id="Obj_Inserido_Num_1" class="Obj_Inserido_Num">1</div>
+                                                        <div id="Obj_Inserido_Nome_1" class="Obj_Inserido_Nome">Água e hidrografia</div>
+                                                        <div id="Obj_Inserido_Btns_1" class="Obj_Inserido_Btns">
+                                                            <div id="Btn_Editar_Obj_1" class="Btn_Obj Btn_Editar_Obj"></div>
+                                                            <div id="Btn_Del_Obj_1" class="Btn_Obj Btn_Del_Obj"></div>
                                                         </div>
                                                     </div>
-
+                                                    <div id="Atvs_Obj_Inserido_1" class="Atvs_Obj_Inserido">
+                                                        <div id="Atv_Obj_Info_1" class="Atv_Obj_Info">
+                                                            <div id="Atv_Obj_Num_1" class="Atv_Obj_Num">1</div>
+                                                            <div id="Atv_Obj_Nome_1" class="Atv_Obj_Nome">Montar uma maquete</div>
+                                                        </div>
+                                                        <div id="Atv_Obj_Info_2" class="Atv_Obj_Info">
+                                                            <div id="Atv_Obj_Num_2" class="Atv_Obj_Num">2</div>
+                                                            <div id="Atv_Obj_Nome_2" class="Atv_Obj_Nome">Lorem ipsum</div>
+                                                        </div>
+                                                        <div id="Atv_Obj_Info_3" class="Atv_Obj_Info">
+                                                            <div id="Atv_Obj_Num_3" class="Atv_Obj_Num">3</div>
+                                                            <div id="Atv_Obj_Nome_3" class="Atv_Obj_Nome">Dolor sit amet</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="Obj_Inserido_2" class="Obj_Inserido">
+                                                    <div id="Obj_Inserido_Info_2" class="Obj_Inserido_Info" onclick="expandirObj(2)">
+                                                        <div id="Obj_Inserido_Num_2" class="Obj_Inserido_Num">2</div>
+                                                        <div id="Obj_Inserido_Nome_2" class="Obj_Inserido_Nome">Lorem ipsum dolor sit amet</div>
+                                                        <div id="Obj_Inserido_Btns_2" class="Obj_Inserido_Btns">
+                                                            <div id="Btn_Editar_Obj_2" class="Btn_Obj Btn_Editar_Obj"></div>
+                                                            <div id="Btn_Del_Obj_2" class="Btn_Obj Btn_Del_Obj"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Atvs_Obj_Inserido_2" class="Atvs_Obj_Inserido">
+                                                        <div id="Atv_Obj_Info_1" class="Atv_Obj_Info">
+                                                            <div id="Atv_Obj_Num_1" class="Atv_Obj_Num">1</div>
+                                                            <div id="Atv_Obj_Nome_1" class="Atv_Obj_Nome">Lorem ipsum</div>
+                                                        </div>
+                                                        <div id="Atv_Obj_Info_2" class="Atv_Obj_Info">
+                                                            <div id="Atv_Obj_Num_2" class="Atv_Obj_Num">2</div>
+                                                            <div id="Atv_Obj_Nome_2" class="Atv_Obj_Nome">Dolor sit amet</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="Inserir_objetivo">
+                                        </div>
+                                        <div id="Inserir_objetivo" class="Roteiro_Linha">
+                                            <div class="Roteiro_Linha">
+                                                <div class="Roteiro_Col_8">
+                                                    <div class="Roteiro_Linha No_Padding_Itens">
+                                                        <div class="Roteiro_Col_3">
+                                                            <input type="hidden" class="idObj"> </input>  
+                                                            <div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>
+                                                        </div>
+                                                        <div class="Roteiro_Col_9">
+                                                            <input id="nomeObj1" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" placeholder="Objetivo do roteiro" required> </input>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="Roteiro_Col_4">
+                                                    <div class="Roteiro_Linha No_Padding_Itens">
+                                                        <div class="Roteiro_Col_6">
+                                                            <div class="Input_Info Numero_Objetivo_Info">Número</div>
+                                                        </div>
+                                                        <div class="Roteiro_Col_6">
+                                                            <input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj1" value="1"></input>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="Inserir_Atividade" class="Roteiro_Linha">
+                                                <div id="Inserir_Atividades_Container">
+                                                    <div class="Atividade_Linha" id="atv1">
+                                                        <div class="Item_Roteiro_Linha No_Padding_Itens">
+                                                            <div class="Roteiro_Col_2">
+                                                                <div id="Atividade_Nome_Info_1" class="Input_Info Atividade_Nome_Info">Atividade</div>
+                                                            </div>
+                                                            <div class="Roteiro_Col_10">
+                                                                <input type="hidden" class="idAtv"></input>                   
+                                                                <input class="Input_Area nomeAtv" id="nomeAtv1" placeholder="Título da atividade" required> </input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="Item_Roteiro_Linha">
+                                                            <div class="Roteiro_Col_4">
+                                                                <div class="Roteiro_Linha No_Padding_Itens">
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>
+                                                                    </div>
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv1" value="1"></input></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="Roteiro_Col_4">
+                                                                <div class="Roteiro_Linha No_Padding_Itens">
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Info Input_Info"> Página Livro</div>
+                                                                    </div>
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv1"></input></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="Roteiro_Col_4">
+                                                                <div class="Roteiro_Linha No_Padding_Itens">
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Info Input_Info"> Livro </div>
+                                                                    </div>
+                                                                    <div class="Roteiro_Col_6">
+                                                                        <div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv1"></input></div>    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="Roteiro_Linha">
-                                                    <div class="Roteiro_Col_8">
-                                                        <div class="Roteiro_Linha No_Padding_Itens">
-                                                            <div class="Roteiro_Col_3">
-                                                                <input type="hidden" class="idObj"> </input>  
-                                                                <div id="Nome_Objetivo1" class="Nome_Objetivo_Info">Objetivo</div>
-                                                            </div>
-                                                            <div class="Roteiro_Col_9">
-                                                                <input id="nomeObj1" name="nomeObj" class="nomeObj Nome_Objetivo_Input" placeholder="Objetivo do roteiro" required> </input>
-                                                            </div>
-                                                        </div>
+                                                    <div class="Roteiro_Col_12">
+                                                        <div id="Bt_Add_Atividade" onClick="adicionarAtividade()"></div>
                                                     </div>
-                                                    <div class="Roteiro_Col_4">
-                                                        <div class="Roteiro_Linha No_Padding_Itens">
-                                                            <div class="Roteiro_Col_5">
-                                                                <div class="Numero_Objetivo_Info">Número</div>
-                                                            </div>
-                                                            <div class="Roteiro_Col_7">
-                                                                <input type="text" class="Numero_Objetivo_Input numeroObj" id="numeroObj1" value="1"></input>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="Inserir_Atividade">
-                                                    <div id="Inserir_Atividades_Container">
-                                                        <div class="Atividade_Linha" id="atv1">
-                                                            <div class="Roteiro_Linha No_Padding_Itens">
-                                                                <div class="Roteiro_Col_12">
-                                                                    <input type="hidden" class="idAtv"> </input>                    
-                                                                    <input class="nomeAtv" id="nomeAtv1" placeholder="Inserir nova atividade" required> </input>
-                                                                </div>
-                                                            </div>
-                                                            <div class="Roteiro_Linha">
-                                                                <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding_Itens">
-                                                                        <div class="Roteiro_Col_5">
-                                                                            <div class="Atividade_Info" class="numeroAtvInfo">Número</div>
-                                                                        </div>
-                                                                        <div class="Roteiro_Col_7">
-                                                                            <div class="Atividade_Input" class="valueNumero"><input class="numeroAtv" id="numeroAtv1" value="1"></input></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding_Itens">
-                                                                        <div class="Roteiro_Col_5">
-                                                                            <div class="Atividade_Info"> Página Livro</div>
-                                                                        </div>
-                                                                        <div class="Roteiro_Col_7">
-                                                                            <div class="Atividade_Input"><input class="paginaAtv" id="paginaAtv1"></input></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="Roteiro_Col_4">
-                                                                    <div class="Roteiro_Linha No_Padding_Itens">
-                                                                        <div class="Roteiro_Col_5">
-                                                                            <div class="Atividade_Info"> Livro </div>
-                                                                        </div>
-                                                                        <div class="Roteiro_Col_7">
-                                                                            <div class="Atividade_Input"><input class="livroAtv" id="livroAtv1"></input></div>    
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="Roteiro_Linha">
-                                                        <div class="Roteiro_Col_12">
-                                                            <div id="Bt_Add_Atividade" onClick="adicionarAtividade()"></div>
-                                                        </div>
-                                                    </div>  
-                                                </div>
-                                            </div>                      
-                                            <!--<div class="boxObj"> 
-                                                <div id="objetivos_listados">Listagem de objetivos pelo JS</div>
-                                            </div>-->
-                                        </div>
+                                                </div>  
+                                            </div>
+                                        </div>                      
+                                        <!--<div class="boxObj"> 
+                                            <div id="objetivos_listados">Listagem de objetivos pelo JS</div>
+                                        </div>-->
                                         <div id="Roteiro_Botoes" class="Roteiro_Linha">
                                             <div id="btnInserirRoteiro" value="" onClick="inserirRoteiro()"> Inserir </div>
                                             <div id="btnSalvarObj" value="" onClick="inserirObjetivo()"> Salvar </div>

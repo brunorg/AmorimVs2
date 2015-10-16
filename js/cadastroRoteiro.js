@@ -549,106 +549,43 @@ function editarROA(servico,id){
 var anoRoteiro;
 var nomeRoteiro;
 function inserirRoteiro () {
-	anoRoteiro = $("#anoEstudo option:selected").text();
-	nomeRoteiro = $("#nome").val();
-
-	$("#Inserir_roteiro").hide();
-	$("#Cabecalho_Roteiro_Inserido").show();
-	$("#Roteiro_Inserido").show();
-	$("#btnInserirRoteiro").hide();
-	$("#btnSalvarObj").show();
-	$(".Nome_Roteiro_Inserido").text(nomeRoteiro);
-	$(".Ano_Roteiro_Inserido").text(anoRoteiro + " ano");
-	console.info("Aqui, o roteiro já foi inserido no banco de dados. As próximas alterações serão apenas atualizações.");
 }
 
 //Conferir num de linhas de objetivos inseridos
 function confereLinhasObj() {
-	var numLinhas = document.getElementById("Objetivos_Inseridos_Container").getElementsByClassName("Roteiro_Linha");
 	if (numLinhas.length > 0) {
 		$("#Objetivos_Inseridos").show();
 	}
 }
 
 // Inserir Objetivo
-var objetivoNome;
-var numObj;
-var objIndex = 1;
-function inserirObjetivo () {
-	if ( $("#nomeObj1").val() !== "" && $("#numeroObj1").val() !== "" ) {
-		var atvCount = $(".Atividade_Linha");
-		objetivoNome = $("#nomeObj1").val();
-		numObj = $("#numeroObj1").val();
-		var linhaObj = '';
-		$("#Objetivos_Inseridos_Container").append(linhaObj);
-		console.info("Ao clicar em salvar, o objetivo que o(a) coordenador(a) acabou de criar é salvo dentro do roteiro "+nomeRoteiro+", além de aparecer na listagem acima do formulário.");
-		console.info("Se o formulário para inserir atividade estiver em branco, ele é ignorado.");
-		objIndex++;
-		confereLinhasObj();
+function inserirObjetivo() {
+	var objNome;
+	var atividades = new Array();
+}
+
+// Expandir objetivo
+function expandirObj(id) {
+	var objetivoCont = $('.Obj_Inserido_Info');
+	var atvsCont = $('#Atvs_Obj_Inserido_'+id+' .Atv_Obj_Info');
+	var altura = atvsCont.length * 30;
+
+	for (var i = 0; i < objetivoCont.length; i++) {
+		if ( i+1 == id ) {
+			if ( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') ) {
+				$('#Atvs_Obj_Inserido_'+id).removeClass('Atvs_Expandido');
+				$('#Atvs_Obj_Inserido_'+id).height('0px');
+			} else {
+				$('#Atvs_Obj_Inserido_'+id).addClass('Atvs_Expandido');
+				$('#Atvs_Obj_Inserido_'+id).height(altura);
+			}
+		} else {
+			if ( $($('.Atvs_Obj_Inserido').get(i)).hasClass('Atvs_Expandido') ) {
+				$($('.Atvs_Obj_Inserido').get(i)).removeClass('Atvs_Expandido');
+			}
+			$($('.Atvs_Obj_Inserido').get(i)).height('0px');
+		}
 	}
-
-}
-
-// Excluir objetivo
-function excluirObjetivo(btnId) {
-	$("#"+btnId.toString()).closest($(".Objetivo_Inserido_Linha")).remove();
-}
-
-// Editar objetivo
-function editarObjetivo(btnId) {
-}
-
-// Atualizar objetivo
-function atualizarObjetivo(btnId) {
-}
-
-// Adicionar Atividade
-
-var index = 2;
-function adicionarAtividade () {
-	var atvLinha =
-			    /*'<div class="Atividade_Linha" id="atv'+index+'">'+
-			        '<div class="Roteiro_Linha No_Padding">'+
-			            '<div class="Roteiro_Col_12">'+
-			                '<input type="hidden" class="idAtv"> </input>'+                  
-			                '<input class="nomeAtv" id="nomeAtv'+index+'" placeholder="Inserir nova atividade" required> </input>'+
-			            '</div>'+
-			        '</div>'+
-			        '<div class="Roteiro_Linha">'+
-			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
-			                    '<div class="Roteiro_Col_5">'+
-			                        '<div class="Atividade_Info" class="numeroAtvInfo">Número</div>'+
-			                    '</div>'+
-			                    '<div class="Roteiro_Col_7">'+
-			                        '<div class="Atividade_Input" class="valueNumero"><input class="numeroAtv" id="numeroAtv'+index+'" value="'+index+'"></input></div>'+
-			                    '</div>'+
-			                '</div>'+
-			            '</div>'+
-			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
-			                    '<div class="Roteiro_Col_5">'+
-			                        '<div class="Atividade_Info"> Página Livro</div>'+
-			                    '</div>'+
-			                    '<div class="Roteiro_Col_7">'+
-			                        '<div class="Atividade_Input"><input class="paginaAtv" id="paginaAtv'+index+'"></input></div>'+
-			                    '</div>'+
-			                '</div>'+
-			            '</div>'+
-			            '<div class="Roteiro_Col_4">'+
-			                '<div class="Roteiro_Linha No_Padding No_Padding_Itens">'+
-			                    '<div class="Roteiro_Col_5">'+
-			                        '<div class="Atividade_Info"> Livro </div>'+
-			                    '</div>'+
-			                    '<div class="Roteiro_Col_7">'+
-			                        '<div class="Atividade_Input"><input class="livroAtv" id="livroAtv'+index+'"></input></div>'+
-			                    '</div>'+
-			                '</div>'+
-			            '</div>'+
-			        '</div>'+
-			    '</div>';*/
-	index++;
-	$("#Inserir_Atividades_Container").append(atvLinha);
 }
 
 /* ----------------------------------------------------------------------------------------------------------- */

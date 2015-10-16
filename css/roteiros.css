@@ -39,16 +39,21 @@
 /* Linhas */
 	.Roteiro_Linha { 
 		width: 100%;
-		padding: 5px 0;
+		padding: 10px 0;
 	}
-
+	.Roteiro_Linha:first-of-type { 
+		padding-top: 0;
+	}
+	.Roteiro_Linha:last-of-type { 
+		padding-bottom: 0;
+	}
 	.Roteiro_Linha::after {
 		content: "";
 		display: block;
 		clear: both;
 	}
 	.Less_Padding {
-		padding: 2.5px !important;
+		padding: 5px !important;
 	}
 
 	.No_Padding {
@@ -88,6 +93,28 @@
 	}
 	div[class*="Roteiro_Col_"]:last-child {
 		padding-right: 0 !important;
+	}
+	.Item_Roteiro_Linha { 
+		width: 100%;
+		padding: 5px 0;
+	}
+	.Item_Roteiro_Linha:first-of-type { 
+		padding-top: 0;
+	}
+	.Item_Roteiro_Linha:last-of-type { 
+		padding-bottom: 0;
+	}
+	.Item_Roteiro_Linha::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.Item_Less_Padding {
+		padding: 2.5px 0 !important;
+	}
+
+	.Item_No_Padding {
+		padding: 0 !important;
 	}
 
 		#roteiros_content{
@@ -140,10 +167,6 @@
 		.styled-select{
 			width: 100%;
 		}
-		#Inserir_Roteiro_Topo, div[id*="Inserir_Roteiro_Form_Linha"] {
-			overflow: auto;
-			margin: 0 0 5px;
-		}
 		div[id*="Inserir_Roteiro_Form_Linha"]:last-of-type {
 			margin-bottom: 0;
 		}
@@ -155,112 +178,15 @@
 			margin: 0 0 20px;
 			overflow: auto;
 		}
-		#Formulario_Roteiro > * {
-			padding: 7.5px 0;
-		}
-		#Formulario_Roteiro > *:first-child {
-			padding-top: 0;
-		}
-		#Formulario_Roteiro > *:last-child {
-			padding-bottom: 0;
-		}
-		
-		#Inserir_roteiro input, #Inserir_objetivo input{
-			margin: 0;
-			background-color: white;
-			border: 1px solid lightgrey;
-			font-size: 18px;
-			height: 39px;
-		}
-		#Objetivos_Inseridos {
-			padding-bottom: 15px;
-		}
-		.Objetivo_Inserido_Linha {
-			background-color: rgb(236,235,229);
-			height: 39px;
-			border: 1px solid #bfbca8;
-			padding: 0;
-		}
-		.Obj_Inserido_Nome_Container {
-			height: 100%;
-			float: left;
-		}
-		.Obj_Inserido_Nome {
-			padding: 10px;
-			color: #555;
-			width: 700px;
-		}
-		.Obj_Inserido_Btns {
-			float: right;
-		}
-
-		.Btn_Editar_Objetivo { background: url(../img/ic_edit.png) no-repeat 50% 50%; }
-
-		.Btn_Excluir_Objetivo { background: url(../img/ic_delete.png) no-repeat 50% 50%; }
-
-		.Btn_Atualizar_Objetivo { background: url(../img/ic_salvar_b.png) no-repeat 50% 50%; display: none;}
-
-		.Obj_Inserido_Btn {
-			width: 37px;
-			height: 37px;
-			float: left;
-			background-color: #C8C8C3;
-			border: 1px solid #bfbca8;
-			cursor: pointer;
-		}
-		#Cabecalho_Roteiro_Inserido, #Roteiro_Inserido {
-			display: none;
-		}
-
-		.Nome_Objetivo_Info {
-			width: 100%;
-			height: 39px;
-			padding: 12px;
-			background-color: #C8C8C3;
-			text-align: right;
-		}
-		
-		.Nome_Objetivo_Input {
-			width: 100%;
-		    height: 39px;
-		    padding: 12px;
-		    background-color: #C8C8C3;
-		    float: left;
-		    margin: 0 !important;
-		}
-		.Numero_Objetivo_Info, .Atividade_Info, .Ano_Inserir_Info {
-			width: 100%;
-			height: 39px;
-			padding: 12px;
-			background-color: #C8C8C3;
-			text-align: right;
-		}
-
-		.Numero_Objetivo_Input {
-			width: 100%;
-		    height: 39px;
-		    padding: 12px;
-		    background-color: #C8C8C3;
-		    float: left;
-		    margin: 0 !important;
-		}
-		.Num_Obj_Inserido::after {
-			content: ' -';
-			display: inline-block;
-			margin: 0 10px;
-		}
 
 		.Atividade_Input>* { margin: 0 !important;}
-
-		.Nome_Roteiro_Inserido, .Cabecalho_Inserir_Roteiro {
+		
+		.Cabecalho_Inserir_Roteiro {
 		    font-weight: normal;
 		    font-size: 18px;
 		    color: #1c828c;
 		    margin: 0 0 5px;
 		}
-		
-		.Nome_Roteiro_Inserido {text-transform: uppercase;}
-
 		.Ano_Roteiro_Inserido {
 			font-size: 12px;
     		font-weight: normal;
@@ -282,6 +208,114 @@
 		}
 		.Input_Obj_Nome {
 			width: 600px;
+		}
+		.Input_Info {
+			width: 100%;
+    		height: 39px;
+    		padding: 12px;
+    		background-color: #C8C8C3;
+    		text-align: right;
+		}
+		.Input_Area {
+			margin: 0;
+    		background-color: white;
+    		border: 1px solid lightgrey;
+    		font-size: 18px;
+    		height: 39px;
+		}
+
+/* Listagem em acordeon dos objetivos inseridos */
+	.Objetivos_Inseridos_Container { position: relative; }
+
+	.Obj_Inserido {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+	.Obj_Inserido_Info {
+		position: relative;
+		width: 100%;
+		height: 33px;
+		background-color: #c6c6c6;
+		padding: 8px 81px 8px 48px;
+	    border: 1px solid #e5e5dc;
+	    cursor: pointer;
+	}
+	.Obj_Inserido_Num {
+		width: 33px;
+	    height: 100%;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    text-align: center;
+	    color: #666666;
+	    background-color: #b2b2b2;
+	    border-right: 1px solid #e5e5dc;
+	    padding: 8px 0px;
+	}
+	.Obj_Inserido_Nome {
+		line-height: 1em;
+	    color: #666666;
+	    font-size: 16px;
+	}
+	.Obj_Inserido_Btns {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    width: auto;
+	    height: 100%;
+	    border-left: 1px solid #e5e5dc;
+	}
+	.Btn_Obj {
+		display: inline-block;
+	    width: 33px;
+	    height: 100%;
+	    background-color: #b2b2b2;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	    float: left;
+	    cursor: pointer;
+	}
+
+	.Btn_Obj:first-child { border-right: 1px solid #e5e5dc; }
+
+	.Btn_Editar_Obj { background-image: url(../img/ic_editar_peq.png); }
+
+	.Btn_Del_Obj { background-image: url(../img/ic_del_peq.png); }
+
+	/* Atividades dos objetivos */
+		.Atvs_Obj_Inserido {
+		    position: relative;
+		    width: 96.2%;
+		    left: 34px;
+		    height: 0px;
+		    overflow: hidden;
+		    transition: height 0.5s ease-in-out;
+		}
+		.Atv_Obj_Info {
+			position: relative;
+		    width: 100%;
+		    height: 30px;
+		    border: 1px solid #e5e5dc;
+		    background: #f2f2ee;
+		    padding: 7px 7px 7px 40px;
+		}
+		.Atv_Obj_Num {
+			position: absolute;
+		    width: 30px;
+		    height: 100%;
+		    top: 0;
+		    left: 0;
+		    color: #666666;
+		    padding: 6px 0;
+		    text-align: center;
+		    border-right: 1px solid #e5e5dc;
+		    background-color: #e5e5dc;
+		}
+		.Atv_Obj_Nome {
+			line-height: 1em;
+		    color: #666666;
+		    font-size: 16px;
 		}
 
 		#btnSalvar, #btnSalvarObjetivo, #btnSalvarAtividade,#btnEditar, #btnEditarObjetivo, #btnEditarAtividade, .btnAtribuirRoteiro, #btnInserirRoteiro, #btnSalvarObj{
@@ -315,7 +349,9 @@
 		}
 
 		.Atividade_Linha { padding: 10px 0; }
+
 		.Atividade_Linha:first-child { padding-top: 0; }
+
 		.Atividade_Linha:last-child { padding-bottom: 0; }
 
 		#Bt_Add_Atividade {
