@@ -255,6 +255,13 @@ $(document).ready(function() {
 		axis:"y" // vertical and horizontal scrollbar	
 	});	
 	
+	$("#conteudo_principal_roteiro").mCustomScrollbar({
+		axis: "y",
+		scrollButtons:{
+			enable:true
+		}
+	})
+
 	$("#boxRoteiros").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar	
 	});	

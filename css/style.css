@@ -162,6 +162,7 @@ html, body
 				font-size: 17px;
 				font-weight: 300;
 				text-decoration: none;
+				color: #fff;
 				padding: 15px 10px 15px 70px;
 				word-break: keep-all;
 				background-repeat: no-repeat;
@@ -170,8 +171,8 @@ html, body
 			}
 			
 			.rows2 { 
-    			padding-top: 7px;
-    			padding-bottom: 7px;
+    			padding-top: 8px;
+    			padding-bottom: 8px;
     			line-height: .95em;
 			}
 
@@ -216,12 +217,12 @@ html, body
 				}	
 				/* Menu roteiros */
 				.roteiros { background-image: url(../img/ic_tutoria-ativo.png); 
-					}
+				}
 
-				.roteiros:hover { background-image:  url(../img/ic_tutoria-ativo.png) }
+				.roteiros:hover { background-image:  url(../img/ic_tutoria.png) }
 
 				.roteiros-active {
-					background-image:  url(../img/ic_tutoria-ativo.png);	
+					background-image:  url(../img/ic_tutoria.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}		
 				
@@ -2523,7 +2524,7 @@ font-family: "proxima-nova",sans-serif;
 		line-height: .95em;
 	}
 
-	.label { padding: 4.5px; }
+	.label { padding: 1.5px; }
 
 	#content_central_fixa{
 		padding: 36px 34px 36px 36px;

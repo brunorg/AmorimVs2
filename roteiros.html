@@ -10,8 +10,8 @@
         <link rel="stylesheet" type="text/css" href="css/home.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
-        <link rel="stylesheet" type="text/css" href="css/roteiros.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="css/roteiros.css" />
     	<!--Fim Style-->
         
         <!--Script JS-->
@@ -69,7 +69,7 @@
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-           <div>
+                    <div>
                 <div id="Cabecalho_Menu_Area">
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
                     <div id="Cabecalho_Menu_Area_Menu2">
@@ -99,14 +99,16 @@
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
                             <div  ng-repeat="menu in menuHTML">                         
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    <div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
                         </div>    
-                        <!--Calendario--> 
+                        <!--Calendario-->
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
@@ -155,9 +157,7 @@
                                                         </div>
                                                         <div class="Roteiro_Col_7">
                                                             <div class="Ano_Inserir_Select" id="valueAnoE">
-                                                                <div class="styled-select">
-                                                                    <select id="anoEstudo" class='anoEstudoRoteiro' onChange="fltRoteiro()"></select>
-                                                                </div>
+                                                                <select id="Input_Roteiro_Ano" class='anoEstudoRoteiro Input_Area' onChange="fltRoteiro()"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -166,7 +166,7 @@
                                             <div class="Item_Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_12">                      
                                                     <input type="hidden" id="id"></input>
-                                                    <input id="nome" class="Input_Area" placeholder="Nome do roteiro" required> </input>
+                                                    <input id="Input_Roteiro_Nome" class="Input_Area" placeholder="Nome do roteiro" required> </input>
                                                 </div>
                                             </div>
                                         </div>

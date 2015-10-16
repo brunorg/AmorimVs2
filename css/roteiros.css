@@ -130,9 +130,13 @@
 		
 		#conteudo_principal_roteiro,
 		#conteudo_principal_objetivo{
-			width: 100%;
-			height: 100%;
-			float: left;
+		    width: 100%;
+		    height: auto;
+		    max-height: 463px;
+		    background-color: #F9F9F7;
+			padding: 20px;
+		    overflow: hidden;
+		    float: left;
 		}
 		
 		#Roteiro{
@@ -171,12 +175,10 @@
 			margin-bottom: 0;
 		}
 		#Formulario_Roteiro{
-			width: 100%;
-			background-color: #F9F9F7;
+			width: 98%;
+			height: auto;
+		    background-color: #F9F9F7;
 			clear: both;
-			padding: 20px;
-			margin: 0 0 20px;
-			overflow: auto;
 		}
 
 		.Atividade_Input>* { margin: 0 !important;}
@@ -222,9 +224,21 @@
     		border: 1px solid lightgrey;
     		font-size: 18px;
     		height: 39px;
+    		padding: 8px;
+    		border-radius: 0px !important;
+    		-moz-appearance: none;
+    		-webkit-appearance: none;
+    		appearance: none;
+		}
+		select.Input_Area {
+			background-image: url(../img/select-arrow.png);
+			background-repeat: no-repeat;
+			background-position: right center;
+			cursor: pointer;
 		}
 
 /* Listagem em acordeon dos objetivos inseridos */
+	#Objetivos_Inseridos { display: none; }
 	.Objetivos_Inseridos_Container { position: relative; }
 
 	.Obj_Inserido {
@@ -287,7 +301,7 @@
 		.Atvs_Obj_Inserido {
 		    position: relative;
 		    width: 96.2%;
-		    left: 34px;
+		    left: 33px;
 		    height: 0px;
 		    overflow: hidden;
 		    transition: height 0.5s ease-in-out;
@@ -317,6 +331,12 @@
 		    color: #666666;
 		    font-size: 16px;
 		}
+/* Inserir Objetivos */
+	#Inserir_objetivo {
+		display: none;
+	}
+
+
 
 		#btnSalvar, #btnSalvarObjetivo, #btnSalvarAtividade,#btnEditar, #btnEditarObjetivo, #btnEditarAtividade, .btnAtribuirRoteiro, #btnInserirRoteiro, #btnSalvarObj{
 			width: 11%;
@@ -487,11 +507,6 @@
 	
 	}
 
-	.mCustomScrollBox
-	{
-		background-color: white;
-	}
-
 	/*Falme*/
 
 	.btPadrao
@@ -512,10 +527,6 @@
 	.Fright
 	{
 		float:right;
-	}
-	
-	.mCustomScrollBox {
-		background-color: #E5E5DC;
 	}
 	.boxROA{
 		height: 255px;

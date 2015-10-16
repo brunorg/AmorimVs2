@@ -549,6 +549,19 @@ function editarROA(servico,id){
 var anoRoteiro;
 var nomeRoteiro;
 function inserirRoteiro () {
+	if ($("#Input_Roteiro_Ano > option:selected").text() != '') {
+		if ($("#Input_Roteiro_Nome").text() != '') {
+			$("#Inserir_objetivo").show();
+			$("#btnSalvarObj").show();
+			$("#btnInserirRoteiro").hide();
+			console.log("Chamou função inserirRoteiro(), e retornou true.");
+		} else {
+			console.error("Chamou função inserirRoteiro(), mas retornou falso.");
+		}
+	} else {
+		console.error("Chamou função inserirRoteiro(), mas retornou falso.");
+	}
+
 }
 
 //Conferir num de linhas de objetivos inseridos
