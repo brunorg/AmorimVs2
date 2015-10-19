@@ -78,8 +78,8 @@
                         	<div  ng-repeat="menu in menuHTML">                        	
                                 <a href="{{menu.href}}">
                                     <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
                                         {{menu.label}}
                                     </div>
                                 </a>
