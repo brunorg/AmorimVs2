@@ -1,42 +1,29 @@
 //Murano Design
 
 //------------------------------------------------------------------------------------------------------------------------
-
-//Get Usuario Efetivado
-
-	var aluno=1;
-    var alunoID = 2;
-    var UsuarioAtivo = 2;
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//
-
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carrega os valores utilizados do BD
-
-	var dataForumResposta 			=	getData("ForumResposta", null);
-
-//------------------------------------------------------------------------------------------------------------------------
-
 	
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function(){
-	
+
+	nomeRoteiroRolar();
+	carregaForumCompleto();
+	carregaAnoEstudo();
+
+	$('#PesqAnoEstudo').change(function() {
+		recarregaForumAnoEstudo($(this).val());
+	});
+
+});
+
+function nomeRoteiroRolar () {
 	$("body").delegate(".barra_titulo span", "mouseover", function() {
 		
-		//if ($(this).text() == 'ALIMENTAÇÃO'){
 		if ($(this).parent().hasClass('aparecer')){
 
 			var tamTexto = $(this).css('width');
 			var tamDiv = $('.barra_titulo').css('width');
 			var tamLink = $('.btn_topico').css('width'); 
-//			console.log('texto: '+tamTexto);
-//			console.log('Div: '+tamDiv);
-//			console.log('Link: '+tamLink);
 			
 			tamTexto = tamTexto.substring(0,(tamTexto.length - 2));
 			tamDiv = tamDiv.substring(0,(tamDiv.length - 2));
@@ -62,15 +49,51 @@ $(document).ready(function(){
 		}
 				
 	});
+}
 
-	carregaForumCompleto();
-	carregaAnoEstudo();
+function carregaForumCompleto () {
+	$.ajax({
+        url: path + "Roteiro/RoteiroRange/" + 0 + "/" + 19,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		beforeSend: function() {
+			loading('inicial');
+		},
+		success: function (forumData) {
+			Html = '';
+			for (var i = 0; i < forumData.length; i++) {
+				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
+				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+        		{
+            		Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+        		else
+        		{
+        			Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+        		}
+				Html+= '<div class="info_secao_forum">';
 
-	$('#PesqAnoEstudo').change(function() {
-		recarregaForumAnoEstudo($(this).val());
-	});
+				//Html+= getResultadoForumQuestao(forumData[i].idroteiro);
 
-});
+				Html+= '</div>';
+				Html+= '</div>';
+			}
+
+			$('#box_forum').html(Html);
+			window.setTimeout(function(){
+				abreAcoordion();
+			}, 1000);
+		},
+		complete: function() {
+			loading('final');
+		}
+    });
+}
+
+
 
 function buscaForum () {
 	if ($('#buscaForum').val() != "")
@@ -98,7 +121,7 @@ function buscaForum () {
     	    		}
 					HtmlContentBusca+= '<div class="info_secao_forum">';
 	
-					HtmlContentBusca+= getResultadoForumQuestao(forumBusca[i].idroteiro);
+					//HtmlContentBusca+= getResultadoForumQuestao(forumBusca[i].idroteiro);
 	
 					HtmlContentBusca+= '</div>';
 					HtmlContentBusca+= '</div>';
@@ -118,55 +141,18 @@ function buscaForum () {
 		carregaForumCompleto();
 }
 
-function carregaForumCompleto () {
-	$.ajax({
-        url: path + "Roteiro",
-		type: "GET",
-		async: false,
-		crossDomain: true,
-		dataType: 'json',
-		beforeSend: function() {
-			loading('inicial');
-		},
-		success: function (forumData) {
-			Html = '';
-			for (var i = 0; i < forumData.length; i++) {
-				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
-				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-        		{
-            		Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-        		}
-        		else
-        		{
-        			Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-        		}
-				Html+= '<div class="info_secao_forum">';
-
-				Html+= getResultadoForumQuestao(forumData[i].idroteiro);
-
-				Html+= '</div>';
-				Html+= '</div>';
-			}
-
-			$('#box_forum').html(Html);
-			window.setTimeout(function(){
-				abreAcoordion();
-			}, 1000);
-		},
-		complete: function() {
-			loading('final');
-		}
-    });
-}
-
-function abreAcoordion(){	
-	$('a.accordion').click(function(){
+function abreAcoordion(){
+	$('.accordion').unbind('click');
+	$('.accordion').click(function(){
 		$(this).toggleClass('aparecer');
-		$(this).parent().find('div.info_secao_forum').slideToggle("slow");
+		var idRoteiroForum = $(this).closest('div.secao_forum').attr('id').substring(3);
+		if ($(this).parent().find('.info_secao_forum_div').length == 0 && $(this).parent().find('.label_titulo').html() > 0)
+		{
+			$(this).parent().find('.info_secao_forum').append(getResultadoForumQuestao(idRoteiroForum));
+		}
+		$(this).parent().find('.info_secao_forum').slideToggle("slow");
 		$(this).find('.label_titulo').toggleClass('label_escondido');
-		var btn = $(this).closest('div.secao_forum').attr('id') ;
-		$("#"+btn+" .btn_topico").toggleClass("aparecer")
+		$("#btn"+idRoteiroForum+" .btn_topico").toggleClass("aparecer")
 	});
 }
 
@@ -252,7 +238,7 @@ function recarregaForumAnoEstudo (ano) {
         		}
 				HtmlContentRecarregar+= '<div class="info_secao_forum">';
 
-				HtmlContentRecarregar+= getResultadoForumQuestao(forumAno[i].idroteiro);
+				//HtmlContentRecarregar+= getResultadoForumQuestao(forumAno[i].idroteiro);
 
 				HtmlContentRecarregar+= '</div>';
 				HtmlContentRecarregar+= '</div>';

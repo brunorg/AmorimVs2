@@ -7,9 +7,6 @@ if(usuario=="Aluno"){
 var anoEstudo = getAnoEstudoByAluno(alunoID);
 var PlanoEstudoSessionID = getUltimoPlanoEstudo();
 //----------------------------------------------------------------------------------------------------------------
-//Carrega os valores utilizados do BD
-var dataRecursoAprendizagem     =   getData("RecursoAprendizagem", null);
-
 //------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -75,7 +72,7 @@ function abreCaixaFicha(idRoteiro){
     var html = '<div id="caixaFicha">'+
             '<a href="#" id="fecharCaixa"><img src="img/cancela_x.png" width="15" height="15" onclick="fecharCaixa()";/></a>'+
             '<a class="caixaTxt" id="txt1" target="_blank" href="'+dataFichaFinalizacao[0].local+'">Responder ficha de finalização</a>'+ 
-            '<a class="caixaTxt" id="txt2" onclick="showUpload(2,'+idRoteiro+');" href="#">Upload ficha de finalização</a>'+
+            '<a class="caixaTxt" id="txt2" onclick="showUpload(4,'+idRoteiro+');" href="#">Upload ficha de finalização</a>'+
             '</div>';
     $(".boxGlobal").html(html);
 }
@@ -91,7 +88,7 @@ function anoLetivo(){
 function  anoLetivoId(){
     var idAnoLetivo;
     $.ajax({
-        url: path + 'AnoLetivo/AnoLetivoId' + (new Date()).getFullYear(),
+        url: path + 'AnoLetivo/AnoLetivoId/' + (new Date()).getFullYear(),
         async: false,
         crossDomain: true,
         type: 'GET',
@@ -172,7 +169,7 @@ function SubstituirObjetivos(idRoteiro)
     {
         case 0:
         {
-            HtmlContent += ('<a style="text-align:right;color:white" onclick="showUpload(1,'+idRoteiro+');" href="#"><div class="botoesPortfolio portfolio">Portfólio </div></a>');
+            HtmlContent += ('<a style="text-align:right;color:white" onclick="showUpload(5,'+idRoteiro+');" href="#"><div class="botoesPortfolio portfolio">Portfólio </div></a>');
             break;
         }
         case 1:
@@ -312,13 +309,13 @@ function SalvarPortifolio(tipoProducao, roteiroAcionado){
                 url: path+"ProducaoAluno/",
                 type: "POST",
                 crossDomain: true,  
-                data: "action=create&anoLetivo="+AnoLetivoId()+"&texto="+$('#Roteiro_Id_'+roteiroAcionado+' .roteiro_nome_tabela_texto').html()+"&data="+dataSalvaPortifolio.getUTCFullYear()+"-"+(dataSalvaPortifolio.getUTCMonth()+1)+"-"+dataSalvaPortifolio.getUTCDate()+"&aluno="+getAlunoByUsuario(usuarioId)+"&tipo="+tipoProducao+"&categoria=1&roteiro="+roteiroAcionado,    
+                data: "action=create&anoLetivo="+/*anoLetivoId()GAMBS*/60+"&texto="+$('#Roteiro_Id_'+roteiroAcionado+' .roteiro_nome_tabela_texto').html()+"&data="+dataSalvaPortifolio.getUTCFullYear()+"-"+(dataSalvaPortifolio.getUTCMonth()+1)+"-"+dataSalvaPortifolio.getUTCDate()+"&aluno="+alunoID+"&tipo="+tipoProducao+"&categoria=1&roteiro="+roteiroAcionado,    
                 beforeSend: function(){
                     loading("inicial");
                 }, 
                 success: function(d) {
                     addFileTo(d, roteiroAcionado);   
-                    $('.blackPainel').hide();
+                    $('.blackPainel').hide();   
                 },
                 complete: function () {
                     loading("final");
@@ -445,7 +442,7 @@ function SalvarCapa (id) {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-function showUpload(Numero, ID)
+function showUpload(tipo, ID)
 {
     $(".boxGlobal").css("display","none");
 
@@ -461,7 +458,7 @@ function showUpload(Numero, ID)
                                     '<input type="hidden" id="Dados_Foto_Aluno" />'+
                                     '<input type="file" id="Arquivo_Foto_Aluno" name="arquivo1" />'+
                                     '<div class="campoConfirmaUpload">'+
-                                        '<input class="btn_submit" onclick="SalvarPortifolio('+Numero+', '+ID+')" type="button" value="" />'+
+                                        '<input class="btn_submit" onclick="SalvarPortifolio('+tipo+', '+ID+')" type="button" value="" />'+
                                     '</div>'+
                                 '</form>'+
                             '</div>';
@@ -470,7 +467,7 @@ function showUpload(Numero, ID)
 
     GerarUpload($("#foto"), $("#Arquivo_Foto_Aluno"), $("#Dados_Foto_Aluno"));
 
-    if(Numero == 1)
+    if(tipo == 5)
     {
         HtmlContentUpload = 'Upload de Portfólio'+
                                     '<div class="close_upload_producao">'+
@@ -487,7 +484,7 @@ function showUpload(Numero, ID)
         });
     }
 
-    else if(Numero == 2)
+    else if(tipo == 4)
     {
         HtmlContentUpload = 'Upload de Fichas de Finalização'+
                                     '<div class="close_upload_producao">'+

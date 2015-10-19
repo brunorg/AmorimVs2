@@ -113,13 +113,12 @@ div[class*="box_col"]:last-of-type {
 	float:left;
 }
 .Objetivos_Semana_Cabecalho_Nome {
-	height: 37px;
-	font-size: 22px;
+	height: 30px;
+	font-size: 18px;
 	z-index: 1;
-	padding: 0 18px;
 }
 .Objetivos_Semana_Cabecalho_Nome a{
-	color: #52853f;
+	color: white;
 }
 .verdeNoMargin {
 	background-color: #9EBA4C;
@@ -146,13 +145,13 @@ div[class*="box_col"]:last-of-type {
 	background-color:rgb(190,221,145) !important;
 	width: 100%;
 	height: 256px;
-	padding: 18px 0;
+	padding: 15px;
 }
 
 #Portfolio_Conteudo {
 	position: relative;
 	width: 100% !important;
-	height: 184px !important;
+	height: 196px !important;
 }
 .microfiche-prev-button, .microfiche-next-button {
 	display: inline-block;
@@ -164,10 +163,10 @@ div[class*="box_col"]:last-of-type {
 	z-index: 999;
 }
 .microfiche-prev-button {
-	left: 4px;
+	left: 15px;
 }
 .microfiche-next-button {
-	left: 597px;
+	left: 587px;
 }
 
 .microfiche-screen{
@@ -178,7 +177,7 @@ div[class*="box_col"]:last-of-type {
 
 .microfiche-film {
     height: 100% !important;
-    margin: 0px 25px !important;
+    margin: 0px 11px !important;
     transition: transform 0.35s;
 }
 
@@ -404,18 +403,23 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	    height: 273px;
 	    background-color: #f9af4c;
         float: left;
-		padding: 18px;
+		padding: 15px;
 	}
 	.PlanoEstudo_Cabecalho_Nome {
-		height: 37px;
+		height: 20px;
 	    width: 100%;
-	    font-size: 22px;
+	    font-size: 18px;
 	    color: white;
 	}
 	.botao_novo_plano{
 		float: right;
 		cursor: pointer;
 		margin-top: -5px;
+	}
+
+	.botao_novo_plano img{
+		width: 74%;
+    	float: right;
 	}
 	.PlanoEstudo_Cabecalho_Nome a {
 	    color: white;
@@ -426,7 +430,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		margin-left: 6px;
 	}
 	#PlanoEstudo_Conteudo {
-		height: 153px;
+		height: 176px;
 		overflow: auto;
 		font-weight: normal;
 		padding-top: 15px;
@@ -439,7 +443,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		color: #fd7822;
 	}
 	#PlanoEstudo_Conteudo_Container_Registro{
-		height: 153px;
+		height: 176px;
 		padding-top: 12px;
 		background-color: white;
 		font-weight: normal;
@@ -762,7 +766,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     #Portfolio_Conteudo {
 	position: relative;
 	width: 100% !important;
-	height: 184px !important;
+	height: 196px !important;
 }
     .microfiche-prev-button, .microfiche-next-button {
 	display: inline-block;
