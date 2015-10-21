@@ -475,7 +475,7 @@ function CarregarPlanos() {
 		var dataRegistros
 
 		d = new Date();
-		for (var i = 5; i >= 1; i--)
+		for (var i = 4; i >= 1; i--)
 		{
 			var daysBefore = new Date(d.getTime());
 			daysBefore.setDate(daysBefore.getDate() - i);

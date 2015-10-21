@@ -41,7 +41,6 @@ textarea{
 	.Plano_Estudo_Content_Titulo .titulo
 	{
 		text-align: left;
-		color: #FFF;
 		text-transform:uppercase;
 		margin-left: 19px;
 	}
@@ -208,7 +207,6 @@ textarea{
 		height:51px;
 		width:100%;
 		position: relative;
-		/*background-color: red;*/
 	}
 
 		.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content
@@ -216,7 +214,7 @@ textarea{
 			height:51px;
 			width:51px;
 			float:left;
-			background-color: rgb(255, 120, 0) !important;
+			background-color: rgb(255, 120, 0);
 		}
 		.Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content {
 			height: 51px;
