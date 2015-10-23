@@ -76,12 +76,14 @@
                     <div class="Conteudo_Coluna" id="Content_lateral">    
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">                        	
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                        	<div  ng-repeat="menu in menuHTML">
+                        		<a href="{{menu.href}}">                        	
+                            	    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                            	    	<div ng-if="menu.class== 'mensagens'" class="label">{{menuInfoM}}</div>
+                            	        <div ng-if="menu.class== 'forum'" class="label">{{menuInfoF}}</div>
+                            	        {{menu.label}}
+                            	    </div>
+                            	</a>
                             </div>
                         </div>    
                         <!--Calendario-->                    

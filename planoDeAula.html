@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 	<head>
 		<meta charset="UTF-8" />
 		<title>Plataforma Amorim</title>
@@ -32,7 +32,7 @@
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
         <script type="text/javascript" src="js/calendario.js"></script>        
 		<script type="text/javascript" src="js/PlanoDeAula.js"></script>
          
@@ -51,7 +51,7 @@
         
 	</head>
 
-	<body>
+	<body ng-app="app">
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
             
@@ -84,12 +84,14 @@
                     <div class="Conteudo_Coluna" id="Content_lateral">    
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">                        	
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                        	<div  ng-repeat="menu in menuHTML">
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
                         </div>    
                         <!--Calendario-->                   
@@ -106,8 +108,8 @@
                 <!--bloqueio para a rolagem top-->				
                 <div class="Conteudo_Coluna" id="content_central">
                 	<div id="conteudo_plano">
-                		<div class="Plano_Estudo_Content_Titulo">
-                    	<span class="titulo">PLANO DE AULA | OFICINA DE MATEMÁTICA</span>
+                		<div class="Plano_Estudo_Content_Titulo OF_Art_E_bg">
+                    	<span class="titulo">Plano de aula | Oficina de Matemática</span>
                     	<span class="botoes">
                         	<a href="#" class="historico"></a>
                             <a href="#" class="novo"></a>
@@ -163,15 +165,15 @@
                     <div id="box_novo" class="esconder">
                    	  <form>
                       	<div id="linha1" class="bloco_campo">
-                            <div class="input_data"> Ínicio </div>
+                            <div class="input_data OF_Art_E_bg"> Ínicio </div>
                             <div class="input_data_value">
-                                <input type="text" id="data_inicio">
+                                <input type="text" class="OF_Art_C_bg" id="data_inicio">
                             </div>
                         </div>
                         <div id="linha1" class="bloco_campo_fim">
-                            <div class="input_data"> Término </div>
+                            <div class="input_data OF_Art_E_bg"> Término </div>
                             <div class="input_data_value">
-                                <input type="text" id="data_fim">
+                                <input type="text" class="OF_Art_C_bg" id="data_fim">
                             </div>
                         </div>                 
                   	  </form>
@@ -196,11 +198,11 @@
                             						
 						<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
 							<a id="L_Novo_Plano" href="#">
-								<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Calendario"></div>
+								<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Calendario OF_Art_E_bg"></div>
 							</a>
 
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1">Semana</div>
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2" id="Periodo_Plano_Estudo">-</div>
+							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1 OF_Art_E_txt">Semana</div>
+							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2 OF_Art_E_txt" id="Periodo_Plano_Estudo">-</div>
 						</div>
 
 						<div class="Plano_Estudo_Content_Objetivos_Conteudo">
@@ -217,10 +219,10 @@
 
 						<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
 							<a href="#" id="roteiros">
-								<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Planejamento"></div>
+								<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Planejamento OF_Art_E_bg"></div>
 							</a>
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Planejamento</div>
+							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1 OF_Art_E_txt"></div>
+							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2 OF_Art_E_txt">Planejamento</div>
 
 						</div>
 
@@ -239,9 +241,8 @@
 						</div>
 
 						<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content Bg_Imagem_Registro"></div>
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1"></div>
-							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2">Registro de Atividade</div>
+							<div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1 OF_Art_E_txt"></div>
+							<div id="Plano_Estudo_Content_Titulo_Registro" class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2 OF_Art_E_txt">Registro de Atividade</div>
 							<div class="Plano_Estudo_Content_Objetivos_Conteudo">
 								<div class="Plano_Estudo_Content_Objetivos_Conteudo_Texto" id="divRegAtividade"></div>
 							</div>
@@ -263,17 +264,17 @@
 						</div>-->
 
 
-				<div id="Plano_Estudo_Content_Botoes">
-						<!-- <div class="Plano_Estudo_Content_Print"></div>
-						<div class="Plano_Estudo_Content_Download"></div> -->
-
-						<input type="button" id="btnSubmit" class="btPadrao" value="" style="font-size:20px; margin: 10px" />
-
-					</div>
-
+				        <div id="Plano_Estudo_Content_Botoes">
+        				        		<!-- <div class="Plano_Estudo_Content_Print"></div>
+        				        		<div class="Plano_Estudo_Content_Download"></div> -->
+        
+        				        		<input type="button" id="btnSubmit" class="btPadrao btSalvar OF_Art_E_bg" value="Salvar" />
+        
+				        </div>
+                        <div style="clear: both"></div>
 					<!-- </form> -->
 
-				</div> 
+				    </div> 
                 	</div>           
 				</div>
                 <div id="boxMensagemGeral"></div>

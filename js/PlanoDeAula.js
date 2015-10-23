@@ -70,7 +70,8 @@ $(document).ready(function() {
 	$(".historico").click(function(){
 		$("#box_novo").removeClass("exibir");
 		$("#box_historico").toggleClass("exibir");
-		$(".novo").removeClass("novo_ativo");	
+		$(".novo").removeClass("novo_ativo");
+		$(".novo").removeClass("OF_Art_M_bg");
 		$(".historico").toggleClass("historico_ativo");
 	});
 
@@ -83,12 +84,14 @@ $(document).ready(function() {
 		$("#box_novo").toggleClass("exibir");
 		$(".historico").removeClass("historico_ativo");
 		$(".novo").toggleClass("novo_ativo");
+		$(".novo").toggleClass("OF_Art_M_bg");
 	});	
 	
 	$("#cancelar").click(function(){
 		alert('cancelar');
 		$("#box_novo").removeClass("exibir");
 		$(".novo").removeClass("novo_ativo");
+		$(".novo").removeClass("OF_Art_M_bg");
 		$("#box_novo").css("height", "130px");
 		$("#botoes").hide();
 		$('#data_inicio').val("");
@@ -181,7 +184,7 @@ $(document).ready(function() {
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
-	});
+	}).next(".ui-datepicker-trigger").addClass("OF_Art_M_bg");
 	
 	$( "#data_fim" ).datepicker({
 		showOn: "button",
@@ -207,7 +210,7 @@ $(document).ready(function() {
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
-	});
+	}).next(".ui-datepicker-trigger").addClass("OF_Art_M_bg");
 	
 	$(".Conteudo_Coluna").scroll(function(){
 		console.log("Coluna");
@@ -383,7 +386,8 @@ function reSetPlano(ID)
 	
 	$("#box_novo").removeClass("exibir");
 	$("#box_historico").toggleClass("exibir");
-	$(".novo").removeClass("novo_ativo");	
+	$(".novo").removeClass("novo_ativo");
+	$(".novo").removeClass("OF_Art_M_bg");	
 	$(".historico").toggleClass("historico_ativo");
 	
 	$('.dadosObjetivos').empty();
