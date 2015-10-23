@@ -1,54 +1,376 @@
 $(document).ready(function(){
-    carregaOficina1();
-    carregaPeriodo1();
-    carregaCiclo1(); 
+    salvarOficina();
+    atribuiChangeOficina();
 });
 
-function carregaOficina1(){
-    var HtmlConteudo;
-    $.ajax({
-        url: path + "Oficina",
-        type: "GET",
-        async: false,
-        crossDomain: true,
-        dataType: 'json',
-        success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                HtmlConteudo += '<option class="opcaoOF" value="'+data[i].idoficina+'">'+data[i].nome+'</option>';
-            };
+function salvarOficina () {
+    $('.btn_Salvar_Oficina').click(function() {
+
+        var tipoOficina = $("#oficinaOficina").val();
+        var nomeOficina = $("#nomeOficina").val();
+        var periodo = $("#periodoOficina").val();
+        var ciclo = $("#cicloOficina").val();
+
+        if (tipoOficina == '0' ||
+            periodo == '0' ||
+            ciclo == '0')
+        {
+            mensagem("Escolha um tipo para a oficina!","OK","bt_ok","erro");
+        }
+        else if (tipoOficina == 'outras' && nomeOficina == '')
+        {
+            mensagem("A oficina deve possuir um nome!","OK","bt_ok","erro");
+        }
+        else
+        {
+            $.ajax({
+                url: path + "Oficina",
+                type: "POST",
+                async: false,
+                crossDomain: true,
+                data: "action=create&tipo="+tipoOficina+"&nome="+nomeOficina+"&periodo="+periodo+"&ciclo="+ciclo+"&anoLetivo="+getIdAnoLetivo(),
+                beforeSend: function() {
+                    loading('inicial');
+                },
+                success: function(idOficina) {
+                    $("#Container_Cadastro_Oficina").css('display', 'none');
+                    mensagem("Oficina criada com sucesso! Cadastre os professores para esta oficina!","OK","bt_ok","sucesso");   
+                    displayNome();
+                    cadastrarProfessorOficina(idOficina);
+                },
+                complete: function() {
+                    loading('final');
+                }
+            });
         }
     });
-    $('#oficinaOficina').append(HtmlConteudo);
 }
-function carregaPeriodo1(){
-    var HtmlPeriodo;
-    $.ajax({
-        url: path + "Periodo",
-        type: "GET",
-        async: false,
-        crossDomain: true,
-        dataType: 'json',
-        success: function (dataP) {
-            for (var i = 0; i < dataP.length; i++) {
-                HtmlPeriodo += '<option class="opcaoPE" value="'+dataP[i].idperiodo+'">'+dataP[i].periodo+'</option>';
-            };
+
+function atribuiChangeOficina (argument) {
+    $("#oficinaOficina").change(function () {
+        if ($("#oficinaOficina").val() == 'outras')
+        {
+            $("#nomeLinha").css('display', 'block');
+            $("#nomeOficina").val('');
+        }
+        else
+        {
+            $("#nomeLinha").css('display', 'none');
+            $("#nomeOficina").val($("#oficinaOficina").val());
         }
     });
-    $('#periodoOficina').append(HtmlPeriodo);
 }
-function carregaCiclo1(){
-    var HtmlCiclo;
+
+function displayNome () {
+    var abrev = 'Mus'
+    var cicloNome = $( "#cicloOficina option:selected" ).text();
+    var periodoNome = $( "#periodoOficina option:selected" ).text();
+    var nomeOficina = $("#nomeOficina").val();
+
+    var conteudoNome =  '<span>' + cicloNome + ' |</span>'+
+                        '<span> ' + periodoNome + ' |</span>'+
+                        '<span class="OF_'+abrev+'_E_txt"> Oficina ' + nomeOficina + ' |</span>';
+    $("#Area_Nome_Oficina").html(conteudoNome);
+    $("#Area_Nome_Oficina").css('display', 'block');
+}
+
+function cadastrarProfessorOficina (idOficina) {
+    $("#Container_Cadastro_Oficina_Professor").css('display', 'block');
+    atribuiAddProfessor();
+    addLinhaProfessor();
+    atribuiSalvarProfessorOficina(idOficina);
+}
+
+function atribuiAddProfessor () {
+    $('.btAdd_Professor').click(function() {
+        addLinhaProfessor();
+    });
+}
+
+function addLinhaProfessor () {
+    $(".Container_Professores").append(getNovaLinhaProfessor());
+    removeProfessores();
+    addEventsSelect();
+}
+
+function atribuiSalvarProfessorOficina (idOficina) {
+    $(".btn_Salvar_Oficina_Professor").click(function() {
+        var profCadastrado = false;
+        for (var a = 0; a < $('.Professor_Select').length; a++)
+        {
+            var idProfessor = $('.Professor_Select')[a].value;
+            if (idProfessor != "0")
+            {
+                salvarProfessorOficina(idOficina, idProfessor);
+                profCadastrado = true;
+                mensagem("Professores cadastrados com sucesso! Crie uma rotina para esta oficina!","OK","bt_ok","sucesso"); 
+            }
+        }
+        if (profCadastrado)
+        {
+            $("#Container_Cadastro_Oficina_Professor").css('display', 'none');
+            addProfessorNomeOficina();
+            cadastrarRotina(idOficina);
+        }
+        else
+            mensagem("Cadastre ao menos um professor para essa oficina!","OK","bt_ok","erro");
+    });
+}
+
+function addProfessorNomeOficina () {
+
+    var conteudoNome = '';
+
+    for (var a = 0; a < $('.Professor_Select').length; a++)
+    {
+        conteudoNome += '<span> Professor(a) ' + $('.Professor_Select option:selected')[a].text +' |</span>';
+    }
+
+    $("#Area_Nome_Oficina").append(conteudoNome);
+}
+
+function getNovaLinhaProfessor () {
+
+    var returnHtml;
+
     $.ajax({
-        url: path + "Ciclo",
-        type: "GET",
+        url: path + 'ProfessorFuncionario',
         async: false,
         crossDomain: true,
-        dataType: 'json',
-        success: function (dataC) {
-            for (var i = 0; i < dataC.length; i++) {
-                HtmlCiclo += '<option class="opcaoCI" value="'+dataC[i].idciclos+'">'+dataC[i].ciclo+'</option>';
-            };
+        type: "GET",
+        success: function(dataProfessor) {
+
+            var listaProfessoresOption = '';
+
+            for (var a = 0; a < dataProfessor.length; a++)
+                    listaProfessoresOption += '<option value="'+dataProfessor[a].idprofessorFuncionario+'">'+dataProfessor[a].nome+'</option>';
+
+            returnHtml =    '<div class="Area_Select_Grupo">'+
+                                '<div class="Box_Area_Select Unico_Linha">'+
+                                    '<p class="Select_Grupo">Professor</p>'+
+                                    '<span class="Select_Grupo_Input">'+
+                                        '<select name="Oficina" class="Professor_Select">'+
+                                            '<option value="0"></option>'+    
+                                            listaProfessoresOption+
+                                        '</select>'+
+                                    '</span>'+
+                                '</div>'+
+                            '</div>';
         }
     });
-    $('#cicloOficina').append(HtmlCiclo);
+    return returnHtml;
+}
+
+function addEventsSelect () {
+    $('.Professor_Select').unbind('focus').unbind('change');
+    $(".Professor_Select").focus(function () {
+        previous = this.value;
+    }).change(function() {
+        console.log(this.value);
+        if (previous != '0')
+        {
+            $(".Professor_Select [value="+previous+"]").css('display', 'block');
+        }
+        if (this.value != '0')
+        {
+            $(".Professor_Select [value="+this.value+"]").css('display', 'none');
+        }                
+        previous = this.value;
+    });
+}
+
+function removeProfessores () {
+    for (var a = 0; a < $('.Professor_Select').length; a++)
+    {
+
+        if ($('.Professor_Select')[a].value != '0')
+        {
+            $(".Professor_Select [value="+$('.Professor_Select')[a].value+"]").css('display', 'none');
+        }
+    }
+}
+
+function salvarProfessorOficina (idOficina, idProfessor) {
+    $.ajax({
+        url: path + 'OficinaProfessor',
+        type: "POST",
+        async: false,
+        crossDomain: true,
+        data: 'action=create&idOficina='+idOficina+"&idProfessor="+ idProfessor,
+        beforeSend: function() {
+            loading('inicial');
+        },
+        complete: function() {
+            loading('final');
+        }
+    });
+}
+
+function cadastrarRotina (idOficina) {
+    $('#Container_Cadastro_Rotina').css('display', 'block');
+    carregaAgrupamentos();
+    carregaDiasSemana();
+    carregaHorarios();
+    carregaSalas();
+    atribuiSalvarRotina(idOficina);
+}
+
+function carregaAgrupamentos () {
+    var htmlOption = '<option value="0"></option>';
+    $.ajax({
+        url: path + 'Agrupamento/AnoLetivo/' + getIdAnoLetivo(),
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dataAgrupamentos) {
+            for (var a = 0; a < dataAgrupamentos.length; a++)
+                htmlOption += '<option value ="'+dataAgrupamentos[a].idagrupamento+'">'+dataAgrupamentos[a].nome+'</option>';
+        }
+    });
+
+    $('.Agrupamento_Select').html(htmlOption);
+
+}
+
+function carregaDiasSemana () {
+    var htmlOption = '<option value="0"></option>';
+    $.ajax({
+        url: path + 'Semana',
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dataSemana) {
+            for (var a = 0; a < dataSemana.length; a++)
+                htmlOption += '<option value ="'+dataSemana[a].idsemana+'">'+dataSemana[a].dia+'</option>';
+        }
+    });
+
+    $('.Dia_Semana_Select').html(htmlOption);
+
+}
+
+function carregaHorarios () {
+
+    var primeiroHorario = 7;
+    var ultimoHorario = 23;
+
+    var htmlHorarios = '<option value="0"></option>w';
+
+    for (var a = primeiroHorario; a <= ultimoHorario; a++)
+    {
+        htmlHorarios += '<option value="'+a+'">'+a+':00</option>';
+    }
+
+    $('.Horario_Select').html(htmlHorarios);
+
+}
+
+function carregaSalas () {
+
+    var htmlOption = '<option value="0"></option>';
+    $.ajax({
+        url: path + 'Salas',
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dataSalas) {
+            for (var a = 0; a < dataSalas.length; a++)
+                htmlOption += '<option value ="'+dataSalas[a].idsalas+'">'+dataSalas[a].sala+'</option>';
+        }
+    });
+
+    $('.Sala_Rotina_Select').html(htmlOption);
+}
+
+function atribuiSalvarRotina (idOficina) {
+    $('.btn_Salvar_Rotina').click(function() {
+
+        var idAgrupamento = $('.Agrupamento_Select').val();
+        var idDia = $('.Dia_Semana_Select').val();
+        var horario = $('.Horario_Select').val();
+        var idSala = $('.Sala_Rotina_Select').val();
+        var anoLetivo = getIdAnoLetivo();
+
+        if (idAgrupamento != '0' &&
+            idDia != '0' &&
+            horario != '0' &&
+            idSala != '0')
+        {
+            $.ajax({
+                url: path + "Rotina",
+                async: false,
+                crossDomain: true,
+                type: "POST",
+                data: "action=create&idOficina="+idOficina+"&idAgrupamento="+idAgrupamento+"&idDia="+idDia+"&Hora="+horario+"&idSala="+idSala+"&anoLetivo="+anoLetivo,
+                beforeSend: function() {
+                    loading('inicial');
+                },
+                success: function() {
+                    $('#Container_Cadastro_Rotina').css('display', 'none');
+                    mensagem("Rotina criada com sucesso!","OK","bt_ok","sucesso");
+                    $('#Container_Novo_Cadastro').css('display', 'block');
+                    addNomeRotina();
+                    $('.btn_Nova_Oficina').click(function() {
+                       resetarPaginas();
+                    });
+                },
+                complete: function() {
+                    loading('final');
+                }
+            });
+        }
+        else
+        {   
+            mensagem("Todos os campos devem estar preenchidos!","OK","bt_ok","erro");
+        }
+    });
+}
+
+function addNomeRotina () {
+
+    var agrupamento = $('.Agrupamento_Select option:selected').text;
+    var diaSemana = $('.Dia_Semana_Select option:selected').text;
+    var horario = $('.Horario_Select option:selected').text;
+    var sala = $('.Sala_Rotina_Select option:selected').text;
+
+
+    var conteudoNome =  '<span>' + agrupamento + ' |</span>'+
+                        '<span>' + diaSemana + ' |</span>'+
+                        '<span>' + horario + ' |</span>'+
+                        '<span>' + sala + '</span>';
+
+    $("#Area_Nome_Oficina").append(conteudoNome);
+
+
+}
+
+function resetarPaginas () {
+    resetarCadastroOficina();
+    resetarCadastroProfessores();
+    resetarCadastroRotina();
+}
+
+function resetarCadastroOficina () {
+    $('#Container_Cadastro_Oficina').css('display', 'block');
+    $('#Area_Nome_Oficina').empty();
+    $("#oficinaOficina").val('0');
+    $("#nomeOficina").val('');
+    $("#nomeOficina").css('display', 'none');
+    $("#periodoOficina").val('0');
+    $("#cicloOficina").val('0');
+}
+
+function resetarCadastroProfessores () {
+    $('.Container_Professores').empty();
+    $('.btAdd_Professor').unbind('click');
+    $(".btn_Salvar_Oficina_Professor").unbind('click');
+}
+
+function resetarCadastroRotina () {
+    $('.Agrupamento_Select').empty();
+    $('.Dia_Semana_Select').empty();
+    $('.Horario_Select').empty();
+    $('.Sala_Rotina_Select').empty();
+    $('.btn_Salvar_Rotina').unbind('click');
+    $('#Container_Novo_Cadastro').css('display', 'none');
 }

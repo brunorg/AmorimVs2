@@ -88,7 +88,7 @@ function anoLetivo(){
 function  anoLetivoId(){
     var idAnoLetivo;
     $.ajax({
-        url: path + 'AnoLetivo/AnoLetivoId/' + (new Date()).getFullYear(),
+        url: path + 'AnoLetivo/ano/' + (new Date()).getFullYear(),
         async: false,
         crossDomain: true,
         type: 'GET',

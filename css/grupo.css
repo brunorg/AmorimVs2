@@ -90,6 +90,13 @@
 		overflow: hidden;
 		display: none;
 	}
+	#Area_Nome_Oficina{
+		padding-top: 15px;
+    	padding-bottom: 15px;
+    	font-size: 24px;
+    	color: rgb(102,102,102);
+    	display: none;
+	}
 	.Area_Select_Grupo {
 		width: 100%;
 		height: 65px;
@@ -105,9 +112,22 @@
     	border: 1px solid rgb(174,174,166);
 	}
 
+	.Unico_Linha{
+		width: 902px;
+	}
+
+	.Unico_Linha .Select_Grupo_Input{
+		width: 781px;
+	}
+
+	.btAdd_Professor{
+		float: right;
+		cursor: pointer;
+	}
+
 	.Box_Area_Select > * { border: 1px solid rgb(174,174,166); }
 
-	.Select_Grupo_Ciclo, .Select_Grupo_Periodo {
+	.Select_Grupo{
 		text-align: right;
 		display: inline-block;
 		float: left;
@@ -128,6 +148,11 @@
 		height: 100%;
 		width: 175px;
 	}
+	.Select_Grupo_Input input{
+		color: rgb(102,102,102);
+    	padding: 8px 8px;
+    	font-size: 18px;
+	}
 	.Box_Area_Select select {
 		display: inline-block;
 		height: 100%;
@@ -146,7 +171,7 @@
 	.Box_Area_Select select > option::before { margin: 30px 0; }
 
 	#Area_Alunos_Container {
-		height: 330px;
+		max-height: 330px;
     	overflow: hidden;
 	}
 	.Grupo_Aluno_Linha {
@@ -202,7 +227,7 @@
 	}
 
 	.btns_grupo {
-		background-color: #ee7776 !important;
+		background-color: #E83F4A;
 		border-radius: 0;
 		color: #fff;
 		height: 40px;
@@ -212,13 +237,33 @@
 		border: 0;
 		cursor: pointer;
 		float: right;
+		width: 100px;
+		background-image: url(../img/ic_salvar.png);
+		background-repeat: no-repeat;
+		background-position:  10px 6px; 
 	}
-	.btns_grupo:hover { background-color: #E83F4A !important; }
 
-	.btn_Salvar_Grupo {
+	.btn_Nova_Oficina, .btn_Finalizar{
+    	border-radius: 0;
+    	color: #fff;
+    	height: 40px;
+    	width: 165px;
+    	padding: 10px;
+    	font-size: 20px;
+    	text-align: right;
+    	border: 0;
+    	cursor: pointer;
+    	float: right;
+    	background-image: url(../img/ic_addG_branco.png);
+    	background-repeat: no-repeat;
+    	background-position:  13px 11px;
+    	background-color: #E83F4A;
+    	background-size: 18px;
+    }
+	/*.btn_Salvar_Grupo, .btn_Salvar_Oficina {
 		width: 100px;
 		background: url(../img/ic_salvar.png) no-repeat 10px 6px; 
-	}
+	}*/
 
 /* Criar Oficina */
 	.Select_Grupo_Oficina {
