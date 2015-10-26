@@ -62,11 +62,13 @@
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
                             <div  ng-repeat="menu in menuHTML">                         
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    <div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
                         </div>    
                         <!--Calendario-->                    
@@ -143,7 +145,7 @@
                                     <p id="btnNovoOB" style="display:none" value="">Novo</p>
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
                                     <!--<p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>-->
-                                    <p id="btnEdit" style="display:none" value="">Editar</p>
+                                    <p id="btnEdit" style="display:none" value="">Salvar</p>
                                 </div>                                    
                                 </div>
                                 
@@ -155,57 +157,7 @@
                         <div id="PesquisaOficial" class="aba_roteiro">
                             <div id="conteudo_principal_pesquisaOficial">                           
                                 <div id="Inserir_roteiro">
-                                    <div id="linha5"> 
-                                        <div class="celulaPequena">
-                                            <div class="infoP"> Busca </div>
-                                            <div class="infoValueP" id="valueAnoE">
-                                                <div class="styled-select">
-                                                    <select id="buscaRoteiro">
-                                                        <option selected disabled> Selecione</option>
-                                                        <option value="oficina">Oficina</option>
-                                                        <option value="professor">Professor</option>
-                                                    </select> 
-                                                </div>
-                                           
-                                        </div>                              
-                                    </div>
-                                    <div > 
-                                        <div class="celulaPequena" id="linha6" style="display:none" value="" >
-                                            <div class="infoP"> Oficina </div>
-                                            <div class="infoValueP" id="valueAnoE">
-                                                <div class="styled-select">
-                                                    <select name="listaOficina" id="oficina">
-                                                        <option class="opcaoOF" value="-1">Selecione</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>                              
-                                    </div>
-                                    <div > 
-                                        <div class="celulaPequena" id="linha10" style="display:none" value="" >
-                                            <div class="infoP"> Periodo </div>
-                                            <div class="infoValueP" id="valueAnoE">
-                                                <div class="styled-select">
-                                                    <select name="listaPeriodo" id="periodo">
-                                                        <option class="opcaoPE" value="-1">Selecione</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>                              
-                                    </div>
-                                    <div > 
-                                        <div class="celulaPequena" id="linha7" style="display:none" value="">
-                                            <div class="infoP"> Ciclo </div>
-                                            <div class="infoValueP" id="valueAnoE">
-                                                <div class="styled-select">
-                                                     <select name="listaCiclo" id="ciclo">Selecione
-                                                        <option class="opcaoCI" value="-1">Selecione</option>
-                                                     </select>
-                                                     
-                                                </div>
-                                            </div>
-                                        </div>                              
-                                    </div>
+                                    <div id="linha5">                          
                                     <div id="conteudo_principal_pesquisa">                                
                                     <div id="Inserir_pesquisa">
                                         <div class="celulaGrande">
@@ -250,6 +202,8 @@
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
-        <!--Carrega os dados do usuario logado-->          
+        <!--Carrega os dados do usuario logado-->   
+        <!--Carrega os dados do usuario logado-->   
+
     </body>
 </html>
