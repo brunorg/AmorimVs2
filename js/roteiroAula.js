@@ -16,6 +16,7 @@ $(document).ready(function(){
 			carregaRoteiroPesquisa();
 		}else if(abaClicada.id=="cabecalho_pesquisa"){
 			carregaRoteiro();
+			 $( ".celulaGrandeOB" ).remove();
 		}
 		for(var i = 0; i < cabecalhoItem.length; i++) {
 			if(cabecalhoItem[i] === abaClicada) {
@@ -41,13 +42,13 @@ $(document).ready(function(){
 
 	$("#btnNovoOB").click(function() {
 		$("#box_objetivoAula").append('<div class="linha3">'+
-		      	'<div class="celulaGrandeOB">'+
-		      	'<div class="infoM"> Objetivo </div>'+
-		      	'<div class="infoValueM">'+
-		      		'<input type="text" id="val_objetivo_'+cont+'" class="infoValueM objetivos">'+
-		      	'</div>' +  
-		      	'</div>'+
-		      	'</div>');
+		                              '<div class="celulaGrandeOB">'+
+		                              '<div class="infoM"> Objetivo </div>'+
+		                              '<div class="infoValueM">'+
+		                              '<input type="text" id="val_objetivo_'+cont+'" class="infoValueM objetivos">'+
+		                              '</div>' +  
+		                              '</div>'+
+		                              '</div>');
 		cont++;
 	});	
 
@@ -65,8 +66,6 @@ $(document).ready(function(){
 			success: function (data) {
 				$('#linha1').html('<input type="hidden" id="idRoteiro" value="'+data+'">');
 				$("#linha1,#linha2,#btnSalvar").css("display","none");
-				$("#roteiroSalvo").html(roteiro).css("display","block");
-				$("#descricaoSalvo").html(descricao).css("display","block");
 				mensagem('Roteiro salvo com sucesso!','OK','bt_ok','sucesso');
 				MostrarObjetivo();
 			}
@@ -74,11 +73,11 @@ $(document).ready(function(){
 	});
 
 	$("#btnSalvarObjetivo").click(function(){
-    	var objetivos = $('.objetivos');
-    	var IdRoteiro = $('#idRoteiro').val();
+		var objetivos = $('.objetivos');
+		var IdRoteiro = $('#idRoteiro').val();
 
-    	for (var i = 0; i < objetivos.length; i++) {
-    		$.ajax({
+		for (var i = 0; i < objetivos.length; i++) {
+			$.ajax({
 				url: path + "ObjetivoAula",
 				type: "POST",
 				async: false,
@@ -93,14 +92,14 @@ $(document).ready(function(){
 			if((i+1)==objetivos.length){
 				mensagem('Objetivo(s) salvo com sucesso!','OK','bt_ok','sucesso');
 			}
-    	};
-    })
+		};
+	})
 
 	$("#btnEdit").click(function(){
 		var roteiro= $("#val_roteiro").val();
 		var descricao= $("#val_descricao").val();
-    	var IdRoteiro = $('#idRoteiro').val();
-    	var IdProfessor = $('#idOficinaProfessor').val();
+		var IdRoteiro = $('#idRoteiro').val();
+		var IdProfessor = $('#idOficinaProfessor').val();
 
 		$.ajax({
 			url: path + "RoteiroAula",
@@ -120,7 +119,7 @@ $(document).ready(function(){
 		var objetivos = $('.objetivos');
 
 		for (var i = 0; i < objetivos.length; i++) {
-    		$.ajax({
+			$.ajax({
 				url: path + "ObjetivoAula",
 				type: "POST",
 				async: false,
@@ -132,7 +131,7 @@ $(document).ready(function(){
 					mensagem('Alterações salvas com sucesso!','OK','bt_ok','sucesso');
 				}
 			});
-    	};	
+		};	
 	});
 	$('#buscaRoteiro').change(function(){
 		var comboBusca = $('#buscaRoteiro option:selected').val();
@@ -162,20 +161,20 @@ $(document).ready(function(){
 
 });//fecha document jquery
 function MostrarObjetivo(){
-    $(".celulaGrandeOB").show();
-    $("#btnSalvarObjetivo,#btnNovoOB").css("display","block");
+	$(".celulaGrandeOB").show();
+	$("#btnSalvarObjetivo,#btnNovoOB").css("display","block");
 };
 function adeclarar(){
-    $.ajax({
-        url: path + "RoteiroAula/ListarLikeRoteiroAula/"+idOficinaProfessor+letras,
+	$.ajax({
+		url: path + "RoteiroAula/ListarLikeRoteiroAula/"+idOficinaProfessor+letras,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		dataType: 'html',
 		success: function (data) {
-		   $('#box_roteiroAula').html(data);
+			$('#box_roteiroAula').html(data);
 		}
-    });   
+	});   
 }
 
 function carregaRoteiro(){
@@ -198,10 +197,10 @@ function carregaRoteiro(){
 		success: function (data) {
 			for (var i = 0 ; i < data.length; i++) {
 				rotHTML += '<div class="item" id="Roteiro_'+data[i].idroteiro_aula+'">'+
-					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
-					'<span class="editar" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
-					'<span class="excluir" onclick="excluirRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
-					'</div>';	
+				'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
+				'<span class="editar" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
+				'<span class="excluir" onclick="excluirRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
+				'</div>';	
 			};
 			$('#box_roteiroAula').html(rotHTML);
 		}
@@ -226,11 +225,11 @@ function carregaRoteiroPesquisa(){
 		success: function (data) {
 			for (var i = 0 ; i < data.length; i++) {
 				roteiroHTML += '<div class="item">'+
-					'<div class="titulo_roteiro1">'+data[i].roteiro+'</div>'+ 
-					'<span class="listarObjetivo" id="setaObjetivo_'+data[i].idroteiro_aula+'" onclick="ListarObjetivos('+data[i].idroteiro_aula+','+i+')"></span>'+
-					'<span class="utilizarRoteiro" onclick="clonarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
-					'</div>'+
-					'<div class="escondido" id="ListaObj_'+data[i].idroteiro_aula+'"></div>';	
+				'<div class="titulo_roteiro1">'+data[i].roteiro+'</div>'+ 
+				'<span class="listarObjetivo" id="setaObjetivo_'+data[i].idroteiro_aula+'" onclick="ListarObjetivos('+data[i].idroteiro_aula+','+i+')"></span>'+
+				'<span class="utilizarRoteiro" onclick="clonarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
+				'</div>'+
+				'<div class="escondido" id="ListaObj_'+data[i].idroteiro_aula+'"></div>';	
 			};
 			$('#boxRoteiroAulaPesquisa').html(roteiroHTML);
 		}
@@ -248,7 +247,7 @@ function excluirROT(idroteiroAulaa){
 		dataType: 'json',
 		data:'id='+idroteiroAulaa,
 		success: function () {
-					
+			
 		}
 	})
 	$('#Roteiro_'+idroteiroAulaa).remove();
@@ -315,7 +314,7 @@ function utilizarRoteiroAula(idRoteiroAula){
 	$("#Pesquisa").css("display","none");
 	$("#Roteiro").css("display","block");
 	$("#cabecalho_pesquisa").removeClass('cabecalho_ativo');
-  	$("#cabecalho_roteiro").addClass('cabecalho_ativo');
+	$("#cabecalho_roteiro").addClass('cabecalho_ativo');
 	$("#box_roteiroAula").html('');
 	$.ajax({
 		url: path+"ObjetivoAula/ListarPorRoteiro/"+idRoteiroAula,
@@ -333,9 +332,12 @@ function utilizarRoteiroAula(idRoteiroAula){
 					$("#btnSalvarObjetivo").css("display","none");
 					$("#btnNovoOB").css("display","block");
 					$("#btnEdit").css("display","block");
+
 				}
 				addObjetivo(data[i].objetivo,data[i].idobjetivo_aula);
 			};
+			$("#roteiroSalvo").html(roteiro).css("display","block");
+			$("#descricaoSalvo").html(descricao).css("display","block");
 		}
 	});
 }
@@ -350,47 +352,47 @@ function exibirListaOficina(idOficina,idCiclo,IDProfessor){
 		success: function(data){
 			for (var i = 0 ; i < data.length; i++) {
 				oficinaHTML += '<div class="item">'+
-					'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
-					'<span class="utilizarRoteiro" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
-					'</div>';	
+				'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
+				'<span class="utilizarRoteiro" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
+				'</div>';	
 			};
 			$('#boxRoteiroAulaPesquisa').html(oficinaHTML);
 		}
 	});
 }
 function buscaRoteirAula(){
-    $.ajax({
-        url: path + "RoteiroAula/ListarLikeRoteiro/"+$('#pesqRoteiro').val(),
+	$.ajax({
+		url: path + "RoteiroAula/ListarLikeRoteiro/"+$('#pesqRoteiro').val(),
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		dataType: 'html',
 		success: function (data) {
-		   $('#boxRoteiroAulaPesquisa').html(data);
+			$('#boxRoteiroAulaPesquisa').html(data);
 		}
-    });   
+	});   
 }
 function buscaMeusRoteiros(){
 	$.ajax({
-        url: path + "RoteiroAula/ListarLikeRoteiro/"+$('#pesquisaRoteiro').val(),
+		url: path + "RoteiroAula/ListarLikeRoteiro/"+$('#pesquisaRoteiro').val(),
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		dataType: 'html',
 		success: function (data) {
-		   $('#box_roteiroAula').html(data);
+			$('#box_roteiroAula').html(data);
 		}
-    });
+	});
 }
 function addObjetivo(objetivoA,idObjetivoA){
 	$("#box_objetivoAula").append('<div class="linha3">'+
-		'<div class="celulaGrandeOB">'+
-		'<div class="infoM"> Objetivo </div>'+
-		'<div class="infoValueM">'+
-			'<input type="text"  value="'+objetivoA+'" id="'+idObjetivoA+'" class="infoValueM objetivos">'+
-		'</div>' +  
-		'</div>'+
-		'</div>');
+	                              '<div class="celulaGrandeOB">'+
+	                              '<div class="infoM"> Objetivo </div>'+
+	                              '<div class="infoValueM">'+
+	                              '<input type="text"  value="'+objetivoA+'" id="'+idObjetivoA+'" class="infoValueM objetivos">'+
+	                              '</div>' +  
+	                              '</div>'+
+	                              '</div>');
 };
 function carregaOficina(){
 	var HtmlConteudo;
@@ -440,4 +442,4 @@ function carregaCiclo(){
 	});
 	$('#ciclo').append(HtmlCiclo);
 }
-
+/*teste*/

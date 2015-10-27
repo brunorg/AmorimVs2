@@ -1,7 +1,8 @@
 var app = angular.module('app',['ngRoute']);
 
+
 app.controller('geralCTRL',function($scope,$http){
-	$scope.usuario = function(){	
+	$scope.usuario = function(){
 		var usuario = dadosUsuario.perfil.perfil;
 		var usuarioId = dadosUsuario.idusuario;	
 		switch (dadosUsuario.perfil.perfil){
@@ -13,7 +14,6 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.usuarioFoto = dadosUsuario.aluno.fotoAluno;
 				$scope.usuarioNamePagina = "Área do Aluno";
 				$scope.usuarioPagina = "areaAluno.html";
-				
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				
@@ -25,8 +25,7 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Produção do Aluno', href: 'producaoAluno.html', class: 'prodAluno'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'forum'}
-				];	
-										
+				];										
 			break;
 			
 			case "Professor":	
@@ -36,11 +35,9 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Área do Professor";
 				$scope.usuarioPagina = "areaProfessor.html";
-				
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.oficina   = JSON.parse(localStorage.getItem("oficinaProfessor")); 
-				
 				$scope.menuHTML = [ 
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
@@ -55,7 +52,7 @@ app.controller('geralCTRL',function($scope,$http){
 				if(confTutor==true){
 					$("#rodape_calendario").css("display","block");
 					$("#rodape_calendario p").show();
-				}											
+				}			
 			break;
 			
 			case "Coordenacao":								
@@ -63,10 +60,8 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Área da Coordenação";
 				$scope.usuarioPagina = "areaCoordenacao.html";
-				
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
-				
 				$scope.menuHTML = [ 
 					{label: 'Tutores', href: 'tutorias.html',class: 'tutores'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
@@ -78,7 +73,7 @@ app.controller('geralCTRL',function($scope,$http){
 				//Visibilidade do perfil	
 				$("#bt_Inserir").show();
 				$("#cad_observacoes").remove();
-				$("#box_geral_observacao").css("height","308px");											
+				$("#box_geral_observacao").css("height","308px");
 			break;
 			
 			case "Secretaria":
@@ -86,7 +81,6 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Área da Secretaria";
 				$scope.usuarioPagina = "cadastros.html";
-				
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 								
 				$scope.menuHTML = [ 
@@ -95,12 +89,10 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Presença', href: 'presenca.html', class: 'presenca'},
 					{label: 'Carterinhas', href: 'carteirinhas.html', class: 'carteirinhas'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
-				];	
-
+				];
 			break;
 		}	
 	}
-		
 	//Logout do usuário
 	$scope.logout = function(){
 		//Todas as váriaveis do localStorage
