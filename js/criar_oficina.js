@@ -6,7 +6,7 @@ $(document).ready(function(){
 function salvarOficina () {
     $('.btn_Salvar_Oficina').click(function() {
 
-        var tipoOficina = $("#oficinaOficina").val();
+        // var tipoOficina = $("#oficinaOficina").val();
         var nomeOficina = $("#nomeOficina").val();
         var periodo = $("#periodoOficina").val();
         var ciclo = $("#cicloOficina").val();
@@ -28,7 +28,7 @@ function salvarOficina () {
                 type: "POST",
                 async: false,
                 crossDomain: true,
-                data: "action=create&tipo="+tipoOficina+"&nome="+nomeOficina+"&periodo="+periodo+"&ciclo="+ciclo+"&anoLetivo="+getIdAnoLetivo(),
+                data: "action=create&tipo="+$("#oficinaOficina option:selected").text+"&nome="+nomeOficina+"&periodo="+periodo+"&ciclo="+ciclo+"&anoLetivo="+getIdAnoLetivo(),
                 beforeSend: function() {
                     loading('inicial');
                 },
@@ -56,20 +56,20 @@ function atribuiChangeOficina (argument) {
         else
         {
             $("#nomeLinha").css('display', 'none');
-            $("#nomeOficina").val($("#oficinaOficina").val());
+            $("#nomeOficina").val($("#oficinaOficina option:selected").text);
         }
     });
 }
 
 function displayNome () {
-    var abrev = 'Mus'
-    var cicloNome = $( "#cicloOficina option:selected" ).text();
-    var periodoNome = $( "#periodoOficina option:selected" ).text();
-    var nomeOficina = $("#nomeOficina").val();
+    var abrev = $("#oficinaOficina").val();
+    var cicloNome = /*$( "#cicloOficina option:selected" ).text();*/ "Alfabetização";
+    var periodoNome = /*$( "#periodoOficina option:selected" ).text();*/ "Tarde";
+    var nomeOficina = /*$("#nomeOficina").val();*/ "BÇAASDNASJDIJASB DHK"
 
     var conteudoNome =  '<span>' + cicloNome + ' |</span>'+
                         '<span> ' + periodoNome + ' |</span>'+
-                        '<span class="OF_'+abrev+'_E_txt"> Oficina ' + nomeOficina + ' |</span>';
+                        '<span class="OF_'+abrev+'_E_txt"> Oficina ' + nomeOficina + '</span> |';
     $("#Area_Nome_Oficina").html(conteudoNome);
     $("#Area_Nome_Oficina").css('display', 'block');
 }
