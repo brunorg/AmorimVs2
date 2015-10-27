@@ -5,7 +5,7 @@ $(document).ready(function(){
     carregaPeriodo();
     carregaCiclo();
     carregaAlunos();
-    atribuiChangeCiclo();
+    atribuiChange();
     atribuiFuncoesRolagem();
     salvarAgrupamento();
 });
@@ -44,9 +44,14 @@ function carregaPeriodo(){
     $('.Periodo_Select').append(HtmlPeriodo);
 }
 
-function atribuiChangeCiclo() {
+function atribuiChange() {
 
     $("#cicloGrupo").change(function () {
+        resetArea();
+        carregaAlunos();
+    });
+
+    $("#periodoGrupo").change(function () {
         resetArea();
         carregaAlunos();
     });
@@ -71,7 +76,7 @@ function resetArea () {
 
 function buscarCicloPeriodo () {
     $.ajax({
-        url: path + "AlunoVariavel/listarCicloPeriodoRange/" + $("#cicloGrupo").val() + "/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
+        url: path + "listarCicloPeriodoRange/" + $("#cicloGrupo").val() + "/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
         type: "GET",
         async: false,
         crossDomain: true,
