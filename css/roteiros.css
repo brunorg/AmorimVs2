@@ -182,13 +182,7 @@
 		}
 
 		.Atividade_Input>* { margin: 0 !important;}
-		
-		.Cabecalho_Inserir_Roteiro {
-		    font-weight: normal;
-		    font-size: 18px;
-		    color: #1c828c;
-		    margin: 0 0 5px;
-		}
+
 		.Ano_Roteiro_Inserido {
 			font-size: 12px;
     		font-weight: normal;
@@ -238,9 +232,25 @@
 		}
 
 /* Listagem em acordeon dos objetivos inseridos */
-	#Objetivos_Inseridos { display: none; }
-	.Objetivos_Inseridos_Container { position: relative; }
-
+	.Roteiro_Inserido_Container { position: relative; }
+	
+	#Rot_Inserido_Info {
+		position: relative;
+		height: 35px;
+		background: #259eb0;
+		color: #fff;
+		padding: 9px;
+		cursor: pointer;
+		border: 1px solid #fff;
+	}
+	#Objetivos_Inseridos_Container {
+		width: 96.1%;
+    	position: relative;
+    	left: 34px;
+    	height: 0;
+    	overflow: hidden;
+    	transition: height 0.5s ease-in-out;
+	}
 	.Obj_Inserido {
 		width: 100%;
 		height: auto;
@@ -250,9 +260,10 @@
 		position: relative;
 		width: 100%;
 		height: 33px;
-		background-color: #c6c6c6;
-		padding: 8px 81px 8px 48px;
-	    border: 1px solid #e5e5dc;
+		background-color: #b5e1e7;
+		padding: 8px 81px 8px 42px;
+	    border: 1px solid #fff;
+	    border-top: none;
 	    cursor: pointer;
 	}
 	.Obj_Inserido_Num {
@@ -262,9 +273,9 @@
 	    left: 0;
 	    top: 0;
 	    text-align: center;
-	    color: #666666;
-	    background-color: #b2b2b2;
-	    border-right: 1px solid #e5e5dc;
+	    color: #fff;
+	    background-color: #67c9d6;
+	    border-right: 1px solid #fff;
 	    padding: 8px 0px;
 	}
 	.Obj_Inserido_Nome {
@@ -272,35 +283,51 @@
 	    color: #666666;
 	    font-size: 16px;
 	}
-	.Obj_Inserido_Btns {
+	.Obj_Inserido_Btns, .Atv_Inserida_Btns {
 	    position: absolute;
 	    top: 0;
 	    right: 0;
 	    width: auto;
 	    height: 100%;
-	    border-left: 1px solid #e5e5dc;
+	    border-left: 1px solid #fff;
 	}
-	.Btn_Obj {
+	.Btn_Obj, .Btn_Rot, .Btn_Atv {
 		display: inline-block;
 	    width: 33px;
 	    height: 100%;
-	    background-color: #b2b2b2;
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
 	    float: left;
 	    cursor: pointer;
 	}
+	.Btn_Rot:hover {
+		background-color: #67c9d6;
+	}
+	.Btn_Obj:hover {
+		background-color: #d9eff2;
+	}
+	.Btn_Atv:hover {
+		background-color: #fff;
+	}
 
-	.Btn_Obj:first-child { border-right: 1px solid #e5e5dc; }
+	.Btn_Obj:first-child, .Btn_Rot:first-child, .Btn_Atv:first-child { border-right: 1px solid #fff; }
+	
+	.Btn_Editar_Rot { background-image: url(../img/ic_editar_b_peq.png); }
+	
+	.Btn_Del_Rot { background-image: url(../img/ic_del_b_peq.png); }
 
 	.Btn_Editar_Obj { background-image: url(../img/ic_editar_peq.png); }
 
 	.Btn_Del_Obj { background-image: url(../img/ic_del_peq.png); }
 
+	.Btn_Editar_Atv { background-image: url(../img/ic_editar_peq.png); }
+
+	.Btn_Del_Atv { background-image: url(../img/ic_del_peq.png); }
+
 	/* Atividades dos objetivos */
 		.Atvs_Obj_Inserido {
 		    position: relative;
-		    width: 96.2%;
+		    width: 96%;
 		    left: 33px;
 		    height: 0px;
 		    overflow: hidden;
@@ -308,11 +335,12 @@
 		}
 		.Atv_Obj_Info {
 			position: relative;
-		    width: 100%;
-		    height: 30px;
-		    border: 1px solid #e5e5dc;
-		    background: #f2f2ee;
-		    padding: 7px 7px 7px 40px;
+			width: 100%;
+			height: 30px;
+			border: 1px solid #fff;
+			border-top: none;
+			background-color: #d9eff2;
+			padding: 8px 8px 8px 40px;
 		}
 		.Atv_Obj_Num {
 			position: absolute;
@@ -323,20 +351,14 @@
 		    color: #666666;
 		    padding: 6px 0;
 		    text-align: center;
-		    border-right: 1px solid #e5e5dc;
-		    background-color: #e5e5dc;
+		    border-right: 1px solid #fff;
+		    background-color: #b5e1e7;
 		}
 		.Atv_Obj_Nome {
 			line-height: 1em;
 		    color: #666666;
 		    font-size: 16px;
 		}
-/* Inserir Objetivos */
-	#Inserir_objetivo {
-		display: none;
-	}
-
-
 
 		#btnSalvar, #btnSalvarObjetivo, #btnSalvarAtividade,#btnEditar, #btnEditarObjetivo, #btnEditarAtividade, .btnAtribuirRoteiro, #btnInserirRoteiro, #btnSalvarObj{
 			width: 11%;

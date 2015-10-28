@@ -549,19 +549,6 @@ function editarROA(servico,id){
 var anoRoteiro;
 var nomeRoteiro;
 function inserirRoteiro () {
-	if ($("#Input_Roteiro_Ano > option:selected").text() != '') {
-		if ($("#Input_Roteiro_Nome").text() != '') {
-			$("#Inserir_objetivo").show();
-			$("#btnSalvarObj").show();
-			$("#btnInserirRoteiro").hide();
-			console.log("Chamou função inserirRoteiro(), e retornou true.");
-		} else {
-			console.error("Chamou função inserirRoteiro(), mas retornou falso.");
-		}
-	} else {
-		console.error("Chamou função inserirRoteiro(), mas retornou falso.");
-	}
-
 }
 
 //Conferir num de linhas de objetivos inseridos
@@ -577,20 +564,46 @@ function inserirObjetivo() {
 	var atividades = new Array();
 }
 
+// Expandir roteiro inserido
+function expandirRot() {
+	var atvsCont = $('.Atvs_Obj_Inserido');
+	var objsCount = $('.Obj_Inserido_Info');
+	var alturaContainer = objsCount.length*33;
+
+	if ( $('#Objetivos_Inseridos_Container').hasClass('rotExpandido') ) {
+		$('#Objetivos_Inseridos_Container').css('height','0');
+		for (var i = 0; i < atvsCont.length; i++) {
+			if ( $($(atvsCont).get(i)).hasClass('Atvs_Expandido') ) {
+				$($(atvsCont).get(i)).removeClass('Atvs_Expandido');
+				$($(atvsCont).get(i)).css('height','0');
+			}
+		}
+		$('#Objetivos_Inseridos_Container').toggleClass('rotExpandido');
+	} else {
+		$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
+		$('#Objetivos_Inseridos_Container').toggleClass('rotExpandido');
+	}
+	
+}
+
 // Expandir objetivo
 function expandirObj(id) {
 	var objetivoCont = $('.Obj_Inserido_Info');
 	var atvsCont = $('#Atvs_Obj_Inserido_'+id+' .Atv_Obj_Info');
-	var altura = atvsCont.length * 30;
+	var objsCount = $('.Obj_Inserido_Info');
+	var alturaAtvContainer = atvsCont.length * 30;
+	var alturaContainer = objsCount.length * 33;
 
 	for (var i = 0; i < objetivoCont.length; i++) {
 		if ( i+1 == id ) {
 			if ( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') ) {
 				$('#Atvs_Obj_Inserido_'+id).removeClass('Atvs_Expandido');
+				$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
 				$('#Atvs_Obj_Inserido_'+id).height('0px');
 			} else {
 				$('#Atvs_Obj_Inserido_'+id).addClass('Atvs_Expandido');
-				$('#Atvs_Obj_Inserido_'+id).height(altura);
+				$('#Objetivos_Inseridos_Container').css('height',alturaContainer+alturaAtvContainer+'px');
+				$('#Atvs_Obj_Inserido_'+id).height(alturaAtvContainer);
 			}
 		} else {
 			if ( $($('.Atvs_Obj_Inserido').get(i)).hasClass('Atvs_Expandido') ) {
@@ -600,6 +613,53 @@ function expandirObj(id) {
 		}
 	}
 }
+
+// Adicionar campos para nova atividade
+var count = 2;
+var trechoFormAtv = 
+'<div class="Atividade_Linha" id="atv'+count+'">'+
+    '<div class="Item_Roteiro_Linha No_Padding_Itens">'+
+        '<div class="Roteiro_Col_2">'+
+            '<div id="Atividade_Nome_Info_'+count+'" class="Input_Info Atividade_Nome_Info">Atividade</div>'+
+        '</div>'+
+        '<div class="Roteiro_Col_10">'+
+            '<input type="hidden" class="idAtv"></input>'+
+            '<input class="Input_Area nomeAtv" id="nomeAtv'+count+'" placeholder="Título da atividade" required> </input>'+
+        '</div>'+
+    '</div>'+
+    '<div class="Item_Roteiro_Linha">'+
+        '<div class="Roteiro_Col_4">'+
+            '<div class="Roteiro_Linha No_Padding_Itens">'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
+                '</div>'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv'+count+'" value="'+count+'"></input></div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        '<div class="Roteiro_Col_4">'+
+            '<div class="Roteiro_Linha No_Padding_Itens">'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Info Input_Info"> Página Livro</div>'+
+                '</div>'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv'+count+'"></input></div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        '<div class="Roteiro_Col_4">'+
+            '<div class="Roteiro_Linha No_Padding_Itens">'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Info Input_Info"> Livro </div>'+
+                '</div>'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv'+count+'"></input></div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>'+
+'</div>';
 
 /* ----------------------------------------------------------------------------------------------------------- */
 
