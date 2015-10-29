@@ -233,6 +233,10 @@
 
 /* Listagem em acordeon dos objetivos inseridos */
 	.Roteiro_Inserido_Container { position: relative; }
+
+	#Roteiro_Inserido {
+		display: none;
+	}
 	
 	#Rot_Inserido_Info {
 		position: relative;
@@ -242,6 +246,7 @@
 		padding: 9px;
 		cursor: pointer;
 		border: 1px solid #fff;
+    	text-transform: uppercase;
 	}
 	#Objetivos_Inseridos_Container {
 		width: 96.1%;
@@ -359,6 +364,15 @@
 		    color: #666666;
 		    font-size: 16px;
 		}
+		.Atv_Obj_Livro, .Atv_Obj_Pag {
+    		color: #888;
+    		font-size: 14px;
+    	}
+    	.Atv_Obj_Livro::before { content: ' - '; }
+
+		.Atv_Obj_Pag::before { content: ' ('; }
+
+		.Atv_Obj_Pag::after { content: ')'; }
 
 		#btnSalvar, #btnSalvarObjetivo, #btnSalvarAtividade,#btnEditar, #btnEditarObjetivo, #btnEditarAtividade, .btnAtribuirRoteiro, #btnInserirRoteiro, #btnSalvarObj{
 			width: 11%;

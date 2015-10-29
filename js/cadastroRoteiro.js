@@ -545,10 +545,21 @@ function editarROA(servico,id){
 }
 /* ----------------------------------------------------------------------------------------------------------- */
 
+var atvCount = 2;
+var objCount = 1;
+
 // Inserir Roteiro
-var anoRoteiro;
-var nomeRoteiro;
 function inserirRoteiro () {
+	var anoRoteiro = $("#Input_Roteiro_Ano :selected").html();
+	var nomeRoteiro = $("#Input_Roteiro_Nome").val();
+
+	$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoRoteiro+' ano | ');
+	$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nomeRoteiro);
+	$("#Inserir_roteiro").hide();
+	$("#Roteiro_Inserido").show();
+	$("#btnInserirRoteiro").hide();
+	$("#btnSalvarObj").show();
+	console.log(anoRoteiro + ' ano | ' + nomeRoteiro);
 }
 
 //Conferir num de linhas de objetivos inseridos
@@ -560,8 +571,137 @@ function confereLinhasObj() {
 
 // Inserir Objetivo
 function inserirObjetivo() {
-	var objNome;
-	var atividades = new Array();
+	var objetivo = { 								//Objeto com as propriedades do objetivo a ser inserido
+		nome: $(".Nome_Objetivo_Input").val(),
+		numero: $(".Numero_Objetivo_Input").val()
+	}; 
+	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
+	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
+
+	for ( var i = 0; i < atividadesCont.length; i++ ) {
+		atividadesLista[i] = {
+			numero: $($(".numeroAtv").get(i)).val(),
+			nome: $($(".nomeAtv").get(i)).val(),
+			livro: $($(".livroAtv").get(i)).val(),
+			pagLivro: $($(".paginaAtv").get(i)).val()
+		}
+	}
+
+	var linhaObjHtml = 
+	'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido">'+
+	    '<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info" onclick="expandirObj('+objCount+')">'+
+	        '<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
+	        '<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome">'+objetivo.nome+'</div>'+
+	        '<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
+	            '<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
+	            '<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj"></div>'+
+	        '</div>'+
+	    '</div>';
+	if ( atividadesCont.length > 0 ) {	        
+		linhaObjHtml += 
+		'<div id="Atvs_Obj_Inserido_'+objCount+'" class="Atvs_Obj_Inserido">';
+		
+		for(var i = 0; i < atividadesCont.length; i++) {
+			linhaObjHtml +=
+		    '<div id="Atv_Obj_Info_'+(i+1)+'" class="Atv_Obj_Info">'+
+		        '<div id="Atv_Obj_Num_'+(i+1)+'" class="Atv_Obj_Num">'+atividadesLista[i].numero+'</div>'+
+		        '<span id="Atv_Obj_Nome_'+(i+1)+'" class="Atv_Obj_Nome">'+atividadesLista[i].nome+'</span>'+
+		        '<span id="Atv_Obj_Livro_'+(i+1)+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
+		        '<span id="Atv_Obj_Pag_'+(i+1)+'" class="Atv_Obj_Pag">p. '+atividadesLista[i].pagLivro+'</span>'+
+		        '<div id="Atv_Inserida_Btns_'+(i+1)+'" class="Atv_Inserida_Btns">'+
+		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv"></div>'+
+		            '<div id="Btn_Del_Atv_'+(i+1)+'" class="Btn_Atv Btn_Del_Atv"></div>'+
+		        '</div>'+
+		    '</div>';
+		}
+		linhaObjHtml +=
+		'</div>';	        
+	}
+	linhaObjHtml +=
+	'</div>';
+
+	$("#Objetivos_Inseridos_Container").append(linhaObjHtml);
+	objCount++
+	atvCount = 2;
+
+	var objLimpo = 
+	'<div class="Roteiro_Linha">'+
+        '<div class="Roteiro_Col_8">'+
+            '<div class="Roteiro_Linha No_Padding_Itens">'+
+                '<div class="Roteiro_Col_3">'+
+                    '<input type="hidden" class="idObj"> </input>  '+
+                    '<div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>'+
+                '</div>'+
+                '<div class="Roteiro_Col_9">'+
+                    '<input id="nomeObj'+objCount+'" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" placeholder="Objetivo do roteiro" required> </input>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        '<div class="Roteiro_Col_4">'+
+            '<div class="Roteiro_Linha No_Padding_Itens">'+
+                '<div class="Roteiro_Col_6">'+
+                    '<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
+                '</div>'+
+                '<div class="Roteiro_Col_6">'+
+                    '<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj'+objCount+'" value="'+objCount+'"></input>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>'+
+    '<div id="Inserir_Atividade" class="Roteiro_Linha">'+
+        '<div id="Inserir_Atividades_Container">'+
+            '<div class="Atividade_Linha" id="atv1">'+
+                '<div class="Item_Roteiro_Linha No_Padding_Itens">'+
+                    '<div class="Roteiro_Col_2">'+
+                        '<div id="Atividade_Nome_Info_1" class="Input_Info Atividade_Nome_Info">Atividade</div>'+
+                    '</div>'+
+                    '<div class="Roteiro_Col_10">'+
+                        '<input type="hidden" class="idAtv"></input>                   '+
+                        '<input class="Input_Area nomeAtv" id="nomeAtv1" placeholder="Título da atividade" required> </input>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="Item_Roteiro_Linha">'+
+                    '<div class="Roteiro_Col_4">'+
+                        '<div class="Roteiro_Linha No_Padding_Itens">'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
+                            '</div>'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv1" value="1"></input></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="Roteiro_Col_4">'+
+                        '<div class="Roteiro_Linha No_Padding_Itens">'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Info Input_Info"> Página Livro</div>'+
+                            '</div>'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv1"></input></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="Roteiro_Col_4">'+
+                        '<div class="Roteiro_Linha No_Padding_Itens">'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Info Input_Info"> Livro </div>'+
+                            '</div>'+
+                            '<div class="Roteiro_Col_6">'+
+                                '<div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv1"></input></div>    '+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        '<div class="Roteiro_Linha">'+
+            '<div class="Roteiro_Col_12">'+
+                '<div id="Bt_Add_Atividade" onClick="adicionarAtividade()"></div>'+
+            '</div>'+
+        '</div>  '+
+    '</div>';
+
+    $("#Inserir_objetivo").html(objLimpo);
 }
 
 // Expandir roteiro inserido
@@ -615,51 +755,56 @@ function expandirObj(id) {
 }
 
 // Adicionar campos para nova atividade
-var count = 2;
-var trechoFormAtv = 
-'<div class="Atividade_Linha" id="atv'+count+'">'+
-    '<div class="Item_Roteiro_Linha No_Padding_Itens">'+
-        '<div class="Roteiro_Col_2">'+
-            '<div id="Atividade_Nome_Info_'+count+'" class="Input_Info Atividade_Nome_Info">Atividade</div>'+
-        '</div>'+
-        '<div class="Roteiro_Col_10">'+
-            '<input type="hidden" class="idAtv"></input>'+
-            '<input class="Input_Area nomeAtv" id="nomeAtv'+count+'" placeholder="Título da atividade" required> </input>'+
-        '</div>'+
-    '</div>'+
-    '<div class="Item_Roteiro_Linha">'+
-        '<div class="Roteiro_Col_4">'+
-            '<div class="Roteiro_Linha No_Padding_Itens">'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
-                '</div>'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv'+count+'" value="'+count+'"></input></div>'+
-                '</div>'+
-            '</div>'+
-        '</div>'+
-        '<div class="Roteiro_Col_4">'+
-            '<div class="Roteiro_Linha No_Padding_Itens">'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Info Input_Info"> Página Livro</div>'+
-                '</div>'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv'+count+'"></input></div>'+
-                '</div>'+
-            '</div>'+
-        '</div>'+
-        '<div class="Roteiro_Col_4">'+
-            '<div class="Roteiro_Linha No_Padding_Itens">'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Info Input_Info"> Livro </div>'+
-                '</div>'+
-                '<div class="Roteiro_Col_6">'+
-                    '<div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv'+count+'"></input></div>'+
-                '</div>'+
-            '</div>'+
-        '</div>'+
-    '</div>'+
-'</div>';
+
+function adicionarAtividade() {
+	var trechoFormAtv = 
+	'<div class="Atividade_Linha" id="atv'+atvCount+'">'+
+	    '<div class="Item_Roteiro_Linha No_Padding_Itens">'+
+	        '<div class="Roteiro_Col_2">'+
+	            '<div id="Atividade_Nome_Info_'+atvCount+'" class="Input_Info Atividade_Nome_Info">Atividade</div>'+
+	        '</div>'+
+	        '<div class="Roteiro_Col_10">'+
+	            '<input type="hidden" class="idAtv"></input>'+
+	            '<input class="Input_Area nomeAtv" id="nomeAtv'+atvCount+'" placeholder="Título da atividade" required> </input>'+
+	        '</div>'+
+	    '</div>'+
+	    '<div class="Item_Roteiro_Linha">'+
+	        '<div class="Roteiro_Col_4">'+
+	            '<div class="Roteiro_Linha No_Padding_Itens">'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
+	                '</div>'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv'+atvCount+'" value="'+atvCount+'"></input></div>'+
+	                '</div>'+
+	            '</div>'+
+	        '</div>'+
+	        '<div class="Roteiro_Col_4">'+
+	            '<div class="Roteiro_Linha No_Padding_Itens">'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Info Input_Info"> Página Livro</div>'+
+	                '</div>'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv'+atvCount+'"></input></div>'+
+	                '</div>'+
+	            '</div>'+
+	        '</div>'+
+	        '<div class="Roteiro_Col_4">'+
+	            '<div class="Roteiro_Linha No_Padding_Itens">'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Info Input_Info"> Livro </div>'+
+	                '</div>'+
+	                '<div class="Roteiro_Col_6">'+
+	                    '<div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv'+atvCount+'"></input></div>'+
+	                '</div>'+
+	            '</div>'+
+	        '</div>'+
+	    '</div>'+
+	'</div>';
+
+	$('#Inserir_Atividades_Container').append(trechoFormAtv);
+	atvCount++;
+}
 
 /* ----------------------------------------------------------------------------------------------------------- */
 
