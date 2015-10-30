@@ -122,7 +122,8 @@
 
 	.btAdd_Professor{
 		float: right;
-		cursor: pointer;
+		cursor: pointer;\
+		margin-right: 7px;
 	}
 
 	.Box_Area_Select > * { border: 1px solid rgb(174,174,166); }
@@ -240,6 +241,7 @@
 		border: 0;
 		cursor: pointer;
 		float: right;
+		margin-right: 7px;
 		width: 100px;
 		background-image: url(../img/ic_salvar.png);
 		background-repeat: no-repeat;

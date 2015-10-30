@@ -358,6 +358,7 @@ function resetarPaginas () {
 function resetarCadastroOficina () {
     $('#Container_Cadastro_Oficina').css('display', 'block');
     $('#Area_Nome_Oficina').empty();
+    $("#Area_Nome_Oficina").css('display','none');
     $("#oficinaOficina").val('0');
     $("#nomeOficina").val('');
     $("#nomeOficina").css('display', 'none');
