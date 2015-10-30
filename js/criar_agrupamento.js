@@ -76,7 +76,7 @@ function resetArea () {
 
 function buscarCicloPeriodo () {
     $.ajax({
-        url: path + "listarCicloPeriodoRange/" + $("#cicloGrupo").val() + "/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
+        url: path + "AlunoVariavel/listarCicloPeriodoRange/" + $("#cicloGrupo").val() + "/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
         type: "GET",
         async: false,
         crossDomain: true,

@@ -6,7 +6,7 @@ $(document).ready(function(){
 function salvarOficina () {
     $('.btn_Salvar_Oficina').click(function() {
 
-        // var tipoOficina = $("#oficinaOficina").val();
+        var tipoOficina = $("#oficinaOficina option:selected").text()
         var nomeOficina = $("#nomeOficina").val();
         var periodo = $("#periodoOficina").val();
         var ciclo = $("#cicloOficina").val();
@@ -17,7 +17,7 @@ function salvarOficina () {
         {
             mensagem("Escolha um tipo para a oficina!","OK","bt_ok","erro");
         }
-        else if (tipoOficina == 'outras' && nomeOficina == '')
+        else if (tipoOficina == 'Outras' && nomeOficina == '')
         {
             mensagem("A oficina deve possuir um nome!","OK","bt_ok","erro");
         }
@@ -28,7 +28,7 @@ function salvarOficina () {
                 type: "POST",
                 async: false,
                 crossDomain: true,
-                data: "action=create&tipo="+$("#oficinaOficina option:selected").text+"&nome="+nomeOficina+"&periodo="+periodo+"&ciclo="+ciclo+"&anoLetivo="+getIdAnoLetivo(),
+                data: "action=create&tipo="+tipoOficina+"&nome="+nomeOficina+"&periodo="+periodo+"&ciclo="+ciclo+"&anoLetivo="+getIdAnoLetivo(),
                 beforeSend: function() {
                     loading('inicial');
                 },
@@ -56,16 +56,21 @@ function atribuiChangeOficina (argument) {
         else
         {
             $("#nomeLinha").css('display', 'none');
-            $("#nomeOficina").val($("#oficinaOficina option:selected").text);
+            $("#nomeOficina").val($("#oficinaOficina option:selected").text());
         }
     });
 }
 
 function displayNome () {
     var abrev = $("#oficinaOficina").val();
-    var cicloNome = /*$( "#cicloOficina option:selected" ).text();*/ "Alfabetização";
-    var periodoNome = /*$( "#periodoOficina option:selected" ).text();*/ "Tarde";
-    var nomeOficina = /*$("#nomeOficina").val();*/ "BÇAASDNASJDIJASB DHK"
+    var cicloNome = $( "#cicloOficina option:selected" ).text();
+    var periodoNome = $( "#periodoOficina option:selected" ).text();
+    var nomeOficina;
+
+    if ($("#oficinaOficina option:selected").text() == "Outras")
+        nomeOficina = $("#nomeOficina").val();
+    else
+        nomeOficina = $("#oficinaOficina option:selected").text();
 
     var conteudoNome =  '<span>' + cicloNome + ' |</span>'+
                         '<span> ' + periodoNome + ' |</span>'+
@@ -228,7 +233,7 @@ function carregaAgrupamentos () {
         }
     });
 
-    $('.Agrupamento_Select').html(htmlOption);
+    $('#Agrupamento_Select').html(htmlOption);
 
 }
 
@@ -245,7 +250,7 @@ function carregaDiasSemana () {
         }
     });
 
-    $('.Dia_Semana_Select').html(htmlOption);
+    $('#Dia_Semana_Select').html(htmlOption);
 
 }
 
@@ -261,7 +266,7 @@ function carregaHorarios () {
         htmlHorarios += '<option value="'+a+'">'+a+':00</option>';
     }
 
-    $('.Horario_Select').html(htmlHorarios);
+    $('#Horario_Select').html(htmlHorarios);
 
 }
 
@@ -279,16 +284,16 @@ function carregaSalas () {
         }
     });
 
-    $('.Sala_Rotina_Select').html(htmlOption);
+    $('#Sala_Rotina_Select').html(htmlOption);
 }
 
 function atribuiSalvarRotina (idOficina) {
     $('.btn_Salvar_Rotina').click(function() {
 
-        var idAgrupamento = $('.Agrupamento_Select').val();
-        var idDia = $('.Dia_Semana_Select').val();
-        var horario = $('.Horario_Select').val();
-        var idSala = $('.Sala_Rotina_Select').val();
+        var idAgrupamento = $('#Agrupamento_Select').val();
+        var idDia = $('#Dia_Semana_Select').val();
+        var horario = $('#Horario_Select').val();
+        var idSala = $('#Sala_Rotina_Select').val();
         var anoLetivo = getIdAnoLetivo();
 
         if (idAgrupamento != '0' &&
@@ -328,16 +333,16 @@ function atribuiSalvarRotina (idOficina) {
 
 function addNomeRotina () {
 
-    var agrupamento = $('.Agrupamento_Select option:selected').text;
-    var diaSemana = $('.Dia_Semana_Select option:selected').text;
-    var horario = $('.Horario_Select option:selected').text;
-    var sala = $('.Sala_Rotina_Select option:selected').text;
+    var agrupamento = $('#Agrupamento_Select option:selected').text();
+    var diaSemana = $('#Dia_Semana_Select option:selected').text();
+    var horario = $('#Horario_Select option:selected').text();
+    var sala = $('#Sala_Rotina_Select option:selected').text();
 
 
-    var conteudoNome =  '<span>' + agrupamento + ' |</span>'+
-                        '<span>' + diaSemana + ' |</span>'+
-                        '<span>' + horario + ' |</span>'+
-                        '<span>' + sala + '</span>';
+    var conteudoNome =  '<span> ' + agrupamento + ' |</span>'+
+                        '<span> ' + diaSemana + ' |</span>'+
+                        '<span> ' + horario + ' |</span>'+
+                        '<span> ' + sala + '</span>';
 
     $("#Area_Nome_Oficina").append(conteudoNome);
 
@@ -367,10 +372,10 @@ function resetarCadastroProfessores () {
 }
 
 function resetarCadastroRotina () {
-    $('.Agrupamento_Select').empty();
-    $('.Dia_Semana_Select').empty();
-    $('.Horario_Select').empty();
-    $('.Sala_Rotina_Select').empty();
+    $('#Agrupamento_Select').empty();
+    $('#Dia_Semana_Select').empty();
+    $('#Horario_Select').empty();
+    $('#Sala_Rotina_Select').empty();
     $('.btn_Salvar_Rotina').unbind('click');
     $('#Container_Novo_Cadastro').css('display', 'none');
 }
