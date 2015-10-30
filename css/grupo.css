@@ -41,13 +41,13 @@
 	background-color: #ee7776;
 }
 
-.bt_Off:hover:hover{
+.bt_Off:hover {
 	background-color: #E83F4A;
 }
 
 .bt_Pesquisar_Ativo{
 	width: 31%;
-	padding: 17px 16px 11px 16pxx;
+	padding: 17px 16px 11px 16px;
 	text-align: center;	
 	color: white;
 	float: left;
@@ -144,7 +144,7 @@
 	}
 	.Select_Grupo_Input {
 		display: inline-block;
-		background-color: #FFF;
+		background-color: #F2F1ED;
 		height: 100%;
 		width: 175px;
 	}
@@ -160,7 +160,7 @@
 		float: right !important;
 		border-radius: 0;
 		background-color: rgb(242,242,238);
-		padding: 5px 8px;
+		padding: 5px 47px 5px 8px;
 		-webkit-appearance: none;
 		color: rgb(102,102,102);
 		cursor: pointer;
@@ -173,6 +173,9 @@
 	#Area_Alunos_Container {
 		max-height: 330px;
     	overflow: hidden;
+	}
+	#Area_Alunos {
+		width: 98%;
 	}
 	.Grupo_Aluno_Linha {
 		width: 100%;
@@ -326,7 +329,7 @@
 }
 
 #marginAlunos{
-	margin-right:10px;
+	margin-right: 18px;
 }
 
 /* CSS das celulas grandes(ocupam toda a linha)*/
@@ -337,6 +340,7 @@
 	border: 2px solid #B6B6B0;
 	float: left;
 	background-color: #c8c8c3;
+	bottom: 0;
 }
 
 .infoG{
@@ -416,7 +420,7 @@ select{
 	height: 41px;
 	-webkit-appearance: none;
 	overflow: hidden;
-	width: 117%;
+	width: 100%;
 	cursor: pointer;
 	color: #666;
 	font-size:18px;
@@ -523,6 +527,7 @@ select::-ms-expand {
 	float: right;
 	width: 12.2%;
 	margin-top: 9px;
+	margin-right: 7px;
 	cursor:pointer; 
 	opacity: 0.7;
     filter: alpha(opacity=70); /* For IE8 and earlier */
@@ -543,6 +548,13 @@ select::-ms-expand {
 .checkLimpar{
 	width:50px;
 }
+@media (max-height: 707px) {
+	.bt_Off { width: 234px; }
+
+	.Box_Area_Select { width: 293px; }
+
+	.Select_Grupo_Input { width: 172px;}
+}
 
 /* Barra de rolagem */
 	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -550,7 +562,7 @@ select::-ms-expand {
 		border-radius: 0 !important;
 	}
 	.mCSB_scrollTools {
-		width: 4px !important;
+		width: 17px !important;
 	}
 	.mCSB_scrollTools_vertical {
 		right: 0px !important;
