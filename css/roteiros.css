@@ -500,7 +500,36 @@
 		}
 		
 		
-		
+	.roteiro_listado {
+		position: relative;
+	    background-color: #ecebe5;
+	    border: 1px solid #e5e5dc;
+	    height: 40px;
+	    padding: 10px;
+	    color: #666;
+	}
+	.Roteiro_Listado_Btns {
+	    width: 82px;
+	    height: 100%;
+	    border-left: 1px solid #e5e5dc;
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	}
+	.Roteiro_Listado_Edit, .Roteiro_Listado_Del {
+	    width: 50%;
+	    height: 100%;
+	    float: left;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	}
+	.Roteiro_Listado_Edit {
+		background-image: url(../img/ic_edit.png);
+	}
+	.Roteiro_Listado_Del {
+		background-image: url(../img/ic_delete.png);
+		border-left: 1px solid #e5e5dc; 
+	}
 	/*----Mensagem Exclusao---------*/
 
 	#back_black

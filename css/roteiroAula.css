@@ -1,7 +1,7 @@
-input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_atividade, .titulo_objetivo, .titulo_roteiro{
+input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelula div, .titulo_atividade, .titulo_objetivo, .titulo_roteiro{
 	color: #666;
 }
-.celulaPequena, .celulaMedia, .celulaGrande{
+.celulaPequena, .celulaMedia, .celulaGrande, .novaCelula{
 	border: none;
 	padding:0;
 	margin-right: 9px;	
@@ -92,20 +92,21 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 
 #Inserir_roteiro{
 	position: relative;
-    bottom: 20px;
     width: 100%;
 	background-color: #F9F9F7;
 	clear: both;
 	padding: 2%;
 	margin: 2% 0;
 	overflow: hidden;
-	height:100%;
+	height:467px;
+    bottom: 1px;
 }
 
 #Inserir_roteiro input{
 	background-color: white;
 	font-size: 18px;
     height: 39px;
+    width: 686.7px;
 }
 
 #seletor{
@@ -126,7 +127,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
 	text-align: right;
 	padding: 10px;
 	cursor: pointer;
-	margin: 5px 0px 0px 0px;
+	margin: 8px 0px 0px 0px;
 	float: right;
 }
 #btnBuscar{
@@ -181,21 +182,21 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div, .titulo_
     text-align: right;
     padding: 10px;
     cursor: pointer;
-    margin: 5px 0px 0px 0px;
+    margin: 58px 0px 0px 0px;
 }
 #btnSalvarObjetivo{
 	width: 11%;
-	background-color: #29B8CE;
-	background-image: url(../img/OI7.png);
-	background-repeat: no-repeat;
-	background-size: 20px;
-	background-position: 12px 10px;
-	color: white;
-	text-align: right;
-	padding: 10px;
-	cursor: pointer;
-	margin: 5px 3px 0px 0px;
-	float: right;		
+    background-color: #29B8CE;
+    background-image: url(../img/OI7.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 12px 10px;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px 2px 0px 0px;
+    float: right;		
 }
 
 
@@ -289,6 +290,247 @@ div.item:nth-child(even){
     cursor: pointer;
 }
 
+}
+/* Listagem em acordeon dos objetivos inseridos */
+    .Roteiro_Inserido_Container { position: relative; }
+    
+    #Rot_Inserido_Info {
+        height: 35px;
+        background: #259eb0;
+        color: #fff;
+        cursor: pointer;
+        border: 1px solid #fff;
+    }
+
+    .Rot_Inserido_Nome{
+        color: #fff;
+        font-size: 16px;
+        padding: 7px 10px;
+        width: 7%;
+        float: left;
+        margin: 0;
+    }
+
+    .Obj_Inserido {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    #Desc_Inserido_Info {
+       margin-left: 35px;
+    width: 96.1%;
+    height: 35px;
+    background-color: #b5e1e7;
+    background-position: 14%;
+    padding: 8px 81px 8px 10px;
+    border: 1px solid #fff;
+    border-top: none;
+    cursor: pointer;
+    }
+    .Obj_Inserido_Num {
+        width: 33px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+        color: #fff;
+        background-color: #67c9d6;
+        border-right: 1px solid #fff;
+        padding: 8px 0px;
+    }
+    .Desc_Inserido_Nome {
+        line-height: 1em;
+        color: #666666;
+        font-size: 16px;
+        left: 10px;
+    }
+    .Rot_Inserido_Btns {
+        float: right;
+    }
+    .Obj_Inserido_Btns{
+        width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    }
+    .Btn_Obj, .Btn_Rot{
+        display: inline-block;
+        width: 33px;
+        height: 34px;
+        background-repeat: no-repeat;
+        float: left;
+        cursor: pointer;
+        background-position: 8px 10px;
+    }
+    .Btn_Rot:hover {
+        background-color: #67c9d6;
+    }
+    .Btn_Obj:hover {
+        background-color: #d9eff2;
+    }
+    .Btn_Atv:hover {
+        background-color: #fff;
+    }
+
+    .Btn_Obj:first-child, .Btn_Rot:first-child, .Btn_Atv:first-child { border-right: 1px solid #fff; border-left: 1px solid #fff;}
+    
+    .Btn_Editar_Rot { background-image: url(../img/ic_editar_b_peq.png); }
+    
+    .Btn_Del_Rot { background-image: url(../img/ic_del_b_peq.png); }
+
+    .Btn_Editar_Obj { 
+        background-image: url(../img/ic_editar_peq.png);
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 34px;
+    position: relative;
+    left: -6px;
+    display: inline-block;
+    width: 33px;
+    height: 34px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: 7px 5px;
+    }
+
+    .Btn_Del_Obj { 
+    background-image: url(../img/ic_del_peq.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25px;
+    bottom: 20px;
+    padding: 16px;
+    display: inline-block;
+    width: 33px;
+    height: 34px;
+    background-repeat: no-repeat;
+    float: left;
+    cursor: pointer;
+    background-position: 8px 10px;
+    }
+
+    .Btn_Editar_Atv { background-image: url(../img/ic_editar_peq.png); }
+
+    .Btn_Del_Atv { background-image: url(../img/ic_del_peq.png); }
+
+.Atv_Obj_Info {
+    margin-left: 35px;
+    width: 96.1%;
+    height: 30px;
+    border: 1px solid #fff;
+    border-top: none;
+    background-color: #d9eff2;
+    padding: 8px 8px 8px 10px;
+    position: relative;
+}
+.Atv_Obj_Nome {
+   line-height: 1em;
+    color: #666666;
+    font-size: 16px;
+    margin: 0;
+    width: 92%;
+}
+#rotCad{
+    width: 99.9%;
+    height: 25px;
+    font-size: 20px;
+    margin-top: -19px;
+    padding: 2px 8px;
+    float: left;
+    background-color: #259eb0;
+    color: rgb(255, 255, 255);
+}
+#desCad{
+    width: 96.5%;
+    height: 25px;
+    font-size: 20px;
+    margin-top: -19px;
+    padding: 2px 8px;
+    float: left;
+    background-color: #b5e1e7;
+    color: rgb(255, 255, 255);
+    position: relative;
+    margin-left: 30px;
+}
+#objCad{
+    width: 96.5%;
+    height: 25px;
+    font-size: 20px;
+    margin-top: -19px;
+    padding: 2px 8px;
+    float: left;
+    background-color: #d9eff2;
+    color: rgb(255, 255, 255);
+    position: relative;
+    margin-left: 30px;  
+}
+.linha4{
+    position: relative;
+    width: 100%;
+    bottom: 27px;
+    height: auto;
+}
+.linhaObj{
+    width: 100%;
+}    
+.btEditar2{
+    float: right;
+    position: relative;
+    top: -42px;
+    padding: 20px;
+    background-color: #b5e1e7;
+    background-image: url(../img/ic_editar_peq.png);
+    background-repeat: no-repeat;
+    background-position: 8px;
+    cursor: pointer;
+}
+.btExcluir2{
+    position: relative;
+    right: 2px;
+    bottom: 45px;
+    float: right;
+    padding: 10px;
+    background-color: #b5e1e7;
+    background-image: url(../img/ic_del_b_peq.png);
+    background-repeat: no-repeat;
+    background-position: 2px;
+    cursor: pointer;
+}
+.btEditar3{
+    position: relative;
+    right: 4px;
+    float: right;
+    bottom: 45px;
+    padding: 10px;
+    background-color: #b5e1e7;
+    background-image: url(../img/ic_editar_b_peq.png);
+    background-repeat: no-repeat;
+    background-position: 2px;
+    cursor: pointer;
+
+    position: relative;
+    right: 44px;
+    float: right;
+    padding: 29px 26px 11px 15px;
+    background-color: #C9C9C4;
+    background-image: url(../img/bt_editar.png);
+    background-repeat: no-repeat;
+    background-position: 3px;
+    cursor: pointer;
+}
+.btExcluir3{
+    position: relative;
+    right: 43px;
+    bottom: 45px;
+    float: right;
+    padding: 10px;
+    background-color: #b5e1e7;
+    background-image: url(../img/ic_del_b_peq.png);
+    background-repeat: no-repeat;
+    background-position: 2px;
+    cursor: pointer;
+}
 .editar{
 	position: relative;
     right: 44px;
@@ -394,17 +636,13 @@ div.item:nth-child(even){
 	margin: 1% 0;
 }
 
-#Atividade .celulaPequena, .celulaMedia{
+#Atividade .celulaPequena, .celulaMedia,.novaCelula{
 	margin-bottom: 0.5%;
 }
 
 .celulaGrandeOB {
 	width: 100%;
-	overflow: auto;
-	margin-top: 7px;
-	padding: 1px;
-	float: left;
-	background-color: #F2F1ED;
+    background-color: #F2F1ED;
 }
 
 #Atividade div:nth-child(3){

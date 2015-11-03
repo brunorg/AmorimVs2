@@ -305,7 +305,14 @@ $(document).ready(function() {
 	
 	$("#boxBarraRec").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
-	});	
+	});
+
+	$("#barra_aluno").mCustomScrollbar({
+		axis:"y",
+		scrollButtons: {
+			enable: true
+		}
+	});
 	
 	$(".boxROA").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
