@@ -3,20 +3,48 @@
 
 //Carrega os valores utilizados do BD
 
-	var dataUsuario 	=	getData("Usuario", null);
+//var dataUsuario 	=	getData("Usuario", null);
 
+//return false;
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
 	var userID = usuarioId;
-	var alunoID = getAlunoByUsuario();	
+	//var usuarioLogado;	//Usuário logado!!
+	var dataUsuarios;	//Variavel para guardar todos os usuários
+	//var alunoID;
 	var dataMensagens;
 	var dataMensagensEntrada;
 	var dataMensagensSaida;
 	var observacaoProducao = false;
+	var perfilUsuario;
 	
-	ListarCaixaEntrada(1,10);
-		
+//	$.ajax({
+//		url: path + "Usuario/DadosUsuario/" + usuarioId,
+//		async: false,
+//		crossDomain: true,
+//		type: "GET",
+//		success: function(data){
+//			usuarioLogado = data;
+//			if(typeof(usuarioLogado.idProfessor) != undefined){
+//				perfilUsuario = 'Professor';
+//			}else{
+//				perfilUsuario = 'Aluno';
+//			}
+//		}
+//	});
+	
+	$.ajax({
+		url: path + "Usuario/ListarObjParte",
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		success: function(data){
+			dataUsuario = data;
+		}
+	});
+	
+
 	//var usuario = getUsuario(alunoID);
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -68,6 +96,7 @@ $(document).ready(function(){
 				}else{
 					if(this.mcs.topPct > 95){
 						if(vazio == false){
+							
 							retorno = ListarCaixaEntrada(10*contMensagens,10);
 							contMensagens++;
 							if(typeof retorno == "undefined"){
@@ -194,7 +223,7 @@ $(document).ready(function(){
 	});
 	
 	$('body').delegate('.ui-multiselect-none','click',function(){
-	
+	alert('dasdasd');
 		$(":checkbox").removeAttr('checked');
 		$('#pesquisaParaMensagem').val('');
 		$('#pesquisaParaMensagem').focus();
@@ -234,30 +263,26 @@ $(document).ready(function(){
 
 	});
 
-
-
-
-	for(var a=0; a< dataUsuario.length; a++)
-	{
-		var encontro = false;
-
-		if(dataUsuario[a].professor != null)
-		{
-			arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].professor.idprofessorFuncionario;
-			arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].professor.nome;
-			encontro = true;
-		} else if(dataUsuario[a].aluno != null){
-			arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].aluno.idAluno;
-			arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].aluno.nome;
-			encontro = true;
-		}
+	for(var a=0; a< dataUsuario.length; a++){
+		if (dataUsuario != null){
+			var encontro = false;
 		
-		if(encontro)
-		{
-			$("#tela_over #Mensagem_wrapper #destinatarios").append('<option title="'+dataUsuario[a].perfil.perfil+'" value="'+dataUsuario[a].idusuario+'">'+arrayUsuariosNome[arrayUsuariosNome.length-1]+'</option>')
+			if(typeof dataUsuario[a].idProfessor != "undefined"){
+				arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].idProfessor;
+				arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].nome;
+				perfil = 'Professor';
+				encontro = true;
+			} else if(typeof(dataUsuario[a].idAluno) != "undefined"){
+				arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].idAluno;
+				arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].nome;
+				perfil = 'Aluno';
+				encontro = true;
+			}
+			if(encontro){
+				$("#tela_over #Mensagem_wrapper #destinatarios").append('<option title="'+perfil+'" class="'+dataUsuario[a].idUsuario+'" value="'+dataUsuario[a].idUsuario+'">'+arrayUsuariosNome[arrayUsuariosNome.length-1]+'</option>')
+			}
 		}
 	}
-	
 
 	$("#tela_over #Mensagem_wrapper #destinatarios").append($("#tela_over #Mensagem_wrapper #destinatarios option").remove().sort(function(a, b) {
 	    var at = $(a).text(), bt = $(b).text();
@@ -326,8 +351,6 @@ $(document).ready(function(){
 //Função de Abrir a carta não lida do Email
 function selecionarMensagem(objeto)
 {
-
-	//console.log($(objeto).attr('msgId'));
 	$("#Col_CaixaDeMensagens div").removeClass("msg_selecionada");
 		
 	$(objeto).toggleClass("msg_selecionada");
@@ -343,75 +366,66 @@ function setMSGSend(Numero)
 	$("#Nova_frame").hide();
 	$("#Resp_frame").hide();
 
-	//Pegar os dados do Serviço JSON das Mensagens
-	dataMensagens =	getData("Mensagens/email", usuarioId);
-	for(var a=0; a<dataMensagens.length; a++)
-	{
-		//Mostrar Mensagem requisitada
-		if(dataMensagens[a].idmensagens == SelMSGAcao)
-		{
-
-			if(Numero == 1)
-			{			
-				$("#Resp_frame").show();
-				
-
-				$('#tela_over #Mensagem_wrapper #Resp_frame #mensagem_remetente').html((dataMensagens[a].remetente.aluno != null ? dataMensagens[a].remetente.aluno.nome:dataMensagens[a].remetente.professor.nome));
-				$('#telxa_over #Mensagem_wrapper #Resp_frame #mensagem_destinatario').html(getNomeByNomeUsuario(dataMensagens[a].destinatarios, 0));
-				$('#tela_over #Mensagem_wrapper #Resp_frame #Resposta_Remetente').val(dataMensagens[a].remetente.idusuario);
-				
-				$('#tela_over #Mensagem_wrapper #Resp_frame #mensagem_assunto').html(dataMensagens[a].assunto);
-				$('#tela_over #Mensagem_wrapper #Resp_frame #Mensagem').val("\n\n-------------------------------------------------\n"+dataMensagens[a].mensagem);
-			} 
-			else if(Numero == 2)
-			{
-				$("#Nova_frame").show();
-
-
-
-				getNomeByNomeUsuario(dataMensagens[a].destinatarios, 1)
-
-				//console.log(getNomeByNomeUsuario(dataMensagens[a].destinatarios, 0));
-				//
-				
-				$("#tela_over #Mensagem_wrapper #Nova_frame #destinatarios option[value='"+dataMensagens[a].remetente.idusuario+"']").prop("selected", true);
-				$("#tela_over #Mensagem_wrapper #Nova_frame #destinatarios option[value='"+userID+"']").prop("selected", false);
-
-				//formselect.val(arrayDestinatarios);
-
-				formselect.multiselect("refresh");
-
-				$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').val("RES: "+dataMensagens[a].assunto);
-
-				$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').empty();
-				$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').val("\n\n-------------------------------------------------\n"+dataMensagens[a].mensagem);
-
-			} else if(Numero == 3)
-			{
-				$("#Nova_frame").show();
-
-				
-				$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').val(dataMensagens[a].assunto);
-				
-				$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').empty();
-				$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').val("\n"+
-					"\n-------------------------------------------------\n"+
-					"De: "+(dataMensagens[a].remetente.aluno != null ? dataMensagens[a].remetente.aluno.nome:dataMensagens[a].remetente.professor.nome)+
-					"\nPara: "+getNomeByNomeUsuario(dataMensagens[a].destinatarios, 0)+
-					"\n\n"+dataMensagens[a].mensagem);
-			}
-
-						
-		}
-	}
-
-	if(Numero == 4)
-	{
-		
+	
+	if(Numero == 4){ //4 quando for para criar uma nova mensagem!!
 		$("#Nova_frame").show();
 		$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').empty();
 		$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').empty();
+	}else{
+		//dataMensagens =	getData("Mensagens/email", userID);
+		dataMensagens = '';
+		$.ajax({
+			type: "GET",
+			async:false,
+			crossDomain: true,
+			//url: path+ "Mensagens/MensagemByUser/"+userID+"/"+idMensagem,
+			url: path+ "Mensagens/emailHashId/"+SelMSGAcao,
+			success: function(data){		
+				dataMensagens = data;
+			}
+		});
+
+		//for(var a=0; a<dataMensagens.length; a++){
+		
+			//Mostrar Mensagem requisitada
+			//if(dataMensagens[a].idmensagens == SelMSGAcao){
+
+				if(Numero == 1){	//Responder...			
+					$("#Resp_frame").show();
+
+					$('#tela_over #Mensagem_wrapper #Resp_frame #mensagem_remetente').html(dataMensagens[0].remetente_nome);
+					$('#mensagem_destinatario').html(getNomeByIdsUsuario(dataMensagens[0].IdDestinatarios, 0));
+					$('#tela_over #Mensagem_wrapper #Resp_frame #Resposta_Remetente').val(dataMensagens[0].remetente_idUsuario);
+					
+					$('#tela_over #Mensagem_wrapper #Resp_frame #mensagem_assunto').html(dataMensagens[0].assunto);
+					$('#tela_over #Mensagem_wrapper #Resp_frame #Mensagem').val("\n\n-------------------------------------------------\n"+dataMensagens[0].mensagem);
+				} 
+
+				else if(Numero == 2){//Responder todos
+					$("#Nova_frame").show();
+
+					getNomeByIdsUsuario(dataMensagens[0].IdDestinatarios, 1);
+					$("#tela_over #Mensagem_wrapper #Nova_frame #destinatarios option[value='"+userID+"']").prop("selected", false);
+					formselect.multiselect("refresh");
+					
+					$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').val("RES: "+dataMensagens[0].assunto);
+					$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').empty();
+					$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').val("\n\n-------------------------------------------------\n"+dataMensagens[0].mensagem);
+				} 
+				else if(Numero == 3){ //Encaminhar
+					$("#Nova_frame").show();
+
+					$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').val(dataMensagens[0].assunto);
+					$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').empty();
+					$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').val("\n"+
+								"\n-------------------------------------------------\n"+
+								"De: "+dataMensagens[0].remetente_nome+
+								"\nPara: "+getNomeByIdsUsuario(dataMensagens[0].IdDestinatarios, 0)+
+								"\n\n"+dataMensagens[0].mensagem
+					);
+				}
 	}
+
 
 }
 
@@ -419,7 +433,7 @@ function setMSGSend(Numero)
 //Mostra Mensagens do à direita usuario
 
 function MostrarMensagem(idMensagem){
-	
+
 	var HtmlContent = "";
 	var Contador = 1;
 
@@ -429,11 +443,14 @@ function MostrarMensagem(idMensagem){
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		url: path+ "Mensagens/MensagemByUser/"+usuarioId+"/"+idMensagem,		        
+		//url: path+ "Mensagens/MensagemByUser/"+userID+"/"+idMensagem,
+		url: path+ "Mensagens/emailHashId/"+idMensagem,
 		success: function(dataMensagens){		
-			$('#Col_Mensagem #Mensagem_wrapper #mensagem_remetente').html((dataMensagens[0].remetente.aluno != null ? dataMensagens[0].remetente.aluno.nome:dataMensagens[0].remetente.professor.nome));
-			$('#Col_Mensagem #Mensagem_wrapper #mensagem_destinatario').html(getNomeByNomeUsuario(dataMensagens[0].destinatarios));
-			$('#Col_Mensagem #Mensagem_wrapper #Resposta_Remetente').val(dataMensagens[0].remetente.idusuario);			
+
+			$('#Col_Mensagem #Mensagem_wrapper #mensagem_remetente').html(dataMensagens[0].remetente_nome);
+
+			$('#Col_Mensagem #Mensagem_wrapper #mensagem_destinatario').html(getNomeByIdsUsuario(dataMensagens[0].IdDestinatarios,0));
+			$('#Col_Mensagem #Mensagem_wrapper #Resposta_Remetente').val(dataMensagens[0].remetente_idusuario);			
 			$('#Col_Mensagem #Mensagem_wrapper #mensagem_assunto').html(dataMensagens[0].assunto);
 			$('#Col_Mensagem #Mensagem_wrapper #Mensagem').html(dataMensagens[0].mensagem);
 
@@ -445,7 +462,7 @@ function MostrarMensagem(idMensagem){
 					url: path+"Mensagens/update/lida/"+idMensagem+"/S",
 					type: "POST",
 					success: function(d) {
-						console.log(d);
+						//console.log(d);
 					}
 				}); 		
 			}		
@@ -546,7 +563,7 @@ function ResponderMensagem()
 		    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
 
 		    },error: function() {
-		    	//console.log("DDNN : error");
+		    	////console.log("DDNN : error");
 
 		    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
 		    	loading('final');
@@ -573,44 +590,26 @@ function ListarCaixaEntrada(inicio,fim){
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		url: path+ "Mensagens/email/entrada/"+usuarioId+"/"+inicio+"/"+fim,           
+		url: path+ "Mensagens/emailHash/entrada/"+userID+"/"+inicio+"/"+fim,
 		success: function(dataMensagensEntrada){
-			for(var a=dataMensagensEntrada.length-1; a>=0; a--)
-			{
-	
-				var dataMSG = (dataMensagensEntrada[a].data.substr(8, 2))+'/'+(dataMensagensEntrada[a].data.substr(5, 2))+'/'+(dataMensagensEntrada[a].data.substr(0, 4));
-	
-				//Se o Aluno Existir nessa lista de Usuários
-				if(usuario == "Aluno" && (dataMensagensEntrada[a].proprietario.aluno != null || dataMensagensEntrada != ''))
-				{
-					//Se a mensagem for para este usuário e se estiver na caixa de Entrada
-					if(dataMensagensEntrada[a].proprietario.idusuario == userID && dataMensagensEntrada[a].cxEntrada == "S")
-					{
-						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensEntrada[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensEntrada[a].idmensagens+'" onclick="selecionarMensagem(this);"> ' +
-									   '<div class="caixa_data_hora"> '+dataMSG+' </div>' +
-									   '<div class="msg_info_wrapper">' +
-									   '<div class="caixa_remetente"> '+ (dataMensagensEntrada[a].remetente.aluno != null ? dataMensagensEntrada[a].remetente.aluno.nome:dataMensagensEntrada[a].remetente.professor.nome) +' </div>' +
-									   '<div class="caixa_assunto"> '+ (dataMensagensEntrada[a].assunto != "" ? dataMensagensEntrada[a].assunto:"Sem Assunto") +'</div>' +
-									   '</div>' +
-									   '</div>';
-					}
-	
-				//Se o Professor Existir nessa lista de Usuários
-				} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && (dataMensagensEntrada[a].proprietario.professor != null || dataMensagensEntrada == '')){
-					//Se a mensagem for para este usuário e se estiver na caixa de Entrada
-					if(dataMensagensEntrada[a].proprietario.idusuario == userID && dataMensagensEntrada[a].cxEntrada == "S")
-					{
-						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensEntrada[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensEntrada[a].idmensagens+'" onclick="selecionarMensagem(this);"> ' +
-									   '<div class="caixa_data_hora"> '+dataMSG+' </div>' +
-									   '<div class="msg_info_wrapper">' +
-									   '<div class="caixa_remetente"> '+ (dataMensagensEntrada[a].remetente.aluno != null ? dataMensagensEntrada[a].remetente.aluno.nome:dataMensagensEntrada[a].remetente.professor.nome) +' </div>' +
-									   '<div class="caixa_assunto"> '+ (dataMensagensEntrada[a].assunto != "" ? dataMensagensEntrada[a].assunto:"Sem Assunto") +'</div>' +
-									   '</div>' +
-									   '</div>';
+		
+			if (dataMensagensEntrada.length > 0){
+				for(var a=dataMensagensEntrada.length-1; a>=0; a--){
+
+					if(dataMensagensEntrada[a].mensagem != ''){
+						
+						var dataMSG = (dataMensagensEntrada[a].data.substr(8, 2))+'/'+(dataMensagensEntrada[a].data.substr(5, 2))+'/'+(dataMensagensEntrada[a].data.substr(0, 4));
+						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensEntrada[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensEntrada[a].idMensagem+'" onclick="selecionarMensagem(this);" destinatarios="'+dataMensagensEntrada[a].IdDestinatarios+'"> ' +
+									   	'<div class="caixa_data_hora"> '+dataMSG+' </div>' +
+									   	'<div class="msg_info_wrapper">' +
+									   	  '<div class="caixa_remetente"> '+dataMensagensEntrada[a].remetente_nome+' </div>' +
+									   	  '<div class="caixa_assunto"> '+ (dataMensagensEntrada[a].assunto != "" ? dataMensagensEntrada[a].assunto:"Sem Assunto") +'</div>' +
+									   	'</div>' +
+									  '</div>';
 					}
 				}
 			}
-
+	
 			//Após salvar as Strings dentro da variável, adicionar ao HTML
 			if(inicio==1){
 				$('#Col_CaixaDeMensagens').html(HtmlContent);
@@ -636,63 +635,33 @@ function ListarEnviadas(ultima,inicio,fim)
         type: "GET",
         async:false,
         crossDomain: true,
-        url: path+ "Mensagens/email/enviado/"+usuarioId+"/"+inicio+"/"+fim,           
+        //url: path+ "Mensagens/email/enviado/"+userID+"/"+inicio+"/"+fim,           
+        url: path+ "Mensagens/emailHash/enviado/"+userID+"/"+inicio+"/"+fim,
 		success: function(dataMensagensSaida){
-			if(dataMensagensSaida!=""){
-				for(var a=dataMensagensSaida.length-1; a>=0; a--)
-				{
 			
-					var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
-			
-					//Se o Aluno Existir nessa lista de Usuários
-					if(usuario == "Aluno" && (dataMensagensSaida[a].remetente.aluno != null || dataMensagensSaida !=''))
-					{
-						//Se a mensagem for para este usuário e se estiver na caixa de Saída
-						if(dataMensagensSaida[a].remetente.idusuario == userID && dataMensagensSaida[a].cxEnviada == "S")
-						{
-							HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensSaida[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensSaida[a].idmensagens+'" onclick="selecionarMensagem(this);"> ' +
-										   '<div class="caixa_data_hora"> '+dataMSG+' </div>' +
-										   '<div class="msg_info_wrapper">' +
-										   '<div class="caixa_remetente"> '+ dataMensagensSaida[a].remetente.aluno.nome +' </div>' +
-										   '<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>' +
-										   '</div>' +
-										   '</div>';
-						}
-						//Se o Professor Existir nessa lista de Usuários
-					} else if((usuario == "Professor" || usuario == "Coordenacao" || usuario == "Secretaria") && (dataMensagensSaida[a].remetente.professor != null || dataMensagensSaida != '')){
-						//Se a mensagem for para este usuário e se estiver na caixa de Saída
-						if(dataMensagensSaida[a].remetente.idusuario == userID && dataMensagensSaida[a].cxEnviada == "S")
-						{
-							HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensSaida[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensSaida[a].idmensagens+'" onclick="selecionarMensagem(this);"> ' +
-										   '<div class="caixa_data_hora"> '+dataMSG+' </div>' +
-										   '<div class="msg_info_wrapper">' +
-										   '<div class="caixa_remetente"> '+ dataMensagensSaida[a].remetente.professor.nome +' </div>' +
-										   '<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>' +
-										   '</div>' +
-										   '</div>';
-						}
+			if (dataMensagensSaida.length > 0){
+				for(var a=dataMensagensSaida.length-1; a>=0; a--){
+					
+					if(dataMensagensSaida[a].mensagem != ''){
+						var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
+						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ' +
+									   	'<div class="caixa_data_hora"> '+dataMSG+' </div>' +
+									   	'<div class="msg_info_wrapper">' +
+									   	  '<div class="caixa_remetente"> '+dataMensagensSaida[a].remetente_nome+' </div>' +
+									   	  '<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>' +
+									   	'</div>' +
+									  '</div>';
 					}
-				}			
-				//Após salvar as Strings dentro da variável, adicionar ao HTML
-				var html;
-				if(ultima!=""){
-					html = ultima+HtmlContent;
-				}else{
-					html = HtmlContent;
 				}
-				
-				if(inicio==1){
-					$('#Col_CaixaDeMensagens').html(HtmlContent);
-				}else{ 
-					$('#Col_CaixaDeMensagens').append(HtmlContent);
-				}
-				
-			}else{
-				//$('#Col_CaixaDeMensagens').html('');
-				return 0;
 			}
 		}
-	});	
+	});
+	
+	if(inicio==1){
+		$('#Col_CaixaDeMensagens').html(HtmlContent);
+	}else{ 
+		$('#Col_CaixaDeMensagens').append(HtmlContent);
+	}
 }
 
 function ExcluirMensagem()
@@ -740,7 +709,7 @@ function ExcluirMensagem()
 				
 				carregaMensagens();
 				
-				//console.log(usuarioId);
+
 				mensagem("Mensagem excluida com sucesso!","OK","bt_ok","sucesso");
 				loading('final');
 				
@@ -759,64 +728,63 @@ function ExcluirMensagem()
 
 //Pegar ID Aluno pelo usuario
 
-function getAlunoByUsuario()
-{
-	for(var a=0; a<dataUsuario.length;a++)
-	{
-		if(usuario == "Aluno" && dataUsuario[a].aluno != null)
-		{
-			if(dataUsuario[a].idusuario == userID)
-			{
-				return dataUsuario[a].aluno.idAluno;
-			}
-		} else if(usuario == "Professor" && dataUsuario[a].professor != null){
-			 if(dataUsuario[a].idusuario == userID)
-			 {
-			 	return dataUsuario[a].professor.idprofessorFuncionario;
-			 }
-		}
-	}
-}
+//function getAlunoByUsuario()
+//{
+//	for(var a=0; a<dataUsuario.length;a++)
+//	{
+//		if(usuario == "Aluno" && dataUsuario[a].aluno != null)
+//		{
+//			if(dataUsuario[a].idusuario == userID)
+//			{
+//				return dataUsuario[a].aluno.idAluno;
+//			}
+//		} else if(usuario == "Professor" && dataUsuario[a].professor != null){
+//			 if(dataUsuario[a].idusuario == userID)
+//			 {
+//			 	return dataUsuario[a].professor.idprofessorFuncionario;
+//			 }
+//		}
+//	}
+//}
 
 
-function getNomeByNomeUsuario(UsrNomes, Numero)
-{
-	var remetentesSeparados = UsrNomes.split(";");
+function getNomeByIdsUsuario(idsUsuarios, Numero){
+	
+	var idsSeparados = idsUsuarios.split(";");
 	var valorRetornado = "";
-	for(var a=0; a < remetentesSeparados.length; a++)
-	{
-		for(var b=0; b< dataUsuario.length; b++)
-		{
-			if(dataUsuario[b].login == remetentesSeparados[a])
-			{
-				if(dataUsuario[b].aluno != null)
-				{
-					valorRetornado += dataUsuario[b].aluno.nome+"; ";
-				} else if(dataUsuario[b].professor != null){
-					valorRetornado += dataUsuario[b].professor.nome+"; ";
-				}
 
-				if(Numero == 1)
-				{
-					$("#tela_over #Mensagem_wrapper #Nova_frame #destinatarios option[value='"+dataUsuario[b].idusuario+"']").prop("selected", true);
+	for(var a=0; a < idsSeparados.length; a++){
+		if (idsSeparados[a] != ''){
+			$.ajax({
+				url: path + "Usuario/NomeUsuario/" + idsSeparados[a],
+				async: false,
+				crossDomain: true,
+				type: "GET",
+				success: function(data){
+					valorRetornado += data.nome+"; ";
 				}
-			}
+			});
+		}
+		
+		if(Numero == 1){
+			$("#tela_over #Mensagem_wrapper #Nova_frame #destinatarios option[value='"+idsSeparados[a]+"']").prop("selected", true);
 		}
 	}
-	return valorRetornado;
+	return valorRetornado.substring(0,(valorRetornado.length - 2));
 }
 
 function limparCampos(){	//limpa os campos do formulario de enviar mensagem!!
 	$('#tela_over #Mensagem_wrapper #Nova_frame #assunto').val('');
 	$('#tela_over #Mensagem_wrapper #Nova_frame #mensagem').val('');
-	
+	$("#frm_Envia_Mensagens #destinatarios").val('')
 	
 	$('#pesquisaParaMensagem').val('');
 	
-	$('.ui-multiselect-checkboxes li').css('display','block');	
-	// $(":checkbox").each(function(){
-		// $(this).removeAttr('checked');
-	// });
+	$('.ui-multiselect-checkboxes li').css('display','block');
+	$(":checkbox").removeAttr('aria-selected');
+//	 $(":checkbox").each(function(){
+//		 $(this).removeAttr('checked');
+//	 });
 	$(":checkbox").removeAttr('checked');
 	$(".ui-multiselect span").eq(1).text('Para');
 }
