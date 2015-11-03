@@ -147,8 +147,8 @@ $(document).ready(function() {
 					//IdentificadorPlanoEstudo = d;
 						$("#box_novo").removeClass('exibir');
 						loading("final");
+						reSetPlano(d);
 						return mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-						
 					}else{
 						loading("final");
 						return mensagem("Data do plano de estudo deve ser maior que o último cadastrado!","OK","bt_ok","erro");
@@ -159,6 +159,10 @@ $(document).ready(function() {
 
 	});
 	
+	$(".dataPassada").click(function(){
+		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
+		return false;
+	});
 	$( "#data_inicio" ).datepicker({
 		showOn: "button",
 		beforeShow: function () {
@@ -295,84 +299,9 @@ function editar() {
 	});
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------
-
-//function callRegistroHtml(PrimeiraData, SegundaData, IdentificadorPlano, IdentificadorAluno)
-//{
-//   	var d = new Date();	
-//	$.ajax({
-//		url: path+"RegistroDiario/PlanoEstudo/"+IdentificadorPlano,
-//		type: "GET",
-//		async:false,
-//		crossDomain: true,
-//		success: function(dataRegistroDiario) {
-//			for(var a=0; a<dataRegistroDiario.length; a++){				
-//					
-//				var DataCampoDia = parseInt(dataRegistroDiario[a].data.substring(8));
-//				var DataCampoMes = parseInt(dataRegistroDiario[a].data.substring(5,7));
-//				var DataCampoAno = parseInt(dataRegistroDiario[a].data.substring(0,4));
-//
-//				if(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) >= Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate()) &&
-//				Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) <= Date.UTC(SegundaData.getFullYear(), SegundaData.getMonth(), SegundaData.getDate()))
-//				{
-//
-//					if(DataCampoDia == d.getDate() && DataCampoMes == (d.getMonth()+1))
-//					{
-//
-//						setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea" id="Registro_Diario_Novo">'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
-//
-//						PermitidoSalvarRegistro=true;
-//						UltimoIdRegistroDiario = dataRegistroDiario[a].idregistroDiario; 
-//						Salvo = true;
-//
-//					} else {
-//
-//						setRetornoRD('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Data">' + DataCampoDia+'/'+ DataCampoMes + '</td><td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto"><textarea class="Plano_Estudo_Content_Registro_Diario_Tabela_Textarea textarea_top" id="Registro_'+a+'" disabled>'+dataRegistroDiario[a].registro+'</textarea></td></tr>');
-//					}
-//
-//					$('#Registro_Diario').append(getRetornoRD());
-//
-//				}
-//			}
-//
-//			//console.log(d.getDate()+(d.getMonth()+1)+(d.getFullYear()),SegundaData.getDate()+(SegundaData.getMonth()+1)+(SegundaData.getFullYear()));
-//			
-//			/*console.log(d.getDate()+"-"+(PrimeiraData.getMonth()+1) <= "0"+SegundaData.getDate()+"-"+(SegundaData.getMonth()+1));
-//			console.log((d.getMonth()+1)," >= ",PrimeiraData.getMonth()+1);
-//			console.log((d.getMonth()+1)," <= ",SegundaData.getMonth()+1);*/
-//
-//			/*if((d.getDate() >= PrimeiraData.getDate() && d.getDate() <= SegundaData.getDate()) &&
-//			((d.getMonth()+1) >= SegundaData.getMonth()+1 && (d.getMonth()+1) <= SegundaData.getMonth()+1))*/			
-//			
-//			if (Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) >= Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate()) &&
-//				Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) <= Date.UTC(SegundaData.getFullYear(), SegundaData.getMonth(), SegundaData.getDate()))
-//			{
-//				$('#Registro_Diario').append('<tr class="Plano_Estudo_Content_Registro_Diario_Tabela"><td></td><td><div id="content_btn_Registro_Diario"><div id="botaoChange" class="add_Registro_Btn" onclick="VerificaAcaoBtnRegistroDiario();"></div></div></td></tr>');
-//				if(Salvo && PermitidoSalvarRegistro){
-//					document.getElementById('botaoChange').style.backgroundImage="url(img/enviar_bco.png)";
-//				}
-//			}			
-//		},error: function() {
-//			retorno = "erro";
-//		}
-//	});			
-//}
-
-//get set retornando RetornoRD, referente ao Registro Diário
-
-//function setRetornoRD(Valor)
-//{
-//	RetornoRD = Valor;
-//}
-//
-//function getRetornoRD()
-//{
-//	return RetornoRD;
-//}
-//
-//
 function reSetPlano(ID)
 {
+	console.log('Reset: '+ID);
 	$.ajax({
 		url: path + "PlanoAula/" + ID,
 		type: "GET",
@@ -682,9 +611,11 @@ function carregarPlano(){
 	$('#divRegAtividade').append("<textarea name='regAtividade' id='regAtividade' >"+planoAula[0].registro_atividade+"</textarea>");
 	if (confEditar == true) {
 		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula[0].idplano_aula);
+		$('#roteiros').removeClass('dataPassada');
 		$('#btnSubmit').show();	
 	}else {
 		$('#roteiros').attr('href','#');
+		$('#roteiros').addClass('dataPassada');
 		$('textarea').attr('readonly','true');
 		$('#btnSubmit').hide();
 	}
