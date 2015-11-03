@@ -400,7 +400,11 @@ $(document).ready(function() {
 	
 	$("#box_grupo_info_barra").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
-	});	
+	});
+
+	$('.postContainer').mCustomScrollbar({
+		axis:"y"
+	});
 	
 	$(".hangAlunos").mCustomScrollbar({
 		axis:"x" // vertical and horizontal scrollbar

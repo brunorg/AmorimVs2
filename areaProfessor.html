@@ -8,11 +8,11 @@
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet"	href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/areaProfessor.css" />	
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
+        <link rel="stylesheet" type="text/css" href="css/areaProfessor.css" />  
     	<!--Fim Style-->
         
         <!--Script JS-->
@@ -34,7 +34,7 @@
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
          
         <script type="text/javascript" src="js/calendario.js"></script>     
-        <script type="text/javascript" src="js/areaProfessor.js"></script>
+        <script type="text/javascript" src="js/areaProfessorVs2.js"></script>
 		<script type="text/javascript" src="js/cadastros.js"></script> 
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>           
 		
@@ -94,191 +94,221 @@
 						</div>                                                 							
 					</div>
 
+
 				</div>
 
 				<!--Coluna geral central-->
                 <!--bloqueio para a rolagem top-->				
-                <div class="Conteudo_Coluna" id="content_central_fixa">
-				
-				<!--  grÃ¡fico dos tutorandos!!--> 
-					<div class="Grade_Aluno" id='graficoTutor' style='display:none'>
-					<div id='form'>
-						                		<!--Legenda do GrÃ¡fico-->
-						<div class="Content_Legenda_Grade_Aluno">
-
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Objetivos corrigidos</div>
-							</div>
-							
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Objetivos próxima série</div>
-							</div>
-							
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Objetivos série anterior</div>
-							</div>
-							
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Objetivos série atual</div>
-							</div>
-
-						</div>
-
-						<!--Conteudo Grafico Inside-->
-
-						<div class="Grade_Aluno_Grafico_Content">
-
-							<div class="Grade_Aluno_Grafico_Legenda_Lateral">
-
-								Faltas<br />
-								100<br />
-								90<br />
-								80<br />
-								70<br />
-								60<br />
-								50<br />
-								40<br />
-								30<br />
-								20<br />
-								10<br />
-								0
-
-							</div>
-
-							<div class="Grade_Aluno_Grafico">
-
-								<div id="Grade_Aluno_Grafico_Mask"></div>
-
-								<div class="Grafico_Individual_Aluno_Overflow">
-
-									<div class="Grafico_Individual_Aluno">
-
-										<div class="Grafico_Individual_Aluno_Falta_Numero">15</div>
-										<div class="Grafico_Individual_Aluno_Escala">
-											
-											<div class="Porcentagem_Objetivos_Serie_Anterior Porcentagem_Left" style="height:50px;">
-												<div class="Porcentagem_Objetivos_Serie_Anterior_Corrigido" style="height:20px;"></div>
-											</div>
-
-											<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right" style="height:150px;">
-												<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:129px;"></div>
-											</div>
-
-											 <div class="Porcentagem_Objetivos_Serie_Proxima" style="height:70px;"></div>  
-
-										</div>
-
-										<div class="Grafico_Individual_Aluno_Foto_Hover">
-											
-											<img src="img/FotoAluno.png"></img>
-
-										</div>
-
-									</div>
-									
-									
-
-								</div>
-
-							</div>
-
-						</div>
-
-
-                	</div>
-                	</div>
-					
-                	<!--Lista de Alunos/Grafico-->
-                	              	<div class="Grade_Aluno" id='pesquisaAlunos' style='display:none'>
-
-						<div id="form">
-						    <form id="frmCadastroAluno">                   
-						        <div id="linha3" class="celulaPequenaPes rightMargin">
-						            <div class="infoPes">Nome</div>
-						            <div class="infoValueP">
-						            	<input type='text' id='nomeAluno' onKeyUp='carregaAlunosByNome()'/>
-						            </div>
-						            <div class="infoValueP" style='display:none'>
-
-						                 <div class="styled-selectPes">
-						                    <select id="perfil" onChange="selecao()">
-						                        <option value=""></option>
-						                        <option value="1" id="aluno">Aluno</option>
-						                        <option value="2" id="professor">Professor</option>                    
-						                    </select>
-						                </div> 
-						            </div>     <!--  -->   
-						        </div>
-						        <div id="linha4" class="celulaPequenaPes rightMargin">
-						            <div class="infoPes"> Ano estudo </div>
-						            <div class="infoValueP">
-						                <div class="styled-selectPes">
-						                    <select id="PesqAnoEstudo" onChange="carregaAlunos()">
-						                    	<option></option>
-						                    </select>
-						                </div>
-						            </div>
-						        </div>
-						        <div id="linha5" class="celulaPequenaPes">
-						            <div class="infoPes">Período</div>
-						            <div class="infoValueP">
-						                <div class="styled-selectPes">
-						                    <select id="periodo" onChange="carregaAlunos()">
-						                    	<option></option>
-						                    </select>
-						                </div>
-						            </div>
-						        </div>
-						        
-						    </form>
-						</div>
-						<div id="tabela">
-							<table>
-						        <tbody id="lista">
-						        	
-						        </tbody>
-						    </table>
-						</div>
-					</div>
-
-                	<!--Listas de Mural, Mensagens e Agenda-->
-                	<div class="Content_Listas">
-                		<!--Mural-->
-                		<div id="Light_Mural">
-							
-							
-							<div class="Light_Mural_Cabecalho_Nome">
-								Mural				
-							</div>
-
-							
-
-							<div class="Light_Mural_Conteudo">
-								
-								<table id="Light_MuralTabela">
-						
-								</table>
-
-							</div>
-
-
-						</div>
-
-						
-									<!--Titulo da tabela-->									
-
-									<!--Mensagens na caixa-->									
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="box_margin_alter">
-					</div>
+                <div id="blocoGeral">
+                    <div class="boxLinha">
+                        <div class="box_col8">
+                            <div class="conteudoBoxArea areaPostagens">
+                                <div class="boxTitulo">
+                                    Postagens
+                                    <div class="botaoNovo" id="novoPostagens"><img src="img/plano_estudo_novo_normal.png"></div>
+                                </div>
+                                <div class="conteudoPost conteudoMedio" id="postagensConteudo">
+                                    <div class="postContainer">
+                                        <div class="areaPost">
+                                            <div class="post postMedio">
+                                                <div class="postTitulo">
+                                                    Lorem Ipsum
+                                                </div>
+                                                <div class="postCorpo">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor turpis, posuere et massa eu, molestie porta magna. Curabitur accumsan diam eu dui lobortis, et consectetur ipsum vulputate. Vestibulum lobortis finibus mattis. Nam ac lobortis tellus. Morbi finibus in nibh nec pharetra.
+                                                </div>
+                                                <div class="postDestinatario">
+                                                    Matemática | 5º Ano
+                                                </div>
+                                                <div class="linhaConteudo">
+                                                    <div class="linhaBotoes">
+                                                        <div class="containerIcone">
+                                                            <div class="botaoIcone">
+                                                                <img src="img/salvar_ed.png">
+                                                            </div>
+                                                        </div>
+                                                        <div class="containerIcone">
+                                                            <div class="botaoIcone">
+                                                                <img src="img/ic_del_peq.png">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="areaPost">
+                                        <div class="post postMedio">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="conteudoNovo conteudoMedio" id="postagensNova">
+                                    <div class="novoContainer">
+                                        <div class="areaNovo">
+                                            <div class="linhaConteudo">
+                                                <textarea class="inputArea inputLinha inputUnicoLinha" placeholder="Título da Postagem"></textarea>
+                                            </div>
+                                            <div class="linhaConteudo">
+                                                <div class="containerSelect">
+                                                    <div class="selectArea selectMedio">
+                                                        <div class="selectTitle">Oficina: </div>
+                                                        <div class="selectOptions" id="selectOficina">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="containerSelect">
+                                                    <div class="selectArea selectPequeno">
+                                                        <div class="selectTitle">Ano: </div>
+                                                        <div class="selectOptions" id="selectAno">
+                                                            <select>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="linhaConteudo">
+                                                <div class="containerAreaMensagem">
+                                                    <textarea class="inputArea inputMensagem mensagemPequena" placeholder="Digite aqui o texto da postagem."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="linhaConteudo">
+                                                <div class="linhaBotoes">
+                                                    <div class="containerIcone">
+                                                        <div class="botaoIcone">
+                                                            <img src="img/salvar_ed.png">
+                                                        </div>
+                                                    </div>
+                                                    <div class="containerIcone">
+                                                        <div class="botaoIcone" id="cancelarPostagens">
+                                                            <img src="img/ic_del_peq.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_col4">
+                            <div class="conteudoBoxArea" style="background-color: green;">
+                                <div class="boxTitulo">
+                                    Rotina
+                                </div>
+                                <div div style="background-color: white; height: 89%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxLinha">
+                        <div class="box_col4">
+                            <div class="conteudoBoxArea areaCoordenacao">
+                                <div class="boxTitulo">
+                                    Mural Coordenação
+                                </div>
+                                <div class="conteudoPost" id="coordenacaoConteudo">
+                                    <div class="areaPost">
+                                        <div class="post postMedio">
+                                        </div>
+                                    </div>
+                                    <div class="areaPost">
+                                        <div class="post postMedio">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_col4">
+                            <div class="conteudoBoxArea areaMural">
+                                <div class="boxTitulo">
+                                    Mural
+                                    <div class="botaoNovo" id="novoMural"><img src="img/plano_estudo_novo_normal.png"></div>
+                                </div>
+                                <div class="conteudoPost conteudoPequeno" id="muralConteudo">
+                                    <div class="postContainer">
+                                        <div class="areaPost">
+                                            <div class="post postMedio">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                <div class="postDestinatario">
+                                                    Matemática | 5º Ano
+                                                </div>
+                                                <div class="linhaConteudo linhaIconeInferior">
+                                                    <div class="linhaBotoes">
+                                                        <div class="containerIcone">
+                                                            <div class="botaoIcone">
+                                                                <img src="img/ic_delete.png">
+                                                            </div>
+                                                        </div>
+                                                        <div class="containerIcone">
+                                                            <div class="botaoIcone">
+                                                                <img src="img/ic_editar_peq.png">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        <div class="areaPost">
+                                            <div class="post postMedio">
+                                            </div>
+                                        </div>
+                                        <div class="areaPost">
+                                            <div class="post postMedio">
+                                            </div>
+                                        </div>
+                                        <div class="areaPost">
+                                            <div class="post postMedio">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="conteudoNovo conteudoPequeno" id="muralNova">
+                                    <div class="novoContainer">
+                                        <div class="areaNovo">
+                                            <div class="linhaConteudo">
+                                                <div class="containerSelect">
+                                                    <div class="selectArea selectMedio">
+                                                        <div class="selectTitle">Grupo: </div>
+                                                        <div class="selectOptions" id="selectGrupo">
+                                                            <select>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="linhaConteudo">
+                                                <div class="containerAreaMensagem">
+                                                    <textarea class="inputArea inputMensagem mensagemMedia" placeholder="Digite aqui a mensagem."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="linhaConteudo">
+                                                <div class="linhaBotoes">
+                                                    <div class="containerIcone">
+                                                        <div class="botaoIcone">
+                                                            <img src="img/ic_edit.png">
+                                                        </div>
+                                                    </div>
+                                                    <div class="containerIcone">
+                                                        <div class="botaoIcone" id="cancelarMural">
+                                                            <img src="img/ic_del_peq.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_col4">
+                            <div class="conteudoBoxArea areaPlano">
+                                <div class="boxTitulo">
+                                    Plano de Aula
+                                    <div class="botaoNovo"><a href="planoDeAula.html"><img src="img/plano_estudo_novo_normal.png"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
                 <div id="boxMensagemGeral"></div>
 				<div class="boxCalendario"></div>
