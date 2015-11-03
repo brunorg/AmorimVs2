@@ -108,8 +108,8 @@
                         </div>                    
                         <!-- Conteudo da aba de Roteiro -->
                         <div id="Roteiro" class="aba_roteiro">
-                            <div id="conteudo_principal_roteiro">                           
-                                <div id="Inserir_roteiro">
+                            <div id="Inserir_roteiro">
+                                <!--<div id="conteudo_principal_roteiro"> -->                          
                                     <p id="roteiroSalvo"></p>
                                     <div id="linha1"> 
                                         <div class="celulaGrande">
@@ -128,7 +128,19 @@
                                             </div>   
                                         </div>
                                     </div>
-
+                                    <div class="linha4" style="display:none">
+                                        <div id="Rot_Inserido_Info"> 
+                                            <p id="Rot_inserido_Nome" class="Rot_Inserido_Nome"></p>
+                                            <div id="Obj_Inserido_Btns_1" class="Rot_Inserido_Btns">
+                                                <div id="Btn_Editar_Rot" class="Btn_Rot Btn_Editar_Rot" onClick="utilizarRoteiroAula("+data[i].idroteiro_aula+")"></div>
+                                                <div id="Btn_Del_Rot" class="Btn_Rot Btn_Del_Rot" onClick="excluirRoteiroAula("+data[i].idroteiro_aula+")"></div>
+                                            </div>
+                                        </div>
+                                        <div id="Desc_Inserido_Info" class="Obj_Inserido_Info">
+                                            <div id="Desc_Inserido_Nome" class="Desc_Inserido_Nome"></div>
+                                        </div>                                        
+                                    </div>
+                                    
                                     <div class="linha3"> 
                                        	<div id="box_objetivoAula">
                                             <div class="celulaGrandeOB" style="display:none">
@@ -139,10 +151,12 @@
                                             </div>
                                         </div>
                                     </div> 
+                                    
+                                    
                                     <div>  
                                     <input type="hidden" id="idRoteiro" value="">                                  
                                     <p id="btnSalvar" value=""> Salvar </p>
-                                    <p id="btnNovoOB" style="display:none" value="">Novo</p>
+                                    <!--<p id="btnNovoOB" style="display:none" value="">Novo</p>-->
                                     <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
                                     <!--<p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>-->
                                     <p id="btnEdit" style="display:none" value="">Salvar</p>
@@ -150,7 +164,7 @@
                                 </div>
                                 
                                 <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
-                            </div>
+                            <!--</div> -->
                         </div>                                                                      
                          
                         <!-- Conteudo da aba de Pesquisa -->
@@ -163,7 +177,7 @@
                                         <div class="celulaGrande">
                                             <div class="infoG"> Pesquisa </div>
                                             <div class="infoValueG">
-                                                <input type="text" id="pesqRoteiro" style="margin-top: 4px;" oninput="carregaRoteiroPesquisa('like')">
+                                                <input type="text" id="pesqRoteiro" class="pesqRoteiro" style="margin-top: 4px;" oninput="carregaRoteiroPesquisa('like')">
                                             </div>
                                         </div>                                        
                                     </div> 
