@@ -221,10 +221,10 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	var contador=1;
 	/*Cadastro Roteiro*/
 	$('#Btn_Editar_Rot_1').click(function(){
 		var idRoteiro = $('#id').val();
-		var roteiroNome = $('#Input_Roteiro_Nome').val();
 		var HtmlContent;
 		HtmlContent = '<div class="box_mensagem_rotcad">'+
 						'<div class="txt_mensagem">'+
@@ -254,9 +254,21 @@ $(document).ready(function(){
 		
 		$('#boxModal').html(HtmlContent).css('display','block');
 		window.setTimeout(function(){
-			$('#id').val(idRoteiro);
-			$('#Input_Roteiro_Nome_edt').val(roteiroNome);
-			$('#Input_Roteiro_Ano_edt').html(carregaAno());
+			$('#id').val(idRoteiro);			
+			var anoEditar,roteiroNome;
+			
+			if(contador==1){
+				roteiroNome = $('#Input_Roteiro_Nome').val();
+				anoEditar = $("#Input_Roteiro_Ano :selected").val();				
+				$('#Input_Roteiro_Nome_edt').val(roteiroNome);
+				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));				
+				contador++;	
+			}else{
+				roteiroNome = $('#roteiroNomeEditado').val();
+				anoEditar = $("#anoEditado").val();				
+				$('#Input_Roteiro_Nome_edt').val(roteiroNome);
+				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));
+			}
 		},10);
 	});
 });
@@ -401,10 +413,15 @@ function setCreateDataRoteiro(Tabela,Valores){
 	});
 	return retorno;
 }
+
 function EditarRoteiro(idRoteiro){	
 	var anoEstudo = $("#Input_Roteiro_Ano_edt").val();
 	var anoEstudoTexto = $("#Input_Roteiro_Ano_edt :selected").html();
 	var nome = $("#Input_Roteiro_Nome_edt").val();
+	
+	$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEstudo));
+	$("#Input_Roteiro_Nome_edt").val(nome);
+	
 	$('#boxModal').css('display','none');
 	$.ajax({
 		url: path+"Roteiro",
@@ -415,20 +432,24 @@ function EditarRoteiro(idRoteiro){
 		},success: function(d) {
 			$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoEstudoTexto+' ano | ');
 			$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nome);
+			$("#Input_Roteiro_Nome_edt").val(nome);	
+			$("#anoEditado").val(anoEstudo);	
+			$('#roteiroNomeEditado').val(nome);				
 			mensagem("Roteiro alterado com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
 			loading("final");	
 		}
 	});
 }
+
 function fecharBoxModal(){
 	$('#boxModal').css('display','none');
 }
 
-function carregaAno(){
+function carregaAno(anoParaEditar){
 	HtmlContent = ""; 
 	var selecionado = "";
-	var anoParaEditar = $("#Input_Roteiro_Ano :selected").val();
+
     for(var b=0;b<dataAnoEstudo.length; b++)
     {
 		if(anoParaEditar == dataAnoEstudo[b].idanoEstudo){	
@@ -437,8 +458,7 @@ function carregaAno(){
 			selecionado = '';
 		}
         HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"' "+selecionado+" >"+(dataAnoEstudo[b].ano)+"º</option>";
-    }
-	
+    }	
 	return HtmlContent;
 }
 
