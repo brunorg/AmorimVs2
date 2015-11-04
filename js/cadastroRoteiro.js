@@ -221,8 +221,9 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	var contador=1;
+	
 	/*Cadastro Roteiro*/
+	var contador=1;
 	$('#Btn_Editar_Rot_1').click(function(){
 		var idRoteiro = $('#id').val();
 		var HtmlContent;
@@ -270,6 +271,11 @@ $(document).ready(function(){
 				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));
 			}
 		},10);
+	});
+	
+	$('#Btn_Del_Rot_1').click(function(){
+		var idRoteiro = $('#id').val();
+		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm","Roteiro",idRoteiro,"excluirRoteiro");
 	});
 });
 
@@ -460,6 +466,11 @@ function carregaAno(anoParaEditar){
         HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"' "+selecionado+" >"+(dataAnoEstudo[b].ano)+"º</option>";
     }	
 	return HtmlContent;
+}
+
+function excluirRoteiro(servico,id){	
+	alert('vai excluir');
+	/*colocar o novo serviço*/
 }
 
 //Conferir num de linhas de objetivos inseridos
@@ -810,39 +821,6 @@ function alterarROA(servico){
 		mensagem("Erro ao alterar!","OK","bt_ok","erro")
 		loading('final');
 		return false;
-	}
-}
-
-function excluirROA(servico,id){
-	mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm",servico,id,"excluirRegistro");
-}
-
-function excluirRegistro(servico,id){
-	var dataServico = getData(servico,id);
-	
-
-	if(servico == "Roteiro"){		
-		alterar = "&nome="+dataServico.nome+"&descricao="+dataServico.descricao+"&anoEstudo="+dataServico.anoEstudo.idanoEstudo+"&ativo=0&id="+id;
-		$("#rot_"+id).remove();
-		msg = "Roteiro excluído com sucesso!";		
-	}else if(servico == "Objetivo"){			
-		alterar = "&nome="+dataServico.nome+"&numero="+dataServico.numero+"&descricao="+dataServico.descricao+"&roteiro="+dataServico.roteiro.idroteiro+"&ativo=0&id="+id;		
-		$("#obj_"+id).remove();
-		msg = "Objetivo excluído com sucesso!";	
-	}else if(servico == "Atividade"){	
-		alterar ="&nome="+dataServico.nome+"&numero="+dataServico.numero+"&descricao="+dataServico.descricao+"&objetivo="+dataServico.objetivo.idobjetivo+"&paginaLivro="+dataServico.paginaLivro+"&livro="+dataServico.livro+"&ativo=0&id="+id,				
-		$("#atv_"+id).remove();	
-		msg = "Atividade excluída com sucesso!";		
-	}
-	//console.log(alterar);
-	
-	var retorno = setUpdateData(servico,alterar,id);
-	if(retorno != "erro"){
-		$( "#boxMensagemGeral" ).hide();
-		return mensagem(msg,"OK","bt_ok","sucesso");			
-	}else{
-		$( "#boxMensagemGeral" ).hide();
-		return mensagem("Erro ao alterar!","OK","bt_ok","erro");
 	}
 }
 
