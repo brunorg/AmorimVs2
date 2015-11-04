@@ -3,9 +3,12 @@ html, body
 	padding:0;
 	margin:0;
 }
+* { box-sizing: border-box; }
+
 #lista_oficinas{
 	height: 55px;
 }
+
 table{
 	width:100%;
 }
@@ -13,8 +16,7 @@ table tr{
 	background:#EBEBE3;
 }
 table td{
-	width:122px;
-	height:27px; 
+	width:122px; 
 	font-size:13px;
 	color:#78786B;
 	padding:0;
@@ -23,38 +25,51 @@ p{
 	padding:0;
 	margin:0;
 }
-.titulo_of{	
-	width: 100%;
-    height: 21px;
-    margin-left: 5px;
-    padding-top: 4px;
+.aba_oficina {
+	position: relative;
+	height:30px;
+	overflow: hidden;
+	cursor: pointer;
 }
 .barra_cor_of{
+	position: absolute;
 	width:100%;
-	height:7px;
+	height:30px;
+	top: 24px;
+	transition: top 0.3s ease-in-out;
+}
+.titulo_of{	
+	position: relative;
+	width: 100%;
+    height: 24px;
+    padding: 5px;
+    transition: color 0.3s ease-in-out;
+}
+.aba_oficina:hover .barra_cor_of, .aba_ativa .barra_cor_of {
+	top: 0;
+}
+.aba_oficina:hover .titulo_of, .aba_ativa .titulo_of {
+	color: #fff;
 }
 .of_Qdr{
 	width:49%;
-	height: 495px;
+	height: 490px;
 	margin-top: 13px;
 }
 .cx_left{
 	float:left;
-	background:#EBEBE3;
 }
 .cx_right{
 	float:right;
 }
+.Postagens_Container {
+	width: 98%;
+	background:#EBEBE3;
+}
 .cx_conteudo{
 	width:100%;
-	height:251px;
+	min-height:220px;
 	padding:17px;
-}
-.cx_titulo{
-	margin-bottom:16px;
-	text-transform:uppercase;
-	color:#666666;
-	font-size: 18px;
 }
 .cx_foto{
 	width:226px;
@@ -63,32 +78,72 @@ p{
 }
 .cx_texto{
 	float: right;
-    width: 190px;
+    width: 181px;
     height: 169px;
 }
 .cx_tema_1{
 	width:100%;
-	height:237px;
+	height:100%;
 	margin-bottom: 19px;
-	padding:18px;
-}
-.cx_tema_1 ul{
-	list-style:none;
-}
-.cx_tema_1 li{
-	margin-left: -41px;
-	height: 25px;
-}
-.tema_texto{
-	color:#666666;
-}
-.quadrado{
-	font-size: 25px;
-}
-.cx_tema_2{
-	width:100%;
-	height:237px;
-	padding:18px;
+	padding: 0 0 0 18px;
 }
 
+.Acordeon_Oficina {
+	width: 98%;
+}
 
+.Oficina_Planejamento_Info {
+    position: relative;
+    height: 30px;
+    padding: 8px 40px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1em;
+    border: 1px solid #fff;
+    border-bottom: none;
+    cursor: pointer;
+}
+.Oficina_Plan_Num {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    color: #fff;
+    text-align: center;
+    border-right: 1px solid #fff;
+}
+.Oficina_Plan_Quadrado {
+	position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    top: 5px;
+    right: 5px;
+    background-color: #f7931d;
+}
+.Entregue {
+	background-color: #8ec449;
+}
+.Oficina_Plan_Itens {
+	width: 93%;
+    position: relative;
+    left: 30px;
+    overflow: hidden;
+    display: none;
+}
+.Oficina_Plan_Item {
+	min-height: 30px;
+	height: auto;
+	width: 100%;
+	background-color: #f2f2ee;
+	border: 1px solid #fff;
+	border-bottom: none;
+	color: #666;
+	font-size: 12px;
+	padding: 7px 7px 7px 20px;
+}
+.Ofina_Plan_Obj {
+    background-color: #e5e5dc;
+}
