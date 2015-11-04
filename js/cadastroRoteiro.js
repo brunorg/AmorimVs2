@@ -309,6 +309,40 @@ $(document).ready(function(){
 		
 		return false;
 	});
+	
+	$('#Btn_Editar_Rot_1').click(function(){
+		var idRoteiro = $('#id').val();
+		var HtmlContent;
+		HtmlContent = '<div class="box_mensagem_rotcad">'+
+						'<div class="txt_mensagem">'+
+							'<div class="Roteiro_Col_4" style="width: 53.33%;">'+
+								'<div class="Roteiro_Linha No_Padding_Itens">'+
+									'<div class="Roteiro_Col_6">'+
+										'<div class="Ano_Inserir_Info Input_Info">Ano estudo</div>'+
+									'</div>'+
+									'<div class="Roteiro_Col_6">'+
+										'<div class="Ano_Inserir_Select" id="valueAnoE">'+
+											'<select id="Input_Roteiro_Ano_edt" class="anoEstudoRoteiro Input_Area"></select>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+							'<br>'+
+							'<div class="celulaGrande">'+
+								'<input type="hidden" id="id"></input>'+
+								'<input id="Input_Roteiro_Nome" class="Input_Area" placeholder="Nome do roteiro" required> </input>'+
+							'</div>'+
+						'</div>'+
+						'<div class="btn_mensagemCad">'+
+							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiro('+idRoteiro+')"/>'+
+							'<input type="button" class="bt_cancelar" value="Cancelar"/>'+
+						'</div>'+
+					'</div>';
+		$('.boxGlobal').html(HtmlContent).show();
+		window.setTimeout(function(){
+			$('#Input_Roteiro_Ano_edt').html(carregaAno());
+		},10);
+	});
 });
 
 function abreCombo(item_linha, ano){
@@ -400,7 +434,7 @@ function fltRoteiro(){
     for(var h=0;h<dataRoteiro.length; h++)
     {		
         if(anoEstudo == dataRoteiro[h].anoEstudo.idanoEstudo){
-			HtmlContentRot +="<div class='item' id=rot_"+dataRoteiro[h].idroteiro+"><div class='titulo_roteiro'>"+dataRoteiro[h].nome+"</div> <span class='editar' onclick='editarROA(\"Roteiro\","+dataRoteiro[h].idroteiro+")'></span><span class='excluir' onclick='excluirROA(\"Roteiro\","+dataRoteiro[h].idroteiro+")'></span></div>";
+			HtmlContentRot +="<div class='item' id=rot_"+dataRoteiro[h].idroteiro+"><div class='titulo_roteiro'>"+dataRoteiro[h].nome+"</div> <span class='editar' onclick='modalEditarRotObjAtv(\"Roteiro\","+dataRoteiro[h].idroteiro+")'></span><span class='excluir' onclick='excluirROA(\"Roteiro\","+dataRoteiro[h].idroteiro+")'></span></div>";
 		}
     }
 	
@@ -928,4 +962,34 @@ function VerificaAtribuicaoRoteiroExtra(idAluno, idRoteiro){
 		ValorRetorno = data;
 	});
      return ValorRetorno;
+}
+
+function EditarRoteiro(idRoteiro){
+	var anoEstudo = $("#anoEstudo").val();
+	var nome = $("#nome").val();
+	
+	$.ajax({
+		url: path+"Roteiro",
+		type: "POST",
+		async:false,
+		crossDomain: true,
+		data: "action=update&nome="+nome+"&descricao=&anoEstudo="+anoEstudo+"&ativo=1&id="+idRoteiro,
+		beforeSend: function(){		
+			loading("inicial");
+		},success: function(d) {
+			mensagem("Roteiro alterado com sucesso!","OK","bt_ok","sucesso");
+		},complete: function(){
+			loading("final");	
+		}
+	});
+}
+
+function carregaAno(){
+	 HtmlContent = ""; 
+    for(var b=0;b<dataAnoEstudo.length; b++)
+    {
+        HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"'>"+(dataAnoEstudo[b].ano)+"º</option>";
+    }
+	
+	return HtmlContent;
 }

@@ -322,7 +322,7 @@
 .linha{
 	width: 100%;
 	height: auto;
-	margin-bottom: 0.25%;
+	margin-bottom: 0;
 	overflow: auto;
 }
 #barra_aluno{
