@@ -115,12 +115,12 @@ p{
     border-right: 1px solid #fff;
 }
 .Oficina_Plan_Quadrado {
-	position: absolute;
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
     border: 1px solid #fff;
-    top: 5px;
-    right: 5px;
+    top: 7px;
+    right: 7px;
     background-color: #f7931d;
 }
 .Entregue {
@@ -144,6 +144,31 @@ p{
 	font-size: 12px;
 	padding: 7px 7px 7px 20px;
 }
-.Ofina_Plan_Obj {
+.Oficina_Plan_Obj {
     background-color: #e5e5dc;
+}
+.Oficina_Recurso {
+    background-position: left center;
+    background-repeat: no-repeat;
+    min-height: 24px;
+    padding: 5px 25px;
+}
+
+.Rec_Foto {
+	background-image: url(../img/ic_foto.png);
+}
+.Rec_Link {
+	background-image: url(../img/ic_pgweb.png);
+}
+.Rec_Video {
+	background-image: url(../img/ic_video.png);
+}
+.Rec_Jogo {
+	background-image: url(../img/ic_jogo.png);
+}
+.Rec_Audio {
+	background-image: url(../img/ic_audio.png);
+}
+.Rec_Livro {
+	background-image: url(../img/ic_livro2.png);
 }

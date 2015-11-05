@@ -1,12 +1,26 @@
-function alterarAba(index) {
+htmlContent = '';
+function alterarAba(index, abbrOficina) {
+	$.ajax({
+		url: path + "RoteiroAula",
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		success: function(data) {
+			for (var i in data) {
+				console.log(data[i]);
+			}
+		}
+	})
 	var abas = $('.aba_oficina');
+	var roteiros = $('.Oficina_Planejamento_Info');
+	var roteirosNums = $('.Oficina_Plan_Num');
 
 	for ( var i = 0; i < abas.length; i++ ) {
 		if ( i == index ) {
-			if ( $($(abas).get(i)).hasClass('aba_ativa') ) {
-				$($(abas).get(i)).removeClass('aba_ativa');
-			} else {
+			if ( !$($(abas).get(i)).hasClass('aba_ativa') ) {
 				$($(abas).get(i)).addClass('aba_ativa');
+				$(roteiros).attr('class', 'Oficina_Planejamento_Info OF_'+abbrOficina+'_C_bg');
+				$(roteirosNums).attr('class', 'Oficina_Plan_Num OF_'+abbrOficina+'_E_bg');
 			}
 		} else {
 			$($(abas).get(i)).removeClass('aba_ativa');
