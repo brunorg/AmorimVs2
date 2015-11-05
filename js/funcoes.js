@@ -407,15 +407,12 @@ $(document).ready(function() {
 	
 	$("#box_grupo_info_barra").mCustomScrollbar({
 		axis:"y" // vertical and horizontal scrollbar
-	});	
+	});
 
-	$(".cx_tema_1").mCustomScrollbar({
-		axis: "y"
-	})
-	$(".cx_left").mCustomScrollbar({
-		axis: "y"
-	})
-
+	$('.postContainer').mCustomScrollbar({
+		axis:"y"
+	});
+	
 	$(".hangAlunos").mCustomScrollbar({
 		axis:"x" // vertical and horizontal scrollbar
 	});	

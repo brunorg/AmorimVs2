@@ -16,7 +16,7 @@ $(document).ready(function(){
 			carregaRoteiroPesquisa();
 		}else if(abaClicada.id=="cabecalho_pesquisa"){
 			carregaRoteiro();
-			 $( ".celulaGrandeOB" ).remove();
+			 //$( ".celulaGrandeOB" ).remove();
 		}
 		for(var i = 0; i < cabecalhoItem.length; i++) {
 			if(cabecalhoItem[i] === abaClicada) {
@@ -64,10 +64,22 @@ $(document).ready(function(){
 			dataType: 'json',
 			data:'action=create&roteiro='+roteiro+'&Descricao='+descricao+'&idOficinaProfessor=3',
 			success: function (data) {
-				$('#linha1').html('<input type="hidden" id="idRoteiro" value="'+data+'">');
+				$('#linha1').html('<input type="hidden" id="idRoteiro" value="'+data+'">'+
+				                  ''
+				                  );
 				$("#linha1,#linha2,#btnSalvar").css("display","none");
 				mensagem('Roteiro salvo com sucesso!','OK','bt_ok','sucesso');
+				$("#Rot_inserido_Nome").html(roteiro);
+				$("#Desc_Inserido_Nome").html(descricao);
 				MostrarObjetivo();
+				$('#Btn_Del_Rot').click(function() {
+					excluirRoteiroAula1(data);
+					//$("#btnSalvarObjetivo,#btnNovoOB,.celulaGrandeOB").css("display","none");
+			
+				});
+				$('#Btn_Editar_Rot').click(function(){
+					utilizarRoteiroAula(data);
+				});
 			}
 		});
 	});
@@ -75,7 +87,7 @@ $(document).ready(function(){
 	$("#btnSalvarObjetivo").click(function(){
 		var objetivos = $('.objetivos');
 		var IdRoteiro = $('#idRoteiro').val();
-
+		var altura = $(".linha4").height();
 		for (var i = 0; i < objetivos.length; i++) {
 			$.ajax({
 				url: path + "ObjetivoAula",
@@ -86,10 +98,20 @@ $(document).ready(function(){
 				data:'action=create&objetivo='+objetivos[i].value+ '&status=1&roteiro='+IdRoteiro,
 				success: function (data) {
 					$('#linha3').html('');
+					$(".linha4").append('<div class="linhaObj">'+
+                                            '<div id="Atv_Obj_Info_1" class="Atv_Obj_Info">'+
+                                                '<p id="Atv_Obj_Nome" class="Atv_Obj_Nome">'+objetivos[i].value+'</p>'+
+                                                '<div id="Obj_Inserida_Btns_1" class="Obj_Inserido_Btns">'+
+                                                    '<div id="Btn_Editar_Obj" class="Btn_Atv Btn_Editar_Obj"></div>'+
+                                                    '<div id="Btn_Del_Obj" class="Btn_Atv Btn_Del_Obj"></div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>');
 				}
 			});
 
 			if((i+1)==objetivos.length){
+				$("#val_objetivo_1").val('');
 				mensagem('Objetivo(s) salvo com sucesso!','OK','bt_ok','sucesso');
 			}
 		};
@@ -161,8 +183,9 @@ $(document).ready(function(){
 
 });//fecha document jquery
 function MostrarObjetivo(){
-	$(".celulaGrandeOB").show();
+	$(".celulaGrandeOB").css("display","block");
 	$("#btnSalvarObjetivo,#btnNovoOB").css("display","block");
+	$(".linha4").css("display","block");
 };
 function adeclarar(){
 	$.ajax({
@@ -180,7 +203,6 @@ function adeclarar(){
 function carregaRoteiro(){
 	var rotPesq = $("#pesquisaRoteiro").val();
 	var urlAj;
-	console.log(pesquisaRoteiro);
 	if(rotPesq==""){
 		urlAj = path + 'RoteiroAula/ListarPorOficinaProfessor/'+IDOficinaProfessor+'/-';
 	}
@@ -251,7 +273,31 @@ function excluirROT(idroteiroAulaa){
 		}
 	})
 	$('#Roteiro_'+idroteiroAulaa).remove();
+	//$('.linha4').remove();
 	$("#boxMensagemGeral").css("display","none");
+}
+function excluirRoteiroAula1(idRoteiroA){
+	mensagem('Deseja excluir roteiro? ','Cancelar','bt_cancelar','confirm',idRoteiroA,'','excluirROT');
+}
+function excluirROT(idroteiroAulaa){	
+	$.ajax({
+		url: path + "RoteiroAula/status",
+		type: "POST",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		data:'id='+idroteiroAulaa,
+		success: function () {
+			
+		}
+	})
+	$('#Roteiro_'+idroteiroAulaa).remove();
+	$('.linha4').remove();
+	$("#boxMensagemGeral").css("display","none");
+	$("#btnSalvarObjetivo,#btnNovoOB,.celulaGrandeOB").css("display","none");
+	$("#linha1,#linha2,#btnSalvar").css("display","block");
+	$("#linha1").val('');
+	$("#linha2").val('');
 }
 
 var setaOld;

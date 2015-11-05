@@ -150,7 +150,9 @@
                                                         </div>
                                                         <div class="Roteiro_Col_6">
                                                             <div class="Ano_Inserir_Select" id="valueAnoE">
-                                                                <select id="Input_Roteiro_Ano" class='anoEstudoRoteiro Input_Area' onChange="fltRoteiro()"></select>
+                                                           		<input type="hidden" id="anoEditado"></input>
+                                                                <input type="hidden" id="roteiroNomeEditado"></input>
+                                                                <select id="Input_Roteiro_Ano" class="anoEstudoRoteiro Input_Area"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -173,8 +175,8 @@
                                                         <span class="Rot_Inserido_Ano">6º ano |</span> 
                                                         <span class="Rot_Inserido_Nome">Água e hidrografia</span>
                                                         <div id="Obj_Inserido_Btns_1" class="Obj_Inserido_Btns">
-                                                                <div id="Btn_Editar_Rot_1" class="Btn_Rot Btn_Editar_Rot"></div>
-                                                                <div id="Btn_Del_Rot_1" class="Btn_Rot Btn_Del_Rot"></div>
+                                                            <div id="Btn_Editar_Rot_1"  class="Btn_Rot Btn_Editar_Rot"></div>
+                                                            <div id="Btn_Del_Rot_1" class="Btn_Rot Btn_Del_Rot"></div>
                                                         </div>
                                                     </div>
                                                     <div id="Objetivos_Inseridos_Container">
@@ -283,7 +285,7 @@
                                                         </div>
                                                         <div class="Roteiro_Col_6">
                                                             <div class="Ano_Inserir_Select" id="valueAnoE">
-                                                                <select id="Input_Roteiro_Ano" class='anoEstudoRoteiro Input_Area' onChange="fltRoteiro()"></select>
+                                                                <select id="Input_Roteiro_Ano" class="anoEstudoRoteiro Input_Area"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -388,8 +390,8 @@
                 </div>
                 <div id="boxMensagemGeral" ></div>
                 <div class="boxGlobal"></div> 
+                <div id="boxModal"></div> 
 				<div class="boxCalendario"></div> 
-
 			</div>             
 		</div><!--Fim Conteudo-->  
         <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>

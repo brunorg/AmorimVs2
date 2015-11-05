@@ -1225,13 +1225,24 @@ font-family: "proxima-nova",sans-serif;
 }
 
 .boxGlobal{
-	width: 80%;
+	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.7);
-	position: relative;
-	left: 256px;
+	position: absolute;
+	left: 0;
+	top:0;
 	display: none;
-	z-index: 999;
+	z-index: 9;
+}
+#boxModal{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0;
+	left: 0;
+	display: none;
+	z-index: 9;
 }
 .marginCaixa{
 	display:block;
@@ -2730,6 +2741,16 @@ font-family: "proxima-nova",sans-serif;
 	.boxGlobal{
 		height: 134%;
 		top: -105px;
+	}
+	#boxModal{
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.7);
+		position: absolute;
+		top:0;
+		left: 0;
+		display: none;
+		z-index: 9;
 	}
 	#foto {
 		margin-right: 141px !important;
