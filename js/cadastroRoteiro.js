@@ -223,6 +223,30 @@ $(document).ready(function(){
 	
 	
 	/*Cadastro Roteiro*/
+	botaoEditarRoteiro();	
+	$('#Btn_Del_Rot_1').click(function(){
+		var idRoteiro = $('#id').val();
+		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm","Roteiro",idRoteiro,"excluirRoteiro");
+	});	
+	
+});
+
+function abreCombo(item_linha, ano){
+	
+	$("#"+item_linha).toggle();
+	
+	//Se a div estiver visivel, as opções no select e esconde o ano do aluno
+	if ($('#'+item_linha).css('display') == 'block'){
+		var id = item_linha.replace(/[^0-9]+/g,'');
+		$('#ano_'+id).html("<option value=''></option>"+HtmlContent);
+		$('#ano_'+id+' option[value='+ano+']').hide();
+	}
+	
+	return false;
+}
+
+/*-------------------------------------------ROTEIROS-------------------------------------------------------*/
+function botaoEditarRoteiro(){
 	var contador=1;
 	$('#Btn_Editar_Rot_1').click(function(){
 		var idRoteiro = $('#id').val();
@@ -272,29 +296,7 @@ $(document).ready(function(){
 			}
 		},10);
 	});
-	
-	$('#Btn_Del_Rot_1').click(function(){
-		var idRoteiro = $('#id').val();
-		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm","Roteiro",idRoteiro,"excluirRoteiro");
-	});
-});
-
-function abreCombo(item_linha, ano){
-	
-	$("#"+item_linha).toggle();
-	
-	//Se a div estiver visivel, as opções no select e esconde o ano do aluno
-	if ($('#'+item_linha).css('display') == 'block'){
-		var id = item_linha.replace(/[^0-9]+/g,'');
-		$('#ano_'+id).html("<option value=''></option>"+HtmlContent);
-		$('#ano_'+id+' option[value='+ano+']').hide();
-	}
-	
-	return false;
 }
-
-/*-------------------------------------------ROTEIROS-------------------------------------------------------*/
-
 function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	
 	//Retira ano_ da variavel 'anoEstudo' e coloca lista_combo_
@@ -367,14 +369,15 @@ function inserirRoteiro () {
 	var anoRoteiro = $("#Input_Roteiro_Ano :selected").html();
 	var anoEstudo = $("#Input_Roteiro_Ano").val();
 	var nomeRoteiro = $("#Input_Roteiro_Nome").val();
-
+	
+	$("#Roteiro_Inserido_Container").show();
 	$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoRoteiro+' ano | ');
 	$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nomeRoteiro);
 	$("#Inserir_roteiro").hide();
 	$("#Roteiro_Inserido").show();
 	$("#btnInserirRoteiro").hide();
 	$("#btnSalvarObj").show();
-	
+	botaoEditarRoteiro();
 	var idRoteiro = criarRoteiro(anoEstudo,nomeRoteiro,"");
 	$('#id').val(idRoteiro);
 }
@@ -387,7 +390,7 @@ function criarRoteiro(anoEstudo,nome,descricao)
 	var valores = "action=create&nome="+nome+"&descricao="+descricao+"&anoEstudo="+anoEstudo+"&ativo=1";
 	
 	retorno = setCreateDataRoteiro("Roteiro",valores);
-
+	$('#idRoteiro').val(retorno);
 	if(retorno != "erro"){
 		mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
 		status = retorno;		
@@ -453,7 +456,7 @@ function fecharBoxModal(){
 }
 
 function carregaAno(anoParaEditar){
-	HtmlContent = ""; 
+	HtmlContent = "<option value=''></option>"; 
 	var selecionado = "";
 
     for(var b=0;b<dataAnoEstudo.length; b++)
@@ -469,9 +472,26 @@ function carregaAno(anoParaEditar){
 }
 
 function excluirRoteiro(servico,id){	
-	alert('vai excluir');
-	/*colocar o novo serviço*/
+	$('#boxMensagemGeral').css('display','none');
+	$.ajax({
+		url: path+"Roteiro/InativarRoteiro/"+id,
+		type: "POST",
+		async:false,
+		crossDomain: true,
+		success: function(d) {
+					
+		}
+	});
+	$('#btnSalvarObj').css('display','none');
+	$('#Roteiro_Inserido_Container').css('display','none'); 
+	$('#Inserir_roteiro').css('display','block');
+	$('#btnInserirRoteiro').css('display','block');	
+	$('#Input_Roteiro_Nome').val('');
+	$('#Input_Roteiro_Ano').html(carregaAno());
 }
+
+
+
 
 //Conferir num de linhas de objetivos inseridos
 function confereLinhasObj() {
@@ -487,9 +507,9 @@ function inserirObjetivoAtividade() {
 		numero: $(".Numero_Objetivo_Input").val()
 	}; 
 	
-	var roteiro = $('#idRoteiro').val();
+	var roteiro = $('#id').val();
 	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);	
-
+	$('#idObj').val(idObjetivo);
 	if (idObjetivo) {
 		$('#Objetivos_Inseridos_Container').css('height','33px');
 	}	
@@ -513,9 +533,9 @@ function inserirObjetivoAtividade() {
 
 	var linhaObjHtml = 
 	'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido">'+
-	    '<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info" onclick="expandirObj('+objCount+')">'+
+	    '<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info">'+
 	        '<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
-	        '<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome">'+objetivo.nome+'</div>'+
+	        '<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome" onclick="expandirObj('+objCount+')">'+objetivo.nome+'</div>'+
 	        '<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
 	            '<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
 	            '<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj"></div>'+
@@ -553,7 +573,7 @@ function inserirObjetivoAtividade() {
         '<div class="Roteiro_Col_8">'+
             '<div class="Roteiro_Linha No_Padding_Itens">'+
                 '<div class="Roteiro_Col_3">'+
-                    '<input type="hidden" class="idObj"> </input>  '+
+                    '<input type="hidden" id="idObj"> </input>  '+
                     '<div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>'+
                 '</div>'+
                 '<div class="Roteiro_Col_9">'+
@@ -626,6 +646,47 @@ function inserirObjetivoAtividade() {
     '</div>';
 
     $("#Inserir_objetivo").html(objLimpo);
+	
+	$('#Btn_Editar_Obj_'+objetivo.numero).click(function(){
+		var idRoteiro = $('#id').val();
+		var HtmlContent;
+		
+		//Objeto com as propriedades do objetivo a ser inserido	
+		HtmlContent = '<div class="box_mensagem_rotcad">'+
+						'<div class="txt_mensagem">'+
+							'<div class="Roteiro_Linha">'+
+								'<div class="Roteiro_Col_8" style="width:100%;">'+
+									'<div class="Roteiro_Linha No_Padding_Itens">'+
+										'<div class="Roteiro_Col_3">'+
+											'<input type="hidden" class="idObj"> </input>'+
+											'<div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>'+
+										'</div>'+
+										'<div class="Roteiro_Col_9">'+
+											'<input id="nomeObj1" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" value="'+objetivo.nome+'" required > </input>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+								'<div class="celulaGrande" style="width: 49.3%;">'+
+									'<div class="Roteiro_Linha No_Padding_Itens">'+
+										'<div class="Roteiro_Col_6">'+
+											'<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
+										'</div>'+
+										'<div class="Roteiro_Col_6">'+
+											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj1" value="'+objetivo.numero+'"></input>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+							'<div class="btn_mensagemCad" style="margin: 17px 102px">'+
+								'<input type="button" class="bt_ok left" value="OK" onclick="EditarObjetivo('+idObjetivo+')"/>'+
+								'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
+							'</div>'+
+						'</div>'+
+					'</div>';
+		
+		$('#boxModal').html(HtmlContent).css('display','block');
+	});
+	
 }
 
 /*Function para cadastrar objetivo*/
@@ -634,7 +695,7 @@ function criarObjetivo(nome,numero,descricao,roteiro)
 	var retorno;
 	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
 	$.ajax({
-		url: path+"Objetivo",
+		url: path+"Roteiro",
 		type: "POST",
 		async:false,
 		crossDomain: true,
