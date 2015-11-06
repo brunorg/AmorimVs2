@@ -104,10 +104,26 @@ div[class*="box_col"]:last-of-type {
 
 .inputArea{
 	border: none;
-	border-bottom: 1px solid darkgray;
-	color: darkgray;
+	border-bottom: 1px solid #CCCCCC;
+	color: #CCCCCC;
 	resize: none;
-	font-size: 16px;
+	font-size: 16px; 
+}
+
+.inputArea::-webkit-input-placeholder{
+    color: #CCCCCC;
+}
+
+.inputArea:-moz-placeholder{
+    color: #CCCCCC;
+}
+
+.inputArea::-moz-placeholder{
+    color: #CCCCCC;
+}
+
+.inputArea::-ms-input-placeholder{
+    color: #CCCCCC;
 }
 
 .inputLinha{
@@ -135,8 +151,8 @@ div[class*="box_col"]:last-of-type {
 .selectArea{
 	float: left;
 	height: 20px;
-	border-bottom: 1px solid darkgray;
-	color: darkgray;
+	border-bottom: 1px solid #CCCCCC;
+	color: #CCCCCC;
 }
 
 .containerSelect{
@@ -158,24 +174,26 @@ div[class*="box_col"]:last-of-type {
 	height: 100%;
 	float: left;
 	text-align: right;
-	color: darkgray;
+	color: #CCCCCC;
 }
 
 .selectOptions{
 	height: 100%;
 	overflow: hidden;
-	color: darkgray;
+	color: #CCCCCC;
+    background: url(../img/ic_drop_claro.png) no-repeat right;
 }
 
 .selectOptions select{
 	width: 150%;
-	color: darkgray;
+	color: #CCCCCC;
 	font-size: 14px;
     margin-top: -1px;
+    cursor: pointer;
 }
 
 .selectMedio{
-	width: 150px;
+	width: 170px;
 }
 
 .selectPequeno{
@@ -241,7 +259,7 @@ div[class*="box_col"]:last-of-type {
     padding-bottom: 5px;
 }
 .postDestinatario{
-    color: darkgray;
+    color: #CCCCCC;
     font-size: 10px;
 }
 

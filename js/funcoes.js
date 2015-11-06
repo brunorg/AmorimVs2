@@ -6,7 +6,6 @@ var Arquivo;
 var saveChamada;
 var saveObjetivo;
 var contAlunos = 1;
-var contForum = 1;
 var acabouDeCarregar = false;
 
 var toType = function(obj) {
@@ -141,112 +140,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.Conteudo_Forum').mCustomScrollbar({
-		callbacks:{
-			alwaysTriggerOffsets: false,
-		    onTotalScrollOffset: 500,
-		    whileScrolling: function() {
-		    	if (this.mcs.topPct > 95 &&
-		    		!acabouDeCarregar)
-		    	{
-		    		$.ajax({
-		    			url: path + "Roteiro/RoteiroRange/" + 20*contForum + "/" + 19,
-						type: "GET",
-						async: false,
-						crossDomain: true,
-						dataType: 'json',
-						beforeSend: function() {
-							loading('inicial');
-						},
-						success: function (forumData) {
-							if (forumData.length == 0)
-							{
-								acabouDeCarregar = true;
-							}
-							else
-							{
-								Html = '';
-								for (var i = 0; i < forumData.length; i++) {
-									Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
-									Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-									if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-    				    			{
-    				        			Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-    				    			}
-    				    			else
-    				    			{
-    				    				Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-    				    			}
-									Html+= '<div class="info_secao_forum">';
-									Html+= '</div>';
-									Html+= '</div>';
-								}
-					
-								$('#box_forum').append(Html);
-								window.setTimeout(function(){
-									abreAcoordion();
-								}, 1000);
-							}
-						},
-						complete: function() {
-							loading('final');
-						}
-    				});
-					contForum++;
-		    	}
-		    },
-		    onTotalScroll:function(){
-		    	if (!acabouDeCarregar)
-		    	{
-		    		$.ajax({
-		    			url: path + "Roteiro/RoteiroRange/" + 20*contForum + "/" + 19,
-						type: "GET",
-						async: false,
-						crossDomain: true,
-						dataType: 'json',
-						beforeSend: function() {
-							loading('inicial');
-						},
-						success: function (forumData) {
-							if (forumData.length == 0)
-							{
-								acabouDeCarregar = true;
-							}
-							else
-							{
-								Html = '';
-								for (var i = 0; i < forumData.length; i++) {
-									Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
-									Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-									if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-    				    			{
-    				        			Html+= '<a href="mForumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-    				    			}
-    				    			else
-    				    			{
-    				    				Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
-    				    			}
-									Html+= '<div class="info_secao_forum">';				
-									Html+= '</div>';
-									Html+= '</div>';
-								}
-					
-								$('#box_forum').append(Html);
-								window.setTimeout(function(){
-									abreAcoordion();
-								}, 1000);
-							}
-						},
-						complete: function() {
-							loading('final');
-						}
-    				});
-					contForum++;
-		    	}
-		    }
-		}
-	});
-	
 	$("#blocoGeral").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
 		scrollButtons:{
