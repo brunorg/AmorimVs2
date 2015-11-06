@@ -273,6 +273,23 @@ input{
 	}
 }
 
+@media (min-width: 1280px)and (max-height: 707px){
+	.celulaGrande {
+		width: 64%;
+		overflow: hidden;
+		height: 39px;
+		float: left;
+		background-color: rgb(250,248,246);
+		border: none;
+		bottom: 0px;
+	}
+	.direita1{
+		margin-left:0 !important;;
+		margin-right:5px;
+		float:right;
+	}
+}
+
 .label_titulo {
 	background: url(../img/label_nova_forum.png) no-repeat;
 	display: inline-block;

@@ -230,6 +230,34 @@
 			background-position: right center;
 			cursor: pointer;
 		}
+		
+		.box_mensagem_rotcad{
+			width: 560px;
+			height: 210px;
+			background-color: #F2F2EE;
+			position: absolute;
+			margin: 0px 31%;
+			top: 23%;
+			border: 2px solid #FFFFFF;
+		}
+		
+		.btn_mensagemCad{
+			width: 67%;
+			background: none !important;
+			background-color: blue;
+			height: 50px;
+			padding: 5px 10px;
+			padding-top: 0px;
+			margin: 56px 102px;
+		}
+		
+		.styled-select-cad select{
+			width: 100%;
+			border: 1px solid lightgrey;
+			border-radius: 0;
+			height: 39px;
+			-webkit-appearance: none;
+		}
 
 /* Listagem em acordeon dos objetivos inseridos */
 	.Roteiro_Inserido_Container { position: relative; }

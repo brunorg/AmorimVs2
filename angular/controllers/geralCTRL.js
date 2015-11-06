@@ -4,7 +4,7 @@ var app = angular.module('app',['ngRoute']);
 app.controller('geralCTRL',function($scope,$http){
 	$scope.usuario = function(){
 		var usuario = dadosUsuario.perfil.perfil;
-		var usuarioId = dadosUsuario.idusuario;	
+		var usuarioId = dadosUsuario.idusuario;			
 		switch (dadosUsuario.perfil.perfil){
 			case "Aluno":
 				var dadosAlunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));			
@@ -92,20 +92,10 @@ app.controller('geralCTRL',function($scope,$http){
 				];
 			break;
 		}	
-	}
-	//Logout do usuário
-	$scope.logout = function(){
-		//Todas as váriaveis do localStorage
-		var localStoragePaginas = [
-			"usuarioTipo",
-			"usuarioId",
-			"objetoAlunoVariavel",
-			"objetoUsuario"
-		];	
-		//limpa todas as variéveis do localStorage colocando uma string vazio			
-		for (var i=0;i<localStoragePaginas.length;i++){
-		  	localStorage.setItem(localStoragePaginas[i],"vazio");
+		//Logout do usuário
+		$scope.logout = function(){
+			localStorage.clear();			
+			window.location = 'index.html';
 		}
-		window.location = 'index.html';
 	}
 });
