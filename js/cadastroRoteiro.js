@@ -305,7 +305,7 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	//Pega o valor do input com o ano do estudo
 	var anoEstudo = $("#"+anoEstudo).val();
 	
-		//Busca os roteiros que podem ser atribuidos ao aluno (apenas os roteiros do ano seguinte)
+	//Busca os roteiros que podem ser atribuidos ao aluno (apenas os roteiros do ano seguinte)
 	var dataRoteiroAno = getData("Roteiro/RoteiroAno", anoEstudo);
 	//console.log(anoEstudo);
 	//console.log(dataRoteiroAno);
@@ -490,9 +490,6 @@ function excluirRoteiro(servico,id){
 	$('#Input_Roteiro_Ano').html(carregaAno());
 }
 
-
-
-
 //Conferir num de linhas de objetivos inseridos
 function confereLinhasObj() {
 	if (numLinhas.length > 0) {
@@ -509,7 +506,6 @@ function inserirObjetivoAtividade() {
 	
 	var roteiro = $('#id').val();
 	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);	
-	$('#idObj').val(idObjetivo);
 	if (idObjetivo) {
 		$('#Objetivos_Inseridos_Container').css('height','33px');
 	}	
@@ -523,25 +519,28 @@ function inserirObjetivoAtividade() {
 			nome: $($(".nomeAtv").get(i)).val(),
 			livro: $($(".livroAtv").get(i)).val(),
 			pagLivro: $($(".paginaAtv").get(i)).val()
-		}		
-		var idAtividade = criarAtividade(atividadesLista[i].nome,atividadesLista[i].numero,"",idObjetivo,atividadesLista[i].pagLivro,atividadesLista[i].livro);	
-		
-		if(i+1 == atividadesCont.length){
-			mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-		}	
+		}
+		if(atividadesLista[i].nome != "" || atividadesLista[i].numero != "" || atividadesLista[i].livro != "" || atividadesLista[i].pagLivro != ""){
+			var idAtividade = criarAtividade(atividadesLista[i].nome,atividadesLista[i].numero,"",idObjetivo,atividadesLista[i].pagLivro,atividadesLista[i].livro);	
+			if(i+1 == atividadesCont.length){
+				mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
+			}
+		}			
 	}
 
-	var linhaObjHtml = 
-	'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido">'+
-	    '<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info">'+
-	        '<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
-	        '<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome" onclick="expandirObj('+objCount+')">'+objetivo.nome+'</div>'+
-	        '<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
-	            '<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
-	            '<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj"></div>'+
-	        '</div>'+
-	    '</div>';
-	if ( atividadesCont.length > 0 ) {	        
+	if(idObjetivo){
+		var linhaObjHtml = 
+		'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido">'+
+			'<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info">'+
+				'<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
+				'<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome" onclick="expandirObj('+objCount+')">'+objetivo.nome+'</div>'+
+				'<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
+					'<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
+					'<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj"></div>'+
+				'</div>'+
+			'</div>';
+	}
+	if (idAtividade) {	        
 		linhaObjHtml += 
 		'<div id="Atvs_Obj_Inserido_'+objCount+'" class="Atvs_Obj_Inserido">';
 		var alturaDiv=0;
@@ -662,7 +661,7 @@ function inserirObjetivoAtividade() {
 											'<div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>'+
 										'</div>'+
 										'<div class="Roteiro_Col_9">'+
-											'<input id="nomeObj1" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" value="'+objetivo.nome+'" required > </input>'+
+											'<input id="nomeObj_edt" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" value="'+objetivo.nome+'" required > </input>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
@@ -672,18 +671,17 @@ function inserirObjetivoAtividade() {
 											'<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
 										'</div>'+
 										'<div class="Roteiro_Col_6">'+
-											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj1" value="'+objetivo.numero+'"></input>'+
+											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj_edt" value="'+objetivo.numero+'"></input>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>'+
 							'<div class="btn_mensagemCad" style="margin: 17px 102px">'+
-								'<input type="button" class="bt_ok left" value="OK" onclick="EditarObjetivo('+idObjetivo+')"/>'+
+								'<input type="button" class="bt_ok left" value="OK" onclick="editarObjetivo('+idObjetivo+','+roteiro+')"/>'+
 								'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 							'</div>'+
 						'</div>'+
-					'</div>';
-		
+					'</div>';		
 		$('#boxModal').html(HtmlContent).css('display','block');
 	});
 	
@@ -695,7 +693,7 @@ function criarObjetivo(nome,numero,descricao,roteiro)
 	var retorno;
 	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
 	$.ajax({
-		url: path+"Roteiro",
+		url: path+"Objetivo",
 		type: "POST",
 		async:false,
 		crossDomain: true,
@@ -706,6 +704,29 @@ function criarObjetivo(nome,numero,descricao,roteiro)
 	});
 	return retorno;
 }
+
+function editarObjetivo(idObjetivo,roteiro){
+	var nome = $("#nomeObj_edt").val();
+	var numero = $("#numeroObj_edt").val();
+	var retorno;
+	var valores = "nome="+nome+"&numero="+numero+"&descricao=&roteiro="+roteiro+"&ativo=1&id="+idObjetivo;
+	$('#boxModal').css('display','none');
+	$.ajax({
+		url: path+"Objetivo",
+		type: "POST",
+		async:false,
+		crossDomain: true,
+		data: "action=update&"+valores,
+		beforeSend: function(){					
+			loading("inicial");
+		},success: function(d) {
+			mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");
+		},complete: function(){
+			loading("final");	
+		}
+	});
+}
+
 // Expandir roteiro inserido
 function expandirRot() {
 	var atvsCont = $('.Atvs_Obj_Inserido');

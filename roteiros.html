@@ -32,38 +32,7 @@
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>   
-        <script type="text/javascript" src="js/cadastroRoteiro.js"></script>  
-		<style>
-			.multiselect {
-				width: 100%;
-			}
-			.selectBox {
-				position: relative;
-			}
-			.selectBox select {
-				width: 100%;
-				font-weight: bold;
-			}
-			.overSelect {
-				position: absolute;
-				left: 0; right: 0; top: 0; bottom: 0;
-			}
-			.checkboxes {
-				display: none;
-				border: 1px #dadada solid;
-				height: 100px;
-				overflow: auto;
-			}
-			.checkboxes label {
-				display: block;
-			}
-			.checkboxes label input{
-				width: 20px;			
-			}
-			.checkboxes label:hover {
-				background-color: #1e90ff;
-			}
-		</style>     
+        <script type="text/javascript" src="js/cadastroRoteiro.js"></script>     
     </head>
 
 	<body>
@@ -186,8 +155,7 @@
                                                     <div class="Roteiro_Linha">
                                                         <div class="Roteiro_Col_8">
                                                             <div class="Roteiro_Linha No_Padding_Itens">
-                                                                <div class="Roteiro_Col_3">
-                                                                    <input type="hidden" id="idObj"> </input>  
+                                                                <div class="Roteiro_Col_3">                                                               
                                                                     <div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>
                                                                 </div>
                                                                 <div class="Roteiro_Col_9">
@@ -400,25 +368,6 @@
       	<script src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
-        <script type="text/javascript">			
-			$(document).ready(function(){
-				 $("body").delegate(".op", "click", function() {
-					 if($(this).hasClass('checado') == false){
-					 	$(this).addClass('checado');
-					 }else{
-						$(this).removeClass('checado');
-					 }
-				 });
-			})
-
-			function showCheckboxes(comboRoteiro) {
-				if ($('.'+comboRoteiro).is(":visible") == true){
-					$('.'+comboRoteiro).css("display","none");
-				} else {
-					$('.'+comboRoteiro).css("display","block");
-				}
-			}
-		</script>
         <!--Carrega os dados do usuario logado-->          
 	</body>
 </html>

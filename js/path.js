@@ -66,7 +66,7 @@ function setUpdateData(Tabela,Valores,ID){
 			retorno = d;
 		},complete: function(){
 			loading("final");	
-		},error: function() {
+		},error: function(d) {
 			retorno = "erro";
 		}
 	});
