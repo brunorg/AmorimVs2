@@ -103,6 +103,9 @@ p{
     border-bottom: none;
     cursor: pointer;
 }
+.Oficina_Id_Roteiro {
+	display: none;
+}
 .Oficina_Plan_Num {
     position: absolute;
     width: 30px;
@@ -121,7 +124,10 @@ p{
     border: 1px solid #fff;
     top: 7px;
     right: 7px;
-    background-color: #f7931d;
+    background-color: #ccc;
+}
+.Aberto {
+	background-color: #f7931d;
 }
 .Entregue {
 	background-color: #8ec449;
@@ -134,6 +140,7 @@ p{
     display: none;
 }
 .Oficina_Plan_Item {
+	position: relative;
 	min-height: 30px;
 	height: auto;
 	width: 100%;
@@ -144,7 +151,7 @@ p{
 	font-size: 12px;
 	padding: 7px 7px 7px 20px;
 }
-.Oficina_Plan_Obj {
+.Oficina_Plan_Desc {
     background-color: #e5e5dc;
 }
 .Oficina_Recurso {

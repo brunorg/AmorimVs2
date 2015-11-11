@@ -70,8 +70,8 @@
                         	<div  ng-repeat="menu in menuHTML">                        	
                                 <a href="{{menu.href}}">
                                     <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != 0 && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != 0 && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
                                         {{menu.label}}
                                     </div>
                                 </a>
@@ -89,7 +89,7 @@
                 <div class="Conteudo_Coluna" id="content_central">
 					<div id="box_oficinas">
                     	<div id="lista_oficinas">
-                        	 <table>
+                        	 <!--<table>
                                 <tr>
                                     <td>
                                         <div class="aba_oficina" onclick="alterarAba(0, 'EduFis', 1)">
@@ -140,13 +140,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                               <!-- <tr>
+                                <tr>
                                 	<td>
                                     	<p class="titulo_of">Música</p>
                                     	<p class="barra_cor_of" style="background:#009E9D;">&nbsp;</p>
                                     </td>
-                                </tr>-->
-                            </table>                       
+                                </tr>
+                            </table> -->                      
                         </div>
                         <div class="of_Qdr cx_left">
                             <div class="Postagens_Container">
