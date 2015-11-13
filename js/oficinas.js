@@ -9,7 +9,7 @@ function retornarOficinasAluno() {
 	var htmlListaOficinas = '';
 
 	$.ajax({
-		url: path + "Oficina/ListarPorAluno/" + alunoVar, //678,
+		url: path + "Oficina/ListarPorAluno/" + 678, //alunoVar,
 		async: false,
 		type: "GET",
 		crossDomain: true,
@@ -24,7 +24,7 @@ function retornarOficinasAluno() {
 			for ( i in data ) {
 				listaOficinasAluno[i] = data[i];
 				var nomeOficina = data[i].Nome.split(" ",1).toString()
-				console.log(data[i]);
+				console.log(data[i].Nome);
 
 				htmlListaOficinas += 
 	        		'<td>'+
@@ -46,12 +46,66 @@ function retornarOficinasAluno() {
 	$("#lista_oficinas").html(htmlListaOficinas);
 }
 
+function retornarBlogOficina(indexOficina) {
+/*
+<div class="of_Qdr cx_left">
+    <section class="Postagens_Container">
+	    <article class="cx_postagem">
+            <h1 class="cx_titulo">Visita ao catavento</h1>
+            <h2 class="cx_info">11/11/2015 às 14:32</h2>
+            <img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />
+            <p class="cx_texto"></p>
+            <hr class="fim_postagem" />
+        </article>
+    </section>
+</div>
+*/
+	var htmlBlog = '';
+	$.ajax({
+		url: path + "Blog/BlogOficina/" + 17, //listaOficinasAluno[i].idOficina
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		beforeSend: function() {
+			loading("inicial");
+		},
+		success: function(d) {
+			if ( d.length != 0 ) {
+				htmlBlog +=
+				'<section class="Postagens_Container">';
+
+				for (var i in d) {
+					htmlBlog +=
+					'<article class="cx_postagem">'+
+		        	    '<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
+		        	    '<h2 class="cx_info">11/11/2015 às 14:32</h2>';
+
+			        if ( d[i].imagem != null) {
+			        	htmlBlog +=
+		        	    '<img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />';
+	        	    }
+	        	    htmlBlog +=
+		        	    '<p class="cx_texto">'+d[i].descricao+'</p>'+
+		        	    '<hr class="fim_postagem" />'+
+		        	'</article>';
+				}
+
+				htmlBlog +=
+				'</section>';
+			}
+		},
+		complete: function(){
+			loading("final");
+		}
+	});
+	$('.cx_left').html(htmlBlog);
+}
 
 function alterarAba(index, abbr, idCor) {
 	for ( a in listaOficinasAluno ) {
 		if ( a == index ) {
 			$.ajax({
-				url: path + "ObjetivoAula/ListarPorOficinaHash/" + listaOficinasAluno[a].idOficina, //2,
+				url: path + "ObjetivoAula/ListarPorOficinaHash/" + 2, //listaOficinasAluno[a].idOficina,
 				async: false,
 				type: "GET",
 				crossDomain: true,
@@ -167,7 +221,6 @@ function acordeon(index) {
 											'<div class="Oficina_Plan_Quadrado'+classObj+'">&nbsp;</div>'+
 										'</div>';
 										numObj++;
-										console.log(htmlObjContent);
 						    		}
 						    	},
 								complete: function(){
@@ -190,6 +243,7 @@ function acordeon(index) {
 }
 
 $(document).ready(function(){
+	retornarBlogOficina(37);
 	retornarOficinasAluno();
 	alterarAba(0, 'Mat', 1);
 })

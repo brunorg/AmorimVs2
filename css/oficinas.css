@@ -66,20 +66,54 @@ p{
 	width: 98%;
 	background:#EBEBE3;
 }
-.cx_conteudo{
-	width:100%;
-	min-height:220px;
-	padding:17px;
+.cx_postagem{
+    width: 100%;
+    min-height: 220px;
+    padding: 0 17px;
+    margin-bottom: 25px;
 }
-.cx_foto{
-	width:226px;
-	margin-right:11px;
-	float: left;
+.cx_postagem:first-of-type {
+	padding-top: 20px;
 }
-.cx_texto{
-	float: right;
-    width: 181px;
-    height: 169px;
+.cx_postagem:last-of-type {
+	padding-bottom: 20px;
+	margin-bottom: 0;
+}
+.cx_titulo {
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #666666;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.cx_info {
+    font-size: 12px;
+    font-weight: normal;
+    color: #BABABA;
+    margin: 0;
+    margin-bottom: 15px;
+}
+.img_postagem {
+    width: 50%;
+    margin-right: 10px;
+    float: left;
+}
+.cx_texto {
+	margin-top: 10px;
+    display: inline-block;
+    color: #666;
+    line-height: 1.3em;
+}
+.cx_texto:first-of-type {
+	margin-top: 5px;
+	display: inline;
+}
+.fim_postagem {
+    margin: 0;
+    margin-top: 10px;
+    border: 0;
+    border-top: 1px solid #aaa
 }
 .cx_tema_1{
 	width:100%;
