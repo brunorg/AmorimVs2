@@ -24,7 +24,6 @@ function retornarOficinasAluno() {
 			for ( i in data ) {
 				listaOficinasAluno[i] = data[i];
 				var nomeOficina = data[i].Nome.split(" ",1).toString()
-				console.log(data[i].Nome);
 
 				htmlListaOficinas += 
 	        		'<td>'+
@@ -84,6 +83,7 @@ function retornarBlogOficina(indexOficina) {
 			        	htmlBlog +=
 		        	    '<img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />';
 	        	    }
+	        	    
 	        	    htmlBlog +=
 		        	    '<p class="cx_texto">'+d[i].descricao+'</p>'+
 		        	    '<hr class="fim_postagem" />'+
