@@ -1,3 +1,4 @@
+
 // JavaScript Document
 var ultimo_id;
 var dataAnoEstudo = getData("AnoEstudo", null);
@@ -255,7 +256,7 @@ function botaoEditarRoteiro(){
 						'<div class="txt_mensagem">'+
 							'<div class="Roteiro_Col_4" style="width: 53.33%;">'+
 								'<div class="Roteiro_Linha No_Padding_Itens">'+
-									'<div class="Roteiro_Col_6">'+
+									'<div class="Roteiro_Col_4">'+
 										'<div class="Ano_Inserir_Info Input_Info">Ano estudo</div>'+
 									'</div>'+
 									'<div class="Roteiro_Col_6">'+
@@ -266,12 +267,18 @@ function botaoEditarRoteiro(){
 								'</div>'+
 							'</div>'+
 							'<br>'+
-							'<div class="celulaGrande">'+
-								'<input type="hidden" id="id"></input>'+
-								'<input id="Input_Roteiro_Nome_edt" class="Input_Area" placeholder="Nome do roteiro" required> </input>'+
-							'</div>'+
+							'<br>'+
+							'<div class="Item_Roteiro_Linha No_Padding_Itens">'+
+								'<div class="Roteiro_Col_2">'+
+									'<div class="Input_Info">Roteiro</div>'+
+								'</div>'+
+								'<div class="Roteiro_Col_10">'+                     
+									'<input type="hidden" id="id">'+
+									'<input id="Input_Roteiro_Nome_edt" class="Input_Area" placeholder="Nome do roteiro" required="">'+
+								'</div>'+
+							'</div>'+												
 						'</div>'+
-						'<div class="btn_mensagemCad">'+
+						'<div class="btn_mensagemCad" style="margin: 66px 199px">'+
 							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiro('+idRoteiro+')"/>'+
 							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 						'</div>'+
@@ -297,6 +304,7 @@ function botaoEditarRoteiro(){
 		},10);
 	});
 }
+
 function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	
 	//Retira ano_ da variavel 'anoEstudo' e coloca lista_combo_
@@ -342,25 +350,6 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	return false;
 }
 
-/*Function para cadastrar atividade*/
-function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
-{
-	var retorno;
-	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&objetivo="+objetivo+"&paginaLivro="+pagina+"&livro="+livro+"&ativo=1";
-	
-	retorno = setCreateData("Atividade",valores);
-
-	if(retorno != "erro"){
-		mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-		status = retorno;		
-	}else{
-		mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
-		status = "erro";
-	}
-	return status;
-}
-/* ----------------------------------------------------------------------------------------------------------- */
-
 var atvCount = 2;
 var objCount = 1;
 
@@ -383,8 +372,7 @@ function inserirRoteiro () {
 }
 
 /*Function para cadastrar roteiro*/
-function criarRoteiro(anoEstudo,nome,descricao)
-{
+function criarRoteiro(anoEstudo,nome,descricao){
 	var retorno;
 	var status;
 	var valores = "action=create&nome="+nome+"&descricao="+descricao+"&anoEstudo="+anoEstudo+"&ativo=1";
@@ -490,7 +478,6 @@ function excluirRoteiro(servico,id){
 	$('#Input_Roteiro_Ano').html(carregaAno());
 }
 
-//Conferir num de linhas de objetivos inseridos
 function confereLinhasObj() {
 	if (numLinhas.length > 0) {
 		$("#Objetivos_Inseridos").show();
@@ -513,15 +500,16 @@ function inserirObjetivoAtividade() {
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
 	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
 
-	for ( var i = 0; i < atividadesCont.length; i++ ) {
-		atividadesLista[i] = {
-			numero: $($(".numeroAtv").get(i)).val(),
-			nome: $($(".nomeAtv").get(i)).val(),
-			livro: $($(".livroAtv").get(i)).val(),
-			pagLivro: $($(".paginaAtv").get(i)).val()
-		}
-		if(atividadesLista[i].nome != "" || atividadesLista[i].numero != "" || atividadesLista[i].livro != "" || atividadesLista[i].pagLivro != ""){
-			var idAtividade = criarAtividade(atividadesLista[i].nome,atividadesLista[i].numero,"",idObjetivo,atividadesLista[i].pagLivro,atividadesLista[i].livro);	
+	for ( var i = 0; i < atividadesCont.length; i++ ) {		
+		if($($(".nomeAtv").get(i)).val() != "" || $($(".numeroAtv").get(i)).val() != "" || $($(".livroAtv").get(i)).val() != "" || $($(".paginaAtv").get(i)).val() != ""){
+			var idAtividade = criarAtividade($($(".nomeAtv").get(i)).val(),$($(".numeroAtv").get(i)).val(),"",idObjetivo,$($(".paginaAtv").get(i)).val(),$($(".livroAtv").get(i)).val());	
+			atividadesLista[i] = {
+				numero: $($(".numeroAtv").get(i)).val(),
+				nome: $($(".nomeAtv").get(i)).val(),
+				livro: $($(".livroAtv").get(i)).val(),
+				pagLivro: $($(".paginaAtv").get(i)).val(),
+				atividadeId: idAtividade
+			}
 			if(i+1 == atividadesCont.length){
 				mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
 			}
@@ -540,6 +528,7 @@ function inserirObjetivoAtividade() {
 				'</div>'+
 			'</div>';
 	}
+	
 	if (idAtividade) {	        
 		linhaObjHtml += 
 		'<div id="Atvs_Obj_Inserido_'+objCount+'" class="Atvs_Obj_Inserido">';
@@ -552,7 +541,7 @@ function inserirObjetivoAtividade() {
 		        '<span id="Atv_Obj_Livro_'+(i+1)+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
 		        '<span id="Atv_Obj_Pag_'+(i+1)+'" class="Atv_Obj_Pag">p. '+atividadesLista[i].pagLivro+'</span>'+
 		        '<div id="Atv_Inserida_Btns_'+(i+1)+'" class="Atv_Inserida_Btns">'+
-		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv"></div>'+
+		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+atividadesLista[i].atividadeId+','+atividadesLista[i].numero+')></div>'+
 		            '<div id="Btn_Del_Atv_'+(i+1)+'" class="Btn_Atv Btn_Del_Atv"></div>'+
 		        '</div>'+
 		    '</div>';	
@@ -641,7 +630,7 @@ function inserirObjetivoAtividade() {
             '<div class="Roteiro_Col_12">'+
                 '<div id="Bt_Add_Atividade" onClick="adicionarAtividade()"></div>'+
             '</div>'+
-        '</div>  '+
+        '</div>'+
     '</div>';
 
     $("#Inserir_objetivo").html(objLimpo);
@@ -649,7 +638,8 @@ function inserirObjetivoAtividade() {
 	$('#Btn_Editar_Obj_'+objetivo.numero).click(function(){
 		var idRoteiro = $('#id').val();
 		var HtmlContent;
-		
+		var objetivoLinha = $('#Obj_Inserido_Nome_'+objetivo.numero).text();
+		var objetivoLinhaN = $('#Obj_Inserido_Num_'+objetivo.numero).text();
 		//Objeto com as propriedades do objetivo a ser inserido	
 		HtmlContent = '<div class="box_mensagem_rotcad">'+
 						'<div class="txt_mensagem">'+
@@ -661,7 +651,7 @@ function inserirObjetivoAtividade() {
 											'<div id="Nome_Objetivo1" class="Nome_Objetivo_Info Input_Info">Objetivo</div>'+
 										'</div>'+
 										'<div class="Roteiro_Col_9">'+
-											'<input id="nomeObj_edt" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" value="'+objetivo.nome+'" required > </input>'+
+											'<input id="nomeObj_edt" name="nomeObj" class="Input_Area nomeObj Nome_Objetivo_Input" value="'+objetivoLinha+'" required > </input>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
@@ -671,25 +661,24 @@ function inserirObjetivoAtividade() {
 											'<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
 										'</div>'+
 										'<div class="Roteiro_Col_6">'+
-											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj_edt" value="'+objetivo.numero+'"></input>'+
+											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj_edt" value="'+objetivoLinhaN+'"></input>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>'+
-							'<div class="btn_mensagemCad" style="margin: 17px 102px">'+
-								'<input type="button" class="bt_ok left" value="OK" onclick="editarObjetivo('+idObjetivo+','+roteiro+')"/>'+
+							'<div class="btn_mensagemCad" style="margin: 25px 199px">'+
+								'<input type="button" class="bt_ok left" value="OK" onclick="editarObjetivo('+idObjetivo+','+roteiro+','+objetivo.numero+')"/>'+
 								'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 							'</div>'+
 						'</div>'+
 					'</div>';		
 		$('#boxModal').html(HtmlContent).css('display','block');
-	});
-	
+	});	
+		
 }
 
 /*Function para cadastrar objetivo*/
-function criarObjetivo(nome,numero,descricao,roteiro)
-{	
+function criarObjetivo(nome,numero,descricao,roteiro){	
 	var retorno;
 	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
 	$.ajax({
@@ -705,28 +694,143 @@ function criarObjetivo(nome,numero,descricao,roteiro)
 	return retorno;
 }
 
-function editarObjetivo(idObjetivo,roteiro){
+function editarObjetivo(idObjetivo,roteiro,numero){
 	var nome = $("#nomeObj_edt").val();
 	var numero = $("#numeroObj_edt").val();
 	var retorno;
 	var valores = "nome="+nome+"&numero="+numero+"&descricao=&roteiro="+roteiro+"&ativo=1&id="+idObjetivo;
+	
 	$('#boxModal').css('display','none');
 	$.ajax({
 		url: path+"Objetivo",
 		type: "POST",
-		async:false,
 		crossDomain: true,
 		data: "action=update&"+valores,
-		beforeSend: function(){					
+		beforeSend: function(){		
 			loading("inicial");
-		},success: function(d) {
-			mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");
+		},
+		success: function(d) {
+			$("#Obj_Inserido_Nome_"+numero).html(nome);			
+			mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");	
 		},complete: function(){
 			loading("final");	
 		}
 	});
 }
 
+/*Function para cadastrar atividade*/
+function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
+{
+	var retorno;
+	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&objetivo="+objetivo+"&paginaLivro="+pagina+"&livro="+livro+"&ativo=1";
+	
+	$.ajax({
+		url: path+"Atividade",
+		type: "POST",
+		async:false,
+		crossDomain: true,
+		data: "action=create&"+valores,
+		success: function(d) {
+			retorno = d;
+		}
+	});
+	return retorno;
+}
+
+function editarAtividade(idAtividade,numeroAtv){
+	var atividadeNome = $('#Atv_Obj_Nome_'+numeroAtv).text();
+	var atividadeLivro = $('#Atv_Obj_Livro_'+numeroAtv).text();
+	var atividadePagina = $('#Atv_Obj_Pag_'+numeroAtv).text();
+	var atividadeNumero = $('#Atv_Obj_Num_'+numeroAtv).text();	
+	
+	var trechoFormAtv = 
+		'<div class="box_mensagem_atividades">'+
+			'<div class="txt_mensagem">'+
+				'<div class="Item_Roteiro_Linha No_Padding_Itens">'+
+					'<div class="Roteiro_Col_2">'+
+						'<div id="Atividade_Nome_Info_" class="Input_Info Atividade_Nome_Info">Atividade</div>'+
+					'</div>'+
+					'<div class="Roteiro_Col_10">'+
+						'<input type="hidden" class="idAtv"></input>'+
+						'<input class="Input_Area nomeAtv_edt" id="" placeholder="Título da atividade" required value="'+atividadeNome+'"></input>'+
+					'</div>'+
+				'</div>'+
+				'<div class="Item_Roteiro_Linha">'+
+					'<div class="Roteiro_Col_4">'+
+						'<div class="Roteiro_Linha No_Padding_Itens">'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
+							'</div>'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv_edt" value="'+atividadeNumero+'"></input></div>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+					'<div class="Roteiro_Col_4">'+
+						'<div class="Roteiro_Linha No_Padding_Itens">'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Info Input_Info"> Página Livro</div>'+
+							'</div>'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="" value="'+atividadePagina+'"></input></div>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+					'<div class="Roteiro_Col_4">'+
+						'<div class="Roteiro_Linha No_Padding_Itens">'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Info Input_Info"> Livro </div>'+
+							'</div>'+
+							'<div class="Roteiro_Col_6">'+
+								'<div class="Atividade_Input"><input class="Input_Area livroAtv" id="" value="'+atividadeLivro+'"></input></div>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+				'</div>'+
+				'<div class="btn_mensagemEditAtividades" style="margin:25px 188px">'+
+					'<input type="button" class="bt_ok left" value="OK" onclick="alterarAtividade('+idAtividade+')"/>'+
+					'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
+				'</div>'+
+			'</div>'+
+		'</div>';
+	
+	$('#boxModal').html(trechoFormAtv).css('display','block');	
+}
+
+function alterarAtividade(idAtividade){				
+	var nomeAtv = $("#nomeAtv_edt").val();
+	var numeroAtv = $("#numeroAtv_edt").val();		
+	var livroAtv = $("#livroAtv").val();
+	var paginaAtv = $("#paginaAtv").val();				
+			
+	if(numeroAtv=="" || livroAtv==""){
+		mensagem("Os campos nome, número, objetivo e livro são obrigatórios!","OK","bt_ok","alerta");
+		return false;
+	}else{			
+		$("#idAtv").val('');
+		$("#nomeAtv").val('');
+		$("#numeroAtv").val('');
+		$("#livroAtv").val('');
+		$("#paginaAtv").val('');
+		
+		$('#boxModal').css('display','none');
+		$.ajax({
+			url: path+"Objetivo",
+			type: "POST",
+			crossDomain: true,
+			data: "action=update&"+valores,
+			beforeSend: function(){		
+				loading("inicial");
+			},
+			success: function(d) {
+				$("#Obj_Inserido_Nome_"+numero).html(nome);			
+				mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");	
+			},complete: function(){
+				loading("final");	
+			}
+		});	
+	}
+}
 // Expandir roteiro inserido
 function expandirRot() {
 	var atvsCont = $('.Atvs_Obj_Inserido');

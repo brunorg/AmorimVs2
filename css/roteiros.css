@@ -232,17 +232,51 @@
 		}
 		
 		.box_mensagem_rotcad{
-			width: 560px;
+			width: 838px;
 			height: 210px;
 			background-color: #F2F2EE;
 			position: absolute;
-			margin: 0px 31%;
+			margin: 0px 19%;
 			top: 23%;
 			border: 2px solid #FFFFFF;
 		}
 		
+		.box_mensagem_atividades{
+			width: 838px;
+			height: 210px;
+			background-color: #F2F2EE;
+			position: absolute;
+			margin: 0px 19%;
+			top: 23%;
+			border: 2px solid #FFFFFF;
+		}
+		
+		.btn_mensagemEditAtividades{
+			width: 51%;
+			background: none !important;
+			background-color: blue;
+			height: 50px;
+			padding: 1px 5px;
+			padding-top: 0px;
+			margin: 25px 180px;
+		}
+		
 		.btn_mensagemCad{
-			width: 67%;
+			width: 51%;
+			background: none !important;
+			background-color: blue;
+			height: 50px;
+			padding: 1px 5px;
+			padding-top: 0px;
+			margin: 25px 180px;
+		}
+		
+		.box_mensagem_atividades .txt_mensagem{
+			
+		}
+		
+		.btn_mensagemCad {
+			width: 51%;
 			background: none !important;
 			background-color: blue;
 			height: 50px;
@@ -650,4 +684,13 @@
 	margin: 3px 0;
 	padding: 10px;
 	font-size: 18px;
+}
+.Rot_Inserido_Ano{
+	float:left;
+}
+.Rot_Inserido_Nome{
+    float: left;
+    width: 85%;
+    margin: -9px 0 0 0px;
+    padding: 8px 5px 5px 4px;
 }
