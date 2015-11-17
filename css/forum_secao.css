@@ -104,6 +104,14 @@
 	padding: 4px 0;
 }
 
+.esconder_respostas{
+	display: none;
+	color: #6B66AD;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 4px 0;
+}
+
 .box_pergunta{
 	float: left;
 	width: 91.9%;
