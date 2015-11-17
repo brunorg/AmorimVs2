@@ -128,23 +128,52 @@ function IncluirRoteirosAnoAtual () {
         HtmlContent = "";
         HtmlContent += "<div class='Content_Roteiro_Aluno_"+dataRoteiro[a].idroteiro+"'>";   
             HtmlContent += "<div id='Roteiro_Id_"+dataRoteiro[a].idroteiro+"' class='roteiro_nome_tabela_selecionado'>"
-                HtmlContent += "<div class='roteiro_nome_tabela_texto' onclick='ApareceObj("+dataRoteiro[a].idroteiro+")'>";
-                    HtmlContent += dataRoteiro[a].nome;
+                HtmlContent += "<div class='roteiro_nome_tabela_texto"+( (dataRoteiro[a].nome.length >= 63) ? ' roteiro_nome_grande' : '' )+"' onclick='ApareceObj("+dataRoteiro[a].idroteiro+")'>";
+                    HtmlContent += "<span class='nome_"+dataRoteiro[a].idroteiro+"'>"+dataRoteiro[a].nome+"</span>";
                 HtmlContent += "</div>";
-                HtmlContent += "<div class='tabela_colorida_roteiro'>";
+                HtmlContent += "<span class='tabela_colorida_roteiro'>";
                 HtmlContent += "<table>";
                     HtmlContent += "<tr class='QuadObj_"+dataRoteiro[a].idroteiro+"'>";
                     HtmlContent += "</tr>";
                 HtmlContent += "</table>";
-            HtmlContent += "</div>";
+            HtmlContent += "</span>";
         HtmlContent += "</div>";
 
 
         $('.total').append(HtmlContent);
         getLinhaObjetivos(dataRoteiro[a].idroteiro);
         VerificaObjetivosCompletos(dataRoteiro[a].idroteiro);
+        verificaTamanhoNome(dataRoteiro[a].idroteiro);
 
     } 
+}
+function verificaTamanhoNome (idRoteiro) 
+{
+    var roteiro = $('#Roteiro_Id_'+idRoteiro);
+    var tamanhoRot  = parseInt( $(roteiro).css('width').split('p',1) );
+    var tamanhoNome = parseInt( $(roteiro).children('.roteiro_nome_tabela_texto').css('width').split('p',1) );
+    var tamanhoObjs = parseInt( $(roteiro).children('.tabela_colorida_roteiro').css('width').split('p',1) );
+
+    if ( tamanhoRot - tamanhoObjs < tamanhoNome )
+    {   
+        var diferenca = (tamanhoRot - tamanhoObjs - tamanhoNome);
+        var div = $(roteiro).children('.roteiro_nome_tabela_texto');
+        var texto = $(roteiro).children('.roteiro_nome_tabela_texto').text();
+        $(div).css('width', (tamanhoRot - tamanhoObjs - 10)+'px');
+
+        $(div).mouseover(function(){
+            $(this).find('span').css('position','relative');
+            $(this).find('span').animate({
+                left: diferenca+'px'
+            },1000, function() {
+                setTimeout(function(){
+                    $(div).find('span').css('left','0px');
+                    $(div).find('span').css('position','');
+                },1000
+                )
+            });
+        });
+    }
 }
 
 function VerificaObjetivosCompletos(idRoteiro)
@@ -309,7 +338,7 @@ function SalvarPortifolio(tipoProducao, roteiroAcionado){
                 url: path+"ProducaoAluno/",
                 type: "POST",
                 crossDomain: true,  
-                data: "action=create&anoLetivo="+/*anoLetivoId()GAMBS*/60+"&texto="+$('#Roteiro_Id_'+roteiroAcionado+' .roteiro_nome_tabela_texto').html()+"&data="+dataSalvaPortifolio.getUTCFullYear()+"-"+(dataSalvaPortifolio.getUTCMonth()+1)+"-"+dataSalvaPortifolio.getUTCDate()+"&aluno="+alunoID+"&tipo="+tipoProducao+"&categoria=1&roteiro="+roteiroAcionado,    
+                data: "action=create&anoLetivo="+anoLetivoId()+"&texto="+$('#Roteiro_Id_'+roteiroAcionado+' .roteiro_nome_tabela_texto').html()+"&data="+dataSalvaPortifolio.getUTCFullYear()+"-"+(dataSalvaPortifolio.getUTCMonth()+1)+"-"+dataSalvaPortifolio.getUTCDate()+"&aluno="+alunoID+"&tipo="+tipoProducao+"&categoria=1&roteiro="+roteiroAcionado,    
                 beforeSend: function(){
                     loading("inicial");
                 }, 

@@ -302,10 +302,16 @@ $(document).ready(function() {
 	});
 
 	$(".cx_tema_1").mCustomScrollbar({
-		axis: "y"
+		axis: "y",
+		scrollButtons:{
+			enable:true
+		}
 	})
 	$(".cx_left").mCustomScrollbar({
-		axis: "y"
+		axis: "y",
+		scrollButtons:{
+			enable:true
+		}
 	})
 
 	$('.postContainer').mCustomScrollbar({

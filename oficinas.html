@@ -70,8 +70,8 @@
                         	<div  ng-repeat="menu in menuHTML">                        	
                                 <a href="{{menu.href}}">
                                     <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != 0 && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != 0 && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
                                         {{menu.label}}
                                     </div>
                                 </a>
@@ -89,207 +89,12 @@
                 <div class="Conteudo_Coluna" id="content_central">
 					<div id="box_oficinas">
                     	<div id="lista_oficinas">
-                        	 <table>
-                                <tr>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(0, 'EduFis')">
-                                            <p class="barra_cor_of" style="background:#F3835D;">&nbsp;</p>
-                                    	    <p class="titulo_of">Educação Física</p> 
-                                        </div>
-                                    </td>	
-                                    <td>
-                                        <div class="aba_oficina aba_ativa" onclick="alterarAba(1, 'Mat')">
-                                            <p class="barra_cor_of" style="background:#F35955;">&nbsp;</p>
-                                    	    <p class="titulo_of">Matemátca</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(2, 'Art')">
-                                            <p class="barra_cor_of" style="background:#BF4C69;">&nbsp;</p>
-                                            <p class="titulo_of">Artes</p>                             
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(3, 'LeiEsc')">
-                                            <p class="barra_cor_of" style="background:#765C92;">&nbsp;</p>
-                                            <p class="titulo_of">Leitura e escrita</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(4, 'Lat')">
-                                            <p class="barra_cor_of" style="background:#37D1BB;">&nbsp;</p>
-                                            <p class="titulo_of">Latin</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(5, 'ComsFund')">
-                                            <p class="barra_cor_of" style="background:#1AA1E1;">&nbsp;</p>
-                                            <p class="titulo_of">Comsciêntia Fund</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(6, 'Ing')">
-                                            <p class="barra_cor_of" style="background:#3F5CA9;">&nbsp;</p>
-                                            <p class="titulo_of">Inglês</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="aba_oficina" onclick="alterarAba(7, 'Mus')">
-                                            <p class="barra_cor_of" style="background:#009E9D;">&nbsp;</p>
-                                            <p class="titulo_of">Música</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                               <!-- <tr>
-                                	<td>
-                                    	<p class="titulo_of">Música</p>
-                                    	<p class="barra_cor_of" style="background:#009E9D;">&nbsp;</p>
-                                    </td>
-                                </tr>-->
-                            </table>                       
                         </div>
                         <div class="of_Qdr cx_left">
-                            <div class="Postagens_Container">
-                        	   <div class="cx_conteudo">
-                                	<p class="cx_titulo">Visita ao catavento</p>
-                                    <p class="cx_foto">
-                                    	<img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
-                                    </p>
-                                    <p class="cx_texto">
-                                    	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    </p>
-                                </div>
-                                <div class="cx_conteudo">
-                                	<p class="cx_titulo">Visita ao catavento</p>
-                                    <p class="cx_foto">
-                                    	<img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
-                                    </p>
-                                    <p class="cx_texto">
-                                    	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    	Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    </p>
-                                </div>
-                                <div class="cx_conteudo">
-                                    <p class="cx_titulo">Visita ao catavento</p>
-                                    <p class="cx_foto">
-                                        <img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
-                                    </p>
-                                    <p class="cx_texto">
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    </p>
-                                </div>
-                                <div class="cx_conteudo">
-                                    <p class="cx_titulo">Visita ao catavento</p>
-                                    <p class="cx_foto">
-                                        <img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
-                                    </p>
-                                    <p class="cx_texto">
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    </p>
-                                </div>
-                                <div class="cx_conteudo">
-                                    <p class="cx_titulo">Visita ao catavento</p>
-                                    <p class="cx_foto">
-                                        <img src="img/dia_da_consciencia_negra.jpg" width="226" height="167" alt=""/>
-                                    </p>
-                                    <p class="cx_texto">
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                        Ic tem nos diorehent Ic tem nos diorehent Ic tem nos diorehent
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                         <div class="of_Qdr cx_right"> 
                         	<div class="cx_tema_1">
                                 <div class="Acordeon_Oficina">
-                                    <div id="Oficina_Plan_Linha_1" class="Oficina_Plan_Linha">
-                                        <div id="Oficina_Plan_Info_1" class="Oficina_Planejamento_Info OF_Mat_C_bg" onclick='acordeon(0)'>
-                                            <div class="Oficina_Plan_Num OF_Mat_E_bg">1</div>
-                                            <div class="Oficina_Plan_Nome">Lorem Ipsum</div>
-                                            <div class="Oficina_Plan_Quadrado">&nbsp;</div>
-                                        </div>
-                                        <div id="Oficina_Plan_Itens_1" class="Oficina_Plan_Itens">
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Recursos Oficina_Plan_Item">
-                                                <div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>
-                                                <div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="Oficina_Plan_Linha_2" class="Oficina_Plan_Linha">
-                                        <div id="Oficina_Plan_Info_2" class="Oficina_Planejamento_Info OF_Mat_C_bg" onclick='acordeon(1)'>
-                                            <div class="Oficina_Plan_Num OF_Mat_E_bg">2</div>
-                                            <div class="Oficina_Plan_Nome">Lorem Ipsum</div>
-                                            <div class="Oficina_Plan_Quadrado">&nbsp;</div>
-                                        </div>
-                                        <div id="Oficina_Plan_Itens_2" class="Oficina_Plan_Itens">
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Recursos Oficina_Plan_Item">
-                                                <div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>
-                                                <div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="Oficina_Plan_Linha_3" class="Oficina_Plan_Linha">
-                                        <div id="Oficina_Plan_Info_3" class="Oficina_Planejamento_Info OF_Mat_C_bg" onclick='acordeon(2)'>
-                                            <div class="Oficina_Plan_Num OF_Mat_E_bg">3</div>
-                                            <div class="Oficina_Plan_Nome">Lorem Ipsum</div>
-                                            <div class="Oficina_Plan_Quadrado">&nbsp;</div>
-                                        </div>
-                                        <div id="Oficina_Plan_Itens_3" class="Oficina_Plan_Itens">
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Recursos Oficina_Plan_Item">
-                                                <div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>
-                                                <div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="Oficina_Plan_Linha_4" class="Oficina_Plan_Linha">
-                                        <div id="Oficina_Plan_Info_4" class="Oficina_Planejamento_Info OF_Mat_C_bg" onclick='acordeon(3)'>
-                                            <div class="Oficina_Plan_Num OF_Mat_E_bg">4</div>
-                                            <div class="Oficina_Plan_Nome">Lorem Ipsum</div>
-                                            <div class="Oficina_Plan_Quadrado">&nbsp;</div>
-                                        </div>
-                                        <div id="Oficina_Plan_Itens_4" class="Oficina_Plan_Itens">
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Recursos Oficina_Plan_Item">
-                                                <div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>
-                                                <div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="Oficina_Plan_Linha_5" class="Oficina_Plan_Linha">
-                                        <div id="Oficina_Plan_Info_5" class="Oficina_Planejamento_Info OF_Mat_C_bg" onclick='acordeon(4)'>
-                                            <div class="Oficina_Plan_Num OF_Mat_E_bg">5</div>
-                                            <div class="Oficina_Plan_Nome">Lorem Ipsum</div>
-                                            <div class="Oficina_Plan_Quadrado">&nbsp;</div>
-                                        </div>
-                                        <div id="Oficina_Plan_Itens_5" class="Oficina_Plan_Itens">
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Obj Oficina_Plan_Item">Objetivos: resgatar a história da matemática e estabelecer relações entre a matemática e outras áreas do conhecimento.</div>
-                                            <div class="Oficina_Plan_Recursos Oficina_Plan_Item">
-                                                <div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>
-                                                <div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

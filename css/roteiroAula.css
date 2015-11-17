@@ -758,4 +758,107 @@ div.item:nth-child(even){
 	width: 100%;
 	height: 500px;
 }
+
+
+
+/*Modal do cadastro*/
+.box_mensagem_rotcad{
+	width: 560px;
+	min-height: 210px;
+	background-color: #F2F2EE;
+	position: absolute;
+	margin: 0px 31%;
+	top: 23%;
+	border: 2px solid #FFFFFF;
+}
+
+/* Linhas */
+	.Roteiro_Linha { 
+		width: 100%;
+		padding: 10px 0;
+	}
+	.Roteiro_Linha:first-of-type { 
+		padding-top: 0;
+	}
+	.Roteiro_Linha:last-of-type { 
+		padding-bottom: 0;
+	}
+	.Roteiro_Linha::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.Less_Padding {
+		padding: 5px !important;
+	}
+
+	.No_Padding {
+		padding: 0 !important;
+	}
+
+/* Itens das linhas */
+	.Roteiro_Col_1 { width: 8.33%; }
+	.Roteiro_Col_2 { width: 16.66%; }
+	.Roteiro_Col_3 { width: 25%; }
+	.Roteiro_Col_4 { width: 33.33%; }
+	.Roteiro_Col_5 { width: 41.66%; }
+	.Roteiro_Col_6 { width: 50%; }
+	.Roteiro_Col_7 { width: 58.33%; }
+	.Roteiro_Col_8 { width: 66.66%; }
+	.Roteiro_Col_9 { width: 75%; }
+	.Roteiro_Col_10 { width: 83.33%; }
+	.Roteiro_Col_11 { width: 91.66%; }
+	.Roteiro_Col_12 { width: 100%; }
+
+	div[class*="Roteiro_Col_"] {
+		float: left;
+		height: auto;
+		margin: 0 !important;
+		display: inline-block;
+		padding: 0 7.5px;
+	}
+	div[class*="Roteiro_Col_"]:first-child {
+		padding-left: 0 !important;
+	}
+	div[class*="Roteiro_Col_"]:last-child {
+		padding-right: 0 !important;
+	}
+	.Input_Info {
+		width: 100%;
+    	height: 39px;
+    	padding: 12px;
+    	background-color: #C8C8C3;
+    	text-align: right;
+	}
+	
+	.Input_Area {
+			margin: 0;
+    		background-color: white;
+    		border: 1px solid lightgrey;
+    		font-size: 18px;
+    		height: 39px;
+    		padding: 8px;
+    		border-radius: 0px !important;
+    		-moz-appearance: none;
+    		-webkit-appearance: none;
+    		appearance: none;
+		}
+		select.Input_Area {
+			background-image: url(../img/select-arrow.png);
+			background-repeat: no-repeat;
+			background-position: right center;
+			cursor: pointer;
+		}
+		
+		.btn_mensagemCad{
+			width: 67%;
+			background: none !important;
+			height: 50px;
+			padding: 5px 10px;
+			padding-top: 0px;
+			margin: 0px 102px;
+		}
+		.txt_mensagem{
+			height: 50px !important;
+		}
 /*teste*/

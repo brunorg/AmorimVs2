@@ -54,6 +54,7 @@
 
 .roteiro_nome_tabela_selecionado{
 	background-color:#1aa0ae;
+	position: relative;
 	height: 40px;
 	padding-bottom: 5px;
 	margin-bottom:2px;
@@ -67,6 +68,7 @@
 	padding-right: 10px;	
 }
 .roteiro_nome_tabela_atribuido{
+	position: relative;
 	background-color: rgb(72,97,170);
 	height: 40px;
 	padding-bottom: 5px;
@@ -77,15 +79,20 @@
 	text-transform: uppercase;
 	color: #fff;
 	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
 	font-weight: 700;
-	padding:10px;
+	padding: 12px 0 12px;
+	margin-left: 10px;
+	margin-right: 10px;
 	float:left;
 	cursor:pointer;
 }
 
 .tabela_colorida_roteiro{
 /*	width: 172px;*/
-	float: right;
+	position: absolute;
+	right: 10px;
 	margin-top: 10px;
 	padding-left: 25px;
 	padding: none !important;
@@ -295,7 +302,7 @@ a:link{
 	text-decoration:none;
 }
 
-a:visited,#producaoTD{
+a:visited, #producaoTD{
 	text-decoration:none;
 	color:#fff;
 }

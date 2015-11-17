@@ -180,8 +180,8 @@ html, body
 
 				.label {
 					position: absolute;
-				    width: 15px;
-				    height: 15px;
+				    width: 20px;
+				    height: 20px;
 				    left: 35px;
 				    top: 5px;
 				    background-color: #ff6b3f;
@@ -190,7 +190,7 @@ html, body
 				    letter-spacing: .5px;
 				    text-align: center;
 				    line-height: 10px;
-				  	padding: 2px;
+				  	padding: 4.5px;
 				    border-radius: 50%;
 				}
 
@@ -2535,7 +2535,7 @@ font-family: "proxima-nova",sans-serif;
 		line-height: .95em;
 	}
 
-	.label { padding: 1.5px; }
+	.label { padding: 4.5px; }
 
 	#content_central_fixa{
 		padding: 36px 34px 36px 36px;
