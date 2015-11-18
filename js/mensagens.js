@@ -599,7 +599,7 @@ function ListarCaixaEntrada(inicio,fim){
 					if(dataMensagensEntrada[a].mensagem != ''){
 						
 						var dataMSG = (dataMensagensEntrada[a].data.substr(8, 2))+'/'+(dataMensagensEntrada[a].data.substr(5, 2))+'/'+(dataMensagensEntrada[a].data.substr(0, 4));
-						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem'+ (dataMensagensEntrada[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensEntrada[a].idMensagem+'" onclick="selecionarMensagem(this);" destinatarios="'+dataMensagensEntrada[a].IdDestinatarios+'"> ' +
+						HtmlContent +='<div id="msg'+(dataMensagensEntrada[a].idMensagem)+'" class="caixa_mensagem'+ (dataMensagensEntrada[a].lida == "N" ? " nao_lida":" lida") +'" msgId="'+dataMensagensEntrada[a].idMensagem+'" onclick="selecionarMensagem(this);" destinatarios="'+dataMensagensEntrada[a].IdDestinatarios+'" nomeDiv> ' +
 									   	'<div class="caixa_data_hora"> '+dataMSG+' </div>' +
 									   	'<div class="msg_info_wrapper">' +
 									   	  '<div class="caixa_remetente"> '+dataMensagensEntrada[a].remetente_nome+' </div>' +
@@ -675,6 +675,7 @@ function ExcluirMensagem()
 		url: path+"Mensagens/delete/"+PLixo,
 		success:function(data){
 			PLixo = 0;
+			loading('final');
 		},error:function(d){
 			if(d.status == 405)
 			{
@@ -707,7 +708,9 @@ function ExcluirMensagem()
 				$('.nextAccept').removeClass('nextAccept');
 				
 				
-				carregaMensagens();
+				//carregaMensagens();
+				//ListarCaixaEntrada(1,10);
+				//$("msg")
 				
 
 				mensagem("Mensagem excluida com sucesso!","OK","bt_ok","sucesso");
@@ -715,6 +718,7 @@ function ExcluirMensagem()
 				
 
 			}
+			loading('final');
 		}
 		}).then(function(data) {
 			dataMensagens = null;
