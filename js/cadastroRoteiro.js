@@ -541,7 +541,7 @@ function inserirObjetivoAtividade() {
 		        '<span id="Atv_Obj_Livro_'+(i+1)+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
 		        '<span id="Atv_Obj_Pag_'+(i+1)+'" class="Atv_Obj_Pag">p. '+atividadesLista[i].pagLivro+'</span>'+
 		        '<div id="Atv_Inserida_Btns_'+(i+1)+'" class="Atv_Inserida_Btns">'+
-		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+atividadesLista[i].atividadeId+','+atividadesLista[i].numero+')></div>'+
+		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+atividadesLista[i].atividadeId+','+atividadesLista[i].numero+','+idObjetivo+')></div>'+
 		            '<div id="Btn_Del_Atv_'+(i+1)+'" class="Btn_Atv Btn_Del_Atv"></div>'+
 		        '</div>'+
 		    '</div>';	
@@ -737,7 +737,7 @@ function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
 	return retorno;
 }
 
-function editarAtividade(idAtividade,numeroAtv){
+function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 	var atividadeNome = $('#Atv_Obj_Nome_'+numeroAtv).text();
 	var atividadeLivro = $('#Atv_Obj_Livro_'+numeroAtv).text();
 	var atividadePagina = $('#Atv_Obj_Pag_'+numeroAtv).text();
@@ -806,16 +806,12 @@ function alterarAtividade(idAtividade){
 	if(numeroAtv=="" || livroAtv==""){
 		mensagem("Os campos nome, número, objetivo e livro são obrigatórios!","OK","bt_ok","alerta");
 		return false;
-	}else{			
-		$("#idAtv").val('');
-		$("#nomeAtv").val('');
-		$("#numeroAtv").val('');
-		$("#livroAtv").val('');
-		$("#paginaAtv").val('');
-		
-		$('#boxModal').css('display','none');
+	}else{	
+		var valores = "nome="+nomeAtv+"&numero="+numeroAtv+"&descricao=&objetivo="+objetivo+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1";
+			
+		$('#boxModal').css('display','none');		
 		$.ajax({
-			url: path+"Objetivo",
+			url: path+"Atividade",
 			type: "POST",
 			crossDomain: true,
 			data: "action=update&"+valores,

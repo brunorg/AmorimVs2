@@ -605,7 +605,7 @@ div.item:nth-child(even){
 }
 #box_barra1{
 	margin-top: 5px;
-    height: 420px;
+    height: 400px;
 }
 #box_barra2{
 	margin-top: 5px;
@@ -854,8 +854,8 @@ div.item:nth-child(even){
 			width: 67%;
 			background: none !important;
 			height: 50px;
-			padding: 5px 10px;
 			padding-top: 0px;
+			padding-bottom: 50px;
 			margin: 0px 102px;
 		}
 		.txt_mensagem{
