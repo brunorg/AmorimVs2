@@ -1,3 +1,5 @@
+var professorId= localStorage.getItem("professorId");
+
 $(document).ready(function() {
     carregarDados();
     atribuirEventos();
@@ -25,8 +27,9 @@ function carregarConteudo () {
 
 function carregaOficinaPostagens () {
     var htmlOficinas =  '<select>'+
-                            '<option value="0"></option>';
+                            '<option value="0" disabled selected hidden>Escolha o Grupo</option>';
     $.ajax({
+        /*url: path + 'Oficina/ListarPorProfessor/' +  professorId,*/
         url: path + 'Oficina',
         async: false,
         crossDomain: true,

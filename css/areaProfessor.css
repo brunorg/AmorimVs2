@@ -8,22 +8,21 @@ html, body
        -moz-box-sizing: border-box;
             box-sizing: border-box;}
 
-.boxLinha {
+.box_linha {
 	display: block;
     height: auto;
     width: 100%;
     box-sizing: border-box;
     padding-top: 10px;
     padding-bottom: 10px;
-    height: 256px;
 }
-.boxLinha:first-of-type {
+.box_linha:first-of-type {
 	padding-top: 0;	
 }
-.boxLinha:last-of-type {
+.box_linha:last-of-type {
 	padding-bottom: 0;	
 }
-.boxLinha::after {
+.box_linha::after {
 	content: "";
 	clear: both;
 	display: block;
@@ -56,6 +55,14 @@ div[class*="box_col"]:last-of-type {
 	box-sizing: border-box;
 }
 
+.full_height{
+    height: 550px;
+}
+
+.half_height{
+    height: 265px;
+}
+
 .boxTitulo{
 	width: 100%;
     font-size: 18px;
@@ -76,7 +83,7 @@ div[class*="box_col"]:last-of-type {
 
 .conteudoBoxArea{
     width: 100%;
-    height: 256px;
+    height: 100%;
     padding: 15px;
 }
 
@@ -87,13 +94,9 @@ div[class*="box_col"]:last-of-type {
     display: none;
 }
 
-.conteudoPequeno{height: 195px !important;}
+.conteudoPequeno{height: 390px;}
 
-.conteudoMedio{height: 205px !important;}
-
-.containerAreaMensagem{
-    padding-top: 30px;
-}
+.conteudoMedio{height: 500px;}
 
 .areaConteudo{
 	background-color: white;
@@ -103,11 +106,11 @@ div[class*="box_col"]:last-of-type {
 }
 
 .inputArea{
-	border: none;
-	border-bottom: 1px solid #CCCCCC;
+	border: 1px solid #CCCCCC;
 	color: #CCCCCC;
 	resize: none;
 	font-size: 16px; 
+    background-color: #EFEFEF;
 }
 
 .inputArea::-webkit-input-placeholder{
@@ -127,7 +130,8 @@ div[class*="box_col"]:last-of-type {
 }
 
 .inputLinha{
-    height: 25px;
+    height: 51px;
+    padding: 4px 8px;
 }
 
 .inputUnicoLinha{
@@ -136,12 +140,12 @@ div[class*="box_col"]:last-of-type {
 
 .inputMensagem{
     width: 100%;
-    border: none;
+    border: 1px solid #CCCCCC;
     font-size: 10px;
 }
 
-.mensagemPequena{
-    height: 95px;
+.mensagemGrande{
+    height: 355px;
 }
 
 .mensagemMedia{
@@ -149,15 +153,14 @@ div[class*="box_col"]:last-of-type {
 }
 
 .selectArea{
-	float: left;
-	height: 20px;
-	border-bottom: 1px solid #CCCCCC;
+	height: 26px;
+	border: 1px solid #CCCCCC;
 	color: #CCCCCC;
+    background-color: #EFEFEF;  
 }
 
 .containerSelect{
-	padding-right: 25px;
-	float: left;
+    width: 100%;
     font-size: 14px;
 }
 
@@ -181,19 +184,20 @@ div[class*="box_col"]:last-of-type {
 	height: 100%;
 	overflow: hidden;
 	color: #CCCCCC;
-    background: url(../img/ic_drop_claro.png) no-repeat right;
+    background: url(../img/ic_drop_pequeno.png) no-repeat right -1px;
+    padding: 4px 8px;
 }
 
 .selectOptions select{
 	width: 150%;
 	color: #CCCCCC;
-	font-size: 14px;
+	font-size: 16px;
     margin-top: -1px;
     cursor: pointer;
 }
 
 .selectMedio{
-	width: 170px;
+	width: 100%;
 }
 
 .selectPequeno{
@@ -202,6 +206,11 @@ div[class*="box_col"]:last-of-type {
 
 .linhaBotoes{
     height: 15px;
+}
+
+.linhaConteudo{
+    padding-bottom: 5px;
+    width: 100%;
 }
 
 .linhaIconeInferior{
@@ -272,6 +281,14 @@ div[class*="box_col"]:last-of-type {
 
 .areaCoordenacao{
     background-color: #f1ca6d;
+}
+
+.areaRelatorio{
+   background-color: #f15a59;
+}
+
+.areaRotina{
+    background-color: #7bccd8;
 }
 
 .areaPlano{
