@@ -64,8 +64,8 @@
                             <div  ng-repeat="menu in menuHTML">                         
                                 <a href="{{menu.href}}">
                                     <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
                                         {{menu.label}}
                                     </div>
                                 </a>
@@ -94,7 +94,7 @@
                             <div id="Inserir_roteiro">
                                 <div id="conteudo_principal_roteiroExtra">                                
                                     <div id="Inserir_roteiroExtra">
-                                        <input id="pesquisaRoteiro" placeholder="Buscar Roteiro" oninput="carregaRoteiro('like')" required> </input>
+                                        <input id="pesquisaRoteiro" class="Buscar_Roteiro" placeholder="Buscar Roteiro" oninput="carregaRoteiro('like')" required> </input>
                                     </div>                                                          
                           
                                 </div>
@@ -115,7 +115,7 @@
                                         <div class="celulaGrande">
                                             <div class="infoM"> Roteiro </div>
                                             <div class="infoValueM">
-                                               <input type="text" id="val_roteiro">
+                                               <input type="text" class="Roteiro_Nome" id="val_roteiro">
                                             </div>   
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                         <div class="celulaGrande">
                                             <div class="infoM"> Descrição </div>
                                             <div class="infoValueM">
-                                                <input type="text" id="val_descricao">
+                                                <input type="text" class="Roteiro_Descricao" id="val_descricao">
                                             </div>   
                                         </div>
                                     </div>

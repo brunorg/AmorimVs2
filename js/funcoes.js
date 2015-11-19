@@ -307,17 +307,13 @@ $(document).ready(function() {
 			enable:true
 		}
 	})
-	$(".cx_left").mCustomScrollbar({
+	$("#Blog_Oficina").mCustomScrollbar({
 		axis: "y",
 		scrollButtons:{
 			enable:true
 		}
 	})
 
-	$('.postContainer').mCustomScrollbar({
-		axis:"y"
-	});
-	
 	$(".hangAlunos").mCustomScrollbar({
 		axis:"x" // vertical and horizontal scrollbar
 	});	

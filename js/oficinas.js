@@ -24,6 +24,7 @@ function retornarOficinasAluno() {
 			for ( i in data ) {
 				listaOficinasAluno[i] = data[i];
 				var nomeOficina = data[i].Nome.split(" ",1).toString()
+				console.log(data[i].Nome);
 
 				htmlListaOficinas += 
 	        		'<td>'+
@@ -71,41 +72,62 @@ function retornarBlogOficina(indexOficina) {
 		success: function(d) {
 			if ( d.length != 0 ) {
 				htmlBlog +=
-				'<section class="Postagens_Container">';
+					'<section class="Postagens_Container">';
 
 				for (var i in d) {
-					htmlBlog +=
-					'<article class="cx_postagem">'+
-		        	    '<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
-		        	    '<h2 class="cx_info">11/11/2015 às 14:32</h2>';
+					var dia = '00';
+					var mes = '00';
+					var ano = '00';
 
-			        if ( d[i].imagem != null) {
+					if (d[i].data) {
+						dia = d[i].data.slice(8);
+						mes = d[i].data.slice(5,7);
+						ano = d[i].data.slice(0,4);
+					}
+
+					var post = d[i].descricao.split('\n');
+
+					htmlBlog +=
+						'<article class="cx_postagem">'+
+			        	   	'<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
+			        	   	'<h2 class="cx_info">'+dia+'/'+mes+'/'+ano+'</h2>';
+
+			        if ( d[i].imagem != null ) {
 			        	htmlBlog +=
-		        	    '<img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />';
+		        	    	'<img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />';
 	        	    }
 	        	    
-	        	    htmlBlog +=
-		        	    '<p class="cx_texto">'+d[i].descricao+'</p>'+
-		        	    '<hr class="fim_postagem" />'+
-		        	'</article>';
+	        	    for ( j in post) {
+	        	    	if ( post[j] != '' ) {
+	        	    		htmlBlog +=
+		        			'<p class="cx_texto">'+post[j]+'</p>';
+		        		}
+		        	}
+
+					htmlBlog +=
+		        	    	'<hr class="fim_postagem" />'+
+		        		'</article>';
 				}
 
 				htmlBlog +=
-				'</section>';
+					'</section>';
+			}
+			else {
+				htmlBlog += '<section class="Postagens_Container>Não existem postagens ainda</section>';
 			}
 		},
 		complete: function(){
 			loading("final");
 		}
 	});
-	$('.cx_left').html(htmlBlog);
+	$('.Postagens_Oficina').html(htmlBlog);
 }
 
 function alterarAba(index, abbr, idCor) {
 	for ( a in listaOficinasAluno ) {
 		if ( a == index ) {
 			$.ajax({
-				url: path + "ObjetivoAula/ListarPorOficinaHash/" + 2, //listaOficinasAluno[a].idOficina,
+				url: path + "ObjetivoAula/ListarPorOficinaHash/" + 3, //listaOficinasAluno[a].idOficina,
 				async: false,
 				type: "GET",
 				crossDomain: true,

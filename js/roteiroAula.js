@@ -144,7 +144,7 @@ $(document).ready(function(){
 
 			if((i+1)==objetivos.length){
 				$("#val_objetivo_1").val('');
-				mensagem('Objetivo(s) salvo com sucesso!','OK','bt_ok','sucesso');
+				mensagem('Objetivo salvo com sucesso!','OK','bt_ok','sucesso');
 			}
 		};
 	})

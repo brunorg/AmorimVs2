@@ -106,7 +106,10 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
 	background-color: white;
 	font-size: 18px;
     height: 39px;
-    width: 686.7px;
+    width: 77.8%;
+}
+#Inserir_roteiro input.Buscar_Roteiro, #Inserir_roteiro .Roteiro_Nome, #Inserir_roteiro .Roteiro_Descricao{
+    width: 100%;
 }
 
 #seletor{
@@ -289,6 +292,9 @@ div.item:nth-child(even){
     background-position: 8px;
     cursor: pointer;
 }
+.objetivos {
+    border: 1px solid #ccc;
+}
 
 }
 /* Listagem em acordeon dos objetivos inseridos */
@@ -305,8 +311,8 @@ div.item:nth-child(even){
     .Rot_Inserido_Nome{
         color: #fff;
         font-size: 16px;
-        padding: 7px 10px;
-        width: 7%;
+        padding: 7.5px 10px;
+        width: 90%;
         float: left;
         margin: 0;
     }
@@ -345,23 +351,26 @@ div.item:nth-child(even){
         left: 10px;
     }
     .Rot_Inserido_Btns {
-        float: right;
+        border-left: 1px solid #fff;
+        position: absolute;
+        right: 1px;
     }
     .Obj_Inserido_Btns{
-        width: 50px;
-    height: 50px;
-    position: absolute;
-    right: 5px;
-    top: 0;
+        border-left: 1px solid #fff;
+        width: 70px;
+        height: 35px;
+        position: absolute;
+        right: 1px;
+        top: 0;
     }
     .Btn_Obj, .Btn_Rot{
         display: inline-block;
-        width: 33px;
-        height: 34px;
+        width: 35px;
+        height: 33px;
         background-repeat: no-repeat;
         float: left;
         cursor: pointer;
-        background-position: 8px 10px;
+        background-position: center;
     }
     .Btn_Rot:hover {
         background-color: #67c9d6;
@@ -373,7 +382,7 @@ div.item:nth-child(even){
         background-color: #fff;
     }
 
-    .Btn_Obj:first-child, .Btn_Rot:first-child, .Btn_Atv:first-child { border-right: 1px solid #fff; border-left: 1px solid #fff;}
+    .Btn_Obj:last-child, .Btn_Rot:last-child, .Btn_Atv:last-child { border-left: 1px solid #fff; }
     
     .Btn_Editar_Rot { background-image: url(../img/ic_editar_b_peq.png); }
     
@@ -381,33 +390,28 @@ div.item:nth-child(even){
 
     .Btn_Editar_Obj { 
         background-image: url(../img/ic_editar_peq.png);
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 34px;
-    position: relative;
-    left: -6px;
-    display: inline-block;
-    width: 33px;
-    height: 34px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    background-position: 7px 5px;
+        background-repeat: no-repeat;
+        width: 35px;
+        height: 34px;
+        position: relative;
+        left: 0;
+        display: inline-block;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        background-position: center;
     }
 
     .Btn_Del_Obj { 
-    background-image: url(../img/ic_del_peq.png);
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 25px;
-    bottom: 20px;
-    padding: 16px;
-    display: inline-block;
-    width: 33px;
-    height: 34px;
-    background-repeat: no-repeat;
-    float: left;
-    cursor: pointer;
-    background-position: 8px 10px;
+        background-image: url(../img/ic_del_peq.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 35px;
+        display: inline-block;
+        width: 35px;
+        height: 34px;
+        float: left;
+        cursor: pointer;
+        background-position: center;
     }
 
     .Btn_Editar_Atv { background-image: url(../img/ic_editar_peq.png); }
@@ -417,7 +421,7 @@ div.item:nth-child(even){
 .Atv_Obj_Info {
     margin-left: 35px;
     width: 96.1%;
-    height: 30px;
+    height: 35px;
     border: 1px solid #fff;
     border-top: none;
     background-color: #d9eff2;
@@ -539,7 +543,8 @@ div.item:nth-child(even){
     background-color: #C9C9C4;
     background-image: url(../img/bt_editar.png);
     background-repeat: no-repeat;
-    background-position: 3px;
+    background-size: 30px;
+    background-position: center;
     cursor: pointer;	
 }
 .nomeObj{
@@ -560,7 +565,7 @@ div.item:nth-child(even){
     background-color: #C9C9C4;
     background-image: url(../img/fechar.png);
     background-repeat: no-repeat;
-    background-position: -4px;
+    background-position: center;
     cursor: pointer;
 }
 
@@ -596,16 +601,15 @@ div.item:nth-child(even){
 #Inserir_pesquisa{
 	position:relative;
 	overflow: hidden;
-	/*height: 69px;*/
 	width: 100%
 }
 #box_barra{
 	margin-top: 5px;
-    height: 318px;
+    height: 375px;
 }
 #box_barra1{
 	margin-top: 5px;
-    height: 400px;
+    height: 387px;
 }
 #box_barra2{
 	margin-top: 5px;
@@ -756,7 +760,7 @@ div.item:nth-child(even){
 
 #boxRoteiroAulaPesquisa{
 	width: 100%;
-	height: 500px;
+	height: auto;
 }
 
 
@@ -767,8 +771,8 @@ div.item:nth-child(even){
 	min-height: 210px;
 	background-color: #F2F2EE;
 	position: absolute;
-	margin: 0px 31%;
-	top: 23%;
+	margin: 0px 20.7%;
+	top: 11%;
 	border: 2px solid #FFFFFF;
 }
 
@@ -826,7 +830,7 @@ div.item:nth-child(even){
 	.Input_Info {
 		width: 100%;
     	height: 39px;
-    	padding: 12px;
+    	padding: 10px;
     	background-color: #C8C8C3;
     	text-align: right;
 	}
@@ -859,6 +863,6 @@ div.item:nth-child(even){
 			margin: 0px 102px;
 		}
 		.txt_mensagem{
-			height: 50px !important;
+			height: 79px !important;
 		}
 /*teste*/

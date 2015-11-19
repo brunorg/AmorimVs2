@@ -58,9 +58,14 @@ p{
 }
 .cx_left{
 	float:left;
+	overflow: hidden;
 }
 .cx_right{
 	float:right;
+}
+#Blog_Oficina {
+	height: 100%;
+	overflow: hidden;
 }
 .Postagens_Container {
 	width: 98%;
@@ -68,9 +73,10 @@ p{
 }
 .cx_postagem{
     width: 100%;
-    min-height: 220px;
+    min-height: 83px;
     padding: 0 17px;
     margin-bottom: 25px;
+    word-break: break-word;
 }
 .cx_postagem:first-of-type {
 	padding-top: 20px;
