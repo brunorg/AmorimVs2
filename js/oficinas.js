@@ -5,11 +5,11 @@ var listaOficinasAluno = [];
 var listaIdOficinas = [];
 var listaRotOficina = [];
 
-function retornarOficinasAluno() {
+function carregarOficinasAluno() {
 	var htmlListaOficinas = '';
 
 	$.ajax({
-		url: path + "Oficina/ListarPorAluno/" + 678, //alunoVar,
+		url: path + "Oficina/ListarPorAluno/" + alunoVar,
 		async: false,
 		type: "GET",
 		crossDomain: true,
@@ -17,117 +17,137 @@ function retornarOficinasAluno() {
 			loading("inicial");
 		},
 		success: function(data) {
-			htmlListaOficinas +=
-			'<table>'+
-				'<tr>';
+			if ( data.length > 0 ) {
+				
+				//Cria o campo para as abas de oficina
+				htmlListaOficinas +=
+				'<table>'+
+					'<tr>';
 
-			for ( i in data ) {
-				listaOficinasAluno[i] = data[i];
-				var nomeOficina = data[i].Nome.split(" ",1).toString()
-				console.log(data[i].Nome);
+				//Inicia a listagem de oficinas
+				for ( i in data ) {
 
-				htmlListaOficinas += 
-	        		'<td>'+
-	        			'<div class="aba_oficina" onclick="alterarAba('+i+', \'Mat\', '+(parseInt(i)+1)+')">'+
-	        				'<p class="barra_cor_of" style="background:'+data[i].CorForte+'">&nbsp;</p>'+
-	        				'<p class="titulo_of">'+nomeOficina+'</p>'+
-	        			'</div>'+
-	        		'</td>';
+					//Cria uma lista com as oficinas listadas
+					listaOficinasAluno[i] = data[i];
+
+					//Quebra o nome da oficina
+					var nomeOficina = data[i].Nome.split(" ",1).toString()
+					console.log(data[i].Nome);
+
+					htmlListaOficinas += 
+		        		'<td>'+
+		        			'<div class="aba_oficina" onclick="ativarAba('+i+')">'+
+		        				'<p class="barra_cor_of" style="background:'+data[i].CorForte+'">&nbsp;</p>'+
+		        				'<p class="titulo_of">'+nomeOficina+'</p>'+
+		        			'</div>'+
+		        		'</td>';
+				}
+
+				//Fecha o campo para as abas de oficinas
+				htmlListaOficinas +=
+					'</tr>'+
+				'</table>';
+			} else {
+				//Mensagem indicando que o aluno não está em nenhuma oficina
+				mensagem("Você ainda não está matriculado em nenhuma oficina.","OK","bt_ok","alerta");
 			}
-
-			htmlListaOficinas +=
-				'</tr>'+
-			'</table>';
 		},
 		complete: function(){
 			loading("final");
 		}
 	});
-	$("#lista_oficinas").html(htmlListaOficinas);
+
+	if ( listaOficinasAluno.length > 0 ) {
+		$("#lista_oficinas").html(htmlListaOficinas);
+		ativarAba(0);
+	} else {
+		$("#lista_oficinas").remove();
+	}
 }
 
 function retornarBlogOficina(indexOficina) {
-/*
-<div class="of_Qdr cx_left">
-    <section class="Postagens_Container">
-	    <article class="cx_postagem">
-            <h1 class="cx_titulo">Visita ao catavento</h1>
-            <h2 class="cx_info">11/11/2015 às 14:32</h2>
-            <img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />
-            <p class="cx_texto"></p>
-            <hr class="fim_postagem" />
-        </article>
-    </section>
-</div>
-*/
 	var htmlBlog = '';
-	$.ajax({
-		url: path + "Blog/BlogOficina/" + 17, //listaOficinasAluno[i].idOficina
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		beforeSend: function() {
-			loading("inicial");
-		},
-		success: function(d) {
-			if ( d.length != 0 ) {
-				htmlBlog +=
-					'<section class="Postagens_Container">';
+	
+	for ( a in listaOficinasAluno ) {
+		if ( a == indexOficina ) {
+			$.ajax({
+				url: path + "Blog/BlogOficina/" + listaOficinasAluno[a].idOficina,
+				async: false,
+				type: "GET",
+				crossDomain: true,
+				beforeSend: function() {
+					loading("inicial");
+				},
+				success: function(d) {
+					//Verifica se existe alguma postagem
+					if ( d.length > 0 ) {
+						//Inicia a seção de blog			
+						htmlBlog +=
+							'<section class="Postagens_Container">';
 
-				for (var i in d) {
-					var dia = '00';
-					var mes = '00';
-					var ano = '00';
+						//Varre e retorna as postagens
+						for ( var i in d ) {
+							//Divide a data da postagem em dia, mês e ano
+							if ( d[i].data ) {
+								dia = d[i].data.slice(8);
+								mes = d[i].data.slice(5,7);
+								ano = d[i].data.slice(0,4);
+							} else {
+								//APAGAR QUANDO TERMINAR DE MONTAR
+								var dia = '00';
+								var mes = '00';
+								var ano = '00';
+							}
 
-					if (d[i].data) {
-						dia = d[i].data.slice(8);
-						mes = d[i].data.slice(5,7);
-						ano = d[i].data.slice(0,4);
+							//Quebra a postagem em parágrafos
+							var post = d[i].descricao.split('\n');
+
+							//Cria a postagem e adiciona o título e a data
+							htmlBlog +=
+								'<article class="cx_postagem">'+
+					        	   	'<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
+					        	   	'<h2 class="cx_info">'+dia+'/'+mes+'/'+ano+'</h2>';
+
+					        if ( d[i].imagem ) {
+					        	//Carrega a imagem, se existir alguma.
+					        	htmlBlog +=
+				        	    	'<img src="'+d[i].imagem+'" class="img_postagem" />';
+			        	    }
+
+			        	    //Cria as tags <p> para cada parágrafo.
+			        	    for ( j in post ) {
+			        	    	if ( post[j] != '' ) {
+			        	    		htmlBlog +=
+				        			'<p class="cx_texto">'+post[j]+'</p>';
+				        		}
+				        	}
+
+				        	//Encerra a postagem
+							htmlBlog +=
+				        	    	'<hr class="fim_postagem" />'+
+				        		'</article>';
+						}
+						//Encerra a área do blog
+						htmlBlog +=
+							'</section>';
 					}
-
-					var post = d[i].descricao.split('\n');
-
-					htmlBlog +=
-						'<article class="cx_postagem">'+
-			        	   	'<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
-			        	   	'<h2 class="cx_info">'+dia+'/'+mes+'/'+ano+'</h2>';
-
-			        if ( d[i].imagem != null ) {
-			        	htmlBlog +=
-		        	    	'<img src="img/dia_da_consciencia_negra.jpg" class="img_postagem" />';
-	        	    }
-	        	    
-	        	    for ( j in post) {
-	        	    	if ( post[j] != '' ) {
-	        	    		htmlBlog +=
-		        			'<p class="cx_texto">'+post[j]+'</p>';
-		        		}
-		        	}
-
-					htmlBlog +=
-		        	    	'<hr class="fim_postagem" />'+
-		        		'</article>';
+				},
+				complete: function(){
+					loading("final");
 				}
-
-				htmlBlog +=
-					'</section>';
-			}
-			else {
-				htmlBlog += '<section class="Postagens_Container>Não existem postagens ainda</section>';
-			}
-		},
-		complete: function(){
-			loading("final");
+			});
 		}
-	});
-	$('.Postagens_Oficina').html(htmlBlog);
+	}
+	return htmlBlog;
 }
 
-function alterarAba(index, abbr, idCor) {
+function retornarRoteirosOficina(indexOficina) {
+	var htmlRoteirosOficina = '';
+
 	for ( a in listaOficinasAluno ) {
-		if ( a == index ) {
+		if ( a == indexOficina ) {
 			$.ajax({
-				url: path + "ObjetivoAula/ListarPorOficinaHash/" + 3, //listaOficinasAluno[a].idOficina,
+				url: path + "ObjetivoAula/ListarPorOficinaHash/" + listaOficinasAluno[a].idOficina,
 				async: false,
 				type: "GET",
 				crossDomain: true,
@@ -135,31 +155,42 @@ function alterarAba(index, abbr, idCor) {
 					loading("inicial");
 				},
 				success: function(data) {
+					//Inicia a contagem dos números dos roteiros
 					var numRot = 1;
-					for (var b in data) {
 
-						listaRotOficina[b] = data[b];
+					//Verifica se existe algum roteiro associado a essa oficina
+					if ( data.length > 0 ) {
 
-						htmlContent +=
-							'<div id="Oficina_Plan_Linha_'+numRot+'" class="Oficina_Plan_Linha">'+
-		        	    	    '<div id="Oficina_Plan_Info_'+numRot+'" class="Oficina_Planejamento_Info OF_'+abbr+'_C_bg" onclick="acordeon('+(numRot-1)+')">'+
-		        	    	    	'<div class="Oficina_Id_Roteiro">'+data[b].idRoteiro_aula+'</div>'+
-		        	    	        '<div class="Oficina_Plan_Num OF_'+abbr+'_E_bg">'+numRot+'</div>'+
-		        	    	        '<div class="Oficina_Plan_Nome">'+data[b].roteiro+'</div>'+
-		        	    	    '</div>'+
-		        	    	    '<div id="Oficina_Plan_Itens_'+numRot+'" class="Oficina_Plan_Itens">'+
-		        	    	        '<div class="Oficina_Plan_Desc Oficina_Plan_Item">Descrição: '+data[b].descricao+'</div>';
+						//Varre e retorna os roteiros
+						for (var b in data) {
+							//Cria uma lista de roteiros listados dessa oficina, para posterior acesso quando listar objetivos
+							listaRotOficina[b] = data[b];
 
-			    	        // Recursos de aprendizagem: 
-			    	        /*'<div class="Oficina_Plan_Recursos Oficina_Plan_Item">'+
-			    	            '<div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>'+
-			    	            '<div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>'+
-			    	        '</div>'+*/
+							//Cria a o html da linha de roteiro e sua descrição
+							htmlRoteirosOficina +=
+								'<div id="Oficina_Plan_Linha_'+numRot+'" class="Oficina_Plan_Linha">'+
+		        		    	    '<div id="Oficina_Plan_Info_'+numRot+'" class="Oficina_Planejamento_Info" style="background-color: '+listaOficinasAluno[indexOficina].CorFraca+';" onclick="acordeon('+(numRot-1)+')">'+
+		        		    	    	'<div class="Oficina_Id_Roteiro">'+data[b].idRoteiro_aula+'</div>'+
+		        		    	        '<div class="Oficina_Plan_Num" style="background-color: '+listaOficinasAluno[indexOficina].CorForte+';">'+numRot+'</div>'+
+		        		    	        '<div class="Oficina_Plan_Nome">'+data[b].roteiro+'</div>'+
+		        		    	    '</div>'+
+		        		    	    '<div id="Oficina_Plan_Itens_'+numRot+'" class="Oficina_Plan_Itens">'+
+		        		    	        '<div class="Oficina_Plan_Desc Oficina_Plan_Item">Descrição: '+data[b].descricao+'</div>';
 
-			        	    htmlContent +=
-			        	    	    '</div>'+
-			        	    	'</div>';
-		        	    	numRot++;
+		        		   	// Recursos de aprendizagem: 
+							/*'<div class="Oficina_Plan_Recursos Oficina_Plan_Item">'+
+						        '<div class="Oficina_Recurso Rec_Livro">Lorem ipsum dolor sit amet</div>'+
+						        '<div class="Oficina_Recurso Rec_Video">Consectetur adipiscing elit</div>'+
+						    '</div>'+*/
+
+						    //Encerra o html da linha do roteiro
+			        		htmlRoteirosOficina +=
+		        		    	    '</div>'+
+		        		    	'</div>';
+
+		        		    //Incrementa o número dos roteiros
+		        		   	numRot++;
+		        		}
 		        	}
 				},
 				complete: function(){
@@ -168,24 +199,52 @@ function alterarAba(index, abbr, idCor) {
 			});
 		}
 	}
+	return htmlRoteirosOficina;
+}
 
-	$('.Acordeon_Oficina').html(htmlContent);
-	htmlContent = '';
+function ativarAba(indexOficina) {
+	
 
 	var abas = $('.aba_oficina');
-	var roteiros = $('.Oficina_Planejamento_Info');
-	var roteirosNums = $('.Oficina_Plan_Num');
 
 	for ( var i = 0; i < abas.length; i++ ) {
-		if ( i == index ) {
+		if ( i == indexOficina ) {
+			//Verifica se a aba clicada não está ativa
 			if ( !$($(abas).get(i)).hasClass('aba_ativa') ) {
 				$($(abas).get(i)).addClass('aba_ativa');
-				$(roteiros).attr('class', 'Oficina_Planejamento_Info OF_'+abbr+'_C_bg');
-				$(roteirosNums).attr('class', 'Oficina_Plan_Num OF_'+abbr+'_E_bg');
 			}
 		} else {
+			//Inativa as outras abas
 			$($(abas).get(i)).removeClass('aba_ativa');
 		}
+	}
+
+	var roteiros = retornarRoteirosOficina(indexOficina);
+	//Verifica se o retorno da função dos roteiros é true
+	if ( roteiros ) {
+		//Insere o retorno da função no html
+		$('.Acordeon_Oficina').html(roteiros);
+	} else {
+		//Cria mensagem indicando que não existem roteiros associados a esta oficina
+		var roteirosVazio =
+		 '<div class="Mensagem_Roteiro_Vazio">'+
+		 	'No momento, não existe nenhum roteiro associado a esta oficina.'+
+		 '</div>';
+		 $('.Acordeon_Oficina').html(roteirosVazio);
+	}
+
+	var blog = retornarBlogOficina(indexOficina);
+	//Verifica se o retorno da função do blog é true
+	if ( blog ) {
+		//Insere o retorno da função no html
+		$('#Postagens_Oficina').html(blog);
+	} else {
+		//Cria mensagem indicando que o blog desta oficina ainda não recebeu nenhuma postagem
+		var blogVazio = 
+			'<div class="Mensagem_Blog_Vazio">'+
+				'No momento, não existem postagens no blog desta oficina.'+
+			'</div>';
+		$('#Postagens_Oficina').html(blogVazio)
 	}
 }
 
@@ -193,8 +252,6 @@ function acordeon(index) {
 	var roteirosLista = $('.Oficina_Planejamento_Info');
 	var htmlObjContent = '';
 	var numObj = 0;
-
-	
 
 	for ( var i = 0; i < roteirosLista.length; i++ ) {
 		if ( i == index ) {
@@ -265,7 +322,5 @@ function acordeon(index) {
 }
 
 $(document).ready(function(){
-	retornarBlogOficina(37);
-	retornarOficinasAluno();
-	alterarAba(0, 'Mat', 1);
-})
+	carregarOficinasAluno();
+});

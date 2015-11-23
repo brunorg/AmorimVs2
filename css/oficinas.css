@@ -121,6 +121,12 @@ p{
     border: 0;
     border-top: 1px solid #aaa
 }
+.Mensagem_Blog_Vazio, .Mensagem_Roteiro_Vazio {
+    padding: 20px;
+    color: #666;
+    background-color: #EBEBE3;
+    min-height: 80px;
+}
 .cx_tema_1{
 	width:100%;
 	height:100%;
