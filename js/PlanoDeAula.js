@@ -576,7 +576,6 @@ function verificaData(dataBr){
 
 function returnOficinaProfessor() {
     var idProf = parseInt(localStorage.professorId);
-    console.log(idProf);
     
     $.ajax({
         url: path + 'Oficina/ListaPorProfessor/' + idProf,
@@ -584,7 +583,6 @@ function returnOficinaProfessor() {
         type: "GET",
         async: false,
         success: function(dataOficina) {
-        	console.log(dataOficina[0]);
         	nomeOficina = dataOficina[0].cor.nome;
         	corForte 	= dataOficina[0].cor.forte;
         	corMedia	= dataOficina[0].cor.medio;

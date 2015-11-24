@@ -472,7 +472,7 @@ div.item:nth-child(even){
 .linha4{
     position: relative;
     width: 100%;
-    bottom: 27px;
+    margin-bottom: 27px;
     height: auto;
 }
 .linhaObj{

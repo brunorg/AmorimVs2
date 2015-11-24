@@ -437,10 +437,10 @@ function utilizarRoteiroAula(idRoteiro){
 					'<div class="txt_mensagem">'+
 						'<div class="Roteiro_Col_4" style="width: 100%;">'+
 							'<div class="Roteiro_Linha No_Padding_Itens">'+
-								'<div class="Roteiro_Col_3">'+
+								'<div class="Roteiro_Col_3 No_Padding">'+
 									'<div class="Ano_Inserir_Info Input_Info">Roteiro</div>'+
 								'</div>'+
-								'<div class="Roteiro_Col_9">'+
+								'<div class="Roteiro_Col_9 No_Padding">'+
 									'<input id="roteiroAula" class="Input_Area" placeholder="Nome do roteiro" required value="'+data[i].roteiro+'"> </input>'+
 								'</div>'+
 							'</div>'+
@@ -449,10 +449,10 @@ function utilizarRoteiroAula(idRoteiro){
 					  '<div class="txt_mensagem">'+
 						'<div class="Roteiro_Col_4" style="width: 100%;">'+
 							'<div class="Roteiro_Linha No_Padding_Itens">'+
-								'<div class="Roteiro_Col_3">'+
+								'<div class="Roteiro_Col_3 No_Padding">'+
 									'<div class="Ano_Inserir_Info Input_Info">Descrição</div>'+
 								'</div>'+
-								'<div class="Roteiro_Col_9">'+
+								'<div class="Roteiro_Col_9 No_Padding">'+
 									'<input id="descricao" class="Input_Area" placeholder="Descrição do roteiro" required value="'+data[i].descricao+'"> </input>'+
 								'</div>'+
 							'</div>'+
@@ -474,10 +474,10 @@ function utilizarRoteiroAula(idRoteiro){
 				  '<div class="txt_mensagem">'+
 					'<div class="Roteiro_Col_4" style="width: 100%;">'+
 						'<div class="Roteiro_Linha No_Padding_Itens">'+
-							'<div class="Roteiro_Col_3">'+
+							'<div class="Roteiro_Col_3 No_Padding">'+
 								'<div class="Ano_Inserir_Info Input_Info">Objetivo '+cont+'</div>'+
 							'</div>'+
-							'<div class="Roteiro_Col_9">'+
+							'<div class="Roteiro_Col_9 No_Padding">'+
 								'<input id="objetivo'+cont+'" class="Input_Area objetivoRoteiro" placeholder="Objetivo" required value="'+objetivo+'" valAtual="'+objetivo+'" idObjetivo="'+idObjetivo+'"> </input>'+
 							'</div>'+
 						'</div>'+
@@ -723,10 +723,10 @@ function modalObjetivo(idObjetivo){
 				'<div class="txt_mensagem">'+
 					'<div class="Roteiro_Col_4" style="width: 100%;">'+
 						'<div class="Roteiro_Linha No_Padding_Itens">'+
-							'<div class="Roteiro_Col_3">'+
+							'<div class="Roteiro_Col_3 No_Padding">'+
 								'<div class="Ano_Inserir_Info Input_Info">Objetivo</div>'+
 							'</div>'+
-						'<div class="Roteiro_Col_9">'+
+						'<div class="Roteiro_Col_9 No_Padding">'+
 							'<input id="objetivoAula" class="Input_Area" placeholder="Nome do roteiro" required value="'+data.Objetivo+'"> </input>'+
 						'</div>'+
 					'</div>'+
