@@ -69,7 +69,6 @@ textarea{
 	}
 	.Plano_Estudo_Content_Titulo .botoes .historico_ativo
 	{
-		background:#FFFFFF url(../img/plano_estudo_historico_ativo.png);
 		width: 51px;
 		height: 51px;
 		float: left;
@@ -135,12 +134,10 @@ textarea{
 	.bloco_campo {
 		width:40%;
 		float: left;
-		/*margin: 25px 2px 25px 26px;*/
 	}
 	.bloco_campo_fim {
 		width: 40%;
 		float: left;
-		/*margin:25px 0px;*/
 	}
 	.input_data{
 		width: 86px;

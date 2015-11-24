@@ -2,7 +2,11 @@ var userID = usuarioId;
 var professorID = localStorage.getItem("professorId");;
 var confEdita = false;
 var dataUsuario;
-var planoAula;	
+var planoAula;
+var nomeOficina	= '';
+var corForte 	= '';
+var corMedia 	= '';
+var corFraca 	= '';
 
 //Procedimento para pegar a data atual
 var data = new Date();
@@ -17,7 +21,6 @@ var data = new Date();
 	}
 
 var dataAtual = Date.UTC(ano, mes, dia);  
-console.log(Date(ano, mes, dia))
 
 var List = [];
 var confData = '';
@@ -71,8 +74,13 @@ $(document).ready(function() {
 		$("#box_novo").removeClass("exibir");
 		$("#box_historico").toggleClass("exibir");
 		$(".novo").removeClass("novo_ativo");
-		$(".novo").removeClass("OF_Art_M_bg");
+		$(".novo").css("background-color",corForte);
 		$(".historico").toggleClass("historico_ativo");
+		if ( $(".historico").hasClass("historico_ativo") ) {
+			$(".historico").css("background-color",corMedia);
+		} else {
+			$(".historico").css("background-color",corForte);
+		}
 	});
 
 	$(".novo").click(function(){
@@ -83,15 +91,20 @@ $(document).ready(function() {
 		$("#box_historico").removeClass("exibir");
 		$("#box_novo").toggleClass("exibir");
 		$(".historico").removeClass("historico_ativo");
+		$(".historico").css("background-color",corForte);
 		$(".novo").toggleClass("novo_ativo");
-		$(".novo").toggleClass("OF_Art_M_bg");
+		if ( $('.novo').hasClass('novo_ativo') ) {
+			$(".novo").css("background-color",corMedia);
+		} else {
+			$(".novo").css("background-color",corForte);
+		}
 	});	
 	
 	$("#cancelar").click(function(){
 		alert('cancelar');
 		$("#box_novo").removeClass("exibir");
 		$(".novo").removeClass("novo_ativo");
-		$(".novo").removeClass("OF_Art_M_bg");
+		$(".novo").css("background-color",corForte);
 		$("#box_novo").css("height", "130px");
 		$("#botoes").hide();
 		$('#data_inicio').val("");
@@ -142,7 +155,6 @@ $(document).ready(function() {
 
 				data: "action=create&data_ini="+dataInicio+"&objetivos=&idBlog=&tarefa_casa=&registro_atividade=&data_fim="+dataFim+"&idProfessor="+professorID,
 				success: function(d) {
-					console.log(d);
 					if (d>0){
 					//IdentificadorPlanoEstudo = d;
 						$("#box_novo").removeClass('exibir');
@@ -188,7 +200,7 @@ $(document).ready(function() {
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
-	}).next(".ui-datepicker-trigger").addClass("OF_Art_M_bg");
+	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
 	
 	$( "#data_fim" ).datepicker({
 		showOn: "button",
@@ -214,18 +226,15 @@ $(document).ready(function() {
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
-	}).next(".ui-datepicker-trigger").addClass("OF_Art_M_bg");
+	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
 	
 	$(".Conteudo_Coluna").scroll(function(){
-		console.log("Coluna");
 		$("#box_novo").removeClass("exibir");
 	});
 	$(".conteudo_plano").scroll(function(){
-		console.log("conteudo");
 		$("#box_novo").removeClass("exibir");
 	});
 	$(".Plano_Estudo_Content").scroll(function(){
-		console.log("Content");
 		$("#box_novo").removeClass("exibir");
 	});
 	
@@ -301,7 +310,6 @@ function editar() {
 
 function reSetPlano(ID)
 {
-	console.log('Reset: '+ID);
 	$.ajax({
 		url: path + "PlanoAula/" + ID,
 		type: "GET",
@@ -316,7 +324,7 @@ function reSetPlano(ID)
 	$("#box_novo").removeClass("exibir");
 	$("#box_historico").toggleClass("exibir");
 	$(".novo").removeClass("novo_ativo");
-	$(".novo").removeClass("OF_Art_M_bg");	
+	$(".novo").css("background-color",corForte);
 	$(".historico").toggleClass("historico_ativo");
 	
 	$('.dadosObjetivos').empty();
@@ -398,7 +406,6 @@ function loadHistorico(){
 	    url: path+"PlanoAula/ProfessorData/" + professorID,
     }).then(function(data) {
     	
-    	console.log(data);
     $('.historicoData').remove();
     var comprimento = 4;
     	
@@ -530,7 +537,6 @@ function RetornaProfessorPlano()
 	var retorno;
 	if(base64_decode(GetURLParameter('ID')) == undefined)
 	{
-		console.log(userID);
 		$.ajax({
 			//url: path+"ProfessorFuncionario/"+userID,
 			url: path+"ProfessorFuncionario/98",
@@ -538,8 +544,6 @@ function RetornaProfessorPlano()
 			async:false,
 			crossDomain: true,
 			success: function(d) {
-				console.log('-----');
-				console.log(d);
 			
 				retorno = d.idprofessorFuncionario;
 			}
@@ -568,6 +572,45 @@ function verificaData(dataBr){
   
 }
 
+//----------------------------------------------------------------------------
+
+function returnOficinaProfessor() {
+    var idProf = parseInt(localStorage.professorId);
+    console.log(idProf);
+    
+    $.ajax({
+        url: path + 'Oficina/ListaPorProfessor/' + idProf,
+        crossDomain: true,
+        type: "GET",
+        async: false,
+        success: function(dataOficina) {
+        	console.log(dataOficina[0]);
+        	nomeOficina = dataOficina[0].cor.nome;
+        	corForte 	= dataOficina[0].cor.forte;
+        	corMedia	= dataOficina[0].cor.medio;
+        	corFraca	= dataOficina[0].cor.fraco;
+        	nomeOficina	= dataOficina[0].nome.split(' ',1);
+
+        	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina[0].cor.forte);
+        	$('.Bg_Imagem_Calendario').css('background-color',dataOficina[0].cor.forte);
+        	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina[0].cor.forte);
+        	$('#btnSubmit').css('background-color',dataOficina[0].cor.forte);
+        	$('.input_data').css('background-color',dataOficina[0].cor.forte);
+        	$('#data_inicio').css('background-color',dataOficina[0].cor.fraco);
+        	$('#data_fim').css('background-color',dataOficina[0].cor.fraco);
+        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1').css('color',dataOficina[0].cor.forte);
+        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina[0].cor.forte);
+        	$('#box_novo').css('border', '1px solid '+dataOficina[0].cor.forte);
+        	$('#box_historico').css('border', '1px solid '+dataOficina[0].cor.forte);
+        	$('.titulo').text('Plano de aula | Oficina de ' + nomeOficina);
+        	$('.ui-datepicker-trigger').css('background-color',dataOficina[0].cor.medio);
+        	$('.ui-datepicker-title').css('background-color',dataOficina[0].cor.forte);
+        	$('.ui-widget-header').css('background-color',dataOficina[0].cor.forte);
+        }
+    });
+}
+//----------------------------------------------------------------------------
+
 function trataDatas(data_ini, data_fim){
 	dataInicio = data_ini;
 	dataFim =  data_fim;
@@ -580,8 +623,6 @@ function trataDatas(data_ini, data_fim){
 	
 	if (mesInicio == mesFim){
 		mes = retornaMesByNumero(parseInt(mesFim));
-		console.log(dataInicio);
-		console.log(dataFim);
 		if (diaInicio != diaFim){
 			$("#Periodo_Plano_Estudo").text(diaInicio+' a '+diaFim+' de '+mes+' de '+anoInicio);
 		}else{
@@ -626,3 +667,6 @@ function carregarPlano(){
 	$('#dataFim').val(planoAula[0].data_fim);
 	
 }
+$(document).ready(function(){
+	returnOficinaProfessor();
+});
