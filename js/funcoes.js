@@ -139,6 +139,15 @@ $(document).ready(function() {
 		}
 	});
 
+	//----------------------------------------------------------------------
+
+	// Mantém o modal no centro da tela ao redimensionar a janela do browser
+	$(window).resize(function(){
+		centralizarModal();
+	});
+
+	//----------------------------------------------------------------------
+
 	$("#blocoGeral").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
 		scrollButtons:{
@@ -519,10 +528,19 @@ function base64_decode(data) {
 	tipo_btn = Tipo do botão se vai ser EX: 'OK','CANCEL'
 	class_btn = Estilo do botão 
 	tipo_msg = Tipo da mensagem que será exibida e icone EX: 'sucesso','erro' 
- */ 
+ */
+
+function centralizarModal()
+{
+	var alturaBox = parseInt($('.box_mensagem').height());
+	var alturaTela = parseInt($(window).height());
+	var topPos = Math.floor((alturaTela/2 - alturaBox/2)).toString() + 'px';
+
+	$('.box_mensagem').css('top', topPos);
+}
+
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
-{	
-	console.log(class_btn);
+{
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
@@ -535,6 +553,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 							'</div>';
 
 		$( "#boxMensagemGeral" ).html(HtmlContent).show();
+		centralizarModal();
 
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);
@@ -556,6 +575,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 							'</div>';
 
 		$( "#boxMensagemGeral" ).html(HtmlContent).show();
+		centralizarModal();
 
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);
@@ -576,6 +596,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 							'</div>';
 
 		$( "#boxMensagemGeral" ).html(HtmlContent).show();
+		centralizarModal();
 
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);

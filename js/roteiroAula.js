@@ -87,6 +87,7 @@ $(document).ready(function(){
 //				                  );
 				$("#linha1,#linha2,#btnSalvar").css("display","none");
 				mensagem('Roteiro salvo com sucesso!','OK','bt_ok','sucesso');
+				
 				$("#Rot_inserido_Nome").html(roteiro);
 				$("#Desc_Inserido_Nome").html(descricao);
 				MostrarObjetivo();
@@ -147,7 +148,12 @@ $(document).ready(function(){
 				mensagem('Objetivo salvo com sucesso!','OK','bt_ok','sucesso');
 			}
 		};
-	})
+	});
+	
+	//Mantém o modal de edição centralizado na tela quando a janela é redimensionada.
+	$(window).resize(function(){
+		centralizarBoxModal();
+	});
 //
 //	$("#btnEdit").click(function(){
 //		var roteiro= $("#val_roteiro").val();
@@ -404,7 +410,6 @@ function clonarRoteiroAula(idRoteiroAula){
 		dataType:'text',
 		data:'idOficinaProfessor='+oficinaProfessor+'&idRoteiroAula='+idRoteiroAula,
 		success: function(d) {
-			console.log('dd');
 			mensagem('Roteiro clonado com sucesso!','OK','bt_ok','sucesso');
 			loading("final");
 			return false;
@@ -502,6 +507,8 @@ function utilizarRoteiroAula(idRoteiro){
 	
 	
 	$('#boxModal').html(HtmlContent).css('display','block');
+	centralizarBoxModal();
+
 	return false;
 }
 
@@ -611,6 +618,36 @@ function fecharBoxModal(){
 	$('#boxModal').css('display','none');
 }
 
+//-----------------------------------------------------------------------------------------------------
+
+function centralizarBoxModal()
+{
+	//Existe uma função semelhante a essa no funcoes.js. Porém, ela lida com os modais de mensagem.
+	//Como haverá inputs em modais somente em algumas páginas, eu preferi manter essas funções locais.
+
+	var heightBox 		= parseInt($('.box_mensagem_rotcad').height());
+	var heightWindows	= parseInt($(window).height());
+	var topBox			= Math.floor((heightWindows/2 - heightBox/2)).toString() + 'px';
+
+	$('.box_mensagem_rotcad').css('top', topBox);
+}
+
+function verificarTamanhoModal()
+{
+	//Manter até (e se) inserir a barra de rolagem no modal.
+	var heightBox 		= parseInt($('.box_mensagem_rotcad').height());
+	var heightWindows	= parseInt($(window).height());
+
+	if ( heightWindows - heightBox <= 100) {
+		mensagem("Ainda não tem barra de rolagem.","OK","bt_ok","alerta");
+		return false;
+	} else {
+		return true;
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------
+
 function editarRoteiro(){
 	var roteiro= $("#roteiroAula").val();
 	var descricao= $("#descricao").val();
@@ -674,21 +711,26 @@ function editarRoteiro(){
 }
 
 function criarCampoNovoObjetivo(){
-	cont = ($('.txt_mensagem').size() - 2);
-	HtmlContent =
-		  '<div class="txt_mensagem">'+
-			'<div class="Roteiro_Col_4" style="width: 100%;">'+
-				'<div class="Roteiro_Linha No_Padding_Itens">'+
-					'<div class="Roteiro_Col_3">'+
-						'<div class="Ano_Inserir_Info Input_Info">Objetivo '+cont+'</div>'+
-					'</div>'+
-					'<div class="Roteiro_Col_9">'+
-						'<input id="objetivo'+cont+'" class="Input_Area objetivoRoteiro" placeholder="Objetivo" required value="" valAtual="" idObjetivo=""> </input>'+
+	var verificador = verificarTamanhoModal();
+
+	if ( verificador ) {
+		cont = ($('.txt_mensagem').size() - 2);
+		HtmlContent =
+			  '<div class="txt_mensagem">'+
+				'<div class="Roteiro_Col_4" style="width: 100%;">'+
+					'<div class="Roteiro_Linha No_Padding_Itens">'+
+						'<div class="Roteiro_Col_3 No_Padding">'+
+							'<div class="Ano_Inserir_Info Input_Info">Objetivo '+cont+'</div>'+
+						'</div>'+
+						'<div class="Roteiro_Col_9 No_Padding">'+
+							'<input id="objetivo'+cont+'" class="Input_Area objetivoRoteiro" placeholder="Objetivo" required value="" valAtual="" idObjetivo=""> </input>'+
+						'</div>'+
 					'</div>'+
 				'</div>'+
-			'</div>'+
-		  '</div>';
-	$('.txt_mensagem').not('.botao_mais').last().after(HtmlContent);
+			  '</div>';
+		$('.txt_mensagem').not('.botao_mais').last().after(HtmlContent);
+		centralizarBoxModal();
+	}
 }
 
 function excluirObjetivo(idObjetivo){
@@ -717,7 +759,6 @@ function modalObjetivo(idObjetivo){
 		crossDomain: true,
 		dataType: 'json',
 		success: function (data) {
-			console.log(data);
 			
 			HtmlContent = '<div class="box_mensagem_rotcad">'+
 				'<div class="txt_mensagem">'+
@@ -742,6 +783,7 @@ function modalObjetivo(idObjetivo){
 			'</div>';
 			
 			$('#boxModal').html(HtmlContent).css('display','block');
+			centralizarBoxModal();
 		}
 	});
 }

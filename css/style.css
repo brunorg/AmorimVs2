@@ -394,7 +394,13 @@ html, body
 					font-size: 11px;
 					background-repeat: no-repeat;
 					color:rgb(102,102,102);
-				}	
+				}
+				.ui-corner-all {
+					cursor: pointer;
+				}
+				.boxCalendario {
+					position: relative;
+				}
 				
 				/*Style caixa apontar presenÃ§a professor*/
 				#presenca_page{
@@ -794,14 +800,14 @@ html, body
 			
 #Evento{
 	width: 350px;
-	height: 620px;
-	position: relative;
-	float: left;
-	top: -251px;
-	left: 256px;
-	color: #666;
-	display:none;
-	z-index:1;
+    height: auto;
+    position: absolute;
+    float: left;
+    bottom: 0;
+    left: 267px;
+    color: #666;
+    display: none;
+    z-index: 1;
 }
 
 .eventoImagem{
@@ -1095,11 +1101,13 @@ input[type=date]::-webkit-inner-spin-button{
 
 .box_mensagem{
 	width: 400px;
-	height: 150px;
+	min-height: 150px;
+	height: auto;
 	background-color: #F2F2EE;
 	position: absolute;
-	margin: 0px 31%;
-	top: 40%;
+	margin: 0px;
+	margin-left: -200px;
+	left: 50%;
 	border: 2px solid #FFFFFF;
 }
 
@@ -2663,9 +2671,9 @@ font-family: "proxima-nova",sans-serif;
 		top:-121px !important;
 	}
 	#Evento {
-		height: 644px;
- 		  left: 0px;
- 		   top: -256px;
+		height: auto;
+	    left: 267px;
+	    bottom: 39px;
 	}
 	
 	#presenca {
