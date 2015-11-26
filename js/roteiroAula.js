@@ -79,7 +79,7 @@ $(document).ready(function(){
 			async: false,
 			crossDomain: true,
 			dataType: 'json',
-			data:'action=create&roteiro='+roteiro+'&Descricao='+descricao+'&idOficinaProfessor=3',
+			data:'action=create&roteiro='+roteiro+'&Descricao='+descricao+'&idOficinaProfessor='+IDOficinaProfessor,
 			success: function (data) {
 				$("#idRoteiro").val(data);
 //				$('#linha1').html('<input type="hidden" id="idRoteiro" value="'+data+'">'+
@@ -154,45 +154,7 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		centralizarBoxModal();
 	});
-//
-//	$("#btnEdit").click(function(){
-//		var roteiro= $("#val_roteiro").val();
-//		var descricao= $("#val_descricao").val();
-//		var IdRoteiro = $('#idRoteiro').val();
-//		var IdProfessor = $('#idOficinaProfessor').val();
-//
-//		$.ajax({
-//			url: path + "RoteiroAula",
-//			type: "POST",
-//			async: false,
-//			crossDomain: true,
-//			dataType: 'json',
-//			data:'action=update&roteiro='+roteiro+'&Descricao='+descricao+'&id='+IdRoteiro+'&idOficinaProfessor=3',
-//			success: function (data) {
-//				$('#linha1','#linha2').html('<input type="hidden" id="idRoteiro" value="'+data+'">');
-//				mensagem('Alterações salvas com sucesso!','OK','bt_ok','sucesso');
-//			}
-//		});
-//	});
-//	$("#btnEdit").click(function(){
-//		var IdRoteiro = $('#idRoteiro').val();
-//		var objetivos = $('.objetivos');
-//
-//		for (var i = 0; i < objetivos.length; i++) {
-//			$.ajax({
-//				url: path + "ObjetivoAula",
-//				type: "POST",
-//				async: false,
-//				crossDomain: true,
-//				dataType: 'json',
-//				data:'action=update&objetivo='+objetivos[i].value+ '&roteiro='+IdRoteiro+'&id='+objetivos[i].id,
-//				success: function (data) {
-//					$('#linha3').html('');
-//					mensagem('Alterações salvas com sucesso!','OK','bt_ok','sucesso');
-//				}
-//			});
-//		};	
-//	});
+	
 	$('#buscaRoteiro').change(function(){
 		var comboBusca = $('#buscaRoteiro option:selected').val();
 		if(comboBusca=="oficina"){
@@ -666,7 +628,7 @@ function editarRoteiro(){
 		async: false,
 		crossDomain: true,
 		dataType: 'json',
-		data:'action=update&roteiro='+roteiro+'&Descricao='+descricao+'&id='+IdRoteiro+'&idOficinaProfessor=3',
+		data:'action=update&roteiro='+roteiro+'&Descricao='+descricao+'&id='+IdRoteiro+'&idOficinaProfessor='+IDOficinaProfessor,
 		success: function (data) {
 			
 			$('.objetivoRoteiro').each(function(){
@@ -730,6 +692,7 @@ function criarCampoNovoObjetivo(){
 			  '</div>';
 		$('.txt_mensagem').not('.botao_mais').last().after(HtmlContent);
 		centralizarBoxModal();
+		cont = 2;
 	}
 }
 
