@@ -1,9 +1,11 @@
-﻿<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+﻿<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">	
 
 var usuario = localStorage.getItem("usuarioTipo");
 var usuarioId = localStorage.getItem("usuarioId");
+var dataChamada = getData("Chamada", null);
 var action;
 var ArrayChamada = [];
 	
@@ -14,62 +16,74 @@ $(document).ready(function(e) {
 	if(usuario == "Aluno"){
 	
 	/*Aqui vai o grupo do usuário logado*/
-		var alunoVariavel = JSON.parse(localStorage.getItem("alunoVariavel"));
-		var grupo = alunoVariavel.grupo.idgrupo;		 
+		var grupo = dadosUser.grupo.idgrupo;		 
 		
 		//Listagem de alunos do grupo
 		var dataAlunoVariavel = getData("AlunoVariavel/grupo", grupo);		
 
-		/*alterar para serviço que vai trazer somente nome e id do aluno variavel*/
 		var cont = 0;
-		var alunosP = new Array();	
+		var alunosP = new Array();	 
+		for(var a = 0; a < dataAlunoVariavel.length; a++){			
+			/*Condição para listar os alunos do grupo do usuario*/
+			//if((dataAlunoVariavel[a].grupo != null)&&(grupo == dataAlunoVariavel[a].grupo.idgrupo)){
+				alunosP[cont] = {
+									idAluno: dataAlunoVariavel[a].aluno.idAluno,
+									nomeAluno: dataAlunoVariavel[a].aluno.nome
+								}
+				cont++;
+			//}
+		}	
 		
-		var dadosChamada;
+		var dataP = new Date();										
+		var diaCorrido = dataP.getFullYear()+"-"+(dataP.getMonth()+1)+"-"+dataP.getDate();
+		var existeAlunoData = false;
+		var dataChamada = getData("Chamada", null);	
 		
-		$.ajax({
-			url: path+"Chamada/dataChamadaAtual/"+grupo,
-			type: "GET",
-			async:false,
-			dataType:"json",
-			success: function(data){								 			
-				for(var a = 0; a < data.length; a++){
-					dadosChamada = data;										
-					alunosP[cont] = {
-						idAluno: data[a].idAluno,
-						nomeAluno: data[a].nome,
-						statusChamada: data[a].status,
-						idAlunoVariavel: data[a].idAlunoVariavel,
-						idChamada: data[a].idChamada
-					}
-					cont++;
+		for(var j = 0; j < dataChamada.length; j++){			
+			for(p=0;p<alunosP.length;p++){					
+				var dtDB = new Date(dataChamada[j].data);
+				dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+
+				if((diaCorrido == dtDB)&&(alunosP[p].idAluno == dataChamada[j].aluno.idAluno)){
+					existeAlunoData = true;
+				}						
+			}
+		}
+		
+		if(existeAlunoData==true){
+			var HtmlContent = "";			
+			for(var j = 0; j < dataChamada.length; j++){			
+				var status="";
+				for(p=0;p<alunosP.length;p++){									
+					var dtDB = new Date(dataChamada[j].data);
+					dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+					if((diaCorrido == dtDB)&&(alunosP[p].idAluno == dataChamada[j].aluno.idAluno)){				
+						if((dataChamada[j].presenca == 0)){
+							status = "unselecionado";														
+						}else{
+							status = "preSelecionado";
+						}	
+						action = "update";
+						HtmlContent += '<input id="'+dataChamada[j].idchamada+'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
+						HtmlContent += '<label for="'+dataChamada[j].idchamada+'" id="'+alunosP[p].idAluno +'"  class="css-label '+status+'">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
+						HtmlContent += '<br>';
+					}			
 				}
 			}
-		});
-		
-		if(dadosChamada[0].existe == 0){			
-			var HtmlContent = "";			
-			var status="";
-			for(p=0;p<alunosP.length;p++){											
-				if((alunosP[p].statusChamada == 0)){
-					status = "unselecionado";														
-				}else{
-					status = "preSelecionado";
-				}					
-				action = "update";
-				HtmlContent += '<input id="'+alunosP[p].idChamada+'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
-				HtmlContent += '<label for="'+alunosP[p].idChamada+'" id="'+alunosP[p].idAluno +'"  class="css-label '+status+'">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
-				HtmlContent += '<br>';			
-			}
-		}else{
+		}
+		else{
 			var HtmlContent = "";
 			var selecionado="";
-			for(p=0;p<alunosP.length;p++){	
+			for(p=0;p<alunosP.length;p++){					
 				action = "create";
 				HtmlContent += '<input id="'+alunosP[p].idAluno +'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
 				HtmlContent += '<label for="'+alunosP[p].idAluno +'" id="'+alunosP[p].idAluno +'"  class="css-label unselecionado">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
 				HtmlContent += '<br>';
+
 			}
-		}				
+		}
+		
+				
 		$('.presenca_opcao').html(HtmlContent);
 	}
 	$(".css-label").click(function(){		
@@ -78,25 +92,55 @@ $(document).ready(function(e) {
 	});	
 		
 	$(".btn_pres").click(function(){
-		ConfirmaPresencaGrupo(dadosChamada[0].existe);
+		ConfirmaPresencaGrupo();
+
 	});
 	
 });
 
-function ConfirmaPresencaGrupo(bool)
+function verificaPresenca(){
+	var dataAtual = new Date();										
+	var dia = dataAtual.getFullYear()+"-"+(dataAtual.getMonth()+1)+"-"+dataAtual.getDate();
+	var existePresencaAnterior = false;
+	var dataChamada = getData("Chamada", null);
+	var cont = 0;
+	var grupoUsuario = dadosUser.grupo.idgrupo;
+	var dataAlunoVariavel = getData("AlunoVariavel/grupo", grupoUsuario);
+	var alunos = new Array();	 
+	for(var a = 0; a < dataAlunoVariavel.length; a++){			
+		/*Condição para listar os alunos do grupo do usuario*/
+		//if((dataAlunoVariavel[a].grupo != null)&&(grupo == dataAlunoVariavel[a].grupo.idgrupo)){
+			alunos[cont] = {
+								idAluno: dataAlunoVariavel[a].aluno.idAluno,
+								nomeAluno: dataAlunoVariavel[a].aluno.nome
+							}
+			cont++;
+		//}
+	}	
+	
+	for(var j = 0; j < dataChamada.length; j++){			
+		for(p=0;p<alunos.length;p++){					
+			var dtDB = new Date(dataChamada[j].data);
+			dtDB = dtDB.getFullYear()+"-"+(dtDB.getMonth()+1)+"-"+dtDB.getDate();
+			if((dia == dtDB)&&(alunos[p].idAluno == dataChamada[j].aluno.idAluno)){
+				existePresencaAnterior = true;
+			}						
+		}
+	}
+
+	return existePresencaAnterior;
+}	
+
+function ConfirmaPresencaGrupo()
 {
 	var elementosAC = $('.preSelecionado');
 	var valores="";
-	var presenca;
 	//debugger;
-	if(bool==1)
-		presenca = false;	
-	else
-		presenca = true;
-	
+	var presenca = verificaPresenca();
 	//console.log(elementosAC.length);
 	
 	for (var i = 0; i < elementosAC.length; i++) {
+		console.log("iteração " + i + " selecionado");
 		var data = new Date();
 		var diaCorrido = data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate();
 
@@ -118,30 +162,32 @@ function ConfirmaPresencaGrupo(bool)
 			crossDomain: true,
 			url: path+"Chamada",
 			data: "action="+action+valores,
-			beforeSend: function () {
-				loading("inicial");
-			},
 			success: function(retorno){
 				$(elementosAC[contAC]).attr("for", retorno);
 				mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso");
+				console.log(retorno + "---------" + i + "------" + contAC);
 				contAC++;				
 			},
 			error: function(retorno){
 				mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
-			},
-			complete: function () {
-				loading("final");
 			}        
 		});
 	}	
 
 	var elementosN = $('.unselecionado');
 	
+	//console.log(elementosN.length);
+	
 	for (var i = 0; i < elementosN.length; i++) {
 		console.log("iteração " + i + " Não selecionado");
 		var data = new Date();
 		var diaCorrido = data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate();
-
+		
+		/*if(action=="create"){
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id");
+		}else{
+			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id")+"&id="+$(elementosN[i]).attr("for");
+		}*/
 
 		if (presenca == false)
 		{
@@ -154,7 +200,9 @@ function ConfirmaPresencaGrupo(bool)
 			action = "update";
 			valores = "&data="+diaCorrido+"&presenca=0&aluno="+$(elementosN[i]).attr("id")+"&id="+$(elementosN[i]).attr("for");
 		}
+		//console.log(action + "---" + valores);
 		
+		//console.log("não selecionado"+valores);
 		contN = 0;	
 		$.ajax({
 			type: "POST",
@@ -174,14 +222,16 @@ function ConfirmaPresencaGrupo(bool)
 	}
 }
 
-function loading(estado) {
-    if(estado == "inicial"){
-		$('.boxGlobal').load("preloader_JS.html").css({"display":"block","padding-top":"300px"});
+function getGrupoId()
+{
+	var dataGrupo = getData("Grupo", null);
+
+	for(var a=0; a<dataGrupo.length; a++)
+	{
+		/*if(dadosUser.grupo.idgrupo)*/
 	}
-	if(estado == "final"){
-		$('.boxGlobal').html("").hide();
-	}
-};
+}
+
 
 //Function fecha div de Evento e Chamada
 function fecharBox(idBox){

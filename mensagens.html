@@ -89,15 +89,17 @@
                     <!--Coluna a esquerda-->    
                     <div class="Conteudo_Coluna" id="Content_lateral">    
                         <!--Menu lateral-->
-                        <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">                        	
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                        <div id="Content_lateral_Menu">
+                        	<div  ng-repeat="menu in menuHTML">
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
-                        </div>    
+                        </div>        
                     <!--Calendario-->                    
                     <div id="Content_lateral_Calendario">
                         <div id="datepicker"></div>
