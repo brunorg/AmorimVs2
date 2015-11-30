@@ -94,7 +94,7 @@ div[class*="box_col"]:last-of-type {
     display: none;
 }
 
-.conteudoPequeno{height: 390px;}
+.conteudoPequeno{height: 215px;}
 
 .conteudoMedio{height: 500px;}
 
@@ -107,7 +107,7 @@ div[class*="box_col"]:last-of-type {
 
 .inputArea{
 	border: 1px solid #CCCCCC;
-	color: #CCCCCC;
+	color: #999999;
 	resize: none;
 	font-size: 16px; 
     background-color: #EFEFEF;
@@ -142,6 +142,7 @@ div[class*="box_col"]:last-of-type {
     width: 100%;
     border: 1px solid #CCCCCC;
     font-size: 10px;
+    padding: 4px 8px;
 }
 
 .mensagemGrande{
@@ -149,7 +150,11 @@ div[class*="box_col"]:last-of-type {
 }
 
 .mensagemMedia{
-    height: 115px;
+    height: 130px;
+}
+
+.mensagemPequena{
+    height: 100px;
 }
 
 .selectArea{
@@ -173,27 +178,23 @@ div[class*="box_col"]:last-of-type {
     padding-right: 0px;
 }
 
-.selectTitle{
-	height: 100%;
-	float: left;
-	text-align: right;
-	color: #CCCCCC;
-}
-
 .selectOptions{
 	height: 100%;
 	overflow: hidden;
-	color: #CCCCCC;
     background: url(../img/ic_drop_pequeno.png) no-repeat right -1px;
     padding: 4px 8px;
 }
 
 .selectOptions select{
 	width: 150%;
-	color: #CCCCCC;
+	color: #999999;
 	font-size: 16px;
     margin-top: -1px;
     cursor: pointer;
+}
+
+select[value="0"]{
+    color: #CCCCCC;
 }
 
 .selectMedio{
@@ -222,7 +223,13 @@ div[class*="box_col"]:last-of-type {
     width: 15px;
 }
 
-.botaoIcone img{
+.iconeDeleteUpload{
+    float: left;
+    width: 15px;
+    padding-right: 5px;
+}
+
+.botaoIcone img ,.iconeDeleteUpload img{
     width: 100%;
     cursor: pointer;
 }
@@ -270,6 +277,20 @@ div[class*="box_col"]:last-of-type {
 .postDestinatario{
     color: #CCCCCC;
     font-size: 10px;
+}
+.fileUpload{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+}
+.uploadContainer{
+    float: left;
+    display: none;
+}
+.uploadText{
+    font-size: 14px;
+    color: #999999;
+    float: right;
 }
 
 

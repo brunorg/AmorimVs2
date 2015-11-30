@@ -75,15 +75,15 @@
                     <!--Coluna a esquerda-->    
                     <div class="Conteudo_Coluna" id="Content_lateral">    
                         <!--Menu lateral-->
-                        <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">
-                        		<a href="{{menu.href}}">                        	
-                            	    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                            	    	<div ng-if="menu.class== 'mensagens'" class="label">{{menuInfoM}}</div>
-                            	        <div ng-if="menu.class== 'forum'" class="label">{{menuInfoF}}</div>
-                            	        {{menu.label}}
-                            	    </div>
-                            	</a>
+                        <div id="Content_lateral_Menu">
+                            <div  ng-repeat="menu in menuHTML">
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
                         </div>    
                         <!--Calendario-->                    
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="conteudoPost conteudoMedio" id="postagensConteudo">
                                     <div class="postContainer">
-                                        <div class="areaPost">
+                                        <!-- <div class="areaPost">
                                             <div class="post postMedio">
                                                 <div class="postTitulo"> 
                                                     Lorem Ipsum
@@ -171,7 +171,7 @@
                                         <div class="areaPost">
                                             <div class="post postMedio">
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="conteudoNovo conteudoMedio" id="postagensNova">
@@ -194,6 +194,12 @@
                                                 </div>
                                             </div>
                                             <div class="linhaConteudo">
+                                                <div class="uploadContainer" id="arquivoUpload">
+                                                    <div class="uploadText" id="uploadPath"></div>
+                                                    <div class="iconeDeleteUpload" id="removerUpload">
+                                                        <img src="img/ic_del_peq.png">
+                                                    </div>
+                                                </div>
                                                 <div class="linhaBotoes">
                                                     <div class="containerIcone">
                                                         <div class="botaoIcone" id="salvarPostagem">
@@ -220,9 +226,8 @@
                                     <input type="hidden" id="postagemId" name="id"/>
                                     <input type="hidden" id="postagemTitulo" name="titulo"/>
                                     <input type="hidden" id="postagemOficina" name="oficina"/>
-                                    <input type="hidden" id="postagemAno" name="anoEstudo"/>
                                     <input type="hidden" id="postagemConteudo" name="Descricao"/>
-                                    <input type="hidden" id="postagemImagem" name=""/>
+                                    <input type="file" id="postagemImagem" class="fileUpload" name=""/>
                                 </form>      
                             </div>
                         </div>
@@ -234,7 +239,7 @@
                                             Relatórios
                                             <div class="botaoNovo" id="novoRelatorio"><img src="img/plano_estudo_novo_normal.png"></div>
                                         </div>
-                                        <div class="conteudoPost" id="relatorioConteudo">
+                                        <div class="conteudoPost conteudoPequeno" id="relatorioConteudo">
                                             <div class="postContainer">
                                                 <div class="areaPost">
                                                     <div class="post postMedio">
@@ -267,7 +272,56 @@
                                                     <div class="post postMedio">
                                                     </div>
                                                 </div>
+                                                <div class="areaPost">
+                                                    <div class="post postMedio">
+                                                    </div>
+                                                </div>
+                                                <div class="areaPost">
+                                                    <div class="post postMedio">
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="conteudoNovo conteudoPequeno" id="relatorioNova">
+                                            <div class="novoContainer">
+                                                <div class="areaNovo">
+                                                    <div class="linhaConteudo">
+                                                        <div class="containerSelect">
+                                                            <div class="selectArea selectMedio">
+                                                                <div class="selectOptions" id="selectOficina">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="linhaConteudo">
+                                                        <div class="containerSelect">
+                                                            <div class="selectArea selectMedio">
+                                                                <div class="selectOptions" id="selectOficina">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="linhaConteudo">
+                                                        <div class="containerAreaMensagem">
+                                                            <textarea class="inputArea inputMensagem mensagemPequena" id="conteudoPostagens" placeholder="Digite aqui o texto da postagem."></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="linhaConteudo">
+                                                        <div class="linhaBotoes">
+                                                            <div class="containerIcone">
+                                                                <div class="botaoIcone" id="salvarRelatorio">
+                                                                    <img src="img/salvar_ed.png">
+                                                                </div>
+                                                            </div>
+                                                            <div class="containerIcone">
+                                                                <div class="botaoIcone" id="cancelarRelatorio">
+                                                                    <img src="img/ic_del_peq.png">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>
@@ -287,7 +341,7 @@
                                         <div class="boxTitulo">
                                             Mural Coordenação
                                         </div>
-                                        <div class="conteudoPost" id="coordenacaoConteudo">
+                                        <div class="conteudoPost conteudoPequeno" id="coordenacaoConteudo">
                                             <div class="postContainer">
                                                 <div class="areaPost">
                                                     <div class="post postMedio">
@@ -299,20 +353,6 @@
                                                         </div>
                                                         <div class="postDestinatario">
                                                             Matemática | 5º Ano
-                                                        </div>
-                                                        <div class="linhaConteudo">
-                                                            <div class="linhaBotoes">
-                                                                <div class="containerIcone">
-                                                                    <div class="botaoIcone">
-                                                                        <img src="img/salvar_ed.png">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="containerIcone">
-                                                                    <div class="botaoIcone">
-                                                                        <img src="img/ic_del_peq.png">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -374,7 +414,6 @@
                                                     <div class="linhaConteudo">
                                                         <div class="containerSelect">
                                                             <div class="selectArea selectMedio">
-                                                                <div class="selectTitle">Grupo: </div>
                                                                 <div class="selectOptions" id="selectGrupo">
                                                                     <select>
                                                                     </select>
@@ -391,7 +430,7 @@
                                                         <div class="linhaBotoes">
                                                             <div class="containerIcone">
                                                                 <div class="botaoIcone">
-                                                                    <img src="img/ic_edit.png">
+                                                                    <img src="img/salvar_ed.png">
                                                                 </div>
                                                             </div>
                                                             <div class="containerIcone">
@@ -658,14 +697,10 @@
                         </div>
                     </div>-->
 				</div>
-                <div id="boxMensagemGeral"></div>
-				<div class="boxCalendario"></div>
-				<div class="boxGlobal"></div>
-				
-				
-				
 			</div>             
-		</div><!--Fim Conteudo-->
-       
+		</div>
+        <div id="boxMensagemGeral"></div>
+        <div class="boxCalendario"></div>
+        <div class="boxGlobal"></div><!--Fim Conteudo-->
 	</body>
 </html>
