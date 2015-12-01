@@ -403,10 +403,9 @@ function change_Curtir(QAtivo,idRecurso){
 }
 
 function ocultaBtn(){
-	var perfil = localStorage.getItem("usuarioTipo");
-	if (perfil == "Coordenacao"){
+	if (dadosUsuario.perfil.perfil == "Coordenacao"){
 		$('.Espaco_Excluir').css("display","block");
-	}else if((perfil == "Aluno")||(perfil == "Professor")){
+	}else if((dadosUsuario.perfil.perfil == "Aluno")||(dadosUsuario.perfil.perfil == "Professor")){
 		$('.Espaco_Curtir').css("display","block");
 	}
 }

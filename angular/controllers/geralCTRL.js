@@ -94,7 +94,7 @@ app.controller('geralCTRL',function($scope,$http){
 		}	
 		//Logout do usuário
 		$scope.logout = function(){
-			localStorage.clear();			
+			localStorage.clear();		
 			window.location = 'index.html';
 		}
 	}

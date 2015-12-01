@@ -19,8 +19,8 @@ var RoteirosCompletosAdd = 0;
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
-localStorage.setItem("alunoEdt",alunoID);
 
+localStorage.setItem("alunoEdt",alunoID);
 var alunoVariavelID = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
 
 var dataPlanejamentoRoteiro;
