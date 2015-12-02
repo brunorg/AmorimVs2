@@ -1240,7 +1240,7 @@ font-family: "proxima-nova",sans-serif;
 	left: 0;
 	top:0;
 	display: none;
-	z-index: 9;
+	z-index: 10;
 }
 #boxModal{
 	width: 100%;
