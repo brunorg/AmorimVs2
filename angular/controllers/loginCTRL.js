@@ -29,8 +29,6 @@ app.controller('loginCTRL',function ($scope,$http) {
 				}
 			}else{
 				alert("Deve-se logar antes");
-				localStorage.setItem("usuarioTipo","semTipo");
-				localStorage.setItem("usuarioId","semId");
 				window.location = 'index.html';
 			}
 		});

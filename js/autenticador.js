@@ -2,10 +2,17 @@
 var confTutor;
 var retorno;
 var alunoNomeAno;
+
 var alunoID = localStorage.getItem("alunoId");
 var dadosUsuario = JSON.parse(localStorage.getItem("objetoUsuario"));
-var usuario = dadosUsuario.perfil.perfil;
-var usuarioId = dadosUsuario.idusuario;
+if(dadosUsuario){
+	var usuario = dadosUsuario.perfil.perfil;
+	var usuarioId = dadosUsuario.idusuario;
+}else{
+	alert("Deve-se logar antes");
+	window.location = 'index.html';
+}
+
 var dadosUser;
 var textoMsgNLida;	
 

@@ -384,7 +384,9 @@
 	.Btn_Del_Rot { background-image: url(../img/ic_del_b_peq.png); }
 
 	.Btn_Editar_Obj { background-image: url(../img/ic_editar_peq.png); }
-
+	
+	.Btn_AddAtv_Obj { background-image: url(../img/ic_add_peq.png); }
+	
 	.Btn_Del_Obj { background-image: url(../img/ic_del_peq.png); }
 
 	.Btn_Editar_Atv { background-image: url(../img/ic_editar_peq.png); }
