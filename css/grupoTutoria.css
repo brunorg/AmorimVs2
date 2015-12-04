@@ -1,0 +1,202 @@
+.grupoLegenda{
+	width:100%;
+	height:15px;
+	margin-bottom:14px;
+}
+.Legenda_Grade_Aluno{
+	width:auto;
+	height:100%;
+	float:right;
+	margin-left:5px;
+}
+.Cor_Legenda_Grade_Aluno{
+	height:10px;
+	width:30px;
+	float:left;
+}
+.Content_Legenda_Grade_Aluno .Legenda_Grade_Aluno:nth-child(4) .Cor_Legenda_Grade_Aluno{
+	background-color: rgb(75,183,192);
+}
+
+.Content_Legenda_Grade_Aluno .Legenda_Grade_Aluno:nth-child(3) .Cor_Legenda_Grade_Aluno{
+	background-color: rgb(72,97,170);
+}
+
+.Content_Legenda_Grade_Aluno .Legenda_Grade_Aluno:nth-child(2) .Cor_Legenda_Grade_Aluno{
+	background-color: rgb(255,166,89);
+}
+
+.Content_Legenda_Grade_Aluno .Legenda_Grade_Aluno:nth-child(1) .Cor_Legenda_Grade_Aluno{
+	background-color: rgb(242,203,103);
+}
+.Nome_Legenda_Grade_Aluno {
+	height: 100%;
+	width: auto;
+	float: left;
+	font-size: 12px;
+	margin-left: 7px;
+	margin-right: 20px;
+	color:#000000;
+}
+.marginDireita{
+	margin-right: 0px !important;
+}
+.grupoBox{
+    min-height: 137px;
+	margin-bottom:15px;
+}
+.grupoBlocoNomes{
+	width:33.4%;
+	min-height:135px;	
+	background-color:#F2F2EE;
+	float:left;
+	padding-bottom: 10px;
+}
+.grupoBlocoGraficoObj{
+	width:33.3%;
+	min-height:135px;	
+	background-color:#F2F2EE;
+	float:left;
+	padding-bottom: 10px
+}
+.grupoBlocoGraficoFreq{
+	width:33.3%;
+	min-height:135px;	
+	background-color:#F2F2EE;
+	float:left;
+	padding-bottom: 10px;
+}
+
+.grupoNome{
+	font-size:18px;
+	color:#1E8290;
+	margin:10px 0 0 10px;
+}
+.grupoGraficoTitulo{
+	font-size:9px;
+	color:#1E8290;
+	margin-top:20px;
+}
+.grupoGraficoTituloLeft{
+	font-size:9px;
+	color:#1E8290;
+	margin: 20px 0 0 84px;
+}    
+.grupoTituloBottom{
+	margin-bottom: 6px;
+}
+table.grupoTabela{
+	width:100%;
+	border-collapse: collapse;
+	position:relative;
+	z-index:999;
+}
+table.grupoTabela th{
+    font-size: 8px;
+    width: 15px;
+    color: #666666;
+    border-left: 1px solid #BFBDA9;
+    padding: -5px;
+}
+table.grupoTabela tr td{
+	border-left:1px solid #BFBDA9;
+	height: 39px;
+}
+table.grupoTabela tr td{
+	background:#FFFFFF;
+}
+.tableSeparacao td{
+	height:6px !important;
+	background:#F2F2EE !important;
+}
+.grupoLinhaAluno{
+	width: 97%;	
+	height: 39px;
+	background:#FFFFFF;
+	position: relative;
+    z-index: 3;
+	margin-top: 6px;	
+}
+.borderLeft{
+	margin-left:10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.borderRight{
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.ultimaColunaBBranca{
+	border-right: 1px solid #FFFFFF;
+}
+.caixaGL{
+	margin-top: 16px;
+}
+.caixaGR{
+	margin-top: 17px;
+}
+.grupoFotoAluno{
+	width: 38px;
+    height: 38px;
+	float: left;
+}
+
+.grupoFotoAluno img{
+	width: 33px;
+    height: 33px;
+    margin: 3px;
+}
+.grupoNomeAluno{
+	float: left;
+    height: 38px;
+    padding: 3.5% 2px;
+}
+.grupoNomeAluno span{
+	font-size:14px;
+	color: #666666;
+}
+.grupoCurtir{}
+
+.grupoGraficoFreqTitulo{
+	width: 85px;
+    height: 39px;
+    float: left;
+    position: relative;
+    z-index: 4;
+	padding-top: 4px;
+}
+.anoLetivo, .faltas, .grupoGraficoFreqTitulo h1{
+	margin:0;
+	color:#666666;
+	font-weight:normal;	
+}
+.grupoGraficoFreqTitulo h1{
+	font-size:11px;
+	width: 63px;
+    float: left;
+	text-align:right;
+	padding-right:4px;
+	padding-bottom: 4px;
+}
+.grupoGraficoFreqTitulo h2{
+	font-size: 11px;
+    color: #666666;
+    font-weight: normal;
+    width: 20px;
+    float: right;
+    text-align: right;
+}
+.freqTitulo{
+	width:50px;
+}
+.anoLetivo, .faltas{
+	
+}

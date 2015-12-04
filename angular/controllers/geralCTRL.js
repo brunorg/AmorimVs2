@@ -1,10 +1,7 @@
 var app = angular.module('app',['ngRoute']);
 
-
 app.controller('geralCTRL',function($scope,$http){
-	$scope.usuario = function(){
-		var usuario = dadosUsuario.perfil.perfil;
-		var usuarioId = dadosUsuario.idusuario;			
+	$scope.usuario = function(){		
 		switch (dadosUsuario.perfil.perfil){
 			case "Aluno":
 				var dadosAlunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));			

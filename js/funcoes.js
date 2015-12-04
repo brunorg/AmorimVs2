@@ -41,20 +41,27 @@ $(document).ready(function() {
 	
 	$('#presenca_prof').load("presenca_professor.html");
 	
-	//Abre a caixa para apontar presença do aluno
+	//Se usuário logado for um aluno e o mesmo for um lider ele abre botão de marcar presença do grupo
+	if((typeof dadosUser != 'undefined') && (dadosUser.grupo != null))
+	{
+		if(dadosUser.grupo.lider != null){
+			if(dadosUser.grupo.lider.idAluno == dadosUsuario.aluno.idAluno){
+				$("#rodape_calendario").css("display","block");
+				$("#rodape_calendario p").show();
+			}	
+		}						
+	}	
+	
+	//Abre uma caixa se o perfil for aluno e uma página se for professor, porém as duas para marcar presença
 	$("#apontar").click(function(){
-		if (usuario == "Aluno")
-		{
+		if (dadosUsuario.perfil.perfil == "Aluno"){
 			$("#Evento").hide();
 			$("#presenca").show();
 			$("#presenca .css-label").removeClass("selecionado");		
-		}
-		else if (usuario == "Professor")
-		{
+		}else if (dadosUsuario.perfil.perfil == "Professor"){
 			window.location.href = "presencaGrupos.html";
-		}
-			
-	});	
+		}			
+	});			
 	
 	//Abre a caixa para apontar presença do professor
 	$("#apontar_prof").click(function(){

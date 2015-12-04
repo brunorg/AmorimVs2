@@ -24,8 +24,8 @@ switch (usuario){
 			async:false,
 			crossDomain: true,
 			success: function(d) {
-				dadosUser = d;
-				localStorage.setItem("objetoAlunoVariavel", JSON.stringify(d));			
+				dadosUser = d;				
+				localStorage.setItem("objetoAlunoVariavel", JSON.stringify(d));		
 			}		
 		});
 		msgNaoVistas(usuarioId);

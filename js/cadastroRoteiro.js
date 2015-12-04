@@ -6,6 +6,9 @@ var dataRoteiro = getData("Roteiro", null);
 var dataObjetivo = getData("Objetivo", null);
 var dataAtividade = getData("Atividade", null);
 
+var atvCount = 2;
+var objCount = 1;
+
 $(document).ready(function(){
 	
 	/*Function do accordion*/
@@ -315,8 +318,6 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	
 	//Busca os roteiros que podem ser atribuidos ao aluno (apenas os roteiros do ano seguinte)
 	var dataRoteiroAno = getData("Roteiro/RoteiroAno", anoEstudo);
-	//console.log(anoEstudo);
-	//console.log(dataRoteiroAno);
 	
 	//Cria o Html com os selects
 	HtmlContentR = '<div class="multiselect">';
@@ -350,15 +351,15 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	return false;
 }
 
-var atvCount = 2;
-var objCount = 1;
-
 // Inserir Roteiro
 function inserirRoteiro () {
 	var anoRoteiro = $("#Input_Roteiro_Ano :selected").html();
 	var anoEstudo = $("#Input_Roteiro_Ano").val();
 	var nomeRoteiro = $("#Input_Roteiro_Nome").val();
 	
+	if (anoEstudo == '' || nomeRoteiro == '')
+		return mensagem("Todos os campos são obrigatórios!","OK","bt_ok","erro");
+		
 	$("#Roteiro_Inserido_Container").show();
 	$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoRoteiro+' ano | ');
 	$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nomeRoteiro);
@@ -459,25 +460,6 @@ function carregaAno(anoParaEditar){
 	return HtmlContent;
 }
 
-function excluirRoteiro(servico,id){	
-	$('#boxMensagemGeral').css('display','none');
-	$.ajax({
-		url: path+"Roteiro/InativarRoteiro/"+id,
-		type: "POST",
-		async:false,
-		crossDomain: true,
-		success: function(d) {
-					
-		}
-	});
-	$('#btnSalvarObj').css('display','none');
-	$('#Roteiro_Inserido_Container').css('display','none'); 
-	$('#Inserir_roteiro').css('display','block');
-	$('#btnInserirRoteiro').css('display','block');	
-	$('#Input_Roteiro_Nome').val('');
-	$('#Input_Roteiro_Ano').html(carregaAno());
-}
-
 function confereLinhasObj() {
 	if (numLinhas.length > 0) {
 		$("#Objetivos_Inseridos").show();
@@ -486,6 +468,53 @@ function confereLinhasObj() {
 
 // Inserir Objetivo
 function inserirObjetivoAtividade() {
+	
+	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
+	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
+	
+	if ($(".Nome_Objetivo_Input").val() == ''){
+		$(".Nome_Objetivo_Input").focus();
+		return mensagem("O campo objetivo é obrigatório!","OK","bt_ok","erro");
+	}
+	
+	cont = 1;
+	var erroAtv = false;
+	
+	for ( var i = 0; i < atividadesCont.length; i++ ) { //Verificação para ver se as atividades estão salvas de maneira correta.
+
+		//Primeiro verifica se todos os campos estão vazios, se estiver, não precisa salvar
+		if($(".nomeAtv").eq(i).val() == "" && $(".livroAtv").eq(i).val() == "" && $(".paginaAtv").eq(i).val() == ""){
+		
+			$('.Atividade_Linha').eq(i).hide();//apenas escondo a div para depois excluir. Excluir agora atrapalha o resultado do for  
+		
+		}else{	//Veriica se um cmapo esta em vazio de forma incorreta. 
+			if($(".nomeAtv").eq(i).val() == "" || $(".livroAtv").eq(i).val() == "" || $(".paginaAtv").eq(i).val() == ""){
+				erroAtv = true;
+			}
+		}
+	}
+	
+	//Remove as divs com campos que não precisarão ser salvos
+	$('.Atividade_Linha').each(function(){
+		if (!($(this).is(':visible'))) {
+			$(this).remove();
+		}
+	})
+	
+	//Enumera corretamente as atividades restantes
+	$('.numeroAtv').each(function(){
+		$(this).val(cont);
+		cont++;
+	})
+	
+	atvCount = cont; //seta o valor da atvCount de acordo com a quantidade de atividades.
+	
+	if (erroAtv == true){
+		return mensagem("Os campos título da atividade, e informações do livro são obrigatórios! Se não tiver o interesse de cadastrar, deixar todos os campos vazios de uma atividade.","OK","bt_ok","alerta");
+	}
+	//Seta um novo valor na variavel para verificar se estão corretos.
+	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário após excluir os inválidos
+	
 	var objetivo = { 								//Objeto com as propriedades do objetivo a ser inserido
 		nome: $(".Nome_Objetivo_Input").val(),
 		numero: $(".Numero_Objetivo_Input").val()
@@ -493,67 +522,73 @@ function inserirObjetivoAtividade() {
 	
 	var roteiro = $('#id').val();
 	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);	
-	if (idObjetivo) {
-		$('#Objetivos_Inseridos_Container').css('height','33px');
-	}	
 	
-	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
-	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
-
-	for ( var i = 0; i < atividadesCont.length; i++ ) {		
-		if($($(".nomeAtv").get(i)).val() != "" || $($(".numeroAtv").get(i)).val() != "" || $($(".livroAtv").get(i)).val() != "" || $($(".paginaAtv").get(i)).val() != ""){
-			var idAtividade = criarAtividade($($(".nomeAtv").get(i)).val(),$($(".numeroAtv").get(i)).val(),"",idObjetivo,$($(".paginaAtv").get(i)).val(),$($(".livroAtv").get(i)).val());	
-			atividadesLista[i] = {
-				numero: $($(".numeroAtv").get(i)).val(),
-				nome: $($(".nomeAtv").get(i)).val(),
-				livro: $($(".livroAtv").get(i)).val(),
-				pagLivro: $($(".paginaAtv").get(i)).val(),
-				atividadeId: idAtividade
-			}
-			if(i+1 == atividadesCont.length){
-				mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-			}
-		}			
+	if (atividadesCont.length > 0){
+		for ( var i = 0; i < atividadesCont.length; i++ ) {		
+				var idAtividade = criarAtividade($($(".nomeAtv").get(i)).val(),$($(".numeroAtv").get(i)).val(),"",idObjetivo,$($(".paginaAtv").get(i)).val(),$($(".livroAtv").get(i)).val());	
+				atividadesLista[i] = {
+					numero: $($(".numeroAtv").get(i)).val(),
+					nome: $($(".nomeAtv").get(i)).val(),
+					livro: $($(".livroAtv").get(i)).val(),
+					pagLivro: $($(".paginaAtv").get(i)).val(),
+					atividadeId: idAtividade
+				}
+		}
 	}
 
 	if(idObjetivo){
 		var linhaObjHtml = 
-		'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido">'+
+		'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido objetivo'+idObjetivo+'">'+
 			'<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info">'+
 				'<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
-				'<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome" onclick="expandirObj('+objCount+')">'+objetivo.nome+'</div>'+
+				'<div id="Obj_Inserido_Nome_'+objCount+'" class="Obj_Inserido_Nome" onclick="expandirObj('+idObjetivo+')">'+objetivo.nome+'</div>'+
 				'<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
+					'<div id="Btn_AddAtv_Obj_'+objCount+'" class="Btn_Obj Btn_AddAtv_Obj" onclick=editarAtividade("",'+idObjetivo+')></div>'+
 					'<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
-					'<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj"></div>'+
+					'<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
 				'</div>'+
 			'</div>';
 	}
 	
-	if (idAtividade) {	        
+	if (idAtividade) {        
 		linhaObjHtml += 
-		'<div id="Atvs_Obj_Inserido_'+objCount+'" class="Atvs_Obj_Inserido">';
+		'<div id="Atvs_Obj_Inserido_'+idObjetivo+'" class="Atvs_Obj_Inserido">';
 		var alturaDiv=0;
 		for(var i = 0; i < atividadesCont.length; i++) {
+			id = atividadesLista[i].atividadeId;
 			linhaObjHtml +=
-		    '<div id="Atv_Obj_Info_'+(i+1)+'" class="Atv_Obj_Info">'+
-		        '<div id="Atv_Obj_Num_'+(i+1)+'" class="Atv_Obj_Num">'+atividadesLista[i].numero+'</div>'+
-		        '<span id="Atv_Obj_Nome_'+(i+1)+'" class="Atv_Obj_Nome">'+atividadesLista[i].nome+'</span>'+
-		        '<span id="Atv_Obj_Livro_'+(i+1)+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
-		        '<span id="Atv_Obj_Pag_'+(i+1)+'" class="Atv_Obj_Pag">p. '+atividadesLista[i].pagLivro+'</span>'+
-		        '<div id="Atv_Inserida_Btns_'+(i+1)+'" class="Atv_Inserida_Btns">'+
-		            '<div id="Btn_Editar_Atv_'+(i+1)+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+atividadesLista[i].atividadeId+','+atividadesLista[i].numero+','+idObjetivo+')></div>'+
-		            '<div id="Btn_Del_Atv_'+(i+1)+'" class="Btn_Atv Btn_Del_Atv"></div>'+
+		    '<div id="Atv_Obj_Info_'+id+'" class="Atv_Obj_Info">'+
+		        '<div id="Atv_Obj_Num_'+id+'" class="Atv_Obj_Num Atv_Obj'+idObjetivo+'">'+atividadesLista[i].numero+'</div>'+
+		        '<span id="Atv_Obj_Nome_'+id+'" class="Atv_Obj_Nome">'+atividadesLista[i].nome+'</span>'+
+		        '<span id="Atv_Obj_Livro_'+id+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
+		        '<span id="Atv_Obj_Pag_'+id+'" class="Atv_Obj_Pag">p. <span class="Atv_Obj_Pag_OK">'+atividadesLista[i].pagLivro+'</span></span>'+
+		        '<div id="Atv_Inserida_Btns_'+id+'" class="Atv_Inserida_Btns">'+
+		            '<div id="Btn_Editar_Atv_'+id+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+id+','+idObjetivo+')></div>'+
+		            '<div id="Btn_Del_Atv_'+id+'" class="Btn_Atv Btn_Del_Atv" onclick=excluirAtividade('+id+')></div>'+
 		        '</div>'+
-		    '</div>';	
+		    '</div>';
 		}
 		linhaObjHtml +=
 		'</div>';	        
+	}else{
+		linhaObjHtml +=
+			'<div id="Atvs_Obj_Inserido_'+idObjetivo+'" class="Atvs_Obj_Inserido">'+
+			    '<div class="Atv_Obj_Info">'+
+			        '<strong>Nenhuma atividade cadastrada.<strong>'+
+		        '</div>'+
+			'</div>';
 	}
 	linhaObjHtml +=
 	'</div>';
 
+	//Procedimento para deixar a div do tamanho certo
 	$("#Objetivos_Inseridos_Container").append(linhaObjHtml);
-	objCount++
+	$("#Objetivos_Inseridos_Container").addClass("rotExpandido");
+	num = $(".Obj_Inserido").length * 33;
+	$("#Objetivos_Inseridos_Container").css('height',num+'px');
+	$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+	
+	objCount++;
 	atvCount = 2;
 
 	var objLimpo = 
@@ -575,7 +610,7 @@ function inserirObjetivoAtividade() {
                     '<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
                 '</div>'+
                 '<div class="Roteiro_Col_6">'+
-                    '<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj'+objCount+'" value="'+objCount+'"></input>'+
+                    '<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj'+objCount+'" value="'+objCount+'" readonly></input>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -599,7 +634,7 @@ function inserirObjetivoAtividade() {
                                 '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
                             '</div>'+
                             '<div class="Roteiro_Col_6">'+
-                                '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv1" value="1"></input></div>'+
+                                '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" readonly id="numeroAtv1" value="1" readonly></input></div>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -609,7 +644,7 @@ function inserirObjetivoAtividade() {
                                 '<div class="Atividade_Info Input_Info"> Página Livro</div>'+
                             '</div>'+
                             '<div class="Roteiro_Col_6">'+
-                                '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv1"></input></div>'+
+                                '<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv"></input></div>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -661,7 +696,7 @@ function inserirObjetivoAtividade() {
 											'<div class="Input_Info Numero_Objetivo_Info">Número</div>'+
 										'</div>'+
 										'<div class="Roteiro_Col_6">'+
-											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" id="numeroObj_edt" value="'+objetivoLinhaN+'"></input>'+
+											'<input type="text" class="Input_Area Numero_Objetivo_Input numeroObj" readonly id="numeroObj_edt" value="'+objetivoLinhaN+'"></input>'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
@@ -680,7 +715,7 @@ function inserirObjetivoAtividade() {
 /*Function para cadastrar objetivo*/
 function criarObjetivo(nome,numero,descricao,roteiro){	
 	var retorno;
-	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
+	var valores = "nome="+nome+"&numero=&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
 	$.ajax({
 		url: path+"Objetivo",
 		type: "POST",
@@ -698,7 +733,7 @@ function editarObjetivo(idObjetivo,roteiro,numero){
 	var nome = $("#nomeObj_edt").val();
 	var numero = $("#numeroObj_edt").val();
 	var retorno;
-	var valores = "nome="+nome+"&numero="+numero+"&descricao=&roteiro="+roteiro+"&ativo=1&id="+idObjetivo;
+	var valores = "nome="+nome+"&numero=&descricao=&roteiro="+roteiro+"&ativo=1&id="+idObjetivo;
 	
 	$('#boxModal').css('display','none');
 	$.ajax({
@@ -722,7 +757,7 @@ function editarObjetivo(idObjetivo,roteiro,numero){
 function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
 {
 	var retorno;
-	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&objetivo="+objetivo+"&paginaLivro="+pagina+"&livro="+livro+"&ativo=1";
+	var valores = "nome="+nome+"&numero=&descricao="+descricao+"&objetivo="+objetivo+"&paginaLivro="+pagina+"&livro="+livro+"&ativo=1";
 	
 	$.ajax({
 		url: path+"Atividade",
@@ -737,12 +772,33 @@ function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
 	return retorno;
 }
 
-function editarAtividade(idAtividade,numeroAtv,idObjetivo){
-	var atividadeNome = $('#Atv_Obj_Nome_'+numeroAtv).text();
-	var atividadeLivro = $('#Atv_Obj_Livro_'+numeroAtv).text();
-	var atividadePagina = $('#Atv_Obj_Pag_'+numeroAtv).text();
-	var atividadeNumero = $('#Atv_Obj_Num_'+numeroAtv).text();	
-	
+function editarAtividade(idAtividade,idObjetivo){
+
+	if (idAtividade != ''){
+		var atividadeNome = $('#Atv_Obj_Nome_'+idAtividade).text();
+		var atividadeLivro = $('#Atv_Obj_Livro_'+idAtividade).text();
+		var atividadePagina = $('#Atv_Obj_Pag_'+idAtividade+' span').text();
+		var atividadeNumero = $('#Atv_Obj_Num_'+idAtividade).text();
+		var botao = '<input type="button" class="bt_ok left" value="OK" onclick="alterarAtividade(\''+idAtividade+'\')"/>';
+	}else{
+		var atividadeNome = '';
+		var atividadeLivro = '';
+		var atividadePagina = '';
+		var botao = '<input type="button" class="bt_ok left" value="OK" onclick="cadastrarAtividade()"/>';
+		
+		//Verifica qual o número deverá aparecer.
+		qtdAtv = $("#Atvs_Obj_Inserido_"+idObjetivo+" .Atv_Obj_Num").length;
+		if (qtdAtv > 1){
+			var atividadeNumero = qtdAtv+1;
+		}else if (qtdAtv==0){
+			var atividadeNumero = 1;
+		}else if ($('#Atvs_Obj_Inserido_'+idObjetivo).text() == 'Nenhuma atividade cadastrada.'){
+			var atividadeNumero = 11;
+		}else{
+			var atividadeNumero = 2;
+		}
+	}
+		
 	var trechoFormAtv = 
 		'<div class="box_mensagem_atividades">'+
 			'<div class="txt_mensagem">'+
@@ -752,7 +808,7 @@ function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 					'</div>'+
 					'<div class="Roteiro_Col_10">'+
 						'<input type="hidden" class="idAtv"></input>'+
-						'<input class="Input_Area nomeAtv_edt" id="" placeholder="Título da atividade" required value="'+atividadeNome+'"></input>'+
+						'<input class="Input_Area nomeAtv_edt" id="nomeAtv_edt" placeholder="Título da atividade" required value="'+atividadeNome+'"></input>'+
 					'</div>'+
 				'</div>'+
 				'<div class="Item_Roteiro_Linha">'+
@@ -762,7 +818,7 @@ function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 								'<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
 							'</div>'+
 							'<div class="Roteiro_Col_6">'+
-								'<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv_edt" value="'+atividadeNumero+'"></input></div>'+
+								'<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" readonly id="numeroAtv_edt" value="'+atividadeNumero+'" readonly></input></div>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
@@ -772,7 +828,7 @@ function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 								'<div class="Atividade_Info Input_Info"> Página Livro</div>'+
 							'</div>'+
 							'<div class="Roteiro_Col_6">'+
-								'<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="" value="'+atividadePagina+'"></input></div>'+
+								'<div class="Atividade_Input"><input class="Input_Area paginaAtv" id="paginaAtv_edt" value="'+atividadePagina+'"></input></div>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
@@ -782,13 +838,14 @@ function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 								'<div class="Atividade_Info Input_Info"> Livro </div>'+
 							'</div>'+
 							'<div class="Roteiro_Col_6">'+
-								'<div class="Atividade_Input"><input class="Input_Area livroAtv" id="" value="'+atividadeLivro+'"></input></div>'+
+								'<div class="Atividade_Input"><input class="Input_Area livroAtv" id="livroAtv_edt" value="'+atividadeLivro+'"></input></div>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="btn_mensagemEditAtividades" style="margin:25px 188px">'+
-					'<input type="button" class="bt_ok left" value="OK" onclick="alterarAtividade('+idAtividade+')"/>'+
+					'<input type="hidden" id="objetivoAtv_edt" name="objetivoAtv_edt" value="'+idObjetivo+'"/>'+
+					botao +
 					'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 				'</div>'+
 			'</div>'+
@@ -800,27 +857,31 @@ function editarAtividade(idAtividade,numeroAtv,idObjetivo){
 function alterarAtividade(idAtividade){				
 	var nomeAtv = $("#nomeAtv_edt").val();
 	var numeroAtv = $("#numeroAtv_edt").val();		
-	var livroAtv = $("#livroAtv").val();
-	var paginaAtv = $("#paginaAtv").val();				
-			
-	if(numeroAtv=="" || livroAtv==""){
-		mensagem("Os campos nome, número, objetivo e livro são obrigatórios!","OK","bt_ok","alerta");
+	var livroAtv = $("#livroAtv_edt").val();
+	var paginaAtv = $("#paginaAtv_edt").val();
+	var objetivo = $("#objetivoAtv_edt").val();
+	
+	if(nomeAtv == "" || livroAtv=="" || paginaAtv == ""){
+		mensagem("Todos os campos são obrigatórios!","OK","bt_ok","alerta");
 		return false;
 	}else{	
-		var valores = "nome="+nomeAtv+"&numero="+numeroAtv+"&descricao=&objetivo="+objetivo+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1";
-			
-		$('#boxModal').css('display','none');		
+		
+		var valores = "action=update&id="+idAtividade+"&nome="+nomeAtv+"&numero=&descricao=&objetivo="+objetivo+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1";
+		
 		$.ajax({
 			url: path+"Atividade",
 			type: "POST",
 			crossDomain: true,
-			data: "action=update&"+valores,
+			data: valores,
 			beforeSend: function(){		
 				loading("inicial");
 			},
 			success: function(d) {
-				$("#Obj_Inserido_Nome_"+numero).html(nome);			
-				mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");	
+				$("#Atv_Obj_Nome_"+idAtividade).html(nomeAtv);
+				$("#Atv_Obj_Livro_"+idAtividade).html(livroAtv);
+				$("#Atv_Obj_Pag_"+idAtividade+" .Atv_Obj_Pag_OK").html(paginaAtv);
+				$('#boxModal').css('display','none');
+				return mensagem("Atividade alterada com sucesso!","OK","bt_ok","sucesso");
 			},complete: function(){
 				loading("final");	
 			}
@@ -829,10 +890,12 @@ function alterarAtividade(idAtividade){
 }
 // Expandir roteiro inserido
 function expandirRot() {
+
 	var atvsCont = $('.Atvs_Obj_Inserido');
 	var objsCount = $('.Obj_Inserido_Info');
 	var alturaContainer = objsCount.length*33;
 
+	
 	if ( $('#Objetivos_Inseridos_Container').hasClass('rotExpandido') ) {
 		$('#Objetivos_Inseridos_Container').css('height','0');
 		for (var i = 0; i < atvsCont.length; i++) {
@@ -851,29 +914,31 @@ function expandirRot() {
 
 // Expandir objetivo
 function expandirObj(id) {
+
 	var objetivoCont = $('.Obj_Inserido_Info');
 	var atvsCont = $('#Atvs_Obj_Inserido_'+id+' .Atv_Obj_Info');
 	var objsCount = $('.Obj_Inserido_Info');
 	var alturaAtvContainer = atvsCont.length * 30;
 	var alturaContainer = objsCount.length * 33;
 
-	for (var i = 0; i < objetivoCont.length; i++) {
-		if ( i+1 == id ) {
-			if ( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') ) {
-				$('#Atvs_Obj_Inserido_'+id).removeClass('Atvs_Expandido');
-				$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
-				$('#Atvs_Obj_Inserido_'+id).height('0px');
-			} else {
-				$('#Atvs_Obj_Inserido_'+id).addClass('Atvs_Expandido');
-				$('#Objetivos_Inseridos_Container').css('height',alturaContainer+alturaAtvContainer+'px');
-				$('#Atvs_Obj_Inserido_'+id).height(alturaAtvContainer);
-			}
-		} else {
-			if ( $($('.Atvs_Obj_Inserido').get(i)).hasClass('Atvs_Expandido') ) {
-				$($('.Atvs_Obj_Inserido').get(i)).removeClass('Atvs_Expandido');
-			}
-			$($('.Atvs_Obj_Inserido').get(i)).height('0px');
+	if (!( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') )) {
+		
+		if ($('#Atvs_Obj_Inserido_'+id).text() == ''){
+			$('#Atvs_Obj_Inserido_'+id).html(
+			    	'<div class="Atv_Obj_Info">'+
+				        	'<strong>Nenhuma atividade cadastrada.<strong>'+
+				    '</div>'
+			);
+			var alturaAtvContainer = 30; //Como foi adicionado uma linha, o altura recebe o valor do tamanho
 		}
+		
+		$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+		$('#Atvs_Obj_Inserido_'+id).addClass('Atvs_Expandido');
+		$('#Atvs_Obj_Inserido_'+id).height(alturaAtvContainer);
+		$('#Objetivos_Inseridos_Container').css('height',alturaContainer+alturaAtvContainer+'px');
+	}else {
+		$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+		$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
 	}
 }
 
@@ -898,7 +963,7 @@ function adicionarAtividade() {
 	                    '<div class="Atividade_Info Input_Info numeroAtvInfo">Número</div>'+
 	                '</div>'+
 	                '<div class="Roteiro_Col_6">'+
-	                    '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" id="numeroAtv'+atvCount+'" value="'+atvCount+'"></input></div>'+
+	                    '<div class="Atividade_Input valueNumero"><input class="Input_Area numeroAtv" readonly id="numeroAtv'+atvCount+'" value="'+atvCount+'"></input></div>'+
 	                '</div>'+
 	            '</div>'+
 	        '</div>'+
@@ -958,7 +1023,7 @@ function alterarROA(servico){
 		var idObj = $("#idObj").val();		
 		linha = "obj_"+idObj;
 		var descricao = "";			
-		alterar = "&nome="+nomeObj+"&numero="+numeroObj+"&descricao="+descricao+"&roteiro="+roteiroObj+"&ativo=1&id="+id;		
+		alterar = "&nome="+nomeObj+"&numero=&descricao="+descricao+"&roteiro="+roteiroObj+"&ativo=1&id="+id;		
 		HtmlContent = "<div class='item selecionado'><div class='titulo_objetivo'>"+nomeObj+"</div> <span class='editar' onclick='editarROA(\"Objetivo\","+id+")'></span><span class='excluir' onclick='excluirROA(\"Objetivo\","+id+")'></div>";
 		msg = "Objetivo alterado com sucesso!";
 	
@@ -971,7 +1036,7 @@ function alterarROA(servico){
 		var livroAtv = $("#livroAtv").val();
 		var paginaAtv = $("#paginaAtv").val();			
 		linha = "atv_"+idAtv;
-		alterar ="&nome="+nomeAtv+"&numero="+numeroAtv+"&descricao="+descricao+"&objetivo="+objetivoAtv+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1&id="+idAtv,				
+		alterar ="&nome="+nomeAtv+"&numero=&descricao="+descricao+"&objetivo="+objetivoAtv+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1&id="+idAtv,				
 		HtmlContent = "<div class='item selecionado'><div class='titulo_objetivo'>"+descricao+"</div> <span class='editar' onclick='editarROA(\"Atividade\","+idAtv+")'></span><span class='excluir' onclick='excluirROA(\"Atividade\","+idAtv+")'></div>";
 		msg = "Atividade alterada com sucesso!";
 		
@@ -997,7 +1062,6 @@ function alterarROA(servico){
 		$('#'+linha).html(HtmlContent);
 		mensagem(msg,"OK","bt_ok","sucesso")
 		loading('final');
-		console.log('8');
 		return false;
 	}else{
 		mensagem("Erro ao alterar!","OK","bt_ok","erro")
@@ -1020,3 +1084,147 @@ function VerificaAtribuicaoRoteiroExtra(idAluno, idRoteiro){
      return ValorRetorno;
 }
 
+function excluirObj(idObjetivo){
+	
+	$.ajax({
+		url: path+"Atividade/DeletarAtividade/"+idObjetivo,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		beforeSend: function(){		
+			loading("inicial");
+		},success: function(d) {
+			
+			$('.objetivo'+idObjetivo).remove();
+			num = $(".Obj_Inserido").length * 33;
+			$("#Objetivos_Inseridos_Container").css('height',num+'px');
+			enumerarObjetivos()
+			
+			return mensagem("Objetivo excluido com sucesso!","OK","bt_ok","sucesso");
+		},complete: function(){
+			loading("final");	
+		},error: function() {
+			return mensagem("Erro ao excluir objetivo!","OK","bt_ok","erro");
+		}
+	});
+	
+	
+}
+
+function excluirAtividade(idAtividade){
+	$.ajax({
+		url: path+"Atividade/Delete/"+idAtividade,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		beforeSend: function(){		
+			loading("inicial");
+		},success: function(d) {
+			idParent = $('#Atv_Obj_Info_'+idAtividade).parent().attr('id');
+			idObjetivo = idParent.replace(/[^0-9]+/g, '');
+			$('#Atv_Obj_Info_'+idAtividade).remove();
+			
+			$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+			expandirObj(idObjetivo);
+			enumerarAtividades(idObjetivo);
+			return mensagem("Atividade excluida com sucesso!","OK","bt_ok","sucesso");
+		},complete: function(){
+			loading("final");	
+		},error: function() {
+			return mensagem("Erro ao excluir atividade!","OK","bt_ok","erro");
+		}
+	});
+}
+
+function excluirRoteiro(){
+	id = $('#id').val();
+
+	$.ajax({
+		url: path+"Atividade/DeletarRoteiroAtividade/"+id,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		beforeSend: function(){		
+			loading("inicial");
+		},success: function(d) {
+			
+			$('#boxMensagemGeral').css('display','none');
+			$('#btnSalvarObj').css('display','none');
+			$('#Roteiro_Inserido_Container').css('display','none'); 
+			$('#Inserir_roteiro').css('display','block');
+			$('#btnInserirRoteiro').css('display','block');	
+			$('#Input_Roteiro_Nome').val('');
+			
+			$(".nomeObj, .paginaAtv, .nomeAtv, .livroAtv").val('');
+			$('.Obj_Inserido').remove('');
+			$('#Objetivos_Inseridos_Container').css('height','0px');
+			$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+			$('.Atividade_Linha:not(.Atividade_Linha:first)').remove();
+			atvCount = 2;
+			objCount = 1;
+			$('.numeroObj').val('1');
+			
+			return mensagem("Roteiro excluido com sucesso!","OK","bt_ok","sucesso");
+		},complete: function(){
+			loading("final");	
+		},error: function() {
+			return mensagem("Erro ao excluir roteiro!","OK","bt_ok","erro");
+		}
+	});
+}
+
+function cadastrarAtividade(){
+	var nomeAtv = $("#nomeAtv_edt").val();
+	var numeroAtv = $("#numeroAtv_edt").val();		
+	var livroAtv = $("#livroAtv_edt").val();
+	var paginaAtv = $("#paginaAtv_edt").val();
+	var objetivo = $("#objetivoAtv_edt").val();
+	
+	if (id = criarAtividade(nomeAtv,numeroAtv,"",objetivo,paginaAtv,livroAtv)){
+		//procedimentos para listar automaticamente!!
+		var novaLinha = 
+				'<div id="Atv_Obj_Info_'+id+'" class="Atv_Obj_Info">'+
+		        	'<div id="Atv_Obj_Num_'+id+'" class="Atv_Obj_Num Atv_Obj'+objetivo+'">'+numeroAtv+'</div>'+
+		        	'<span id="Atv_Obj_Nome_'+id+'" class="Atv_Obj_Nome">'+nomeAtv+'</span>'+
+		        	'<span id="Atv_Obj_Livro_'+id+'" class="Atv_Obj_Livro">'+livroAtv+'</span>'+
+		        	'<span id="Atv_Obj_Pag_'+id+'" class="Atv_Obj_Pag">p. <span class="Atv_Obj_Pag_OK">'+paginaAtv+'</span></span>'+
+		        	'<div id="Atv_Inserida_Btns_'+id+'" class="Atv_Inserida_Btns">'+
+		        		'<div id="Btn_Editar_Atv_'+id+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+id+','+objetivo+')></div>'+
+		        		'<div id="Btn_Del_Atv_'+id+'" class="Btn_Atv Btn_Del_Atv" onclick=excluirAtividade('+id+')></div>'+
+		        	'</div>'+
+		        '</div>';
+		
+		//Verifica se existe alguma atividade adicionada
+		if (($('#Atvs_Obj_Inserido_'+objetivo).text() == 'Nenhuma atividade cadastrada.') || ($('#Atvs_Obj_Inserido_'+objetivo).text() == '')){
+			$('#Atvs_Obj_Inserido_'+objetivo).html(novaLinha);
+		}else{
+			$('#Atvs_Obj_Inserido_'+objetivo).append(novaLinha);
+		}
+		$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
+		expandirObj(objetivo);
+		
+		mensagem("Atividade criada  com sucesso!","OK","bt_ok","sucesso");
+	}else mensagem("Erro ao criar atividade!","OK","bt_ok","erro");
+	
+	$('#boxModal').css('display','none');
+	return false;
+}
+
+function enumerarAtividades(idObjetivo){
+	i = 1;
+	$('.Atv_Obj'+idObjetivo).each(function(){
+		$(this).text(i);
+		i++;
+	})
+}
+
+function enumerarObjetivos(){
+	i = 1;
+	$('.Obj_Inserido_Num').each(function(){
+		$(this).text(i);
+		i++;
+	})
+	$('.numeroObj').val(i)
+	objCount = i;
+
+}
