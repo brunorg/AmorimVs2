@@ -329,6 +329,7 @@ function carregaAnoEstudo(){
 function recarregaForumAnoEstudo (ano) {
 	console.log(ano);
 	var HtmlContentRecarregar = '';
+	if (ano != "")
 	$.ajax({
 		url: path + "Roteiro/RoteiroAno/" + ano,
 		type: "GET",
@@ -368,6 +369,9 @@ function recarregaForumAnoEstudo (ano) {
 		}
 
 	});
+
+	else
+		carregaForumCompleto();
 	
 
 }

@@ -1,1 +1,0 @@
-function change_Curtir(a,b){var c=getData("RecursoAprendizagem",b),d=c.curtir;"Ativo"==a||(d+=1),$.ajax({url:path+"RecursoAprendizagem/update/curtir/"+b+"/"+d,type:"POST",async:!1,crossDomain:!0,dataType:"json",data:"action=update",success:function(){dataMensagens=getData("Mensagens",null)},error:function(){}})}
