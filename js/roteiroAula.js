@@ -150,11 +150,6 @@ $(document).ready(function(){
 		};
 	});
 	
-	//Mantém o modal de edição centralizado na tela quando a janela é redimensionada.
-	$(window).resize(function(){
-		centralizarBoxModal();
-	});
-	
 	$('#buscaRoteiro').change(function(){
 		var comboBusca = $('#buscaRoteiro option:selected').val();
 		if(comboBusca=="oficina"){
@@ -587,11 +582,10 @@ function centralizarBoxModal()
 	//Existe uma função semelhante a essa no funcoes.js. Porém, ela lida com os modais de mensagem.
 	//Como haverá inputs em modais somente em algumas páginas, eu preferi manter essas funções locais.
 
-	var heightBox 		= parseInt($('.box_mensagem_rotcad').height());
-	var heightWindows	= parseInt($(window).height());
-	var topBox			= Math.floor((heightWindows/2 - heightBox/2)).toString() + 'px';
+	var heightBox = parseInt($('.box_mensagem_rotcad').height());
+	var marginTop = Math.floor(-heightBox/2).toString() + 'px';
 
-	$('.box_mensagem_rotcad').css('top', topBox);
+	$('.box_mensagem_rotcad').css('margin-top', marginTop);
 }
 
 function verificarTamanhoModal()
@@ -692,8 +686,8 @@ function criarCampoNovoObjetivo(){
 			  '</div>';
 		$('.txt_mensagem').not('.botao_mais').last().after(HtmlContent);
 		centralizarBoxModal();
-		cont = 2;
 	}
+	cont = 2;
 }
 
 function excluirObjetivo(idObjetivo){

@@ -801,6 +801,7 @@ div.item:nth-child(even){
 	background-color: #F2F2EE;
 	position: absolute; 
     left: 50%;
+    top: 50%;
 	margin: 0;
     margin-left: -280px;
 	border: 2px solid #FFFFFF;

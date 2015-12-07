@@ -31,8 +31,7 @@ function carregarOficinasAluno() {
 					listaOficinasAluno[i] = data[i];
 
 					//Quebra o nome da oficina
-					var nomeOficina = data[i].Nome.split(" ",1).toString()
-					console.log(data[i].Nome);
+					var nomeOficina = data[i].Nome.split(" ",1).toString();
 
 					htmlListaOficinas += 
 		        		'<td>'+
@@ -92,11 +91,6 @@ function retornarBlogOficina(indexOficina) {
 								dia = d[i].data.slice(8);
 								mes = d[i].data.slice(5,7);
 								ano = d[i].data.slice(0,4);
-							} else {
-								//APAGAR QUANDO TERMINAR DE MONTAR
-								var dia = '00';
-								var mes = '00';
-								var ano = '00';
 							}
 
 							//Quebra a postagem em parágrafos
@@ -163,7 +157,7 @@ function retornarRoteirosOficina(indexOficina) {
 
 						//Varre e retorna os roteiros
 						for (var b in data) {
-							//Cria uma lista de roteiros listados dessa oficina, para posterior acesso quando listar objetivos
+							//Cria um array de roteiros listados dessa oficina, para posterior acesso quando listar objetivos
 							listaRotOficina[b] = data[b];
 
 							//Cria a o html da linha de roteiro e sua descrição
@@ -220,12 +214,9 @@ function ativarAba(indexOficina) {
 	}
 
 	var roteiros = retornarRoteirosOficina(indexOficina);
-	//Verifica se o retorno da função dos roteiros é true
 	if ( roteiros ) {
-		//Insere o retorno da função no html
 		$('.Acordeon_Oficina').html(roteiros);
 	} else {
-		//Cria mensagem indicando que não existem roteiros associados a esta oficina
 		var roteirosVazio =
 		 '<div class="Mensagem_Roteiro_Vazio">'+
 		 	'No momento, não existe nenhum roteiro associado a esta oficina.'+
@@ -234,12 +225,9 @@ function ativarAba(indexOficina) {
 	}
 
 	var blog = retornarBlogOficina(indexOficina);
-	//Verifica se o retorno da função do blog é true
 	if ( blog ) {
-		//Insere o retorno da função no html
 		$('#Postagens_Oficina').html(blog);
 	} else {
-		//Cria mensagem indicando que o blog desta oficina ainda não recebeu nenhuma postagem
 		var blogVazio = 
 			'<div class="Mensagem_Blog_Vazio">'+
 				'No momento, não existem postagens no blog desta oficina.'+

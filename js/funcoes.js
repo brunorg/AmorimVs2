@@ -146,15 +146,6 @@ $(document).ready(function() {
 		}
 	});
 
-	//----------------------------------------------------------------------
-
-	// Mantém o modal no centro da tela ao redimensionar a janela do browser
-	$(window).resize(function(){
-		centralizarModal();
-	});
-
-	//----------------------------------------------------------------------
-
 	$("#blocoGeral").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
 		scrollButtons:{
@@ -540,10 +531,9 @@ function base64_decode(data) {
 function centralizarModal()
 {
 	var alturaBox = parseInt($('.box_mensagem').height());
-	var alturaTela = parseInt($(window).height());
-	var topPos = Math.floor((alturaTela/2 - alturaBox/2)).toString() + 'px';
+	var marginTop = Math.floor(-alturaBox/2).toString() + 'px';
 
-	$('.box_mensagem').css('top', topPos);
+	$('.box_mensagem').css('margin-top', marginTop);
 }
 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
@@ -564,7 +554,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 
 		window.setTimeout(function(){
 			botoes(tipo_btn,class_btn);
-		}, 1000);					
+		}, 1000);
 	
 		//Verifica se o texto é o da mensagem enviada!! 
 		//Se for cria um evento para o botão OK

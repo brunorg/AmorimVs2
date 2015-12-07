@@ -1108,6 +1108,7 @@ input[type=date]::-webkit-inner-spin-button{
 	margin: 0px;
 	margin-left: -200px;
 	left: 50%;
+	top: 50%;
 	border: 2px solid #FFFFFF;
 }
 
