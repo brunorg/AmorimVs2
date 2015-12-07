@@ -6,38 +6,43 @@
 		overflow: auto;
 	}
 			/*-------- bt portifolio ------*/
-			
-			.cabecalho_inativo
-			{
+			.Prod_Aluno_Nav {
+				display: block;
+    			width: 100%;
+    			height: auto;
+    			display: block;
+    			list-style-type: none;
+    			-webkit-margin-before: 0;
+    			-webkit-margin-after: 0;
+    			-webkit-margin-start: 0;
+    			-webkit-margin-end: 0;
+    			-webkit-padding-start: 0;
+			}
+			.Prod_Aluno_Nav_Item {
 				background-color: rgb(173, 204, 83);
-			}
-			
-			.cabecalho_ativo
-			{
-				background-color: rgb(143, 174, 56);
-			}
-			
-			#cabecalho_portfolio, #cabecalho_atividade, #cabecalho_fichas
-			{
 				width: 33%;
 				height: 55px;
 				position: relative;
 				font-size: 20px;
 				padding:15px;
 				color: rgb(255, 255, 255);
-				border-color: rgb(255, 255, 255);
-				float: left;
-				cursor:pointer;
+				display: inline-block;
+				cursor: pointer;
 				text-align: center;
 			}
-			
-			#cabecalho_atividade{
-				margin: 0 0.5%;
+			.Prod_Aluno_Nav_Item:first-of-type {
+				margin-left: 0;
+			}
+			.Prod_Aluno_Nav_Item:last-of-type {
+				margin-right: 0;
+			}
+			.Nav_Item_Ativo {
+				background-color: #8FAE38;
 			}
 
 			
 		
-		#producao_aluno_content{
+		#Prod_Aluno_Content{
 			height: 500px;
 			padding: 20px;
 			background-color: #E5E5DC;
@@ -77,9 +82,69 @@
 			Cor de fundo quando o item do menu 
 			estiver ativo: background-color: #D6E5A9 
 		*/
+		#menu_lateral_oficinas {
+			width: 150px;
+			display: inline-block;
+			float: left;
+		}
+		.Prod_Oficina_Nome {
+			height: 30px;
+    		padding: 5px;
+    		text-transform: uppercase;
+    		font-size: 14px;
+    		border-left: 2px solid #fff;
+    		border-right: 2px solid #fff;
+    		border-top: 1px solid #fff;
+    		border-bottom: 1px solid #fff;
+    		color: #fff;
+    		cursor: pointer;
+		}
+		.Prod_Aluno_Content_Item {
+			height: 100%;
+		}
 		
+		.Item_Expandido > .Prod_Oficina_Nome {
+			border-bottom: 2px solid #fff;
+		}
+		
+		.Item_Expandido + .Prod_Oficina_Item > .Prod_Oficina_Nome {
+			border-top: 2px solid #fff;
+		}
+
+		.Oficina_Content_Item {
+    		width: 130px;
+    		height: 30px;
+    		float: right;
+    		padding: 5px;
+    		border-top: 1px solid #fff;
+    		border-left: 2px solid #fff;
+    		border-bottom: 1px solid #fff;
+    		border-right: 2px solid #fff;
+    		color: #666;
+    		font-size: 14px;
+		}
+		.Oficina_Content_Item:first-child {
+			border-top: none;
+		}
+		.Oficina_Content_Item:last-child {
+			border-bottom: none;
+		}
+		.Prod_Oficina_Item:first-of-type .Prod_Oficina_Nome {
+			border-top: 2px solid #fff;
+		}
+		.Prod_Oficina_Item:last-of-type .Prod_Oficina_Nome {
+			border-bottom: 2px solid #fff;
+		}
+		.Prod_Oficina_Content {
+			display: none;
+		}
+		.Prod_Oficina_Content::after {
+			content: '';
+			display: block;
+			width: 100%;
+			clear: both;
+		}
 		#conteudo_principal_portfolio,
-		#conteudo_principal_atividade,
 		#conteudo_principal_fichas{
 			width: 80%;
 			height: 100%;
@@ -87,6 +152,13 @@
 			float: left;
 			padding: 5px;
 			overflow: auto;
+		}
+		#conteudo_principal_oficinas {
+			height: 100%;
+			width: 760px;
+			background-color: #fff;
+			padding: 15px;
+			display: inline-block;
 		}
 		
 		#Titulo_objeto{
