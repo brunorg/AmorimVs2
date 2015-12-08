@@ -215,6 +215,10 @@ div[class*="box_col"]:last-of-type {
 	color: #fff;
 	text-decoration: none;
 }
+#Rotina_Semanal_Conteudo {
+	padding: 15px;
+    padding-top: 0;
+}
 table#Rotina_Semanal_Tabela {
 	width: 100%;
 	border: 1.5px solid #fff;
@@ -225,7 +229,7 @@ table#Rotina_Semanal_Tabela {
 	border-collapse: none;
 }
 table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
-	height: 32px;
+	height: 30px;
 	border: inherit;
 }
 .Rotina_Semanal_Linha_Recreio {
@@ -234,8 +238,8 @@ table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
 table#Rotina_Semanal_Tabela>thead>tr {
 	background-color: #23BECD;
 	color: #fff;
-	height: 32px;
-	font-size: 15px;	
+	height: 25px;
+	font-size: 13px;	
 }
 .Rotina_Semanal_btn_Seta {
 	background-color: #129fad;
