@@ -120,6 +120,12 @@ $(document).ready(function(){
 		return false;
 	});
 
+
+	$('.Item_Img').click(function() {
+		exibirAtividade(this);
+		return false;
+	});
+
 	//----------------------------------------------------------
 
 	CarregaProducao();
@@ -452,6 +458,42 @@ function expandirOficinas(itemToExpand)
 			$($(oficinasLista).get(i)).parent('.Prod_Oficina_Item').removeClass('Item_Expandido');
 		}
  	}
+}
+
+//Exibir atividade, se tiver
+
+
+function exibirAtividade(atividade)
+{		
+	var listAtvs = document.getElementById('Prod_Oficina_Acordeon').getElementsByClassName('Item_Img');
+	var listImgs = document.getElementById('conteudo_principal_oficinas').getElementsByClassName('Oficina_Prod_Img');
+
+	for ( a in listAtvs )
+	{
+		if ( listAtvs[a] == atividade )
+		{
+			var idAtv 		= listAtvs[a].id.slice(4);
+			var imgs 		= document.getElementsByClassName('Oficina_Content_Img');
+			var imgToShow	= document.getElementById('Img'+idAtv);
+			console.log(imgToShow);
+
+			for ( b in imgs )
+			{
+				if ( imgs[b].id = 'Img'+idAtv )
+				{
+					console.log('Imagem a exibir');
+				}
+				else
+				{
+					console.info('Imagem incorreta');
+				}
+			}
+
+			imgToShow.classList.add('Img_show');
+			
+			break;
+		}
+	}
 }
 
 // function carregaForm(){
