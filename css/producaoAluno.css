@@ -27,6 +27,7 @@
 				padding:15px;
 				color: rgb(255, 255, 255);
 				display: inline-block;
+				text-transform: uppercase;
 				cursor: pointer;
 				text-align: center;
 			}
@@ -83,7 +84,7 @@
 			estiver ativo: background-color: #D6E5A9 
 		*/
 		#menu_lateral_oficinas {
-			width: 150px;
+			width: 160px;
 			display: inline-block;
 			float: left;
 		}
@@ -142,6 +143,9 @@
 		.Oficina_Content_Item:last-child {
 			border-bottom: none;
 		}
+		.Prod_Oficina_Item:last-of-type .Oficina_Content_Item:last-of-type {
+			border-bottom: 2px solid #fff;
+		}
 		.Prod_Oficina_Item:first-of-type .Prod_Oficina_Nome {
 			border-top: 2px solid #fff;
 		}
@@ -157,6 +161,12 @@
 			width: 100%;
 			clear: both;
 		}
+
+		.Prod_Atv_Extra
+		{
+			background-color: #a3cd68;	
+		}
+
 		#conteudo_principal_portfolio,
 		#conteudo_principal_fichas{
 			width: 80%;
@@ -168,7 +178,7 @@
 		}
 		#conteudo_principal_oficinas {
 			height: 100%;
-			width: 760px;
+			width: 753px;
 			background-color: #fff;
 			padding: 15px;
 			display: inline-block;
@@ -176,22 +186,18 @@
 		
 		.Prod_Oficina_Conteudo {
 			width: 100%;
-			height: 100%;
+			height: auto;
 			overflow: hidden;
-			display: none;
 		}
 
 		.Oficina_Content_Img, .Oficina_Content_Add {
 			width: 100%;
-			height: 100%;
+			height: 430px;
 			display: none;
-		}
-		.Img_show, .Img_show > .Oficina_Content_Img {
-			display: block;
 		}
 
 		.Oficina_Prod_Img {
-			display: inherit;
+			display: none;
 			width: auto;
 			max-width: 100%;
 			height: auto;
@@ -199,6 +205,13 @@
 			margin: 0 auto;
 		}
 
+		.Img_Show, .Img_Show > .Oficina_Prod_Img {
+			display: block;
+		}
+        .Item_Show {
+            background-color: #fff;
+        }
+        
 		#Titulo_objeto{
 			font-size: 24px;
 			text-align: center;
