@@ -388,5 +388,5 @@ function htmlBlocoMural(mensagem,anoEstudo,oficina,grupo){
 					'</div>'+
 				'</div>';	
 							
-	return $('#muralConteudo .postContainer').html(html);	
+	return $('#muralConteudo .postContainer').append(html);	
 }
