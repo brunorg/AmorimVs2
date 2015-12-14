@@ -342,7 +342,7 @@ function enviarMsgGrupo(){
 		type: "POST",
 		data: "action=create"+valores,
 		success: function(data){
-			htmlBlocoMural(mensagemMural,'5',$("#grupoMuralOficina :selected").text(),grupoMuralTutoria);
+			htmlBlocoMural(mensagemMural);
 			mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
 			$("#muralConteudo").show();
 			$("#novoMural").show();
@@ -356,21 +356,27 @@ function enviarMsgGrupo(){
 }
 function listaMural(){
 	
+    $.ajax({
+        url: path + "Mural/ListarProfessor/"+professorId,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(retornoAjax){
+            for (var i = retornoAjax.length - 1; i >= 0; i--) {
+                htmlBlocoMural(retornoAjax[i]["mensagem"])
+            };
+        },
+        error: function(a, status, error) {
+            console.log(status + " /// " + error)
+        }
+    });
+
 }
-function htmlBlocoMural(mensagem,anoEstudo,oficina,grupo){		
-	var tipoGrupo;
-	if(oficina){
-		tipoGrupo = oficina;
-	}else if(grupo){
-		tipoGrupo = grupo;
-	}
-	
+function htmlBlocoMural(mensagem){		
+
 	var html = '<div class="areaPost">'+
 					'<div class="post postMedio">'+
 						mensagem+
-						'<div class="postDestinatario">'+
-							tipoGrupo+' | '+anoEstudo+'º Ano'+
-						'</div>'+
 						'<div class="linhaConteudo linhaIconeInferior">'+
 							'<div class="linhaBotoes">'+
 								'<div class="containerIcone">'+
@@ -388,5 +394,5 @@ function htmlBlocoMural(mensagem,anoEstudo,oficina,grupo){
 					'</div>'+
 				'</div>';	
 							
-	return $('#muralConteudo .postContainer').append(html);	
+	return $('#muralConteudo .postContainer').prepend(html);	
 }
