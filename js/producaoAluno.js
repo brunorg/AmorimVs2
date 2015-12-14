@@ -140,6 +140,10 @@ $(document).ready(function(){
 		return false;
 	});*/
     
+    $('#Oficinas').mCustomScrollbar({
+        axis: "y"
+    });
+    
 	//----------------------------------------------------------
 
 	CarregaProducao();
