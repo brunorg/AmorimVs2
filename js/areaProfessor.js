@@ -1,342 +1,392 @@
+var professorId= localStorage.getItem("professorId");
+var oficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
+var Arquivo;
 
-//Murano Design
-
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carregas as variaveis padrao
-
-	var HtmlContent;
-	var contador;
-	var conf;
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carrega os valores utilizados do BD
-
-	var dataAlunoVariavel;
-	var dataPlanejamentoRoteiro;
-	var dataObjetivo 			=	getData("Objetivo", null);
-	var dataCalendarioEventos 	=	getData("Calendario", null);
-	
-	var dataGrupo;
-	//var dataGrupo 				=	getData("Grupo", null); 
-
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Get Usuario Efetivado
-
-	var userID = usuarioId;
-	var IDProfessor = getAlunoByUsuario(userID);
-	//var alunoID = getAlunoByUsuario();
-
-//------------------------------------------------------------------------------------------------------------------------
-
-//Carrega a funçao de Load do JQuery
-
-$(document).ready(function () {
-	CarregaServicoMural();
-
-	if (verificaTutor(IDProfessor) == 1) {	
-		dataGrupo = getData('ProfessorFuncionario/ProfessorGrupo', IDProfessor)
-		
-		CarregaServicoGrupo();
-		$("#graficoTutor").show();
-	}else{
-		$("#pesquisaAlunos").show();
-        carregaAnoEstudo();
-    	carregaPeriodo("aluno");
-    	carregaAlunos("todos");
-	}
-
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-    {
-    	window.setTimeout(function () {
-    		$(".mCSB_container")[1].style.left = 0;
-    	}, 2000);
-    }
-
+$(document).ready(function() {
+    adicionarBarraRolagem();
+    carregarDados();
+    atribuirEventos();
+	listaMural();
 });
 
-//------------------------------------------------------------------------------------------------------------------------
-function CarregaServicoMural()
-{
-	HtmlContent = "";
-	var dataCalendarioM 	=	getData("Calendario/Evento", 44);
-	console.log(dataCalendarioM);
-	
-	for(var a=0; a< dataCalendarioM.length; a++)
-	{
-		var dataM = dataCalendarioM[a].dataInicio.substring(8, 10)+"/"+ dataCalendarioM[a].dataInicio.substring(5, 7)+"/"+ dataCalendarioM[a].dataInicio.substring(0, 4);
-			
-		HtmlContent+='<tr>'+
-					'<td class="dataMsg" onclick="window.location=\'#\';" style="background-color:rgb(247, 242, 222); line-height: 13px;">'+
-						'<span>'+
-						'<h2 style="color:rgb(218,93,48); margin-top:0px;float:left;">'+dataCalendarioM[a].evento+'</h2>'+
-						'</span>'+
-						'<p style="clear: both;margin-bottom: 10px;"></p>'+
-						'<span>'+
-						'<h3 style="margin-bottom:0px;font-weight: 100;">'+dataCalendarioM[a].descricao+'</h3>'+
-						'</span>'+
-					'</td>'+
-					'<td style="background-color:rgb(247, 242, 222); line-height: 13px;">'+
-					'<span>'+
-					'<h2 style="color:rgb(218,93,48);margin-top:0px;float:right;width:74%;margin-top: 10px;">'+dataM+'</h2>'+	
-					'</span>'+
-					'<span>'+				
-					'<h2 style="color:rgb(218,93,48);font-weight: normal; margin-top:0px;float:right;margin-right: 14px;">'+dataCalendarioM[a].hora+'</h2>'+
-					'</span>'+
-					'</td>'+
-				'</tr>';
-	}
-
-	$('#Light_MuralTabela').html(HtmlContent);
+function adicionarBarraRolagem () {
+    $('.postContainer').mCustomScrollbar({
+        axis:"y"
+    });
 }
 
+function carregarDados () {
+    carregaPostsBlog();
+    carregaOficinaPostagens();
+}
 
-//------------------------------------------------------------------------------------------------------------------------
+function atribuirEventos () {
+    clickPostagens();
+    cancelarPostagens();
+    uploadImagemPostagem();
+    imagemPostagemTexto();
+    removerImagemPostagem();
+    novaPostagem();
+    clickRelatorio();
+    cancelarRelatorio();
+    clickMural();
+    cancelarMural();
+}
 
-//Carrega a tabela Grupo
+function carregaOficinaPostagens () {
+    var htmlOficinas =  '<select>'+
+                            '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
+    $.ajax({
+        url: path + 'Oficina/ListaPorProfessor/' +  professorId,
+        /*url: path + 'Oficina',*/
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(d) {
+            for (var i = 0; i < d.length; i++)
+            {
+                htmlOficinas += '<option value="'+d[i].idoficina+'">'+d[i].nome+'</option>';
+            }
+        }
+    });
 
-	function CarregaServicoGrupo()
-	{
+    htmlOficinas += '</select>';
 
-		var HTMLContente="";
+    $('#selectOficina').html(htmlOficinas);
+}
 
-		LimiteAluno = 0;
-		
-		for(var a=0; a< dataGrupo.length; a++)
-		{
-			
-			//if(dataGrupo[a].tutoria != null)
-			//{
-				//if(dataGrupo[a].tutoria.tutor.idprofessorFuncionario == IDProfessor)
-				//{
-					
-					dataAlunoVariavel = getData('AlunoVariavel/grupo',dataGrupo[a].idgrupo);
-					
-					for(var b=0; b< dataAlunoVariavel.length; b++)
-					{
+function carregaGrupoOficinaMural () {
+	$("#msgMural").css("display","block");
+    var htmlGrupo = '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
+    $.ajax({
+        url: path + 'Agrupamento',
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(d) {
+            for (var i = 0; i < d.length; i++)
+            {
+                htmlGrupo += '<option value="'+d[i].idagrupamento+'">'+d[i].nome+'</option>';
+            }
+        }
+    });
 
-						var LimiteTT =0;
-						var LimiteAnterior = 0;
-						var LimiteProximo = 0;
+    $('#grupoMuralOficina').html('<option value="todos">Todos</option>'+htmlGrupo);
+}
 
-						var roteirosAtribuidos;
-    					$.ajax({
-    					    type: "GET",
-    					    async:false,
-    					    crossDomain: true,
-    					    url: path+"AtribuicaoRoteiroExtra/aluno/"+dataAlunoVariavel[b].aluno.idAluno          
-						}).then(function(data) {
-							roteirosAtribuidos = data;
-						});
+function carregaGrupoTutoriaMural(professorId) {
+	$("#msgMural").css("display","block");
+    var htmlGrupo = '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
+    $.ajax({
+        url: path + 'ProfessorFuncionario/ProfessorGrupo/'+professorId,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(d) {
+            for (var i = 0; i < d.length; i++)
+            {
+                htmlGrupo += '<option value="'+d[i].idgrupo+'">'+d[i].nomeGrupo+'</option>';
+            }
+        }
+    });
 
-						for(var c=0; c< dataObjetivo.length;c++)
-						{
-							if(dataObjetivo[c].ativo == "1" && dataObjetivo[c].roteiro.ativo == "1" && dataObjetivo[c].roteiro.anoEstudo.idanoEstudo == dataAlunoVariavel[b].anoEstudo.idanoEstudo)
-							{
-								LimiteTT++;
-							}
-							else
-							{
-								for (var i = 0; i < roteirosAtribuidos.length; i++)
-								{
-									if(dataObjetivo[c].ativo == "1" && dataObjetivo[c].roteiro.idroteiro == roteirosAtribuidos[i].idroteiro && dataObjetivo[c].roteiro.anoEstudo.ano < dataAlunoVariavel[b].anoEstudo.ano)
-										{LimiteAnterior++;}
-									else if(dataObjetivo[c].ativo == "1" && dataObjetivo[c].roteiro.idroteiro == roteirosAtribuidos[i].idroteiro && dataObjetivo[c].roteiro.anoEstudo.ano > dataAlunoVariavel[b].anoEstudo.ano)
-										{LimiteProximo++;}
-								}
-							}
-						}
+    $('#grupoMuralTutoria').html('<option value="todos">Todos</option>'+htmlGrupo);
+}
 
-						dataPlanejamentoRoteiro = getData('PlanejamentoRoteiro/aluno', dataAlunoVariavel[b].aluno.idAluno);
+function clickPostagens() {
+    $("#novoPostagens").click(function() {
+        $("#postagensConteudo").hide();
+        $("#novoPostagens").hide();
+        $("#postagensNova").show();
+    });
+}
 
-						var completos = 0;
-						var completosAnterior = 0;
-						var completosProximo = 0;
-						var SerieAtualCorrigidoCont = 0;
-						var SerieAnteriorCorrigidoCont = 0;
-						var SerieProximaCorrigidoCont = 0;
+function cancelarPostagens () {
+    $("#cancelarPostagens").click(function() {
+        $("#postagensConteudo").show();
+        $("#novoPostagens").show();
+        $("#postagensNova").hide();
+    });
+}
 
-						for(var c = 0; c < dataPlanejamentoRoteiro.length; c++)
-						{
-							if (dataPlanejamentoRoteiro[c].status == "2")
-							{
-								if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano == dataAlunoVariavel[b].anoEstudo.ano) 
-									{completos++;}
-								else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano < dataAlunoVariavel[b].anoEstudo.ano)
-									{completosAnterior++;}
-								else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano > dataAlunoVariavel[b].anoEstudo.ano)
-									{completosProximo++;}
-							}
-							else if (dataPlanejamentoRoteiro[c].status == "3")
-							{
-							if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano == dataAlunoVariavel[b].anoEstudo.ano) 
-								{
-									completos++;
-									SerieAtualCorrigidoCont++;
-								}
-							else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano < dataAlunoVariavel[b].anoEstudo.ano)
-								{
-									completosAnterior++;
-									SerieAnteriorCorrigidoCont++;
-								}
-							else if (dataPlanejamentoRoteiro[c].objetivo.roteiro.anoEstudo.ano > dataAlunoVariavel[b].anoEstudo.ano)
-								{
-									completosProximo++;
-									SerieProximaCorrigidoCont++;
-								}
-							}
-						}
-		
-	
-						LimiteAluno++;
-						SerieAtual = 0;
-						SerieAtualCorrigido = 0;
+function uploadImagemPostagem () {
+    $("#uploadPostagem").click(function() {
+        $("#postagemImagem").trigger("click");
+    });
+}
 
-						if(LimiteAnterior != 0)
-						{
-							SerieAnterior = ((completosAnterior/LimiteAnterior) * 100);
-							if (SerieAnteriorCorrigidoCont != 0)
-								{SerieAnteriorCorrigido = (SerieAnteriorCorrigidoCont/completosAnterior) * 100;}
-							else
-								{SerieAnteriorCorrigido = 0;}
-						}
+function imagemPostagemTexto () {
+    $("#postagemImagem").change(function(e) {
+        $("#uploadPath").html($("#postagemImagem").val().split('\\')[2]);
+        $("#arquivoUpload").show();
 
-						if(LimiteTT != 0)
-						{
-							SerieAtual = (completos/LimiteTT) * 100;
-							if(SerieAtualCorrigidoCont != 0)
-								{SerieAtualCorrigido = (SerieAtualCorrigidoCont/completos) * 100;}
-							else
-								{SerieAtualCorrigido = 0;}
-						}
+        var FR= new FileReader();
+        FR.onload = function(e) {
+            $("#imagemArquivo").val(e.target.result);
+        };
+        Arquivo = this.files[0];
 
-						if(LimiteProximo != 0)
-						{
-							SerieProxima = (completosProximo/LimiteProximo) * 100;
-							if (SerieProximaCorrigidoCont != 0)
-								{SerieProximaCorrigido = (SerieProximaCorrigidoCont/completosProximo) * 100;}
-							else
-								{SerieProximaCorrigido = 0;}
-						}
+    });
+}
 
+function removerImagemPostagem () {
+    $("#removerUpload").click(function() {
+        $("#arquivoUpload").hide();
+        $("#postagemImagem").val('');
+    });
+}
 
+function novaPostagem () {
+    $("#salvarPostagem").click(function() {
+        var conteudo = $("#conteudoPostagens").val();
+        var oficina = $("#selectOficina select").val();
+        var titulo = $("#tituloPostagens").val();
+        var imagem = $("#postagemImagem").val();
 
-						HTMLContente+='<div class="Grafico_Individual_Aluno">';
-						HTMLContente+='<div class="Grafico_Individual_Aluno_Falta_Numero">'+presencaAluno(dataAlunoVariavel[b].aluno.idAluno)+'</div>';
-						HTMLContente+='<div class="Grafico_Individual_Aluno_Escala">';
-						
-						if (LimiteAnterior == 0 && LimiteProximo == 0)
-						{
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Center" style="height:'+(SerieAtual)+'%;">';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
-							HTMLContente+='</div>';
-						}
-						else if(LimiteProximo != 0)
-						{
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Left" style="height:'+(SerieAtual)+'%;">';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
-							HTMLContente+='</div>';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Proxima Porcentagem_Right" style="height:'+(SerieProxima)+'%;">';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Proxima_Corrigido" style="height:'+(SerieProximaCorrigido)+'%;"></div>';
-							HTMLContente+='</div>';
-						}
-						else if(LimiteAnterior != 0)
-						{
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Anterior Porcentagem_Left" style="height:'+(SerieAnterior)+'%;">';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Anterior_Corrigido" style="height:'+(SerieAnteriorCorrigido)+'%;"></div>';
-							HTMLContente+='</div>';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual Porcentagem_Right" style="height:'+(SerieAtual)+'%;">';
-							HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+(SerieAtualCorrigido)+'%;"></div>';
-							HTMLContente+='</div>';
-						}
-						HTMLContente+='</div>';
-						if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-							HTMLContente+='<a href="mRelatorioAluno.html?ID='+(base64_encode(""+dataAlunoVariavel[b].aluno.idAluno))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataAlunoVariavel[b].aluno.nome+'">';
-						else
-							HTMLContente+='<a href="relatorioAluno.html?ID='+(base64_encode(""+dataAlunoVariavel[b].aluno.idAluno))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataAlunoVariavel[b].aluno.nome+'">';
-						HTMLContente+='<img src="'+dataAlunoVariavel[b].aluno.fotoAluno+'"></img>';
-						HTMLContente+='</div></a></div>';
+        if (oficina != 0 && conteudo != '' && titulo != '')
+        {
+            $("#postagemTitulo").val(titulo);
+            $("#postagemConteudo").val(conteudo);
+            $("#postagemOficina").val(oficina);
+            var idPostagem;
 
-					}
-		}
+            $.ajax({
+                url: path + "Blog",
+                async: false,
+                crossDomain: true,
+                type: "POST",
+                data: $("#formPostagens").serialize(),
+                beforeSend: function() {loading("inicial");},
+                success: function(d) {
+                    var post = {titulo : $("#tituloPostagens").val(), descricao : $("#postagemConteudo").val(), idblog : d, oficina : {nome : $("#selectOficina select :selected").text()}};
+                    addPost(post);
+                    mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
+                    $("#tituloPostagens").val('');
+                    $("#conteudoPostagens").val('');
+                    $("#selectOficina select").val(0);
+                    $("#cancelarPostagens").trigger("click");
+                    idPostagem = d;
+                },
+                complete: function() {loading("final");}
+            });
 
+            if (imagem != "")
+            {
+                $("#postagemAction").val("update");
+                var formData = new FormData($("#formPostagens")[0]);
+                formData.append("fotoAluno", Arquivo);
 
-		if(LimiteAluno < 22)
-		{
+                $.ajax({
+                    url: path + "Blog/upload/Blog/" + idPostagem,
+                    async: false,
+                    crossDomain: true,
+                    type: "POST",
+                    mimeType:"multipart/form-data",
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    data: formData,
+                    beforeSend: function() {loading("inicial");},
+                    success: function(d) {
+                        mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
+                    },
+                    complete: function() {loading("final");}
+                });
+            }
+        }
+        else
+        {
+            mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
+        }
+    });
+}
 
-			$('#Grade_Aluno_Grafico_Mask').css("width",""+(924)+"px");
-			$('.Grafico_Individual_Aluno_Overflow').css("width",""+(924)+"px");
-			$('.Grafico_Individual_Aluno_Overflow').html(HTMLContente);
+function carregaPostsBlog () {
+    var htmlPosts = '';
 
-		} else {
-			$('#Grade_Aluno_Grafico_Mask').css("width",""+(LimiteAluno*42)+"px");
-			$('.Grafico_Individual_Aluno_Overflow').css("width",""+(LimiteAluno*42)+"px");
+    $.ajax({
+        url: path + "Blog/BlogProfessor/" + professorId,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dataPosts) {
+            for (var i = 0; i < dataPosts.length; i++) {
+                addPost(dataPosts[i]);
+            };
+        }     
+    });
+}
 
-			$('.Grafico_Individual_Aluno_Overflow').html(HTMLContente);
-		}			
-			$('body').append('<div class="aluno_foco"> </div>');
-			//inicio implementação ouro fino
-			$(".Grafico_Individual_Aluno_Foto_Hover").mouseover(function(event){
-				var px = event.pageX;
-				var py = event.pageY;
-				$('.aluno_foco').html($(this).attr("nomeAluno"));
-				var w = $('.aluno_foco').width();
-				var h = $('.aluno_foco').height();
-				//console.log(w);
-				
-				$('.aluno_foco').css("left",(px-w)+"px");
-				$('.aluno_foco').css("top",(py+(h*2))+"px");
-				$('.aluno_foco').show();
-			})
-			.mouseout(function(){
-				$('.aluno_foco').hide();
-			});
-	}
-//------------------------------------------------------------------------------------------------------------------------
+function addPost (post) {
+    var htmlPosts = '';
 
-//Funcao pra ordenar as classes e afins pela sua ordem alfabetica
+    var id = post.idblog;
+    var titulo = post.titulo;
+    var corpo = post.descricao;
+    var oficina = post.oficina.nome;
+    htmlPosts +=    '<div class="areaPost" id="' + id + '">' +
+                        '<div class="post postMedio">' +
+                            '<div class="postTitulo">' +
+                                titulo +
+                            '</div>' +
+                            '<div class="postCorpo">'+
+                                corpo + 
+                            '</div>' +
+                            '<div class="postDestinatario">' +
+                                oficina +
+                            '</div>'+
+                            '<div class="linhaConteudo">' +
+                                '<div class="linhaBotoes">' +
+                                    '<div class="containerIcone">' +
+                                        '<div class="botaoIcone">' +
+                                            '<img src="img/ic_editar_peq.png">' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="containerIcone">' +
+                                        '<div class="botaoIcone">' +
+                                            '<img src="img/ic_del_peq.png">' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+    $("#mCSB_2_container").append(htmlPosts);
+}
 
-	function OrdenarPor(TString)
-	{				
+function clickRelatorio () {
+    $("#novoRelatorio").click(function() {
+        $("#relatorioConteudo").hide();
+        $("#novoRelatorio").hide();
+        $("#relatorioNova").show();
+    });
+}
 
-		$('#Conteudo_Coluna3_Agenda_Evento_Content').find('.Conteudo_Coluna3_Agenda_Evento').sort(function(x,b){
-	        		return x.getElementsByClassName(TString)[0].innerHTML.substring(8, 10)+x.getElementsByClassName(TString)[0].innerHTML.substring(5, 7)+x.getElementsByClassName(TString)[0].innerHTML.substring(0, 2) > b.getElementsByClassName(TString)[0].innerHTML.substring(8, 10) + b.getElementsByClassName(TString)[0].innerHTML.substring(5, 7) + b.getElementsByClassName(TString)[0].innerHTML.substring(0, 2);
-	       }).appendTo($('#Conteudo_Coluna3_Agenda_Evento_Content'));
-	}
+function cancelarRelatorio () {
+    $("#cancelarRelatorio").click(function() {
+        $("#relatorioConteudo").show();
+        $("#novoRelatorio").show();
+        $("#relatorioNova").hide();
+    });
+}
 
+function clickMural () {
+    $("#novoMural").click(function() {
+        $("#muralConteudo").hide();
+        $("#novoMural").hide();
+        $("#muralNova").show();
+    })
+}
 
-//-------------------------------------------------------------------------------------------------------------------------
+function cancelarMural () {
+    $("#cancelarMural").click(function() {
+        $("#muralConteudo").show();
+        $("#novoMural").show();
+        $("#muralNova").hide();
+		$("#oficinaMural").hide();
+		$("#tutoriaMural").hide();
+		$("#msgMural").hide().html("");
+		$('#grupoMural option[value="0"]').attr({ selected : "selected" });
+    }); 
+}
 
-//Retorno de planejamentos do aluno especifico
-
-function carregaAlunos(todos){
-
-	$("#nomeAluno").val('');
-	
-	var dataAlunoVariavel = getData("AlunoVariavel", null);	
-	var HtmlContent = "";
-	var anoEstudo = $("#PesqAnoEstudo").val();
-	var periodo = $("#periodo").val();	
-	
-	for(var a=0;a<dataAlunoVariavel.length; a++)
-	{
-
-		HtmlContent += '<tr id="aluno" onClick="visualizar('+dataAlunoVariavel[a].aluno.idAluno+')">'+
-							'<td class="alunoNome">'+dataAlunoVariavel[a].aluno.nome+'</td>'+
-							'<td class="alunoAno">'+dataAlunoVariavel[a].anoEstudo.ano+'º Ano</td>'+
-							'<td class="alunoPeriodo">'+dataAlunoVariavel[a].periodo.periodo+'</td>'+
-						  '</tr>';
-			
-		
+function enviarMsgMural(){
+	var grupo = $('#grupoMural').val();
+	if(grupo == "oficina"){
+		$("#tutoriaMural").css("display","none")
+		$("#oficinaMural").css("display","block");
+		$("#msgMural").css("display","none");
+		carregaGrupoOficinaMural();
+	}else if(grupo == "tutoria"){
+		$("#oficinaMural").css("display","none");
+		$("#tutoriaMural").css("display","block");
+		$("#msgMural").css("display","none");
+		carregaGrupoTutoriaMural(professorId);
+	}else{
+		$("#oficinaMural").css("display","none");
+		$("#tutoriaMural").css("display","none");
+		$("#msgMural").css("display","none").html("");
 	}	
-	$('#lista').html(HtmlContent);
 }
 
-function visualizar(idAluno){
-	localStorage.setItem("alunoEdt",idAluno);
-	location.href='relatorioAluno.html?ID='+base64_encode(""+idAluno);
-	return false;
+function enviarMsgGrupo(){
+	var valores;
+	var grupo = $('#grupoMural').val();
+	var parametros,mensagemMural;
+	if(grupo == "oficina"){
+		var grupoMuraloficina = $("#grupoMuralOficina").val();	
+		if(grupoMuraloficina == "todos"){
+			parametros = "&agrupamento=0&oficina="+oficina[0].oficina.idoficina;
+		}else{
+			parametros = "&agrupamento="+grupoMuraloficina+"&oficina=0";
+		}
+		mensagemMural = $(".mensagemMedia").val();
+		valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+parametros+"&tutoria=0&grupo=0";
+		
+	}else if(grupo == "tutoria"){		
+		var grupoMuralTutoria = $("#grupoMuralTutoria").val();		
+		if(grupoMuralTutoria == "todos"){
+			parametros = "&tutoria=1&grupo=0";
+		}else{
+			parametros = "&tutoria=0&grupo="+grupoMuralTutoria;
+		}
+		mensagemMural = $(".mensagemMedia").val();
+		valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;		
+	}
+	
+	$.ajax({
+		url: path + "Mural",
+		async: false,
+		crossDomain: true,
+		cache: true,
+		type: "POST",
+		data: "action=create"+valores,
+		success: function(data){
+			htmlBlocoMural(mensagemMural,'5',$("#grupoMuralOficina :selected").text(),grupoMuralTutoria);
+			mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
+			$("#muralConteudo").show();
+			$("#novoMural").show();
+			$("#muralNova").hide();
+			$("#oficinaMural").hide();
+			$("#tutoriaMural").hide();
+			$("#msgMural").hide().html("");
+			$('#grupoMural option[value="0"]').attr({ selected : "selected" });
+		}
+	});
+}
+function listaMural(){
+	
+}
+function htmlBlocoMural(mensagem,anoEstudo,oficina,grupo){		
+	var tipoGrupo;
+	if(oficina){
+		tipoGrupo = oficina;
+	}else if(grupo){
+		tipoGrupo = grupo;
+	}
+	
+	var html = '<div class="areaPost">'+
+					'<div class="post postMedio">'+
+						mensagem+
+						'<div class="postDestinatario">'+
+							tipoGrupo+' | '+anoEstudo+'º Ano'+
+						'</div>'+
+						'<div class="linhaConteudo linhaIconeInferior">'+
+							'<div class="linhaBotoes">'+
+								'<div class="containerIcone">'+
+									'<div class="botaoIcone">'+
+										'<img src="img/ic_delete.png">'+
+									'</div>'+
+								'</div>'+
+								'<div class="containerIcone">'+
+									'<div class="botaoIcone">'+
+										'<img src="img/ic_editar_peq.png">'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>  '+
+					'</div>'+
+				'</div>';	
+							
+	return $('#muralConteudo .postContainer').html(html);	
 }

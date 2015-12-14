@@ -2416,7 +2416,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.bt_Pesquisar_Ativo{
 		width: 49%;
-		padding: 17px 16px 11px 16pxx;
+		padding: 17px 16px 11px 16px;
 		text-align: center;	
 		color: white;
 		float: left;
@@ -2710,7 +2710,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.bt_Pesquisar_Ativo{
 		width: 49%;
-		padding: 17px 16px 11px 16pxx;
+		padding: 17px 16px 11px 16px;
 		text-align: center;	
 		color: white;
 		float: left;
@@ -3148,7 +3148,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.bt_Pesquisar_Ativo{
 		width: 49%;
-		padding: 17px 16px 11px 16pxx;
+		padding: 17px 16px 11px 16px;
 		text-align: center;	
 		color: white;
 		float: left;
@@ -3214,7 +3214,7 @@ font-family: "proxima-nova",sans-serif;
 	
 	/*Pagina forum*/
 	#content_central_2{
-		overflow: none;
+		overflow: hidden;
 		height: 120%;
 	}
 	#btn_topico{

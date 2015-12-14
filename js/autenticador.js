@@ -37,6 +37,7 @@ switch (usuario){
 		msgNaoVistas(usuarioId);
 		dadosForum(usuarioId);
 		localStorage.setItem("oficinaProfessor", JSON.stringify(oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario)));
+		localStorage.setItem("tutoriaProfessor",JSON.stringify(getTutoria(dadosUsuario.professor.idprofessorFuncionario)));
 	break;
 	
 	case 'Coordenacao':
@@ -151,4 +152,23 @@ function abreviaNome(nome){
 		nomeAbreviado += nomeFinal[i]+" ";
 	}	
 	return nomeAbreviado;
+}
+
+function getTutoria(professorId){
+	var ano = new Date();
+	var retorno;
+	if(professorId){
+		$.ajax({
+			url: path + 'Tutoria/Professor/'+professorId+'/'+ano.getFullYear(),
+			async: false,
+			crossDomain: true,
+			type: "GET",
+			success: function(d) {
+				retorno = d;
+			}
+		});
+	}else{
+		retorno = "Não é tutor!";
+	}    
+	return retorno;
 }

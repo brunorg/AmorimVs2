@@ -150,7 +150,7 @@ div[class*="box_col"]:last-of-type {
 }
 
 .mensagemMedia{
-    height: 130px;
+	height: 103px;
 }
 
 .mensagemPequena{
@@ -328,4 +328,8 @@ select[value="0"]{
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
     background-color: white !important;
+}
+
+#oficinaMural, #tutoriaMural, #msgMural{
+	display:none;
 }

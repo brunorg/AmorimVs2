@@ -44,6 +44,7 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'forum'}
 				];
+				
 				//Visibilidade do perfil
 				$(".total").addClass("semTop");
 				if(confTutor==true){
