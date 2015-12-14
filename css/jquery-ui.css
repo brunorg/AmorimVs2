@@ -449,7 +449,6 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-draggable-handle {
 	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-menu {
 	list-style: none;
@@ -530,7 +529,6 @@ button.ui-button::-moz-focus-inner {
 	font-size: 0.1px;
 	display: block;
 	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-resizable-disabled .ui-resizable-handle,
 .ui-resizable-autohide .ui-resizable-handle {
@@ -594,7 +592,6 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-selectable {
 	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-selectable-helper {
 	position: absolute;
@@ -661,7 +658,6 @@ button.ui-button::-moz-focus-inner {
 	height: 1.2em;
 	cursor: default;
 	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-slider .ui-slider-range {
 	position: absolute;
@@ -717,7 +713,6 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-sortable-handle {
 	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-spinner {
 	position: relative;

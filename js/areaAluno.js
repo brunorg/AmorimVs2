@@ -372,11 +372,12 @@ function CarregarRotina() {
 function CarregarMural() {
 
 	$.ajax({
-		url: path+"Mural/RangeData/"+alunoVariavelID.idalunoVariavel,
+		url: path+"MuralAluno/ListarAluno"+alunoVariavelID.idalunoVariavel,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		success: function(dadosMural) {
+			console.log('Mural'+dadosMural);
 			for (var i = 0; i < dadosMural.length; i++) {
 				var dataMural = dadosMural[0].data.split('-');
 				var ano = dataMural[0];
