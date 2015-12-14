@@ -369,16 +369,17 @@ function CarregarRotina() {
 //------------------------------------------------------------------------------------------------------------------------
 
 //Preencher Mural
+
 function CarregarMural() {
 
 	$.ajax({
-		url: path+"Mural/RangeData/"+alunoVariavelID.idalunoVariavel,
+		url: path+"MuralAluno/ListarAluno/"+alunoVariavelID.idalunoVariavel,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		success: function(dadosMural) {
 			for (var i = 0; i < dadosMural.length; i++) {
-				var dataMural = dadosMural[0].data.split('-');
+				var dataMural = dadosMural[0]["mural"]["data"].split('-');
 				var ano = dataMural[0];
 				var mes = dataMural[1];
 				var dia = dataMural[2]; 
@@ -386,17 +387,20 @@ function CarregarMural() {
 
 				var muralLinha = '<div class="Mural_Conteudo_Linha '+ (dadosMural.length > 2 ? 'Linha_Scroll' : '') +'">'+
 							'<div class="Mural_Linha_Cabecalho">'+
-								'<span class="Mural_Nome">'+abreviaNome(dadosMural[i].professor.nome)+'</span>'+
+								'<span class="Mural_Nome">'+abreviaNome(dadosMural[i]["mural"]["professor"]["nome"])+'</span>'+
 								'<span class="Mural_Data"> '+dataMural+'</span>'+
 								'<span class="Mural_Horario"></span>'+
 							'</div>'+
 							'<div class="Mural_Linha_Texto">'+
-								'<p class="Mural_Texto">'+dadosMural[i].mensagem+'</p>'+
+								'<p class="Mural_Texto">'+dadosMural[i]["mural"]["mensagem"]+'</p>'+
 							'</div>'+
 						'</div>';
 				$("#Mural_Conteudo_Container").append(muralLinha);
 			};
 
+		},
+		error: function (a, status, error) {
+			console.log(stats + " /// " + error)
 		}
 	});	
 };
