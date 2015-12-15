@@ -311,7 +311,7 @@
                                             <div class="botaoNovo" id="novoMural"><img src="img/plano_estudo_novo_normal.png"></div>
                                         </div>
                                         <div class="conteudoPost conteudoPequeno" id="muralConteudo">
-                                            <div class="postContainer">
+                                            <div class ="postContainer2" id="postMural">
                                                                                             
                                             </div>
                                         </div>
@@ -322,7 +322,7 @@
                                                         <div class="containerSelect">
                                                             <div class="selectArea selectMedio">
                                                                 <div class="selectOptions" id="selectGrupo">
-                                                                    <select id="grupoMural" onChange="enviarMsgMural();">
+                                                                    <select id="grupoMural">
                                                                     	<option value="0">Selecione</option>
                                                                     	<option value="oficina">Oficina</option>
                                                                         <option value="tutoria">Tutoria</option>
@@ -355,13 +355,13 @@
                                                     </div>
                                                     <div class="linhaConteudo" id="msgMural">
                                                         <div class="containerAreaMensagem">
-                                                            <textarea class="inputArea inputMensagem mensagemMedia" placeholder="Digite aqui a mensagem."></textarea>
+                                                            <textarea class="inputArea inputMensagem mensagemMedia" id="muralTextMsg" placeholder="Digite aqui a mensagem."></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="linhaConteudo">
                                                         <div class="linhaBotoes">
                                                             <div class="containerIcone">
-                                                                <div class="botaoIcone" onClick="enviarMsgGrupo();">
+                                                                <div class="botaoIcone" id="enviarMsgGrupo">
                                                                     <img src="img/salvar_ed.png">
                                                                 </div>
                                                             </div>

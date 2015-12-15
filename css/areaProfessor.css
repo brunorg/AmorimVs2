@@ -256,6 +256,11 @@ select[value="0"]{
     padding-top: 10px;
 }
 
+.postContainer2{
+    height: 100%;
+    padding-top: 10px;
+}
+
 .novoContainer{
     height: 100%;
     padding: 10px;
