@@ -17,6 +17,7 @@ function adicionarBarraRolagem () {
     $('.postContainer').mCustomScrollbar({
         axis:"y"
     });
+
 }
 
 function carregarDados () {
@@ -284,8 +285,10 @@ function Mural() {
         $("#muralConteudo").hide();
         $("#novoMural").hide();
         $("#muralNova").show();
-        $("#msgMural").show;
-        $("#muralTextMsg").html("")
+        $("#msgMural").show();
+        $("#muralTextMsg").html("");
+        $("#primeiroSelect").show();
+       
     }
 
     this.close = function() {
@@ -316,8 +319,8 @@ function Mural() {
         }   
     }
 
-    this.desenharPostIndividual = function(mensagem, id){        
-        var html = '<div class="areaPost" id="muralPost'+id+'">'+
+    this.desenharPostIndividual = function(mensagem, id, lugar){        
+        var html = '<div class="areaPost deletablePost" id="muralPost'+id+'">'+
                         '<div class="post postMedio">'+
                             mensagem+
                             '<div class="linhaConteudo linhaIconeInferior">'+
@@ -337,7 +340,7 @@ function Mural() {
                         '</div>'+
                     '</div>';   
                                 
-        return $('#postMural').prepend(html);    
+        return $(lugar).prepend(html);    
     }
 
     this.enviarMsgGrupo = function() {
@@ -369,7 +372,6 @@ function Mural() {
             url: path + "Mural",
             async: false,
             crossDomain: true,
-            cache: true,
             type: "POST",
             data: "action=create"+valores,
             success: function(data){
@@ -380,7 +382,7 @@ function Mural() {
         });
     }
 
-    this.desenharPosts = function() {
+    this.desenharPosts = function(lugar) {
     
         $.ajax({
             url: path + "Mural/ListarProfessor/"+professorId,
@@ -388,9 +390,13 @@ function Mural() {
             crossDomain: true,
             type: "GET",
             success: function(retornoAjax){
+
+                $('#postMural #mCSB_5 #mCSB_5_container').html(""); 
+
                 for (var i = retornoAjax.length - 1; i >= 0; i--) {
-                    self.desenharPostIndividual(retornoAjax[i]["mensagem"], retornoAjax[i]["idmural"])
+                    self.desenharPostIndividual(retornoAjax[i]["mensagem"], retornoAjax[i]["idmural"], lugar)
                 };
+
             },
             error: function(a, status, error) {
                 console.log(status + " /// " + error)
@@ -401,27 +407,90 @@ function Mural() {
 
     }
 
-    this.editarPost = function(id) {
-        this.open()
-        $("#muralTextMsg").html("")
+    this.editarPost = function(idPost) {
+        
+        var msg;
+        this.open();
+        $("#primeiroSelect").hide();
+        
+        //pega mensagem anterior para editar
+        $.ajax({
+            url: path + "Mural/ListarProfessor/"+professorId,
+            async: false,
+            crossDomain: true,
+            type: "GET",
+            success: function(retornoAjax){
+
+                for (var i = retornoAjax.length - 1; i >= 0; i--) {
+                    if (retornoAjax[i]["idmural"] == idPost) {
+
+                        var mensagemAnterior = retornoAjax[i]["mensagem"] 
+                        
+                        $("#containerTextAreaMural").html('<textarea class="inputArea inputMensagem mensagemMedia" id="muralTextMsg" placeholder="Digite aqui a mensagem.">'+mensagemAnterior+'</textarea>')
+
+                        $("#enviarMsgGrupo").unbind("click")
+                        $("#enviarMsgGrupo").click(function() {
+
+                            var mensagemMural = $(".mensagemMedia").val();
+                            
+                            //envia mensagem nova
+                            $.ajax({
+                                url: path + "Mural",
+                                async: false,
+                                crossDomain: true,
+                                type: "POST",
+                                data: "action=update&id="+idPost+"&mensagem="+mensagemMural,
+                                success: function(data){
+                                    mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container');
+                                    mural.close();
+                                }
+                            });
+
+                        })
+                    }
+                };
+            },
+            error: function(a, status, error) {
+                console.log(status + " /// " + error);
+            }
+        });
+
     }
 
-    this.deletarPost = function(id) {
-        var post = document.getElementById("muralPost"+id)
+    this.deletarPost = function(idPost) {
+        var post = document.getElementById("muralPost"+idPost)
         if (post) {
-            post.parentNode.removeChild(post)
+            
+            $.ajax({
+                url: path + "Mural",
+                async: false,
+                crossDomain: true,
+                type: "POST",
+                data: "action=delete&id="+idPost,
+                success: function(data){
+                    post.parentNode.removeChild(post)
+                }
+            });
+
+
         }
     }
     
-
 }
 
 function iniciarMural() {
+
     window.mural = new Mural();
-    mural.desenharPosts()
+
+    mural.desenharPosts('#postMural')
 
     $("#novoMural").click(function() {
         mural.open()
+        $("#muralTextMsg").html("")
+        $("#enviarMsgGrupo").unbind("click")
+        $("#enviarMsgGrupo").click(function() {
+            mural.enviarMsgGrupo()
+        })
     })
 
     $("#cancelarMural").click(function() {
@@ -430,10 +499,6 @@ function iniciarMural() {
 
     $("#grupoMural").change(function() {
         mural.atualizarListaGrupos()
-    })
-
-    $("#enviarMsgGrupo").click(function() {
-        mural.enviarMsgGrupo()
     })
 }
 
