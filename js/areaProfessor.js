@@ -31,11 +31,11 @@ function atribuirEventos () {
     uploadImagemPostagem();
     imagemPostagemTexto();
     removerImagemPostagem();
-    novaPostagem();
     clickRelatorio();
     cancelarRelatorio();
     console.log("mural")
     iniciarMural();
+    $("#salvarPostagem").click(novaPostagem);
 }
 
 function carregaOficinaPostagens () {
@@ -100,9 +100,18 @@ function carregaGrupoTutoriaMural(professorId) {
 
 function clickPostagens() {
     $("#novoPostagens").click(function() {
+
+        $("#conteudoPostagens").html("");
+        $("#selectOficina select").html("");
+        $("#tituloPostagens").html("");
+        $("#postagemImagem").html(""); 
+
         $("#postagensConteudo").hide();
         $("#novoPostagens").hide();
         $("#postagensNova").show();
+
+        $("#postagemAction").val("create")
+        
     });
 }
 
@@ -142,71 +151,75 @@ function removerImagemPostagem () {
 }
 
 function novaPostagem () {
-    $("#salvarPostagem").click(function() {
-        var conteudo = $("#conteudoPostagens").val();
-        var oficina = $("#selectOficina select").val();
-        var titulo = $("#tituloPostagens").val();
-        var imagem = $("#postagemImagem").val();
+    
+    var conteudo = $("#conteudoPostagens").val();
+    var oficina = $("#selectOficina select").val();
+    var titulo = $("#tituloPostagens").val();
+    var imagem = $("#postagemImagem").val();
 
-        if (oficina != 0 && conteudo != '' && titulo != '')
+    if (oficina != 0 && conteudo != '' && titulo != '')
+    {
+        $("#postagemTitulo").val(titulo);
+        $("#postagemConteudo").val(conteudo);
+        $("#postagemOficina").val(oficina);
+        var idPostagem;
+
+        $.ajax({
+            url: path + "Blog",
+            async: false,
+            crossDomain: true,
+            type: "POST",
+            data: $("#formPostagens").serialize(),
+            beforeSend: function() {loading("inicial");},
+            success: function(d) {
+                var post = {titulo : $("#tituloPostagens").val(), descricao : $("#postagemConteudo").val(), idblog : d, oficina : {nome : $("#selectOficina select :selected").text()}};
+                mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
+                $("#tituloPostagens").val('');
+                $("#conteudoPostagens").val('');
+                $("#selectOficina select").val(0);
+                $("#cancelarPostagens").trigger("click");
+                idPostagem = d;
+            },
+            complete: function() {loading("final");}
+        });
+
+        if (imagem != "")
         {
-            $("#postagemTitulo").val(titulo);
-            $("#postagemConteudo").val(conteudo);
-            $("#postagemOficina").val(oficina);
-            var idPostagem;
+            $("#postagemAction").val("update");
+            var formData = new FormData($("#formPostagens")[0]);
+            formData.append("fotoAluno", Arquivo);
 
             $.ajax({
-                url: path + "Blog",
+                url: path + "Blog/upload/Blog/" + idPostagem,
                 async: false,
                 crossDomain: true,
                 type: "POST",
-                data: $("#formPostagens").serialize(),
+                mimeType:"multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData:false,
+                data: formData,
                 beforeSend: function() {loading("inicial");},
                 success: function(d) {
-                    var post = {titulo : $("#tituloPostagens").val(), descricao : $("#postagemConteudo").val(), idblog : d, oficina : {nome : $("#selectOficina select :selected").text()}};
-                    addPost(post);
                     mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
-                    $("#tituloPostagens").val('');
-                    $("#conteudoPostagens").val('');
-                    $("#selectOficina select").val(0);
-                    $("#cancelarPostagens").trigger("click");
-                    idPostagem = d;
                 },
                 complete: function() {loading("final");}
             });
-
-            if (imagem != "")
-            {
-                $("#postagemAction").val("update");
-                var formData = new FormData($("#formPostagens")[0]);
-                formData.append("fotoAluno", Arquivo);
-
-                $.ajax({
-                    url: path + "Blog/upload/Blog/" + idPostagem,
-                    async: false,
-                    crossDomain: true,
-                    type: "POST",
-                    mimeType:"multipart/form-data",
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    data: formData,
-                    beforeSend: function() {loading("inicial");},
-                    success: function(d) {
-                        mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
-                    },
-                    complete: function() {loading("final");}
-                });
-            }
         }
-        else
-        {
-            mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
-        }
-    });
+
+        carregaPostsBlog()
+    }
+    else
+    {
+        mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
+    }
+    
 }
 
 function carregaPostsBlog () {
+
+    $("#mCSB_2_container").html("")
+
     var htmlPosts = '';
 
     $.ajax({
@@ -231,13 +244,13 @@ function addPost (post) {
     var oficina = post.oficina.nome;
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
-                            '<div class="postTitulo">' +
+                            '<div class="postTitulo" id="blogPostTitulo'+id+'">' +
                                 titulo +
                             '</div>' +
-                            '<div class="postCorpo">'+
+                            '<div class="postCorpo" id="blogPostCorpo'+id+'">'+
                                 corpo + 
                             '</div>' +
-                            '<div class="postDestinatario">' +
+                            '<div class="postDestinatario" id="blogPostOficina'+id+'">' +
                                 oficina +
                             '</div>'+
                             '<div class="linhaConteudo">' +
@@ -257,6 +270,23 @@ function addPost (post) {
                         '</div>' +
                     '</div>';
     $("#mCSB_2_container").append(htmlPosts);
+}
+
+function editPost(id) {
+    $("#postagensConteudo").hide();
+    $("#novoPostagens").hide();
+    $("#postagensNova").show();
+
+    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html()); 
+    $("#selectOficina select").html($("#blogPostOficina"+id).html()); 
+    $("#tituloPostagens").html($("#blogPostTitulo"+id).html()); 
+    //$("#postagemImagem").html(""); 
+
+
+    $("#postagemAction").val("update")
+    $("#postagemId").val(id)
+
+
 }
 
 function deletePost(id) {
@@ -351,7 +381,7 @@ function Mural() {
                                         '</div>'+
                                     '</div>'+
                                     '<div class="containerIcone">'+
-                                        '<div class="botaoIcone" onclick="mural.editarPost('+id+')">'+
+                                        '<div class="botaoIco   ne" onclick="mural.editarPost('+id+')">'+
                                             '<img src="img/ic_editar_peq.png">'+
                                         '</div>'+
                                     '</div>'+
