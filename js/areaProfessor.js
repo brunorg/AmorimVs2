@@ -229,7 +229,7 @@ function addPost (post) {
     var titulo = post.titulo;
     var corpo = post.descricao;
     var oficina = post.oficina.nome;
-    htmlPosts +=    '<div class="areaPost" id="' + id + '">' +
+    htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
                             '<div class="postTitulo">' +
                                 titulo +
@@ -243,13 +243,13 @@ function addPost (post) {
                             '<div class="linhaConteudo">' +
                                 '<div class="linhaBotoes">' +
                                     '<div class="containerIcone">' +
-                                        '<div class="botaoIcone">' +
-                                            '<img src="img/ic_editar_peq.png">' +
+                                        '<div class="botaoIcone" onclick="deletePost(' + id + ')">' +
+                                            '<img src="img/ic_del_peq.png">' +
                                         '</div>' +
                                     '</div>' +
                                     '<div class="containerIcone">' +
-                                        '<div class="botaoIcone">' +
-                                            '<img src="img/ic_del_peq.png">' +
+                                        '<div class="botaoIcone" onclick="editPost(' + id + ')">' +
+                                            '<img src="img/ic_editar_peq.png">' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +
@@ -257,6 +257,27 @@ function addPost (post) {
                         '</div>' +
                     '</div>';
     $("#mCSB_2_container").append(htmlPosts);
+}
+
+function deletePost(id) {
+
+    var post = document.getElementById("blogPost"+id)
+    if (post) {
+        
+        $.ajax({
+            url: path + "Blog",
+            async: false,
+            crossDomain: true,
+            type: "POST",
+            data: "action=delete&id="+id,
+            success: function(data){
+                post.parentNode.removeChild(post)
+            }
+        });
+
+
+    }
+
 }
 
 function clickRelatorio () {
