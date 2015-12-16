@@ -288,7 +288,6 @@ function Mural() {
         $("#msgMural").show();
         $("#muralTextMsg").html("");
         $("#primeiroSelect").show();
-       
     }
 
     this.close = function() {
@@ -375,7 +374,7 @@ function Mural() {
             type: "POST",
             data: "action=create"+valores,
             success: function(data){
-                mural.desenharPostIndividual(mensagemMural, data);
+                mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container')
                 mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
                 mural.close();
             }
@@ -393,8 +392,23 @@ function Mural() {
 
                 $('#postMural #mCSB_5 #mCSB_5_container').html(""); 
 
-                for (var i = retornoAjax.length - 1; i >= 0; i--) {
-                    self.desenharPostIndividual(retornoAjax[i]["mensagem"], retornoAjax[i]["idmural"], lugar)
+
+
+                for (var i = 0; i < retornoAjax.length ; i++) {
+
+                    var mensagem = retornoAjax[i]["mensagem"];
+                    var idMural = retornoAjax[i]["idmural"];
+                    var tutoria = retornoAjax[i]["tutoria"];
+                    var grupo = retornoAjax[i]["grupo"];
+                    var oficina = retornoAjax[i]["oficina"];
+                    var agrupamento = retornoAjax[i]["agrupamento"];
+
+                    var destinatario = self.verificarDestinarario(tutoria, grupo, oficina, agrupamento)
+
+                    mensagem = mensagem + "<br>-" + destinatario
+
+
+                    self.desenharPostIndividual(mensagem, idMural, lugar)
                 };
 
             },
@@ -405,6 +419,18 @@ function Mural() {
 
         adicionarBarraRolagem();
 
+    }
+
+    this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento) {
+        if (tutoria == 1) {
+            return "Tutoria"
+        } else if (grupo != null) {
+            return "Grupo " + grupo["nomeGrupo"]
+        } else if (oficina != null) {
+            return "Oficina " + oficina["nome"]
+        } else if (agrupamento != null) {
+            return "Agrupamento " + agrupamento["nome"]
+        }
     }
 
     this.editarPost = function(idPost) {
