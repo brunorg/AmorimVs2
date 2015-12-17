@@ -68,11 +68,13 @@
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
                         	<div  ng-repeat="menu in menuHTML">                        	
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                                <a href="{{menu.href}}">
+                                	<div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                		<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                	    <div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                	    {{menu.label}}
+                                	</div>
+                                </a>
                             </div>
                         </div>    
                     <!--Calendario-->                   
@@ -92,7 +94,7 @@
 						<ul id="Producao_Aluno_Nav" class="Prod_Aluno_Nav">
                 			<li id="cabecalho_portfolio" class="Prod_Aluno_Nav_Item">Portfólio</li>
                 			<li id="cabecalho_fichas"  class="Prod_Aluno_Nav_Item">Fichas de finalização</li>
-                			<li id="cabecalho_atividade" class="Prod_Aluno_Nav_Item">Atividade extra</li>
+                			<li id="cabecalho_atividade" class="Prod_Aluno_Nav_Item">Oficinas</li>
                 		</ul>
                 	</nav>
 					
@@ -147,24 +149,39 @@
 									<div class="Prod_Oficina_Item">
 										<div id="AtvExtra" class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="getAtividadesExtras()">Atividades Extras</div>
 										<div class="Prod_Oficina_Content">
-											<div class="Oficina_Content_Item Add_Item">Inserir novo</div>
+											<div class="Oficina_Content_Item Prod_Oficina_Item Add_Item" onclick="showFormNovaProd(0, 6)">Inserir novo</div>
 										</div>
 									</div>
 								</div>
 							</nav>
 							
 							<div id="conteudo_principal_oficinas">
-                                <div id="form_Nova_Producao">
-                                    <form>
+                                <div id="container_Nova_Producao">
+                                    <form id="form_Nova_Producao">
+                                        <h1 class="Titulo_Nova_Prod_Oficina">Inserir nova produção</h1>
+                                        <div class="celulaGrande_container">
+                                        	<div class="celulaGrande">
+                                        		<div class="infoG">Nome</div>
+                                        		<div class="infoValueG">
+                                        			<input name="texto" id="texto" type="text" value="" placeholder="Digite o nome da atividade." required />
+                                        		</div>
+                                        	</div>
+                                        </div>
+                                        <div style="display:none;">
+                                        	<input name="arquivo" id="postagemImagem" type="file" />
+                                        </div>
+                                        <div id="addArquivo" class="bt bt_Add_Arquivo">Inserir Arquivo</div>
+                                        <input name="action" id="action" type="hidden" value="create" />
                                         <input name="anoLetivo" id="anoLetivo" type="hidden" value=""/>
                                         <input name="data" id="data" type="hidden" value="" />
                                         <input name="aluno" id="aluno" type="hidden" value="" />
                                         <input name="tipo" id="tipo" type="hidden" value="" />
-                                        <input name="categoria" id="categoria" type="hidden" value="" />
-                                        <input name="texto" id="texto" type="text" value="" placeholder="Digite o nome da atividade." required />
+                                        <input name="categoria" id="categoria" type="hidden" value="1" />
+                                        <input name="oficina" id="oficina" type="hidden" value="" />
                                     </form>
+                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina(null)">Salvar</div>
                                 </div>
-								<iframe id="Prod_Oficina_View" src="" frameborder="0" style="width:720px; height:430px;">
+								<iframe id="Prod_Oficina_View" class="Prod_Oficina_View" src="" frameborder="0" style="width:720px; height:430px;">
 									<!-- Conteúdo gerado por JS -->
 								</iframe>
 							</div>
@@ -190,11 +207,11 @@
 							</div>
 						</div>
 
-              	</div>                
-                <div id="boxMensagemGeral"></div>
-                <div class="boxCalendario"></div>
-				<div class="boxGlobal"></div> 
+              	</div> 
 			</div>             
-		</div><!--Fim Conteudo-->     
+		</div><!--Fim Conteudo-->
+        <div id="boxMensagemGeral"></div>
+        <div class="boxCalendario"></div>
+		<div class="boxGlobal"></div>    
 	</body>
 </html> 

@@ -12,6 +12,9 @@ var oficinasItens;
 var listAtvs;
 var listImgs;
 var oficinas = [];
+
+//Arquivo
+var Arquivo;
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
@@ -119,7 +122,7 @@ $(document).ready(function(){
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
 	
-    showOficinaContent(oficinasLista[0]);
+    showOficinaContent(oficinasLista[0],oficinasLista[0].idOficina);
 
 	$(oficinasLista).click(function(){
 		showOficinaContent(this, this.id);
@@ -127,11 +130,6 @@ $(document).ready(function(){
 	});
 	$(oficinasLista).focus(function(){
 		showOficinaContent(this, this.id);
-		return false;
-	});
-
-	$('.Add_Item').click(function(){
-		postProducaoOficina(this.id);
 		return false;
 	});
 
@@ -143,7 +141,19 @@ $(document).ready(function(){
     $('#Oficinas').mCustomScrollbar({
         axis: "y"
     });
-    
+	    
+	$("#postagemImagem").change(function(e) {
+	    var FR = new FileReader();
+	    FR.onload = function(e) {
+	        $("#imagemArquivo").val(e.target.result);
+	    };
+	    Arquivo = this.files[0];
+	});
+
+	$('#addArquivo').click(function() {
+		$('#postagemImagem').trigger('click');
+	});
+
 	//----------------------------------------------------------
 
 	CarregaProducao();
@@ -446,7 +456,7 @@ function buildAcordeon()
 			'<div id="Oficina'+(a+1)+'" class="Prod_Oficina_Item">'+
 				'<div id="'+oficinas[a].idOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].CorForte+'" onclick="getAtividadesOficina('+oficinas[a].idOficina+')">'+nomeOficina+'</div>'+
 				'<div class="Prod_Oficina_Content">'+
-					'<div id="oficinaAdd'+oficinas[a].idOficina+'"class="Oficina_Content_Item Add_Item">Inserir novo</div>'+
+					'<div id="oficinaAdd'+oficinas[a].idOficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+oficinas[a].idOficina+', 7)">Inserir novo</div>'+
 				'</div>'+
 			'</div>';
 	}
@@ -455,43 +465,6 @@ function buildAcordeon()
     listImgs = $('#conteudo_principal_oficinas .Oficina_Prod_Img');
 
 	$('#Prod_Oficina_Acordeon').prepend(htmlAcordeon);
-}
-
-/* ------ Funções POST ------ */
-
-//Inserir Produção Oficina (Sem serviço)
-function postProducaoOficina(tabID)
-{
-	var foo = '';
-	if ( tabID != 'atvExtraAdd' )
-	{
-		foo = parseInt(tabID.slice(10));
-	}
-	else
-	{
-		foo = tabID;
-	}
-	console.log(foo);
-    
-    var d = new Date();
-    var data = { ano: d.getFullYear(), mes: d.getMonth()+1, dia: d.getDate() }
-    var anoLetivo = getAnoLetivo('idAnoLetivo');
-    
-	$.ajax({
-        url: path+"ProducaoAluno/",
-        type: "POST",
-        crossDomain: true,  
-        data: "action=create&anoLetivo="+anoLetivo+"&texto=textoTeste&data="+data.ano+"-"+data.mes+"-"+data.dia+"&aluno="+alunoID+"&tipo=6&categoria=1",    
-        beforeSend: function(){
-            loading("inicial");
-        }, 
-        success: function(d) {
-            console.info('Nice');
-        },
-        complete: function () {
-            loading("final");
-        }
-    }); 
 }
 
 /* ------ Funções GET ------ */
@@ -539,15 +512,18 @@ function getAtividadesOficina(idoficina)
                     for ( a in dAtvOficina )
                     {
                         htmlProducoesOficina +=
-                            '<div id="'+dAtvOficina[a].idproducao+'"" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvOficina[a].arquivo+'\')">'+dAtvOficina[a].texto+'</div>'
+                            '<div id="'+dAtvOficina[a].idproducaoAluno+'"" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvOficina[a].arquivo+'\')">'+
+                            	'<span class="Item_Prod_Titulo">'+dAtvOficina[a].texto+'</span>'+
+                            '</div>';
                     }
+                    document.getElementById(idoficina).classList.add('atvsListadas');
                 }
 	        }
 		});
-
-		document.getElementById(idoficina).classList.add('atvsListadas');
         
-		return htmlProducoesOficina;
+		$('#'+idoficina).next('.Prod_Oficina_Content').append(htmlProducoesOficina);
+
+		return;
 	}
 }
 
@@ -579,17 +555,69 @@ function getAtividadesExtras()
                         for ( a in dAtvsExtras )
                         {
                             htmlAtividadesExtras +=
-                                '<div id="'+dAtvsExtras[a].idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvsExtras[a].arquivo+'\')">'+dAtvsExtras[a].texto+'</div>';
+                                '<div id="'+dAtvsExtras[a].idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvsExtras[a].arquivo+'\')">'+
+                                	'<span class="Item_Prod_Titulo">'+dAtvsExtras[a].texto+'</span>'+
+                                '</div>';
                         }
                         
+        				document.getElementById('AtvExtra').classList.add('atvsListadas');
                         $('#AtvExtra').next('.Prod_Oficina_Content').append(htmlAtividadesExtras);
                         atvsExtras = $('.Prod_Oficina_Content');
                     }
                 }
             });
         }
-        document.getElementById('AtvExtra').classList.add('atvsListadas');
     }
+}
+
+
+/* ------ Funções POST ------ */
+
+//Inserir Produção Oficina (Sem serviço)
+function postProducaoOficina(tabID)
+{   
+    var d = new Date();
+    var data = { ano: d.getFullYear(), mes: d.getMonth()+1, dia: d.getDate() }
+    var anoLetivo = getAnoLetivo('idAnoLetivo');
+
+    $('#anoLetivo').val(anoLetivo);
+    $('#data').val(data.ano+"-"+data.mes+"-"+data.dia);
+    $('#aluno').val(alunoID);
+    
+	$.ajax({
+        url: path+"ProducaoAluno/",
+        type: "POST",
+        crossDomain: true,
+        data: $("#form_Nova_Producao").find('input[name!="naoEnviar"]').serialize(),
+        beforeSend: function(){
+            loading("inicial");
+        }, 
+        success: function(dataPost) {
+			uploadArquivo(dataPost)
+        },
+        complete: function () {
+            loading("final");
+        }
+    }); 
+}
+
+//Upload arquivo
+function uploadArquivo(idpost)
+{
+    var formData = new FormData($("#form_Nova_Producao")[0]);
+    formData.append("arquivo", Arquivo);
+
+    $.ajax({
+    	url: path + 'ProducaoAluno/upload/producaoAluno/arquivo/' + idpost,
+    	type: "POST",
+    	crossDomain: true,
+    	async: false,
+		mimeType:"multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData:false,
+        data: formData,
+    });
 }
 
 /* ------ Funções SHOW ------ */
@@ -612,9 +640,31 @@ function showTabContent(tabToDisplay)
 	}
 }
 
+//Exibir formulário de nova produçãoi
+function showFormNovaProd(idoficina, tipo)
+{
+	$('#container_Nova_Producao').show();
+    $('#Prod_Oficina_View').hide();
+	$('#Prod_Oficina_View').attr('src','');
+
+	$('#tipo').val(tipo);
+	$('#oficina').val(idoficina);
+
+	if ( idoficina == 0 )
+	{
+		$('#oficina').attr('name','naoEnviar');
+	}
+	else
+	{
+		$('#oficina').attr('name','oficina');
+	}
+}
+
 //Exibir atividade extra
 function showAtividadeExtra(url)
 {
+    $('#container_Nova_Producao').hide();
+    $('#Prod_Oficina_View').show();
 	$('#Prod_Oficina_View').attr('src',url);
 }
 
@@ -624,6 +674,10 @@ function showOficinaContent(itemToExpand, idTab)
 	if ( idTab == 'AtvExtra' )
 	{
 		getAtividadesExtras();
+	}
+	else
+	{
+		getAtividadesOficina(itemToExpand.id);
 	}
 
  	for ( var i = 0; i < oficinasLista.length; i++ )
