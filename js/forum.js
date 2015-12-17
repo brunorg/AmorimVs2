@@ -207,8 +207,16 @@ function rolagemForum () {
 }
 
 
-
+timerBusca = setTimeout(function(){}, 1)
 function buscaForum () {
+
+	clearTimeout(timerBusca)
+	timerBusca = setTimeout(efetuarBusca, 2000)
+
+}
+
+
+function efetuarBusca() {
 	if ($('#buscaForum').val() != "")
 		$.ajax({
     	    url: path + "Roteiro/ListaLikeRoteiro/" + $('#buscaForum').val(),
@@ -253,6 +261,8 @@ function buscaForum () {
 	else
 		carregaForumCompleto();
 }
+
+
 
 function abreAcoordion(){
 	$('.accordion').unbind('click');
