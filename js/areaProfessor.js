@@ -22,7 +22,7 @@ function adicionarBarraRolagem () {
 
 function carregarDados () {
     carregaPostsBlog();
-    carregaOficinaPostagens();
+    
 }
 
 function atribuirEventos () {
@@ -50,14 +50,17 @@ function carregaOficinaPostagens () {
         success: function(d) {
             for (var i = 0; i < d.length; i++)
             {
-                htmlOficinas += '<option value="'+d[i].idoficina+'">'+d[i].nome+'</option>';
+                htmlOficinas += '<option value="'+d[i]["idoficina"]+'">'+d[i]["nome"]+'</option>';
             }
+            console.log(htmlOficinas)    
+
+            htmlOficinas += '</select>';
+
+            $('#selectOficina').html(htmlOficinas);
         }
     });
 
-    htmlOficinas += '</select>';
 
-    $('#selectOficina').html(htmlOficinas);
 }
 
 function carregaGrupoOficinaMural () {
@@ -111,6 +114,8 @@ function clickPostagens() {
         $("#postagensNova").show();
 
         $("#postagemAction").val("create")
+
+        carregaOficinaPostagens();
         
     });
 }
@@ -228,7 +233,7 @@ function carregaPostsBlog () {
         crossDomain: true,
         type: "GET",
         success: function(dataPosts) {
-            for (var i = 0; i < dataPosts.length; i++) {
+            for (var i = dataPosts.length - 1; i >= 0; i--) {
                 addPost(dataPosts[i]);
             };
         }     
@@ -286,7 +291,7 @@ function editPost(id) {
     $("#postagemAction").val("update")
     $("#postagemId").val(id)
 
-
+    carregaOficinaPostagens();
 }
 
 function deletePost(id) {
