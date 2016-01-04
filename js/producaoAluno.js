@@ -261,52 +261,53 @@ function CarregaProducao()
 
 	for(var a = 0; a < dataProducaoAluno.length; a++)
 	{
+		
+		if(dataProducaoAluno[a].arquivo){
+			extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
+		}
+		if(dataProducaoAluno[a].aluno.idAluno == alunoID)
+		{
+			//if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 1)
+			if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5)
+			{
+				if (extensao == ".docx" || extensao == ".doc")
+				{
+					HtmlContent1 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li></a>";
+				}
+				else
+				{
+					HtmlContent1 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
+				}
+			} 
 
-        extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
+			//else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 2)
+			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 6)
+			{
 
-    	if(dataProducaoAluno[a].aluno.idAluno == alunoID)
-    	{
-    		//if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 1)
-    		if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5)
-        	{
-                if (extensao == ".docx" || extensao == ".doc")
-                {
-                    HtmlContent1 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li></a>";
-                }
-                else
-                {
-                    HtmlContent1 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
-                }
-        	} 
+				if (extensao == ".docx" || extensao == ".doc")
+				{
+					HtmlContent2 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li></a>";
+				}
+				else
+				{
+					HtmlContent2 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li>";
+				}        		
+			} 
 
-        	//else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 2)
-        	else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 6)
-        	{
-
-                if (extensao == ".docx" || extensao == ".doc")
-                {
-                    HtmlContent2 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li></a>";
-                }
-                else
-                {
-                    HtmlContent2 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li>";
-                }        		
-        	} 
-
-        	//else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 3)
-        	else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 4)
-        	{
-                if (extensao == ".docx" || extensao == ".doc")
-                {
-                    HtmlContent3 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li></a>";
-                }
-                else
-                {
-                    HtmlContent3 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
-                }
-        		
-        	}
-        }
+			//else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 3)
+			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 4)
+			{
+				if (extensao == ".docx" || extensao == ".doc")
+				{
+					HtmlContent3 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li></a>";
+				}
+				else
+				{
+					HtmlContent3 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
+				}
+				
+			}
+		}
     }
 
     $('#menu_lateral_portfolio 	ul').html((HtmlContent1 != "" ? HtmlContent1:"Não há Portifólio!")).css({"color":"#878787","font-size":"16px","padding":"4px"});

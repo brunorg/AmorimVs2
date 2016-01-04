@@ -18,10 +18,23 @@
         <script type="text/javascript" src="js/path.js"></script>
         <script src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-                    window.location.assign("mRoteiros.html");
-            }); 
+           $(document).ready(function(){
+				 $("body").delegate(".op", "click", function() {
+					 if($(this).hasClass('checado') == false){
+					 	$(this).addClass('checado');
+					 }else{
+						$(this).removeClass('checado');
+					 }
+				 });
+			})
+
+			function showCheckboxes(comboRoteiro) {
+				if ($('.'+comboRoteiro).is(":visible") == true){
+					$('.'+comboRoteiro).css("display","none");
+				} else {
+					$('.'+comboRoteiro).css("display","block");
+				}
+			}
         </script>
 
         <script type="text/javascript" src="js/autenticador.js"></script>

@@ -662,6 +662,7 @@ function editarObservacao () {
 		dataType: 'json',
 		data: "relatorio="+$("#texto").val()+"&aluno="+$("#aluno").val()+"&action=update&tutoria="+$("#tutoria").val()+"&data="+$("#data").val()+"&id="+$("#id").val(),				
 		beforeSend: function() {
+			$("#caixaRelatorio").css("display", "none");
 			loading("inicial");
 		},
 		success: function(d) {

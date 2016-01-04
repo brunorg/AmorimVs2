@@ -2,37 +2,17 @@
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega os valores utilizados do BD
-
-//var dataUsuario 	=	getData("Usuario", null);
-
-//return false;
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
 	var userID = usuarioId;
 	//var usuarioLogado;	//Usuário logado!!
 	var dataUsuarios;	//Variavel para guardar todos os usuários
-	//var alunoID;
 	var dataMensagens;
 	var dataMensagensEntrada;
 	var dataMensagensSaida;
 	var observacaoProducao = false;
 	var perfilUsuario;
-	
-//	$.ajax({
-//		url: path + "Usuario/DadosUsuario/" + usuarioId,
-//		async: false,
-//		crossDomain: true,
-//		type: "GET",
-//		success: function(data){
-//			usuarioLogado = data;
-//			if(typeof(usuarioLogado.idProfessor) != undefined){
-//				perfilUsuario = 'Professor';
-//			}else{
-//				perfilUsuario = 'Aluno';
-//			}
-//		}
-//	});
 	
 	$.ajax({
 		url: path + "Usuario/ListarObjParte",
@@ -43,34 +23,24 @@
 			dataUsuario = data;
 		}
 	});
-	
 
-	//var usuario = getUsuario(alunoID);
 
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega os dados da URL GET
-
-	//var IdRoteiro = base64_decode(GetURLParameter('ID'));
 	var IdMsg = GetURLParameter('ID');
 
 //Pré Lixo
-
 	var PLixo = 0;
-
 //Lista usuarios
-
 	var arrayUsuariosID = [];
 	var arrayUsuariosNome = [];
-
 //Mensagem Selecionada
-
 var SelMSGAcao = 0;
 
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery msg_selecionada
-
 
 $(document).ready(function(){
 	var contMensagens=1;

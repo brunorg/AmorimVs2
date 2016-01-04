@@ -12,42 +12,28 @@
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" type="text/css" href="css/mCustomScrollbar.css" />        
-        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />		
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.multiselect.filter.css">		
         <!--Fim Style-->
         
         <!--Script JS-->
 		<script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="js/autenticador.js"></script>
         <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>        
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	  	<script src="js/jquery-1.10.2.js"></script>
-      	<script src="js/jquery-ui.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-                {
-                    window.location.assign("mMensagens.html");
-                }
-            }); 
-        </script>
-
+	  	<script src="js/jquery-1.10.2.js"></script>        
+      	<script src="js/jquery-ui.js"></script>        
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="js/calendario.js"></script>
- 
-		        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css">
-				  <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.filter.css">
-        
+        <script type="text/javascript" src="js/calendario.js"></script>       
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 		<script src="js/prettify.js"></script>
         <script src="js/jquery.multiselect.js"></script>
-			<script type="text/javascript" src="js/jquery.multiselect.filter.js"></script>
+		<script type="text/javascript" src="js/jquery.multiselect.filter.js"></script>
 		<script type="text/javascript" src="js/funcoes.js"></script>           
-        <!--Carrega os dados do usuario logado-->
-        
-		<script type="text/javascript" src="js/autenticador.js"></script>
-                        
+                                
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
@@ -56,7 +42,6 @@
         <!--Fim JS-->
                 
 	</head>
-
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
