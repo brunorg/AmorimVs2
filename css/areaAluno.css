@@ -509,7 +509,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	background: none;
 	left: 0;
 	width: 100%;
-	z-index: 999;
+	z-index: 9;
 	margin-top: 0;
 }
 .box_margin_alter {
@@ -518,7 +518,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     width: 53%;
     background-color: #FFF;
     right: 16.7%;
-    z-index: 10003;
+    z-index: 9;
     height: 627px;
     overflow: auto;      
 }
@@ -528,14 +528,14 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 		height: 37px;
 		font-size: 22px;
 		color: rgb(102, 102, 102);
-		z-index: 999;
+		z-index: 9;
 	}
     .box_margin_alter {
         display: none;
         position: absolute;
         width: 100%;
         background-color: #FFF;
-        z-index: 10003;
+        z-index: 9;
         height: 413px;
         overflow: auto;
         right:0;
@@ -559,7 +559,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	width: 13px;
 	margin: 0 !important;
 	cursor: pointer;
-	z-index: 999;
+	z-index: 9;
 }
 .microfiche-prev-button {
 	left: 4px;
@@ -581,31 +581,31 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         position: absolute;
         width: 100%;
         background-color: #FFF;
-        z-index: 10003;
+        z-index: 9;
         height: 627px;
         overflow: auto;
         right:0;
 	}
 	#Portfolio_Conteudo {
-	position: relative;
-	width: 100% !important;
-	height: 184px !important;
-}
-.microfiche-prev-button, .microfiche-next-button {
-	display: inline-block;
-	position: absolute;
-	top: 136px !important;
-	width: 13px;
-	margin: 0 !important;
-	cursor: pointer;
-	z-index: 6 !important;
-}
-.microfiche-prev-button {
-	left: 4px;
-}
-.microfiche-next-button {
-	left: 597px;
-}
+		position: relative;
+		width: 100% !important;
+		height: 184px !important;
+	}
+	.microfiche-prev-button, .microfiche-next-button {
+		display: inline-block;
+		position: absolute;
+		top: 136px !important;
+		width: 13px;
+		margin: 0 !important;
+		cursor: pointer;
+		z-index: 1 !important;
+	}
+	.microfiche-prev-button {
+		left: 4px;
+	}
+	.microfiche-next-button {
+		left: 597px;
+	}
 }
 
 /*Media para note com height 707*/
@@ -617,7 +617,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         width: 75%;
         background-color: #FFF;
         right: 3.1%;
-        z-index: 10003;
+        z-index: 9;
         height: 627px;
         overflow: auto;
         top: 36px;
@@ -650,7 +650,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         position: absolute;
         width: 100%;
         background-color: #FFF;
-        z-index: 10003;
+        z-index: 9;
         height: 627px;
         overflow: auto;
         right:0;
