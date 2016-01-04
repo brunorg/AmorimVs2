@@ -102,7 +102,7 @@ table.grupoTabela tr td{
 	border-left:1px solid #BFBDA9;
 	height: 39px;
 }
-table.grupoTabela tr td{
+table.grupoTabela tr{
 	background:#FFFFFF;
 }
 .tableSeparacao td{
@@ -200,3 +200,50 @@ table.grupoTabela tr td{
 .anoLetivo, .faltas{
 	
 }
+
+#aluno1 td{
+	overflow: visible;
+	position: relative;
+}
+
+#aluno2 td {
+	position: relative;
+}
+
+.barrinhaPorcentagem {
+	position: absolute;
+	width: 0px;
+	height: 5px;
+	left: 0px;
+}
+
+.atual {
+	background-color: #3AAAB4;
+	top: 2px;
+}
+
+.atualCorrigido {
+	background-color: #EFC34D;
+	top: 7px;
+}
+
+.anterior {
+	background-color: #37499C;
+	top: 15px;
+}
+
+.anteriorCorrigido {
+	background-color: #EFC34D;
+	top: 20px;
+}
+
+.proxima {
+	background-color: #FF9540;
+	top: 28px;
+}
+
+.proximaCorrigido {
+	background-color: #EFC34D;
+	top: 33px;
+}
+
