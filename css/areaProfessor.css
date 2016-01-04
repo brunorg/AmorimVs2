@@ -146,7 +146,7 @@ div[class*="box_col"]:last-of-type {
 }
 
 .mensagemGrande{
-    height: 355px;
+    height: 293px`;
 }
 
 .mensagemMedia{
@@ -298,6 +298,11 @@ select[value="0"]{
     float: right;
 }
 
+#miniaturaDaFoto{
+    width: 64px;
+    height: 64px;
+    background-color: red;
+}
 
 /*Seções area Professor*/
 

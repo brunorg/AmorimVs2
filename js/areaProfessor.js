@@ -35,6 +35,7 @@ function atribuirEventos () {
     cancelarRelatorio();
     console.log("mural")
     iniciarMural();
+    iniciarMuralCoordenacao();
     $("#salvarPostagem").click(novaPostagem);
 }
 
@@ -331,7 +332,59 @@ function cancelarRelatorio () {
     });
 }
 
-// Mural ======================
+// Mural coordenacao =============
+
+function MuralCoordenacao() {
+
+    self = this;
+
+    this.desenharPostIndividual = function(mensagem, destinatario){    
+        var html =  '<div class="areaPost">'+
+                        '<div class="post postMedio">'+
+                            '<div class="postCorpo">'+
+                                mensagem+
+                            '</div>'+
+                        '</div>'+
+                    '<div>'
+                                
+        $("#muralCoordenacao").prepend(html);    
+    }
+
+    this.desenharPosts = function() {
+    
+        $.ajax({
+            url: path + "MuralCoordenacao/",
+            async: false,
+            crossDomain: true,
+            type: "GET",
+            success: function(retornoAjax){
+
+
+                for (var i = 0; i < retornoAjax.length ; i++) {
+
+                    var mensagem = retornoAjax[i]["mensagem"];
+
+                    self.desenharPostIndividual(mensagem)
+                };
+
+            },
+            error: function(a, status, error) {
+                console.log(status + " /// " + error)
+            }
+        });
+
+    }
+
+}
+
+function iniciarMuralCoordenacao() {
+
+    window.muralCoordenacao = new MuralCoordenacao();
+
+    muralCoordenacao.desenharPosts()
+}
+
+// Mural Professor ======================
 
 function Mural() {
 
@@ -557,7 +610,6 @@ function Mural() {
 
         }
     }
-    
 }
 
 function iniciarMural() {
@@ -583,4 +635,6 @@ function iniciarMural() {
         mural.atualizarListaGrupos()
     })
 }
+
+
 
