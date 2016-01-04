@@ -108,7 +108,7 @@ div[class*="box_col"]:last-of-type {
 	width: 13px;
 	margin: 0 !important;
 	cursor: pointer;
-	z-index: 999;
+	z-index: 1;
 }
 .microfiche-prev-button {
 	left: 15px;
@@ -598,7 +598,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	width: 13px;
 	margin: 0 !important;
 	cursor: pointer;
-	z-index: 999;
+	z-index: 6 !important;
 }
 .microfiche-prev-button {
 	left: 4px;
@@ -623,25 +623,25 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         top: 36px;
     }
     #Portfolio_Conteudo {
-	position: relative;
-	width: 100% !important;
-	height: 196px !important;
-}
-    .microfiche-prev-button, .microfiche-next-button {
-	display: inline-block;
-	position: absolute;
-	top: 136px !important;
-	width: 13px;
-	margin: 0 !important;
-	cursor: pointer;
-	z-index: 999;
-}
-.microfiche-prev-button {
-	left: 18px;
-}
-.microfiche-next-button {
-	left: 584px;
-}
+		position: relative;
+		width: 100% !important;
+		height: 196px !important;
+	}
+	.microfiche-prev-button, .microfiche-next-button {
+		display: inline-block;
+		position: absolute;
+		top: 136px !important;
+		width: 13px;
+		margin: 0 !important;
+		cursor: pointer;
+		z-index: 1 !important;
+	}
+	.microfiche-prev-button {
+		left: 18px;
+	}
+	.microfiche-next-button {
+		left: 584px;
+	}
 }
 /*MEDIA TABLET*/
 @media (min-width: 1024px) and	(max-height: 460px){
@@ -656,25 +656,25 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
         right:0;
     }
     #Portfolio_Conteudo {
-	position: relative;
-	width: 100% !important;
-	height: 184px !important;
-}
-    .microfiche-prev-button, .microfiche-next-button {
-	display: inline-block;
-	position: absolute;
-	top: 136px !important;
-	width: 13px;
-	margin: 0 !important;
-	cursor: pointer;
-	z-index: 999;
-}
-.microfiche-prev-button {
-	left: 4px;
-}
-.microfiche-next-button {
-	left: 597px;
-}
+		position: relative;
+		width: 100% !important;
+		height: 184px !important;
+	}
+	.microfiche-prev-button, .microfiche-next-button {
+		display: inline-block;
+		position: absolute;
+		top: 136px !important;
+		width: 13px;
+		margin: 0 !important;
+		cursor: pointer;
+		z-index: 1;
+	}
+	.microfiche-prev-button {
+		left: 4px;
+	}
+	.microfiche-next-button {
+		left: 597px;
+	}
 }
 
 @media (max-width: 1023px), (width: 1024px) and	(max-height: 460px){
