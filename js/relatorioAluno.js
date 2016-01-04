@@ -78,10 +78,7 @@ $(document).ready(function(){
 	var aux2;
 	var aluno = getAluno(alunoID);
 
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-		$('.link_plano a').attr("href","mPlanoDeEstudo.html?ID="+alunoIdCoded);
-	else
-		$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
+	$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
 	
 	//Pego todos os alunos variaveis para colocar no grupo!!
 
@@ -381,10 +378,7 @@ $(document).ready(function(){
 
 						if (fichaFinalizacao != "")
 						{
-							if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-								$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='mGaleriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
-							else
-								$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
 						}
 						else
 							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");
@@ -403,10 +397,7 @@ $(document).ready(function(){
 
 					if (portfolio != "")
 					{
-						if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='mGaleriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
-						else
-							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
 					}
 					else
 						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");				

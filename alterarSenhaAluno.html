@@ -16,6 +16,12 @@
         
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
+        <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
         <script src="js/jquery-1.10.2.js"></script>        
         <script type="text/javascript" src="js/funcoes.js"></script> 
         <script type="text/javascript" src="js/calendario.js"></script>
@@ -26,14 +32,13 @@
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
         <script type="text/javascript" src="js/agenda.js"></script> 
-		<script type="text/javascript" src="js/alterarSenhaAluno.js"></script> 
+		<script type="text/javascript" src="js/alterarSenhaAluno.js"></script>         
 		<!--Fim JS-->	
 	</head>
 
 	<body>
 		<!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">
-           
+		<div id="Container" ng-controller="geralCTRL">           
             <!--Cabecalho 1 - Navegação-->
 			<div id="Cabecalho_Menu_Area">
 				<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="#">Área da Secretaria</a></div>
@@ -95,26 +100,20 @@
 							</div>
 						</div> 
 					</div>
-                </div>                               
-                <div id="boxMensagemGeral"></div>
-				<div class="boxGlobal"></div>
-                <div id="Evento">
-                    <p id="btn_fechar_evento">X</p>				
-                    <div id="Foto_evento"></div>
-                    <div id="Evento_Info">					
-                        <div></div>
-                        <div id="Titulo"></div>
-                        <div id="EventDesc"></div>
-                        <div id="Horario"><span></span><span></span></div>					
-                    </div>				
-                </div>   
-			</div>                        
-		</div><!--Fim Conteudo-->
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
-        <script src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
-        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+                </div>
+             </div>                        
+		</div><!--Fim Conteudo--> 
+        <div id="boxMensagemGeral"></div>
+        <div class="boxGlobal"></div>
+        <div id="Evento">
+            <p id="btn_fechar_evento">X</p>				
+            <div id="Foto_evento"></div>
+            <div id="Evento_Info">					
+                <div></div>
+                <div id="Titulo"></div>
+                <div id="EventDesc"></div>
+                <div id="Horario"><span></span><span></span></div>					
+            </div>				
+        </div>          
 	</body>
 </html>

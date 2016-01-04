@@ -48,14 +48,6 @@ $(document).ready(function () {
     	carregaPeriodo("aluno");
     	carregaAlunos("todos");
 	}
-
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-    {
-    	window.setTimeout(function () {
-    		$(".mCSB_container")[1].style.left = 0;
-    	}, 2000);
-    }
-
 });
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -253,10 +245,7 @@ function CarregaServicoGrupo()
 						HTMLContente+='</div>';
 					}
 					HTMLContente+='</div>';
-					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-						HTMLContente+='<a href="mRelatorioAluno.html?ID='+(base64_encode(""+dataAlunoVariavel[b].aluno.idAluno))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataAlunoVariavel[b].aluno.nome+'">';
-					else
-						HTMLContente+='<a href="relatorioAluno.html?ID='+(base64_encode(""+dataAlunoVariavel[b].aluno.idAluno))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataAlunoVariavel[b].aluno.nome+'">';
+					HTMLContente+='<a href="relatorioAluno.html?ID='+(base64_encode(""+dataAlunoVariavel[b].aluno.idAluno))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataAlunoVariavel[b].aluno.nome+'">';
 					HTMLContente+='<img src="'+dataAlunoVariavel[b].aluno.fotoAluno+'"></img>';
 					HTMLContente+='</div></a></div>';
 

@@ -46,10 +46,7 @@ $(document).ready(function() {
 
 				if(!Checked)
 				{
-					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-						HtmlContent = '<a href="mGrupoTutoria.html?ID='+base64_encode(""+dataTutoria[a].tutor.idprofessorFuncionario)+'" class="tutoriaLink">';
-					else
-						HtmlContent = '<a href="grupoTutoria.html?ID='+base64_encode(""+dataTutoria[a].tutor.idprofessorFuncionario)+'" class="tutoriaLink">';
+					HtmlContent = '<a href="grupoTutoria.html?ID='+base64_encode(""+dataTutoria[a].tutor.idprofessorFuncionario)+'" class="tutoriaLink">';
 					HtmlContent += '<div class="Conteudo_Coluna2_Professor">'+
 			        '<div class="FotoProfessorCadastro" style="background-image:url('+dataTutoria[a].tutor.fotoProfessorFuncionario+');"></div>'+
 			        '<div class="Botao_Aviso"></div>'+
