@@ -1,67 +1,103 @@
-function GraficoAluno(id, atual, atualCorrigido, anterior, anteriorCorrigido, proxima, proximaCorrigido, diasLetivos, diasLetivosFaltas) {
+/*global $:false */
+'use strict';
 
-	$("#" + id + " td:first-child").html('<div class="barrinhaPorcentagem atual"></div>'+
-                                    '<div class="barrinhaPorcentagem atualCorrigido"></div>'+
-                                    '<div class="barrinhaPorcentagem anterior"></div>'+
-                                    '<div class="barrinhaPorcentagem anteriorCorrigido"></div>'+
-                                    '<div class="barrinhaPorcentagem proxima"></div>'+
-                                    '<div class="barrinhaPorcentagem proximaCorrigido"></div>')
+function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, dados) {
 
-	$("#" + id + "freq" + " td:first-child").html('<div class="barrinhaPorcentagem diasLetivos"></div>'+
-                                    '<div class="barrinhaPorcentagem diasLetivosFaltas"></div>')
+	$('#' + idDivPrincipal).append('<div class="grupoBox" id="' + idDivGrupo + '"></div>');
+	$('#' + idDivGrupo).append('<div class="grupoBlocoNomes"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoNomes").append('<div class="grupoNome">' + 'Grupo 6M1' + '</div>') //Nome do grupo
+	$('#' + idDivGrupo + " .grupoBlocoNomes").append('<div class="caixaGL"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoNomes").append('<div class="grupoBlocoGraficoObj"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoNomes .grupoBlocoGraficoObj").append('<div class="grupoGraficoTitulo grupoTituloBottom">OBJETIVOS</div>')
 
-	this.element = document.getElementById(id);
-	this.bounds = this.element.getBoundingClientRect();
+	//criarPaineisDosAlunos(idDivGrupo) ;
+}
 
-	this.containterWidth = this.bounds.width - 15;
+function criarPaineisDosAlunos(idDivGrupo) {
+	for (var i = 5; i > 0; i--) {
 
-	this.percentageSize = this.containterWidth / 100;
-
-	$("#" + id + " .atual").css("width", atual * this.percentageSize)
-	$("#" + id + " .atualCorrigido").css("width", atualCorrigido * this.percentageSize)
-	$("#" + id + " .anterior").css("width", anterior * this.percentageSize)
-	$("#" + id + " .anteriorCorrigido").css("width", anteriorCorrigido * this.percentageSize)
-	$("#" + id + " .proxima").css("width", proxima * this.percentageSize)
-	$("#" + id + " .proximaCorrigido").css("width", proximaCorrigido * this.percentageSize)
-
-	this.element2 = document.getElementById(id + "freq");
-	this.bounds2 = this.element2.getBoundingClientRect();
-
-	this.containterWidth2 = this.bounds2.width - 15;
-
-	this.percentageSize2 = this.containterWidth2 / 100;
-
-	$("#" + id + "freq" + " .diasLetivos").css("width", diasLetivos * this.percentageSize2)
-	$("#" + id + "freq" + " .diasLetivosFaltas").css("width", diasLetivosFaltas * this.percentageSize2)
-	
+		criarBarrinhas(idDivGrupo + 'aluno' + i, dadosAluno);
+	}
 
 }
+
+function adicionarBarrinhasNoHtml(id) {
+
+	// Adiciona as divs de barrinha de progressão do aluno
+	$('#' + id + ' td:first-child').html('<div class="barrinhaPorcentagem atual"></div>'+
+	                                     '<div class="barrinhaPorcentagem atualCorrigido"></div>'+
+	                                     '<div class="barrinhaPorcentagem anterior"></div>'+
+	                                     '<div class="barrinhaPorcentagem anteriorCorrigido"></div>'+
+	                                     '<div class="barrinhaPorcentagem proxima"></div>'+
+	                                     '<div class="barrinhaPorcentagem proximaCorrigido"></div>');
+
+	// Adiciona as divs de barrinha de faltas do mesmo aluno
+	$('#' + id + 'freq' + ' td:first-child').html('<div class="barrinhaPorcentagem diasLetivos"></div>'+
+                                    			  '<div class="barrinhaPorcentagem diasLetivosFaltas"></div>');
+}
+
+function criarBarrinhas(id, dados) {
+
+	//Adiciona as divs das barrinhas, todas tem 0 de largura por padrão
+	adicionarBarrinhasNoHtml(id);
+
+	// Pega o tamanho da div que irá conter as barrinhas e define tamanho fixo de um ponto percentual dentro dela
+	var primeiraTabela = document.getElementById(id);
+	var primeiraTabelaRect = primeiraTabela.getBoundingClientRect();
+	var primeiraTabelaLargura = primeiraTabelaRect.width - 18;
+	var tamanhoPontoPercentual = primeiraTabelaLargura / 100;
+
+	var segundaTabela = document.getElementById(id + 'freq');
+	var segundaTabelaRect = segundaTabela.getBoundingClientRect();
+	var segundaTabelaLargura = segundaTabelaRect.width - 18;
+	var tamanhoPontoPercentual2 = segundaTabelaLargura / 100;
+
+	// Define tamanho de cada barrinha de acordo com os dados
+	$('#' + id + 		  ' .atual'				).css('width', dados.atual 				* tamanhoPontoPercentual);
+	$('#' + id + 		  ' .atualCorrigido'	).css('width', dados.atualCorrigido 	* tamanhoPontoPercentual);
+	$('#' + id + 		  ' .anterior'			).css('width', dados.anterior 			* tamanhoPontoPercentual);
+	$('#' + id + 		  ' .anteriorCorrigido'	).css('width', dados.anteriorCorrigido 	* tamanhoPontoPercentual);
+	$('#' + id + 		  ' .proxima'			).css('width', dados.proxima 			* tamanhoPontoPercentual);
+	$('#' + id + 		  ' .proximaCorrigido'	).css('width', dados.proximaCorrigido 	* tamanhoPontoPercentual);
+	$('#' + id + 'freq' + ' .diasLetivos'		).css('width', dados.diasLetivos 		* tamanhoPontoPercentual2);
+	$('#' + id + 'freq' + ' .diasLetivosFaltas'	).css('width', dados.diasLetivosFaltas 	* tamanhoPontoPercentual2);
+}
+
+// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv Debug vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
 var aluno1dados = {
-	"atual" 			: 75,
-	"atualCorrigido" 	: 25,
-	"anterior"			: 100,
-	"anteriorCorrigido" : 100,
-	"proxima"			: 10,
-	"proximaCorrigido"	: 5,
-	"diasLetivos"		: 100,
-	"diasLetivosFaltas"	: 10
-}
+	'atual' 			: 75,
+	'atualCorrigido' 	: 25,
+	'anterior'			: 100,
+	'anteriorCorrigido' : 100,
+	'proxima'			: 10,
+	'proximaCorrigido'	: 5,
+	'diasLetivos'		: 100,
+	'diasLetivosFaltas'	: 10
+};
 
 var aluno2dados = {
-	"atual" 			: 50,
-	"atualCorrigido" 	: 10,
-	"anterior"			: 0,
-	"anteriorCorrigido" : 0,
-	"proxima"			: 0,
-	"proximaCorrigido"	: 0,
-	"diasLetivos"		: 25,
-	"diasLetivosFaltas"	: 10
+	'atual' 			: 50,
+	'atualCorrigido' 	: 10,
+	'anterior'			: 0,
+	'anteriorCorrigido' : 0,
+	'proxima'			: 0,
+	'proximaCorrigido'	: 0,
+	'diasLetivos'		: 25,
+	'diasLetivosFaltas'	: 10
+};
+
+var dados = {
+	"grupo1"
 }
 
 
-document.onready = function() {
-	var gfxAluno1 = new GraficoAluno("aluno1", aluno1dados["atual"], aluno1dados["atualCorrigido"], aluno1dados["anterior"], aluno1dados["anteriorCorrigido"], aluno1dados["proxima"], aluno1dados["proximaCorrigido"], aluno1dados["diasLetivos"], aluno1dados["diasLetivosFaltas"]);
-	var gfxAluno2 = new GraficoAluno("aluno2", aluno2dados["atual"], aluno2dados["atualCorrigido"], aluno2dados["anterior"], aluno2dados["anteriorCorrigido"], aluno2dados["proxima"], aluno2dados["proximaCorrigido"], aluno2dados["diasLetivos"], aluno2dados["diasLetivosFaltas"]);
-}
+window.onload = function() {
+
+	criarPainelDoGrupo('divPrincipalGrupos', 'grupo1', dados);
+
+	//criarBarrinhas('aluno1', aluno1dados);
+	//criarBarrinhas('aluno2', aluno2dados);
+
+};
 

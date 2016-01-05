@@ -110,6 +110,7 @@ table.grupoTabela tr td{
 table.grupoTabela tr{
 	background:#FFFFFF;
 }
+
 .tableSeparacao td{
 	height:6px !important;
 	background:#F2F2EE !important;
@@ -276,10 +277,10 @@ table.grupoTabela tr{
 
 .diasLetivos {
 	background-color: #384B9A;
-	top: 10px;
+	top: 8px;
 }
 .diasLetivosFaltas {
 	background-color: #EA6E24;
-	top: 30px;
+	top: 25px;
 }
 
