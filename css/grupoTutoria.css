@@ -44,6 +44,7 @@
 .grupoBox{
     min-height: 137px;
 	margin-bottom:15px;
+	display: flex;
 }
 .grupoBlocoNomes{
 	width:33.4%;
@@ -90,6 +91,7 @@ table.grupoTabela{
 	border-collapse: collapse;
 	position:relative;
 	z-index:999;
+	table-layout: fixed;
 }
 .grupoTabelaFreq{
 	width: 55% !important;
@@ -221,20 +223,7 @@ table.grupoTabela tr{
 	
 }
 
-
-#aluno1 td{
-	position: relative;
-}
-
-#aluno2 td {
-	position: relative;
-}
-
-#aluno1freq td{
-	position: relative;
-}
-
-#aluno2freq td {
+.grupoTabela tbody tr td{
 	position: relative;
 }
 
