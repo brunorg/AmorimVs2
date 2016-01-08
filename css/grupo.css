@@ -97,7 +97,19 @@
     	color: rgb(102,102,102);
     	display: none;
 	}
+
+	#Area_Nome_Tutoria{
+		font-size: 24px;
+		color: rgb(102,102,102);
+		display: none;
+	}
 	.Area_Select_Grupo {
+		width: 100%;
+		height: 65px;
+		padding: 12px 0;
+	}
+
+	.Area_Select_Tutoria {
 		width: 100%;
 		height: 65px;
 		padding: 12px 0;
@@ -246,9 +258,16 @@
 		background-image: url(../img/ic_salvar.png);
 		background-repeat: no-repeat;
 		background-position:  10px 6px; 
+		margin-top: 5px;
+	}
+	.Area_Botoes::after
+	{
+		content: '';
+		display: block;
+		clear: both;
 	}
 
-	.btn_Nova_Oficina, .btn_Finalizar{
+	.btn_Nova_Oficina, .btn_Finalizar, .btn_Nova_Tutoria{
     	border-radius: 0;
     	color: #fff;
     	height: 40px;
@@ -269,6 +288,25 @@
 		width: 100px;
 		background: url(../img/ic_salvar.png) no-repeat 10px 6px; 
 	}*/
+
+	#listarAluno {
+		height: 330px;
+    	margin: 5px 0 0 0;
+	}
+	#boxListaAluno{
+		height: 320px;
+		overflow: auto;
+	}
+
+	#listarSelect {
+		height: 330px;
+		margin: 5px 0 0 0;
+	}
+
+	#boxListaSelect {
+		height: 320px;
+		overflow: auto;
+	}
 
 /* Criar Oficina */
 	.Select_Grupo_Oficina {
@@ -322,7 +360,7 @@
 .linha{
 	width: 100%;
 	height: auto;
-	margin-bottom: 0;
+	margin-bottom: 0.25%;
 	overflow: auto;
 }
 #barra_aluno{
@@ -347,6 +385,9 @@
 
 .infoG{
 	background-color: #C8C8C3;
+	font-size: 18px;
+	border-right: 1px solid rgb(174,174,166);
+
 }
 
 .infoValueG{
@@ -417,7 +458,7 @@ select{
 
 .styled-select select{
 	width: 100%;
-	border: 0;
+	border-left: 1px solid rgb(174,174,166);
 	border-radius: 0;
 	height: 41px;
 	-webkit-appearance: none;
