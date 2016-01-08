@@ -257,7 +257,7 @@ function CarregaServicoProducaoAluno()
 						HtmlContent += apresentacao;
 						HtmlContent += '</div>';
 						HtmlContent += '<div class="Nome_Roteiro">';
-						HtmlContent += dataProducaoAluno[a].roteiro.nome;
+						HtmlContent += dataProducaoAluno[a].roteiro!=null?dataProducaoAluno[a].roteiro.nome:"";
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
@@ -704,6 +704,20 @@ function SalvarCapa (id) {
     });
 }
 
+function pendencias(alunoID){
+	$.ajax({
+		url: path+"PendenciasProducaoAluno/TotalPendencias/"+alunoID,
+		type: "GET",
+		dataType: 'json',
+        success: function(d){
+			console.log(d);
+			if(d>0){
+				$('#pendencias').html(d+" Pendências");
+			}
+		}
+	});
+}
+
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery
@@ -722,8 +736,8 @@ $(document).ready(function() {
 	//CarregarRegistros();
 	CarregaServicoProducaoAluno();
 	AtivaUploadCapa();
-	CarregarOficinas();
-
+	//CarregarOficinas();
+	pendencias(alunoID);
 });
 
 

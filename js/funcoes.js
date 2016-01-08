@@ -538,6 +538,7 @@ function centralizarModal()
 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 {
+	console.log(class_btn);
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
@@ -588,7 +589,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 								+'</div>'+
 								'<div class="btn_mensagem">'+
 									'<input type="button" class="bt_ok left" value="'+tipo_btn+'" onclick="'+funcao[0]+'(\''+servico+'\',\''+id+'\')"/>'+
-									'<input type="button" class="bt_cancelar left" value="'+class_btn+'" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
+									'<input type="button" class="bt_cancelar left" value="" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
 								'</div>'+
 							'</div>';
 
@@ -603,7 +604,6 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 
 function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)
 {	
-	
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+

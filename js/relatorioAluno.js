@@ -42,6 +42,10 @@ $.ajax({
 
 
 $(document).ready(function(){
+	setTimeout(function(){
+	  corrigir();
+	}, 1000);
+
 	
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
@@ -121,9 +125,7 @@ $(document).ready(function(){
 		success: function (d) {
 			objetivosFiltrados = d;
 		}
-	});
-
-	console.log(objetivosFiltrados);
+	});	
 
 	//Executa 3 FORs com os resultados dos serviços anteriores e monta apenas um vetor
 	//Variavel IdsRoteirosPendentes serve como um verificador para não permitir que duplique os roteiros.
@@ -192,8 +194,8 @@ $(document).ready(function(){
 
    var numPort = 0;	
    for(var i = 0; i < roteirosFiltrados.length; i++){
-			   
-	   htmlContent += '<div class="linha_roteiro" id="' + roteirosFiltrados[i][0].idroteiro +'"> <p class="titulo"> ' + roteirosFiltrados[i][0].nome + '</p> <table class="rot_aluno"><tr>';
+	   	   
+	   htmlContent += '<div class="linha_roteiro" id="' + roteirosFiltrados[i][0].idroteiro +'"><p class="titulo"> ' + roteirosFiltrados[i][0].nome + '</p> <table class="rot_aluno"><tr>';
 			 
 			aux = 0;
 			aux2 = 0;
@@ -243,9 +245,10 @@ $(document).ready(function(){
 
 
 			}
-			
-			htmlContent += '</tr> </table> </div>'
+			//carol
+			htmlContent += '</tr><tr><td><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"></td><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr></table></div>'
 		   }
+		  
 			graficoBarra(alunoID,planejamentosAluno);
 			//preenche estatisticas de roteiros e objetivos feitos
 	
@@ -342,8 +345,7 @@ $(document).ready(function(){
 					success: function(d) {
 						totalObjetivos = d;
 					}
-				});
-		   
+				});		   
 
 				if($("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").length == totalObjetivos)
 				{
@@ -379,10 +381,9 @@ $(document).ready(function(){
 						if (fichaFinalizacao != "")
 						{
 							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+						}else{
+							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
 						}
-						else
-							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");
-
 					}
 
 					$.ajax({
@@ -399,8 +400,10 @@ $(document).ready(function(){
 					{
 						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
 					}
-					else
-						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");				
+					else{
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");	
+						verificaPendencias(alunoID,roteirosFiltrados[i][0].idroteiro);		
+					}
 				}
 			}
 		
@@ -490,6 +493,7 @@ $(document).ready(function(){
 		}
 						
 	});
+	
 	$('td.verde').click(function(){
 
 		if (dataUsuario.professor != null && 
@@ -499,28 +503,11 @@ $(document).ready(function(){
   			{
   				$(this).removeClass( "verde" ).addClass( "verde_tk" );
   				$(this).css("color","rgba(255,255,255,0)");
-  			}
-	
-	  			$.ajax({
-				    url: path+"PlanejamentoRoteiro/",
-				    type: "POST",
-				    crossDomain: true,
-				    dataType: 'json',
-				    data: "id="+$(this).attr('id')+"&action=update&status=3&idAluno="+	alunoID+"&objetivo="+$(this).attr('objid'),
-				    beforeSend: function() {
-				    	loading("inicial");
-				    },
-				    error: function() {
-				    	alert("Não modificado, verifique os campos.");
-				    },
-				    complete: function() {
-				    	loading("final");
-				    }
-			   	});
-		}
-		  
+  			}  			
+		}		  
   		/*Fim*/  		
   	});
+	
 
   	$("#right_scroll").click(function(){
   		$("#horiz_container li").css('margin-left', parseInt($("#horiz_container li").css('margin-left')) - 10);
@@ -535,11 +522,96 @@ $(document).ready(function(){
 	
 	
 
+//carol	
 	
+function corrigir(){	
+	$('.corrigir').click(function(){
+		var elemento = $(this).attr('id');
+		var objetivos = "";
+		//var selecionandos = $(elemento[0]+ ".verde_tk");
+		var elementos =  elemento.split("_");
+		var selecionados = $("#"+elementos[1]+" .verde_tk");
+		for(var i=0;i<selecionados.length;i++){
+			if(selecionados.length -1 == i){
+				objetivos += selecionados[i].id;
+			}else{
+				objetivos += selecionados[i].id + ";";
+			}
+		}
+		//elementos[1] => id do roteiro selecionado
+		var totalObjetivos = verificaTodalObjetivos(elementos[1]);
+		
+		if(totalObjetivos == selecionados.length){
+			verificaPendencias(alunoID,elementos[1]);	
+		}	
+		mensagem("Por favor aguarde alguns minutos este processo pode demorar!","OK","bt_ok","alerta");
+		
+		setTimeout(function(){
+			  $.ajax({
+				url : path+"PlanejamentoRoteiro/Corrigir/",
+				type:"POST",
+				crossDomain: true,
+				dataType: 'json',
+				async: false,
+				data: "planejamentos="+objetivos,		
+				success: function(d){
+					mensagem("Dados salvos com sucesso!","OK","bt_ok","sucesso");		
+				},
+			});	
+		}, 1000);
+			
+	});	
 	
-	
-	
-	
+	///carol
+	$('.selTodos').click(function(){
+		var elemento = $(this).attr('id');
+		var objetivos = "";;
+		var elementos =  elemento.split("_");
+		var selecionados = $("#"+elementos[1]+" .verde");
+		for(var i=0;i<selecionados.length;i++){
+			$("#"+selecionados[i].id).toggleClass('verde_tk');
+		}
+	});	
+}
+
+//carol
+function verificaTodalObjetivos(idRoteiro){
+	var totalObjetivos;
+	$.ajax({
+		url: path+"Objetivo/ObjetivoRoteiroTotal/" + idRoteiro,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(data){
+			totalObjetivos = data;
+		},
+	});
+	return totalObjetivos;
+}	
+
+function verificaPendencias(alunoID,roteiroID){
+	$.ajax({
+		url : path+"PendenciasProducaoAluno/ExistePendencia/"+alunoID+"/"+roteiroID,
+		type:"GET",
+		dataType: 'json',
+		async: false,		
+		success: function(d){
+			if(d==0){
+				$.ajax({
+					url : path+"PendenciasProducaoAluno/",
+					type:"POST",
+					crossDomain: true,
+					dataType: 'json',
+					async: false,
+					data: "action=create&idaluno="+alunoID+"&idroteiro="+roteiroID,		
+					success: function(d){
+						//console.log("salvou pendencia");	
+					},
+				})
+			}	
+		},
+	})		
+}
 	
 function btnFechar(){
 	$('#caixaRelatorio').css("display","none");
