@@ -165,10 +165,6 @@ function transformarMiniatura(input) {
     }
 }
 
-document.getElementById("uploadPath").onchange = function(){
-    
-    console.log("a")
-}
 
 function removerImagemPostagem () {
     $("#removerUpload").click(function() {
@@ -309,7 +305,19 @@ function editPost(id) {
     $("#postagensNova").show();
     $("#miniaturaDaFoto").hide();
 
-    $('#miniaturaDaFoto').attr('src', '#');
+    $.ajax({
+        url: path + "Blog/ImagemMin/" + id,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(data){
+            if (data !== '') {
+                $('#miniaturaDaFoto').attr('src', data);
+                $("#miniaturaDaFoto").show();
+                $("#arquivoUpload").show();
+            }
+        }
+    });
 
     $("#conteudoPostagens").html($("#blogPostCorpo"+id).html()); 
     $("#selectOficina select").html($("#blogPostOficina"+id).html()); 
