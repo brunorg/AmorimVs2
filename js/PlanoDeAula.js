@@ -170,7 +170,6 @@ $(document).ready(function() {
 		}
 
 	});
-	
 	$(".dataPassada").click(function(){
 		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
 		return false;
@@ -179,6 +178,10 @@ $(document).ready(function() {
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
+			window.setTimeout(estilizarCalendario, 1);
+		},
+		onChangeMonthYear: function() {
+			window.setTimeout(estilizarCalendario, 1);
 		},
 		onClose: function () {
 			$("#box_novo").css("height", "130px");
@@ -206,6 +209,7 @@ $(document).ready(function() {
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
+			window.setTimeout(estilizarCalendario, 1);
 		},
 		onClose: function () {
 			if(!($("#data_inicio").val() != "" && $("#data_fim").val() != ""))
@@ -308,8 +312,7 @@ function editar() {
 	});
 }
 
-function reSetPlano(ID)
-{
+function reSetPlano(ID) {
 	$.ajax({
 		url: path + "PlanoAula/" + ID,
 		type: "GET",
@@ -668,3 +671,15 @@ function carregarPlano(){
 $(document).ready(function(){
 	returnOficinaProfessor();
 });
+
+function estilizarCalendario () {
+	$('#Container + div#ui-datepicker-div .ui-widget-header').css('background-color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-title').css('background-color', corMedia);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr > td.ui-datepicker-week-end ').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr').css('background-color', corFraca);
+	$('#Container + div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
+}

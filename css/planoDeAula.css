@@ -916,11 +916,10 @@ p.bjqs-caption{
 		
 .ui-widget-header{
 	border:0 !important;
-	background:#FF7800 !important;
 }
 .ui-datepicker th{
 	padding: 4px !important;
-	color:#FFF !important;
+	color:#FFF;
 	font-weight:normal !important;
 	font-size:.9em !important;
 	border:1px solid #FFFFFF !important;
@@ -939,7 +938,6 @@ p.bjqs-caption{
 }
 .ui-datepicker-title
 {
-	background-color: #FF9333 !important;
 	color: white !important;
 	height: 26px !important;
 	padding: 2px !important;
@@ -970,10 +968,9 @@ p.bjqs-caption{
 	height: 100%
 }
 .ui-datepicker-week-end{
-	color:white !important;
+	color:white ;
 }
 .ui-datepicker-calendar{
-	background-color: #ffea8d !important;
 	border: solid thin white !important;
 	height: 100px;
 }
@@ -995,10 +992,9 @@ p.bjqs-caption{
 }
 .ui-datepicker th{
 	padding: 4px !important;
-	color:#FFF !important;
+	color: #FFF;
 	font-weight:normal !important;
 	font-size:.9em !important;
-	background-color:#fcc066 !important;
 }
 .ui-state-default{
 	font-size: .9em !important;
@@ -1017,17 +1013,15 @@ p.bjqs-caption{
 .ui-datepicker-other-month,
 .ui-datepicker-unselectable, 
 .ui-state-disabled{
-	background:#E6E6E6 !important;
+	background:#E6E6E6;
 }	
 .ui-state-highlight{
-	background-color:#FF7800 !important;
 }
 #ui-datepicker-div .ui-datepicker-next {
 	right: -7px !important;
 	background-position: 2px 1px !important;
 }
 #ui-datepicker-div .ui-datepicker-prev:hover{
-	background-color: #FF9333 !important;
 	background-repeat: no-repeat !important;
 	width: 25px !important;
 	height: 25px !important;
@@ -1038,7 +1032,6 @@ p.bjqs-caption{
 	margin-left: 0px;
 }
 #ui-datepicker-div .ui-datepicker-next:hover{
-	background-color: #FF9333 !important;
 	background-repeat: no-repeat !important;
 	width: 25px !important;
 	height: 26px !important;
@@ -1051,7 +1044,6 @@ p.bjqs-caption{
 	color:#FFF !important;	
 }
 .ui-state-highlight{
-	background-color:#fcc468 !important;
 	color:#FFFFFF !important;
 }
 /*Fim calendário relatório*/
@@ -1067,5 +1059,15 @@ p.bjqs-caption{
 }
 
 .ui-widget-content .ui-state-hover{
-	background-color: #FFAA00 !important; 
+	background-color: #ffffff !important;
+	color: #666 !important;
 }
+
+.ui-datepicker-header a.ui-state-hover{
+	background-color: #bbb !important;
+}
+
+
+
+
+
