@@ -182,10 +182,6 @@ $(document).ready(function() {
 		},
 		onChangeMonthYear: function() {
 			window.setTimeout(estilizarCalendario, 1);
-			setTimeout(recolorCalendar, 1);
-		},
-		onChangeMonthYear: function() {
-			setTimeout(recolorCalendar, 1);
 		},
 		onClose: function () {
 			$("#box_novo").css("height", "130px");
@@ -214,10 +210,9 @@ $(document).ready(function() {
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
 			window.setTimeout(estilizarCalendario, 1);
-			setTimeout(recolorCalendar, 1);
 		},
 		onChangeMonthYear: function() {
-			setTimeout(recolorCalendar, 1);
+			window.setTimeout(estilizarCalendario, 1);
 		},
 		onClose: function () {
 			if(!($("#data_inicio").val() != "" && $("#data_fim").val() != ""))
@@ -249,7 +244,6 @@ $(document).ready(function() {
 		$(".ui-datepicker-title").css("background-color", corFraca);
 		$(".ui-datepicker th").css("background-color", corMedia);
 		//$(".ui-corner-all").css("background-color", corForte);
-		console.log("ay")
 	}
 
 
@@ -566,8 +560,8 @@ function RetornaProfessorPlano()
 	if(base64_decode(GetURLParameter('ID')) == undefined)
 	{
 		$.ajax({
-			//url: path+"ProfessorFuncionario/"+userID,
-			url: path+"ProfessorFuncionario/98",
+			url: path+"ProfessorFuncionario/"+userID,
+			// url: path+"ProfessorFuncionario/98",
 			type: "GET",
 			async:false,
 			crossDomain: true,
