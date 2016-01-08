@@ -197,7 +197,7 @@ function SubstituirObjetivos(idRoteiro)
         }
         case 1:
         {
-            HtmlContent += ('<div class="botoesPortfolio portfolio"><div class="excluir" id="ex_5_'+idRoteiro+'">Excluir P.</div></div>');
+            HtmlContent += ('<div class="iconeExcluir"></div><div class="excluir" id="ex_5_'+idRoteiro+'">Portfólio</div>');
             break;
         }
         case 2:
@@ -281,7 +281,7 @@ function excluirProducao(tipo, roteiro){
 			else
 				msg = "Portfólio excluído com sucesso!";	
 			
-			$('.QuadObj_'+roteiro+ ' .portfolio').html('<a style="text-align:right;color:white" onclick="showUpload('+tipo+','+roteiro+')" href="#"><div class="botoesPortfolio portfolio">Portfólio </div></a>'); 
+			$('.QuadObj_'+roteiro).html('<a style="text-align:right;color:white" onclick="showUpload('+tipo+','+roteiro+')" href="#"><div class="botoesPortfolio portfolio">Portfólio</div></a>'); 
 				            
 			mensagem(msg,"OK","bt_ok","sucesso");
 		},
@@ -439,7 +439,7 @@ function addFileTo(ID, roteiroAcionado){
         dataType: 'json',    
         success: function(d) {
             //alert("Arquivo Salvo.");
-			$('.QuadObj_'+roteiroAcionado+ ' .portfolio').html('<div class="excluir" id="ex_5_'+roteiroAcionado+'">Excluir</div>');		
+			$('.QuadObj_'+roteiroAcionado).html('<div class="iconeExcluir"></div><div class="excluir" id="ex_5_'+roteiroAcionado+'">Portfólio</div>');		
 			//chama a função para o html que acabou de ser criado
 			setTimeout(function(){excluirProducaoConfirm();}, 1000);               
         },error: function() {
