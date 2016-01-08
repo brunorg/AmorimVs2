@@ -48,7 +48,7 @@ function limparCriarTutoria(){
 		$("#boxSelect").empty();
 		$("#Container_Cadastro_Tutoria").hide();
 		$("#Container_Cadastro_Aluno").hide();
-		//$(".btn_Salvar_Aluno").hide();
+		$(".btn_Salvar_Aluno").hide();
 		$("#Container_Cadastro_Tutoria").show();
 		$("#btn_Salvar_Tutoria").show();
     	$(".btn_Nova_Tutoria").hide();
