@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<title>Plataforma Amorim</title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
-        
+
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet"	href="css/jquery-ui.css">
@@ -12,37 +12,33 @@
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
-        <link rel="stylesheet" type="text/css" href="css/areaProfessor.css" />  
+        <link rel="stylesheet" type="text/css" href="css/areaProfessor.css" />
     	<!--Fim Style-->
-        
+
         <!--Script JS-->
 
         <script type="text/javascript" src="js/path.js"></script>
         <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>	
-		<script src="js/jquery-1.10.2.js"></script> 
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script> 	
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
       	<script src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
 
         <script type="text/javascript" src="js/comunicacaoSessionStorage.js"></script>
-	  	<script type="text/javascript" src="js/funcoes.js"></script> 
+	  	<script type="text/javascript" src="js/funcoes.js"></script>
         <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
-         
-        <script type="text/javascript" src="js/calendario.js"></script>     
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+
+        <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/areaProfessor.js"></script>
-		<script type="text/javascript" src="js/cadastros.js"></script> 
-		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>           
-		
-		
-		         
-		
+		<script type="text/javascript" src="js/cadastros.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
 	</head>
 
 	<body>
@@ -54,16 +50,16 @@
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
                     <div id="Cabecalho_Menu_Area_Menu2">
                         <a id="senha" onClick="atualizarCadastroModal('professor');">Atualizar Cadastro</a> |
-                        <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-                        <a href="javascript:history.back()">Voltar</a> | 
+                        <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> |
+                        <a href="javascript:history.back()">Voltar</a> |
                         <a id="logout" href="#" ng-click="logout()">Sair</a>
-                    </div>			
+                    </div>
                 </div>
                 <!--Perfil do usuário, neste caso, o aluno-->
                 <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
                     <div id="Cabecalho_Perfil_Area_Foto_Content">
                         <!--Foto do usuário, neste caso, do aluno-->
-                        <div id="Cabecalho_Perfil_Area_Foto">                        	
+                        <div id="Cabecalho_Perfil_Area_Foto">
                         	<img id='_foto' src='{{usuarioFoto}}'/>
                         </div>
                     </div>
@@ -74,8 +70,8 @@
                 </div>
             </div>
 			<div id="Conteudo_Area">
-                    <!--Coluna a esquerda-->    
-                    <div class="Conteudo_Coluna" id="Content_lateral">    
+                    <!--Coluna a esquerda-->
+                    <div class="Conteudo_Coluna" id="Content_lateral">
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">
                             <div  ng-repeat="menu in menuHTML">
@@ -87,20 +83,20 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>    
-                        <!--Calendario-->                    
+                        </div>
+                        <!--Calendario-->
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
 							<p id="apontar">Apontar presença grupo</p>
-						</div>                                                 							
+						</div>
 					</div>
 
 
 				</div>
 
 				<!--Coluna geral central-->
-                <!--bloqueio para a rolagem top-->				
+                <!--bloqueio para a rolagem top-->
                 <div id="blocoGeral">
                     <div class="box_linha">
                         <div class="box_col4 full_height">
@@ -111,7 +107,7 @@
                                 </div>
                                 <div class="conteudoPost conteudoMedio" id="postagensConteudo">
                                     <div class="postContainer">
-                                       
+
                                     </div>
                                 </div>
                                 <div class="conteudoNovo conteudoMedio" id="postagensNova">
@@ -135,9 +131,7 @@
                                             </div>
 
                                             <div id="linhaConteudo">
-                                                <div id="miniaturaDaFoto">
-                                                    
-                                                </div>
+                                                <img id="miniaturaDaFoto" src="#" alt="ay"/>
                                             </div>
 
 
@@ -167,10 +161,10 @@
                                                 </div>
                                             </div>
 
-                                            
 
-                                        </div>  
-                                    </div>  
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <form id="formPostagens">
                                     <input type="hidden" id="postagemAction" name="action" value="create"/>
@@ -179,7 +173,7 @@
                                     <input type="hidden" id="postagemOficina" name="oficina"/>
                                     <input type="hidden" id="postagemConteudo" name="Descricao"/>
                                     <input type="file" id="postagemImagem" class="fileUpload" name=""/>
-                                </form>      
+                                </form>
                             </div>
                         </div>
                         <div class="box_col8">
@@ -271,8 +265,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>  
-                                            </div>  
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -290,22 +284,11 @@
                                 <div class="box_col6 half_height">
                                     <div class="conteudoBoxArea areaCoordenacao">
                                         <div class="boxTitulo">
-                                            Mural Coordenação
+                                            Mural Gestão
                                         </div>
                                         <div class="conteudoPost conteudoPequeno" id="coordenacaoConteudo">
                                             <div class="postContainer">
-                                                <div class="areaPost" id="muralCoordenacao">
-                                              <!--       <div class="post postMedio">
-                                                        <div class="postTitulo">
-                                                            Lorem Ipsum
-                                                        </div>
-                                                        <div class="postCorpo">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor turpis, posuere et massa eu, molestie porta magna. Curabitur accumsan diam eu dui lobortis, et consectetur ipsum vulputate. Vestibulum lobortis finibus mattis. Nam ac lobortis tellus. Morbi finibus in nibh nec pharetra.
-                                                        </div>
-                                                        <div class="postDestinatario">
-                                                            Matemática | 5º Ano
-                                                        </div>
-                                                    </div> -->
+                                                <div id="muralCoordenacao">
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +302,7 @@
                                         </div>
                                         <div class="conteudoPost conteudoPequeno" id="muralConteudo">
                                             <div class ="postContainer2" id="postMural">
-                                                                                            
+
                                             </div>
                                         </div>
                                         <div class="conteudoNovo conteudoPequeno" id="muralNova">
@@ -379,7 +362,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -388,7 +371,7 @@
                         </div>
                     </div>
 				</div>
-			</div>             
+			</div>
 		</div>
         <div id="boxMensagemGeral"></div>
         <div class="boxCalendario"></div>

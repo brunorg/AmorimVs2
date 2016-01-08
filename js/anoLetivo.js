@@ -83,10 +83,9 @@ function diasLetivos(){
 					})
 				}
 			}
+			return countUteis;
 		}
 	});
-
-	return countUteis;
 }
 
 function diasDecorridos(dt1, dt2){

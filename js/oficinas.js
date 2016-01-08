@@ -85,7 +85,7 @@ function retornarBlogOficina(indexOficina) {
 							'<section class="Postagens_Container">';
 
 						//Varre e retorna as postagens
-						for ( var i in d ) {
+						for (var i = d.length-1; i >= 0; i--) {
 							//Divide a data da postagem em dia, mês e ano
 							if ( d[i].data ) {
 								dia = d[i].data.slice(8);

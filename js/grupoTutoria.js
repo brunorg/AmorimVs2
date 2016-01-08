@@ -49,6 +49,8 @@ function criarPaineisDosAlunos(idDivGrupo, grupoAlunos) {
 			$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
 		}
 
+
+
 		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr id="aluno' + i + 'freq"></tr>')
 		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody tr#aluno" + i + "freq").append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
 		if (i != 0) {
@@ -101,13 +103,13 @@ function criarBarrinhas(idDivGrupo, id, dadosAluno) {
 	console.log(dadosAluno2.diasLetivos + " / " + dadosAluno2.diasLetivosFaltas)
 
 	// Define tamanho de cada barrinha de acordo com os dadosAluno
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .atual'				).css('width', dadosAluno2.atual 				* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .atualCorrigido'	).css('width', dadosAluno2.atualCorrigido 	* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .anterior'			).css('width', dadosAluno2.anterior 			* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .anteriorCorrigido'	).css('width', dadosAluno2.anteriorCorrigido 	* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .proxima'			).css('width', dadosAluno2.proxima 			* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + 		  ' .proximaCorrigido'	).css('width', dadosAluno2.proximaCorrigido 	* tamanhoPontoPercentual);
-	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivos'		).css('width', dadosAluno2.diasLetivos 		* tamanhoPontoPercentual2);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atual'				).css('width', dadosAluno2.atual 				* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atualCorrigido'	).css('width', dadosAluno2.atualCorrigido		* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .anterior'			).css('width', dadosAluno2.anterior 			* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .anteriorCorrigido'	).css('width', dadosAluno2.anteriorCorrigido 	* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .proxima'			).css('width', dadosAluno2.proxima 				* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .proximaCorrigido'	).css('width', dadosAluno2.proximaCorrigido 	* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivos'		).css('width', dadosAluno2.diasLetivos 			* tamanhoPontoPercentual2);
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivosFaltas'	).css('width', dadosAluno2.diasLetivosFaltas 	* tamanhoPontoPercentual2);
 }
 

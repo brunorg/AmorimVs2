@@ -6,6 +6,7 @@ $(document).ready(function(){
 		$('#cx_conteudo div').removeClass('selecionado');
 		containerAtivo = $(this).attr('id');
 		$('#container_'+containerAtivo).addClass('selecionado');
+		limparCriarTutoria(); // Função responsável por limpar cadastro de tutorias ao navegar pelas abas.
 	}); 
 
 	
@@ -33,3 +34,28 @@ $(document).ready(function(){
 		$('#roteiro').html(HtmlContent);
 	});
 });
+
+function limparCriarTutoria(){
+	if($(".btn_abas").hasClass("bt_Ativo")){
+		$("#cicloTutoria").val("0");
+		$("#periodoTutoria").val("0");
+		$("#tutorTutoria").val("0");
+		$("#Area_Nome_Tutoria").empty();
+		$("#Area_Nome_Tutoria").hide();
+		$("#cicloAluno").val("0");
+		$("#periodoIdAluno").val("0");
+		$("#boxAluno").empty();
+		$("#boxSelect").empty();
+		$("#Container_Cadastro_Tutoria").hide();
+		$("#Container_Cadastro_Aluno").hide();
+		$(".btn_Salvar_Aluno").hide();
+		$("#Container_Cadastro_Tutoria").show();
+		$("#btn_Salvar_Tutoria").show();
+    	$(".btn_Nova_Tutoria").hide();
+    	$(".btn_Editar_Tutoria").hide();
+    	$(".btn_EditPesq_Tutoria").hide();
+    	$(".Area_Select_Tutoria").show();
+    	$("#listarAluno").show();
+    	$("#listarSelect").hide();
+	}
+}

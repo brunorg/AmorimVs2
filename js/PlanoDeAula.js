@@ -182,6 +182,10 @@ $(document).ready(function() {
 		},
 		onChangeMonthYear: function() {
 			window.setTimeout(estilizarCalendario, 1);
+			setTimeout(recolorCalendar, 1);
+		},
+		onChangeMonthYear: function() {
+			setTimeout(recolorCalendar, 1);
 		},
 		onClose: function () {
 			$("#box_novo").css("height", "130px");
@@ -204,12 +208,16 @@ $(document).ready(function() {
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
-	
+
 	$( "#data_fim" ).datepicker({
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
 			window.setTimeout(estilizarCalendario, 1);
+			setTimeout(recolorCalendar, 1);
+		},
+		onChangeMonthYear: function() {
+			setTimeout(recolorCalendar, 1);
 		},
 		onClose: function () {
 			if(!($("#data_inicio").val() != "" && $("#data_fim").val() != ""))
@@ -231,6 +239,23 @@ $(document).ready(function() {
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
+
+
+
+
+
+
+	function recolorCalendar(){
+		$(".ui-datepicker-title").css("background-color", corFraca);
+		$(".ui-datepicker th").css("background-color", corMedia);
+		//$(".ui-corner-all").css("background-color", corForte);
+		console.log("ay")
+	}
+
+
+
+
+
 	
 	$(".Conteudo_Coluna").scroll(function(){
 		$("#box_novo").removeClass("exibir");
