@@ -18,10 +18,9 @@
 
 	var dataTutoria 				=	getData("Tutoria", null);
 	var dataProfessorFuncionario    =   getData("ProfessorFuncionario", null);
-	var dataAlunoVariavel 			=	getData("AlunoVariavel", null);
+
 	var dataPeriodo 				=	getData("Periodo", null);
-	var dataAnoEstudo 				=	getData("AnoEstudo", null);
-	var dataGrupos					=	getData("Grupo", null);
+//	var dataAnoEstudo 				=	getData("AnoEstudo", null);
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -32,14 +31,14 @@
 $(document).ready(function() {	
 	/*Listagem dos anos de estudo*/
 
-		var Limite = dataAnoEstudo.length;	   
-		var HtmlContent = "";
+		// var Limite = dataAnoEstudo.length;	   
+		// var HtmlContent = "";
 
-		for(var a = 0; a < Limite; a++)
-		{
-			HtmlContent += '<option value="'+dataAnoEstudo[a].ano+'">'+dataAnoEstudo[a].ano+'º</option>';
-		}		
-		$('#anoEstudo').html(HtmlContent);
+		// for(var a = 0; a < Limite; a++)
+		// {
+		// 	HtmlContent += '<option value="'+dataAnoEstudo[a].ano+'">'+dataAnoEstudo[a].ano+'º</option>';
+		// }		
+		// $('#anoEstudo').html(HtmlContent);
 
 	/*Listagem dos Professores para atribuir tutoria*/
 	//var LimiteC = dataProfessorFuncionario.length;
@@ -102,10 +101,10 @@ $(document).ready(function() {
 			
 		})
 
-		if ($("#S_AnoEstudo option").eq(0).val() != $("#S_AnoEstudo").val()){
-			$("#S_AnoEstudo option").eq(0).attr('selected','selected');
-			SetValoresAlunoVariavel();
-		}
+		// if ($("#S_AnoEstudo option").eq(0).val() != $("#S_AnoEstudo").val()){
+		// 	$("#S_AnoEstudo option").eq(0).attr('selected','selected');
+		// 	SetValoresAlunoVariavel();
+		// }
 
 
 	})
@@ -123,49 +122,38 @@ function carregarProfessoresByPeriodo(idPeriodo){
 	
 }
 
-function MostrarGrupos()
-{
-
-	var Limite = dataGrupos.length;
-	
+function MostrarGrupos() {	
+	var tutorTutoria = $(".tutoriaT").val();
+	var HtmlContent = "";
 	$('#box_grupo_info').html('');
-	
-	//Percorre todos os grupos
-	for(var  a = 0; a< Limite; a++){
-		//Verifica se o grupo está ativo
-		if (dataGrupos[a].status != 1){
-			
-			if  ($('.tutoriaT').val() == dataGrupos[a].tutoria.idtutoria || $('.tutoriaT').val() == "Todas"){
-			
-				//Busca os alunos pertencentes ao grupo
-				dataAlunosGrupo = getData('AlunoVariavel/grupo',dataGrupos[a].idgrupo);
-				//Verifica se o grupo possui alunos
-				if (dataAlunosGrupo.length > 0){
-					
-					//Monta o Html do grupo
-					HtmlContent = '<div class="boxGrupo'+dataAlunosGrupo[0].grupo.idgrupo+' linha" id="'+dataAlunosGrupo[0].grupo.idgrupo+'">';
+		//Busca os alunos pertencentes ao grupo
+		$.ajax({
+			url: path + "Tutoria/TutoriaGrupos/" + tutorTutoria,
+			type: "GET",
+			async: false,
+			crossDomain: true,
+			success: function(dataAlunoVariavel){
+				for(var  a = 0; a < dataAlunoVariavel.length; a++){
+
+					HtmlContent += '<div class="boxGrupo'+dataAlunoVariavel[a].GrupoId+' linha" id="'+dataAlunoVariavel[a].GrupoId+'">';
 					HtmlContent += '<div class="grupoCaixa">';
-					HtmlContent += '<div class="grupoTitulo">'+dataAlunosGrupo[0].grupo.nomeGrupo+'</div>';
-					HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunosGrupo[0].grupo.idgrupo+'"><span class="titulo">Alunos:</span>';
-					//percorre os alunos do grupo colocando o nome.
-					for(var b = 0; b < dataAlunosGrupo.length; b++){
-						if (b != 0)	HtmlContent += ', '+dataAlunosGrupo[b].aluno.nome;
-							else HtmlContent += dataAlunosGrupo[b].aluno.nome;
-					}
-					//Termina de montar o Html
-					HtmlContent += '</div>'
+					HtmlContent += '<div class="grupoTitulo">'+dataAlunoVariavel[a].NomeGrupo+'</div>';
+					HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunoVariavel[a].GrupoId+'"><span class="titulo">Alunos:</span>';
+					HtmlContent += dataAlunoVariavel[a].alunos;
+					HtmlContent += '</div>';
 					HtmlContent += '<div class="tutor"> Tutor:</div>';
-					HtmlContent += '<div class="tutor_nome">'+(dataAlunosGrupo[0].grupo.tutoria != null ? (dataAlunosGrupo[0].grupo.tutoria.tutor.nome):'Não Atribuido')+'</div>';
+					HtmlContent += '<div class="tutor_nome">'+ dataAlunoVariavel[a].nomeTutor + '</div>';
 					HtmlContent += '</div>';
-					HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunosGrupo[0].grupo.idgrupo+');"></div>';
-					HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunosGrupo[0].grupo.idgrupo+');"></div>';
+					HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].GrupoId+');"></div>';
+					HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunoVariavel[a].GrupoId+');"></div>';
 					HtmlContent += '</div>';
-					
-					$('#box_grupo_info').append(HtmlContent);
+					//console.log(dataAlunoVariavel[a].GrupoId);
 				}
+				$('#box_grupo_info').append(HtmlContent);
+
 			}
-		}
-	}
+		});	
+	
 	return false;
 }
 	
@@ -287,7 +275,7 @@ function MostrarGrupos()
 
 function grupoNovo(){
 
-	var anoEstudo = $("#S_AnoEstudo option:selected").text();
+	//var anoEstudo = $("#S_AnoEstudo option:selected").text();
 	var periodo = $("#S_Periodo option:selected").text();
 	var periodoId = $("#S_Periodo").val();
 	var professorId = $("#tutoria").val();
@@ -295,7 +283,7 @@ function grupoNovo(){
 	var bool = false;
 	var msg;
 	
-	anoEstudo = anoEstudo.substring(0, 1);
+	//anoEstudo = anoEstudo.substring(0, 1);
 	periodo = periodo.substring(0, 1);
 	
 	for (var i = 0; i < elementos.length; i++) {				
@@ -317,7 +305,7 @@ function grupoNovo(){
 			crossDomain: true,
 			dataType: 'json',
 			contentType: false,	
-			data:"action=create&status=0&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&lider=0&id=0"+"&idPeriodo="+periodoId,
+			data:"action=create&status=0&periodo="+periodo+"&idProfessor="+professorId+"&lider=0&id=0"+"&idPeriodo="+periodoId,
 			beforeSend: function(){
 				//$('.boxGlobal').css("display","block");
 				loading("inicial");
@@ -384,23 +372,46 @@ function grupoNovo(){
 
 
 
-function montagemEdicao(id)
-{
+function montagemEdicao(id) {
+	var htmlEdit = "";
+	var abaTutoria = $(".btn_abas")[2]; //Pega a aba da tutoria, terceira na ordem de abas
+	$(".btn_abas").removeClass("bt_Ativo");
+	$(abaTutoria).addClass("bt_Ativo");	
+	$("#cx_conteudo div").removeClass("selecionado");
+	containerAtivo = $(abaTutoria).attr('id');
+	$('#container_'+containerAtivo).addClass('selecionado');
+	$('#periodoTutoria').val();
+	displayEdicao(id); //Mostra o cabecalho com o ciclo, periodo e tutor do grupo que o usuario clickar
+	desabilitaFuncoes(); //função responsável por desabilitar os demais recursos do button de salvar
+	atualizarAluno(id);
+	$("#boxAluno").empty(); // limpa os alunos carregados, para que nao sejam duplicados
+	$.ajax({
+		url: path + "Grupo/AlunoGrupo/" + id,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: "json",
+		success: function(dataAlunoEdicao){
+			for(var i=0; i < dataAlunoEdicao.length; i++){
+				htmlEdit += '<div class="Grupo_Aluno_Linha Selected">'+
+                                   '<span class="Nome_Aluno">' + 
+                                       dataAlunoEdicao[i].aluno.nome + 
+                                   '</span>' +
+                                   '<input type="checkbox" id="Aluno_Ano_Check_'+dataAlunoEdicao[i].idalunoVariavel+'" class="Aluno_Ano_Check" />' +
+                                   '<label for="Aluno_Ano_Check_'+dataAlunoEdicao[i].idalunoVariavel+'">'+
+                                       '<span></span>' +
+                                   '</label>'+
+                                   '<span class="Ano_Aluno">'+
+                                       dataAlunoEdicao[i].anoEstudo.ano+'º ano'+
+                                   '</span>'+
+                                '</div>';
+			}
+			$("#boxAluno").append(htmlEdit);
+			$(".Aluno_Ano_Check").prop("checked", true);
+		}
+	});
 
-	var periodo = $("#periodo").val();
-	$("#S_Periodo option[value='"+periodo+"']").attr("selected","true");
-	//carregarProfessoresByPeriodo(periodo);
-	
-	$("#bt_Pesquisar").removeClass("bt_Pesquisar_Ativo");	
-	$("#container_Pesquisa").css("display","none");
-	$("#bt_Inserir").addClass("bt_Inserir_Ativo_Grupo");	
-	$("#container_Inserir").css("display","block");	
-	$("#editarGrupo").css("display","block");
-	$("#cadastrarGrupo").css("display","none");		
-	$("#action").val("update");
-	$("#grupo").val(id);
-
-
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	var dataAlunoGrupo;
 	$.ajax({
 		url: path + "Grupo/AlunoGrupo/" + id,
@@ -412,7 +423,7 @@ function montagemEdicao(id)
 		}
 	});
 
-	$("#S_AnoEstudo option[value='"+dataAlunoGrupo[0].anoEstudo.idanoEstudo+"']").attr("selected","true");
+	//$("#S_AnoEstudo option[value='"+dataAlunoGrupo[0].anoEstudo.idanoEstudo+"']").attr("selected","true");
 
 	for (var i = 0; (i < dataAlunoGrupo.length || i < $(".S_Aluno").length); i++)
 	{
@@ -428,11 +439,52 @@ function montagemEdicao(id)
 	var tutor = dataAlunoGrupo[0].grupo.tutoria.tutor.idprofessorFuncionario;
 
 	$("#tutoria option[value='"+tutor+"']").attr("selected","true");
+	$(".tutoriaT").val("Todas"); //Retorna o valor do campo de tutores para o padrão
+	$("#box_grupo_info").empty(); //Limpa a area para atualizar a consulta toda vez que o usuario clickar em editar.
+}	
 
+
+
+function desabilitaFuncoes(){
+	$("#btn_Salvar_Tutoria").hide();
+	$(".btn_EditPesq_Tutoria").show();
+}
+
+function displayEdicao(id){
+	cicloEditar = $("#cicloTutoria");
+	periodoEditar = $("#periodoTutoria");
+	var conteudoeHeaderEdit = "";
+	var cicloVariavel = "";
+
+	$.ajax({
+		url: path + "Grupo/" + id,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		datatype: 'html',
+		success: function(dataGrupo){
+			if(dataGrupo.ciclo == "C1"){
+				cicloVariavel = '<span> Alfabetização | </span>';
+			} else if(dataGrupo.ciclo == "C2") {
+				cicloVariavel = '<span> Intermediário | </span>';
+			} else {
+				cicloVariavel = '<span> Fundamental 2 | </span>'; 
+			}
+			cntdHeaderEdit = cicloVariavel +
+								 '<span> ' +dataGrupo.periodo.periodo+ '|</span>'+
+								 '<span> ' +dataGrupo.tutoria.tutoria+ '|</span>';
+			$("#Area_Nome_Tutoria").html(cntdHeaderEdit);
+			$("#Container_Cadastro_Tutoria").css('display','none')
+		    $("#Area_Nome_Tutoria").css('display', 'block');
+		    $("#Container_Cadastro_Aluno").css('display','block');
+		    
+		    $("#listarAluno").css('display','block');
+		}
+
+	});
 }
 
 function alimentaCombo(id){
-	
 	/*Limpa os valores na combo*/
 	$("#"+id).html("");
 
@@ -461,20 +513,20 @@ function alimentaComboAluno(idCombo, AlunoVariavel){
 
 function montagemExclusao(id)
 {
-	var AlunoAtual = "";
-	var b=0;
+	// var AlunoAtual = "";
+	// var b=0;
 
-	for(var a=0; a< dataAlunoVariavel.length; a++)
-	{
-		if(dataAlunoVariavel[a].grupo != null)
-		{
-			if(dataAlunoVariavel[a].grupo.idgrupo == id)
-			{
-				AlunoAtual += (b == 0 ? (dataAlunoVariavel[a].idalunoVariavel):(';'+dataAlunoVariavel[a].idalunoVariavel));
-				b++;
-			}
-		}
-	}
+	// for(var a=0; a< dataAlunoVariavel.length; a++)
+	// {
+	// 	if(dataAlunoVariavel[a].grupo != null)
+	// 	{
+	// 		if(dataAlunoVariavel[a].grupo.idgrupo == id)
+	// 		{
+	// 			AlunoAtual += (b == 0 ? (dataAlunoVariavel[a].idalunoVariavel):(';'+dataAlunoVariavel[a].idalunoVariavel));
+	// 			b++;
+	// 		}
+	// 	}
+	// }
 
 	$.ajax({
 		url: path+"Grupo",
@@ -487,7 +539,7 @@ function montagemExclusao(id)
 		success: function(data) {
 			$('#'+id).remove();
 			mensagem("Excluído com sucesso!","OK","bt_ok","success");
-			$("#S_AnoEstudo").trigger("change");	
+			//$("#S_AnoEstudo").trigger("change");	
 			return false;
 		},error: function(d) {
 			mensagem("Erro ao excluir!","OK","bt_ok","erro");
@@ -524,7 +576,7 @@ function editarGrupoFun(){
 		return false;
 	}
 	
-	$("#S_AnoEstudo").attr('disabled', false);
+	//$("#S_AnoEstudo").attr('disabled', false);
 	$("#S_Periodo").attr('disabled', false);
 		
 	var dataGrupo = getData("Grupo",grupoId);	
@@ -535,12 +587,12 @@ function editarGrupoFun(){
 		lider = 0;
 	}	
 	
-	var anoEstudo = $("#S_AnoEstudo option:selected").text();
+	//var anoEstudo = $("#S_AnoEstudo option:selected").text();
 	var periodo = $("#S_Periodo option:selected").text();
 	var periodoId = $("#S_Periodo").val();
 	var professorId = $("#tutoria").val();
 	
-	anoEstudo = anoEstudo.substring(0, 1);
+	//anoEstudo = anoEstudo.substring(0, 1);
 	periodo = periodo.substring(0, 1);
 		
 	$.ajax({
@@ -550,7 +602,7 @@ function editarGrupoFun(){
 		crossDomain: true,
 		dataType: 'json',
 		contentType: false,			
-		data:"action=update&id="+grupoId+"&anoEstudo="+anoEstudo+"&periodo="+periodo+"&idProfessor="+professorId+"&tutoria="+tutoria+"&lider="+lider+"&idPeriodo="+periodoId,				
+		data:"action=update&id="+grupoId+"&periodo="+periodo+"&idProfessor="+professorId+"&tutoria="+tutoria+"&lider="+lider+"&idPeriodo="+periodoId,				
 		
 		success: function(d){
 			//aqui pego todos os elementos por classe
@@ -593,7 +645,7 @@ function editarGrupoFun(){
 					
 					
 					/*Volta as combos da página de pesquisar para o ponto inicial*/
-					var opcaoAno = $('#anoEstudo');
+					//var opcaoAno = $('#anoEstudo');
 					opcaoAno.val(opcaoAno.find('option').eq(0).val());
 					var opcaoPeriodo = $('#periodo');
 					opcaoPeriodo.val(opcaoPeriodo.find('option[value="8"]').val());

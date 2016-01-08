@@ -170,7 +170,6 @@ $(document).ready(function() {
 		}
 
 	});
-	
 	$(".dataPassada").click(function(){
 		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
 		return false;
@@ -179,6 +178,10 @@ $(document).ready(function() {
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
+			window.setTimeout(estilizarCalendario, 1);
+		},
+		onChangeMonthYear: function() {
+			window.setTimeout(estilizarCalendario, 1);
 		},
 		onClose: function () {
 			$("#box_novo").css("height", "130px");
@@ -201,11 +204,15 @@ $(document).ready(function() {
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
-	
+
 	$( "#data_fim" ).datepicker({
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
+			window.setTimeout(estilizarCalendario, 1);
+		},
+		onChangeMonthYear: function() {
+			window.setTimeout(estilizarCalendario, 1);
 		},
 		onClose: function () {
 			if(!($("#data_inicio").val() != "" && $("#data_fim").val() != ""))
@@ -227,6 +234,22 @@ $(document).ready(function() {
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
+
+
+
+
+
+
+	function recolorCalendar(){
+		$(".ui-datepicker-title").css("background-color", corFraca);
+		$(".ui-datepicker th").css("background-color", corMedia);
+		//$(".ui-corner-all").css("background-color", corForte);
+	}
+
+
+
+
+
 	
 	$(".Conteudo_Coluna").scroll(function(){
 		$("#box_novo").removeClass("exibir");
@@ -308,8 +331,7 @@ function editar() {
 	});
 }
 
-function reSetPlano(ID)
-{
+function reSetPlano(ID) {
 	$.ajax({
 		url: path + "PlanoAula/" + ID,
 		type: "GET",
@@ -538,8 +560,8 @@ function RetornaProfessorPlano()
 	if(base64_decode(GetURLParameter('ID')) == undefined)
 	{
 		$.ajax({
-			//url: path+"ProfessorFuncionario/"+userID,
-			url: path+"ProfessorFuncionario/98",
+			url: path+"ProfessorFuncionario/"+userID,
+			// url: path+"ProfessorFuncionario/98",
 			type: "GET",
 			async:false,
 			crossDomain: true,
@@ -668,3 +690,15 @@ function carregarPlano(){
 $(document).ready(function(){
 	returnOficinaProfessor();
 });
+
+function estilizarCalendario () {
+	$('#Container + div#ui-datepicker-div .ui-widget-header').css('background-color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-title').css('background-color', corMedia);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr > td.ui-datepicker-week-end ').css('background-color', '#DDD8D8');
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr').css('background-color', corFraca);
+	$('#Container + div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
+}

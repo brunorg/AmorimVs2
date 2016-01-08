@@ -21,6 +21,7 @@ function carregaCiclo(){
         success: function (dataCi) {
             for (var i = 0; i < dataCi.length; i++) {
                 HtmlCiclo += '<option class="opcaoCI" value="'+dataCi[i].idciclos+'">'+dataCi[i].ciclo+'</option>';
+                //console.log(dataCi[i].idciclos);
             };
         }
     });
@@ -149,12 +150,13 @@ function atribuiFuncoesRolagem () {
 
 function salvarAgrupamento () {
     $('.btn_Salvar_Grupo').click(function() {
+        var cicloAgrup = $("#cicloGrupo").val();
         if (geraNome() != '' && $('.Aluno_Ano_Check:checked').length > 0)
         {
             $.ajax({
                 url: path + "Agrupamento/",
                 type: "POST",
-                data: "action=create&nome=" + geraNome() + "&anoLetivo=" + getIdAnoLetivo(),
+                data: "action=create&nome=" + geraNome() + "&anoLetivo=" + getIdAnoLetivo() + "&ciclo=" + cicloAgrup,
                 async: false,
                 crossDomain: true,
                 beforeSend: function() {

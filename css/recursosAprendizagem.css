@@ -33,7 +33,7 @@
 	text-align: center;	
 	color: white;
 	float: left;
-	cursor: pointer;
+	cursor: default;
 	background-color: #F7941E;
 	margin-right:12px;
 }

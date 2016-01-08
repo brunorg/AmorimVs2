@@ -296,12 +296,12 @@ select[value="0"]{
     font-size: 14px;
     color: #999999;
     float: right;
+    display: none;
 }
 
 #miniaturaDaFoto{
     width: 64px;
     height: 64px;
-    background-color: red;
 }
 
 /*Seções area Professor*/
