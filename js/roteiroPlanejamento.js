@@ -188,6 +188,7 @@ function SubstituirObjetivos(idRoteiro)
     var FichasExistenteUpload       = verificaProducaoExistente(4, idRoteiro);
     HtmlContent = "";
     HtmlContent += ('<td id="producaoTD">');
+	verificaPendencias(alunoID,idRoteiro);
     switch (getProducaoStatus(PortifolioExistenteUpload))
     {
         case 0:
@@ -197,7 +198,7 @@ function SubstituirObjetivos(idRoteiro)
         }
         case 1:
         {
-            HtmlContent += ('<div class="iconeExcluir"></div><div class="excluir" id="ex_5_'+idRoteiro+'">Portfólio</div>');
+            HtmlContent += ('<div class="excluir" id="ex_5_'+idRoteiro+'"><div class="iconeExcluir"></div>Portfólio</div>');
             break;
         }
         case 2:
@@ -232,7 +233,7 @@ function SubstituirObjetivos(idRoteiro)
             }
             case 1:
             {
-                HtmlContent += ('<div class="botoesPortfolio ficha"><div class="excluir" id="ex_4_'+idRoteiro+'"">Excluir F.</div></div>');
+                HtmlContent += ('</div><div class="excluir" id="ex_4_'+idRoteiro+'"><div class="iconeExcluir">Ficha de Finalização | </div>');
                 break;
             }
             case 2:
@@ -255,43 +256,29 @@ function SubstituirObjetivos(idRoteiro)
 	}, 1000);
 }
 
-function excluirProducaoConfirm(){
-	$(".excluir").click(function(){
-		var roteiroTipo = $(this).attr("id");
-		roteiroTipo = roteiroTipo.split("_");
-		var tipo = roteiroTipo[1];
-		var roteiro = roteiroTipo[2];
-		
-		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm",tipo,roteiro,"excluirProducao");
-	});	
-}
-
-function excluirProducao(tipo, roteiro){
+function verificaPendencias(alunoID,roteiroID){
 	$.ajax({
-		url: path+"ProducaoAluno/DeletarProducaoAluno/"+alunoID+"/"+roteiro+"/"+tipo,
+		url : path+"PendenciasProducaoAluno/ExistePendencia/"+alunoID+"/"+roteiroID,
 		type:"GET",
-		async:false,
-		beforeSend: function(){
-			loading("inicial");
-		},
+		dataType: 'json',
+		async: false,		
 		success: function(d){
-			var msg;
-			if(tipo == 4)
-				msg = "Ficha de finalização excluída com sucesso!";
-			else
-				msg = "Portfólio excluído com sucesso!";	
-			
-			$('.QuadObj_'+roteiro).html('<a style="text-align:right;color:white" onclick="showUpload('+tipo+','+roteiro+')" href="#"><div class="botoesPortfolio portfolio">Portfólio</div></a>'); 
-				            
-			mensagem(msg,"OK","bt_ok","sucesso");
+			if(d==0){
+				$.ajax({
+					url : path+"PendenciasProducaoAluno/",
+					type:"POST",
+					crossDomain: true,
+					dataType: 'json',
+					async: false,
+					data: "action=create&idaluno="+alunoID+"&idroteiro="+roteiroID,		
+					success: function(d){
+						//console.log("salvou pendencia");	
+					},
+				})
+			}	
 		},
-		complete: function(){
-			loading("final");	
-		}
-	});
+	})		
 }
-
-
 
 function IncluirRoteirosPendentes () {
     var dataRoteiro = Array();
@@ -397,7 +384,7 @@ function SalvarPortifolio(tipoProducao, roteiroAcionado){
 					mensagem("Arquivo enviado com sucesso!","OK","bt_ok","sucesso");  
                 }, 
                 success: function(d) {
-                    addFileTo(d, roteiroAcionado);
+                    addFileTo(d, roteiroAcionado,tipoProducao);						
 					 
 					$.ajax({
 						url: path+"PendenciasProducaoAluno/EntregarPortfolio/"+ alunoID + "/" + roteiroAcionado,
@@ -424,7 +411,49 @@ function SalvarPortifolio(tipoProducao, roteiroAcionado){
     
 }
 
-function addFileTo(ID, roteiroAcionado){
+
+function excluirProducaoConfirm(){
+	$(".excluir").click(function(){
+		var roteiroTipo = $(this).attr("id");
+		roteiroTipo = roteiroTipo.split("_");
+		var tipo = roteiroTipo[1];
+		var roteiro = roteiroTipo[2];
+		
+		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm",tipo,roteiro,"excluirProducao");
+	});	
+}
+
+function excluirProducao(tipo, roteiro){
+	var htmlNovo="";
+	$.ajax({
+		url: path+"ProducaoAluno/DeletarProducaoAluno/"+alunoID+"/"+roteiro+"/"+tipo,
+		type:"GET",
+		async:false,
+		beforeSend: function(){
+			loading("inicial");
+		},
+		success: function(d){
+			var msg;
+			if(tipo == 4){
+				msg = "Ficha de finalização excluída com sucesso!";
+				htmlNovo = '<a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+roteiro+');"><div class="botoesPortfolio ficha">Ficha de Finalização | </div></a>';
+				$('.QuadObj_'+roteiro+' .ficha').html(htmlNovo); 
+			}else{
+				
+				msg = "Portfólio excluído com sucesso!";
+				htmlNovo = '<a style="text-align:right;color:white" onclick="showUpload('+tipo+','+roteiro+')" href="#"><div class="botoesPortfolio portfolio">Portfólio</div></a>';
+				$('.QuadObj_'+roteiro+' .portfolio').html(htmlNovo); 
+			}			
+				            
+			mensagem(msg,"OK","bt_ok","sucesso");
+		},
+		complete: function(){
+			loading("final");	
+		}
+	});
+}
+
+function addFileTo(ID, roteiroAcionado,tipoProducao){
     var formData = new FormData($('#Cadastro_Producao_Aluno')[0]);
     formData.append("arquivo", Arquivo);
 
@@ -434,12 +463,16 @@ function addFileTo(ID, roteiroAcionado){
         mimeType:"multipart/form-data",
         contentType: false,
         cache: false,
+		async:true,
         processData:false,
         data: formData,
         dataType: 'json',    
         success: function(d) {
-            //alert("Arquivo Salvo.");
-			$('.QuadObj_'+roteiroAcionado).html('<div class="iconeExcluir"></div><div class="excluir" id="ex_5_'+roteiroAcionado+'">Portfólio</div>');		
+            if(tipoProducao == 5){
+				$('.QuadObj_'+roteiroAcionado+' .portfolio').html('<div class="excluir" id="ex_5_'+roteiroAcionado+'"><div class="iconeExcluir"></div>Portfólio</div>');
+			}else{
+				$('.QuadObj_'+roteiroAcionado+' .ficha').html('<div class="excluir" id="ex_4_'+roteiroAcionado+'"><div class="iconeExcluir"></div>Ficha de Finalização</div>');
+			}			
 			//chama a função para o html que acabou de ser criado
 			setTimeout(function(){excluirProducaoConfirm();}, 1000);               
         },error: function() {
@@ -621,7 +654,9 @@ function getRecursosDeRoteiro(ID)
 }
 
 function getProducaoStatus (Producao) {
-    return Producao[Object.keys(Producao)[0]];
+	if(typeof Producao != 'undefined'){
+    	return Producao[Object.keys(Producao)[0]];
+	}
 }
 
 

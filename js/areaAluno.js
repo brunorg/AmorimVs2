@@ -232,8 +232,8 @@ function CarregaServicoProducaoAluno()
 				dataProducaoAluno = data;
 			}
 		});
-
-		for (var a = 0; a < dataProducaoAluno.length; a++) {			
+		if(dataProducaoAluno!=""){
+			for (var a = 0; a < dataProducaoAluno.length; a++) {			
 				if ( ContadorPA != 3 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
@@ -292,7 +292,8 @@ function CarregaServicoProducaoAluno()
 					ContadorPA = 1;
 
 				}
-		}
+			}	
+		}		
 
 		if (ContadorPA == 1)
 			HtmlContent += '</div>';
@@ -400,7 +401,7 @@ function CarregarMural() {
 
 		},
 		error: function (a, status, error) {
-			console.log(stats + " /// " + error)
+			console.log(status + " /// " + error)
 		}
 	});	
 };

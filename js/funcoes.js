@@ -538,7 +538,6 @@ function centralizarModal()
 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 {
-	console.log(class_btn);
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
