@@ -30,7 +30,7 @@ function salvarAluno(agrupamento){
                     loading("inicial"); 
                 },
                 success: function(){
-                    $(".Area_Select_Tutoria").css('display','none');
+                    $(".Area_Select_Tutoria").hide();
                     displayAlunos();
                     $(".btn_Nova_Tutoria").click(function(){
                         resetarTutoria();
@@ -43,7 +43,6 @@ function salvarAluno(agrupamento){
             });
         } 
         alunosId = "";
-        console.log(alunosId);
     });    
 } 
 
@@ -55,8 +54,6 @@ function salvarTutoria(){
         var periodoId = $("#periodoTutoria :selected").val();
          var periodo = $("#periodoTutoria :selected").text();
         periodo = periodo[0];
-        //console.log(professorId + "\n" + ciclo + "\n" + periodo);
-        debugger;
         if (ciclo != '0' &&
             periodoId != '0' &&
             professorId == '0'
@@ -400,15 +397,15 @@ function displayAlunos(){
         }        
     } 
     $("#boxSelect").append(ifSelected);
-    $("#listarAluno").css('display','none');
-    $("#listarSelect").css('display','block');
+    $("#listarAluno").hide();
+    $("#listarSelect").show();
 
     $(".Aluno_Ano_Check").each(function(){
         $(this).next('label').hide();
     }); 
 
-    $("#btn_Salvar_Tutoria").css('display','none');
-    $(".btn_Nova_Tutoria").css('display', 'block');
+    $("#btn_Salvar_Tutoria").hide();
+    $(".btn_Nova_Tutoria").show();
     $(".btn_Editar_Tutoria").show();
     $(".btn_Salvar_Aluno").hide();
 

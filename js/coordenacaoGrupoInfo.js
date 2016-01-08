@@ -471,7 +471,7 @@ function displayEdicao(id){
 				cicloVariavel = '<span> Fundamental 2 | </span>'; 
 			}
 			cntdHeaderEdit = cicloVariavel +
-								 '<span> ' +dataGrupo.tutoria.periodo.periodo+ '|</span>'+
+								 '<span> ' +dataGrupo.periodo.periodo+ '|</span>'+
 								 '<span> ' +dataGrupo.tutoria.tutoria+ '|</span>';
 			$("#Area_Nome_Tutoria").html(cntdHeaderEdit);
 			$("#Container_Cadastro_Tutoria").css('display','none')
