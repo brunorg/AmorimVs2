@@ -246,7 +246,7 @@ div.item:nth-child(even){
 
 .titulo_roteiro, .titulo_objetivo, .titulo_atividade{
 	position: relative;
-    
+    cursor: default;
 	width: 95%;
 	float: left;
 	padding: 12px;
