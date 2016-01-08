@@ -105,6 +105,8 @@ function carregaGrupoTutoriaMural(professorId) {
 function clickPostagens() {
     $("#novoPostagens").click(function() {
 
+        $("#miniaturaDaFoto").hide();
+
         $("#conteudoPostagens").html("");
         $("#selectOficina select").html("");
         $("#tituloPostagens").html("");
@@ -137,6 +139,8 @@ function uploadImagemPostagem () {
 
 function imagemPostagemTexto () {
     $("#postagemImagem").change(function(e) {
+        transformarMiniatura(this);
+        $("#miniaturaDaFoto").show();
         $("#uploadPath").html($("#postagemImagem").val().split('\\')[2]);
         $("#arquivoUpload").show();
 
@@ -144,14 +148,33 @@ function imagemPostagemTexto () {
         FR.onload = function(e) {
             $("#imagemArquivo").val(e.target.result);
         };
-        Arquivo = this.files[0];
+        Arquivo = this.files[0];   
 
     });
+}
+
+function transformarMiniatura(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#miniaturaDaFoto').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.getElementById("uploadPath").onchange = function(){
+    
+    console.log("a")
 }
 
 function removerImagemPostagem () {
     $("#removerUpload").click(function() {
         $("#arquivoUpload").hide();
+        $("#miniaturaDaFoto").hide();
+        $('#miniaturaDaFoto').attr('src', '#');
         $("#postagemImagem").val('');
     });
 }
@@ -169,6 +192,8 @@ function novaPostagem () {
         $("#postagemConteudo").val(conteudo);
         $("#postagemOficina").val(oficina);
         var idPostagem;
+
+        console.log($("#formPostagens").serialize())
 
         $.ajax({
             url: path + "Blog",
@@ -282,6 +307,9 @@ function editPost(id) {
     $("#postagensConteudo").hide();
     $("#novoPostagens").hide();
     $("#postagensNova").show();
+    $("#miniaturaDaFoto").hide();
+
+    $('#miniaturaDaFoto').attr('src', '#');
 
     $("#conteudoPostagens").html($("#blogPostCorpo"+id).html()); 
     $("#selectOficina select").html($("#blogPostOficina"+id).html()); 
