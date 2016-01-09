@@ -3,17 +3,12 @@ function diasLetivos(){
 
 	var anoLetivo = new Date();
 	anoLetivo = anoLetivo.getFullYear();
-	var countUteis = 0;
-
-	var dataInicial = anoLetivo + "-01-01";
-	var dataFinal =  anoLetivo + "-12-31";
+	var countUteis = 0;	
 	var ano;
 	var feriadosDoAno = new Array();
 	var cont = 0;
-
-
 	var dataCalendario = getData("Calendario/feriados/"+anoLetivo, null);
-
+	
 	//console.log(dataCalendario);
 
 	$.ajax({
@@ -23,9 +18,15 @@ function diasLetivos(){
 		dataType: 'json',
 		async:false,
 		success: function(dataCalendario){
-			for(var i=0;i<dataCalendario.length;i++) {
+			for(var i=0;i<dataCalendario.length;i++) {							
 				var data="";
-				if((dataCalendario[i].dataInicio != null)&&(dataCalendario[i].dataFim != null)){
+				if((dataCalendario[i].dataInicio != null)&&(dataCalendario[i].dataFim != null)&&(dataCalendario[i].dataFim == dataCalendario[i].dataInicio)){
+					data = dataCalendario[i].dataInicio;
+					data = data.split("-");
+					data = data[2]+"-"+data[1]+"-"+data[0];
+					feriadosDoAno[cont] = data;
+					cont++;
+				}else if((dataCalendario[i].dataInicio != null)&&(dataCalendario[i].dataFim != null)&&(dataCalendario[i].dataFim != dataCalendario[i].dataInicio)){
 					var dias = diasDecorridos(dataCalendario[i].dataInicio, dataCalendario[i].dataFim);
 					var diaIn = dataCalendario[i].dataInicio;
 					diaIn = diaIn.split("-");
@@ -54,8 +55,14 @@ function diasLetivos(){
 					}
 				}
 			}
+			
+			var anoLetivo = new Date();
+			anoLetivo = anoLetivo.getFullYear();
+			var dataInicial = anoLetivo + "-01-01";
+			var dataFinal =  anoLetivo + "-12-31";
 
 			dataInicial = Date.parse(dataInicial);
+
 			dataFinal = Date.parse(dataFinal)-1;
 
 			while (dataInicial <= dataFinal) {
@@ -82,10 +89,10 @@ function diasLetivos(){
 						}
 					})
 				}
-			}
-			return countUteis;
+			}			
 		}
 	});
+	return countUteis;
 }
 
 function diasDecorridos(dt1, dt2){
@@ -118,5 +125,6 @@ function diasDecorridos(dt1, dt2){
     }
 
     var dif = Math.abs(dt2.getTime() - dt1.getTime()) - horarioVerao;
+
     return Math.ceil(dif / dia);
 }
