@@ -232,8 +232,8 @@ function CarregaServicoProducaoAluno()
 				dataProducaoAluno = data;
 			}
 		});
-		if(dataProducaoAluno!=""){
-			for (var a = 0; a < dataProducaoAluno.length; a++) {			
+
+		for (var a = 0; a < dataProducaoAluno.length; a++) {			
 				if ( ContadorPA != 3 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
@@ -257,7 +257,7 @@ function CarregaServicoProducaoAluno()
 						HtmlContent += apresentacao;
 						HtmlContent += '</div>';
 						HtmlContent += '<div class="Nome_Roteiro">';
-						HtmlContent += dataProducaoAluno[a].roteiro!=null?dataProducaoAluno[a].roteiro.nome:"";
+						HtmlContent += dataProducaoAluno[a].roteiro.nome;
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
 						HtmlContent += '</div>';
@@ -292,8 +292,7 @@ function CarregaServicoProducaoAluno()
 					ContadorPA = 1;
 
 				}
-			}	
-		}		
+		}
 
 		if (ContadorPA == 1)
 			HtmlContent += '</div>';
@@ -401,7 +400,7 @@ function CarregarMural() {
 
 		},
 		error: function (a, status, error) {
-			console.log(status + " /// " + error)
+			console.log(stats + " /// " + error)
 		}
 	});	
 };
@@ -705,20 +704,6 @@ function SalvarCapa (id) {
     });
 }
 
-function pendencias(alunoID){
-	$.ajax({
-		url: path+"PendenciasProducaoAluno/TotalPendencias/"+alunoID,
-		type: "GET",
-		dataType: 'json',
-        success: function(d){
-			console.log(d);
-			if(d>0){
-				$('#pendencias').html(d+" Pendências");
-			}
-		}
-	});
-}
-
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery
@@ -737,8 +722,8 @@ $(document).ready(function() {
 	//CarregarRegistros();
 	CarregaServicoProducaoAluno();
 	AtivaUploadCapa();
-	//CarregarOficinas();
-	pendencias(alunoID);
+	CarregarOficinas();
+
 });
 
 
@@ -891,22 +876,25 @@ function salvarRegistroAtual () {
 		action = 'update';
 	else
 		action = 'create';
-	$.ajax({
-		url: path+"RegistroDiario/",
-		type: "POST",
-		crossDomain: true,
-		data: "id="+identificador+"&action="+action+"&registro="+registro+"&planoEstudo="+idPlanoEstudoSession+"&data="+dataPostagem,
-		beforeSend: function(){
-			loading("inicial");	
-		},success: function(d) {
-			mensagem("Alterado com sucesso!","OK","bt_ok","sucesso");
-			if (action = 'create')
-				$('.textarea_registro textarea').attr('id', d);
-		},complete: function(){
-			loading("final");	
-		},
-	});	
-	
+	if($(".txtArea").val() == "") {
+		mensagem("Você precisa preencher o campo vazio.","OK","bt_ok","erro");
+	} else {
+		$.ajax({
+			url: path+"RegistroDiario/",
+			type: "POST",
+			crossDomain: true,
+			data: "id="+identificador+"&action="+action+"&registro="+registro+"&planoEstudo="+idPlanoEstudoSession+"&data="+dataPostagem,
+			beforeSend: function(){
+				loading("inicial");	
+			},success: function(d) {
+				mensagem("Alterado com sucesso!","OK","bt_ok","sucesso");
+				if (action = 'create')
+					$('.textarea_registro textarea').attr('id', d);
+			},complete: function(){
+				loading("final");	
+			},
+		});	
+	}
 }
 
 function OrdenarPor(TString)
