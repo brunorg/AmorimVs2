@@ -815,6 +815,8 @@ function preencheData(dataInicio, dataFinal)
 	var dataAux = new Date(((dataInicio.split("-"))[0]), ( ( (dataInicio.split("-") ) [1] ) -1 ), ((dataInicio.split("-"))[2]));
 	var dataAuxFim = new Date(((dataFinal.split("-"))[0]), ( ( ( dataFinal.split("-" ) ) [1])-1), ((dataFinal.split("-"))[2]));
 	var contadorRegistros = 1;
+	
+	console.log(dataAux, dataAuxFim, IdentificadorPlanoEstudo, alunoID);
 
 	callRegistroHtml(dataAux, dataAuxFim, IdentificadorPlanoEstudo, alunoID);			
 
@@ -833,7 +835,10 @@ function callRegistroHtml(PrimeiraData, SegundaData, IdentificadorPlano, Identif
 		async:false,
 		crossDomain: true,
 		success: function(dataRegistroDiario) {
-			for(var a = 0; Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a) <= Date.UTC(d.getFullYear() , d.getMonth(), d.getDate()); a++)
+			
+			//for(var a = 0; Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a) <= Date.UTC(d.getFullYear() , d.getMonth(), d.getDate()); a++)
+			
+			for(var a = 0; Date.UTC(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a) <= Date.UTC(SegundaData.getFullYear(), SegundaData.getMonth(), SegundaData.getDate()); a++)
 			{
 				var dataRegistro = new Date(PrimeiraData.getFullYear(), PrimeiraData.getMonth(), PrimeiraData.getDate() + a);
 				dataRegistro = new Date(dataRegistro.getTime() /*+ (24 * 60 * 60 * 1000)*/);
