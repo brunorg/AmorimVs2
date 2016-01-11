@@ -233,7 +233,8 @@ function CarregaServicoProducaoAluno()
 			}
 		});
 
-		for (var a = 0; a < dataProducaoAluno.length; a++) {			
+		if(dataProducaoAluno!=""){
+			for (var a = 0; a < dataProducaoAluno.length; a++) {			
 				if ( ContadorPA != 3 ) {
 					if ( ContadorPA == 0 ) {
 						HtmlContent += '<div class="Portfolio_Conteudo_Container">';
@@ -292,7 +293,8 @@ function CarregaServicoProducaoAluno()
 					ContadorPA = 1;
 
 				}
-		}
+			}
+		}	
 
 		if (ContadorPA == 1)
 			HtmlContent += '</div>';
@@ -608,7 +610,7 @@ function CarregarOficinas() {
 	];
 	for (var i = 0; i <= oficinasNomes.length*2; i++) {
 		var oficinaLinha = '<div class="Oficinas_Conteudo_Linha '+ (oficinasNomes.length > 4 ? 'Linha_Scroll' : '') +'">' +
-					'<div class="Oficina_Nome" id="Oficina_Nome_'+oficinasNomes[i]+'">'+oficinasNomes[i].toUpperCase()+'</div>'+
+					'<div class="Oficina_Nome" id="Oficina_Nome_'+oficinasNomes[i]+'">'+oficinasNomes[i]+'</div>'+
 					'<div class="Oficina_Tema" id="Oficina_Tema_'+oficinasNomes[i]+'">'+
 						'<p class="Oficina_Tema_Texto">'+oficinasTemas[i]+'</p>'+
 					'</div>'+
@@ -704,6 +706,19 @@ function SalvarCapa (id) {
     });
 }
 
+function pendencias(alunoID){
+	$.ajax({
+		url: path+"PendenciasProducaoAluno/TotalPendencias/"+alunoID,
+		type: "GET",
+		dataType: 'json',
+        success: function(d){
+			console.log(d);
+			if(d>0){
+				$('#pendencias').html(d+" Pendências");
+			}
+		}
+	});
+}
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery
@@ -724,6 +739,7 @@ $(document).ready(function() {
 	AtivaUploadCapa();
 	CarregarOficinas();
 
+	pendencias(alunoID);
 });
 
 
