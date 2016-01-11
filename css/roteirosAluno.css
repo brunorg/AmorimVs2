@@ -670,7 +670,12 @@ select {
 	float:left;
 	margin: -2px 2px 0px -4px;
 }
-
+#portfolio{
+	float:right;	
+}
+#ficha{
+	float: left;
+}
 @media (width: 1024px) and (min-height: 510px) and (max-height: 590px){
 	#content_central{
 		height: 430px;
