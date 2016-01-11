@@ -1,8 +1,7 @@
 /*global $:false */
 'use strict';
-var professorId= localStorage.getItem("professorId");
 
-function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax) {
+function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId, tutoriaId) {
 
 	$('#' + idDivPrincipal).append('<div class="grupoBox" id="' + idDivGrupo + '"></div>');
 
@@ -25,22 +24,22 @@ function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax) {
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela").append('<tbody></tbody>')
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela thead").append('<th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th><th>%</th>')
 
-	criarPaineisDosAlunos(idDivGrupo, retornoAjax.grupoAlunos) ;
+	criarPaineisDosAlunos(idDivGrupo, retornoAjax.grupoAlunos, professorId, tutoriaId) ;
 }
 
-function criarPaineisDosAlunos(idDivGrupo, grupoAlunos) {
+function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId) {
 
 	for (var i = grupoAlunos.length - 1; i >= 0; i--) {
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoFotoAluno"></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + grupoAlunos[i].foto + '"></img>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a	>')
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + grupoAlunos[i].nome + '</span>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<span>' + grupoAlunos[i].nome + '</span>' + '</a>')
 
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoCurtir"></div>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoCurtir" id=iconeLider"'+grupoAlunos[i].idAluno+'""></div>')
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoCurtir").append('<p class="grupo">&nbsp;</p>')
 
 		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr id="aluno' + i + '"></tr>')
@@ -120,8 +119,26 @@ console.log(diasLetivos())
 
 window.onload = function() {
 
+	var professorId = localStorage.getItem("professorId");
+	var tutoriaId
+
 	$.ajax({
-        url: path + "Grupo/TutoriaDados/55",
+        url: path + "Tutoria/Professor/"+professorId+"/2015",
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(retornoAjax){
+
+            tutoriaId = retornoAjax.idtutoria
+
+        },
+        error: function(a, status, error) {
+            console.log(status + " /// " + error)
+        }
+    });
+
+	$.ajax({
+        url: path + "Grupo/TutoriaDados/" + professorId,
         async: false,
         crossDomain: true,
         type: "GET",
@@ -129,7 +146,7 @@ window.onload = function() {
 
             for (var i = 0; i < retornoAjax.length ; i++) {
 
-                criarPainelDoGrupo('divPrincipalGrupos', 'grupo' + i, retornoAjax[i]);
+                criarPainelDoGrupo('divPrincipalGrupos', 'grupo' + i, retornoAjax[i], professorId, tutoriaId);
 
             };
 

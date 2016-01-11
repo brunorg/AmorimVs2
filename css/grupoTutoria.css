@@ -178,13 +178,17 @@ table.grupoTabela tr{
     width: 44px;
     height: 38px;	
 }
-.grupo{
+.grupoCurtir .grupo{
 	background: url(../img/p_grupo.png) no-repeat;
     height: 38px;
     width: 43px;
     background-position: 6px 11px;
     padding: 0;
     margin: 0;
+}
+
+.grupoCurtir .lider {
+	background: url(../img/p_lider.png) no-repeat;
 }
 
 .grupoGraficoFreqTitulo{
@@ -273,3 +277,6 @@ table.grupoTabela tr{
 	top: 25px;
 }
 
+.grupoNomeAluno a{
+	text-decoration: none;
+}

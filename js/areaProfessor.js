@@ -526,6 +526,18 @@ function Mural() {
         });
     }
 
+    this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento) {
+        if (tutoria == 1) {
+            return "Tutoria"
+        } else if (grupo != null) {
+            return "Grupo " + grupo["nomeGrupo"]
+        } else if (oficina != null) {
+            return "Oficina " + oficina["nome"]
+        } else if (agrupamento != null) {
+            return "Agrupamento " + agrupamento["nome"]
+        }
+    }
+
     this.desenharPosts = function(lugar) {
     
         $.ajax({
@@ -566,17 +578,7 @@ function Mural() {
 
     }
 
-    this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento) {
-        if (tutoria == 1) {
-            return "Tutoria"
-        } else if (grupo != null) {
-            return "Grupo " + grupo["nomeGrupo"]
-        } else if (oficina != null) {
-            return "Oficina " + oficina["nome"]
-        } else if (agrupamento != null) {
-            return "Agrupamento " + agrupamento["nome"]
-        }
-    }
+    
 
     this.editarPost = function(idPost) {
         
