@@ -189,6 +189,7 @@ table.grupoTabela tr{
 
 .grupoCurtir .lider {
 	background: url(../img/p_lider.png) no-repeat;
+	background-position: 6px 11px;
 }
 
 .grupoGraficoFreqTitulo{

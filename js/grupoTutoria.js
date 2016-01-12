@@ -1,6 +1,32 @@
 /*global $:false */
 'use strict';
 
+function mudarLider(grupo, lider){
+
+	var LD_Atual = $(".grupoId"+grupo+".lider").attr("id");
+
+	$.ajax({
+		url: path+"Grupo/liderGrupo/",
+		type: "POST",
+		async: true,
+		crossDomain: true,
+		dataType: 'json',
+		contentType: false,	
+		data:"action=update&grupo="+grupo+"&lider="+lider,
+		beforeSend: function() {
+
+			$("#"+LD_Atual).removeClass("lider");
+			$("#iconeLider"+lider).addClass("lider");
+
+		},
+		success: function(data){
+			console.log("lider alterado")
+		},error: function(d) {
+			console.log("erro na alteracao de lider");
+		}
+	});	
+}
+
 function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId, tutoriaId) {
 
 	$('#' + idDivPrincipal).append('<div class="grupoBox" id="' + idDivGrupo + '"></div>');
@@ -24,10 +50,12 @@ function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela").append('<tbody></tbody>')
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela thead").append('<th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th><th>%</th>')
 
-	criarPaineisDosAlunos(idDivGrupo, retornoAjax.grupoAlunos, professorId, tutoriaId) ;
+	criarPaineisDosAlunos(idDivGrupo, retornoAjax.grupoAlunos, professorId, tutoriaId, retornoAjax.grupoId);
+
+	$("#iconeLider" + retornoAjax.lider.idAluno).addClass("lider")
 }
 
-function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId) {
+function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId, grupoId) {
 
 	for (var i = grupoAlunos.length - 1; i >= 0; i--) {
 
@@ -39,8 +67,11 @@ function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId) 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<span>' + grupoAlunos[i].nome + '</span>' + '</a>')
 
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoCurtir" id=iconeLider"'+grupoAlunos[i].idAluno+'""></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoCurtir").append('<p class="grupo">&nbsp;</p>')
+
+		var funcao = 'onclick="mudarLider('+grupoId+', '+grupoAlunos[i].idAluno+')"'
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoCurtir"></div>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoCurtir").append('<p class="grupo grupoId'+grupoId+'" id="iconeLider'+grupoAlunos[i].idAluno+'" '+funcao+'>&nbsp;</p>')
+
 
 		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr id="aluno' + i + '"></tr>')
 		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody tr#aluno" + i).append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
