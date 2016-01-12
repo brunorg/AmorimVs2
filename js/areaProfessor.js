@@ -182,7 +182,7 @@ function removerImagemPostagem(id) {
             success: function(d) {
                 console.log("imagem deletadaf")
             }
-        }); 
+        });
 
     });
 }
