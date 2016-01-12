@@ -166,12 +166,24 @@ function transformarMiniatura(input) {
 }
 
 
-function removerImagemPostagem () {
+function removerImagemPostagem(id) {
+    window.id = id
     $("#removerUpload").click(function() {
         $("#arquivoUpload").hide();
         $("#miniaturaDaFoto").hide();
         $('#miniaturaDaFoto').attr('src', '#');
         $("#postagemImagem").val('');
+
+        $.ajax({
+            url: path + 'Blog/DeletarImagem/' + window.id,
+            async: true,
+            crossDomain: true,
+            type: "GET",
+            success: function(d) {
+                console.log("imagem deletadaf")
+            }
+        });
+
     });
 }
 
@@ -232,7 +244,7 @@ function novaPostagem () {
                 },
                 complete: function() {loading("final");}
             });
-        }
+        } 
 
         carregaPostsBlog()
     }
@@ -300,6 +312,9 @@ function addPost (post) {
 }
 
 function editPost(id) {
+
+    removerImagemPostagem(id)
+
     $("#postagensConteudo").hide();
     $("#novoPostagens").hide();
     $("#postagensNova").show();
