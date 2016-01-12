@@ -605,27 +605,27 @@ function returnOficinaProfessor() {
         type: "GET",
         async: false,
         success: function(dataOficina) {
-        	nomeOficina = dataOficina[0].cor.nome;
-        	corForte 	= dataOficina[0].cor.forte;
-        	corMedia	= dataOficina[0].cor.medio;
-        	corFraca	= dataOficina[0].cor.fraco;
+        	nomeOficina = dataOficina[0].tipoOficina.nome;
+        	corForte 	= dataOficina[0].tipoOficina.cor.forte;
+        	corMedia	= dataOficina[0].tipoOficina.cor.medio;
+        	corFraca	= dataOficina[0].tipoOficina.cor.fraco;
         	nomeOficina	= dataOficina[0].nome.split(' ',1);
 
-        	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina[0].cor.forte);
-        	$('.Bg_Imagem_Calendario').css('background-color',dataOficina[0].cor.forte);
-        	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina[0].cor.forte);
-        	$('#btnSubmit').css('background-color',dataOficina[0].cor.forte);
-        	$('.input_data').css('background-color',dataOficina[0].cor.forte);
-        	$('#data_inicio').css('background-color',dataOficina[0].cor.fraco);
-        	$('#data_fim').css('background-color',dataOficina[0].cor.fraco);
-        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1').css('color',dataOficina[0].cor.forte);
-        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina[0].cor.forte);
-        	$('#box_novo').css('border', '1px solid '+dataOficina[0].cor.forte);
-        	$('#box_historico').css('border', '1px solid '+dataOficina[0].cor.forte);
+        	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('.Bg_Imagem_Calendario').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('#btnSubmit').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('.input_data').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('#data_inicio').css('background-color',dataOficina[0].tipoOficina.cor.fraco);
+        	$('#data_fim').css('background-color',dataOficina[0].tipoOficina.cor.fraco);
+        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1').css('color',dataOficina[0].tipoOficina.cor.forte);
+        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina[0].tipoOficina.cor.forte);
+        	$('#box_novo').css('border', '1px solid '+dataOficina[0].tipoOficina.cor.forte);
+        	$('#box_historico').css('border', '1px solid '+dataOficina[0].tipoOficina.cor.forte);
         	$('.titulo').text('Plano de aula | Oficina de ' + nomeOficina);
-        	$('.ui-datepicker-trigger').css('background-color',dataOficina[0].cor.medio);
-        	$('.ui-datepicker-title').css('background-color',dataOficina[0].cor.forte);
-        	$('.ui-widget-header').css('background-color',dataOficina[0].cor.forte);
+        	$('.ui-datepicker-trigger').css('background-color',dataOficina[0].tipoOficina.cor.medio);
+        	$('.ui-datepicker-title').css('background-color',dataOficina[0].tipoOficina.cor.forte);
+        	$('.ui-widget-header').css('background-color',dataOficina[0].tipoOficina.cor.forte);
         }
     });
 }
@@ -695,6 +695,7 @@ function estilizarCalendario () {
 	$('#Container + div#ui-datepicker-div .ui-widget-header').css('background-color', corForte);
 	$('#Container + div#ui-datepicker-div .ui-datepicker-title').css('background-color', corMedia);
 	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('color', corForte);
+	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('background-color', '#DDD8D8');
 	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('background-color', '#DDD8D8');
 	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('color', corForte);
 	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr').css('background-color', '#DDD8D8');

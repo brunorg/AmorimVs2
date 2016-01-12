@@ -31,12 +31,12 @@ function carregarOficinasAluno() {
 					listaOficinasAluno[i] = data[i];
 
 					//Quebra o nome da oficina
-					var nomeOficina = data[i].Nome.split(" ",1).toString();
+					var nomeOficina = data[i].tipoOficina.nome;
 
 					htmlListaOficinas += 
 		        		'<td>'+
 		        			'<div class="aba_oficina" onclick="ativarAba('+i+')">'+
-		        				'<p class="barra_cor_of" style="background:'+data[i].CorForte+'">&nbsp;</p>'+
+		        				'<p class="barra_cor_of" style="background:'+data[i].tipoOficina.cor.forte+'">&nbsp;</p>'+
 		        				'<p class="titulo_of">'+nomeOficina+'</p>'+
 		        			'</div>'+
 		        		'</td>';
@@ -70,7 +70,7 @@ function retornarBlogOficina(indexOficina) {
 	for ( a in listaOficinasAluno ) {
 		if ( a == indexOficina ) {
 			$.ajax({
-				url: path + "Blog/BlogOficina/" + listaOficinasAluno[a].idOficina,
+				url: path + "Blog/BlogOficina/" + listaOficinasAluno[a].idoficina,
 				async: false,
 				type: "GET",
 				crossDomain: true,
@@ -141,7 +141,7 @@ function retornarRoteirosOficina(indexOficina) {
 	for ( a in listaOficinasAluno ) {
 		if ( a == indexOficina ) {
 			$.ajax({
-				url: path + "ObjetivoAula/ListarPorOficinaHash/" + listaOficinasAluno[a].idOficina,
+				url: path + "ObjetivoAula/ListarPorOficinaHash/" + listaOficinasAluno[a].idoficina,
 				async: false,
 				type: "GET",
 				crossDomain: true,

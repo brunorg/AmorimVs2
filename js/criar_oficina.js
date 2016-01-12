@@ -1,12 +1,32 @@
 $(document).ready(function(){
+    carregarTipoOficina();
     salvarOficina();
     atribuiChangeOficina();
 });
 
+function carregarTipoOficina() {
+    $.ajax({
+        url: path + 'TipoOficina',
+        type: 'GET',
+        async: false,
+        crossDomain: true,
+        success: function(data) {
+            var html = '<option value="0"></option>';
+
+            for (a in data) {
+                html +=
+                    '<option value="'+data[a].idTipoOficina+'">'+data[a].nome+'</option>';
+            }
+
+            $('#oficinaOficina').html(html);
+        }
+    });
+}
+
 function salvarOficina () {
     $('.btn_Salvar_Oficina').click(function() {
 
-        var tipoOficina = $("#oficinaOficina option:selected").text()
+        var tipoOficina = $("#oficinaOficina").val()
         var nomeOficina = $("#nomeOficina").val();
         var periodo = $("#periodoOficina").val();
         var ciclo = $("#cicloOficina").val();
@@ -234,7 +254,6 @@ function carregaAgrupamentos () {
     });
 
     $('#Agrupamento_Select').html(htmlOption);
-
 }
 
 function carregaDiasSemana () {
@@ -251,7 +270,6 @@ function carregaDiasSemana () {
     });
 
     $('#Dia_Semana_Select').html(htmlOption);
-
 }
 
 function carregaHorarios () {
@@ -267,7 +285,6 @@ function carregaHorarios () {
     }
 
     $('#Horario_Select').html(htmlHorarios);
-
 }
 
 function carregaSalas () {
@@ -345,8 +362,6 @@ function addNomeRotina () {
                         '<span> ' + sala + '</span>';
 
     $("#Area_Nome_Oficina").append(conteudoNome);
-
-
 }
 
 function resetarPaginas () {
