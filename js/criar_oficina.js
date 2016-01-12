@@ -327,13 +327,20 @@ function atribuiSalvarRotina (idOficina) {
                 beforeSend: function() {
                     loading('inicial');
                 },
-                success: function() {
+                success: function(idRotina) {
                     $('#Container_Cadastro_Rotina').css('display', 'none');
                     mensagem("Rotina criada com sucesso!","OK","bt_ok","sucesso");
                     $('#Container_Novo_Cadastro').css('display', 'block');
                     addNomeRotina();
                     $('.btn_Nova_Oficina').click(function() {
                        resetarPaginas();
+                    });
+                    $.ajax({
+                        url: path + "AgendamentoSala",
+                        async: false,
+                        crossDomain: true,
+                        type: "POST",
+                        data: "action=create&Hora="+horario+"&dia="+idDia+"&idsala="+idSala+"&idrotina="+idRotina
                     });
                 },
                 complete: function() {

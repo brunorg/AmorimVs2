@@ -586,6 +586,8 @@ select::-ms-expand {
 }
 #container_Pesquisa .celulaMedia{
 	width: 46.3%;
+	margin-left: 10px;
+
 }
 
 .checkLimpar{

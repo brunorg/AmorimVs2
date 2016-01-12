@@ -18,7 +18,6 @@
 
 	var dataTutoria 				=	getData("Tutoria", null);
 	var dataProfessorFuncionario    =   getData("ProfessorFuncionario", null);
-
 	var dataPeriodo 				=	getData("Periodo", null);
 //	var dataAnoEstudo 				=	getData("AnoEstudo", null);
 
@@ -29,6 +28,8 @@
 
 
 $(document).ready(function() {	
+
+	//carregaOficineiros();
 	/*Listagem dos anos de estudo*/
 
 		// var Limite = dataAnoEstudo.length;	   
@@ -59,21 +60,29 @@ $(document).ready(function() {
 	}		
 	HtmlContent += '<option value="N_A">Não Atribuido</option>';
 	$('.tutoriaT').html(HtmlContent);	
-	MostrarGrupos();  
+	//MostrarGrupos();  
 	carregarProfessoresByPeriodo('8');
 	
 	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
 	$( "#anoEstudo" ).change(function() {
-		MostrarGrupos()
+		MostrarGrupos();
 	});
 	
 	$("#S_Periodo").change(function(){
 		carregarProfessoresByPeriodo($("#S_Periodo").val());
 	})
 
-	$( ".tutoriaT" ).change(function() {
-		MostrarGrupos()
+	$(".pesqTutOfi").change(function(){
+		changePesquisa();
 	});
+
+	$(".tutoriaT").change(function() {
+		MostrarGrupos();
+	});
+
+	$(".oficinaO").change(function() {
+		mostrarAgrupamentos();
+	})
 	
 	//Limpa os campos para o novo cadastro!!
 	$('body').delegate(".bt_Inserir_Ativo_Grupo","click", function(){
@@ -122,6 +131,26 @@ function carregarProfessoresByPeriodo(idPeriodo){
 	
 }
 
+function carregaOficineiros(){
+	var htmlOficina = "<option value='0'></option>";
+	$.ajax({
+		url: path + "OficinaProfessor/ListarOficineiros/",
+		type: "GET",
+		async: false,
+		crossDomain:true,
+		dataType: 'json',
+		success: function(dataOficina){
+			for(var i = 0; i < dataOficina.length; i++){
+				htmlOficina += '<option value="'+dataOficina[i].idprofessorFuncionario+'">'+dataOficina[i].nome+'</option>';
+			}
+		},
+		error: function(){
+			console.log("Erro!");
+		}
+	});
+	$(".oficinaO").append(htmlOficina);
+}
+
 function MostrarGrupos() {	
 	var tutorTutoria = $(".tutoriaT").val();
 	var HtmlContent = "";
@@ -155,6 +184,34 @@ function MostrarGrupos() {
 		});	
 	
 	return false;
+}
+
+/*function mostrarAgrupamentos(){
+	var oficineiroOficina = $(".oficinaO").val();
+	var htmlOficina = "";
+	$("#box_grupo_info").html("");
+	$.ajax({
+		url: path + "Agrupamento/ListarPorOficineiro/" + oficineiroOficina,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dataAgrupamentos){
+			for(var i = 0; i < dataAgrupamentos.length; i++){
+				htmlOficina += '<div class="boxGrupo'+dataAgrupamentos[i].nome+' linha" id="'+dataAgrupamentos[i].idagrupamento+'">';
+			}
+		}
+	});
+}*/
+
+function changePesquisa(){
+	$("#box_grupo_info").empty();
+	if($(".pesqTutOfi").val() == 2){
+		$("#comboTut").show();
+		$("#comboOfi").hide();
+	} else  if($(".pesqTutOfi").val() == 1){
+		$("#comboTut").hide();
+		$("#comboOfi").show();
+	}
 }
 	
 //	var Limite = dataAlunoVariavel.length;	
