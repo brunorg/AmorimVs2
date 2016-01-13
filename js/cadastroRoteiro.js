@@ -867,7 +867,7 @@ function alterarAtividade(idAtividade){
 	}else{	
 		
 		var valores = "action=update&id="+idAtividade+"&nome="+nomeAtv+"&numero=&descricao=&objetivo="+objetivo+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1";
-	
+		
 		$.ajax({
 			url: path+"Atividade",
 			type: "POST",
@@ -914,14 +914,12 @@ function expandirRot() {
 
 // Expandir objetivo
 function expandirObj(id) {
+
 	var objetivoCont = $('.Obj_Inserido_Info');
 	var atvsCont = $('#Atvs_Obj_Inserido_'+id+' .Atv_Obj_Info');
 	var objsCount = $('.Obj_Inserido_Info');
 	var alturaAtvContainer = atvsCont.length * 30;
 	var alturaContainer = objsCount.length * 33;
-	//console.log('alturaAtv: '+alturaAtvContainer);
-	//console.log('altura: '+alturaContainer);
-	//console.log('texto: '+$('#Atvs_Obj_Inserido_'+id).text());
 
 	if (!( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') )) {
 		
@@ -942,9 +940,6 @@ function expandirObj(id) {
 		$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
 		$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
 	}
-	
-	
-	
 }
 
 // Adicionar campos para nova atividade
@@ -1103,7 +1098,8 @@ function excluirObj(idObjetivo){
 			$('.objetivo'+idObjetivo).remove();
 			num = $(".Obj_Inserido").length * 33;
 			$("#Objetivos_Inseridos_Container").css('height',num+'px');
-			enumerarObjetivos();			
+			enumerarObjetivos()
+			
 			return mensagem("Objetivo excluido com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
 			loading("final");	
@@ -1142,6 +1138,7 @@ function excluirAtividade(idAtividade){
 
 function excluirRoteiro(){
 	id = $('#id').val();
+
 	$.ajax({
 		url: path+"Atividade/DeletarRoteiroAtividade/"+id,
 		type: "GET",

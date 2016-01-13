@@ -370,6 +370,7 @@
 	width: 101px;
 	height: 41px;
 	margin-right:6px;
+	cursor:pointer;
 }
 .boxRT{
 	width: 600px;
@@ -827,5 +828,47 @@
 }
 
 .corrigir{
-	color:#000;
+	color: #FFFFFF;
+    background: #02818D url(../img/ic_salvar.png) no-repeat;
+    background-size: auto;
+    background-position: 11px 3px;
+    float: left;
+    width: 100px;
+    height: 39px;
+    cursor: pointer;
+    text-align: right;
+    padding: 11px 12px;  
+}
+.corrigir:hover{
+    background: #4695A0 url(../img/ic_salvar.png) no-repeat;
+	background-position: 11px 3px;
+}
+
+.selTodosTd{
+    border: 0;
+    margin: -1px 15px;
+}
+
+.selTodosTd p{
+	width: 160px !important;
+    color: #666666;
+    padding: 3px 0 0px 6px;
+    margin: 0 -10px;
+}
+.selTodos{
+	float:left;
+	display:none;
+}
+.selTodos:checked + label span {
+    background: url(../img/ic_checkbox_padrao.png) -24px top no-repeat;
+}
+.selTodos + label span {
+    float: left;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url(../img/ic_checkbox_padrao.png) left top no-repeat;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: visible;
 }

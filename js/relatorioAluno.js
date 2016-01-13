@@ -213,6 +213,8 @@ $(document).ready(function(){
 				if(roteirosFiltrados[i][j] != null){
 					aux2++;
 					contTotalObj++;
+					var htmlSelelecionar="";
+					var htmlCorrigir="";
 					htmlContent += '<td id="'+roteirosFiltrados[i][j][2]+'" objid="'+roteirosFiltrados[i][j][3]+'" class= ';
 					if(roteirosFiltrados[i][j][1] == 0  || 
 						(roteirosFiltrados[i][j][1] == 1 && roteirosFiltrados[i][j][4] != dataPlanoEstudoAtual[0].idplanoEstudo)){
@@ -222,10 +224,14 @@ $(document).ready(function(){
 						htmlContent += '"laranja">';
 
 					} else if ( roteirosFiltrados[i][j][1] == 2){
+						htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
+						htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';
 						htmlContent += '"verde">';
 						contadorObjetivos++;
 
 					} else if ( roteirosFiltrados[i][j][1] == 3){
+						htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
+						htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';						
 						htmlContent += '"verde_tk">';
 						aux++;
 						contadorObjetivos++;
@@ -246,7 +252,7 @@ $(document).ready(function(){
 
 			}
 			//carol
-			htmlContent += '</tr><tr><td><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"></td><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr></table></div>'
+			htmlContent += htmlSelelecionar+'</tr>'+htmlCorrigir+'</table></div>';
 		   }
 		  
 			graficoBarra(alunoID,planejamentosAluno);
@@ -495,17 +501,7 @@ $(document).ready(function(){
 	});
 	
 	$('td.verde').click(function(){
-
-		if (dataUsuario.professor != null && 
-			dataUsuario.professor.idprofessorFuncionario == alunoVarSelecionado.grupo.tutoria.tutor.idprofessorFuncionario)
-		{
-			if($(this).hasClass("verde"))
-  			{
-  				$(this).removeClass( "verde" ).addClass( "verde_tk" );
-  				$(this).css("color","rgba(255,255,255,0)");
-  			}  			
-		}		  
-  		/*Fim*/  		
+		$(this).addClass( "verde_tk" );	
   	});
 	
 
@@ -568,9 +564,17 @@ function corrigir(){
 		var objetivos = "";;
 		var elementos =  elemento.split("_");
 		var selecionados = $("#"+elementos[1]+" .verde");
-		for(var i=0;i<selecionados.length;i++){
-			$("#"+selecionados[i].id).toggleClass('verde_tk');
+		if($('.selTodos').is(':checked')){
+			for(var i=0;i<selecionados.length;i++){
+				$("#"+selecionados[i].id).addClass('verde_tk');
+			}
+		}else{
+			for(var i=0;i<selecionados.length;i++){
+				$("#"+selecionados[i].id).removeClass('verde_tk');
+			}	
 		}
+		
+		
 	});	
 }
 
