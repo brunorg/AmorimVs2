@@ -42,11 +42,6 @@ $.ajax({
 
 
 $(document).ready(function(){
-	setTimeout(function(){
-	  corrigir();
-	}, 1000);
-
-	
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
 		var ano = data.getFullYear();	
@@ -197,273 +192,269 @@ $(document).ready(function(){
 	   	   
 	   htmlContent += '<div class="linha_roteiro" id="' + roteirosFiltrados[i][0].idroteiro +'"><p class="titulo"> ' + roteirosFiltrados[i][0].nome + '</p> <table class="rot_aluno"><tr>';
 			 
-			aux = 0;
-			aux2 = 0;
-			var cont=1;
-			
-
-			for(var j = 1; j < roteirosFiltrados[i].length; j++){
-				/*if(cont==23){
-					htmlContent += "</tr><tr>";
-					cont=1;
-				}*/
+		aux = 0;
+		aux2 = 0;
+		var cont=1;
+		
+		var correcao = false;
+		for(var j = 1; j < roteirosFiltrados[i].length; j++){
+			cont++;				
+			if(roteirosFiltrados[i][j] != null){
+				aux2++;
+				contTotalObj++;
+				var htmlSelelecionar="";
+				var htmlCorrigir="";
 				
-				cont++;
+				htmlContent += '<td id="'+roteirosFiltrados[i][j][2]+'" objid="'+roteirosFiltrados[i][j][3]+'" class= ';
 				
-				if(roteirosFiltrados[i][j] != null){
-					aux2++;
-					contTotalObj++;
-					var htmlSelelecionar="";
-					var htmlCorrigir="";
-					htmlContent += '<td id="'+roteirosFiltrados[i][j][2]+'" objid="'+roteirosFiltrados[i][j][3]+'" class= ';
-					if(roteirosFiltrados[i][j][1] == 0  || 
-						(roteirosFiltrados[i][j][1] == 1 && roteirosFiltrados[i][j][4] != dataPlanoEstudoAtual[0].idplanoEstudo)){
-						htmlContent += '"cinza">';
-					} else if ( roteirosFiltrados[i][j][1] == 1 &&
-					roteirosFiltrados[i][j][4] == dataPlanoEstudoAtual[0].idplanoEstudo){
-						htmlContent += '"laranja">';
-
-					} else if ( roteirosFiltrados[i][j][1] == 2){
-						htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
-						htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';
-						htmlContent += '"verde">';
-						contadorObjetivos++;
-
-					} else if ( roteirosFiltrados[i][j][1] == 3){
-						htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
-						htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';						
-						htmlContent += '"verde_tk">';
-						aux++;
-						contadorObjetivos++;
-
-					}
-						
+				if(roteirosFiltrados[i][j][1] == 0  || 
+					(roteirosFiltrados[i][j][1] == 1 && roteirosFiltrados[i][j][4] != dataPlanoEstudoAtual[0].idplanoEstudo)){
+					htmlContent += '"cinza">';
+				} else if ( roteirosFiltrados[i][j][1] == 1 &&
+				roteirosFiltrados[i][j][4] == dataPlanoEstudoAtual[0].idplanoEstudo){
+					htmlContent += '"laranja">';
+				} else if ( roteirosFiltrados[i][j][1] == 2){						
+					htmlContent += '"verde">';
+					contadorObjetivos++;
+					correcao = true;
+				} else if ( roteirosFiltrados[i][j][1] == 3){	
+					htmlContent += '"verde_tk">';
+					aux++;
+					contadorObjetivos++;
 				}
-				if(roteirosFiltrados[i][j] != null){
-
-					htmlContent +=  roteirosFiltrados[i][j][0].numero + '</td>';
-				}
-				
+					
 			}
+			if(roteirosFiltrados[i][j] != null){
+				htmlContent +=  roteirosFiltrados[i][j][0].numero + '</td>';
+			}				
+		}
 
-			if (aux == aux2){
-				contadorRoteiros++;
-
-
-			}
-			//carol
-			htmlContent += htmlSelelecionar+'</tr>'+htmlCorrigir+'</table></div>';
-		   }
+		if (aux == aux2){
+			contadorRoteiros++;
+		}
+		
+		if(correcao == true){
+			htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
+			htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';
+			htmlContent += htmlSelelecionar+'</tr>'+htmlCorrigir+'</table></div>';			
+		}else{
+			htmlContent +='</tr></table></div>';
+		}
+		
+		setTimeout(function(){
+			corrigir();
+		}, 1000);
+	}
 		  
-			graficoBarra(alunoID,planejamentosAluno);
-			//preenche estatisticas de roteiros e objetivos feitos
+	graficoBarra(alunoID,planejamentosAluno);
+	//preenche estatisticas de roteiros e objetivos feitos
+
+	$('#res_roteiros').empty();
+	$('#res_roteiros').append('<span id="res_vermelho">'+contadorRoteiros+'</span> roteiros de '+ roteirosFiltrados.length+'</p>');		
 	
-			$('#res_roteiros').empty();
-			$('#res_roteiros').append('<span id="res_vermelho">'+contadorRoteiros+'</span> roteiros de '+ roteirosFiltrados.length+'</p>');		
-			
-			var totGraficoR = ((contadorRoteiros/roteirosFiltrados.length)*100)
-			
-			var doughnutData = [
-				{
-					value: totGraficoR,
-					color:"#EB5B61",
-					highlight: "#FF5A5E",
-					label: "Red"
-				},
-				{
-					value: (100-totGraficoR),
-					color: "#C5C4B1",
-					highlight: "#5AD3D1",
-					label: "Green"
-				}
-			];
-			
-			var ctx = document.getElementById("chart1").getContext("2d");
-			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, 
-			{responsive : true, showTooltips: false, animation: true});
-			
-			
-			$('#res_objetivos').empty();
-			$('#res_objetivos').append('<span id="res_azul">'+contadorObjetivos+'</span> objetivos de '+ objetivosFiltrados +'</p>');
+	var totGraficoR = ((contadorRoteiros/roteirosFiltrados.length)*100)
+	
+	var doughnutData = [
+		{
+			value: totGraficoR,
+			color:"#EB5B61",
+			highlight: "#FF5A5E",
+			label: "Red"
+		},
+		{
+			value: (100-totGraficoR),
+			color: "#C5C4B1",
+			highlight: "#5AD3D1",
+			label: "Green"
+		}
+	];
+	
+	var ctx = document.getElementById("chart1").getContext("2d");
+	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, 
+	{responsive : true, showTooltips: false, animation: true});
+	
+	
+	$('#res_objetivos').empty();
+	$('#res_objetivos').append('<span id="res_azul">'+contadorObjetivos+'</span> objetivos de '+ objetivosFiltrados +'</p>');
+
+	var totGrafico = ((contadorObjetivos/contTotalObj)*100)
+	
+	var doughnutData2 = [
+		{
+			value: totGrafico,
+			color:"#4861AA",
+			highlight: "#FF5A5E",
+			label: "Red"
+		},
+		{
+			value: (100-totGrafico),
+			color: "#C5C4B1",
+			highlight: "#5AD3D1",
+			label: "Green"
+		}
+	];
+	var ctx = document.getElementById("chart2").getContext("2d");
+	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData2, 
+	{responsive : true, showTooltips: false, animation: true});
+	
+	/*Grafico de faltas*/
+	var faltaLocal = presencaAluno(alunoID);
+	var totGraficoF = ((faltaLocal/180)*100)
+	var doughnutData3 = [
+		{
+			value: totGraficoF,
+			color:"#FF7800",
+			highlight: "#FF5A5E",
+			label: "Red"
+		},
+		{
+			value: (100-totGraficoF),
+			color: "#C5C4B1",
+			highlight: "#5AD3D1",
+			label: "Green"
+		}
+	];
+	
+	var ctx = document.getElementById("chart3").getContext("2d");
+	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData3, 
+	{responsive : true, showTooltips: false, animation: true});
+
+	$('#res_laranja').html(faltaLocal);
+	//dias letivos do ano
+	var diasUteis = diasLetivos();
+	
+	$("#letivos").html(diasUteis);
+
+	//preenche a lista de roteiros
+
+	$('.box_aluno_left').empty(); 
+	$('.box_aluno_left').append(htmlContent);
+
+	for(var i = 0; i < roteirosFiltrados.length; i++){
 		
-			var totGrafico = ((contadorObjetivos/contTotalObj)*100)
-			
-			var doughnutData2 = [
-				{
-					value: totGrafico,
-					color:"#4861AA",
-					highlight: "#FF5A5E",
-					label: "Red"
-				},
-				{
-					value: (100-totGrafico),
-					color: "#C5C4B1",
-					highlight: "#5AD3D1",
-					label: "Green"
-				}
-			];
-			var ctx = document.getElementById("chart2").getContext("2d");
-			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData2, 
-			{responsive : true, showTooltips: false, animation: true});
-			
-			/*Grafico de faltas*/
-			var faltaLocal = presencaAluno(alunoID);
-			var totGraficoF = ((faltaLocal/180)*100)
-			var doughnutData3 = [
-				{
-					value: totGraficoF,
-					color:"#FF7800",
-					highlight: "#FF5A5E",
-					label: "Red"
-				},
-				{
-					value: (100-totGraficoF),
-					color: "#C5C4B1",
-					highlight: "#5AD3D1",
-					label: "Green"
-				}
-			];
-			
-			var ctx = document.getElementById("chart3").getContext("2d");
-			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData3, 
-			{responsive : true, showTooltips: false, animation: true});
+		var totalObjetivos;
 
-			$('#res_laranja').html(faltaLocal);
-			//dias letivos do ano
-			var diasUteis = diasLetivos();
-			
-			$("#letivos").html(diasUteis);
-	
-			//preenche a lista de roteiros
-	
-			$('.box_aluno_left').empty(); 
-			$('.box_aluno_left').append(htmlContent);
-
-			for(var i = 0; i < roteirosFiltrados.length; i++){
-				
-				var totalObjetivos;
-
-				$.ajax({
-					url: path + "Objetivo/ObjetivoRoteiroTotal/" + roteirosFiltrados[i][0].idroteiro,
-					async: false,
-					crossDomain: true,
-					type: "GET",
-					success: function(d) {
-						totalObjetivos = d;
-					}
-				});		   
-
-				if($("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").length == totalObjetivos)
-				{
-					$("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").remove();
-					$("#" + roteirosFiltrados[i][0].idroteiro + " tr").remove();
-					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody").append("<tr></tr>");
-
-					var portfolio;
-					var fichaFinalizacao = -1;
-					var existeFicha;
-					$.ajax({
-						url: path + "FichaFinalizacao/" + roteirosFiltrados[i][0].idroteiro,
-						async: false,
-						crossDomain: true,
-						type: "GET",
-						success: function(d){
-							existeFicha = d;
-						}
-					});
-
-					if (existeFicha.length > 0)
-					{
-						$.ajax({
-							url: path + "ProducaoAluno/Filtos/" + alunoID + "/4/" + roteirosFiltrados[i][0].idroteiro,
-							async: false,
-							crossDomain: true,
-							type: "GET",
-							success: function(d){
-								fichaFinalizacao = (d.length > 0) ? d[0] : "";
-							}
-						});
-
-						if (fichaFinalizacao != "")
-						{
-							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
-						}else{
-							$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
-						}
-					}
-
-					$.ajax({
-						url: path + "ProducaoAluno/Filtos/" + alunoID + "/5/" + roteirosFiltrados[i][0].idroteiro,
-						async: false,
-						crossDomain: true,
-						type: "GET",
-						success: function(d){
-							portfolio = (d.length > 0) ? d[0] : "";
-						}
-					});
-
-					if (portfolio != "")
-					{
-						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
-					}
-					else{
-						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");	
-						verificaPendencias(alunoID,roteirosFiltrados[i][0].idroteiro);		
-					}
-				}
+		$.ajax({
+			url: path + "Objetivo/ObjetivoRoteiroTotal/" + roteirosFiltrados[i][0].idroteiro,
+			async: false,
+			crossDomain: true,
+			type: "GET",
+			success: function(d) {
+				totalObjetivos = d;
 			}
-		
-			$(".FotoAluno").html("<img src='"+aluno.fotoAluno+"' width='110' height='110'/>");
-	
-			//preenche cabecalho aluno
-	
-			$('.nome_aluno').empty();
-			$('.nome_aluno').append(aluno.nome);
-	
-			$('.ano').empty();
-			$('.ano').append( alunoVarSelecionado.anoEstudo.ano + '° ano' );
-	
-			$('#tutor_nome').empty();
-			if(alunoVarSelecionado.grupo.tutoria != null)
-			{
-				
-				$('#tutor_nome').append(alunoVarSelecionado.grupo.tutoria.tutor.nome);
-	
-			} else {
-				$('#tutor_nome').append("Não Atribuido");
-			}
-	
-	
-			aux = '';
+		});		   
 
-			var grupoAluno;
+		if($("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").length == totalObjetivos)
+		{
+			$("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").remove();
+			$("#" + roteirosFiltrados[i][0].idroteiro + " tr").remove();
+			$("#" + roteirosFiltrados[i][0].idroteiro + " tbody").append("<tr></tr>");
 
+			var portfolio;
+			var fichaFinalizacao = -1;
+			var existeFicha;
 			$.ajax({
-				url: path + "AlunoVariavel/grupo/" + alunoVarSelecionado.grupo.idgrupo,
+				url: path + "FichaFinalizacao/" + roteirosFiltrados[i][0].idroteiro,
 				async: false,
 				crossDomain: true,
 				type: "GET",
-				success: function (d) {
-					grupoAluno = d;
+				success: function(d){
+					existeFicha = d;
 				}
 			});
 
-			for(var i = 0; i<grupoAluno.length;i++){
-				aux += '<p>'+grupoAluno[i].aluno.nome+'</p>';       		     	
+			if (existeFicha.length > 0)
+			{
+				$.ajax({
+					url: path + "ProducaoAluno/Filtos/" + alunoID + "/4/" + roteirosFiltrados[i][0].idroteiro,
+					async: false,
+					crossDomain: true,
+					type: "GET",
+					success: function(d){
+						fichaFinalizacao = (d.length > 0) ? d[0] : "";
+					}
+				});
+
+				if (fichaFinalizacao != "")
+				{
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+				}else{
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
+				}
 			}
-			
-			$('.alunos_grupo').empty();
-			$('.alunos_grupo').append(aux);
-			
-		
-		var perfil = getUrlVars();
-		
-		if(perfil['id']=="coordenacao"){
-			$("#Cabecalho_Perfil_Area_Descricao").html("João Antônio");
-			$("#coord").html("Área da Coordenação");
-			$(".mudar").removeAttr("id");
-			$(".mudar").attr("id","Cabecalho_Perfil_Area_Foto_cood");
+
+			$.ajax({
+				url: path + "ProducaoAluno/Filtos/" + alunoID + "/5/" + roteirosFiltrados[i][0].idroteiro,
+				async: false,
+				crossDomain: true,
+				type: "GET",
+				success: function(d){
+					portfolio = (d.length > 0) ? d[0] : "";
+				}
+			});
+
+			if (portfolio != "")
+			{
+				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+			}
+			else{
+				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");	
+				verificaPendencias(alunoID,roteirosFiltrados[i][0].idroteiro);		
+			}
 		}
+	}
+
+	$(".FotoAluno").html("<img src='"+aluno.fotoAluno+"' width='110' height='110'/>");
+
+	//preenche cabecalho aluno
+
+	$('.nome_aluno').empty();
+	$('.nome_aluno').append(aluno.nome);
+
+	$('.ano').empty();
+	$('.ano').append( alunoVarSelecionado.anoEstudo.ano + '° ano' );
+
+	$('#tutor_nome').empty();
+	if(alunoVarSelecionado.grupo.tutoria != null)
+	{
+		
+		$('#tutor_nome').append(alunoVarSelecionado.grupo.tutoria.tutor.nome);
+
+	} else {
+		$('#tutor_nome').append("Não Atribuido");
+	}
+
+
+	aux = '';
+
+	var grupoAluno;
+
+	$.ajax({
+		url: path + "AlunoVariavel/grupo/" + alunoVarSelecionado.grupo.idgrupo,
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		success: function (d) {
+			grupoAluno = d;
+		}
+	});
+
+	for(var i = 0; i<grupoAluno.length;i++){
+		aux += '<p>'+grupoAluno[i].aluno.nome+'</p>';       		     	
+	}
+	
+	$('.alunos_grupo').empty();
+	$('.alunos_grupo').append(aux);
+		
+	
+	var perfil = getUrlVars();
+	
+	if(perfil['id']=="coordenacao"){
+		$("#Cabecalho_Perfil_Area_Descricao").html("João Antônio");
+		$("#coord").html("Área da Coordenação");
+		$(".mudar").removeAttr("id");
+		$(".mudar").attr("id","Cabecalho_Perfil_Area_Foto_cood");
+	}
 
 	
 	listaObservacao();
@@ -517,10 +508,9 @@ $(document).ready(function(){
 	
 	
 	
+//Carol
 
-//carol	
-	
-function corrigir(){	
+function corrigir(){
 	$('.corrigir').click(function(){
 		var elemento = $(this).attr('id');
 		var objetivos = "";
@@ -560,6 +550,7 @@ function corrigir(){
 	
 	///carol
 	$('.selTodos').click(function(){
+		console.log("selecionou");
 		var elemento = $(this).attr('id');
 		var objetivos = "";;
 		var elementos =  elemento.split("_");
@@ -572,9 +563,7 @@ function corrigir(){
 			for(var i=0;i<selecionados.length;i++){
 				$("#"+selecionados[i].id).removeClass('verde_tk');
 			}	
-		}
-		
-		
+		}	
 	});	
 }
 

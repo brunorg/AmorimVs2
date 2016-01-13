@@ -363,6 +363,7 @@
 	resize: none;
 	background-color:rgb(250,248,246);
 	border:0;
+	padding:10px;
 }
 #btnSalvar{
 	background: url(../img/bt_salvar.png) no-repeat;
