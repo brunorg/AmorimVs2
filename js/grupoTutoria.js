@@ -143,15 +143,38 @@ function criarBarrinhas(idDivGrupo, id, dadosAluno) {
 	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivosFaltas'	).css('width', dadosAluno2.diasLetivosFaltas 	* tamanhoPontoPercentual2);
 }
 
-// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv Debug vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
 
 var totalDiasLetivos = diasLetivos();
-console.log(diasLetivos())
 
 window.onload = function() {
 
-	var professorId = localStorage.getItem("professorId");
+	var urlParams = getQueryParams(document.location.search)
+
 	var tutoriaId
+	var urlFoto
+	var nomeProf
+
+	var prof_ou_coord
+	if (urlParams["ID"] === undefined) {
+		var professorId = localStorage.getItem("professorId");
+		prof_ou_coord = "prof"
+	} else {
+		var professorId = base64_decode(urlParams["ID"])
+		prof_ou_coord = "coord"
+	}
 
 	$.ajax({
         url: path + "Tutoria/Professor/"+professorId+"/2015",
@@ -160,13 +183,23 @@ window.onload = function() {
         type: "GET",
         success: function(retornoAjax){
 
-            tutoriaId = retornoAjax.idtutoria
+            tutoriaId = retornoAjax[0].idtutoria
+            urlFoto = retornoAjax[0].tutor.fotoProfessorFuncionario
+            nomeProf = retornoAjax[0].tutoria
+
 
         },
         error: function(a, status, error) {
             console.log(status + " /// " + error)
         }
     });
+
+    if (prof_ou_coord === "coord") {
+    	$("#divPrincipalGrupos").css('background-color', "#F2F2EE")
+    	$("#divPrincipalGrupos").prepend('<img src="'+urlFoto+'"><span>'+nomeProf+'</span>')
+    }
+
+
 
 	$.ajax({
         url: path + "Grupo/TutoriaDados/" + professorId,

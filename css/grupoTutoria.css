@@ -278,6 +278,19 @@ table.grupoTabela tr{
 	top: 25px;
 }
 
+#divPrincipalGrupos > img{
+    width: 53px;
+    height: 53px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#divPrincipalGrupos > span{
+	position: absolute;
+	top: 60px;
+	left: 74px;
+}
+
 .grupoNomeAluno a{
 	text-decoration: none;
 }
