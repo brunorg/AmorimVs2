@@ -190,7 +190,7 @@ timerBusca = setTimeout(function(){}, 1)
 function buscaForum () {
 
 	clearTimeout(timerBusca)
-	timerBusca = setTimeout(efetuarBusca, 2000)
+	timerBusca = setTimeout(efetuarBusca, 1000)
 
 }
 

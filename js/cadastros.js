@@ -592,7 +592,15 @@ function listadados(){
 	localStorage.setItem("alunoEdt","");
 }
 
-function buscaAluno() {
+timerBusca = setTimeout(function(){}, 1)
+function buscaAluno () {
+
+	clearTimeout(timerBusca)
+	timerBusca = setTimeout(efetuarBusca, 1000)
+
+}
+
+function efetuarBusca() {
     $.ajax({
         url: path + "Alunos/htmlLike/" + $('#buscaA').val(),
 		type: "GET",
