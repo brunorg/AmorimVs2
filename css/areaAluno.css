@@ -775,5 +775,26 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 }
 	
 #pendencias{
-	float:right;	
+    float: right;
+    font-size: 12px;
+    font-weight: 500;
+    position: relative;
+    margin-right: 10px;
+}
+
+#bolinha{
+    font-size: 11px;
+    font-weight: 500;
+    background-color: #ff6b3f;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    border-color: #fff;
+    padding-top: 1.5px;
+    /* padding-left: 2.5px; */
+    position: absolute;
+    top: -8px;
+    right: -15px;
 }

@@ -712,9 +712,8 @@ function pendencias(alunoID){
 		type: "GET",
 		dataType: 'json',
         success: function(d){
-			console.log(d);
 			if(d>0){
-				$('#pendencias').html(d+" Pendências");
+				$('#bolinha').html(d);
 			}
 		}
 	});
