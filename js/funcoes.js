@@ -55,23 +55,13 @@ $(document).ready(function() {
 	//Abre uma caixa se o perfil for aluno e uma página se for professor, porém as duas para marcar presença
 	$("#apontar").click(function(){
 		if (dadosUsuario.perfil.perfil == "Aluno"){
-			$("#Evento").hide();
-			$("#presenca").show();
-			$("#presenca .css-label").removeClass("selecionado");		
+			//$("#presenca").show();
+			//$("#presenca .css-label").removeClass("selecionado");
+			$("#boxMensagemGeral").show().load( "presencaAluno.html" );		
 		}else if (dadosUsuario.perfil.perfil == "Professor"){
 			window.location.href = "presencaGrupos.html";
 		}			
 	});			
-	
-	//Abre a caixa para apontar presença do professor
-	$("#apontar_prof").click(function(){
-		$("#eventos").hide();
-		$("#presenca_prof").show();
-		$("#presenca_prof .css-label").removeClass("selecionado");	
-	});	
-	
-	//Inclui o calendário nas páginas HTML
-	$( ".boxCalendario" ).load( "presencaAluno.html" );	
 	
 	//Inclui o calendário nas páginas HTML
 	$( ".boxCalendarioProfessor" ).load( "presencaProfessor.html" );
