@@ -1,3 +1,49 @@
+$(document).ready(function() {
+    $('.btnMenu.Active').click(function(){
+        trocarConteudoInicial($(this).index());
+        $(".btnMenu.Active").removeClass("btClicked");
+        $(this).addClass("btClicked");
+    });
+
+    
+    $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem').mouseover(function(){
+        $(this).addClass("MouseHover");
+    }).mouseout(function(){
+        $(this).removeClass("MouseHover");
+    });
+
+    $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem.ativo').click(function(){
+        ShowPopUp("PopupProducao");
+    });
+
+
+    $('#Conteudo_Corpo .Selecao5 .Conteudo .Icones .Icone.Ativo').click(function(){
+        ShowPopUp("PopupCalendario");
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .btn_close').click(function(){
+        trocarConteudoInicial(4);
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .btn_close').click(function(){
+        trocarConteudoInicial(5);
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupProducao .contentSlide .MainSlide .Arrow').click(function(){
+        NextFrameSlide($(this).index());
+    });
+
+    $('#Conteudo_Corpo .Selecoes.PopupCalendario .contentSlide .MainSlide .Arrow').click(function(){
+        NextFrameSlideCalendario($(this).index());
+    });
+
+    $("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao").click(function(){
+        $("#Conteudo_Corpo .Selecoes.Selecao3.rightSide .contentRightSide .listaComissao .opcaoComissao").removeClass("Ativo");
+        $(this).addClass("Ativo");
+        List($(this).index());
+    });
+});
+
 var db = {
 	"Calendario": {
 		"FestaDaCultura" : [

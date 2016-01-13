@@ -29,7 +29,7 @@
 
 $(document).ready(function() {	
 
-	//carregaOficineiros();
+	carregaOficineiros();
 	/*Listagem dos anos de estudo*/
 
 		// var Limite = dataAnoEstudo.length;	   
@@ -132,7 +132,7 @@ function carregarProfessoresByPeriodo(idPeriodo){
 }
 
 function carregaOficineiros(){
-	var htmlOficina = "<option value='0'></option>";
+	var htmlOficina = "<option value='0' selected disabled>Selecione um oficineiro</option>";
 	$.ajax({
 		url: path + "OficinaProfessor/ListarOficineiros/",
 		type: "GET",
