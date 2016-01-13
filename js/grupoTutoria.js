@@ -208,11 +208,17 @@ window.onload = function() {
         type: "GET",
         success: function(retornoAjax){
 
+        	if (retornoAjax.length === 0) {
+        		$("#divPrincipalGrupos").append('<p>Não há grupos para serem exibidos.</p>')
+        	}
+
             for (var i = 0; i < retornoAjax.length ; i++) {
 
                 criarPainelDoGrupo('divPrincipalGrupos', 'grupo' + i, retornoAjax[i], professorId, tutoriaId);
 
             };
+
+
 
         },
         error: function(a, status, error) {
