@@ -554,11 +554,9 @@ html, body
 					background: none repeat scroll 0% 0% #16BECF;
 					z-index: 1;
 					position: relative;
-					top: -248px;
 					left: 307px;
 					font-size:22px;
 					float:left;
-					display:none;
 				}	
 				#presenca .box_nome{
 					float: left;
@@ -2676,14 +2674,7 @@ font-family: "proxima-nova",sans-serif;
 		height: auto;
 	    left: 267px;
 	    bottom: 39px;
-	}
-	
-	#presenca {
-		top: -297px;
-		height: 257px;
-		left: 299px;
-		z-index: 999999999;
-	}
+	}	
 	#presenca_prof {
 		height: 255px;
 		top: 410px;

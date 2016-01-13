@@ -57,7 +57,20 @@ $(document).ready(function() {
 		if (dadosUsuario.perfil.perfil == "Aluno"){
 			//$("#presenca").show();
 			//$("#presenca .css-label").removeClass("selecionado");
-			$("#boxMensagemGeral").show().load( "presencaAluno.html" );		
+			
+			var htmlPresenca = '<div id="presenca">'+ 	               	
+									'<form>'+
+										'<div class="box_nome">'+                     
+											'<p class="presenca_opcao"></p>'+
+										'</div>'+
+										'<div class="box_botao">'+
+											'<p ><input class="btn_pres" type="button" value="CONFIRMA"></p>'+
+										'</div>'+
+									'</form>'+
+								'</div>';		
+			
+			$("#boxMensagemGeral").html(htmlPresenca).show();
+				
 		}else if (dadosUsuario.perfil.perfil == "Professor"){
 			window.location.href = "presencaGrupos.html";
 		}			

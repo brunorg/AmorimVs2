@@ -3,8 +3,7 @@ var action;
 var ArrayChamada = [];
 
 /*Botões de fechar as caixas*/
-$(document).ready(function(e) {
-	
+function carregaJanelaGrupo(){
 	if(usuario == "Aluno"){	
 	/*Aqui vai o grupo do usuário logado*/
 		var alunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
@@ -78,8 +77,7 @@ $(document).ready(function(e) {
 	$(".btn_pres").click(function(){
 		ConfirmaPresencaGrupo(dadosChamada[0].existe);
 	});
-	
-});
+}
 
 function ConfirmaPresencaGrupo(bool) {
 	var elementosAC = $('.preSelecionado');
