@@ -452,10 +452,10 @@ function buildAcordeon()
 
 	for ( var a = 0; a < oficinas.length; a++ )
 	{
-		var nomeOficina = oficinas[a].Nome.split(' ',1).toString();
+		var nomeOficina = oficinas[a].nome.split(' ',1).toString();
 		htmlAcordeon +=
 			'<div id="Oficina'+(a+1)+'" class="Prod_Oficina_Item">'+
-				'<div id="'+oficinas[a].idOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].CorForte+'" onclick="getAtividadesOficina('+oficinas[a].idOficina+')">'+nomeOficina+'</div>'+
+				'<div id="'+oficinas[a].idTipoOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].tipoOficina.cor.forte+'" onclick="getAtividadesOficina('+oficinas[a].idTipoOficina+')">'+nomeOficina+'</div>'+
 				'<div class="Prod_Oficina_Content">'+
 					'<div id="oficinaAdd'+oficinas[a].idOficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+oficinas[a].idOficina+', 7)">Inserir novo</div>'+
 				'</div>'+

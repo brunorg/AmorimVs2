@@ -22,7 +22,10 @@
 
 //Carrega a funçao de Load do JQuery
 
-	$(document).ready(function() {	
+	$(document).ready(function() {
+		$('.scroll_receiver').mCustomScrollbar({
+			axis: 'y',
+		});
 	    CarregaServicoMural();	    
 		var intervalo = window.setInterval(function() {
 			$('.boxGrafico').css("display","block"); 

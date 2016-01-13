@@ -6,12 +6,12 @@
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
         
 		<!--Style-->
-		<link rel="stylesheet" type="text/css" href="css/style.css" />	
-        <link rel="stylesheet" type="text/css" href="css/areaCoordenacao.css" />	
+		<link rel="stylesheet" type="text/css" href="css/style.css" />		
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
+        <link rel="stylesheet" type="text/css" href="css/areaCoordenacao.css" />
     	<!--Fim Style-->
         
         <!--Script JS-->
@@ -69,7 +69,7 @@
                     <div class="Conteudo_Coluna" id="Content_lateral">    
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">                        	
+                        	<div  ng-repeat="menu in menuHTML">
                                 <a href="{{menu.href}}">
                                     <div class="Content_lateral_Menu_Opcao {{menu.class}}">
                                     	<div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
@@ -92,82 +92,336 @@
 				<!--Coluna geral central-->
                 <!--bloqueio para a rolagem top-->				
                 <div class="Conteudo_Coluna" id="content_central_fixa">
-					
-                	<!--Lista de Alunos/Grafico-->
-                	<div class="Grade_Aluno">
+                	<div class="box_linha box_container_geral">
 
-                		<!--Legenda do Gráfico-->
-						<div class="Content_Legenda_Grade_Aluno">
+                		<!-- Box Educadores -->
+                		<div class="box_col_4 coluna_total">
+                			<section class="box box_educadores">
+                				<p>Educadores</p>
+                				<div class="box_conteudo_container conteudo_unico scroll_receiver">
+                					<div class="scroll_limiter">
+	                					<div class="lista_educadores">
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                						<section class="educador_info">
+	                							<img src="http://177.55.99.90/files/Fem.png" alt="Patrícia Orsilo" class="educador_foto" />
+	                							<span class="educador_nome">Lorem ipsum dolor sit amet</span>
+	                						</section>
+	                					</div>
+	                				</div>
+                				</div>
+                			</section>
+                		</div>
 
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Objetivos corrigidos</div>
-							</div>
-							
-							<div class="Legenda_Grade_Aluno">
-								<div class="Cor_Legenda_Grade_Aluno"></div>
-								<div class="Nome_Legenda_Grade_Aluno">Produção alunos</div>
-							</div>
+                		<!-- Coluna Central -->
+                		<div class="box_col_4 coluna_total">
 
-						</div>
+                			<!-- Box Mural -->
+                			<div class="box_linha coluna_dividida">
+                				<div class="box_col_12">
+                					<section class="box box_mural">
+                						<p>Mural</p>
+                						<span class="ic_add_novo">&nbsp;</span>
+                						<div class="box_conteudo_container conteudo_lista scroll_receiver">
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Devido a problemas com o encanamento, as aulas estão suspensas até 02/03.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Ciclo I - Manhã</span> | <span class="post_mural_data">27/02/2014</span> <span class="post_mural_horario">09:43</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Devido a problemas com o encanamento, as aulas estão suspensas até 02/03.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Ciclo I - Manhã</span> | <span class="post_mural_data">27/02/2014</span> <span class="post_mural_horario">09:43</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Devido a problemas com o encanamento, as aulas estão suspensas até 02/03.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Ciclo I - Manhã</span> | <span class="post_mural_data">27/02/2014</span> <span class="post_mural_horario">09:43</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Devido a problemas com o encanamento, as aulas estão suspensas até 02/03.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Ciclo I - Manhã</span> | <span class="post_mural_data">27/02/2014</span> <span class="post_mural_horario">09:43</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Devido a problemas com o encanamento, as aulas estão suspensas até 02/03.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Ciclo I - Manhã</span> | <span class="post_mural_data">27/02/2014</span> <span class="post_mural_horario">09:43</span>
+                								</aside>
+                							</section>
+                						</div>
+                						<div class="box_conteudo_container conteudo_unico" style="display: none">
+                							<select class="box_select">
+                								<option value="0" selected disabled>Escolha o período</option>
+                								<option value="1">Manhã</option>
+                								<option value="2">Tarde</option>
+                								<option value="3">Noite</option>
+                							</select>
+                							<select class="box_select">
+                								<option value="0" selected disabled>Escolha o ciclo</option>
+                								<option value="1">Alfabetização</option>
+                								<option value="2">Intermediário</option>
+                								<option value="3">Fundamental 2</option>
+                							</select> 
+                							<textarea class="box_textarea textarea_mural" name="mural_gestao_mensagem" id="" placeholder="Digite o texto da mensagem"></textarea>
+                							<aside class="box_ic">
+                								<span class="ic_cancelar">&nbsp;</span>
+                								<span class="ic_salvar">&nbsp;</span>
+                							</aside>
+                						</div>
+                					</section>
+                				</div>
+                			</div>
 
-						<!--Conteudo Grafico Inside-->
+                			<!-- Box Mural Gestão -->
+                			<div class="box_linha coluna_dividida">
+                				<div class="box_col_12">
+                					<section class="box box_mural_gestao">
+                						<p>Mural gestão</p>
+                				<span class="ic_add_novo">&nbsp;</span>
+                						<div class="box_conteudo_container conteudo_lista scroll_receiver">
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Reunião dia 30 com os professores do ciclo I às 12h00.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Professores</span> | <span class="post_mural_data">23/02/2014</span> <span class="post_mural_horario">10:40</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Reunião dia 30 com os professores do ciclo I às 12h00.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Professores</span> | <span class="post_mural_data">23/02/2014</span> <span class="post_mural_horario">10:40</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Reunião dia 30 com os professores do ciclo I às 12h00.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Professores</span> | <span class="post_mural_data">23/02/2014</span> <span class="post_mural_horario">10:40</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Reunião dia 30 com os professores do ciclo I às 12h00.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Professores</span> | <span class="post_mural_data">23/02/2014</span> <span class="post_mural_horario">10:40</span>
+                								</aside>
+                							</section>
+                							<section class="mural_post_item">
+                								<main class="mural_post_mensagem">
+                									<span class="post_mural_mensagem">
+                										Reunião dia 30 com os professores do ciclo I às 12h00.
+                									</span>
+                								</main>
+                								<aside class="mural_post_cabecalho">
+                									<span class="post_mural_usuario">Professores</span> | <span class="post_mural_data">23/02/2014</span> <span class="post_mural_horario">10:40</span>
+                								</aside>
+                							</section>
+                						</div>
+                						<div class="box_conteudo_container conteudo_unico" style="display: none">
+                							<!--<select class="box_select">
+                								<option value="0" selected disabled>Escolha o filtro</option>
+                							</select> -->
+                							<textarea class="box_textarea textarea_mural_gestao" name="mural_gestao_mensagem" id="" placeholder="Digite o texto da mensagem"></textarea>
+                							<aside class="box_ic">
+                								<span class="ic_cancelar">&nbsp;</span>
+                								<span class="ic_salvar">&nbsp;</span>
+                							</aside>
+                						</div>
+                					</section>
+                				</div>
+                			</div>
+                		</div>
 
-						<div class="Grade_Aluno_Grafico_Content">
-
-							<div class="Grade_Aluno_Grafico_Legenda_Lateral">
-
-								Faltas<br />
-								100<br />
-								90<br />
-								80<br />
-								70<br />
-								60<br />
-								50<br />
-								40<br />
-								30<br />
-								20<br />
-								10<br />
-								0
-
-							</div>
-
-							<div class="Grade_Aluno_Grafico">
-
-								<div id="Grade_Aluno_Grafico_Mask"></div>
-
-								<div class="Grafico_Individual_Aluno_Overflow"></div>
-                                
-
-							</div>
-
-						</div>
-
+                		<!-- Box Registro JEIFF/PEA -->
+                		<div class="box_col_4 coluna_total">
+                			<section class="box box_jeiff_pea">
+                				<p>Registro JEIFF/PEA</p>
+                				<span class="ic_add_novo">&nbsp;</span>
+                				<div class="box_conteudo_container conteudo_lista scroll_receiver">
+	                				<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+	    							<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+	    							<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+	    							<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+	    							<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+	    							<section class="jeiff_post_item">
+	    								<aside class="jeiff_post_cabecalho">
+	    									<span class="post_jeiff_data">30/05/2016</span>
+	    								</aside>
+        								<main class="jeiff_post_mensagem">
+	    									<span class="post_jeiff_mensagem">
+	    										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices turpis mauris, vel scelerisque tortor tincidunt a. Sed elementum eget lectus in pharetra. Nulla enim sem, tincidunt eget porta a, pulvinar sit amet tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu massa orci.</p>
+	    										<p>Sed in facilisis libero, ac lacinia lacus. Fusce a tortor ut mi placerat ullamcorper et ut est.</p>
+											</span>
+	    								</main>
+	    								<aside class="jeiff_post_link">
+	    									<a href="#"><span>documentojeiff.pdf</span></a>
+	    								</aside>
+	    							</section>
+                				</div>
+                				<div class="box_conteudo_container conteudo_unico" style="display: none">
+                					<input type="date" class="box_input_data input_data_jeiff" readonly placeholder="Selecione uma data">
+        							<textarea class="box_textarea textarea_jeiff" name="jeiff_mensagem" id="" placeholder="Digite o texto da mensagem"></textarea>
+        							<aside class="box_ic">
+        								<span style="display: none"><input type="file" id="arquivoJeiff"></span>
+        								<span class="ic_add_arquivo">&nbsp;</span>
+        								<span class="ic_cancelar">&nbsp;</span>
+        								<span class="ic_salvar">&nbsp;</span>
+        							</aside>
+                				</div>
+                			</section>
+                		</div>
 
                 	</div>
-
-                	<!--Listas de Mural, (Mensagens e Agenda)= a defenir-->
-                	<div class="Content_Listas">
-                        <!--Mural-->
-                		<div id="Light_Mural">				
-							<div class="Light_Mural_Cabecalho_Nome">
-								Mural										
-							</div>
-							<div class="Light_Mural_Conteudo">								
-								<table id="Light_MuralTabela">
-								</table>
-							</div>
-						</div>
-					</div>
-                    <div class="box_margin_alter"></div>
 				</div>
                 <div class="boxCalendario"></div>			
 			</div>             
 		</div><!--Fim Conteudo--> 
         <div id="boxMensagemGeral"></div>
-        <div class="boxGrafico">
-            <div id="loaderImage"></div>
-        </div>
         <div class="boxGlobal"></div>      
 	</body>
 </html>
