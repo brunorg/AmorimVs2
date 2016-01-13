@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 	<head>
 		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,user-scalable=no">
 		<title>Plataforma Amorim</title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
  
@@ -15,29 +16,27 @@
 			
     	<!--Fim Style-->
         
-        <!--Script JS-->
+         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">
-			try{
-				Typekit.load();
-			}catch(e){
-				
-			}
-        </script> 
+		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}
+        </script>        
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                			
       	<script src="js/jquery-ui.js"></script> 
+      	<script type="text/javascript" src="angular/angular.js"></script>
 		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-		<script src="siteAmorim/js/contentIndex.js"></script>      
-		<script src="js/login.js"></script>      
-		<!--Fim JS-->
-
-		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<script src="siteAmorim/js/contentIndex.js"></script>
+        <script type="text/javascript" src="js/funcoesInicial.js"></script>	
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/loginCTRL.js"></script>
+        						        
+		<!--Fim JS-->	
     
     </head>
 
-	<body>
+	<body ng-view ng-controller="loginCTRL">
 		<!--Conteudo Geral-->
 		<div id="Container">         
 			<div id="Conteudo_Area">
@@ -45,15 +44,15 @@
 					<div id="Login_Box">
 						<div id="Amorim_logo" title="Uma escola que é asa"> </div>
 						<div id="Login">
-							<form name="frm" id="frm" method="POST" >			
-								<input class="Submit_Login" type="submit" value="Entrar" name="btnSubmit" id="btnSubmit"  tabindex=3 />
+							<form name="frm" id="frm" method="POST" ng-submit="logar()">			
+								<input class="Submit_Login" type="submit" value="Entrar" name="btnSubmit" id="btnSubmit"  tabindex=3 /> 
 								<div id="usuario_">
 									Usuário
-									<input id="usuario" name="usuario" type="text" tabindex=1> </input>
+									<input id="usuario" name="usuario" type="text" tabindex=1 ng-model="usuario"> </input>
 								</div>
 								<div id="senhaBox">
 									Senha
-									<input id="senha" type="password"  name="senha" tabindex=2 style="cursor: auto;"> </input>
+									<input id="senha" type="password"  name="senha" tabindex=2 style="cursor: auto;" ng-model="senha"> </input>
 									<span id="senhaEsqueci" onClick="caixaEsqueci();">Esqueceu a senha?</span>
 								</div>
 							</form>
@@ -399,18 +398,9 @@ A parceria entre práticas pedagógicas inovadoras, uso de tecnologia e foco na 
 					<input type="button" onClick="esqueciSenha();" value="Enviar" class="Submit_Login" >
 					</form>
 				</div>
-
-				<script type="text/javascript">
-				$(document).ready(function(){
-					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-						{
-							window.location.assign("mobile.html");
-						}
-				});		
-				</script>
-			</div>
-            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
-			<div class="boxGlobal" style="width: 100%; left: auto;"></div>            
-		</div><!--Fim Conteudo--> 	   
-	</body>
+			</div>                       
+		</div><!--Fim Conteudo-->
+        <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
+		<div class="boxGlobal" style="width: 100%; left: auto;"></div>  	   
+	</body>    
 </html>
