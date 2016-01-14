@@ -85,7 +85,7 @@ function MuralGestao() {
 		htmlPost += "<textarea class=\"box_textarea textarea_mural_gestao\" name=\"mural_gestao_mensagem\" id=\"\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
 		htmlPost += "<aside class=\"box_ic\">";
 		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralGestao.refresh()\">&nbsp;<\/span>";
-		htmlPost += "<span class=\"ic_salvar\">&nbsp;<\/span>";
+		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralGestao.save()\">&nbsp;<\/span>";
 		htmlPost += "<\/aside>";
 
 
@@ -94,6 +94,12 @@ function MuralGestao() {
 		$('#conteudoMuralGestao').hide()
 		$('#iconeNovaPostagem').hide()
 
+	}
+
+	self.save = function() {
+
+		//enviarpostparabd
+		self.refresh();
 	}
 
 	self.edit = function(idPost) {
