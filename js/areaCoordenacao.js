@@ -42,6 +42,9 @@ function MuralGestao() {
 	self = this;
 
 	self.refresh = function() {
+
+		$('#iconeNovaPostagem').show()
+
 		getAjax("MuralCoordenacao", "GET", "", false, function(result){
 			console.log(result)
 
@@ -52,11 +55,14 @@ function MuralGestao() {
 				htmlPost += "<section class=\"mural_post_item\">";
 				htmlPost += "<main class=\"mural_post_mensagem\">";
 				htmlPost += "<span class=\"post_mural_mensagem\">";
-				htmlPost += postMuralGestao.mensagem;
+				htmlPost += postMuralGestao.mensagem;;
 				htmlPost += "<\/span>";
 				htmlPost += "<\/main>";
 				htmlPost += "<aside class=\"mural_post_cabecalho\">";
-				htmlPost += "<span class=\"post_mural_usuario\">Professores<\/span> | <span class=\"post_mural_data\">"+postMuralGestao.data+"<\/span> <span class=\"post_mural_horario\">"+postMuralGestao.hora+"<\/span>";
+				htmlPost += "<span class=\"post_mural_usuario\">Ciclo I - Manhã<\/span> | <span class=\"post_mural_data\">"+postMuralGestao.data+"<\/span> <span class=\"post_mural_horario\">"+postMuralGestao.hora+"<\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<aside class=\"mural_post_btns\">";
+				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralgestao.edit("+postMuralGestao.idMuralCoordenacao+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralgestao.delete("+postMuralGestao.idMuralCoordenacao+")\"><\/span>";
 				htmlPost += "<\/aside>";
 				htmlPost += "<\/section>";
 
@@ -66,7 +72,35 @@ function MuralGestao() {
 		})
 	}
 
+
+	self.new = function(idPost) {
+
+		var htmlPost="";
+		htmlPost += "<select class=\"box_select\">"
+        htmlPost += "<option value=\"0\" selected disabled>Escolha o filtro</option>"
+		htmlPost += "<\/select>"
+		htmlPost += "<textarea class=\"box_textarea textarea_mural\" name=\"mural_gestao_mensagem\" id=\"\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
+		htmlPost += "<aside class=\"box_ic\">";
+		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralGestao.refresh()\">&nbsp;<\/span>";
+		htmlPost += "<span class=\"ic_salvar\">&nbsp;<\/span>";
+		htmlPost += "<\/aside>";
+
+		$('#conteudoMuralGestao').html(htmlPost)
+		$('#iconeNovaPostagem').hide()
+
+	}
+
+	self.edit = function(idPost) {
+		console.log("editar "+ idPost)
+	}
+
+	self.delete = function(idPost) {
+		console.log("deletar "+ idPost)
+	}
+
 }
+
+var muralGestao = new MuralGestao();
 
 
 window.onload = function() {
@@ -79,7 +113,6 @@ window.onload = function() {
 
 
 	// Mural Gestão
-	var muralGestao = new MuralGestao();
 	muralGestao.refresh();
 }
 
