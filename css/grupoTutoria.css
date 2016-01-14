@@ -278,11 +278,12 @@ table.grupoTabela tr{
 	top: 25px;
 }
 
-#divPrincipalGrupos > img{
+#divPrincipalGrupos > img {
     width: 53px;
     height: 53px;
     margin-top: 10px;
     margin-left: 10px;
+    border-radius: 7px;
 }
 
 #divPrincipalGrupos > span{
