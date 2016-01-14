@@ -118,7 +118,7 @@
 	}
 
 		#roteiros_content{
-			height: 500px;
+			height: 503px;
 			padding: 20px;
 			background-color: #E5E5DC;
 		}
@@ -142,12 +142,22 @@
 		#Roteiro{
 			height: 100%;
 		}
-		#Objetivo, #Atividade, #RoteiroExtra
-		{
+		#Objetivo, #Atividade{
 			height: 100%;
 			display: none;
+		}		
+		#RoteiroExtra{
+			height: 100%;
+			display: none;
+			overflow:auto;
+			height: 419px;
 		}
-		
+		#Inserir_roteiroExtra{
+			display:none;
+		}
+		#conteudo_principal_roteiroExtra{
+			width:98%;
+		}		
 		.ambasMargin{
 			margin: 0 0.5%;
 		}
@@ -670,7 +680,7 @@
 		float:right;
 	}
 	.boxROA{
-		height: 255px;
+		height: 379px;
 		background-color:#E5E5DC;
 		padding:5px 0px;
 	}

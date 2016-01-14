@@ -176,6 +176,14 @@ $(document).ready(function() {
 			enable:true
 		}
 	});
+	
+	$("#RoteiroExtra").mCustomScrollbar({
+		axis:"y", // vertical and horizontal scrollbar
+		scrollButtons:{
+			enable:true
+		}
+	});	
+	
 	$("#box_barra1").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
 		scrollButtons:{

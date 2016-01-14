@@ -63,7 +63,7 @@ $(document).ready(function(){
 		}else if (aba == 'atribuirRoteiro'){	//Se for para atrbuir roteiro extra, apenas adiciona a classe e exibe a div. 
 			$('#cabecalho_roteiroExtra').addClass('Item_Ativo');
 			$('#RoteiroExtra').show();
-			
+			$('#Inserir_roteiroExtra').show();
 			return false;
 		}
 	})
