@@ -69,6 +69,8 @@ function MuralGestao() {
 			})
 
 			$('#conteudoMuralGestao').html(htmlPost)
+			$('#conteudoMuralGestao2').hide()
+			$('#conteudoMuralGestao').show()
 		})
 	}
 
@@ -76,16 +78,20 @@ function MuralGestao() {
 	self.new = function(idPost) {
 
 		var htmlPost="";
+
 		htmlPost += "<select class=\"box_select\">"
         htmlPost += "<option value=\"0\" selected disabled>Escolha o filtro</option>"
 		htmlPost += "<\/select>"
-		htmlPost += "<textarea class=\"box_textarea textarea_mural\" name=\"mural_gestao_mensagem\" id=\"\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
+		htmlPost += "<textarea class=\"box_textarea textarea_mural_gestao\" name=\"mural_gestao_mensagem\" id=\"\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
 		htmlPost += "<aside class=\"box_ic\">";
 		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralGestao.refresh()\">&nbsp;<\/span>";
 		htmlPost += "<span class=\"ic_salvar\">&nbsp;<\/span>";
 		htmlPost += "<\/aside>";
 
-		$('#conteudoMuralGestao').html(htmlPost)
+
+		$('#conteudoMuralGestao2').html(htmlPost)
+		$('#conteudoMuralGestao2').show()
+		$('#conteudoMuralGestao').hide()
 		$('#iconeNovaPostagem').hide()
 
 	}
