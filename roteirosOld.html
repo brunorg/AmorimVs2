@@ -16,12 +16,31 @@
         
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>    	
+      	<script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script> 
         <script src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-                    window.location.assign("mRoteiros.html");
-            }); 
+           $(document).ready(function(){
+				 $("body").delegate(".op", "click", function() {
+					 if($(this).hasClass('checado') == false){
+					 	$(this).addClass('checado');
+					 }else{
+						$(this).removeClass('checado');
+					 }
+				 });
+			})
+
+			function showCheckboxes(comboRoteiro) {
+				if ($('.'+comboRoteiro).is(":visible") == true){
+					$('.'+comboRoteiro).css("display","none");
+				} else {
+					$('.'+comboRoteiro).css("display","block");
+				}
+			}
         </script>
 
         <script type="text/javascript" src="js/autenticador.js"></script>
@@ -33,6 +52,7 @@
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>   
         <script type="text/javascript" src="js/cadastroRoteiro.js"></script>
+        
     
     </head>
 
@@ -94,13 +114,13 @@
                 	<div id="roteiros_cabecalho">
                         <div class="Roteiro_Linha Less_Padding_Itens">
             		        <div class="Roteiro_Col_4">
-                                <div id="cabecalho_roteiro" class="Cabecalho_Roteiro_Item" aba="inserirRoteiro">Inserir Roteiro</div>
+                                <div id="cabecalho_roteiro" class="Cabecalho_Roteiro_Item">Inserir Roteiro</div>
                             </div>
                 		    <div class="Roteiro_Col_4">
-                                <div id="cabecalho_pesquisa" class="Cabecalho_Roteiro_Item" aba="pesquisa">Pesquisa</div>
+                                <div id="cabecalho_objetivo" class="Cabecalho_Roteiro_Item">Pesquisa</div>
                             </div>
                             <div class="Roteiro_Col_4">
-                                <div id="cabecalho_roteiroExtra" class="Cabecalho_Roteiro_Item" aba="atribuirRoteiro"> Atribuir Roteiro Extra </div>
+                                <div id="cabecalho_roteiroExtra" class="Cabecalho_Roteiro_Item"> Atribuir Roteiro Extra </div>
                             </div>
                         </div>
                 	</div>
@@ -244,7 +264,7 @@
                             </div>
     					
                             <!-- Conteudo da aba de Pesquisa -->
-                            <div id="Pesquisa" class="Conteudo_Aba_Cabecalho" style="display: none" >
+                            <div id="Pesquisa" class="Conteudo_Aba_Cabecalho">
                                 <div id="conteudo_principal_pesquisa">
                                     <div class="Item_Roteiro_Linha No_Padding_Itens">
                                                 <div class="Roteiro_Col_4">
@@ -254,7 +274,7 @@
                                                         </div>
                                                         <div class="Roteiro_Col_6">
                                                             <div class="Ano_Inserir_Select" id="valueAnoE">
-                                                                <select id="Input_Roteiro_Ano_Pesquisa" class="anoEstudoRoteiro Input_Area"></select>
+                                                                <select id="Input_Roteiro_Ano" class="anoEstudoRoteiro Input_Area"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -268,7 +288,34 @@
                                     <div class="boxROA"> 
                                         <div id="roteiros_listados">
                                            <div id="roteiros_listados_container">
-                                               
+                                               <div id="roteiro_listado_1" class="roteiro_listado">
+                                                   <span id="nome_roteiro_listado_1" class="nome_roteiro_listado">Teste</span>
+                                                   <div id="Roteiro_Listado_1_Btns" class="Roteiro_Listado_Btns">
+                                                       <div id="Roteiro_Listado_1_Edit" class="Roteiro_Listado_Edit"></div>
+                                                       <div id="Roteiro_Listado_1_Del" class="Roteiro_Listado_Del"></div>
+                                                   </div>
+                                               </div>
+                                               <div id="roteiro_listado_2" class="roteiro_listado">
+                                                   <span id="nome_roteiro_listado_2" class="nome_roteiro_listado">Teste</span>
+                                                   <div id="Roteiro_Listado_2_Btns" class="Roteiro_Listado_Btns">
+                                                       <div id="Roteiro_Listado_2_Edit" class="Roteiro_Listado_Edit"></div>
+                                                       <div id="Roteiro_Listado_2_Del" class="Roteiro_Listado_Del"></div>
+                                                   </div>
+                                               </div>
+                                               <div id="roteiro_listado_3" class="roteiro_listado">
+                                                   <span id="nome_roteiro_listado_3" class="nome_roteiro_listado">Teste</span>
+                                                   <div id="Roteiro_Listado_3_Btns" class="Roteiro_Listado_Btns">
+                                                       <div id="Roteiro_Listado_3_Edit" class="Roteiro_Listado_Edit"></div>
+                                                       <div id="Roteiro_Listado_3_Del" class="Roteiro_Listado_Del"></div>
+                                                   </div>
+                                               </div>
+                                               <div id="roteiro_listado_4" class="roteiro_listado">
+                                                   <span id="nome_roteiro_listado_4" class="nome_roteiro_listado">Teste</span>
+                                                   <div id="Roteiro_Listado_4_Btns" class="Roteiro_Listado_Btns">
+                                                       <div id="Roteiro_Listado_4_Edit" class="Roteiro_Listado_Edit"></div>
+                                                       <div id="Roteiro_Listado_4_Del" class="Roteiro_Listado_Del"></div>
+                                                   </div>
+                                               </div>
                                            </div>
                                         </div>
                                     </div>
@@ -310,7 +357,7 @@
                             </div>	
                             
                             <!-- Conteudo da aba de Roteiro Extra -->
-                            <div id="RoteiroExtra" class="Conteudo_Aba_Cabecalho" >
+                            <div id="RoteiroExtra" class="Conteudo_Aba_Cabecalho">
                                 <div id="conteudo_principal_roteiroExtra">                                
                                     <div id="Inserir_roteiroExtra">
                                         <input id="pesquisaAluno" placeholder="Buscar Aluno" required />
@@ -324,19 +371,12 @@
                             </div>
                         </div>						
                     </div>
-                </div>
-                <div id="boxMensagemGeral" ></div>
-                <div class="boxGlobal"></div> 
-                <div id="boxModal"></div> 
-				<div class="boxCalendario"></div> 
+                </div>                
 			</div>             
-		</div><!--Fim Conteudo-->  
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>    	
-      	<script src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
-		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
+		</div><!--Fim Conteudo--> 
+        <div id="boxMensagemGeral" ></div>
+        <div class="boxGlobal"></div> 
+        <div id="boxModal"></div>                
         <!--Carrega os dados do usuario logado-->          
 	</body>
 </html>
