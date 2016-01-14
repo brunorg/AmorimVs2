@@ -2,6 +2,10 @@ $(document).ready(function(){
     carregarTipoOficina();
     salvarOficina();
     atribuiChangeOficina();
+
+    window.setTimeout(function() {
+        $('#boxMensagemGeral').show();
+    }, 3000);
 });
 
 function carregarTipoOficina() {
@@ -19,6 +23,7 @@ function carregarTipoOficina() {
             }
 
             $('#oficinaOficina').html(html);
+            $('#selectTipoOficina').html(html);
         }
     });
 }
@@ -402,3 +407,33 @@ function resetarCadastroRotina () {
     $('.btn_Salvar_Rotina').unbind('click');
     $('#Container_Novo_Cadastro').css('display', 'none');
 }
+
+/*----------------------------------------------------------------------------------------------*/
+
+function callModalEdicao(etapa)
+{
+    "use strict";
+    if ( etapa == 'oficina' )
+    {
+        callModalEditarOficina();
+    }
+    else if ( etapa == 'professor' )
+    {
+        callModalEditarProfessor();
+    }
+    else if ( etapa == 'rotina' )
+    {
+        callModalEditarRotina();
+    }
+    else if ( etapa == 'agrupamento' )
+    {
+        callModalEditarAgrupamento();
+    }
+    else
+    {
+        mensagem("Erro ao requerir a edição.","OK","bt_ok","erro");
+    }
+
+}
+
+/*----------------------------------------------------------------------------------------------*/

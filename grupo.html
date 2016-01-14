@@ -10,7 +10,6 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
         <link rel="stylesheet" type="text/css" href="css/grupo.css"/>
-        <link rel="stylesheet" type="text/css" href="css/oficinas_vs2.css"/         >
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
         <!--Fim Style-->
@@ -23,13 +22,6 @@
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>   
         <script type="text/javascript" src="js/jquery-ui.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-                    window.location.assign("mGrupo.html");
-            }); 
-        </script>
 
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>        
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>               
@@ -340,7 +332,7 @@
                                             </div>
                                         </div>
                                         <div id="comboOfi"class="celulaMedia" style="display:none">
-                                            <div class="infoMG"> Oficineiro </div>
+                                            <div class="infoMG"> Professor </div>
                                             <div class="infoValueM">
                                                 <div class="styled-select">
                                                     <select class="oficinaO"></select>
@@ -353,20 +345,77 @@
                                         <!--AQUI CARREGA OS DADOS QUE RETORNA DA BUSCA-->
                                             <div class="lista_agrupamentos">
                                                 <section class="oficina_info">
-                                                    <header>
-                                                        <span class="tipo_oficina">Tipo Oficina</span>
+                                                    <header class="tipo_oficina">
+                                                        <h1 style="color: #ef5b5d">Matemática</h1>
                                                     </header>
                                                     <main>
+                                                        <article class="ciclo_periodo_oficina">
+                                                            <p class="ciclo_periodo">Ciclo: <span class="ciclo">Intermediário</span> | Período: <span class="periodo">Tarde</span></p>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
+                                                        </article>
                                                         <article class="rotina_oficina">Rotina: 
-                                                            <span class="rotina_dia">Seg</span>
-                                                            <span class="rotina_horario">11:00</span>
+                                                            <span class="rotina_dia">Segunda feira</span> -
+                                                            <span class="rotina_horario">07:00</span> -
                                                             <span class="rotina_sala">Sala 4</span>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
                                                         </article>
                                                         <article class="oficineiros_oficina">
-                                                            <p class="oficineiro">Oficineiros: <span>Professor Teste Cadastro Mudança</span></p>
+                                                            <p class="oficineiro">Professor(es): <span>Célio Akio Kinjo</span></p>
+                                                            <span class="editar editar_oficineiro">&nbsp;</span>
                                                         </article>
                                                         <article class="agrupamento_oficina">
-                                                            <p class="agrupamento">Agrupamento: <span>Grupo D</span></p>
+                                                            <p class="agrupamento">Agrupamento: <span>Grupo A</span></p>
+                                                            <span class="editar editar_agrupamento">&nbsp;</span>
+                                                        </article>
+                                                    </main>
+                                                </section>
+                                                <section class="oficina_info">
+                                                    <header class="tipo_oficina">
+                                                        <h1 style="color: #f18362">Educação Física</h1>
+                                                    </header>
+                                                    <main>
+                                                        <article class="ciclo_periodo_oficina">
+                                                            <p class="ciclo_periodo">Ciclo: <span class="ciclo">Intermediário</span> | Período: <span class="periodo">Tarde</span></p>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
+                                                        </article>
+                                                        <article class="rotina_oficina">Rotina: 
+                                                            <span class="rotina_dia">Segunda-feira</span> -
+                                                            <span class="rotina_horario">07:50</span> -
+                                                            <span class="rotina_sala">Sala 4</span>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
+                                                        </article>
+                                                        <article class="oficineiros_oficina">
+                                                            <p class="oficineiro">Professor(es): <span>Célio Akio Kinjo</span></p>
+                                                            <span class="editar editar_oficineiro">&nbsp;</span>
+                                                        </article>
+                                                        <article class="agrupamento_oficina">
+                                                            <p class="agrupamento">Agrupamento: <span>Grupo B</span></p>
+                                                            <span class="editar editar_agrupamento">&nbsp;</span>
+                                                        </article>
+                                                    </main>
+                                                </section>
+                                                <section class="oficina_info">
+                                                    <header class="tipo_oficina">
+                                                        <h1 style="color: #5cc1b3">Latin</h1>
+                                                    </header>
+                                                    <main>
+                                                        <article class="ciclo_periodo_oficina">
+                                                            <p class="ciclo_periodo">Ciclo: <span class="ciclo">Intermediário</span> | Período: <span class="periodo">Tarde</span></p>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
+                                                        </article>
+                                                        <article class="rotina_oficina">Rotina: 
+                                                            <span class="rotina_dia">Segunda-feira</span> -
+                                                            <span class="rotina_horario">08:40</span> -
+                                                            <span class="rotina_sala">Sala 2</span>
+                                                            <span class="editar editar_rotina">&nbsp;</span>
+                                                        </article>
+                                                        <article class="oficineiros_oficina">
+                                                            <p class="oficineiro">Professor(es): <span>Célio Akio Kinjo</span></p>
+                                                            <span class="editar editar_oficineiro">&nbsp;</span>
+                                                        </article>
+                                                        <article class="agrupamento_oficina">
+                                                            <p class="agrupamento">Agrupamento: <span>Grupo C</span></p>
+                                                            <span class="editar editar_agrupamento">&nbsp;</span>
                                                         </article>
                                                     </main>
                                                 </section>
@@ -381,7 +430,43 @@
             </div>            
         </div>
         <!--Fim Conteudo-->  
-        <div id="boxMensagemGeral"></div>
+        <div id="boxMensagemGeral">
+            <div class="modal modal_edicao_geral">
+                <section class="container_modal_edicao">
+                    <header>Editar Oficina</header>
+                    <div class="formulario_container">
+                        <form>
+                            <div class="Box_Area_Select">
+                                <p class="Select_Grupo">Ciclo</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Ciclo" id="cicloOficina" class="Ciclo_Select">
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="Box_Area_Select">
+                                <p class="Select_Grupo">Período</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Periodo" id="periodoOficina" class="Periodo_Select">
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="Box_Area_Select">
+                                <p class="Select_Grupo">Oficina</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="tipo" id="selectTipoOficina" class="Oficina_Select">
+                                    </select>
+                                </span>
+                            </div>
+                        </form>
+                        <div class="Area_Botoes_Grupo">
+                            <button type="button" class="btns_grupo">Salvar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div id="boxModaisEdicao">
+        </div>
         <div class="boxGlobal">
             <img src="img/loading2.GIF" width="60" height="60" alt=""/>
         </div>              

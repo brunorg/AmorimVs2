@@ -589,7 +589,83 @@ select::-ms-expand {
 	margin-left: 10px;
 
 }
-
+.oficina_info
+{
+	width: 100%;
+	height: auto;
+	background-color: #F5F5F3;
+	padding: 13px;
+	margin-bottom: 5px;
+}
+.oficina_info:last-child
+{
+	margin-bottom: 0;
+}
+.tipo_oficina
+{
+	padding: 0 5px;
+    margin-bottom: 5px;
+}
+.tipo_oficina h1
+{
+	margin: 0;
+    color: #666;
+    font-weight: 500;
+}
+.ciclo_periodo_oficina,
+.rotina_oficina,
+.oficineiros_oficina,
+.agrupamento_oficina
+{
+	font-weight: 500;
+	color: #999;
+	position: relative;
+	margin: 0;
+	padding: 5px;
+}
+.ciclo_periodo_oficina > p > span,
+.rotina_oficina > span,
+.oficineiros_oficina > p > span,
+.agrupamento_oficina > p > span
+{
+	font-weight: 300;
+	color: #666;
+}
+.ciclo_periodo_oficina:hover,
+.rotina_oficina:hover,
+.oficineiros_oficina:hover,
+.agrupamento_oficina:hover
+{
+	background-color: #E7E7E5;
+}
+.ciclo_periodo_oficina p,
+.oficineiros_oficina p,
+.agrupamento_oficina p
+{
+	margin: 0;
+}
+.editar
+{
+	display: none;
+	position: absolute;
+	background: url(../img/ic_editar_peq.png) no-repeat center center;
+	top: 2px;
+	right: 2px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+.ciclo_periodo_oficina:hover > .editar,
+.rotina_oficina:hover > .editar,
+.oficineiros_oficina:hover > .editar,
+.agrupamento_oficina:hover > .editar
+{
+	display: block;
+}
+.editar:hover
+{
+	background-color: #EDEDEB;
+}
 .checkLimpar{
 	width:50px;
 }
@@ -599,6 +675,37 @@ select::-ms-expand {
 	.Box_Area_Select { width: 293px; }
 
 	.Select_Grupo_Input { width: 172px;}
+}
+
+/* Modais de edição */
+.modal_edicao_geral
+{
+	position: absolute;
+	background-color: #f1746f;
+	width: 975px;
+	padding: 18px;
+	margin-left: -487.5px;
+	top: 50%;
+	left: 50%;
+}
+.container_modal_edicao
+{
+	background-color: #e5e5dc;
+	padding: 15px;
+	width: 100%;
+}
+.container_modal_edicao > header
+{
+	font-size: 18px;
+    color: #f25954;
+    margin-bottom: 15px;
+}
+.formulario_container > form::after
+{
+	content: '';
+	display: block;
+	width: 100%;
+	clear: both;
 }
 
 /* Barra de rolagem */

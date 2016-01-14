@@ -542,9 +542,19 @@ function base64_decode(data) {
 function centralizarModal()
 {
 	var alturaBox = parseInt($('.box_mensagem').height());
-	var marginTop = Math.floor(-alturaBox/2).toString() + 'px';
+	var marginTopBox = Math.floor(-alturaBox/2).toString() + 'px';
 
-	$('.box_mensagem').css('margin-top', marginTop);
+	$('.box_mensagem').css('margin-top', marginTopBox);
+
+	var alturaModal;
+	var marginTopModal;
+
+	$('.modal').each(function(){
+		alturaModal = $(this).height();
+		marginTopModal = Math.floor(-alturaModal/2).toString() + 'px';
+
+		$(this).css('margin-top', marginTopModal);
+	});
 }
 
 function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)

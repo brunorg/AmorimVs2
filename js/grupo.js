@@ -18,6 +18,9 @@ $(document).ready(function(){
 		else{ $(this).css("background-position","0px 0px").removeClass("clicado"); }
 	});
 	
+	$(window).resize(function(){
+		centralizarModal();
+	});
 	/*Recursos de Aprendizagem Pesquisar*/
 	/*Listagem de roteiros no select para escolha de um Roteiro*/
 	$.ajax({
