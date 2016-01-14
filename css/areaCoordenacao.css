@@ -204,12 +204,43 @@ div[class*="box_col"]:last-of-type {
 .mural_post_cabecalho
 {
 	text-align: right;
+	height: 18px;
 }
 .mural_post_cabecalho,
 .mural_post_cabecalho > span
 {
 	color: #78776b;
 	font-size: 12px;
+}
+.mural_post_item:hover > .mural_post_cabecalho
+{
+	display: none;
+}
+.mural_post_btns
+{
+	display: none;
+	text-align: right;
+}
+.mural_post_btns > span
+{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.btn_editar
+{
+	background: url(../img/ic_editar_peq.png) no-repeat center center;
+}
+.btn_excluir
+{
+	background: url(../img/ic_del_peq.png) no-repeat center center;
+}
+.mural_post_item:hover > .mural_post_btns
+{
+	display: block;
+	height: 18px;
 }
 .mural_post_mensagem
 {
