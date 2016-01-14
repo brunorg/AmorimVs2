@@ -11,7 +11,6 @@ function getAjax(url, postOrGet, data, async, callback) {
         type: postOrGet,
         data: data,
         success: function(resultado) {
-        	console.log(resultado)
         	callback(resultado);
         }
     });
@@ -38,13 +37,50 @@ function carregarListaProfessores() {
 	})
 }
 
+function MuralGestao() {
+
+	self = this;
+
+	self.refresh = function() {
+		getAjax("MuralCoordenacao", "GET", "", false, function(result){
+			console.log(result)
+
+			var htmlPost="";
+
+			result.forEach(function(postMuralGestao){
+
+				htmlPost += "<section class=\"mural_post_item\">";
+				htmlPost += "<main class=\"mural_post_mensagem\">";
+				htmlPost += "<span class=\"post_mural_mensagem\">";
+				htmlPost += postMuralGestao.mensagem;
+				htmlPost += "<\/span>";
+				htmlPost += "<\/main>";
+				htmlPost += "<aside class=\"mural_post_cabecalho\">";
+				htmlPost += "<span class=\"post_mural_usuario\">Professores<\/span> | <span class=\"post_mural_data\">"+postMuralGestao.data+"<\/span> <span class=\"post_mural_horario\">"+postMuralGestao.hora+"<\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<\/section>";
+
+			})
+
+			$('#conteudoMuralGestao').html(htmlPost)
+		})
+	}
+
+}
+
+
 window.onload = function() {
 	$('.scroll_receiver').mCustomScrollbar({
 		axis: 'y',
 	});
 
+	// Educadores
 	carregarListaProfessores()
 
+
+	// Mural Gestão
+	var muralGestao = new MuralGestao();
+	muralGestao.refresh();
 }
 
 

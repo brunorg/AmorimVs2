@@ -179,20 +179,20 @@ div[class*="box_col"]:last-of-type {
 
 /* Box Mural */
 
-.mCSB_container > .mural_post_item,
-.mCSB_container > .jeiff_post_item
+.mCSB_container  .mural_post_item,
+.mCSB_container  .jeiff_post_item
 {
 	background-color: #fff;
 	padding: 11px 12px 5px;
 	margin-bottom: 5px;
 	width: 98%;
 }
-.mCSB_container > .jeiff_post_item
+.mCSB_container  .jeiff_post_item
 {
 	padding-bottom: 11px;
 }
-.mCS_no_scrollbar_y > .mural_post_item,
-.mCS_no_scrollbar_y > .jeiff_post_item
+.mCS_no_scrollbar_y  .mural_post_item,
+.mCS_no_scrollbar_y .jeiff_post_item
 {
 	width: 100%;
 }
