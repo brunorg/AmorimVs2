@@ -55,22 +55,8 @@ $(document).ready(function() {
 	//Abre uma caixa se o perfil for aluno e uma página se for professor, porém as duas para marcar presença
 	$("#apontar").click(function(){
 		if (dadosUsuario.perfil.perfil == "Aluno"){
-			//$("#presenca").show();
-			//$("#presenca .css-label").removeClass("selecionado");
-			
-			var htmlPresenca = '<div id="presenca">'+ 	               	
-									'<form>'+
-										'<div class="box_nome">'+                     
-											'<p class="presenca_opcao"></p>'+
-										'</div>'+
-										'<div class="box_botao">'+
-											'<p ><input class="btn_pres" type="button" value="CONFIRMA"></p>'+
-										'</div>'+
-									'</form>'+
-								'</div>';		
-			
-			$("#boxMensagemGeral").html(htmlPresenca).show();
-				
+			$("#boxMensagemGeral").html("");
+			$("#boxMensagemGeral").load("presencaAluno.html").show();
 		}else if (dadosUsuario.perfil.perfil == "Professor"){
 			window.location.href = "presencaGrupos.html";
 		}			
@@ -609,7 +595,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 								+'</div>'+
 								'<div class="btn_mensagem">'+
 									'<input type="button" class="bt_ok left" value="'+tipo_btn+'" onclick="'+funcao[0]+'(\''+servico+'\',\''+id+'\')"/>'+
-									'<input type="button" class="bt_cancelar left" value="" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
+									'<input type="button" class="bt_cancelar left" value="Excluir" onclick="'+funcao[1]+'(\''+servico+'\',\''+id+'\')"/>'+
 								'</div>'+
 							'</div>';
 

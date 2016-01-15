@@ -1,13 +1,20 @@
-﻿<div id="presenca">                	
-    <form> 
+﻿<script src="js/presencaGrupoAluno.js"></script>
+<div id="presenca">
+	<p>Apontar Presença de Grupo<span id="btnFechar"></span></p>
+    <div id="bloco_alunos"> 
+    	<div id="cabecalho">
+        	<p id="nomeGrupo">GRUPO F</p>
+            <p id="diaData">
+            	<span id="diaChamada">SEXTA-FEIRA</span>
+                <span id="separador"> | </span>
+                <span id="dataChamada">24/01/2016</span>
+            </p>            
+        </div>
         <div class="box_nome">                      
-            <p class="presenca_opcao">
-            	<!--O html é carregado aqui através do ajax-->
-            </p>
+            <div class="presenca_opcao"></div>
         </div>
-        <div class="box_botao">
-            <p class="btn_fechar" onClick="fecharBox('presenca')">X</p>
-            <p ><input class="btn_pres" type="button" value="CONFIRMA"></p>
+        <div class="box_botao_aluno">
+            <button id="salvarChamada"></button>
         </div>
-    </form>
+   	</div>
 </div>

@@ -452,13 +452,6 @@ html, body
 					margin-right: 6px;
 					height: 29px;
 				}
-				/*#presenca_page #btn_confirma{
-					background: url(../img/confirma_bco.png) no-repeat;
-					background-size: auto;
-					float: left;
-					width: 40px;
-					margin: 0 6px;
-				}*/
 				#presenca_page #btn_confirma{
 					background: url(../img/confirma.png) no-repeat;
 					background-size: auto;	
@@ -467,13 +460,6 @@ html, body
 					margin: 0 6px;
 					cursor:pointer;				
 				}
-				/*#presenca_page #btn_cancela{
-					background: url(../img/cancela_bco.png) no-repeat;
-					background-size: auto;
-					float: left;
-					width: 40px;
-					margin: 0 6px;
-				}*/
 				#presenca_page #btn_cancela{
 					background: url(../img/cancela.png) no-repeat;
 					background-size: auto;
@@ -545,95 +531,7 @@ html, body
 				    margin-left: 1px;
 				    margin-right: auto;
 				}
-				/*fim style presenÃ§a professor*/	
-				
-				/*Style caixa apontar presenÃ§a aluno*/
-				#presenca{
-					width: 480px;
-					height: 250px;
-					background: none repeat scroll 0% 0% #16BECF;
-					z-index: 1;
-					position: relative;
-					left: 307px;
-					font-size:22px;
-					float:left;
-				}	
-				#presenca .box_nome{
-					float: left;
-					height: 100%;	
-				}
-				#presenca .box_botao{
-					float: right;
-					width:118px;
-					height: 251px;
-				}
-				#presenca .presenca_opcao{
-					width:360px;
-					padding:26px 36px;
-					color:#FFFFFF;
-				}
-				#presenca .presenca_opcao p{
-					padding:10px 0;
-					color:#FFFFFF;
-				}					
-				#presenca .btn_pres,.btn_fechar,#btn_fechar_evento{
-					display: inline-block;
-					background-color: #02818D;
-					color: #FFFFFF;
-					padding: 10px 20px;
-					font-size: 14px;
-					border: none;					
-					margin: 0;	
-					font-weight:bold;
-					cursor:pointer;
-				}
-				 #presenca .btn_fechar{	
-					font-size: 20px;
-					padding: 10px 18px;
-					position: absolute;
-					width: 50px;
-					left: 430px;
-				}
-				#presenca .btn_pres{					
-					position:absolute;
-					bottom:0;
-					right:0;
-					width: 114px;
-					height: 37px;
-				}				
-				#presenca input[type=checkbox].presenca_check {
-					position: absolute; 
-					overflow: hidden; 
-					clip: rect(0 0 0 0); 
-					height:1px; 
-					width:1px; 
-					margin:-1px; 
-					padding:0;
-					border:0;
-				}				
-				#presenca label.css-label {
-					padding:7px 0px 0 34px;
-					height:27px; 
-					display:inline-block;
-					line-height:15px;
-					background-repeat:no-repeat;
-					background-position: 0 0;
-					font-size:15px;
-					vertical-align:middle;
-					cursor:pointer;
-					font-size: 22px;
-					margin: 4px 0 0 5px;
-					white-space: nowrap;
-				}								
-				#presenca .preSelecionado{
-					background-image: url(../img/presenca_check2.png) !important;
-				}															
-				#presenca .css-label{
-					background-size:auto;
- 					background-image:url(../img/presenca_check1.png);
- 				}
-				/*fim style presenÃ§a aluno*/	
-										
+				/*fim style presenÃ§a professor*/										
 
 			/*Coluna central sem divisoes*/
 			/*Coluna central*/	
@@ -1931,10 +1829,6 @@ font-family: "proxima-nova",sans-serif;
 	.boxForm{
 		top: 15%;
 	}
-	#presenca {
-		top: 0px;
-		left: 410px;
-	}
 	#rodape_calendario {
 		position: absolute;
 		margin: -35px auto !important;
@@ -2382,11 +2276,6 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.microfiche-next-button, .microfiche-prev-button{
 		top:-121px !important;
-	}
-	#presenca{
-		top: -255px;
-		height:258px;
-		left: 256px;
 	}
 	#presenca_prof {
 		height: 255px;
@@ -3301,3 +3190,158 @@ object{
 .editarCadastro {
 	cursor: pointer;
 }
+
+
+/*Style caixa apontar presenÃ§a aluno*/
+#presenca{
+	width: 527px;
+	height: 446px;
+	background: none repeat scroll 0% 0% #63C9D7;
+	z-index: 1;
+	position: relative;
+	left: 30%;
+	top:20%;
+	float:left;
+	padding:24px;
+}	
+#presenca p{
+	color:#FFFFFF;
+	font-size:18px;
+	padding:0;
+	margin:0;
+}
+
+#presenca p #btnFechar{
+	float:right;
+	background:url(../img/ic_del_b_peq.png) no-repeat;
+	padding: 8px;
+}
+
+#presenca #bloco_alunos{
+	width: 100%;
+    height: 88%;
+    background: #FFFFFF;
+    margin-top: 24px;
+	padding:30px;
+}
+#cabecalho{
+	height:59px;
+}
+#cabecalho #nomeGrupo{
+	color:#16BECF;
+	font-size:30px;
+	margin-bottom:5px;
+}
+#cabecalho #diaData{
+	border:1px solid;
+	padding:0;
+	margin:0;
+}
+#diaData #diaChamada,
+#diaData #dataChamada, 
+#diaData #separador{
+	float:left;
+	color:#666666;
+	padding:0;
+	margin:0;
+	font-size:24px;
+}
+#diaData #separador{
+	margin: 1px 3px;
+    font-size: 20px;
+	font-weight:300;
+}
+#diaData #dataChamada{
+	font-weight:100;
+}
+#presenca .presenca_opcao{
+	width: 100%;
+    margin-top: 26px;
+    height: 183px;
+}
+#presenca .presenca_opcao .nomesGrupo{
+    height: 27px;
+}
+#presenca .presenca_opcao .nomesGrupo .nomeAluno{
+    color: #666666;
+    float: left;
+    width: 93%;
+    padding: 4px 0 0 6px;
+}	
+
+#presenca .presenca_opcao .nomesGrupo{
+	border: 1px solid #FFFFFF;
+	border-bottom:0;
+}
+#presenca .presenca_opcao .nomesGrupo:nth-child(odd){
+	background:#F2F2EE;
+}
+#presenca .presenca_opcao .nomesGrupo:nth-child(even){
+	background:#E5E4DD;
+}				
+#presenca .btn_pres,.btn_fechar,#btn_fechar_evento{
+	display: inline-block;
+	background-color: #02818D;
+	color: #FFFFFF;
+	padding: 10px 20px;
+	font-size: 14px;
+	border: none;					
+	margin: 0;	
+	font-weight:bold;
+	cursor:pointer;
+}
+ #presenca .btn_fechar{	
+	font-size: 20px;
+	padding: 10px 18px;
+	position: absolute;
+	width: 50px;
+	left: 430px;
+}
+#presenca .btn_pres{					
+	position:absolute;
+	bottom:0;
+	right:0;
+	width: 114px;
+	height: 37px;
+}				
+#presenca input[type=checkbox].presenca_check {
+    padding: 0px 0px 0px 28px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 1px 0px;
+    float: right;
+    border-left: 1px solid #FFFFFF;
+}
+
+#presenca label.css-label {
+	background-image:url(../img/check_apontar_presenca_aluno.png);
+    padding: 0px 0px 0px 28px;
+    height: 27px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    float: right;
+    border-left: 1px solid #FFFFFF;
+}
+														
+#presenca .preSelecionado {
+    background-position: -24px 0px;
+}
+	
+
+#bloco_alunos .box_botao_aluno{
+	text-align:right;
+}
+#salvarChamada{
+	background:url(../img/bt_salvar_azul.png) no-repeat;
+	padding: 20px 50px;
+    border: 0;
+	cursor:pointer;
+}
+.nomesGrupo .botaoAluno{
+	width: 29px;
+    height: 26px;
+    float: right;
+}
+/*fim style presença aluno*/	

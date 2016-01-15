@@ -1,9 +1,25 @@
 // JavaScript Document
+$(document).ready(function(){
+    carregaJanelaGrupo();
+	
+	$(".css-label").click(function(){		
+		$(this).toggleClass("preSelecionado");			
+	});	
+		
+	$(".btn_pres").click(function(){
+		ConfirmaPresencaGrupo(dadosChamada[0].existe);
+	});
+	
+	$("#btnFechar").click(function(){
+		fecharBox("boxMensagemGeral");
+	});	
+});
+
 var action;
 var ArrayChamada = [];
-
 /*Botões de fechar as caixas*/
 function carregaJanelaGrupo(){
+	
 	if(usuario == "Aluno"){	
 	/*Aqui vai o grupo do usuário logado*/
 		var alunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
@@ -47,36 +63,35 @@ function carregaJanelaGrupo(){
 					status = "unselecionado";														
 				}else{
 					status = "preSelecionado";
-				}					
+				}	
+			
 				action = "update";
+				HtmlContent += '<div class="nomesGrupo">';
+				HtmlContent += '<p class="nomeAluno">'+abreviaNome(alunosP[p].nomeAluno)+'</p>';
+				HtmlContent += '<div class="botaoAluno">';
 				HtmlContent += '<input id="'+alunosP[p].idChamada+'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
-				HtmlContent += '<label for="'+alunosP[p].idChamada+'" id="'+alunosP[p].idAluno +'"  class="css-label '+status+'">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
-				HtmlContent += '<br>';			
+				HtmlContent += '<label for="'+alunosP[p].idChamada+'" id="'+alunosP[p].idAluno +'"  class="css-label '+status+'"></label>';
+				HtmlContent += '</div>';
+				HtmlContent += '</div>';			
 			}
 		}else{
 			var HtmlContent = "";
 			var selecionado="";
-			for(p=0;p<alunosP.length;p++){	
+			for(p=0;p<alunosP.length;p++){
+					
 				action = "create";
+				HtmlContent += '<div class="nomesGrupo">';
+				HtmlContent += '<p class="nomeAluno">'+abreviaNome(alunosP[p].nomeAluno)+'</p>';
+				HtmlContent += '<div class="botaoAluno">';
 				HtmlContent += '<input id="'+alunosP[p].idAluno +'" type="checkbox" name="presenca_opcao" value="alu_1" class="presenca_check">';
-				HtmlContent += '<label for="'+alunosP[p].idAluno +'" id="'+alunosP[p].idAluno +'"  class="css-label unselecionado">'+abreviaNome(alunosP[p].nomeAluno)+'</label>';
-				HtmlContent += '<br>';
+				HtmlContent += '<label for="'+alunosP[p].idAluno +'" id="'+alunosP[p].idAluno +'"  class="css-label unselecionado"></label>';
+				HtmlContent += '</div>';
+				HtmlContent += '</div>';
 			}
 		}				
-		
-		console.log(HtmlContent);
-		
-		$('.presenca_opcao').html(HtmlContent);
-	}
 	
-	$(".css-label").click(function(){		
-		$(this).toggleClass("preSelecionado");
-		$(this).toggleClass("unselecionado")			
-	});	
-		
-	$(".btn_pres").click(function(){
-		ConfirmaPresencaGrupo(dadosChamada[0].existe);
-	});
+		$('.presenca_opcao').html(HtmlContent);
+	}	
 }
 
 function ConfirmaPresencaGrupo(bool) {
