@@ -197,13 +197,12 @@ function MuralGestao() {
 
 }
 
-// comentarios desatualizados, farei isso quando acabar ele.
-/** Objeto do MuralGestao */
+
 function MuralComum() {
 
 	var self = this;
 
-	/** Atualiza os posts do mural. Apaga e sobrescreve "div#conteudoMuralGestao" */
+
 	self.refresh = function() {
 
 		$("#iconeNovaPostagem2").show();
@@ -239,11 +238,6 @@ function MuralComum() {
 		});
 	};
 
-	/**
-	 * Abre janela para editar ou escrever um post.
-	 * @param {number} optional default=0 - idPost - id do post a ser editado. (Veja o método "save")
-	 * @param {string} optional default="" - mensagem - mensagem do post a ser editado.
-	 */
 	self.new = function(idPost, mensagem) {
 
 		if (idPost === undefined) {
@@ -273,10 +267,6 @@ function MuralComum() {
 
 	};
 
-	/**
-	 * Salva o post no BD.
-	 * @param {number} idPost - ID do post que será editado. Caso seja 0 um novo post será criado.
-	 */
 	self.save = function(idPost) {
 
 		var valorSelectBox = Number($("#selectMuralComum").val());
@@ -291,20 +281,12 @@ function MuralComum() {
 
 	};
 
-	/**
-	 * Funçao acionada pelo botão de editar, repassa o ID e a mensagem do post para o método "new".
-	 * @param {number} idPost - ID do post que será editado.
-	 */
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
 
 		self.new(idPost, mensagemPost);
 	};
 
-	/**
-	 * Funçao acionada pelo botão de deletar, deleta o post no BD.
-	 * @param {number} idPost - ID do post que será deletado.
-	 */
 	self.delete = function(idPost) {
 
 		getAjax("Mural/", "POST", "action=delete&id="+idPost, true, function(result){console.log(result);self.refresh();});
@@ -321,10 +303,8 @@ window.onload = function() {
 		axis: "y",
 	});
 
-	// Educadores
 	carregarListaProfessores();
 
-	// Mural Gestão
 	muralGestao.refresh();
 	muralComum.refresh();
 };
