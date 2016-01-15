@@ -1180,6 +1180,34 @@ function retornaMesByNumero(numMes){
 	}
 }
 
+function datas(SemanaDia){
+	var Data = new Date();
+	dia = Data.getDay();
+	Dia = Data.getDate();
+	Mes = Data.getMonth();
+	Ano = Data.getFullYear();
+	
+	if(SemanaDia == 1){
+		Dia_Atual = new Array(7)
+		Dia_Atual[0] = "Domingo"
+		Dia_Atual[1] = "Segunda-feira"
+		Dia_Atual[2] = "Terça-feira"
+		Dia_Atual[3] = "Quarta-feira"
+		Dia_Atual[4] = "Quinta-feira"
+		Dia_Atual[5] = "Sexta-feira"
+		Dia_Atual[6] = "Sábado"
+		
+		for(a in Dia_Atual){
+			if(a==dia){
+				return Dia_Atual[a];
+			}	
+		}
+	}else{
+		Mes+=1;
+		return Dia<10?"0"+Dia:Dia+"/"+(Mes<10?"0"+Mes:Mes)+"/"+Ano;
+	}	
+}
+
 function retornaMesAbreviacaoByNumero(numMes){
 	switch (numMes) {
 		case 1:

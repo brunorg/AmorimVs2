@@ -3303,30 +3303,37 @@ object{
 	right:0;
 	width: 114px;
 	height: 37px;
-}				
+}	
+
 #presenca input[type=checkbox].presenca_check {
+	width: 6.86%;
+    height: 2%;
+    position: absolute;
+    margin: 0px;
+    cursor: pointer;
+    display: none;	
     padding: 0px 0px 0px 28px;
-    height: 27px;
-    display: inline-block;
     background-repeat: no-repeat;
-    background-position: 1px 0px;
     float: right;
     border-left: 1px solid #FFFFFF;
 }
+
 
 #presenca label.css-label {
 	background-image:url(../img/check_apontar_presenca_aluno.png);
     padding: 0px 0px 0px 28px;
     height: 27px;
     display: inline-block;
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
+    background-repeat: no-repeat;    
     float: right;
     border-left: 1px solid #FFFFFF;
 }
-														
+
+#presenca .unselecionado {
+    background-position: 0px 0px;
+}														
 #presenca .preSelecionado {
-    background-position: -24px 0px;
+	background-position: -26px 0px;
 }
 	
 

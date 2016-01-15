@@ -3,7 +3,8 @@ $(document).ready(function(){
     carregaJanelaGrupo();
 	
 	$(".css-label").click(function(){		
-		$(this).toggleClass("preSelecionado");			
+		$(this).toggleClass("preSelecionado");	
+		$(this).toggleClass("unselecionado");			
 	});	
 		
 	$(".btn_pres").click(function(){
@@ -23,8 +24,12 @@ function carregaJanelaGrupo(){
 	if(usuario == "Aluno"){	
 	/*Aqui vai o grupo do usuário logado*/
 		var alunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
-		//console.log(alunoVariavel);
 		var grupo = alunoVariavel.grupo.idgrupo;		 
+		//cabecalho da chamada
+		$('#nomeGrupo').html(alunoVariavel.grupo.nomeGrupo);		
+		
+		$('#diaChamada').html(datas(1));
+		$('#dataChamada').html(datas(2));		
 		
 		//Listagem de alunos do grupo
 		var dataAlunoVariavel = getData("AlunoVariavel/grupo", grupo);		
@@ -89,9 +94,13 @@ function carregaJanelaGrupo(){
 				HtmlContent += '</div>';
 			}
 		}				
-	
+		
 		$('.presenca_opcao').html(HtmlContent);
 	}	
+	
+	$("#salvarChamada").click(function(){
+		ConfirmaPresencaGrupo(dadosChamada[0].existe);
+	});
 }
 
 function ConfirmaPresencaGrupo(bool) {
