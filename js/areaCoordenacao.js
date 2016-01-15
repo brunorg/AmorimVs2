@@ -197,7 +197,124 @@ function MuralGestao() {
 
 }
 
+// comentarios desatualizados, farei isso quando acabar ele.
+/** Objeto do MuralGestao */
+function MuralComum() {
+
+	var self = this;
+
+	/** Atualiza os posts do mural. Apaga e sobrescreve "div#conteudoMuralGestao" */
+	self.refresh = function() {
+
+		$("#iconeNovaPostagem2").show();
+
+
+
+		getAjax("Mural/ListarProfessor/"+coordID, "GET", "", true, function(result){
+
+			console.log(result)
+			var htmlPost="";
+
+			result.forEach(function(postMuralComum){
+
+				htmlPost += "<section class=\"mural_post_item\">";
+				htmlPost += "<main class=\"mural_post_mensagem\">";
+				htmlPost += "<span class=\"post_mural_mensagem\" id=\"mensagemPostMuralComum"+postMuralComum.idmural+"\">";
+				htmlPost += postMuralComum.mensagem;
+				htmlPost += "<\/span>";
+				htmlPost += "<\/main>";
+				htmlPost += "<aside class=\"mural_post_cabecalho\">";
+				htmlPost += "<span class=\"post_mural_data\">"+postMuralComum.data+"<\/span> | <span class=\"post_mural_horario\">"+postMuralComum.hora+"<\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<aside class=\"mural_post_btns\">";
+				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralComum.edit("+postMuralComum.idmural+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralComum.delete("+postMuralComum.idmural+")\"><\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<\/section>";
+
+			});
+
+			$("#conteudoMuralComum").html(htmlPost);
+			$("#conteudoMuralComum2").hide();
+			$("#conteudoMuralComum").show();
+		});
+	};
+
+	/**
+	 * Abre janela para editar ou escrever um post.
+	 * @param {number} optional default=0 - idPost - id do post a ser editado. (Veja o método "save")
+	 * @param {string} optional default="" - mensagem - mensagem do post a ser editado.
+	 */
+	self.new = function(idPost, mensagem) {
+
+		if (idPost === undefined) {
+			idPost = 0;
+			mensagem = "";
+		}
+
+		var htmlPost="";
+
+		htmlPost += "<select class=\"box_select\" id=\"selectMuralComum\">";
+        htmlPost += "<option value=\"1\"  >Todos</option>";
+        htmlPost += "<option value=\"8\"  >Manhã</option>";
+        htmlPost += "<option value=\"9\"  >Tarde</option>";
+        htmlPost += "<option value=\"10\"  >Noite</option>";
+		htmlPost += "<\/select>";
+		htmlPost += "<textarea class=\"box_textarea textarea_mural\" name=\"mural_gestao_mensagem\" id=\"textareaMuralComum\" placeholder=\"Digite o texto da mensagem\">"+mensagem+"<\/textarea>";
+		htmlPost += "<aside class=\"box_ic\">";
+		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralComum.refresh()\">&nbsp;<\/span>";
+		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralComum.save("+idPost+")\">&nbsp;<\/span>";
+		htmlPost += "<\/aside>";
+
+
+		$("#conteudoMuralComum2").html(htmlPost);
+		$("#conteudoMuralComum2").show();
+		$("#conteudoMuralComum").hide();
+		$("#iconeNovaPostagem2").hide();
+
+	};
+
+	/**
+	 * Salva o post no BD.
+	 * @param {number} idPost - ID do post que será editado. Caso seja 0 um novo post será criado.
+	 */
+	self.save = function(idPost) {
+
+		var valorSelectBox = Number($("#selectMuralComum").val());
+
+		var periodoSend = valorSelectBox;
+		var mensagemSend = $("#textareaMuralComum").val();
+
+		getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
+			console.log(result);
+			self.refresh();
+		});
+
+	};
+
+	/**
+	 * Funçao acionada pelo botão de editar, repassa o ID e a mensagem do post para o método "new".
+	 * @param {number} idPost - ID do post que será editado.
+	 */
+	self.edit = function(idPost) {
+		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
+
+		self.new(idPost, mensagemPost);
+	};
+
+	/**
+	 * Funçao acionada pelo botão de deletar, deleta o post no BD.
+	 * @param {number} idPost - ID do post que será deletado.
+	 */
+	self.delete = function(idPost) {
+
+		getAjax("Mural/", "POST", "action=delete&id="+idPost, true, function(result){console.log(result);self.refresh();});
+
+	};
+
+}
+
 var muralGestao = new MuralGestao();
+var muralComum = new MuralComum();
 
 window.onload = function() {
 	$(".scroll_receiver").mCustomScrollbar({
@@ -209,6 +326,7 @@ window.onload = function() {
 
 	// Mural Gestão
 	muralGestao.refresh();
+	muralComum.refresh();
 };
 
 
