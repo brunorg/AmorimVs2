@@ -49,6 +49,7 @@ $(document).ready(function(){
 			limparCamposRoteiro();
 			$('#cabecalho_roteiro').addClass('Item_Ativo');
 			$('#Roteiro').show();
+			$('#Inserir_roteiroExtra').hide();
 			return false;
 			
 		}else if (aba == 'pesquisa'){	//Se for pesquisa limpa os campo de pesquisa, adiciona a classe item_ativo e manda exibir a div correspondente
@@ -58,6 +59,7 @@ $(document).ready(function(){
 			
 			$('#Pesquisa').show();
 			carregarPesquisaByAno($('#Input_Roteiro_Ano_Pesquisa').val());
+			$('#Inserir_roteiroExtra').hide();
 			return false;
 			
 		}else if (aba == 'atribuirRoteiro'){	//Se for para atrbuir roteiro extra, apenas adiciona a classe e exibe a div. 
