@@ -199,7 +199,6 @@ function MuralGestao() {
 
 var muralGestao = new MuralGestao();
 
-
 window.onload = function() {
 	$(".scroll_receiver").mCustomScrollbar({
 		axis: "y",
@@ -207,7 +206,6 @@ window.onload = function() {
 
 	// Educadores
 	carregarListaProfessores();
-
 
 	// Mural Gestão
 	muralGestao.refresh();
