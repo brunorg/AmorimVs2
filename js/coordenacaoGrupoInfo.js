@@ -165,16 +165,16 @@ function MostrarGrupos() {
 				for(var  a = 0; a < dataAlunoVariavel.length; a++){
 
 					HtmlContent += '<div class="boxGrupo'+dataAlunoVariavel[a].GrupoId+' linha" id="'+dataAlunoVariavel[a].GrupoId+'">';
-					HtmlContent += '<div class="grupoCaixa">';
-					HtmlContent += '<div class="grupoTitulo">'+dataAlunoVariavel[a].NomeGrupo+'</div>';
-					HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunoVariavel[a].GrupoId+'"><span class="titulo">Alunos:</span>';
-					HtmlContent += dataAlunoVariavel[a].alunos;
-					HtmlContent += '</div>';
-					HtmlContent += '<div class="tutor"> Tutor:</div>';
-					HtmlContent += '<div class="tutor_nome">'+ dataAlunoVariavel[a].nomeTutor + '</div>';
-					HtmlContent += '</div>';
-					HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].GrupoId+');"></div>';
-					HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunoVariavel[a].GrupoId+');"></div>';
+						HtmlContent += '<div class="grupoCaixa">';
+							HtmlContent += '<div class="grupoTitulo">'+dataAlunoVariavel[a].NomeGrupo+'</div>';
+							HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunoVariavel[a].GrupoId+'"><span class="titulo">Alunos:</span>';
+								HtmlContent += dataAlunoVariavel[a].alunos;
+							HtmlContent += '</div>';
+							HtmlContent += '<div class="tutor"> Tutor:</div>';
+							HtmlContent += '<div class="tutor_nome">'+ dataAlunoVariavel[a].nomeTutor + '</div>';
+						HtmlContent += '</div>';
+						HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].GrupoId+');"></div>';
+						HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunoVariavel[a].GrupoId+');"></div>';
 					HtmlContent += '</div>';
 					//console.log(dataAlunoVariavel[a].GrupoId);
 				}
