@@ -682,23 +682,26 @@ select::-ms-expand {
 {
 	position: absolute;
 	background-color: #f1746f;
-	width: 975px;
-	padding: 18px;
-	margin-left: -487.5px;
+	width: 750px;
+	padding: 60px 18px 18px;
+	margin-left: -375px;
 	top: 50%;
 	left: 50%;
 }
+.modal_edicao_geral > header
+{
+	position: absolute;
+	font-size: 18px;
+    color: #fff;
+    top: 22px;
+    left: 18px;
+}
 .container_modal_edicao
 {
+	position: relative;
 	background-color: #e5e5dc;
 	padding: 15px;
 	width: 100%;
-}
-.container_modal_edicao > header
-{
-	font-size: 18px;
-    color: #f25954;
-    margin-bottom: 15px;
 }
 .formulario_container > form::after
 {
@@ -706,6 +709,21 @@ select::-ms-expand {
 	display: block;
 	width: 100%;
 	clear: both;
+}
+.btn_fechar_modal
+{
+	display: inline-block;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: url(../img/ic_del_b_peq.png) no-repeat center center;
+	top: 22px;
+	right: 18px;
+	cursor: pointer;
+}
+.modal .Unico_Linha
+{
+	width: 100%;
 }
 
 /* Barra de rolagem */

@@ -5,6 +5,7 @@ $(document).ready(function(){
 
     window.setTimeout(function() {
         $('#boxMensagemGeral').show();
+        centralizarModal();
     }, 3000);
 });
 
