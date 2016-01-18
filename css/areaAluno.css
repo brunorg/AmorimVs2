@@ -299,6 +299,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	.Mural_Cabecalho_Nome p {
 	    color: #fff;
 		text-decoration: none;
+		margin:0;
 	}
 	#Mural_Conteudo {
 		height: 200px;
