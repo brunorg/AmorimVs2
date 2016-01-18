@@ -2,11 +2,6 @@ $(document).ready(function(){
     carregarTipoOficina();
     salvarOficina();
     atribuiChangeOficina();
-
-    window.setTimeout(function() {
-        $('#boxMensagemGeral').show();
-        centralizarModal();
-    }, 3000);
 });
 
 function carregarTipoOficina() {

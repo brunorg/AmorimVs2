@@ -710,6 +710,10 @@ select::-ms-expand {
 	width: 100%;
 	clear: both;
 }
+.formulario_container > form
+{
+	margin-bottom: 5px;
+}
 .btn_fechar_modal
 {
 	display: inline-block;
@@ -725,6 +729,39 @@ select::-ms-expand {
 {
 	width: 100%;
 }
+.modal .Box_Area_Select
+{
+	margin: 0 0 5px;
+}
+.modal .Select_Grupo
+{
+	display: block;
+}
+.modal .Unico_Linha .Select_Grupo_Input
+{
+	display: block;
+	width: auto;
+	overflow: hidden;
+}
+.modal .Area_Botoes_Grupo,
+.modal .Area_Select_Grupo
+{
+	height: auto;
+	padding: 0;
+}
+.modal .Area_Botoes_Grupo
+{
+	text-align: right;
+}
+.modal .btns_grupo
+{
+	display: inline-block;
+	margin: 0;
+	float: none;
+}
+
+
+
 
 /* Barra de rolagem */
 	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {

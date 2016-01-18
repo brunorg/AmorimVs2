@@ -36,6 +36,11 @@ $(document).ready(function(){
 		}
 		$('#roteiro').html(HtmlContent);
 	});
+
+	$(".btn_fechar_modal").click(function() {
+		$(this).parent().hide();
+		$("#boxMensagemGeral").hide();
+	})
 });
 
 function limparCriarTutoria(){

@@ -199,7 +199,7 @@
                                 <div id="Container_Cadastro_Rotina" style="display:none">
                                     <div class="Area_Select_Grupo">
                                         <div class="Box_Area_Select Unico_Linha">
-                                            <Professor_Select class="Select_Grupo">Agrupamento</p>
+                                            <p class="Select_Grupo">Agrupamento</p>
                                             <span class="Select_Grupo_Input">
                                                 <select name="Agrupamento_Rotina" id="Agrupamento_Select"></select>
                                             </span>
@@ -432,27 +432,27 @@
         </div>
         <!--Fim Conteudo-->  
         <div id="boxMensagemGeral">
-            <div class="modal modal_edicao_geral">
+            <div class="modal modal_edicao_geral modal_edicao_Oficina" style="display: none;">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar Oficina</header>
                 <section class="container_modal_edicao">
                     <div class="formulario_container">
                         <form>
-                            <div class="Box_Area_Select">
+                            <div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Ciclo</p>
                                 <span class="Select_Grupo_Input">
                                     <select name="Ciclo" class="Ciclo_Select">
                                     </select>
                                 </span>
                             </div>
-                            <div class="Box_Area_Select">
+                            <div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Período</p>
                                 <span class="Select_Grupo_Input">
                                     <select name="Periodo" id="periodoOficina" class="Periodo_Select">
                                     </select>
                                 </span>
                             </div>
-                            <div class="Box_Area_Select">
+                            <div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Oficina</p>
                                 <span class="Select_Grupo_Input">
                                     <select name="tipo" id="selectTipoOficina" class="Oficina_Select">
@@ -466,29 +466,64 @@
                     </div>
                 </section>
             </div>
-             <div class="modal modal_edicao_geral">
+            <div class="modal modal_edicao_geral modal_edicao_professores" style="display: none;">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar professores</header>
                 <section class="container_modal_edicao">
                     <div class="formulario_container">
                         <form>
-                            <div class="Container_Professores">
-
-                            <div class="Area_Select_Grupo">
-                                <div class="Box_Area_Select Unico_Linha">
-                                    <p class="Select_Grupo">Professor</p>
-                                    <span class="Select_Grupo_Input">
-                                        <select name="Oficina" class="Professor_Select">
-                                            <option value="0"></option>
-                                        </select>
-                                    </span>
-                                </div>
-                            </div>
-
+                            <div class="Box_Area_Select Unico_Linha">
+                                <p class="Select_Grupo">Professor</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Oficina" class="Professor_Select">
+                                        <option value="0"></option>
+                                    </select>
+                                </span>
                             </div>
                             <div class="Area_Select_Grupo">
                                 <img class="btAdd_Professor" src="img/btAdd.png">
                             </div>
+                        </form>
+                        <div class="Area_Botoes_Grupo">
+                            <button type="button" class="btns_grupo btn_Salvar_Oficina_Professor">Salvar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal modal_edicao_geral modal_edicao_rotina">
+                <span class="btn_fechar_modal">&nbsp;</span>
+                <header>Editar Rotina</header>
+                <section class="container_modal_edicao">
+                    <div class="formulario_container">
+                        <form>
+
+                            <div class="Area_Select_Grupo">
+                                <div class="Box_Area_Select Unico_Linha">
+                                    <p class="Select_Grupo">Agrupamento</p>
+                                    <span class="Select_Grupo_Input">
+                                        <select name="Agrupamento_Rotina" id="Agrupamento_Select"></select>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="Box_Area_Select Unico_Linha">
+                                <p class="Select_Grupo">Rotina</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Dia_Rotina" id="Dia_Semana_Select"></select>
+                                </span>
+                            </div>
+                            <div class="Box_Area_Select Unico_Linha">
+                                <p class="Select_Grupo">Horário</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Horario_Rotina" id="Horario_Select"></select>
+                                </span>
+                            </div>
+                            <div class="Box_Area_Select Unico_Linha">
+                                <p class="Select_Grupo">Sala</p>
+                                <span class="Select_Grupo_Input">
+                                    <select name="Sala_Rotina" id="Sala_Rotina_Select"></select>
+                                </span>
+                            </div>
+
                         </form>
                         <div class="Area_Botoes_Grupo">
                             <button type="button" class="btns_grupo btn_Salvar_Oficina_Professor">Salvar</button>
