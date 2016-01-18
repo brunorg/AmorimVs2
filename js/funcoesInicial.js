@@ -23,3 +23,4 @@ function esqueciSenha() {
 function cancelar() {
     $("#esquecisenha").css("display", "none"), $(".boxGlobal").css("display", "none")
 }
+

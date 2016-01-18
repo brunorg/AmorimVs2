@@ -334,6 +334,8 @@ $(document).ready(function() {
 	//$.ajax({url: "http://plataformaamorim.org:8090/plataformaAmorim/AmorimVS2015/js/falme.js",dataType: "script"});
 	//$.getScript( "http://plataformaamorim.org:8090/plataformaAmorim/AmorimVS2015/js/falme.js", function() {});
 	
+	$('.Conteudo_Coluna').append('<a href="index.html?ref=calendario" target="_blank">VER AGENDA COMPLETA</a>')
+
 });	
 
 function myFunction() {
