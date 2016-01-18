@@ -127,7 +127,7 @@ function buscarPeriodo () {
 }
 
 function atribuiFuncoesRolagem () {
-    $("#Area_Alunos_Container").mCustomScrollbar({
+    $(".Area_Alunos_Container").mCustomScrollbar({
         axis:"y", // vertical and horizontal scrollbar
         scrollButtons:{
             enable:true
@@ -136,13 +136,17 @@ function atribuiFuncoesRolagem () {
             alwaysTriggerOffsets: false,
             onTotalScrollOffset: 500,
             whileScrolling: function() {
-                if (this.mcs.topPct > 95 && !acabouDeCarregar)
+                if (this.mcs.topPct > 95 && !acabouDeCarregar){
                     carregaAlunos();
+                    carregaAlunosModal();
+                }
 
             },
             onTotalScroll:function(){
-                if (!acabouDeCarregar)
+                if (!acabouDeCarregar){
                     carregaAlunos();
+                    carregaAlunosModal();
+                }
             }
         }
     });

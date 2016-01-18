@@ -183,11 +183,12 @@
 
 	.Box_Area_Select select > option::before { margin: 30px 0; }
 
-	#Area_Alunos_Container {
+	.Area_Alunos_Container {
 		max-height: 330px;
     	overflow: hidden;
 	}
-	#Area_Alunos {
+	#Area_Alunos,
+	#Area_Alunos_Modal {
 		width: 98%;
 	}
 	.Grupo_Aluno_Linha {
@@ -713,6 +714,7 @@ select::-ms-expand {
 .formulario_container > form
 {
 	margin-bottom: 5px;
+	text-align: justify;
 }
 .btn_fechar_modal
 {
@@ -731,7 +733,16 @@ select::-ms-expand {
 }
 .modal .Box_Area_Select
 {
+	float: none;
 	margin: 0 0 5px;
+}
+.modal.modal_edicao_agrupamento .select_agrupamento
+{
+	width: 337px;
+}
+.modal.modal_edicao_agrupamento .select_agrupamento .Select_Grupo_Input
+{
+	width: 216px;
 }
 .modal .Select_Grupo
 {
@@ -758,6 +769,10 @@ select::-ms-expand {
 	display: inline-block;
 	margin: 0;
 	float: none;
+}
+.modal.modal_edicao_agrupamento .Grupo_Aluno_Linha span.Nome_Aluno
+{
+	max-width: 500px;
 }
 
 

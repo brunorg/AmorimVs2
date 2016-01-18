@@ -21,6 +21,9 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		centralizarModal();
 	});
+	$('.modal').change(function() {
+		centralizarModal();
+	});
 	/*Recursos de Aprendizagem Pesquisar*/
 	/*Listagem de roteiros no select para escolha de um Roteiro*/
 	$.ajax({
