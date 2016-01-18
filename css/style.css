@@ -3251,6 +3251,15 @@ object{
 	cursor: pointer;
 }
 
+#linkParaAgenda{
+    font-size: 11px;
+    font-weight: 600;
+    color: #78786B;
+    cursor: pointer;
+    text-decoration: underline;
+    float: right;
+    margin-right: 40px;
+}
 
 /*Style caixa apontar presenÃ§a aluno*/
 #presenca{
