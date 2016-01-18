@@ -36,13 +36,14 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.oficina   = JSON.parse(localStorage.getItem("oficinaProfessor")); 
 				$scope.menuHTML = [ 
-					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano'}, 
-					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
-					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'roteiros'},
-					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'tutores'},
-					{label: 'Grupos do Aluno', href: 'gruposProfessor.html', class: 'grupos'},
-					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
-					{label: 'Fórum', href: 'forum.html', class: 'forum'}
+					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano'}, 
+					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'mn_professor recurso rows2'},
+					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'mn_professor roteiros'},
+					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'mn_professor tutores'},
+					{label: 'Oficinas', href: 'oficinas.html', class: 'mn_professor oficinas'},
+					{label: 'Registro JEIF/PEA', href: 'jeiffPea.html', class: 'mn_professor jeiff'},
+					{label: 'Mensagens', href: 'mensagens.html', class: 'mn_professor mensagens'},
+					{label: 'Fórum', href: 'forum.html', class: 'mn_professor forum'}
 				];
 				
 				//Visibilidade do perfil

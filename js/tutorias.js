@@ -15,7 +15,6 @@ $(document).ready(function() {
 });
 
 //Carrega a tabela ProfessorFuncionario
-
 function CarregaServicoProfessorFuncionario(){		
 	var Faltas;		
 	var idTutoria;
@@ -79,12 +78,8 @@ function CarregaServicoProfessorFuncionario(){
 						$('#Grade_Aluno_Grafico_Mask').css("width",""+(Limite*42)+"px");
 						$('.Grafico_Individual_Aluno_Overflow').css("width",""+(Limite*42)+"px");
 					}
-			
-				
-					
-			
-					$('body').append('<div class="aluno_foco"> </div>');
-			
+						
+					$('body').append('<div class="aluno_foco"> </div>');			
 
 					$('body').delegate('.Grafico_Individual_Aluno_Foto_Hover','mouseover',function(){
 						
