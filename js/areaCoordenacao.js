@@ -274,22 +274,30 @@ function MuralComum() {
 		var periodoSend = valorSelectBox;
 		var mensagemSend = $("#textareaMuralComum").val();
 
+		loading("inicial")
+
 		getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
 			console.log(result);
 			self.refresh();
+			loading("final")
 		});
 
 	};
 
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
-
+		console.log(idPost)
 		self.new(idPost, mensagemPost);
 	};
 
 	self.delete = function(idPost) {
 
-		getAjax("Mural/", "POST", "action=delete&id="+idPost, true, function(result){console.log(result);self.refresh();});
+		loading("inicial")
+		getAjax("x`/", "POST", "action=delete&id="+idPost, true, function(result){
+			console.log(result);
+			self.refresh();
+			loading("final");
+		});
 
 	};
 
