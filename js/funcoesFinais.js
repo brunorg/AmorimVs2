@@ -1,3 +1,4 @@
+
 function getQueryParams(qs) {
         qs = qs.split('+').join(' ');
 
@@ -34,3 +35,36 @@ if (urlParams["ref"] === "calendario") {
 
 }
 
+document.getElementById('setaEsquerda').addEventListener ("click", verificarMudarMes1, false);
+document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
+
+var mesAtual = 1
+
+var listaMes = [0, "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", 0]
+
+function verificarMudarMes1() {
+    verificarMudarMes(-1)
+}
+
+function verificarMudarMes2() {
+    verificarMudarMes(1)
+}
+
+function verificarMudarMes(qtd) {
+    var novoMes = mesAtual + qtd
+    if (listaMes[novoMes] !== 0) {
+        mesAtual = novoMes
+        mudarMes(mesAtual)
+    }
+}
+
+function mudarMes(novoMes) {
+    $(".Calendario .center").html(listaMes[novoMes] + " 2016")
+    document.getElementById('setaEsquerda').addEventListener ("click", verificarMudarMes1, false);
+    document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
+    refreshCalendario()
+}
+
+function refreshCalendario() {
+    $("#mCSB_1_container").html("oi")
+}
