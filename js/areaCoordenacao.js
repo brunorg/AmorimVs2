@@ -303,8 +303,139 @@ function MuralComum() {
 
 }
 
+
+
+function MuralJeiff() {
+
+	var self = this;
+
+
+	self.refresh = function() {
+
+		$("#iconeNovaPostagem3").show();
+
+
+
+		getAjax("JeiffPea", "GET", "", true, function(result){
+
+			console.log(result)
+			var htmlPost="";
+
+			result.forEach(function(postJeiff){
+
+				htmlPost += "<section class=\"mural_post_item\">";
+				htmlPost += "<main class=\"mural_post_mensagem\">";
+				htmlPost += "<span class=\"post_mural_mensagem\" id=\"mensagempostJeiff"+postJeiff.idmural+"\">";
+				htmlPost += postJeiff.mensagem;
+				htmlPost += "<\/span>";
+				htmlPost += "<\/main>";
+				htmlPost += "<aside class=\"mural_post_cabecalho\">";
+				htmlPost += "<span class=\"post_mural_data\">"+postJeiff.data+"<\/span> | <span class=\"post_mural_horario\">"+postJeiff.hora+"<\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<aside class=\"mural_post_btns\">";
+				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralComum.edit("+postJeiff.idmural+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralComum.delete("+postJeiff.idmural+")\"><\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<\/section>";
+
+			});
+
+			$("#conteudoJeiff").html(htmlPost);
+			$("#conteudoJeiff2").hide();
+			$("#conteudoJeiff").show();
+		});
+	};
+
+	self.new = function(idPost, mensagem) {
+
+		if (idPost === undefined) {
+			idPost = 0;
+			mensagem = "";
+		}
+
+		var htmlPost="";
+		htmlPost += "<form id=\"jeiffForm\">"
+		htmlPost += "<input type=\"date\" class=\"box_input_data input_data_jeiff\" id=\"jeiffDatepicker\" readonly placeholder=\"Selecione uma data\">";
+		htmlPost += "<textarea class=\"box_textarea textarea_jeiff\" name=\"jeiff_mensagem\" id=\"textareaMuralJeiff\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
+		htmlPost += "<aside class=\"box_ic\">";
+		htmlPost += "<span style=\"display: none\"><input type=\"file\" id=\"arquivoJeiff\"><\/span>";
+		htmlPost += "<span class=\"ic_add_arquivo\" onclick=\"muralJeiff.upArquivo()\">&nbsp;<\/span>";
+		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralJeiff.refresh()\">&nbsp;<\/span>";
+		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralJeiff.save("+idPost+")\">&nbsp;<\/span>";
+		htmlPost += "<\/aside>";
+		htmlPost += "</form>"
+		$("#conteudoJeiff2").html(htmlPost);
+
+
+
+
+		$("#jeiffDatepicker").datepicker({
+			showOn: "both",
+			buttonImage: "img/calendario.png",
+			buttonText: "Select date",
+			dateFormat: 'yy-mm-dd',
+			showOtherMonths:true,
+			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+			monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
+						 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
+		});
+
+		$('.ui-datepicker-trigger').hide()
+		
+		$("#conteudoJeiff2").show();
+		$("#conteudoJeiff").hide();
+		$("#iconeNovaPostagem3").hide();
+
+	};
+	
+
+	self.upArquivo = function() {
+		$("#arquivoJeiff").trigger("click");
+	}
+
+	self.save = function(idPost) {
+
+		var FR = new FileReader();
+		var arquivoJeiffRaw;
+
+        FR.onload = function(e) {
+            $("#imagemArquivo").val(e.target.result);
+            arquivoJeiffRaw = this.files[0];
+        };
+        
+
+		console.log(arquivoJeiffRaw)
+		// loading("inicial")
+
+		// getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
+		// 	console.log(result);
+		// 	self.refresh();
+		// 	loading("final")
+		// });
+
+	};
+
+	self.edit = function(idPost) {
+		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
+		console.log(idPost)
+		self.new(idPost, mensagemPost);
+	};
+
+	self.delete = function(idPost) {
+
+		loading("inicial")
+		getAjax("x`/", "POST", "action=delete&id="+idPost, true, function(result){
+			console.log(result);
+			self.refresh();
+			loading("final");
+		});
+
+	};
+
+}
+
 var muralGestao = new MuralGestao();
 var muralComum = new MuralComum();
+var muralJeiff = new MuralJeiff();
 
 window.onload = function() {
 	$(".scroll_receiver").mCustomScrollbar({
@@ -315,6 +446,7 @@ window.onload = function() {
 
 	muralGestao.refresh();
 	muralComum.refresh();
+	muralJeiff.refresh();
 };
 
 
