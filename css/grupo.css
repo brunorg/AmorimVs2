@@ -588,7 +588,21 @@ select::-ms-expand {
 #container_Pesquisa .celulaMedia{
 	width: 46.3%;
 	margin-left: 10px;
+	margin-bottom: 5px;
 
+}
+
+.input_Pesq_Aluno {
+	margin: 0;
+    background-color: white;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    height: 39px;
+    padding: 8px;
+    border-radius: 0px !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 .oficina_info
 {

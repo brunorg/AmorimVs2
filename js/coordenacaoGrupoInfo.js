@@ -30,6 +30,7 @@ $(document).ready(function() {
 
 	carregaOficineiros();
 	carregaTutores();
+	//pesquisaGrupoAluno();
 	/*Listagem dos anos de estudo*/
 
 		// var Limite = dataAnoEstudo.length;	   
@@ -133,7 +134,6 @@ function carregaTutores(){
 		crossDomain: true,
 		dataType: 'json',
 		success: function(dataTutoria){
-			debugger;
 			for(var i = 0; i < dataTutoria.length; i++){
 				HtmlContent += '<option value="' + dataTutoria[i].idtutoria + '">' + dataTutoria[i].tutor.nome + '</option>';
 			}
@@ -196,30 +196,83 @@ function MostrarGrupos() {
 	return false;
 }
 
-/*function mostrarAgrupamentos(){
+function mostrarAgrupamentos(){
 	var oficineiroOficina = $(".oficinaO").val();
 	var htmlOficina = "";
 	$("#box_grupo_info").html("");
 	$.ajax({
-		url: path + "Agrupamento/ListarPorOficineiro/" + oficineiroOficina,
+		url: path + "OficinaProfessor/ListarOficinaProfessorRotina/" + oficineiroOficina,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		success: function(dataAgrupamentos){
+			debugger;
 			for(var i = 0; i < dataAgrupamentos.length; i++){
-				htmlOficina += '<div class="boxGrupo'+dataAgrupamentos[i].nome+' linha" id="'+dataAgrupamentos[i].idagrupamento+'">';
+				htmlOficina += '<div class="lista_agrupamentos">';
+				htmlOficina += 		'<section class="oficina_info">';
+				htmlOficina +=			'<header class="tipo_oficina">';
+				htmlOficina +=				'<h1 style="color:'+dataAgrupamentos[i].oficina.tipoOficina.cor.forte+'">'+dataAgrupamentos[i].oficina.nome+ '</h1>';
+				htmlOficina +=			'</header>';
+				htmlOficina +=			'<main>';
+				htmlOficina +=				'<article class="ciclo_periodo_oficina">';
+				htmlOficina +=					'<p class="ciclo_periodo"> Ciclo:';
+				htmlOficina +=						'<span class="ciclo">'+dataAgrupamentos[i].oficina.ciclo.ciclo+'</span>';
+				htmlOficina +=						'| Período: <span class="periodo">'+dataAgrupamentos[i].oficina.periodo.periodo+'</span>';
+				htmlOficina +=					'</p>';
+				htmlOficina +=					'<span class="editar editar_rotina"> &nbsp; </span>';
+				htmlOficina +=				'</artile>';
+				htmlOficina +=				'<article class="rotina_oficina"> Rotina:';
+				htmlOficina +=					'<span class="rotina_dia"> '+dataAgrupamentos[i].dia+'</span>';
+				htmlOficina +=					'<span class="rotina_horario"> '+dataAgrupamentos[i].hora+':00 </span>';
+				htmlOficina +=					'<span class="rotina_sala"> '+dataAgrupamentos[i].sala+' </span>';
+				htmlOficina +=					'<span class="editar editar_rotina"> &nbsp; </span>';
+				htmlOficina +=				'</article>';
+				htmlOficina +=				'<article class="oficineiros_oficina">';
+				htmlOficina +=					'<p class="oficineiro"> Professor(es):';
+				for(var j = 0; j < dataAgrupamentos[i].professores.length; j++){
+									htmlOficina += '<span> '+dataAgrupamentos[i].professores[j].nome +'</span>';
+									htmlOficina += dataAgrupamentos[i].professores.length - 1 != j ?',':''; //If resumido, ternário. Verifica se a lista de professores está na ultima posição, se sim, não poem vírgula, se não, poem vírgula.
+				}
+				htmlOficina +=					'</p>';
+				htmlOficina +=					'<span class="editar editar_oficineiro"> &nbsp; </span>';
+				htmlOficina +=				'</article>';
+				htmlOficina +=				'<article class="agrupamento_oficina">';
+				htmlOficina +=					'<p class="agrupamento"> Agrupamento:';
+				htmlOficina +=						'<span> '+dataAgrupamentos[i].agrupamento+' </span>';
+				htmlOficina +=					'</p>';
+				htmlOficina +=					'<span class="editar editar_agrupamento"> &nbsp; </span>';
+				htmlOficina +=				'</article>';
+				htmlOficina +=			'</main>';
+				htmlOficina +=		'</section>';
+				htmlOficina +=	'</div>';
 			}
+			$("#box_grupo_info").append(htmlOficina);
 		}
 	});
-}*/
+}
+
+/*function pesquisaGrupoAluno(){
+	var nmAluno = $("#txtPesq").val();
+	$.ajax({
+		url: path + "Grupo/GrupoAluno/" + nmAluno,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dataAlunoGrupo){
+
+		}
+	});
+} */
 
 function changePesquisa(){
 	$("#box_grupo_info").empty();
 	if($(".pesqTutOfi").val() == 2){
 		$("#comboTut").show();
+		$("#txtPesq").show();
 		$("#comboOfi").hide();
 	} else  if($(".pesqTutOfi").val() == 1){
 		$("#comboTut").hide();
+		$("#txtPesq").hide();
 		$("#comboOfi").show();
 	}
 }
