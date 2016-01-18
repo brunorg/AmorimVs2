@@ -113,7 +113,9 @@ $(document).ready(function(){
 
 	//Lista os objetivos de um roteiro ao clicar na linha correspondente
 	$('body').delegate('.roteiro_listado', 'click', function(){
+		
 		idRoteiro = $(this).attr('idRoteiro');	//Pega o idRoteiro
+		$('.Roteiro_Listado_Btns').show();		//Lista todos os botões
 		
 		$('.spanObjetivo').css('display','none');	//Esconde as divs das atividades que não devem aparecer 
 	
@@ -123,7 +125,9 @@ $(document).ready(function(){
 			$('.Objetivos_Lista').removeClass('Atvs_Expandido').css('height','0px');
 			return false;
 		}
-
+		
+		$('#Roteiro_Listado_Btns'+idRoteiro).hide();
+		
 		//Esconde todas as divs para mostrar a div com os objetivos corretos
 		$('.Objetivos_Lista').removeClass('Atvs_Expandido').css('height','0px');
 		
@@ -135,6 +139,8 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		
+		
 		//Lista os objetivos do roteiro.
 		listarObjetivos(idRoteiro);
 		
@@ -143,7 +149,7 @@ $(document).ready(function(){
 	});	
 		
 	
-	$('body').delegate('.Btn_AddAtv_Obj', 'click', function(){
+	$('body').delegate('.Btn_AddAtv_Obj'	, 'click', function(){
 		
 		idObjetivo = $(this).attr('idObjetivo');
 		idRoteiro = $(this).attr('idRoteiro');
@@ -1746,7 +1752,7 @@ function carregarPesquisaByAno(idAno){
 					 htmlConteudo += 
 						 '<div id="roteiro'+id+'" idRoteiro="'+id+'" class="roteiro_listado" style="cursor:pointer">'+
 						 	'<span id="nome_roteiro_listado_'+id+'" class="nome_roteiro_listado">'+d[i].nome+'</span>'+
-						 	'<div class="Roteiro_Listado_Btns">'+
+						 	'<div class="Roteiro_Listado_Btns" id="Roteiro_Listado_Btns'+id+'">'+
 						 		'<div class="Roteiro_Listado_Add" idRoteiro='+id+' style="width: 33%"></div>'+
 						 		'<div class="Roteiro_Listado_Edit" idRoteiro='+id+' style="width: 33%"></div>'+
 						 		'<div class="Roteiro_Listado_Del" idRoteiro='+id+' style="width: 33%"></div>'+
