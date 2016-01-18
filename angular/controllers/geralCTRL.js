@@ -61,11 +61,13 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.menuHTML = [ 
-					{label: 'Tutores', href: 'tutorias.html',class: 'tutores'}, 
+					{label: 'Rotinas', href: 'rotinas.html',class: 'rotinas'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
 					{label: 'Roteiros', href: 'roteiros.html', class: 'roteiros'},
+					{label: 'Tutorias', href: 'tutorias.html', class: 'tutoria'},
 					{label: 'Grupos', href: 'grupo.html', class: 'grupos'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
+					{label: 'Fórum', href: 'forum.html', class: 'forum'}
 				];	
 				
 				//Visibilidade do perfil	

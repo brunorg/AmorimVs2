@@ -5,41 +5,41 @@
 		<title>Plataforma Amorim</title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
         
-        <!--Style-->
+		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />	
         <link rel="stylesheet" type="text/css" href="css/tutorias.css" />	
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+		<link rel="stylesheet" type="text/css" href="css/cadastros.css" />
     	<!--Fim Style-->
         
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
-		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script src="js/jquery-1.10.2.js"></script>                  
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-      	<script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>        
+		<script src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script> 	
+		<script src="js/jquery-ui.js"></script>
+
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>                
-        <script type="text/javascript" src="js/calendario.js"></script>
-        <script type="text/javascript" src="js/funcoes.js"></script>
-        <script type="text/javascript" src="js/autenticador.js"></script>
+		<script type="text/javascript" src="js/funcoes.js"></script> 
+		<script type="text/javascript" src="js/autenticador.js"></script>
                         
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-        <script type="text/javascript" src="js/tutorias.js"></script>
-		<script src="js/relatorioProfessor.js"></script>       
-        <!--Fim JS-->     
-     
-     </head>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>             
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/tutorias.js"></script> 	
+		<!--Fim JS-->       
+	</head>
 
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-           <div>
+			<div>
                 <div id="Cabecalho_Menu_Area">
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
                     <div id="Cabecalho_Menu_Area_Menu2">
@@ -69,35 +69,71 @@
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">    
                         	<div  ng-repeat="menu in menuHTML">                        	
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                	<div ng-if="menu.class== 'mensagens'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    <a href="{{menu.href}}">{{menu.label}}</a>
-                                </div>
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                    	<div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        {{menu.label}}
+                                    </div>
+                                </a>
                             </div>
                         </div>    
-                        <!--Calendario-->         
+                        <!--Calendario-->     
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
 							<p id="apontar">Apontar Presença grupo</p>
-						</div>						
+						</div>                                                 							
 					</div>
-
 				</div>
 
-				<!--Coluna geral central-->
-                <!--bloqueio para a rolagem top-->				
-                <div class="Conteudo_Coluna" id="content_central">				
-					<div id="boxGeralAlunos">
-                    	
-                    </div>           
+				<!--Coluna geral central-->			
+                <div class="Conteudo_Coluna" id="content_central_fixa">					
+                	<!--Lista de Alunos/Grafico-->
+                	<div class="Grade_Aluno">
+                		<!--Legenda do Gráfico-->
+						<div class="Content_Legenda_Grade_Aluno">
+							<div class="Legenda_Grade_Aluno">
+								<div class="Cor_Legenda_Grade_Aluno"></div>
+								<div class="Nome_Legenda_Grade_Aluno">Objetivos corrigidos</div>
+							</div>							
+							<div class="Legenda_Grade_Aluno">
+								<div class="Cor_Legenda_Grade_Aluno"></div>
+								<div class="Nome_Legenda_Grade_Aluno">Produção alunos</div>
+							</div>
+						</div>
+						<!--Conteudo Grafico Inside-->
+						<div class="Grade_Aluno_Grafico_Content">
+							<div class="Grade_Aluno_Grafico_Legenda_Lateral">
+								Faltas<br />
+								100<br />
+								90<br />
+								80<br />
+								70<br />
+								60<br />
+								50<br />
+								40<br />
+								30<br />
+								20<br />
+								10<br />
+								0
+							</div>
+							<div class="Grade_Aluno_Grafico">
+								<div id="Grade_Aluno_Grafico_Mask"></div>
+								<div class="Grafico_Individual_Aluno_Overflow"></div>                                
+
+							</div>
+						</div>
+                	</div>
+                    <div class="box_margin_alter"></div>
 				</div>
-                <div id="bloqueio_bottom_content_central_1"></div><!--bloqueio para a rolagem bottom-->
-				
+                <div class="boxCalendario"></div>			
 			</div>             
 		</div><!--Fim Conteudo--> 
-        <div class="boxGlobal"></div>
-    	<div id="boxMensagemGeral"></div>        
-	</body>    
+        <div id="boxMensagemGeral"></div>
+        <div class="boxGrafico">
+            <div id="loaderImage"></div>
+        </div>
+        <div class="boxGlobal"></div>      
+	</body>
 </html>

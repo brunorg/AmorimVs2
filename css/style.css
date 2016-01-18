@@ -195,10 +195,13 @@ html, body
 				}
 
 				/*Menu Plano de estudo*/
-				.plano { background-image: url(../img/ic_plano-ativo.png);
-					 }
+				.plano { 
+					background-image: url(../img/ic_plano-ativo.png);
+				}
 				
-				.plano:hover { background-image: url(../img/ic_plano.png); }
+				.plano:hover { 
+					background-image: url(../img/ic_plano.png); 
+				}
 				
 				.plano-active {
 					background-image: url(../img/ic_plano.png);	
@@ -206,54 +209,82 @@ html, body
 				}
 					
 				/*Menu recurso*/
-				.recurso { background-image: url(../img/ic_livro-ativo.png); 
-					}
+				.recurso { 
+					background-image: url(../img/ic_livro-ativo.png); 
+				}
 
-				.recurso:hover { background-image: url(../img/ic_livro.png); }
+				.recurso:hover { 
+					background-image: url(../img/ic_livro.png); 
+				}
 
 				.recurso-active {
 					background-image: url(../img/ic_livro.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}	
 				/* Menu roteiros */
-				.roteiros { background-image: url(../img/ic_tutoria-ativo.png); 
+				.roteiros { 
+					background-image: url(../img/ic_menu_roteiros.png); 
 				}
 
-				.roteiros:hover { background-image:  url(../img/ic_tutoria.png) }
-
+				.roteiros:hover { 
+					background-image:  url(../img/ic_menu_roteiros_ativo.png) 
+				}
+				
 				.roteiros-active {
-					background-image:  url(../img/ic_tutoria.png);	
+					background-image:  url(../img/ic_menu_roteiros_ativo.png);	
+					background-color: rgba(22, 190, 207, 0.79);				
+				}	
+				
+				/* Menu rotinas */
+				.rotinas { 
+					background-image:url(../img/ic_menu_rotina.png);
+				}
+
+				.rotinas:hover { 
+					background-image:url(../img/ic_menu_rotina_ativo.png);
+				}
+
+				.rotinas-active {
+					background-image:  url(../img/ic_menu_rotina_ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}		
 				
 				/*Menu oficinas*/
-				.oficinas { background-image: url(../img/ic_oficinas.png); 
-					}
+				.oficinas { 
+					background-image: url(../img/ic_oficinas.png); 
+				}
 
-				.oficinas:hover { background-image: url(../img/ic_oficinas-ativo.png); }
+				.oficinas:hover { 
+					background-image: url(../img/ic_oficinas-ativo.png); 
+				}
 
 				.oficinas-active {
-					background-image: url(../img/ic_roteiro.png);	
+					background-image: url(../img/ic_oficinas-ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
 
 				/*Menu Produções do aluno*/
-				.prodAluno { background-image: url(../img/ic_prodAluno.png);
-						
+				.prodAluno { 
+					background-image: url(../img/ic_prodAluno.png);						
 				 }
 
-				.prodAluno:hover { background-image: url(../img/ic_prodAluno-ativo.png); }
+				.prodAluno:hover { 
+					background-image: url(../img/ic_prodAluno-ativo.png);
+				}
 
 				.prodAluno-active {
-					background-image: url(../img/ic_roteiro.png);	
+					background-image: url(../img/ic_prodAluno-ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}	
 				
 				/*Menu forum*/
-				.forum { background-image: url(../img/ic_forum-ativo.png);
-						 }
+				.forum { 
+					background-image: url(../img/ic_forum-ativo.png);
+				}
 
-				.forum:hover { background-image: url(../img/ic_forum.png); }
+				.forum:hover { 
+					background-image: url(../img/ic_forum.png); 
+				}
 
 				.forum-active {
 					background-image: url(../img/ic_forum.png);	
@@ -264,7 +295,9 @@ html, body
 				.mensagens { background-image: url(../img/Ic_mensagens-ativo.png);
 						 }
 
-				.mensagens:hover { background-image: url(../img/ic_mensagens.png); }
+				.mensagens:hover { 
+					background-image: url(../img/ic_mensagens.png); 
+				}
 
 				.mensagens-active {
 					background-image: url(../img/ic_mensagens.png);	
@@ -272,21 +305,27 @@ html, body
 				}		
 				
 				/*Menu Tutoria*/
-				.tutoria { background-image: url(../img/ic_tutoria-ativo.png);
-						 }
+				.tutoria { 
+					background-image: url(../img/bt_tutores_normal.png);
+				}
 
-				.tutoria:hover { background-image: url(../img/ic_tutoria.png); }
+				.tutoria:hover { 
+					background-image: url(../img/bt_tutores_ativo.png); 
+				}
 
 				.tutoria-active {
-					background-image: url(../img/ic_tutores_ativo.png);	
+					background-image: url(../img/bt_tutores_ativo.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
 				
 				/*Menu Tutores*/
-				.tutores { background-image: url(../img/bt_tutores_normal.png);
-						 }
+				.tutores { 
+					background-image: url(../img/bt_tutores_normal.png);
+				}
 
-				.tutores:hover { background-image: url(../img/bt_tutores_ativo.png); }
+				.tutores:hover { 
+					background-image: url(../img/bt_tutores_ativo.png); 
+				}
 
 				.tutores-active {
 					background-image: url(../img/bt_tutores_ativo.png);	
@@ -294,10 +333,13 @@ html, body
 				}
 				
 				/*Menu Grupos*/
-				.grupos { background-image: url(../img/bt_grupo_normal.png);
-						 }
+				.grupos { 
+					background-image: url(../img/bt_grupo_normal.png);
+				}
 
-				.grupos:hover { background-image: url(../img/bt_grupo_ativo.png); }
+				.grupos:hover { 
+					background-image: url(../img/bt_grupo_ativo.png); 
+				}
 
 				.grupos-active {
 					background-image: url(../img/bt_grupo_ativo.png);	
