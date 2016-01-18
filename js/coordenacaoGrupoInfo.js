@@ -16,7 +16,6 @@
 
 //Carrega os valores utilizados do BD
 
-	var dataTutoria 				=	getData("Tutoria", null);
 	var dataProfessorFuncionario    =   getData("ProfessorFuncionario", null);
 	var dataPeriodo 				=	getData("Periodo", null);
 //	var dataAnoEstudo 				=	getData("AnoEstudo", null);
@@ -30,6 +29,7 @@
 $(document).ready(function() {	
 
 	carregaOficineiros();
+	carregaTutores();
 	/*Listagem dos anos de estudo*/
 
 		// var Limite = dataAnoEstudo.length;	   
@@ -49,18 +49,8 @@ $(document).ready(function() {
 	//	HtmlContentC += '<option value="'+dataProfessorFuncionario[a].idprofessorFuncionario+'">'+dataProfessorFuncionario[a].nome+'</option>';
 	//}		
 	//HtmlContentC += '<option value="N_A">Não Atribuido</option>';
-	//$('.tutoria').html(HtmlContentC);	
-
-	/*Listagem dos Tutores já com uma tutoria atribuida*/
-	var Limite = dataTutoria.length;
-	var HtmlContent = "";
-	HtmlContent += '<option value="Todas">Todas</option>';
-	for(var a = 0; a < Limite; a++){
-		HtmlContent += '<option value="'+dataTutoria[a].idtutoria+'">'+dataTutoria[a].tutor.nome+'</option>';
-	}		
-	HtmlContent += '<option value="N_A">Não Atribuido</option>';
-	$('.tutoriaT').html(HtmlContent);	
-	//MostrarGrupos();  
+	//$('.tutoria').html(HtmlContentC);
+	  
 	carregarProfessoresByPeriodo('8');
 	
 	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
@@ -131,6 +121,26 @@ function carregarProfessoresByPeriodo(idPeriodo){
 	
 }
 
+function carregaTutores(){
+	var anoAtual = new Date().getFullYear();
+	console.log(anoAtual);
+	var HtmlContent = "";
+	HtmlContent += '<option value="0" selected disabled>Selecione</option>';
+	$.ajax({
+		url: path + "Tutoria/TutoriaAno/" + anoAtual,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		success: function(dataTutoria){
+			debugger;
+			for(var i = 0; i < dataTutoria.length; i++){
+				HtmlContent += '<option value="' + dataTutoria[i].idtutoria + '">' + dataTutoria[i].tutor.nome + '</option>';
+			}
+		}
+	});
+	$(".tutoriaT").append(HtmlContent);
+}
 function carregaOficineiros(){
 	var htmlOficina = "<option value='0' selected disabled>Selecione um oficineiro</option>";
 	$.ajax({
