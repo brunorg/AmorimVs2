@@ -39,8 +39,9 @@ document.getElementById('setaEsquerda').addEventListener ("click", verificarMuda
 document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
 
 var mesAtual = 1
+var ano = 2015
 
-var listaMes = [0, "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", 0]
+var listaMes = [0, "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", 1]
 
 function verificarMudarMes1() {
     verificarMudarMes(-1)
@@ -52,14 +53,23 @@ function verificarMudarMes2() {
 
 function verificarMudarMes(qtd) {
     var novoMes = mesAtual + qtd
-    if (listaMes[novoMes] !== 0) {
+    if (typeof listaMes[novoMes] === "string") {
         mesAtual = novoMes
-        mudarMes(mesAtual)
+    } else {
+        if (listaMes[novoMes] === 1) {
+            mesAtual = 1
+            ano += 1
+        } else {
+            mesAtual = 12
+            ano -= 1
+        }
     }
+    mudarMes(mesAtual)
 }
 
+mudarMes(mesAtual)
 function mudarMes(novoMes) {
-    $(".Calendario .center").html(listaMes[novoMes] + " 2016")
+    $(".Calendario .center").html(listaMes[novoMes] + " " + ano)
     document.getElementById('setaEsquerda').addEventListener ("click", verificarMudarMes1, false);
     document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
     refreshCalendario()
@@ -68,3 +78,5 @@ function mudarMes(novoMes) {
 function refreshCalendario() {
     $("#mCSB_1_container").html("oi")
 }
+
+console.log(ano)
