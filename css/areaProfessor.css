@@ -54,6 +54,12 @@ div[class*="box_col"]:last-of-type {
 	padding-right: 15px;
 	box-sizing: border-box;
 }
+.box_col12 {
+    height: 100%;
+    width: 100%;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
 
 .full_height{
     height: 550px;
@@ -146,11 +152,14 @@ div[class*="box_col"]:last-of-type {
 }
 
 .mensagemGrande{
-    height: 293px`;
+    height: 293px;
 }
 
 .mensagemMedia{
 	height: 103px;
+}
+.mensagemMural{
+    height: 386px;
 }
 
 .mensagemPequena{
