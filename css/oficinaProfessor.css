@@ -1,0 +1,86 @@
+.main_nav
+{
+	overflow: hidden;
+	position: relative;
+}
+.abas_agrupamentos
+{
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: justify;
+}
+.aba_agrupamento
+{
+	display: inline-block;
+	background-color: #f35955;
+	width: 155.7px;
+	text-align: center;
+	color: #FFF;
+	padding: 11px;
+	cursor: pointer;
+}
+.aba_agrupamento:hover,
+.aba_agrupamento.aba_ativa
+{
+	background-color: #cf373a;
+}
+.conteudo_principal
+{
+	height: 518px;
+}
+.agrupamento_container
+{
+	height: 100%;
+	background-color: #e5e5dc;
+	margin: 0;
+	padding: 24px;
+}
+.agrupamento
+{
+	width: 100%;
+	height: 100%;
+	text-align: justify;
+	display: none;
+}
+.agrupamento_aluno
+{
+	display: inline-block;
+	width: 31%;
+	position: relative;
+	background-color: #fff;
+	margin-bottom: 5px;
+	text-align: left;
+	padding: 9px 9px 9px 40px;
+	border-radius: 5px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.agrupamento_aluno:nth-last-of-type(1),
+.agrupamento_aluno:nth-last-of-type(2),
+.agrupamento_aluno:nth-last-of-type(3)
+{
+	visibility: hidden;
+	padding: 0;
+	height: 0;
+	margin: 0;
+}
+.agrupamento_aluno:hover,
+{
+	background-color: #F7F7F7;
+}
+.agrupamento_aluno > img
+{
+	display: block;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 3px;
+	left: 3px;
+}
+.agrupamento_aluno > span
+{
+	line-height: 1em;
+	color: #666;
+	text-align: left;
+}
