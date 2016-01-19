@@ -163,11 +163,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#RoteiroExtra").mCustomScrollbar({
+	$("#listagemAtribuirRoteiroExtra").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
-		scrollButtons:{
-			enable:true
-		}
 	});	
 	
 	$("#box_barra1").mCustomScrollbar({

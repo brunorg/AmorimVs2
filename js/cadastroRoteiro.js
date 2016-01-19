@@ -236,6 +236,15 @@ $(document).ready(function(){
 		//Chama a função para listar as atividades
 		listarAtividades(idObjetivo, idRoteiro);
 	})
+	$('body').delegate('.Obj_Listado_Nome', 'click', function(){
+
+		//Salva os ids em variaveis
+		idObjetivo = $(this).parent().parent().attr('idObjetivo');
+		idRoteiro = $(this).parent().parent().attr('idRoteiro');
+		
+		//Chama a função para listar as atividades
+		listarAtividades(idObjetivo, idRoteiro);
+	})
 	
 	//Monta o modal para adicionar um objetivo a um roteiro já existente
 	$('body').delegate('.Roteiro_Listado_Add', 'click', function(){
@@ -1340,7 +1349,6 @@ function expandirRot() {
 		$('#Objetivos_Inseridos_Container').css('height',alturaContainer+'px');
 		$('#Objetivos_Inseridos_Container').toggleClass('rotExpandido');
 	}
-	
 }
 
 // Expandir objetivo  (VERIFICAR SE VAI USAR)
@@ -1590,8 +1598,6 @@ function excluirObj(idObjetivo){
 			return mensagem("Erro ao excluir objetivo!","OK","bt_ok","erro");
 		}
 	});
-	
-	
 }
 
 function excluirAtividade(idAtividade){
@@ -1871,14 +1877,14 @@ function listarAtividades(idObjetivo, idRoteiro){
 					console.log(data);
 					idAtividade = data[i].idatividade;
 					htmlContent += 
-					'<div id="Atv_Obj_Info_'+idAtividade+'" class="Atv_Obj_Info atividadeObjetivo'+idObjetivo+'">'+
-		        		'<div id="Atv_Obj_Num_'+idAtividade+'" class="Atv_Obj_Num Atv_Obj Atv_Obj'+idObjetivo+'">'+cont+'</div>'+
-		        		'<span id="Atv_Obj_Nome_'+idAtividade+'" class="Atv_Obj_Nome">'+data[i].nome+'</span>'+
-		        		'<span id="Atv_Obj_Livro_'+idAtividade+'" class="Atv_Obj_Livro"> '+data[i].livro+' </span>'+
-		        		'<span id="Atv_Obj_Pag_'+idAtividade+'" class="Atv_Obj_Pag">p. <span class="Atv_Obj_Pag_OK">'+data[i].paginaLivro+'</span></span>'+
+					'<div id="Atv_ObjList_Info_'+idAtividade+'" class="Atv_ObjList_Info atividadeObjetivo'+idObjetivo+'">'+
+		        		'<div id="Atv_ObjList_Num_'+idAtividade+'" class="Atv_ObjList_Num Atv_ObjList Atv_ObjList'+idObjetivo+'">'+cont+'</div>'+
+		        		'<span id="Atv_ObjList_Nome_'+idAtividade+'" class="Atv_ObjList_Nome">'+data[i].nome+'</span>'+
+		        		'<span id="Atv_ObjList_Livro_'+idAtividade+'" class="Atv_ObjList_Livro"> '+data[i].livro+' </span>'+
+		        		'<span id="Atv_ObjList_Pag_'+idAtividade+'" class="Atv_ObjList_Pag">p. <span class="Atv_ObjList_Pag_OK">'+data[i].paginaLivro+'</span></span>'+
 		        		'<div id="Atv_Inserida_Btns_'+idAtividade+'" class="Atv_Inserida_Btns">'+
-		        			'<div id="Btn_Editar_Atv_'+idAtividade+'" class="Btn_Atv Btn_Editar_Atv" onclick=editarAtividade('+idAtividade+','+idObjetivo+')></div>'+
-		        			'<div id="Btn_Del_Atv_'+idAtividade+'" class="Btn_Atv Btn_Del_Atv" onclick=excluirAtividade('+idAtividade+')></div>'+
+		        			'<div id="Btn_Editar_Atv_'+idAtividade+'" class="Btn_AtvList Btn_Editar_Atv" onclick=editarAtividade('+idAtividade+','+idObjetivo+')></div>'+
+		        			'<div id="Btn_Del_Atv_'+idAtividade+'" class="Btn_AtvList Btn_Del_Atv" onclick=excluirAtividade('+idAtividade+')></div>'+
 		        		'</div>'+
 		        	'</div>';
 					
@@ -1887,8 +1893,8 @@ function listarAtividades(idObjetivo, idRoteiro){
 				}
 			}else {
 				htmlContent +=
-				'<div id="Atv_Obj_Info_" class="Atv_Obj_Info Vazio atividadeObjetivo'+idObjetivo+'">'+
-	        		'<span id="Atv_Obj_Nome_" class="Atv_Obj_Nome">Nenhuma atividade cadastrada.</span>'+
+				'<div id="Atv_ObjList_Info_" class="Atv_ObjList_Info Vazio atividadeObjetivo'+idObjetivo+'">'+
+	        		'<span id="Atv_ObjList_Nome_" class="Atv_ObjList_Nome">Nenhuma atividade cadastrada.</span>'+
 	        	'</div>';
 				i = 1;
 			}
@@ -1923,17 +1929,16 @@ function listarObjetivos(idRoteiro){
 
 					idObjetivo = data[i].idobjetivo;
 					htmlContent +=
-					'<div id="Obj_Inserido_'+idObjetivo+'" class="Obj_Inserido objetivo'+idObjetivo+' objetivoRoteiro'+idRoteiro+'" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'">'+
-					'<div id="Obj_Inserido_Info_'+idObjetivo+'" class="Obj_Inserido_Info">'+
-						'<div id="Obj_Inserido_Num_'+idObjetivo+'" class="Obj_Inserido_Num">'+(cont)+'</div>'+
-						//'<div id="Obj_Inserido_Nome_'+idObjetivo+'" class="Obj_Inserido_Nome" onclick="expandirObj('+idObjetivo+')">'+data[i].nome+'</div>'+
-						'<div id="Obj_Inserido_Nome_'+idObjetivo+'" class="Obj_Inserido_Nome">'+data[i].nome+'</div>'+
-						'<div id="Obj_Inserido_Btns_'+idObjetivo+'" class="Obj_Inserido_Btns">'+
-							'<div id="Btn_AddAtv_Obj_'+idObjetivo+'" class="Btn_Obj Btn_AddAtv_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
-							'<div class="Btn_Editar_Obj_Pesq Btn_Obj Btn_Editar_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
-							'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
+					'<div id="Obj_Listado_'+idObjetivo+'" class="Obj_Listado objetivo'+idObjetivo+' objetivoRoteiro'+idRoteiro+'" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'">'+
+						'<div id="Obj_Listado_Info_'+idObjetivo+'" class="Obj_Listado_Info">'+
+							'<div id="Obj_Listado_Num_'+idObjetivo+'" class="Obj_Listado_Num">'+(cont)+'</div>'+
+							'<div id="Obj_Listado_Nome_'+idObjetivo+'" class="Obj_Listado_Nome">'+data[i].nome+'</div>'+
+							'<div id="Obj_Listado_Btns_'+idObjetivo+'" class="Obj_Listado_Btns">'+
+								'<div id="Btn_AddAtv_Obj_'+idObjetivo+'" class="Btn_ObjList Btn_AddAtv_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
+								'<div class="Btn_Editar_Obj_Pesq Btn_ObjList Btn_Editar_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
+								'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_ObjList Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
+							'</div>'+
 						'</div>'+
-					'</div>'+
 					'<span id="spanObjetivo'+idObjetivo+'" class="spanObjetivo"></span>'+
 					'</div>'				;
 					
@@ -1942,8 +1947,8 @@ function listarObjetivos(idRoteiro){
 				
 			}else{
 				htmlContent +=
-				'<div id="Obj_Inserido_" class="Obj_Inserido objetivo">'+
-				'<div id="Obj_Inserido_Info_" class="Obj_Inserido_Info">'+
+				'<div id="Obj_Listado_" class="Obj_Listado objetivo">'+
+				'<div id="Obj_Listado_Info_" class="Obj_Listado_Info">'+
 					'Nenhum Objetivo cadastrado'+
 				'</div>'+
 				'</div>';
