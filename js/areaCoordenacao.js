@@ -197,7 +197,6 @@ function MuralGestao() {
 
 }
 
-
 function MuralComum() {
 
 	var self = this;
@@ -302,8 +301,6 @@ function MuralComum() {
 	};
 
 }
-
-
 
 function MuralJeiff() {
 

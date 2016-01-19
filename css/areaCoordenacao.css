@@ -322,6 +322,7 @@ div[class*="box_col"]:last-of-type {
 
 .textarea_jeiff
 {
+	font-size: 14px;
 	height: 388px;
 }
 input.input_data_jeiff
