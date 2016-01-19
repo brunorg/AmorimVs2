@@ -436,8 +436,10 @@
             </div>            
         </div>
         <!--Fim Conteudo-->  
-        <div id="boxMensagemGeral">
-            <div class="modal modal_edicao_geral modal_edicao_Oficina" style="display: none;">
+        <div id="boxMensagemGeral"></div>
+        <!--Modais de editar agrupamento-->
+        <div id="boxModaisEdicao">
+        	<div class="modal modal_edicao_geral modal_edicao_oficina" style="display: none;">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar oficina</header>
                 <section class="container_modal_edicao">
@@ -466,7 +468,7 @@
                             </div>
                         </form>
                         <div class="Area_Botoes_Grupo">
-                            <button type="button" class="btns_grupo">Salvar</button>
+                            <button type="button" class="btns_grupo" onClick="salvarOficina()">Salvar</button>
                         </div>
                     </div>
                 </section>
@@ -536,7 +538,7 @@
                     </div>
                 </section>
             </div>
-            <div class="modal modal_edicao_geral modal_edicao_agrupamento">
+            <div class="modal modal_edicao_geral modal_edicao_agrupamento" style="display: none;">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar agrupamento</header>
                 <section class="container_modal_edicao">
@@ -575,8 +577,6 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div id="boxModaisEdicao">
         </div>
         <div class="boxGlobal">
             <img src="img/loading2.GIF" width="60" height="60" alt=""/>

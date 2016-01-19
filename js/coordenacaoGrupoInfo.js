@@ -30,28 +30,6 @@ $(document).ready(function() {
 
 	carregaOficineiros();
 	carregaTutores();
-	//pesquisaGrupoAluno();
-	/*Listagem dos anos de estudo*/
-
-		// var Limite = dataAnoEstudo.length;	   
-		// var HtmlContent = "";
-
-		// for(var a = 0; a < Limite; a++)
-		// {
-		// 	HtmlContent += '<option value="'+dataAnoEstudo[a].ano+'">'+dataAnoEstudo[a].ano+'º</option>';
-		// }		
-		// $('#anoEstudo').html(HtmlContent);
-
-	/*Listagem dos Professores para atribuir tutoria*/
-	//var LimiteC = dataProfessorFuncionario.length;
-	//var HtmlContentC = "";
-	//HtmlContentC += '<option value="-1">Selecione</option>';
-	//for(var a = 0; a < LimiteC; a++){
-	//	HtmlContentC += '<option value="'+dataProfessorFuncionario[a].idprofessorFuncionario+'">'+dataProfessorFuncionario[a].nome+'</option>';
-	//}		
-	//HtmlContentC += '<option value="N_A">Não Atribuido</option>';
-	//$('.tutoria').html(HtmlContentC);
-	  
 	carregarProfessoresByPeriodo('8');
 	
 	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
@@ -100,15 +78,7 @@ $(document).ready(function() {
 			Linha =Linha+1;
 			
 		})
-
-		// if ($("#S_AnoEstudo option").eq(0).val() != $("#S_AnoEstudo").val()){
-		// 	$("#S_AnoEstudo option").eq(0).attr('selected','selected');
-		// 	SetValoresAlunoVariavel();
-		// }
-
-
 	})
-
 });
 
 function carregarProfessoresByPeriodo(idPeriodo){
@@ -186,7 +156,6 @@ function MostrarGrupos() {
 						HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].GrupoId+');"></div>';
 						HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunoVariavel[a].GrupoId+');"></div>';
 					HtmlContent += '</div>';
-					//console.log(dataAlunoVariavel[a].GrupoId);
 				}
 				$('#box_grupo_info').append(HtmlContent);
 
@@ -206,7 +175,6 @@ function mostrarAgrupamentos(){
 		async: false,
 		crossDomain: true,
 		success: function(dataAgrupamentos){
-			debugger;
 			for(var i = 0; i < dataAgrupamentos.length; i++){
 				htmlOficina += '<div class="lista_agrupamentos">';
 				htmlOficina += 		'<section class="oficina_info">';
@@ -219,7 +187,7 @@ function mostrarAgrupamentos(){
 				htmlOficina +=						'<span class="ciclo">'+dataAgrupamentos[i].oficina.ciclo.ciclo+'</span>';
 				htmlOficina +=						'| Período: <span class="periodo">'+dataAgrupamentos[i].oficina.periodo.periodo+'</span>';
 				htmlOficina +=					'</p>';
-				htmlOficina +=					'<span class="editar editar_rotina"> &nbsp; </span>';
+				htmlOficina +=					'<span class="editar editar_rotina" onclick="editarModal(\'oficina\','+dataAgrupamentos[i].oficina.idoficina+')"> &nbsp; </span>';
 				htmlOficina +=				'</artile>';
 				htmlOficina +=				'<article class="rotina_oficina"> Rotina:';
 				htmlOficina +=					'<span class="rotina_dia"> '+dataAgrupamentos[i].dia+'</span>';
@@ -251,19 +219,6 @@ function mostrarAgrupamentos(){
 	});
 }
 
-/*function pesquisaGrupoAluno(){
-	var nmAluno = $("#txtPesq").val();
-	$.ajax({
-		url: path + "Grupo/GrupoAluno/" + nmAluno,
-		type: "GET",
-		async: false,
-		crossDomain: true,
-		success: function(dataAlunoGrupo){
-
-		}
-	});
-} */
-
 function changePesquisa(){
 	$("#box_grupo_info").empty();
 	if($(".pesqTutOfi").val() == 2){
@@ -276,122 +231,6 @@ function changePesquisa(){
 		$("#comboOfi").show();
 	}
 }
-	
-//	var Limite = dataAlunoVariavel.length;	
-//	   
-//	var grupo;
-//	var aluno;
-//	var Linha_N_A = false;		
-//	
-//	$('#box_grupo_info').html('');
-//	
-//	for(var a = 0; a < Limite; a++)
-//	{
-//		var HtmlContent = "";
-//
-//		var Encontrado = false;
-//
-//		//console.log(dataAlunoVariavel[a]);
-//		//return false;
-//		if(dataAlunoVariavel[a].grupo != null && 
-//			$('#periodo').val() == dataAlunoVariavel[a].periodo.idperiodo &&
-//			($('.tutoriaT').val() == dataAlunoVariavel[a].grupo.tutoria.idtutoria || $('.tutoriaT').val() == "Todas"))
-//		{
-//			if(dataAlunoVariavel[a].idalunoVariavel == '497') console.log('*');
-//			
-//			for(var b=0; b < $('.linha').length; b++)
-//			{
-//				if((dataAlunoVariavel[a].grupo.nomeGrupo).substr(2) == $(document.getElementsByClassName('linha')[b]).attr("id"))
-//				{
-//					Encontrado = true;
-//				}
-//			
-//			}
-//
-//			if(!Encontrado){
-//			//	console.log(dataAlunoVariavel[a]);
-//				aluno=dataAlunoVariavel[a].aluno.nome;
-//				HtmlContent += '<div class="boxGrupo'+dataAlunoVariavel[a].grupo.idgrupo+' linha" id="'+dataAlunoVariavel[a].grupo.idgrupo+'">';
-//				HtmlContent += '<div class="grupoCaixa">';
-//				HtmlContent += '<div class="grupoTitulo">'+dataAlunoVariavel[a].grupo.nomeGrupo+'</div>';
-//				HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunoVariavel[a].grupo.idgrupo+'"><span class="titulo">Alunos:</span> '+aluno+'</div>';
-//				HtmlContent += '<div class="tutor"> Tutor:</div>';
-//				HtmlContent += '<div class="tutor_nome">'+(dataAlunoVariavel[a].grupo.tutoria != null ? (dataAlunoVariavel[a].grupo.tutoria.tutor.nome):'Não Atribuido')+'</div>';
-//				HtmlContent += '</div>';
-//				HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].grupo.idgrupo+');"></div>';
-//				HtmlContent += '<div class="btExcluir" onclick="montagemExclusao('+dataAlunoVariavel[a].grupo.idgrupo+');"></div>';
-//				HtmlContent += '</div>';
-//				grupo=dataAlunoVariavel[a].grupo.idgrupo;
-//				
-//				$('#box_grupo_info').append(HtmlContent);
-//
-//			} else {
-//				$('.linha[id='+(dataAlunoVariavel[a].grupo.nomeGrupo).substr(2)+']').find('.Aluno_Grupo').append('; '+dataAlunoVariavel[a].aluno.nome);
-//			}
-//		
-//		} else if((dataAlunoVariavel[a].grupo == null && ($('.tutoriaT').val() == "N_A" || $('.tutoriaT').val() == "Todas")) && 
-//			$('#anoEstudo').val() == dataAlunoVariavel[a].anoEstudo.ano &&
-//			$('#periodo').val() == dataAlunoVariavel[a].periodo.idperiodo){
-//			
-//			for(var b=0; b < $('.linha').length; b++)
-//			{
-//				if(dataAlunoVariavel[a].grupo != null)
-//				{
-//					if(dataAlunoVariavel[a].grupo.idgrupo == document.getElementsByClassName('linha')[b].id)
-//					{
-//						Encontrado = true;
-//					}
-//				}
-//				
-//			}
-//			
-//			
-//			if((!Encontrado) && (dataAlunoVariavel[a].grupo != null)){
-//
-//				aluno=dataAlunoVariavel[a].aluno.nome;
-//				HtmlContent += '<div class="boxGrupo'+dataAlunoVariavel[a].grupo.idgrupo+' linha" id="'+dataAlunoVariavel[a].grupo.idgrupo+'">';
-//				HtmlContent += '<div class="grupoCaixa">';
-//				HtmlContent += '<div class="grupoTitulo">'+dataAlunoVariavel[a].grupo.nomeGrupo+'</div>';
-//				HtmlContent += '<div class="Aluno_Grupo nomes'+dataAlunoVariavel[a].grupo.idgrupo+'"><span class="titulo">Alunos:</span> '+aluno+'</div>';
-//				HtmlContent += '<div class="tutor"> Tutor:</div>';
-//				HtmlContent += '<div class="tutor_nome">Não Atribuido</div>';
-//				HtmlContent += '</div>';
-//				HtmlContent += '<div class="btEditar" onclick="montagemEdicao('+dataAlunoVariavel[a].grupo.idgrupo+');"></div>';			
-//				HtmlContent += '</div>';
-//				grupo=dataAlunoVariavel[a].grupo.idgrupo;
-//				
-//				$('#box_grupo_info').append(HtmlContent);
-//
-//			} else {
-//
-//				if(!Linha_N_A)
-//				{
-//
-//					HtmlContent += '<div class="boxGrupo_N_A" linha" id="N_A">';
-//					HtmlContent += '<div class="grupoCaixa">';
-//					HtmlContent += '<div class="grupoTitulo"></div>';
-//					HtmlContent += '<div class="Aluno_Grupo"><span class="titulo">Alunos:</span> '+dataAlunoVariavel[a].aluno.nome+'</div>';
-//					HtmlContent += '<div class="tutor"> Tutor:</div>';
-//					HtmlContent += '<div class="tutor_nome">Não Atribuido</div>';
-//					HtmlContent += '</div>';
-//					HtmlContent += '<div class="btEditar"></div>';				
-//					HtmlContent += '</div>';
-//					
-//					$('#box_grupo_info').append(HtmlContent);
-//
-//					Linha_N_A = true;
-//				} else {
-//					
-//					$('.boxGrupo_N_A').find('.Aluno_Grupo').append('; '+dataAlunoVariavel[a].aluno.nome);
-//					$('#box_grupo_info').append($('.boxGrupo_N_A'));
-//				}
-//
-//			}
-//
-//		}
-//	
-//	}		
-//} 
 
 function grupoNovo(){
 
@@ -460,14 +299,8 @@ function grupoNovo(){
 					dataType: 'json',
 					contentType: false,	
 					data:"action=update&alunos="+alunos+"&grupo="+data,			
-					success: function(data) {						
-//						dataTutoria 				=	getData("Tutoria", null);
-//						dataAlunoVariavel 			=	getData("AlunoVariavel", null);
-//						dataPeriodo 				=	getData("Periodo", null);
-//						dataAnoEstudo 				=	getData("AnoEstudo", null);	
-						dataGrupos					=	getData("Grupo", null);
-						
-						
+					success: function(data) {	
+						dataGrupos = getData("Grupo", null);						
 						/*Limpa as combobox*/							
 						var opcaoLimpar = $('.S_Aluno');
 					 	opcaoLimpar.val(opcaoLimpar.find('option[value="-1"]').val());					
@@ -480,7 +313,6 @@ function grupoNovo(){
 				});										
 			},
 			complete: function(){
-				//$('.boxGlobal').css("display","none");
 				loading("final");
 			}
 		});	
@@ -489,8 +321,6 @@ function grupoNovo(){
 		loading("final");
 	}	
 }
-
-
 
 function montagemEdicao(id) {
 	var htmlEdit = "";
@@ -543,8 +373,6 @@ function montagemEdicao(id) {
 		}
 	});
 
-	//$("#S_AnoEstudo option[value='"+dataAlunoGrupo[0].anoEstudo.idanoEstudo+"']").attr("selected","true");
-
 	for (var i = 0; (i < dataAlunoGrupo.length || i < $(".S_Aluno").length); i++)
 	{
 		if ( i >= $(".S_Aluno").length)
@@ -562,8 +390,6 @@ function montagemEdicao(id) {
 	$(".tutoriaT").val("Todas"); //Retorna o valor do campo de tutores para o padrão
 	$("#box_grupo_info").empty(); //Limpa a area para atualizar a consulta toda vez que o usuario clickar em editar.
 }	
-
-
 
 function desabilitaFuncoes(){
 	$("#btn_Salvar_Tutoria").hide();
@@ -631,23 +457,7 @@ function alimentaComboAluno(idCombo, AlunoVariavel){
 
 }
 
-function montagemExclusao(id)
-{
-	// var AlunoAtual = "";
-	// var b=0;
-
-	// for(var a=0; a< dataAlunoVariavel.length; a++)
-	// {
-	// 	if(dataAlunoVariavel[a].grupo != null)
-	// 	{
-	// 		if(dataAlunoVariavel[a].grupo.idgrupo == id)
-	// 		{
-	// 			AlunoAtual += (b == 0 ? (dataAlunoVariavel[a].idalunoVariavel):(';'+dataAlunoVariavel[a].idalunoVariavel));
-	// 			b++;
-	// 		}
-	// 	}
-	// }
-
+function montagemExclusao(id){
 	$.ajax({
 		url: path+"Grupo",
 		type: "POST",
@@ -668,8 +478,6 @@ function montagemExclusao(id)
 	});
 	
 	return false;
-	
-
 }
 
 function editarGrupoFun(){	
@@ -754,18 +562,7 @@ function editarGrupoFun(){
 				data:"alunos="+alunos+"&grupo="+grupoId,		
 				success: function(data) {
 
-					dataTutoria 				=	getData("Tutoria", null);
-//					dataAlunoVariavel 			=	getData("AlunoVariavel", null);
-//					dataPeriodo 				=	getData("Periodo", null);
-//					dataAnoEstudo 				=	getData("AnoEstudo", null);	
-//					dataProfessorFuncionario    =   getData("ProfessorFuncionario", null);
-
-					
-					
-					
-					
-					/*Volta as combos da página de pesquisar para o ponto inicial*/
-					//var opcaoAno = $('#anoEstudo');
+					dataTutoria = getData("Tutoria", null);
 					opcaoAno.val(opcaoAno.find('option').eq(0).val());
 					var opcaoPeriodo = $('#periodo');
 					opcaoPeriodo.val(opcaoPeriodo.find('option[value="8"]').val());
@@ -778,9 +575,7 @@ function editarGrupoFun(){
 					var opcaoTutoria = $('.tutoria');
 					opcaoTutoria.val(opcaoTutoria.find('option[value="Todas"]').val());
 					
-					//Atualiza os grupos para exibis corretamente na pesquisa
-					
-					
+					//Atualiza os grupos para exibis corretamente na pesquisa					
 					$("#box_grupo_info").html("");
 					MostrarGrupos();
 					mensagem("Grupo editado com sucesso!","OK","bt_ok","sucesso"); 
@@ -797,3 +592,15 @@ function editarGrupoFun(){
 		}
 	});	
 }
+
+function editarModal(modal,id){
+	$('#boxModaisEdicao').show();
+	$('.modal_edicao_'+modal).show();
+	$('.modal_edicao_'+modal).prepend('<input type="hidden" value="'+id+'" id="editar_id">');
+		
+}
+
+function salvarOficina(){
+	$('.editar').attr('id');
+}
+

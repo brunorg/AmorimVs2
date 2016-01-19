@@ -1031,7 +1031,7 @@ input[type=date]::-webkit-inner-spin-button{
 
 /*----Mensagem---------*/
 
-#boxMensagemGeral {
+#boxMensagemGeral,#boxModaisEdicao {
 	position:absolute;
 	right: 0px;
     width: 100%;
