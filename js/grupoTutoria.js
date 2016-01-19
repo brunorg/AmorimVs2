@@ -177,7 +177,7 @@ window.onload = function() {
 	}
 
 	$.ajax({
-        url: path + "Tutoria/Professor/"+professorId+"/2015",
+        url: path + "Tutoria/Professor/"+professorId+"/"+ new Date().getFullYear(),
         async: false,
         crossDomain: true,
         type: "GET",
