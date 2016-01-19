@@ -327,6 +327,7 @@ div[class*="box_col"]:last-of-type {
 }
 input.input_data_jeiff
 {
+	font-size: 14px;
 	margin-bottom: 3px;
 	padding: 4px 8px;
 	background-image: url(../img/ic_calendario_peq.png);
