@@ -314,8 +314,6 @@ function MuralJeiff() {
 
 		$("#iconeNovaPostagem3").show();
 
-
-
 		getAjax("JeiffPea", "GET", "", true, function(result){
 
 			console.log(result)
@@ -323,17 +321,17 @@ function MuralJeiff() {
 
 			result.forEach(function(postJeiff){
 
-				htmlPost += "<section class=\"mural_post_item\">";
-				htmlPost += "<main class=\"mural_post_mensagem\">";
-				htmlPost += "<span class=\"post_mural_mensagem\" id=\"mensagempostJeiff"+postJeiff.idmural+"\">";
-				htmlPost += postJeiff.mensagem;
+				htmlPost += "<section class=\"jeiff_post_item\" id=\"jeiffPost"+postJeiff.idJeiffPea+"\">";
+				htmlPost += "<aside class=\"jeiff_post_cabecalho\">";
+				htmlPost += "<span class=\"post_jeiff_data\">"+postJeiff.data_reuniao+"<\/span>";
+				htmlPost += "<\/aside>";
+				htmlPost += "<main class=\"jeiff_post_mensagem\">";
+				htmlPost += "<span class=\"post_jeiff_mensagem\">";
+				htmlPost += "<p>"+postJeiff.ata+"<\/p>";
 				htmlPost += "<\/span>";
 				htmlPost += "<\/main>";
-				htmlPost += "<aside class=\"mural_post_cabecalho\">";
-				htmlPost += "<span class=\"post_mural_data\">"+postJeiff.data+"<\/span> | <span class=\"post_mural_horario\">"+postJeiff.hora+"<\/span>";
-				htmlPost += "<\/aside>";
-				htmlPost += "<aside class=\"mural_post_btns\">";
-				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralComum.edit("+postJeiff.idmural+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralComum.delete("+postJeiff.idmural+")\"><\/span>";
+				htmlPost += "<aside class=\"jeiff_post_link\">";
+				htmlPost += "<a href=\"#\"><span>documentojeiff.pdf<\/span><\/a>";
 				htmlPost += "<\/aside>";
 				htmlPost += "<\/section>";
 
@@ -389,30 +387,60 @@ function MuralJeiff() {
 	
 
 	self.upArquivo = function() {
-		$("#arquivoJeiff").trigger("click");
+		//$("#arquivoJeiff").trigger("click");
+		var HtmlContentUpload = '<div id="JanelaUploadPortifolio">'+
+                                '<div class="Titulo_janela_upload">'+
+                                '</div>'+
+                                '<div id="foto">'+
+                                '</div>'+
+                                '<div id="LegendaUpload">Aguardando Arquivo</div>'+
+                                '<form id="form_upload_arquivo_jeiff">'+
+                                    '<input type="hidden" id="id" name="id" value="0"/>'+
+                                    '<input type="hidden" id="action" name="action" value="create" />'+
+                                    '<input type="hidden" id="Dados_Foto_Aluno" />'+
+                                    '<input type="file" id="Arquivo_Foto_Aluno" name="arquivo" />'+
+                                    '<div class="campoConfirmaUpload">'+
+                                        '<input class="btn_submit" type="button" value="" onclick="$(\'.blackPainel\').hide()"/>'+
+                                    '</div>'+
+                                '</form>'+
+                            '</div>';
+
+    	$('.blackPainel').show().html(HtmlContentUpload);
+		GerarUpload($("#foto"), $("#Arquivo_Foto_Aluno"), $("#Dados_Foto_Aluno"));
 	}
 
 	self.save = function(idPost) {
 
-		var FR = new FileReader();
-		var arquivoJeiffRaw;
+        getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){
+			
+			console.log(result);
 
-        FR.onload = function(e) {
-            $("#imagemArquivo").val(e.target.result);
-            arquivoJeiffRaw = this.files[0];
-        };
-        
+			$("#id").val(result)
 
-		console.log(arquivoJeiffRaw)
-		// loading("inicial")
+			var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
+			console.log(formData)
+		    $.ajax({
+		        url: path+"JeiffPea/upload",
+		        type: "POST",
+		        mimeType:"multipart/form-data",
+		        contentType: false,
+		        cache: false,
+				async:true,
+		        processData:false,
+		        data: formData,
+		        success: function(d) {
+					//chama a função para o html que acabou de ser criado
+					$('.blackPainel').hide()
+		        },error: function() {
+		            mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
+		            $('.blackPainel').hide()
+		        },
+		    });
 
-		// getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
-		// 	console.log(result);
-		// 	self.refresh();
-		// 	loading("final")
-		// });
 
-	};
+		});
+
+    };
 
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
