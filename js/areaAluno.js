@@ -341,10 +341,17 @@ function CarregarRotina() {
 		async: false,
 		crossDomain: true,
 		success: function(result) {
+			console.log(result)
 			result.forEach(function(rotina){
 				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
-				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.professor)
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
+
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.professor.split(" ")[0])
+				//$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.professor) //Descomentar e deletar linha acima caso for mostrar nome inteiro do professor
+
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
 				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)
 			})
 		},
 		error: function (a, status, error) {
