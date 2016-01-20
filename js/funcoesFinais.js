@@ -39,7 +39,7 @@ document.getElementById('setaEsquerda').addEventListener ("click", verificarMuda
 document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
 
 var mesAtual = 1
-var ano = 2015
+var ano = 2016
 
 var listaMes = [0, "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", 1]
 
@@ -67,16 +67,74 @@ function verificarMudarMes(qtd) {
     mudarMes(mesAtual)
 }
 
-mudarMes(mesAtual)
 function mudarMes(novoMes) {
     $(".Calendario .center").html(listaMes[novoMes] + " " + ano)
     document.getElementById('setaEsquerda').addEventListener ("click", verificarMudarMes1, false);
     document.getElementById('setaDireita').addEventListener ("click", verificarMudarMes2, false);
-    refreshCalendario()
+    refreshCalendario(novoMes)
 }
 
-function refreshCalendario() {
-    $("#mCSB_1_container").html("oi")
+function getAjax(url, postOrGet, data, async, callback) {
+
+    if (async === undefined)     { async = false; }
+    if (postOrGet === undefined) { postOrGet = "GET"; }
+    if (data === undefined)      { data = ""; }
+
+    $.ajax({
+        url: path + url,
+        async: async,
+        crossDomain: true,
+        type: postOrGet,
+        data: data,
+        success: function(resultado) {
+            callback(resultado);
+        }
+    });
+
 }
 
-console.log(ano)
+function refreshCalendario(novoMes) {
+
+    getAjax("Calendario/Mes/"+novoMes+"/"+ano, "GET", "", false, function(resultado) {
+
+        htmlNoticias = ""
+
+        resultado.forEach(function(noticia){
+
+            htmlNoticias += "<div class=\"info\">";
+            htmlNoticias += "<div class=\"Titulo\">";
+            htmlNoticias += noticia.dataInicio + " | " + noticia.hora;
+            htmlNoticias += "<\/div>";
+            htmlNoticias += "<div class=\"Texto\">";
+            htmlNoticias += noticia.descricao;
+            htmlNoticias += "<\/div>";
+            htmlNoticias += "<\/div>";
+
+        })
+
+        $('#containerNoticiasCalendario #mCSB_1 #mCSB_1_container').html(htmlNoticias)
+    })
+
+}
+
+
+window.onload = function() {
+    var d = Date()
+    var mesHoje = d.getMonth() + 1
+    mudarMes(mesHoje)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
