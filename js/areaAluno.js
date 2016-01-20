@@ -320,53 +320,47 @@ function CarregaServicoProducaoAluno()
 }
 
 //------------------------------------------------------------------------------------------------------------------------
+var diasSemana = {
+	"1" : "Segunda-Feira",
+	"2" : "Terça-Feira",
+	"3" : "Quarta-Feira",
+	"4" : "Quinta-Feira",
+	"5" : "Sexta-Feira"
+}
+
+var d = new Date
+var diaHoje = d.getDay()
 
 //Preencher Rotina Semanal
 function CarregarRotina() {
-	var professores1 = ['Flávia','Bruna','Maria Eugênia','','Luciana','Luciana Cássia'];
-	var professores2 = ['Luciana Cássia','Maria','Kevyn','','Luciana','Flávia'];
 
-	var materias1 = ['Pesquisa', 'Artes', 'Inglês', '', 'Roda de Conversa', 'Pesquisa'];
-	var materiasIDs1 = ['Rotina_Pesquisa', 'Rotina_Artes', 'Rotina_Ingles', '', 'Rotina_Roda_Conversa', 'Rotina_Pesquisa'];
-
-	var materias2 = ['Matemática', 'Artes', 'Leitura e Escrita','', 'Roda de Conversa', 'Pesquisa'];
-	var materiasIDs2 = ['Rotina_Matematica', 'Rotina_Artes', 'Rotina_Leitura_Escrita','', 'Rotina_Roda_Conversa', 'Rotina_Pesquisa'];
-
-	var locais = ['Salão','Ateliê','Sala 12','','Salão','Salão'];
-	var dia = 'segunda';
-								
-	var linhas = document.getElementById("Rotina_Semanal_Tabela").getElementsByClassName("Rotina_Semanal_Linha");
-	$("#Rotina_Seta_Proximo").click(function() {
-		if (dia === 'segunda') {
-			dia = 'terça';
-			for ( var i = 0; i < linhas.length; i++ ) {
-				if ( i !== 3 ) {
-					$($('.Rotina_Semanal_Linha').get(i)).removeClass(materiasIDs1[i]);
-					$($('.Rotina_Semanal_Linha').get(i)).addClass(materiasIDs2[i]);
-					$('#Rotina_Semanal_Dia').html(dia.toUpperCase());
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Materia').html(materias2[i]);
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Professor').html(professores2[i]);
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Local').html(locais[i]);
-				}
-			}
+	$('#Rotina_Semanal_Dia').html(diasSemana[diaHoje])
+		$.ajax({
+		url: path+"Rotina/RotinaDiariaAluno/"+alunoVariavelID.idalunoVariavel+"/"+diaHoje,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(result) {
+			result.forEach(function(rotina){
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.professor)
+				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
+			})
+		},
+		error: function (a, status, error) {
+			console.log(status + " /// " + error)
 		}
-	});
-	$("#Rotina_Seta_Anterior").click(function() {
-		if (dia === 'terça') {
-			dia = 'segunda';
-			for ( var i = 0; i < linhas.length; i++ ) {
-				if ( i !== 3 ) {
-					$($('.Rotina_Semanal_Linha').get(i)).removeClass(materiasIDs2[i]);
-					$($('.Rotina_Semanal_Linha').get(i)).addClass(materiasIDs1[i]);
-					$('#Rotina_Semanal_Dia').html(dia.toUpperCase());
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Materia').html(materias1[i]);
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Professor').html(professores1[i]);
-					$('#Rotina_Semanal_Linha'+ (i+1) + ' td.Rotina_Semanal_Local').html(locais[i]);
-				}
-			}
-		}
-	});
+	});	
+
 }
+
+function rotinaMudarDia(quanto) {
+	diaHoje = (diaHoje + quanto)
+	if (diaHoje > 5) {diaHoje = 1};
+	if (diaHoje < 1) {diaHoje = 5}
+	CarregarRotina()
+}
+
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -730,7 +724,7 @@ $(document).ready(function() {
 
 	CarregaServicoCalendarioEventos();
 	CarregaServicoMensagens();
-	CarregarRotina();
+	rotinaMudarDia(0);
 	CarregarMural();
 	CarregarPlanos();
 	//CarregarRegistros();
