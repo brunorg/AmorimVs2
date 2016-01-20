@@ -26,10 +26,12 @@
 
 
 
+var timeHandler = "";
 $(document).ready(function() {	
 
 	carregaOficineiros();
 	carregaTutores();
+	pesquisaGrupoAluno();
 	carregarProfessoresByPeriodo('8');
 	
 	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
@@ -51,7 +53,14 @@ $(document).ready(function() {
 
 	$(".oficinaO").change(function() {
 		mostrarAgrupamentos();
-	})
+	});
+	$("#txtPesq").keyup(function(){ //Evento que acontece toda vez que o usuário solta uma tecla
+		window.clearTimeout(timeHandler); //Evento que limpa o timeOut
+		timeHandler = window.setTimeout(function(){ //Evento que seta um tempo para a função pesquisarGrupoAluno acontecer
+			pesquisaGrupoAluno();
+		},1000); //1000 é o tempo, significa 1 segundo.
+		$(".tutoriaT").val(0);
+	});
 	
 	//Limpa os campos para o novo cadastro!!
 	$('body').delegate(".bt_Inserir_Ativo_Grupo","click", function(){
@@ -77,8 +86,8 @@ $(document).ready(function() {
 			}
 			Linha =Linha+1;
 			
-		})
-	})
+		});
+	});
 });
 
 function carregarProfessoresByPeriodo(idPeriodo){
@@ -217,6 +226,47 @@ function mostrarAgrupamentos(){
 			$("#box_grupo_info").append(htmlOficina);
 		}
 	});
+	return false;
+}
+
+function pesquisaGrupoAluno(){
+	$("#box_grupo_info").html('');
+	var nmAluno = $("#txtPesq").val();
+	var htmlPesquisa = "";
+	$.ajax({
+		url: path + "Grupo/GrupoAluno/" + nmAluno,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dataAlunoGrupo){
+			var idGrupo = 0;
+			for(var i = 0; i < dataAlunoGrupo.length; i++){
+				idGrupo = dataAlunoGrupo[i].idgrupo;
+				htmlPesquisa += '<div class="boxGrupo'+dataAlunoGrupo[i].idgrupo+' linha" id="'+dataAlunoGrupo[i].idgrupo+'">';
+				htmlPesquisa += 	'<div class="grupoCaixa">';
+				htmlPesquisa += 		'<div class="grupoTitulo">'+dataAlunoGrupo[i].nomeGrupo+'</div>';
+				$.ajax({
+					url: path + "Grupo/AlunoGrupo/" + idGrupo,
+					type: "GET",
+					async: false,
+					crossDomain: true,
+					success: function(dataGrupoAluno){
+						for(var j = 0; j < dataGrupoAluno.length; j++) {
+							htmlPesquisa += '<div class="Aluno_Grupo nomes'+dataGrupoAluno[j].aluno.nome+'"><span class="titulo">Aluno:</span>';
+							htmlPesquisa += dataGrupoAluno[j].aluno.nome;
+							htmlPesquisa += '</div>';
+						}
+					}
+				});
+				htmlPesquisa += 		'<div class="tutor"> Tutor:</div>';
+				htmlPesquisa += 		'<div class="tutor_nome">'+ dataAlunoGrupo[i].tutoria.tutor.nome + '</div>';
+				htmlPesquisa += '	</div>';
+				htmlPesquisa += '</div>';
+			}
+			$("#box_grupo_info").append(htmlPesquisa);
+		}
+	});
+return false;
 }
 
 function changePesquisa(){
@@ -299,8 +349,8 @@ function grupoNovo(){
 					dataType: 'json',
 					contentType: false,	
 					data:"action=update&alunos="+alunos+"&grupo="+data,			
-					success: function(data) {	
-						dataGrupos = getData("Grupo", null);						
+					success: function(data) {
+						dataGrupos = getData("Grupo", null);	
 						/*Limpa as combobox*/							
 						var opcaoLimpar = $('.S_Aluno');
 					 	opcaoLimpar.val(opcaoLimpar.find('option[value="-1"]').val());					
@@ -575,7 +625,7 @@ function editarGrupoFun(){
 					var opcaoTutoria = $('.tutoria');
 					opcaoTutoria.val(opcaoTutoria.find('option[value="Todas"]').val());
 					
-					//Atualiza os grupos para exibis corretamente na pesquisa					
+					//Atualiza os grupos para exibis corretamente na pesquisa
 					$("#box_grupo_info").html("");
 					MostrarGrupos();
 					mensagem("Grupo editado com sucesso!","OK","bt_ok","sucesso"); 
@@ -596,11 +646,24 @@ function editarGrupoFun(){
 function editarModal(modal,id){
 	$('#boxModaisEdicao').show();
 	$('.modal_edicao_'+modal).show();
-	$('.modal_edicao_'+modal).prepend('<input type="hidden" value="'+id+'" id="editar_id">');
-		
+	$('.modal_edicao_'+modal).prepend('<input type="hidden" value="'+id+'" id="editar_id_'+modal+'">');	
+	EditarOficina();	
 }
 
-function salvarOficina(){
-	$('.editar').attr('id');
+function EditarOficina(){
+	$('#salvarOficina').click(function(){
+		var idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
+		$.ajax({
+			url: path+"Oficina",
+			type:"POST",
+			async:false,
+			dataType:"json",
+			crossDomain:true,
+			data:"action=update&ciclo="+$('#cicloOficinaEditar option:selected').val()+"&periodo="+$('#periodoOficinaEditar option:selected').val()+"&id="+idOficina, 
+			success: function(d){
+				$('#boxModaisEdicao').css('display','none');
+				mensagem("Oficina alterada com sucesso!","OK","bt_ok","sucesso"); 	
+			}	
+		})		
+	});	
 }
-

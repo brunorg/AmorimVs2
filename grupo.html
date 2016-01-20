@@ -333,9 +333,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="Atividade_Input">
                                             <input class="input_Pesq_Aluno" id="txtPesq" placeholder="Digite o nome do aluno" style="display:none">
-                                        </div>
                                         
                                         <div id="comboOfi"class="celulaMedia" style="display:none">
                                             <div class="infoMG"> Professor </div>
@@ -448,27 +446,27 @@
                             <div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Ciclo</p>
                                 <span class="Select_Grupo_Input">
-                                    <select name="Ciclo" class="Ciclo_Select">
+                                    <select name="Ciclo" id="cicloOficinaEditar" class="Ciclo_Select">
                                     </select>
                                 </span>
                             </div>
                             <div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Período</p>
                                 <span class="Select_Grupo_Input">
-                                    <select name="Periodo" id="periodoOficina" class="Periodo_Select">
+                                    <select name="Periodo" id="periodoOficinaEditar" class="Periodo_Select">
                                     </select>
                                 </span>
                             </div>
-                            <div class="Box_Area_Select Unico_Linha">
+                            <!--<div class="Box_Area_Select Unico_Linha">
                                 <p class="Select_Grupo">Oficina</p>
                                 <span class="Select_Grupo_Input">
                                     <select name="tipo" id="selectTipoOficina" class="Oficina_Select">
                                     </select>
                                 </span>
-                            </div>
+                            </div>-->
                         </form>
                         <div class="Area_Botoes_Grupo">
-                            <button type="button" class="btns_grupo" onClick="salvarOficina()">Salvar</button>
+                            <button type="button" class="btns_grupo" id="salvarOficina">Salvar</button>
                         </div>
                     </div>
                 </section>

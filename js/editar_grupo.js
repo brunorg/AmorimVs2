@@ -34,7 +34,7 @@ function carregaAlunosModal(){
         buscarPeriodoModal();
 }
 function buscarCicloPeriodoModal () {
-    $.ajax({
+    /*$.ajax({
         url: path + "AlunoVariavel/listarCicloPeriodoRange/" + $("#cicloGrupoModal").val() + "/" + $("#periodoGrupoModal").val() + "/" + contAlunos * 20 + "/19",
         type: "GET",
         async: false,
@@ -47,11 +47,11 @@ function buscarCicloPeriodoModal () {
                 $('#Area_Alunos_Modal').append(dataAlunos);
             contAlunos++;
         }
-    });
+    });*/
 }
 
 function buscarCicloModal () {
-    $.ajax({
+    /*$.ajax({
         url: path + "AlunoVariavel/listarCicloRange/" + $("#cicloGrupoModal").val() + "/" + contAlunos * 20 + "/19",
         type: "GET",
         async: false,
@@ -64,11 +64,11 @@ function buscarCicloModal () {
                 $('#Area_Alunos_Modal').append(dataAlunos);
             contAlunos++;
         }
-    });
+    });*/
 }
 
 function buscarPeriodoModal () {
-    $.ajax({
+    /*$.ajax({
         url: path + "AlunoVariavel/listarPeriodoRange/" + $("#periodoGrupoModal").val() + "/" + contAlunos * 20 + "/19",
         type: "GET",
         async: false,
@@ -81,5 +81,5 @@ function buscarPeriodoModal () {
                 $('#Area_Alunos_Modal').append(dataAlunos);
             contAlunos++;
         }
-    });
+    });*/
 }

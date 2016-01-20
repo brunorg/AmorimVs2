@@ -4,7 +4,7 @@ var acabouDeCarregar = false;
 $(document).ready(function(){
     carregaPeriodo();
     carregaCiclo();
-    carregaAlunos();
+    //carregaAlunos();
     atribuiChange();
     atribuiFuncoesRolagem();
     salvarAgrupamento();
