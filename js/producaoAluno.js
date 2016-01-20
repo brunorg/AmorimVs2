@@ -122,7 +122,7 @@ $(document).ready(function(){
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
 	
-    showOficinaContent(oficinasLista[0],oficinasLista[0].idOficina);
+    showOficinaContent(oficinasLista[0],oficinasLista[0].idoficina);
 
 	$(oficinasLista).click(function(){
 		showOficinaContent(this, this.id);
@@ -455,9 +455,9 @@ function buildAcordeon()
 		var nomeOficina = oficinas[a].nome.split(' ',1).toString();
 		htmlAcordeon +=
 			'<div id="Oficina'+(a+1)+'" class="Prod_Oficina_Item">'+
-				'<div id="'+oficinas[a].idTipoOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].tipoOficina.cor.forte+'" onclick="getAtividadesOficina('+oficinas[a].idTipoOficina+')">'+nomeOficina+'</div>'+
+				'<div id="'+oficinas[a].tipoOficina.idTipoOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].tipoOficina.cor.forte+'" onclick="getAtividadesOficina('+oficinas[a].idoficina+')">'+nomeOficina+'</div>'+
 				'<div class="Prod_Oficina_Content">'+
-					'<div id="oficinaAdd'+oficinas[a].idOficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+oficinas[a].idOficina+', 7)">Inserir novo</div>'+
+					'<div id="oficinaAdd'+oficinas[a].idoficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+oficinas[a].idoficina+', 7)">Inserir novo</div>'+
 				'</div>'+
 			'</div>';
 	}
@@ -504,11 +504,7 @@ function getAtividadesOficina(idoficina)
 	        type: "GET",
 	        success: function(dAtvOficina)
 	        {
-	        	if ( dAtvOficina.length == 0 )
-                {
-                    console.error('Nenhuma produção associada a essa oficina foi listada.');
-                }
-                else
+	        	if ( !dAtvOficina.length == 0 )
                 {
                     for ( a in dAtvOficina )
                     {
@@ -598,6 +594,9 @@ function postProducaoOficina(tabID)
         },
         complete: function () {
             loading("final");
+        },
+        error: function(e) {
+        	console.error('Erro.');
         }
     }); 
 }
