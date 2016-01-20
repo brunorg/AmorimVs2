@@ -146,8 +146,8 @@
 						<section id="Oficinas" class="Prod_Aluno_Content_Item">
 							<nav id="menu_lateral_oficinas">
 								<div id="Prod_Oficina_Acordeon">
-									<div class="Prod_Oficina_Item">
-										<div id="AtvExtra" class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="getAtividadesExtras()">Atividades Extras</div>
+									<div id="AtvExtra" class="Prod_Oficina_Item">
+										<div class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="showAtividadesExtraContent()">Atividades Extras</div>
 										<div class="Prod_Oficina_Content">
 											<div class="Oficina_Content_Item Prod_Oficina_Item Add_Item" onclick="showFormNovaProd(0, 6)">Inserir novo</div>
 										</div>
@@ -168,7 +168,7 @@
                                         	</div>
                                         </div>
                                         <div style="display:none;">
-                                        	<input name="arquivo" id="postagemImagem" type="file" />
+                                        	<input name="arquivo" id="postagemImagem" type="file"/>
                                         </div>
                                         <div id="addArquivo" class="bt bt_Add_Arquivo">Inserir Arquivo</div>
                                         <input name="action" id="action" type="hidden" value="create" />

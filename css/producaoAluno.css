@@ -305,7 +305,7 @@
 	    letter-spacing: 0.5px;
 	    font-weight: normal;
 	}
-	*[class*="infoValue"], {
+	*[class*="infoValue"] {
 		height: 39px;
 	}
 	*[class*="infoValue"] input {

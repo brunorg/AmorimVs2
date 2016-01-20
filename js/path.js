@@ -8,7 +8,6 @@ var path = "http://plataformaamorim.org/WebServicePlataformaAmorimTesteV2/";
 //var path = "http://192.168.50.83:8888/plataformaAmorim/"; //Diego
 
 function loading(estado) {
-	console.log("oi")
     if(estado == "inicial"){
 		$('.boxGlobal').load("preloader_JS.html").css({"display":"block","padding-top":"300px"});
 	}

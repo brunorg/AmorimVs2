@@ -61,9 +61,7 @@ $(document).ready(function(){
 		$("div.categoria").css("background-position","0px 0px");
 		$(this).css("background-position","-39px 0px");
 		categoria = $(this).attr('value');
-		console.log(categoria);
 	});
-	console.log(categoria);
 	$("div.inputImg").not(".vazio, .categoria").click(function(){
 		$("div.inputImg").not('.categoria').css("background-position","0px 0px");
 		$(this).css("background-position","-39px 0px");
@@ -79,7 +77,6 @@ $(document).ready(function(){
 		}
 		
 		return false;
-	
 	});
 	
 	/*$("li").click(function(){
@@ -117,21 +114,20 @@ $(document).ready(function(){
 	});
 
 	//Acordeon Oficinas
-	getOficinasAluno();
+	showAcordeonOficinas();
 
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
-	
-    showOficinaContent(oficinasLista[0],oficinasLista[0].idoficina);
 
-	$(oficinasLista).click(function(){
-		showOficinaContent(this, this.id);
-		return false;
-	});
-	$(oficinasLista).focus(function(){
-		showOficinaContent(this, this.id);
-		return false;
-	});
+    //showOficinaContent(oficinasLista[0], oficinasLista[0].parentElement.id);
+
+//	$('.Prod_Oficina_Nome').click(function(){
+//		var idTab 		= $(this).parent().attr('id');
+//		var idOficina 	= parseInt(idTab.substring(7));
+//
+//		showOficinaContent(this, idTab, idOficina);
+//		return false;
+//	});
 
 	/*$('.Item_AtvExtra').click(function(){
 		showAtividadeExtra(this.attr('address'));
@@ -164,7 +160,7 @@ $(document).ready(function(){
 	//$(".vazio").css('cursor','default');
 
 
-GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
+	GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
 
 
 
@@ -196,9 +192,6 @@ GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
         	
         	
         	var valores = "anoLetivo=80&texto="+atv+"&data=21-09-2014&aluno="+alunoID+"&tipo=6&categoria="+categoria+"&arquivo="+arq;
-        	console.log('-----------------');	
-        	console.log(valores);
-        	console.log('-----------------');
         			
 			var retorno = setCreateData("ProducaoAluno",valores);
 			
@@ -445,126 +438,60 @@ function getAnoLetivo(formato){
 
 //---------------------------------------------------------------
 
-// Criar acordeon com oficinas
-function buildAcordeon()
-{
-	var htmlAcordeon = '';
+/* Produçoes do aluno por Oficina */
 
-	for ( var a = 0; a < oficinas.length; a++ )
-	{
-		var nomeOficina = oficinas[a].nome.split(' ',1).toString();
-		htmlAcordeon +=
-			'<div id="Oficina'+(a+1)+'" class="Prod_Oficina_Item">'+
-				'<div id="'+oficinas[a].tipoOficina.idTipoOficina+'" class="Prod_Oficina_Nome Prod_Oficina" style="background-color: '+oficinas[a].tipoOficina.cor.forte+'" onclick="getAtividadesOficina('+oficinas[a].idoficina+')">'+nomeOficina+'</div>'+
-				'<div class="Prod_Oficina_Content">'+
-					'<div id="oficinaAdd'+oficinas[a].idoficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+oficinas[a].idoficina+', 7)">Inserir novo</div>'+
-				'</div>'+
-			'</div>';
-	}
-
-    listAtvs = $('#Prod_Oficina_Acordeon .Item_Img');
-    listImgs = $('#conteudo_principal_oficinas .Oficina_Prod_Img');
-
-	$('#Prod_Oficina_Acordeon').prepend(htmlAcordeon);
-}
 
 /* ------ Funções GET ------ */
 
 //Get Oficinas do Aluno
 function getOficinasAluno()
 {
+	var retorno;
+
     $.ajax({
         url: path + 'Oficina/ListarPorAluno/' + alunoVar ,
         async: false,
         crossDomain: true,
         type: "GET",
-        success: function(dOficina)
-        {
-        	for ( a in dOficina )
-        	{
-        		oficinas.push(dOficina[a]);
-        	}
-        }
+        success: function(dOficina) { retorno = dOficina; },
+		error: function(e) { mensagem("Erro ao retornar as produções dessa oficina.","OK","bt_ok","erro"); }
     });
 
-    buildAcordeon();
+	return retorno;
 }
 
 //Get atividades por oficina
 function getAtividadesOficina(idoficina)
 {
-	if ( !document.getElementById(idoficina).classList.contains('atvsListadas') )
-	{
-		htmlProducoesOficina = '';
+	var retorno;
 
-		$.ajax({
-			url: path + 'ProducaoAluno/OficinaAluno/'+idoficina+'/'+alunoID+'/',
-			async: false,
-	        crossDomain: true,
-	        type: "GET",
-	        success: function(dAtvOficina)
-	        {
-	        	if ( !dAtvOficina.length == 0 )
-                {
-                    for ( a in dAtvOficina )
-                    {
-                        htmlProducoesOficina +=
-                            '<div id="'+dAtvOficina[a].idproducaoAluno+'"" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvOficina[a].arquivo+'\')">'+
-                            	'<span class="Item_Prod_Titulo">'+dAtvOficina[a].texto+'</span>'+
-                            '</div>';
-                    }
-                    document.getElementById(idoficina).classList.add('atvsListadas');
-                }
-	        }
-		});
-        
-		$('#'+idoficina).next('.Prod_Oficina_Content').append(htmlProducoesOficina);
+	$.ajax({
+		url: path + 'ProducaoAluno/OficinaAluno/'+idoficina+'/'+alunoID+'/',
+		async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dAtvOficina) { retorno = dAtvOficina; },
+        error: function(e) { mensagem("Erro ao retornar as produções dessa oficina.","OK","bt_ok","erro"); }
+	});
 
-		return;
-	}
+	return retorno;
 }
 
 //Carregar Atividades Extra
 function getAtividadesExtras()
 {
-    if ( !document.getElementById('AtvExtra').classList.contains('atvsListadas') )
-    {
-        var atividadesExtras = $('#AtvExtra').next('.Prod_Oficina_Content').find('.Oficina_Content_Item');
-        
-        if ( atividadesExtras.length == 1 )
-        {
-            var htmlAtividades = '';
-    
-            $.ajax({
-                url: path + 'ProducaoAluno/Filtos/'+alunoID+'/6/0',
-                async: false,
-                crossDomain: true,
-                type: "GET",
-                success: function (dAtvsExtras)
-                {
-                    var htmlAtividadesExtras = '';
-                    if ( dAtvsExtras.length == 0 )
-                    {
-                        console.error('Nenhuma produção foi listada.');
-                    }
-                    else
-                    {
-                        for ( a in dAtvsExtras )
-                        {
-                            htmlAtividadesExtras +=
-                                '<div id="'+dAtvsExtras[a].idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+dAtvsExtras[a].arquivo+'\')">'+
-                                	'<span class="Item_Prod_Titulo">'+dAtvsExtras[a].texto+'</span>'+
-                                '</div>';
-                        }
-                        
-        				document.getElementById('AtvExtra').classList.add('atvsListadas');
-                        $('#AtvExtra').next('.Prod_Oficina_Content').append(htmlAtividadesExtras);
-                        atvsExtras = $('.Prod_Oficina_Content');
-                    }
-                }
-            });
-        }
-    }
+	var retorno;
+
+	$.ajax({
+	    url: path + 'ProducaoAluno/Filtos/'+alunoID+'/6/0',
+	    async: false,
+	    crossDomain: true,
+	    type: "GET",
+	    success: function(dAtvsExtras) { retorno = dAtvsExtras; },
+        error: function(e) { mensagem("Erro ao retornar as produções de atividades extras.","OK","bt_ok","erro"); }
+	});
+
+	return retorno;
 }
 
 
@@ -572,7 +499,7 @@ function getAtividadesExtras()
 
 //Inserir Produção Oficina (Sem serviço)
 function postProducaoOficina(tabID)
-{   
+{
     var d = new Date();
     var data = { ano: d.getFullYear(), mes: d.getMonth()+1, dia: d.getDate() }
     var anoLetivo = getAnoLetivo('idAnoLetivo');
@@ -590,14 +517,15 @@ function postProducaoOficina(tabID)
             loading("inicial");
         }, 
         success: function(dataPost) {
-			uploadArquivo(dataPost)
+			uploadArquivo(dataPost);
+			mensagem("Produção cadastrada com sucesso!","OK","bt_ok","sucesso");
         },
         complete: function () {
             loading("final");
-        },
-        error: function(e) {
-        	console.error('Erro.');
-        }
+		},
+		error: function(e) {
+			mensagem("Errro ao cadastrar uma nova produção.","OK","bt_ok","erro");
+		}
     }); 
 }
 
@@ -669,38 +597,107 @@ function showAtividadeExtra(url)
 }
 
 //Acordeon Oficinas
-function showOficinaContent(itemToExpand, idTab)
+function showAcordeonOficinas()
 {
-	if ( idTab == 'AtvExtra' )
+	var listaOficinas = getOficinasAluno();
+	var acordeonHtml = '';
+
+	for (var a in listaOficinas)
 	{
-		getAtividadesExtras();
+		oficinas.push(listaOficinas[a]);
+		var nomeOficina = listaOficinas[a].nome.split(' ',1).toString();
+
+		acordeonHtml +=
+			'<div id="oficina'+listaOficinas[a].idoficina+'" class="Prod_Oficina_Item Prod_Oficina">'+
+				'<div class="Prod_Oficina_Nome" style="background-color: '+listaOficinas[a].tipoOficina.cor.forte+'" onclick="showOficinaContent('+listaOficinas[a].idoficina+')">'+nomeOficina+'</div>'+
+				'<div class="Prod_Oficina_Content">'+
+					'<div id="oficinaAdd'+listaOficinas[a].idoficina+'"class="Oficina_Content_Item Add_Item" onclick="showFormNovaProd('+listaOficinas[a].idoficina+', 7)">Inserir novo</div>'+
+				'</div>'+
+			'</div>';
 	}
-	else
+
+	listAtvs = $('#Prod_Oficina_Acordeon .Item_Img');
+	listImgs = $('#conteudo_principal_oficinas .Oficina_Prod_Img');
+
+	$('#Prod_Oficina_Acordeon').prepend(acordeonHtml);
+}
+function showOficinaContent(id)
+{
+	if ( ! $('#oficina'+id).hasClass('atividadesListadas') )
 	{
-		getAtividadesOficina(itemToExpand.id);
+		var atividades = getAtividadesOficina(id);
+		var htmlAtividades = '';
+
+		if ( atividades !== undefined )
+		{
+			for (var a in atividades)
+			{
+				htmlAtividades +=
+					'<div id="'+atividades[a].idproducaoAluno+'"" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+atividades[a].arquivo+'\')">'+
+						'<span class="Item_Prod_Titulo">'+atividades[a].texto+'</span>'+
+					'</div>';
+			}
+			$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
+			$('#oficina'+id).addClass('atividadesListadas')
+		}
 	}
 
  	for ( var i = 0; i < oficinasLista.length; i++ )
  	{
- 		if ( oficinasLista[i] == itemToExpand )
+ 		if ( oficinasLista[i].parentElement.id == 'oficina'+id )
  		{
- 			if ( !oficinasLista[i].parentElement.classList.contains('Item_Expandido') )
+ 			if ( !oficinasLista[i].parentElement.classList.contains('itemExpandido') )
  			{
 				$($(oficinasItens).get(i)).slideDown();
-				$($(oficinasLista).get(i)).parent().addClass('Item_Expandido');
+				$($(oficinasLista).get(i)).parent().addClass('itemExpandido');
  			}
  			else
  			{
  				$($(oficinasItens).get(i)).slideUp();
-				$($(oficinasLista).get(i)).parent().removeClass('Item_Expandido');
+				$($(oficinasLista).get(i)).parent().removeClass('itemExpandido');
  			}
 		}
 		else 
 		{
 			$($(oficinasItens).get(i)).slideUp();
-			$($(oficinasLista).get(i)).parent().removeClass('Item_Expandido');
+			$($(oficinasLista).get(i)).parent().removeClass('itemExpandido');
 		}
  	}
+}
+
+function showAtividadesExtraContent()
+{
+	if ( !$('#AtvExtra').hasClass('atividadesListadas') )
+	{
+		var atividades = getAtividadesExtras();
+		var htmlAtividades = '';
+
+		if ( atividades.length > 0 ) {
+			for ( a in atividades )
+			{
+				htmlAtividades +=
+					'<div id="'+atividades[a].idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+atividades[a].arquivo+'\')">'+
+						'<span class="Item_Prod_Titulo">'+atividades[a].texto+'</span>'+
+					'</div>';
+			}
+		}
+
+		$('#AtvExtra').find('.Prod_Oficina_Content').append(htmlAtividades);
+		$('#AtvExtra').addClass('atividadesListadas')
+	}
+
+	if( !$('#AtvExtra').hasClass('itemExpandido') )
+	{
+		$('.Prod_Oficina').find('.Prod_Oficina_Content').slideUp();
+		$('#AtvExtra').find('.Prod_Oficina_Content').slideDown();
+		$('#AtvExtra').addClass('itemExpandido');
+	}
+	else
+	{
+		$('.Prod_Oficina').find('.Prod_Oficina_Content').slideUp();
+		$('#AtvExtra').find('.Prod_Oficina_Content').slideUp();
+		$('#AtvExtra').removeClass('itemExpandido');
+	}
 }
 
 
