@@ -575,7 +575,7 @@ function showAtividadesRecentes()
 			if ( atividades[a].tipo.idtipoProducaoAluno === 6 )
 			{
 				tipoAtividade = atividades[a].tipo.tipo;
-				corTipoAtividade = '#93bc34';
+				corTipoAtividade = '#fbb040';
 			}
 			else
 			{
