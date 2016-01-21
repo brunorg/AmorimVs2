@@ -3258,7 +3258,7 @@ object{
     cursor: pointer;
     text-decoration: underline;
     float: right;
-    margin-right: 40px;
+    margin: 10px 40px 0;
 }
 
 /*Style caixa apontar presenÃ§a aluno*/
