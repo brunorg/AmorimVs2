@@ -149,14 +149,17 @@
 									<div id="AtvExtra" class="Prod_Oficina_Item">
 										<div class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="showAtividadesExtraContent()">Atividades Extras</div>
 										<div class="Prod_Oficina_Content">
-											<div class="Oficina_Content_Item Prod_Oficina_Item Add_Item" onclick="showFormNovaProd(0, 6)">Inserir novo</div>
+											<div id="AtvExtraAdd" class="Oficina_Content_Item Prod_Oficina_Item Add_Item" onclick="showFormNovaProd(0, 6)">Inserir novo</div>
 										</div>
 									</div>
 								</div>
 							</nav>
 							
 							<div id="conteudo_principal_oficinas">
-                                <div id="container_Nova_Producao">
+								<div id="container_tela_padrao" class="container_tela_padrao">
+									
+								</div>
+                                <div id="container_Nova_Producao" style="display: none">
                                     <form id="form_Nova_Producao">
                                         <h1 class="Titulo_Nova_Prod_Oficina">Inserir nova produção</h1>
                                         <div class="celulaGrande_container">
@@ -179,7 +182,7 @@
                                         <input name="categoria" id="categoria" type="hidden" value="1" />
                                         <input name="oficina" id="oficina" type="hidden" value="" />
                                     </form>
-                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina(null)">Salvar</div>
+                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina()">Salvar</div>
                                 </div>
 								<iframe id="Prod_Oficina_View" class="Prod_Oficina_View" src="" frameborder="0" style="width:720px; height:430px;">
 									<!-- Conteúdo gerado por JS -->

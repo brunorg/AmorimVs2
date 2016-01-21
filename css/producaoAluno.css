@@ -107,14 +107,69 @@
 			height: 100%;
 		}
 		
-		.Item_Expandido > .Prod_Oficina_Nome {
+		.itemExpandido > .Prod_Oficina_Nome {
 			border-bottom: 2px solid #fff;
 		}
 		
-		.Item_Expandido + .Prod_Oficina_Item > .Prod_Oficina_Nome {
+		.itemExpandido + .Prod_Oficina_Item > .Prod_Oficina_Nome {
 			border-top: 2px solid #fff;
 		}
-
+		.container_tela_padrao
+		{
+			display: none;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.atividade_recente_item
+		{
+			position: relative;
+			display: inline-block;
+			width: 160px;
+			height: 200px;
+			margin: 0 28px 25px 0;
+			padding: 18px 0 0;
+			float: left;
+			background-color: #ecebe5;
+		}
+		.atividade_recente_img
+		{
+			display: block;
+			width: 120px;
+			margin: 0 auto 9px;
+			height: 120px;
+			cursor: pointer;
+		}
+		.atividade_recente_nome
+		{
+			display: block;
+			width: 120px;
+			height: 20px;
+			margin: 0 auto 5px;
+			color: #666;
+			overflow: hidden;
+			font-size: 14px;
+		}
+		.atividade_recente_nome > span
+		{
+			white-space: nowrap;
+		}
+		.atividade_recente_tipo
+		{
+			position: absolute;
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: #fff;
+			padding: 5px 0;
+			font-size: 12px;
+			text-transform: uppercase;
+			bottom: 0;
+		}
+		.atividade_recente_item:nth-of-type(4n+0)
+		{
+			margin-right: 0;
+		}
 		.Oficina_Content_Item {
     		width: 130px;
     		height: 30px;
