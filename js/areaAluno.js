@@ -330,6 +330,7 @@ var diasSemana = {
 
 var d = new Date
 var diaHoje = d.getDay()
+var horarios = [7, 8, 9, 10, 11]
 
 //Preencher Rotina Semanal
 function CarregarRotina() {
@@ -341,6 +342,12 @@ function CarregarRotina() {
 		async: false,
 		crossDomain: true,
 		success: function(result) {
+
+			horarios.forEach(function(horario) {
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
+            })
 			console.log(result)
 			result.forEach(function(rotina){
 				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
@@ -362,6 +369,13 @@ function CarregarRotina() {
 }
 
 function rotinaMudarDia(quanto) {
+
+	horarios.forEach(function(horario) {
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("Carregando")
+            })
+
 	diaHoje = (diaHoje + quanto)
 	if (diaHoje > 5) {diaHoje = 1};
 	if (diaHoje < 1) {diaHoje = 5}

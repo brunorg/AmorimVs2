@@ -352,3 +352,108 @@ select[value="0"]{
 #oficinaMural, #tutoriaMural, #msgMural{
 	display:none;
 }
+
+#Rotina_Semanal {
+    width: 100%;
+    height: 256px;
+    background-color: #7bccd8;
+    float: left;
+}
+#Rotina_Semanal_Nome {
+    height: 43px;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 0 0 12px;
+}
+#Rotina_Semanal_Nome a {
+    color: #fff;
+    text-decoration: none;
+}
+#Rotina_Semanal_Conteudo {
+    padding: 15px;
+    padding-top: 0;
+}
+table#Rotina_Semanal_Tabela {
+    width: 100%;
+    border: 1.5px solid #fff;
+    background-color: #fff;
+    text-align: center;
+    font-size: 12px;
+    border-spacing: 0;
+    border-collapse: none;
+}
+table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
+    height: 30px;
+    border: inherit;
+}
+.Rotina_Semanal_Linha_Recreio {
+    background-color: rgb(223,222,212)
+}
+table#Rotina_Semanal_Tabela>thead>tr {
+    background-color: #23BECD;
+    color: #fff;
+    height: 25px;
+    font-size: 13px;    
+}
+.Rotina_Semanal_btn_Seta {
+    background-color: #129fad;
+    cursor: pointer;
+}
+.Rotina_Semanal_Horario {
+    background-color: rgb(236,235,229);
+    color: #78776b;
+}
+.Rotina_Semanal_Materia { color: #fff; }
+
+table#Rotina_Semanal_Tabela td, table#Rotina_Semanal_Tabela th { 
+    border: 1.5px solid #fff;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 95px;
+    line-height: 1em;
+}
+
+table#Rotina_Semanal_Tabela td:first-of-type, table#Rotina_Semanal_Tabela th:first-of-type,
+table#Rotina_Semanal_Tabela td:last-of-type, table#Rotina_Semanal_Tabela th:last-of-type 
+{ 
+    width: 56px;
+}
+
+tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
+
+.Rotina_Pesquisa { background-color: #1c828e; }
+
+.Rotina_Artes { background-color: #bf4b69; }
+
+.Rotina_Matematica { background-color: #f25954; }
+
+.Rotina_Leitura_Escrita { background-color: #755b91; }
+
+.Rotina_Ingles { background-color: #3f5ba8; }
+
+.Rotina_Roda_Conversa { background-color: #f68f46; }
+
+.Rotina_Semanal_Professor { background-color: rgba(255, 255, 255, .5); }
+
+.Rotina_Semanal_Local { background-color: rgba(255, 255, 255, .7); }
+
+.tdTabela1 {
+    display: block;
+    width: 50px;
+    height: 25px;
+}
+.tdTabela2 {
+    display: block;
+    width: 70px;
+    height: 25px;
+}
+.tdTabela3 {
+    display: block;
+    width: 70px;
+    height: 25px;
+}
+.tdTabela4 {
+    display: block;
+    width: 70px;
+    height: 25px;
+}

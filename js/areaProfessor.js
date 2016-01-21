@@ -7,6 +7,7 @@ $(document).ready(function() {
     adicionarBarraRolagem();
     carregarDados();
     atribuirEventos();
+    rotinaMudarDia(0);
 
     $('.postContainer2').mCustomScrollbar({
         axis:"y"
@@ -693,4 +694,64 @@ function iniciarMural() {
 }
 
 
+var diasSemana = {
+    "1" : "Segunda-Feira",
+    "2" : "Terça-Feira",
+    "3" : "Quarta-Feira",
+    "4" : "Quinta-Feira",
+    "5" : "Sexta-Feira"
+}
 
+var d = new Date
+var diaHoje = d.getDay()
+var horarios = [7, 8, 9, 10, 11]
+
+//Preencher Rotina Semanal
+function CarregarRotina() {
+
+    $('#Rotina_Semanal_Dia').html(diasSemana[diaHoje])
+        $.ajax({
+        url: path+"Rotina/RotinaDiariaProfessor/"+professorId+"/"+diaHoje,
+        type: "GET",
+        async: true,
+        crossDomain: true,
+        success: function(result) {
+
+            horarios.forEach(function(horario) {
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
+            })
+
+            console.log(result)
+            result.forEach(function(rotina){
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
+
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento)  
+
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)
+            })
+        },
+        error: function (a, status, error) {
+            console.log(status + " /// " + error)
+        }
+    }); 
+
+}
+
+function rotinaMudarDia(quanto) {
+
+    horarios.forEach(function(horario) {
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("Carregando")
+            })
+
+    diaHoje = (diaHoje + quanto)
+    if (diaHoje > 5) {diaHoje = 1};
+    if (diaHoje < 1) {diaHoje = 5}
+    CarregarRotina()
+}
