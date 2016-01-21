@@ -12,6 +12,14 @@
 var userID = usuarioId;
 var coordID = getProfessorByUsuario();
 
+$(document).ready(function () {
+	GerarUpload($("#foto"), $("#ataJeiff"), $("#DadosAta"));
+		
+	$('#btnFechaJanela').click(function(){
+		$(".blackPainel").css("display","none");
+	});
+});
+
 function getProfessorByUsuario()
 {
 	var dataUsuario1 = getData("Usuario", userID);
@@ -209,8 +217,6 @@ function MuralComum() {
 
 
 		getAjax("Mural/ListarProfessor/"+coordID, "GET", "", true, function(result){
-
-			console.log(result)
 			var htmlPost="";
 
 			result.forEach(function(postMuralComum){
@@ -285,7 +291,6 @@ function MuralComum() {
 
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
-		console.log(idPost)
 		self.new(idPost, mensagemPost);
 	};
 
@@ -313,7 +318,6 @@ function MuralJeiff() {
 
 		getAjax("JeiffPea", "GET", "", true, function(result){
 
-			console.log(result)
 			var htmlPost="";
 
 			result.forEach(function(postJeiff){
@@ -352,7 +356,7 @@ function MuralJeiff() {
 		htmlPost += "<input type=\"date\" class=\"box_input_data input_data_jeiff\" id=\"jeiffDatepicker\" readonly placeholder=\"Selecione uma data\">";
 		htmlPost += "<textarea class=\"box_textarea textarea_jeiff\" name=\"jeiff_mensagem\" id=\"textareaMuralJeiff\" placeholder=\"Digite o texto da mensagem\"><\/textarea>";
 		htmlPost += "<aside class=\"box_ic\">";
-		htmlPost += "<span style=\"display: none\"><input type=\"file\" id=\"arquivoJeiff\"><\/span>";
+		htmlPost += "<span class=\"ic_pdf_upload\" style=\"display:none\">&nbsp;<\/span>";
 		htmlPost += "<span class=\"ic_add_arquivo\" onclick=\"muralJeiff.upArquivo()\">&nbsp;<\/span>";
 		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralJeiff.refresh()\">&nbsp;<\/span>";
 		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralJeiff.save("+idPost+")\">&nbsp;<\/span>";
@@ -384,38 +388,17 @@ function MuralJeiff() {
 	
 
 	self.upArquivo = function() {
-		//$("#arquivoJeiff").trigger("click");
-		var HtmlContentUpload = '<div id="JanelaUploadPortifolio">'+
-                                '<div class="Titulo_janela_upload">'+
-                                '</div>'+
-                                '<div id="foto">'+
-                                '</div>'+
-                                '<div id="LegendaUpload">Aguardando Arquivo</div>'+
-                                '<form id="form_upload_arquivo_jeiff">'+
-                                    '<input type="hidden" id="id" name="id" value="0"/>'+
-                                    '<input type="hidden" id="action" name="action" value="create" />'+
-                                    '<input type="hidden" id="Dados_Foto_Aluno" />'+
-                                    '<input type="file" id="Arquivo_Foto_Aluno" name="arquivo" />'+
-                                    '<div class="campoConfirmaUpload">'+
-                                        '<input class="btn_submit" type="button" value="" onclick="$(\'.blackPainel\').hide()"/>'+
-                                    '</div>'+
-                                '</form>'+
-                            '</div>';
-
-    	$('.blackPainel').show().html(HtmlContentUpload);
-		GerarUpload($("#foto"), $("#Arquivo_Foto_Aluno"), $("#Dados_Foto_Aluno"));
+    	$('.blackPainel').show();		
 	}
 
 	self.save = function(idPost) {
 
         getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){
-			
 			console.log(result);
 
 			$("#id").val(result)
 
 			var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
-			console.log(formData)
 		    $.ajax({
 		        url: path+"JeiffPea/upload",
 		        type: "POST",
@@ -426,8 +409,7 @@ function MuralJeiff() {
 		        processData:false,
 		        data: formData,
 		        success: function(d) {
-					//chama a função para o html que acabou de ser criado
-					$('.blackPainel').hide()
+					console.log('passou');
 		        },error: function() {
 		            mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
 		            $('.blackPainel').hide()
@@ -441,7 +423,6 @@ function MuralJeiff() {
 
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
-		console.log(idPost)
 		self.new(idPost, mensagemPost);
 	};
 
@@ -456,6 +437,13 @@ function MuralJeiff() {
 
 	};
 
+}
+
+function btnUpArquivo(){
+	$(".blackPainel").css("display","none");
+	var nomeArquivo = $('#ataJeiff').val();
+	nomeArquivo = nomeArquivo.split('\\');	
+	$(".ic_pdf_upload").css("display","inline-block").attr('title',nomeArquivo[nomeArquivo.length-1]);	
 }
 
 var muralGestao = new MuralGestao();
@@ -473,6 +461,7 @@ window.onload = function() {
 	muralComum.refresh();
 	muralJeiff.refresh();
 };
+
 
 
 
