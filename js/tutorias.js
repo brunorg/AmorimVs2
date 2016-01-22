@@ -1,192 +1,130 @@
+/*global $:false */
+'use strict';
 
-var Limite;
-var HtmlContent;
-var contador;
-var a;
-var largura;
-var ContadorPA;
-var d = new Date();
+function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId, tutoriaId) {
 
-var userID = usuarioId;
-var ProfessorID = getProfessorByUsuario();
+	$('#' + idDivPrincipal).append('<div class="grupoBox" id="' + idDivGrupo + '"></div>');
 
-$(document).ready(function() {	    	
-	CarregaServicoProfessorFuncionario();	
-});
+	$('#' + idDivGrupo).append('<div class="grupoBlocoNomes"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoNomes").append('<div class="grupoNome">Professores</div>') //Nome do grupo
+	$('#' + idDivGrupo + " .grupoBlocoNomes").append('<div class="caixaGL"></div>')
 
-//Carrega a tabela ProfessorFuncionario
-function CarregaServicoProfessorFuncionario(){		
-	var Faltas;		
-	var idTutoria;
-	var totalObjetivos;
-	var SerieAtualRes;
-	var SerieAtualCorrigidoRes;
-	
-	$.ajax({
-		url: path+"Tutoria",
-		type: "GET",
-		async:true,
-		crossDomain: true,
-		timeout: 3000, 
-		success: function(dataTutoria) {
-			HTMLContente = "";
-			Limite = dataTutoria.length;
-			for(var a=0; a < dataTutoria.length; a++){
+	$('#' + idDivGrupo).append('<div class="grupoBlocoGraficoObj"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj").append('<div class="grupoGraficoTitulo grupoTituloBottom">OBJETIVOS</div>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj").append('<table class="grupoTabela"></table>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela").append('<thead></thead>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela").append('<tbody></tbody>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela thead").append('<th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th><th>35</th><th>40</th><th>45</th><th>50</th><th>55</th><th>60</th><th>65</th><th>70</th><th>75</th><th>80</th><th>85</th><th>90</th><th>95</th><th>100</th><th>%</th>')
+	$('#' + idDivGrupo).append('<div class="grupoBlocoGraficoFreq"></div>')
 
-				idTutoria = dataTutoria[a].idtutoria;				
-				
-				//if((dataTutoria[a].tutor != null) && (idTutoria < 3)){  //Linha de teste para a pagina ficar mais rapida!!
-				if(dataTutoria[a].tutor != null){
-					//console.log(dataTutoria[a]);
-					var id = getProfessor(dataTutoria[a].tutor.idprofessorFuncionario);
-					
-					var total = qtdObjetivo(idTutoria);
-					SerieAtualRes = total.SerieAtual;
-					SerieAtualCorrigidoRes = total.SerieAtualCorrigido;
-									
-					$.ajax({
-						url: path+"PresencaProfessor/Professor/"+id,
-						type: "GET",
-						async:false,
-						crossDomain: true,
-						success: function(d) {
-							Faltas = d;
-						}
-					});
-					
-					HTMLContente+='<div class="Grafico_Individual_Aluno">';
-					HTMLContente+='<div class="Grafico_Individual_Aluno_Falta_Numero">'+Faltas+'</div>';
-					HTMLContente+='<div class="Grafico_Individual_Aluno_Escala">';
-		
-					HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual" style="height:'+SerieAtualRes+'%;">';
-					HTMLContente+='<div class="Porcentagem_Objetivos_Serie_Atual_Corrigido" style="height:'+SerieAtualCorrigidoRes+'%;"></div>';
-					HTMLContente+='</div>';
-		
-					HTMLContente+='</div>';
-					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-						HTMLContente+='<a href="mGrupoTutoria.html?ID='+(base64_encode(""+dataTutoria[a].tutor.idprofessorFuncionario))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataTutoria[a].tutor.nome+'">';
-					else
-						HTMLContente+='<a href="grupoTutoria.html?ID='+(base64_encode(""+dataTutoria[a].tutor.idprofessorFuncionario))+'"><div class="Grafico_Individual_Aluno_Foto_Hover" nomeAluno="'+dataTutoria[a].tutor.nome+'">';
-					HTMLContente+='<img src="'+dataTutoria[a].tutor.fotoProfessorFuncionario+'" ></img>';
-					HTMLContente+='</div></a></div>';
-			
-					if(Limite < 22)
-					{
-						$('#Grade_Aluno_Grafico_Mask').css("width",""+(924)+"px");
-						$('.Grafico_Individual_Aluno_Overflow').css("width",""+(924)+"px");
-					} else {
-						$('#Grade_Aluno_Grafico_Mask').css("width",""+(Limite*42)+"px");
-						$('.Grafico_Individual_Aluno_Overflow').css("width",""+(Limite*42)+"px");
-					}
-						
-					$('body').append('<div class="aluno_foco"> </div>');			
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq").append('<div class="grupoGraficoTituloLeft">FREQUÊNCIA</div>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq").append('<table class="grupoTabela grupoTabelaFreq"></table>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq").append('<div class="caixaGR"></div>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela").append('<thead></thead>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela").append('<tbody></tbody>')
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela thead").append('<th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th><th>%</th>')
 
-					$('body').delegate('.Grafico_Individual_Aluno_Foto_Hover','mouseover',function(){
-						
-						var px = event.pageX;
-						var py = event.pageY;
-						$('.aluno_foco').html($(this).attr("nomeAluno"));
-						var w = $('.aluno_foco').width();
-						var h = $('.aluno_foco').height();
+	criarPaineisDosAlunos(idDivGrupo, retornoAjax);
 
-						
-						$('.aluno_foco').css("left",(px-w)+"px");
-						$('.aluno_foco').css("top",(py+(h*2))+"px");
-						$('.aluno_foco').show();
-					})
-					.delegate('.Grafico_Individual_Aluno_Foto_Hover','mouseout',function(){
-						$('.aluno_foco').hide();
-					});
+}
 
-				}
-			}	
-			$('.Grafico_Individual_Aluno_Overflow').remove("loaderImage");		
-			$('.Grafico_Individual_Aluno_Overflow').html(HTMLContente);				
-		},
-		complete:function(){
-			$('.boxGrafico').css("display","none");	
+function criarPaineisDosAlunos(idDivGrupo, retornoAjax) {
+
+	for (var i = retornoAjax.length - 1; i >= 0; i--) {
+
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
+
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoFotoAluno"></div>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + retornoAjax[i].foto + '"></img>' + '</a	>')
+
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + retornoAjax[i].nome + '</span>' + '</a>')
+
+
+
+		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr id="aluno' + i + '"></tr>')
+		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody tr#aluno" + i).append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
+		if (i != 0) {
+			$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
 		}
-	});	
-}
 
-//------------------------------------------------------------------------------------------------------------------------
-
-function qtdObjetivo(idTutoria){
-	//console.log('idTutoria'+idTutoria);
-	var NumeroRetornoPlanejamento = 0;
-	var NumeroSerieAtualCorrigido = 0;	
-	var SerieAtual;
-	var SerieAtualCorrigido;
-	var retorno = new Array();
-
-	$.ajax({
-		url: path+"PlanejamentoRoteiro/ObjetivoAlunoProfessor/"+idTutoria,
-		type: "GET",
-		async:false,
-		crossDomain: true,
-		success: function(countPlanejamento) {
-				
-			//console.log(countPlanejamento);	
-						
-			NumeroSerieAtualTotal= countPlanejamento.QuantidadeTotal;
-			NumeroSerieAtualCompletos = countPlanejamento.QuantidadeCompletos;			
-			NumeroSerieAtualCorrigido = countPlanejamento.QuantidadeCorrigidos;	
-			
-			
-			
-			if(NumeroSerieAtualTotal != 0 && NumeroSerieAtualCompletos != 0){
-				SerieAtual = (NumeroSerieAtualCompletos/NumeroSerieAtualTotal)*100;
-			}else{
-				SerieAtual = 0;
-			}
-			
-			if (NumeroSerieAtualTotal != 0 && NumeroSerieAtualCorrigido != 0){
-				SerieAtualCorrigido = (NumeroSerieAtualCorrigido/NumeroSerieAtualTotal)*100;
-			}else{
-				SerieAtualCorrigido = 0;
-			}
-			
-			retorno = {
-				"SerieAtual" : SerieAtual,
-				"SerieAtualCorrigido": SerieAtualCorrigido
-			};
-			
+		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr id="aluno' + i + 'freq"></tr>')
+		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody tr#aluno" + i + "freq").append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
+		if (i != 0) {
+			$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
 		}
-		
-	});	
+		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .caixaGR").append('<div class="grupoLinhaAluno grupoLinhaAlunoTop borderRight"><div class="grupoGraficoFreqTitulo"><h1 class="freqTitulo">Presenças</h1><h2 class="anoLetivo" id="anoLetivo">' + 0 +'</h2><h1 class="freqTitulo">Faltas</h1><h2 class="faltas" id="faltas">' + 0 + '</h2></div></div>')
 
-	return retorno;
+		criarBarrinhas(idDivGrupo, 'aluno' + i, retornoAjax[i]);
+	};
+
 }
 
-function getProfessor(id){
-	var retorno;	
+function adicionarBarrinhasNoHtml(idDivGrupo, id) {
+
+	// Adiciona as divs de barrinha de progressão do aluno
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody" + ' #' + id + ' td:first-child').html('<div class="barrinhaPorcentagem atual"></div>'+
+	                                     '<div class="barrinhaPorcentagem atualCorrigido"></div>');
+
+	// Adiciona as divs de barrinha de faltas do mesmo aluno
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' td:first-child').html('<div class="barrinhaPorcentagem diasLetivos"></div>'+
+                                    			  '<div class="barrinhaPorcentagem diasLetivosFaltas"></div>');
+}
+
+function criarBarrinhas(idDivGrupo, id, dadosAluno) {
+
+	//Adiciona as divs das barrinhas, todas tem 0 de largura por padrão
+	adicionarBarrinhasNoHtml(idDivGrupo, id);
+
+	// Pega o tamanho da div que irá conter as barrinhas e define tamanho fixo de um ponto percentual dentro dela
+
+	var tamanhoPontoPercentual = 317 / 100;
+
+	var tamanhoPontoPercentual2 = 157 / 100;
+
+	var dadosAluno2 = {
+		'atual' 			: dadosAluno.objetivos.completos * 100,
+		'atualCorrigido' 	: dadosAluno.objetivos.corrigidos * 100,
+		'diasLetivos'		: 0 * 100,
+		'diasLetivosFaltas'	: 0 * 100,
+	};
+
+	console.log(dadosAluno2.diasLetivos + " / " + dadosAluno2.diasLetivosFaltas)
+
+	// Define tamanho de cada barrinha de acordo com os dadosAluno
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atual'				).css('width', dadosAluno2.atual 				* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atualCorrigido'	).css('width', dadosAluno2.atualCorrigido		* tamanhoPontoPercentual);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivos'		).css('width', dadosAluno2.diasLetivos 			* tamanhoPontoPercentual2);
+	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody" + ' #' + id + 'freq' + ' .diasLetivosFaltas'	).css('width', dadosAluno2.diasLetivosFaltas 	* tamanhoPontoPercentual2);
+}
+
+
+var totalDiasLetivos = diasLetivos();
+
+window.onload = function() {
+
 	$.ajax({
-		url: path+"ProfessorFuncionarioVariavel/Professor/"+id,
-		type: "GET",
-		async:false,
-		crossDomain: true,
-		success: function(professorFuncionarioVariavel) {
-			if(professorFuncionarioVariavel[0].professorFuncionario != null){
-				retorno = professorFuncionarioVariavel[0].professorFuncionario.idprofessorFuncionario;
-			}
-		}						
-	});
-	return retorno;
-}
+        url: path + "ProfessorFuncionario/DadosTutoriaProfessores/",
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(retornoAjax){
+        	console.log(retornoAjax)
+        	if (retornoAjax.length === 0) {
+        		$("#divPrincipalGrupos").append('<p>Não há grupos para serem exibidos.</p>')
+        	}
 
-function getProfessorByUsuario()
-{
-	var dataUsuario1 = getData("Usuario", userID);		
-	return dataUsuario1.professor.idprofessorFuncionario;
-}
-//------------------------------------------------------------------------------------------------------------------------
+                criarPainelDoGrupo('divPrincipalGrupos', 'grupo1', retornoAjax);
 
-//Funcao pra ordenar as classes e afins pela sua ordem alfabetica
 
-function OrdenarPor(TString)
-{		
-		$('#Conteudo_Coluna3_Agenda_Evento_Content').find('.Conteudo_Coluna3_Agenda_Evento').sort(function(x,b){
-		//console.log(x,b);
-				return x.getElementsByClassName(TString)[0].innerHTML.substring(8, 10)+x.getElementsByClassName(TString)[0].innerHTML.substring(5, 7)+x.getElementsByClassName(TString)[0].innerHTML.substring(0, 2) > b.getElementsByClassName(TString)[0].innerHTML.substring(8, 10) + b.getElementsByClassName(TString)[0].innerHTML.substring(5, 7) + b.getElementsByClassName(TString)[0].innerHTML.substring(0, 2);
-	   }).appendTo($('#Conteudo_Coluna3_Agenda_Evento_Content'));
-}
+        },
+        error: function(a, status, error) {
+            console.log(status + " /// " + error)
+        }
+    });
+
+	//criarBarrinhas('aluno1', aluno1dados);
+	//criarBarrinhas('aluno2', aluno2dados);
+
+};
+
