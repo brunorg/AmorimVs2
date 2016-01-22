@@ -11,13 +11,17 @@ $(document).ready(function() {
     $('.postContainer2').mCustomScrollbar({
         axis:"y"
     });
+	
+	$('#trocarOficina').click(function(){
+		$(this).toggleClass('down');
+		$('#box_oficinas').toggleClass('exibe');
+	});
 });
 
 function adicionarBarraRolagem () {
     $('.postContainer').mCustomScrollbar({
         axis:"y"
     });
-
 }
 
 function carregarDados () {
@@ -33,7 +37,6 @@ function atribuirEventos () {
     removerImagemPostagem();
     clickRelatorio();
     cancelarRelatorio();
-    console.log("mural")
     iniciarMural();
     iniciarMuralCoordenacao();
     $("#salvarPostagem").click(novaPostagem);

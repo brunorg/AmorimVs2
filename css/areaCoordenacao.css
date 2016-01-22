@@ -181,8 +181,8 @@ div[class*="box_col"]:last-of-type {
 
 /* Box Mural */
 
-.mCSB_container  .mural_post_item,
-.mCSB_container  .jeiff_post_item
+.scroll_receiver .mCSB_container .mural_post_item,
+.scroll_receiver .mCSB_container .jeiff_post_item
 {
 	background-color: #fff;
 	padding: 11px 12px 5px;
@@ -362,7 +362,7 @@ input.input_data_jeiff
 	background: url(../img/ic_salvar_b.png) no-repeat 50% 50%;
 }
 .ic_pdf_upload{
-	background: url(../img/logo-pdf.png) no-repeat center center;
+	background: url(../img/logo-pdf_bw.png) no-repeat center center;
     background-size: 100% 100%;
     width: 40px;
     height: 33px;

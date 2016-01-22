@@ -52,13 +52,19 @@ html, body
 		    background: url(../img/logo_icon_sm.png) no-repeat;
 		    background-position: 40px 50%;
 		}
-
 		#Cabecalho_Menu_Area_Menu2{
 			width: 388px;
 			height:36px;
 			float:right;
 			padding-top: 7px; 
 			margin-right: 40px;
+		}
+		#Cabecalho_Menu_Trocar_Oficina{
+			width: 381px;
+			height: 36px;
+			float: left;
+			padding-top: 7px;
+			text-align: right;		
 		}
 
 	#Cabecalho_Perfil_Area{
@@ -1177,6 +1183,44 @@ font-family: "proxima-nova",sans-serif;
 	cursor:pointer;
 }
 
+#trocarOficina{
+	padding: 9px 13px;
+    cursor: pointer;
+	margin-left:5px;
+}
+#trocarOficina.up{
+	background:url(../img/arrow_fichas.png) no-repeat;
+    background-size: 40%;
+    background-position: 9px 13px;
+}
+#trocarOficina.down{
+	background:#73D8E2 url(../img/arrow_fichas_2.png) no-repeat;
+    background-size: 40%;
+    background-position: 9px 13px;
+}
+#box_oficinas{
+    position: absolute;
+    z-index: 9;
+    width: 200px;
+    height: 100px;
+    background: #FFFFFF;
+    border: 1px solid rgba(22, 190, 207, 36);
+    border-top: 0;
+    right: 33%;
+    top: 36px;
+    padding: 5px;
+	display:none;
+}
+.exibe{
+	display:block !important;
+}
+
+#box_oficinas p{
+	padding:0;
+	margin:0;
+	color:#666666;
+}
+
 .boxOverlay{
 	display: none;
 	width: 50%;
@@ -1455,7 +1499,7 @@ font-family: "proxima-nova",sans-serif;
 		color: #FFF;
 		background-color: #16BECF;
 	}
-	#Cabecalho_Menu_Area_Menu1,#Cabecalho_Menu_Area_Menu2{
+	#Cabecalho_Menu_Area_Menu1,#Cabecalho_Menu_Area_Menu2,#Cabecalho_Menu_Trocar_Oficina{
 		height:24px;
 		padding-top: 3px;
 	}

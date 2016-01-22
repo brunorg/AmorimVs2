@@ -97,7 +97,7 @@ function MuralGestao() {
 				htmlPost += "<\/span>";
 				htmlPost += "<\/main>";
 				htmlPost += "<aside class=\"mural_post_cabecalho\">";
-				htmlPost += "<span class=\"post_mural_data\">"+postMuralGestao.data+"<\/span> | <span class=\"post_mural_horario\">"+postMuralGestao.hora+"<\/span>";
+				htmlPost += "<span class=\"post_mural_data\">"+changeDatePosition(postMuralGestao.data,2,'/')+"<\/span>";
 				htmlPost += "<\/aside>";
 				htmlPost += "<aside class=\"mural_post_btns\">";
 				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralGestao.edit("+postMuralGestao.idMuralCoordenacao+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralGestao.delete("+postMuralGestao.idMuralCoordenacao+")\"><\/span>";
@@ -108,7 +108,7 @@ function MuralGestao() {
 
 			$("#conteudoMuralGestao").html(htmlPost);
 			$("#conteudoMuralGestao2").hide();
-			$("#conteudoMuralGestao").show();
+			$("#boxMuralGestao").show();
 		});
 	};
 
@@ -142,7 +142,7 @@ function MuralGestao() {
 
 		$("#conteudoMuralGestao2").html(htmlPost);
 		$("#conteudoMuralGestao2").show();
-		$("#conteudoMuralGestao").hide();
+		$("#boxMuralGestao").hide();
 		$("#iconeNovaPostagem").hide();
 
 	};
@@ -176,7 +176,6 @@ function MuralGestao() {
 		// periodos: 0 = todos, 8 = manha, 9 = tarde, 10 = noite
 
 		getAjax("MuralCoordenacao/", "POST", "action=create&professor="+coordID+"&data="+dataSend+"&hora="+horaSend+"&mensagem="+mensagemSend+"&perfil="+perfilSend+"&periodo="+periodoSend+"&id="+idPost, false, function(result){
-			console.log(result);
 		});
 
 		self.refresh();
@@ -213,9 +212,6 @@ function MuralComum() {
 	self.refresh = function() {
 
 		$("#iconeNovaPostagem2").show();
-
-
-
 		getAjax("Mural/ListarProfessor/"+coordID, "GET", "", true, function(result){
 			var htmlPost="";
 
@@ -228,7 +224,7 @@ function MuralComum() {
 				htmlPost += "<\/span>";
 				htmlPost += "<\/main>";
 				htmlPost += "<aside class=\"mural_post_cabecalho\">";
-				htmlPost += "<span class=\"post_mural_data\">"+postMuralComum.data+"<\/span> | <span class=\"post_mural_horario\">"+postMuralComum.hora+"<\/span>";
+				htmlPost += "<span class=\"post_mural_data\">"+changeDatePosition(postMuralComum.data,2,'/')+"<\/span> | <span class=\"post_mural_horario\">"+postMuralComum.hora+"<\/span>";
 				htmlPost += "<\/aside>";
 				htmlPost += "<aside class=\"mural_post_btns\">";
 				htmlPost += "<span class=\"mural_btn btn_editar\" onclick=\"muralComum.edit("+postMuralComum.idmural+")\"><\/span><span class=\"mural_btn btn_excluir\" onclick=\"muralComum.delete("+postMuralComum.idmural+")\"><\/span>";
@@ -239,7 +235,7 @@ function MuralComum() {
 
 			$("#conteudoMuralComum").html(htmlPost);
 			$("#conteudoMuralComum2").hide();
-			$("#conteudoMuralComum").show();
+			$("#boxMuralComum").show();
 		});
 	};
 
@@ -267,7 +263,7 @@ function MuralComum() {
 
 		$("#conteudoMuralComum2").html(htmlPost);
 		$("#conteudoMuralComum2").show();
-		$("#conteudoMuralComum").hide();
+		$("#boxMuralComum").hide();
 		$("#iconeNovaPostagem2").hide();
 
 	};
@@ -282,7 +278,6 @@ function MuralComum() {
 		loading("inicial")
 
 		getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
-			console.log(result);
 			self.refresh();
 			loading("final")
 		});
@@ -298,7 +293,6 @@ function MuralComum() {
 
 		loading("inicial")
 		getAjax("x`/", "POST", "action=delete&id="+idPost, true, function(result){
-			console.log(result);
 			self.refresh();
 			loading("final");
 		});
@@ -319,12 +313,15 @@ function MuralJeiff() {
 		getAjax("JeiffPea", "GET", "", true, function(result){
 
 			var htmlPost="";
-
+			var data,arquivo;
 			result.forEach(function(postJeiff){
-
+				
+				data 	= postJeiff.data_reuniao === null ? "" : changeDatePosition(postJeiff.data_reuniao,2,'/');
+				arquivo = postJeiff.arquivo === null ? "" : "<a href=\'"+postJeiff.arquivo+"\' target=\"_blank\" ><span>Anexo<\/span><\/a>";
+				
 				htmlPost += "<section class=\"jeiff_post_item\" id=\"jeiffPost"+postJeiff.idJeiffPea+"\">";
 				htmlPost += "<aside class=\"jeiff_post_cabecalho\">";
-				htmlPost += "<span class=\"post_jeiff_data\">"+postJeiff.data_reuniao+"<\/span>";
+				htmlPost += "<span class=\"post_jeiff_data\">"+data+"<\/span>";
 				htmlPost += "<\/aside>";
 				htmlPost += "<main class=\"jeiff_post_mensagem\">";
 				htmlPost += "<span class=\"post_jeiff_mensagem\">";
@@ -332,7 +329,7 @@ function MuralJeiff() {
 				htmlPost += "<\/span>";
 				htmlPost += "<\/main>";
 				htmlPost += "<aside class=\"jeiff_post_link\">";
-				htmlPost += "<a href=\"#\"><span>documentojeiff.pdf<\/span><\/a>";
+				htmlPost += arquivo;
 				htmlPost += "<\/aside>";
 				htmlPost += "<\/section>";
 
@@ -340,7 +337,7 @@ function MuralJeiff() {
 
 			$("#conteudoJeiff").html(htmlPost);
 			$("#conteudoJeiff2").hide();
-			$("#conteudoJeiff").show();
+			$("#boxJeiff").show();
 		});
 	};
 
@@ -364,9 +361,6 @@ function MuralJeiff() {
 		htmlPost += "</form>"
 		$("#conteudoJeiff2").html(htmlPost);
 
-
-
-
 		$("#jeiffDatepicker").datepicker({
 			showOn: "both",
 			buttonImage: "img/calendario.png",
@@ -381,7 +375,7 @@ function MuralJeiff() {
 		$('.ui-datepicker-trigger').hide()
 		
 		$("#conteudoJeiff2").show();
-		$("#conteudoJeiff").hide();
+		$("#boxJeiff").hide();
 		$("#iconeNovaPostagem3").hide();
 
 	};
@@ -392,32 +386,29 @@ function MuralJeiff() {
 	}
 
 	self.save = function(idPost) {
-
-        getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){
-			console.log(result);
-
-			$("#id").val(result)
-
-			var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
-		    $.ajax({
-		        url: path+"JeiffPea/upload",
-		        type: "POST",
-		        mimeType:"multipart/form-data",
-		        contentType: false,
-		        cache: false,
-				async:true,
-		        processData:false,
-		        data: formData,
-		        success: function(d) {
-					console.log('passou');
-		        },error: function() {
-		            mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
-		            $('.blackPainel').hide()
-		        },
-		    });
-
-
-		});
+		if($('#textareaMuralJeiff').val()!="" || $('#jeiffDatepicker').val()!=""){
+        	getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){			
+				var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
+				$.ajax({
+					url: path+"JeiffPea/upload/"+result,
+					type: "POST",
+					mimeType:"multipart/form-data",
+					contentType: false,
+					cache: false,
+					async:true,
+					processData:false,
+					data: formData,
+					success: function(d) {
+						mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
+					},error: function() {
+						mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
+						$('.blackPainel').hide()
+					},
+				});
+			});
+		}else{
+			mensagem("O campo data e texto são obrigatórios!","OK","bt_ok","erro");
+		}
 
     };
 
@@ -456,7 +447,6 @@ window.onload = function() {
 	});
 
 	carregarListaProfessores();
-
 	muralGestao.refresh();
 	muralComum.refresh();
 	muralJeiff.refresh();

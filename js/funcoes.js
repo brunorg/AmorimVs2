@@ -1045,13 +1045,8 @@ function alterarSenha(){
  * Modifica a posição do numero das datas caso seja cadastro em formato DD/MM/YYYY ou YYYY/MM/DD
  * tipo 1 : DD/MM/YYYY => YYYY/MM/DD
  * tipo 2 : YYYY/MM/DD => DD/MM/YYYY
- * @return {[type]} [description]
- */
+ @return {[type]} [description]
 
-/**
- * Modifica a posição do numero das datas caso seja cadastro em formato DD/MM/YYYY ou YYYY/MM/DD
- * tipo 1 : DD/MM/YYYY => YYYY/MM/DD
- * tipo 2 : YYYY/MM/DD => DD/MM/YYYY
  * @param  {string} Data      Data a ser inserida e modificada
  * @param  {Int} Numero    Tipo da modificação da Data inserida
  * @param  {String} Separador Tipo de separador dos numeros, traço ou barra (/ ou -)
