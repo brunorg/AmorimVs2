@@ -41,9 +41,15 @@ p{
 .titulo_of{	
 	position: relative;
 	width: 100%;
-    height: 24px;
-    padding: 5px;
-    transition: color 0.3s ease-in-out;
+	height: 24px;
+	padding: 5px;
+	transition: color 0.3s ease-in-out;
+}
+.feedback_oficinas_false
+{
+	padding: 15px;
+	background-color: #EBEBE3;
+	color: #666;
 }
 .aba_oficina:hover .barra_cor_of, .aba_ativa .barra_cor_of {
 	top: 0;
@@ -72,11 +78,11 @@ p{
 	background:#EBEBE3;
 }
 .cx_postagem{
-    width: 100%;
-    min-height: 83px;
-    padding: 0 17px;
-    margin-bottom: 25px;
-    word-break: break-word;
+	width: 100%;
+	min-height: 83px;
+	padding: 0 17px;
+	margin-bottom: 25px;
+	word-break: break-word;
 }
 .cx_postagem:first-of-type {
 	padding-top: 20px;
@@ -86,46 +92,46 @@ p{
 	margin-bottom: 0;
 }
 .cx_titulo {
-    font-size: 16px;
-    font-weight: normal;
-    text-transform: uppercase;
-    color: #666666;
-    margin: 0;
-    margin-bottom: 5px;
+	font-size: 16px;
+	font-weight: normal;
+	text-transform: uppercase;
+	color: #666666;
+	margin: 0;
+	margin-bottom: 5px;
 }
 .cx_info {
-    font-size: 12px;
-    font-weight: normal;
-    color: #BABABA;
-    margin: 0;
-    margin-bottom: 15px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #BABABA;
+	margin: 0;
+	margin-bottom: 15px;
 }
 .img_postagem {
-    width: 50%;
-    margin-right: 10px;
-    float: left;
+	width: 50%;
+	margin-right: 10px;
+	float: left;
 }
 .cx_texto {
 	margin-top: 10px;
-    display: inline-block;
-    color: #666;
-    line-height: 1.3em;
+	display: inline-block;
+	color: #666;
+	line-height: 1.3em;
 }
 .cx_texto:first-of-type {
 	margin-top: 5px;
 	display: inline;
 }
 .fim_postagem {
-    margin: 0;
-    margin-top: 10px;
-    border: 0;
-    border-top: 1px solid #aaa
+	margin: 0;
+	margin-top: 10px;
+	border: 0;
+	border-top: 1px solid #aaa
 }
 .Mensagem_Blog_Vazio, .Mensagem_Roteiro_Vazio {
-    padding: 20px;
-    color: #666;
-    background-color: #EBEBE3;
-    min-height: 80px;
+	padding: 20px;
+	color: #666;
+	background-color: #EBEBE3;
+	min-height: 80px;
 }
 .cx_tema_1{
 	width:100%;
@@ -139,38 +145,38 @@ p{
 }
 
 .Oficina_Planejamento_Info {
-    position: relative;
-    height: 30px;
-    padding: 8px 40px;
-    color: #666;
-    font-size: 14px;
-    line-height: 1em;
-    border: 1px solid #fff;
-    border-bottom: none;
-    cursor: pointer;
+	position: relative;
+	height: 30px;
+	padding: 8px 40px;
+	color: #666;
+	font-size: 14px;
+	line-height: 1em;
+	border: 1px solid #fff;
+	border-bottom: none;
+	cursor: pointer;
 }
 .Oficina_Id_Roteiro {
 	display: none;
 }
 .Oficina_Plan_Num {
-    position: absolute;
-    width: 30px;
-    height: 100%;
-    top: 0;
-    left: 0;
-    padding: 8px 0;
-    color: #fff;
-    text-align: center;
-    border-right: 1px solid #fff;
+	position: absolute;
+	width: 30px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 8px 0;
+	color: #fff;
+	text-align: center;
+	border-right: 1px solid #fff;
 }
 .Oficina_Plan_Quadrado {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #fff;
-    top: 7px;
-    right: 7px;
-    background-color: #ccc;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #fff;
+	top: 7px;
+	right: 7px;
+	background-color: #ccc;
 }
 .Aberto {
 	background-color: #f7931d;
@@ -180,10 +186,10 @@ p{
 }
 .Oficina_Plan_Itens {
 	width: 93%;
-    position: relative;
-    left: 30px;
-    overflow: hidden;
-    display: none;
+	position: relative;
+	left: 30px;
+	overflow: hidden;
+	display: none;
 }
 .Oficina_Plan_Item {
 	position: relative;
@@ -198,13 +204,13 @@ p{
 	padding: 7px 7px 7px 20px;
 }
 .Oficina_Plan_Desc {
-    background-color: #e5e5dc;
+	background-color: #e5e5dc;
 }
 .Oficina_Recurso {
-    background-position: left center;
-    background-repeat: no-repeat;
-    min-height: 24px;
-    padding: 5px 25px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	min-height: 24px;
+	padding: 5px 25px;
 }
 
 .Rec_Foto {

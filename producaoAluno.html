@@ -7,77 +7,77 @@
  
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/home.css" />
+		<link rel="stylesheet" type="text/css" href="css/home.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
-        <link rel="stylesheet" type="text/css" href="css/producaoAluno.css" />  
-        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
-    	<!--Fim Style-->
-        
-        <!--Script JS-->
-        <script type="text/javascript" src="js/path.js"></script>
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/plugins.css" />
+		<link rel="stylesheet" type="text/css" href="css/producaoAluno.css" />  
+		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+		<!--Fim Style-->
+		
+		<!--Script JS-->
+		<script type="text/javascript" src="js/path.js"></script>
+		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
-      	<script src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="js/calendario.js"></script>
-        <script type="text/javascript" src="js/funcoes.js"></script>   
-        <!--Carrega os dados do usuario logado-->
-        <script type="text/javascript" src="js/autenticador.js"></script>
-                        
-        <script type="text/javascript" src="angular/angular.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
-        <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
-        <script type="text/javascript" src="js/producaoAluno.js"></script>   
-        <!--Fim JS-->    
-    </head>
+		<script type="text/javascript" src="js/calendario.js"></script>
+		<script type="text/javascript" src="js/funcoes.js"></script>   
+		<!--Carrega os dados do usuario logado-->
+		<script type="text/javascript" src="js/autenticador.js"></script>
+						
+		<script type="text/javascript" src="angular/angular.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+		<script type="text/javascript" src="angular/app/app.js"></script>
+		<script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
+		<script type="text/javascript" src="js/producaoAluno.js"></script>   
+		<!--Fim JS-->    
+	</head>
 
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">            
-            <div>
-                <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
-                    <div id="Cabecalho_Menu_Area_Menu2">
-                        <a id="senha" onClick="atualizarCadastroModal('aluno');">Atualizar Cadastro</a> |
-                        <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-                        <a href="javascript:history.back()">Voltar</a> | 
-                        <a id="logout" href="#" ng-click="logout()">Sair</a>
-                    </div>			
-                </div>
-                <!--Perfil do usuário, neste caso, o aluno-->
-                <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
-                    <div id="Cabecalho_Perfil_Area_Foto_Content">
-                        <!--Foto do usuário, neste caso, do aluno-->
-                        <div id="Cabecalho_Perfil_Area_Foto">                        	
-                        	<img id='_foto' src='{{usuarioFoto}}'/>
-                        </div>
-                    </div>
-                    <!--Nome | Serie do usuário-->
-                    <div id="Cabecalho_Perfil_Area_Descricao_Content">
-                        <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div>
-                    </div>
-                </div>
-            </div>
+			<div>
+				<div id="Cabecalho_Menu_Area">
+					<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
+					<div id="Cabecalho_Menu_Area_Menu2">
+						<a id="senha" onClick="atualizarCadastroModal('aluno');">Atualizar Cadastro</a> |
+						<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
+						<a href="javascript:history.back()">Voltar</a> | 
+						<a id="logout" href="#" ng-click="logout()">Sair</a>
+					</div>			
+				</div>
+				<!--Perfil do usuário, neste caso, o aluno-->
+				<div id="Cabecalho_Perfil_Area" ng-init="usuario()">
+					<div id="Cabecalho_Perfil_Area_Foto_Content">
+						<!--Foto do usuário, neste caso, do aluno-->
+						<div id="Cabecalho_Perfil_Area_Foto">
+							<img id='_foto' src='{{usuarioFoto}}'/>
+						</div>
+					</div>
+					<!--Nome | Serie do usuário-->
+					<div id="Cabecalho_Perfil_Area_Descricao_Content">
+						<div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div>
+					</div>
+				</div>
+			</div>
 			<div id="Conteudo_Area">
-                    <!--Coluna a esquerda-->    
-                    <div class="Conteudo_Coluna" id="Content_lateral">    
-                        <!--Menu lateral-->
-                        <div id="Content_lateral_Menu">    
-                        	<div  ng-repeat="menu in menuHTML">                        	
-                                <a href="{{menu.href}}">
-                                	<div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                		<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                	    <div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                	    {{menu.label}}
-                                	</div>
-                                </a>
-                            </div>
-                        </div>    
-                    <!--Calendario-->                   
+					<!--Coluna a esquerda-->    
+					<div class="Conteudo_Coluna" id="Content_lateral">    
+						<!--Menu lateral-->
+						<div id="Content_lateral_Menu">    
+							<div  ng-repeat="menu in menuHTML">                        	
+								<a href="{{menu.href}}">
+									<div class="Content_lateral_Menu_Opcao {{menu.class}}">
+										<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+										<div ng-if="menu.class== 'forum' && menuInfoF != '' && menuInfoF != '0'" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+										{{menu.label}}
+									</div>
+								</a>
+							</div>
+						</div>    
+					<!--Calendario-->                   
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
@@ -87,18 +87,18 @@
 				</div>          
 
 				<!--Coluna geral central-->
-                <!--  bloqueio para a rolagem top-->				
-                <div class="Conteudo_Coluna" id="content_central">
+				<!--  bloqueio para a rolagem top-->				
+				<div class="Conteudo_Coluna" id="content_central">
 				
-                	<nav id="producao_aluno_cabecalho">
+					<nav id="producao_aluno_cabecalho">
 						<ul id="Producao_Aluno_Nav" class="Prod_Aluno_Nav">
-                			<li id="cabecalho_portfolio" class="Prod_Aluno_Nav_Item">Portfólio</li>
-                			<li id="cabecalho_fichas"  class="Prod_Aluno_Nav_Item">Fichas de finalização</li>
-                			<li id="cabecalho_atividade" class="Prod_Aluno_Nav_Item">Oficinas</li>
-                		</ul>
-                	</nav>
+							<li id="cabecalho_portfolio" class="Prod_Aluno_Nav_Item">Portfólio</li>
+							<li id="cabecalho_fichas"  class="Prod_Aluno_Nav_Item">Fichas de finalização</li>
+							<li id="cabecalho_atividade" class="Prod_Aluno_Nav_Item">Oficinas</li>
+						</ul>
+					</nav>
 					
-                	<main id="Prod_Aluno_Content">
+					<main id="Prod_Aluno_Content">
 						
 						<!-- Conteudo da aba de Portfolio -->
 						<section id="Portfolio" class="Prod_Aluno_Content_Item">
@@ -137,7 +137,7 @@
 							
 							<div id="conteudo_principal_fichas">
 								<div class="imagem_objeto">
-	        					 	<iframe src=""></iframe>
+									<iframe src=""></iframe>
 								</div>
 							</div>
 						</section>
@@ -157,44 +157,46 @@
 							
 							<div id="conteudo_principal_oficinas">
 								<div id="container_tela_padrao" class="container_tela_padrao">
+								<h1 class="tela_padrao_titulo">Atividades recentes</h1>
 									
 								</div>
-                                <div id="container_Nova_Producao" style="display: none">
-                                    <form id="form_Nova_Producao">
-                                        <h1 class="Titulo_Nova_Prod_Oficina">Inserir nova produção</h1>
-                                        <div class="celulaGrande_container">
-                                        	<div class="celulaGrande">
-                                        		<div class="infoG">Nome</div>
-                                        		<div class="infoValueG">
-                                        			<input name="texto" id="texto" type="text" value="" placeholder="Digite o nome da atividade." required />
-                                        		</div>
-                                        	</div>
-                                        </div>
-                                        <div style="display:none;">
-                                        	<input name="arquivo" id="postagemImagem" type="file"/>
-                                        </div>
-                                        <div id="addArquivo" class="bt bt_Add_Arquivo">Inserir Arquivo</div>
-                                        <input name="action" id="action" type="hidden" value="create" />
-                                        <input name="anoLetivo" id="anoLetivo" type="hidden" value=""/>
-                                        <input name="data" id="data" type="hidden" value="" />
-                                        <input name="aluno" id="aluno" type="hidden" value="" />
-                                        <input name="tipo" id="tipo" type="hidden" value="" />
-                                        <input name="categoria" id="categoria" type="hidden" value="1" />
-                                        <input name="oficina" id="oficina" type="hidden" value="" />
-                                    </form>
-                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina()">Salvar</div>
-                                </div>
+								<div id="container_Nova_Producao" style="display: none">
+									<form id="form_Nova_Producao">
+										<h1 class="Titulo_Nova_Prod_Oficina">Inserir nova produção</h1>
+										<div class="celulaGrande_container">
+											<div class="celulaGrande">
+												<div class="infoG">Nome</div>
+												<div class="infoValueG">
+													<input name="texto" id="texto" type="text" value="" placeholder="Digite o nome da atividade." required />
+												</div>
+											</div>
+										</div>
+										<div style="display:none;">
+											<input name="arquivo" id="postagemImagem" type="file"/>
+										</div>
+										<div id="addArquivo" class="bt bt_Add_Arquivo">Inserir Arquivo</div>
+										<span class="arquivo_nome"></span>
+										<input name="action" id="action" type="hidden" value="create" />
+										<input name="anoLetivo" id="anoLetivo" type="hidden" value=""/>
+										<input name="data" id="data" type="hidden" value="" />
+										<input name="aluno" id="aluno" type="hidden" value="" />
+										<input name="tipo" id="tipo" type="hidden" value="" />
+										<input name="categoria" id="categoria" type="hidden" value="1" />
+										<input name="oficina" id="oficina" type="hidden" value="" />
+									</form>
+									<div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina()">Salvar</div>
+								</div>
 								<iframe id="Prod_Oficina_View" class="Prod_Oficina_View" src="" frameborder="0" style="width:720px; height:430px;">
 									<!-- Conteúdo gerado por JS -->
 								</iframe>
 							</div>
 						</section>
 
-                	</main>	
+					</main>	
 
-                	<div id="portifolio_aluno_content">
+					<div id="portifolio_aluno_content">
 						
-                	</div>	
+					</div>	
 						
 						<div id="back_black">
 							<div class="mensagem_Exclusao">
@@ -210,10 +212,10 @@
 							</div>
 						</div>
 
-              	</div> 
+				</div> 
 			</div>             
 		</div><!--Fim Conteudo-->
-        <div id="boxMensagemGeral"></div>
+		<div id="boxMensagemGeral"></div>
 		<div class="boxGlobal"></div>    
 	</body>
 </html> 

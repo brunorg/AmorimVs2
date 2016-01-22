@@ -94,7 +94,7 @@
 		    text-transform: uppercase;
 		    font-size: 12px;
 		    border-left: 2px solid #fff;
-		    border-right: 2px solid #fff;
+		    border-right: none;
 		    border-top: 1px solid #fff;
 		    border-bottom: 1px solid #fff;
 		    color: #fff;
@@ -121,31 +121,58 @@
 			height: 100%;
 			overflow: hidden;
 		}
+		.tela_padrao_titulo
+		{
+			display: block;
+			margin: 0;
+			margin-bottom: 15px;
+			font-size: 14px;
+			text-transform: uppercase;
+			color: #8FAE38;
+			letter-spacing: 0.5px;
+			font-weight: normal;
+		}
+		.retono_vazio_recentes
+		{
+			margin: 0;
+			padding: 15px;
+			background-color: #ecebe5;
+			color: #666;
+			font-size: 14px;
+			font-weight: normal;
+		}
 		.atividade_recente_item
 		{
 			position: relative;
 			display: inline-block;
+			overflow: hidden;
 			width: 160px;
-			height: 200px;
-			margin: 0 28px 25px 0;
-			padding: 18px 0 0;
+			height: 194px;
+			margin: 0 28px 10px 0;
+			padding: 15px 0 0;
 			float: left;
 			background-color: #ecebe5;
+		}
+		.atividade_recente_item > a
+		{
+			text-decoration: none; 
 		}
 		.atividade_recente_img
 		{
 			display: block;
 			width: 120px;
-			margin: 0 auto 9px;
+			margin: 0 auto 8px;
 			height: 120px;
 			cursor: pointer;
+			background-size: cover;
+			background-position: center center;
 		}
 		.atividade_recente_nome
 		{
 			display: block;
 			width: 120px;
 			height: 20px;
-			margin: 0 auto 5px;
+			margin: 0 auto;
 			color: #666;
 			overflow: hidden;
 			font-size: 14px;

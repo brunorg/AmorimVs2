@@ -5,66 +5,23 @@ var listaOficinasAluno = [];
 var listaIdOficinas = [];
 var listaRotOficina = [];
 
-function carregarOficinasAluno() {
-	var htmlListaOficinas = '';
+function getOficinasAluno() {
+	var retorno;
 
 	$.ajax({
 		url: path + "Oficina/ListarPorAluno/" + alunoVar,
 		async: false,
 		type: "GET",
 		crossDomain: true,
-		beforeSend: function(){
-			loading("inicial");
-		},
-		success: function(data) {
-			if ( data.length > 0 ) {
-				
-				//Cria o campo para as abas de oficina
-				htmlListaOficinas +=
-				'<table>'+
-					'<tr>';
-
-				//Inicia a listagem de oficinas
-				for ( i in data ) {
-
-					//Cria uma lista com as oficinas listadas
-					listaOficinasAluno[i] = data[i];
-
-					//Quebra o nome da oficina
-					var nomeOficina = data[i].tipoOficina.nome;
-
-					htmlListaOficinas += 
-		        		'<td>'+
-		        			'<div class="aba_oficina" onclick="ativarAba('+i+')">'+
-		        				'<p class="barra_cor_of" style="background:'+data[i].tipoOficina.cor.forte+'">&nbsp;</p>'+
-		        				'<p class="titulo_of">'+nomeOficina+'</p>'+
-		        			'</div>'+
-		        		'</td>';
-				}
-
-				//Fecha o campo para as abas de oficinas
-				htmlListaOficinas +=
-					'</tr>'+
-				'</table>';
-			} else {
-				//Mensagem indicando que o aluno não está em nenhuma oficina
-				mensagem("Você ainda não está matriculado em nenhuma oficina.","OK","bt_ok","alerta");
-			}
-		},
-		complete: function(){
-			loading("final");
-		}
+		beforeSend:	function()		{ loading("inicial"); },
+		success:	function(data)	{ retorno = data; },
+		complete:	function()		{ loading("final"); }
 	});
 
-	if ( listaOficinasAluno.length > 0 ) {
-		$("#lista_oficinas").html(htmlListaOficinas);
-		ativarAba(0);
-	} else {
-		$("#lista_oficinas").remove();
-	}
+	return retorno;
 }
 
-function retornarBlogOficina(indexOficina) {
+function getBlogOficina(indexOficina) {
 	var htmlBlog = '';
 	
 	for ( a in listaOficinasAluno ) {
@@ -78,50 +35,36 @@ function retornarBlogOficina(indexOficina) {
 					loading("inicial");
 				},
 				success: function(d) {
-					//Verifica se existe alguma postagem
-					if ( d.length > 0 ) {
-						//Inicia a seção de blog			
+					if ( d.length > 0 ) {		
 						htmlBlog +=
 							'<section class="Postagens_Container">';
 
-						//Varre e retorna as postagens
 						for (var i = d.length-1; i >= 0; i--) {
-							//Divide a data da postagem em dia, mês e ano
 							if ( d[i].data ) {
 								dia = d[i].data.slice(8);
 								mes = d[i].data.slice(5,7);
 								ano = d[i].data.slice(0,4);
 							}
-
-							//Quebra a postagem em parágrafos
 							var post = d[i].descricao.split('\n');
-
-							//Cria a postagem e adiciona o título e a data
 							htmlBlog +=
 								'<article class="cx_postagem">'+
 					        	   	'<h1 class="cx_titulo">'+d[i].titulo+'</h1>'+
 					        	   	'<h2 class="cx_info">'+dia+'/'+mes+'/'+ano+'</h2>';
 
 					        if ( d[i].imagem ) {
-					        	//Carrega a imagem, se existir alguma.
 					        	htmlBlog +=
 				        	    	'<img src="'+d[i].imagem+'" class="img_postagem" />';
 			        	    }
-
-			        	    //Cria as tags <p> para cada parágrafo.
 			        	    for ( j in post ) {
 			        	    	if ( post[j] != '' ) {
 			        	    		htmlBlog +=
 				        			'<p class="cx_texto">'+post[j]+'</p>';
 				        		}
 				        	}
-
-				        	//Encerra a postagem
 							htmlBlog +=
 				        	    	'<hr class="fim_postagem" />'+
 				        		'</article>';
 						}
-						//Encerra a área do blog
 						htmlBlog +=
 							'</section>';
 					}
@@ -135,7 +78,7 @@ function retornarBlogOficina(indexOficina) {
 	return htmlBlog;
 }
 
-function retornarRoteirosOficina(indexOficina) {
+function getRoteirosOficina(indexOficina) {
 	var htmlRoteirosOficina = '';
 
 	for ( a in listaOficinasAluno ) {
@@ -201,22 +144,28 @@ function ativarAba(indexOficina) {
 
 	var abas = $('.aba_oficina');
 
-	for ( var i = 0; i < abas.length; i++ ) {
-		if ( i == indexOficina ) {
-			//Verifica se a aba clicada não está ativa
-			if ( !$($(abas).get(i)).hasClass('aba_ativa') ) {
+	for ( var i = 0; i < abas.length; i++ )
+	{
+		if ( i == indexOficina )
+		{
+			if ( !$($(abas).get(i)).hasClass('aba_ativa') )
+			{
 				$($(abas).get(i)).addClass('aba_ativa');
 			}
-		} else {
-			//Inativa as outras abas
+		}
+		else
+		{
 			$($(abas).get(i)).removeClass('aba_ativa');
 		}
 	}
 
-	var roteiros = retornarRoteirosOficina(indexOficina);
-	if ( roteiros ) {
+	var roteiros = getRoteirosOficina(indexOficina);
+	if ( roteiros )
+	{
 		$('.Acordeon_Oficina').html(roteiros);
-	} else {
+	}
+	else
+	{
 		var roteirosVazio =
 		 '<div class="Mensagem_Roteiro_Vazio">'+
 		 	'No momento, não existe nenhum roteiro associado a esta oficina.'+
@@ -224,10 +173,13 @@ function ativarAba(indexOficina) {
 		 $('.Acordeon_Oficina').html(roteirosVazio);
 	}
 
-	var blog = retornarBlogOficina(indexOficina);
-	if ( blog ) {
+	var blog = getBlogOficina(indexOficina);
+	if ( blog )
+	{
 		$('#Postagens_Oficina').html(blog);
-	} else {
+	} 
+	else 
+	{
 		var blogVazio = 
 			'<div class="Mensagem_Blog_Vazio">'+
 				'No momento, não existem postagens no blog desta oficina.'+
@@ -310,5 +262,68 @@ function acordeon(index) {
 }
 
 $(document).ready(function(){
-	carregarOficinasAluno();
+	requestOficinasAluno();
 });
+
+
+function requestOficinasAluno() {
+	var oficinas = getOficinasAluno();
+	var htmlOficinas = new String();
+
+	if ( oficinas.length > 0 ) {
+		htmlOficinas += "<table>";
+		htmlOficinas +=		"<tr>";
+
+		for ( i in oficinas ) {
+			listaOficinasAluno[i] = oficinas[i];
+
+			htmlOficinas += "<td>";
+			htmlOficinas += 	"<div id=\"oficina"+oficinas[i].idoficina+"\" class=\"aba_oficina\" onclick=\"ativarAba("+i+")\">";
+			htmlOficinas +=			"<p class=\"barra_cor_of\" style=\"background:"+oficinas[i].tipoOficina.cor.forte+"\">&nbsp;</p>";
+			htmlOficinas +=			"<p class=\"titulo_of\">"+oficinas[i].tipoOficina.nome+"</p>";
+			htmlOficinas +=		"</div>";
+			htmlOficinas +=	"</td>";
+		}
+
+		htmlOficinas +=		"</tr>";
+		htmlOficinas += "</table>";
+	} else {
+		htmlOficinas = "<p class=\"feedback_oficinas_false\">Você ainda não está matriculado em nenhuma oficina.</p>";
+	}
+
+	$("#lista_oficinas").html(htmlOficinas);
+}
+function requestBlogPorOficina(idOficina) {
+	var blog = getBlogOficina(idOficina);
+	var htmlBlog = new String();
+
+	if ( blog.length > 0 ) {
+		htmlBlog += "<div class=\"Postagens_Container\">";
+
+		for ( var i = blog.length-1; i >= 0; i-- ) {
+			var dia = blog[i].data.slice(8);
+			var mes = blog[i].data.slice(5,7);
+			var ano = blog[i].data.slice(0,4);
+			var conteudo = blog[i].descricao.split('\n');
+
+			htmlBlog += "<article class=\"cx_postagem\">";
+	        htmlBlog +=	   	"<h1 class=\"cx_titulo\">"+blog[i].titulo+"</h1>";
+	        htmlBlog +=	   	"<h2 class=\"cx_info\">"+dia+'/'+mes+'/'+ano+"</h2>";
+
+	        if ( blog[i].imagem ) { htmlBlog += "<img src=\""+blog[i].imagem+"\" class=\"img_postagem\" />" };
+    	    for ( j in conteudo ) { htmlBlog += post[j] ? "<p class=\"cx_texto\">"+post[j]+"</p>": ""; }
+
+			htmlBlog += 	"<hr class=\"fim_postagem\" />";
+        	htmlBlog +=	"</article>";
+		}
+		htmlBlog += "</div>";
+	} else {
+		htmlBlog =	"<div class=\"Postagens_Container\">";
+		htmlBlog +=		"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
+		htmlBlog += "</div>";
+	}
+}
+/*
+
+
+*/
