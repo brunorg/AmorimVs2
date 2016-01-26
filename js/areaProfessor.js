@@ -530,19 +530,23 @@ function Mural() {
             mensagemMural = $(".mensagemMedia").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;     
         }
-        
-        $.ajax({
-            url: path + "Mural",
-            async: false,
-            crossDomain: true,
-            type: "POST",
-            data: "action=create"+valores,
-            success: function(data){
-                mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container')
-                mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
-                mural.close();
-            }
-        });
+        if (mensagemMural) {
+            $.ajax({
+                url: path + "Mural",
+                async: false,
+                crossDomain: true,
+                type: "POST",
+                data: "action=create"+valores,
+                success: function(data){
+                    mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container')
+                    mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
+                    mural.close();
+                }
+            });
+        } else {
+            mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
+        }
+
     }
 
     this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento) {
