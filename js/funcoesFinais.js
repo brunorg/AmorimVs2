@@ -119,7 +119,7 @@ function refreshCalendario(novoMes) {
 
 
 window.onload = function() {
-    var d = Date()
+    var d = new Date()
     var mesHoje = d.getMonth() + 1
     mudarMes(mesHoje)
 }
