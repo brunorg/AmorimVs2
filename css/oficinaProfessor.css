@@ -49,14 +49,14 @@
 	width: 31%;
 	position: relative;
 	background-color: #fff;
-	margin-bottom: 5px;
+	margin: 5px;
 	text-align: left;
 	padding: 9px 9px 9px 40px;
 	border-radius: 5px;
 	overflow: hidden;
 	cursor: pointer;
 }
-.agrupamento_aluno:nth-last-of-type(1),
+/*.agrupamento_aluno:nth-last-of-type(1),
 .agrupamento_aluno:nth-last-of-type(2),
 .agrupamento_aluno:nth-last-of-type(3)
 {
@@ -64,7 +64,7 @@
 	padding: 0;
 	height: 0;
 	margin: 0;
-}
+}*/
 .agrupamento_aluno:hover,
 {
 	background-color: #F7F7F7;
