@@ -44,7 +44,7 @@ function atribuirEventos () {
 }
 
 function carregaOficinaPostagens () {
-    var htmlOficinas =  '<select>'+
+    var htmlOficinas =  '<select id="oficinaSelecionada">'+
                             '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
     $.ajax({
         url: path + 'Oficina/ListaPorProfessor/' +  professorId,
@@ -57,11 +57,43 @@ function carregaOficinaPostagens () {
             {
                 htmlOficinas += '<option value="'+d[i]["idoficina"]+'">'+d[i]["nome"]+'</option>';
             }
-            console.log(htmlOficinas)    
 
             htmlOficinas += '</select>';
 
             $('#selectOficina').html(htmlOficinas);
+
+
+            $('#oficinaSelecionada').change(function(){
+                var oficinaEscolhida = $('#oficinaSelecionada').val()
+                console.log(oficinaEscolhida)
+                if (oficinaEscolhida !== 0) {
+                    $.ajax({
+                        url: path + "Agrupamento/ListarPorOficina/" + oficinaEscolhida,
+                        async: false,
+                        crossDomain: true,
+                        type: "GET",
+                        success: function(retornoAjax){
+
+                            var htmlAgrupamentos =  '<select id="agrupamentoSelecionado">'+
+                                '<option class="placeholder" value="0" disabled selected hidden>Escolha o Agrupamento</option>';
+
+                            for (var i = 0; i < retornoAjax.length; i++)
+                            {
+                                htmlAgrupamentos += '<option value="'+retornoAjax[i].idagrupamento+'">'+retornoAjax[i].nome+'</option>';
+                            }
+
+                            htmlAgrupamentos += '</select>';
+
+                            $('#selectAgrupamento').html(htmlAgrupamentos);
+
+                        },
+                        error: function(a, status, error) {
+                            console.log(status + " /// " + error)
+                        }
+                    });
+                }
+            })
+
         }
     });
 
@@ -195,6 +227,7 @@ function novaPostagem () {
     
     var conteudo = $("#conteudoPostagens").val();
     var oficina = $("#selectOficina select").val();
+    var agrupamento = $("#selectAgrupamento select").val();
     var titulo = $("#tituloPostagens").val();
     var imagem = $("#postagemImagem").val();
 
@@ -203,6 +236,7 @@ function novaPostagem () {
         $("#postagemTitulo").val(titulo);
         $("#postagemConteudo").val(conteudo);
         $("#postagemOficina").val(oficina);
+        $("#postagemAgrupamento").val(agrupamento);
         var idPostagem;
 
         console.log($("#formPostagens").serialize())
@@ -220,6 +254,7 @@ function novaPostagem () {
                 $("#tituloPostagens").val('');
                 $("#conteudoPostagens").val('');
                 $("#selectOficina select").val(0);
+                $("#selectAgrupamento select").val(0);
                 $("#cancelarPostagens").trigger("click");
                 idPostagem = d;
             },
@@ -312,7 +347,7 @@ function addPost (post) {
                             '</div>' +
                         '</div>' +
                     '</div>';
-    $("#mCSB_2_container").append(htmlPosts);
+    $("#mCSB_2_container").prepend(htmlPosts);
 }
 
 function editPost(id) {
@@ -759,3 +794,4 @@ function rotinaMudarDia(quanto) {
     if (diaHoje < 1) {diaHoje = 5}
     CarregarRotina()
 }
+
