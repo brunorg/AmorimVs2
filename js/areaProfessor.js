@@ -545,6 +545,7 @@ function Mural() {
         var valores;
         var grupo = $('#grupoMural').val();
         var parametros,mensagemMural;
+        var temMsgMural = $("#muralTextMsg").val();
         if(grupo == "oficina"){
             var grupoMuraloficina = $("#grupoMuralOficina").val();  
             if(grupoMuraloficina == "todos"){
@@ -565,7 +566,7 @@ function Mural() {
             mensagemMural = $(".mensagemMedia").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;     
         }
-        if (mensagemMural) {
+        if (temMsgMural) {
             $.ajax({
                 url: path + "Mural",
                 async: false,
