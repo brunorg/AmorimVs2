@@ -35,15 +35,7 @@ switch (usuario){
 	case 'Professor':
 		verificaUsuarioTurtor(dadosUsuario.professor.idprofessorFuncionario);		
 		msgNaoVistas(usuarioId);
-		dadosForum(usuarioId);
-		
-		var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);
-		if(oficinas != ""){
-			if(oficinas.length > 1){
-				localStorage.setItem("oficinaProfessor", JSON.stringify(oficinas[0]));
-			}
-		}
-		
+		dadosForum(usuarioId);		
 		localStorage.setItem("tutoriaProfessor",JSON.stringify(getTutoria(dadosUsuario.professor.idprofessorFuncionario)));
 	break;
 	

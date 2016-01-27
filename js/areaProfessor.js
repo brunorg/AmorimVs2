@@ -11,12 +11,7 @@ $(document).ready(function() {
 
     $('.postContainer2').mCustomScrollbar({
         axis:"y"
-    });
-	
-	$('#trocarOficina').click(function(){
-		$(this).toggleClass('down');
-		$('#box_oficinas').toggleClass('exibe');
-	});
+    });	
 });
 
 function adicionarBarraRolagem () {

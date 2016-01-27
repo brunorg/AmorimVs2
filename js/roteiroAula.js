@@ -1,7 +1,8 @@
 var userID = usuarioId;
 var IDProfessor = localStorage.getItem("professorId");
 var objetoOficina =	JSON.parse(localStorage.getItem("oficinaProfessor"));
-var IDOficinaProfessor = objetoOficina[0].idoficina_professor;
+
+var IDOficinaProfessor = objetoOficina.idoficina_professor;
 
 $(document).ready(function(){
 	var cont=2;
@@ -49,18 +50,6 @@ $(document).ready(function(){
 		};
 	}
 
-	// $("#btnNovoOB").click(function() {
-		// $("#box_objetivoAula").append('<div class="linha3">'+
-		                              // '<div class="celulaGrandeOB">'+
-		                              // '<div class="infoM"> Objetivo </div>'+
-		                              // '<div class="infoValueM">'+
-		                              // '<input type="text" id="val_objetivo_'+cont+'" class="infoValueM objetivos">'+
-		                              // '</div>' +  
-		                              // '</div>'+
-		                              // '</div>');
-		// cont++;
-	// });	
-
 	$("#btnSalvar").click(function(){
 		
 		var roteiro= $("#val_roteiro").val();
@@ -82,9 +71,6 @@ $(document).ready(function(){
 			data:'action=create&roteiro='+roteiro+'&Descricao='+descricao+'&idOficinaProfessor='+IDOficinaProfessor,
 			success: function (data) {
 				$("#idRoteiro").val(data);
-//				$('#linha1').html('<input type="hidden" id="idRoteiro" value="'+data+'">'+
-//				                  ''
-//				                  );
 				$("#linha1,#linha2,#btnSalvar").css("display","none");
 				mensagem('Roteiro salvo com sucesso!','OK','bt_ok','sucesso');
 				
@@ -94,8 +80,6 @@ $(document).ready(function(){
 				
 				$('#Btn_Del_Rot').click(function() {
 					excluirRoteiroAula1(data);
-					//$("#btnSalvarObjetivo,#btnNovoOB,.celulaGrandeOB").css("display","none");
-			
 				});
 				$('#Btn_Editar_Rot').click(function(){
 					utilizarRoteiroAula(data);
@@ -252,33 +236,6 @@ function carregaRoteiroPesquisa(){
 		}
 	});	
 }
-//function excluirROT(idroteiroAulaa){
-//	
-//	$.ajax({
-//		url: path + "RoteiroAula/status",
-//		type: "POST",
-//		async: false,
-//		crossDomain: true,
-//		dataType: 'json',
-//		data:'id='+idroteiroAulaa,
-//		success: function () {
-//	
-//			$('.linha4').hide();
-//			$('.linhaObj').remove();
-//			$("#boxMensagemGeral").css("display","none");
-//			$("#btnSalvarObjetivo,#btnNovoOB,.celulaGrandeOB").css("display","none");
-//			$("#linha1,#linha2,#btnSalvar").css("display","block");
-//			
-//			$('#val_roteiro').val('');
-//			$("#idRoteiro").val('');
-//			$('#val_descricao').val('');
-//			$('#Roteiro_'+idroteiroAulaa).remove();
-//		}
-//	})
-//	//$('#Roteiro_'+idroteiroAulaa).remove();
-//	//$('.linha4').remove();
-//	//$("#boxMensagemGeral").css("display","none");
-//}
 
 //nao sei a diferença das duas funcoes mas deixei aqui pra evitar problema
 function excluirRoteiroAula(idRoteiroA){
@@ -391,7 +348,6 @@ function utilizarRoteiroAula(idRoteiro){
 		success: function(data){
 
 			for (var i = 0 ;i < data.length; i++) {
-				//console.log(data[i]);
 				if (i == 0){
 					
 					idRoteiro = data[i].idRoteiro_aula;

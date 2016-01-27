@@ -1219,7 +1219,13 @@ font-family: "proxima-nova",sans-serif;
 	padding:0;
 	margin:0;
 	color:#666666;
+	cursor: pointer;	
 }
+
+#box_oficinas p:hover{
+	text-decoration:underline;	
+}
+
 
 .boxOverlay{
 	display: none;

@@ -1,39 +1,41 @@
 var IDProfessor = localStorage.getItem("professorId");
 var oficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
 
-console.log(oficina);
-
 $(document).ready(function(){
 
+	//Variáveis para receber os htmls com o agrupamento.
 	htmlMenuAgrup = '';
 	htmlContAgrup = '';
-//	console.log(oficina);
 
-		$.ajax({
-			url: path + 'Oficina/AlunosAgrupamento/'+oficina.idoficina_professor,
-			type: "GET",
-			async: false,
-			crossDomain: true,
-			dataType: 'json',
-			success: function (data) {
-				console.log(data);
+	//Serviço para buscar os agrupamentos do professor e seus respectivos grupos
+	$.ajax({
+		url: path + 'Oficina/AlunosAgrupamento/'+oficina.idoficina_professor,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		dataType: 'json',
+		success: function (data) {
 
-				htmlMenuAgrup += ' <span id="abaAgrupamento'+oficina.oficina.idoficina+'" idOficinaProf="'+oficina.idoficina_professor+'" class="aba_agrupamento abaAgrupamento">'+data.nome+'</span> ';
+			if (data.length > 0){
 				
-				if (data.alunos != undefined){
-					htmlContAgrup += '<div id="containerAgrupamento'+oficina.idoficina_professor+'" class="agrupamento">';
+				//Percorre os agrupamentos criando os botões do menu e do conteúdo
+				for (var i = 0; i < data.length; i++){ 
+					htmlMenuAgrup += ' <span id="abaAgrupamento'+data[i].id+'" idOficinaProf="'+data[i].id+'" class="aba_agrupamento abaAgrupamento">'+data[i].nome+'</span> ';
+					htmlContAgrup += '<div id="containerAgrupamento'+data[i].id+'" class="agrupamento">';
 
-					for (var j = 0; j < data.alunos.length; j++){
+					//Percorre os alunos do grupo listando-os
+					for (var j = 0; j < data[i].alunos.length; j++){
 						htmlContAgrup += '<div class="agrupamento_aluno">'+
-											'<img src="'+data.alunos[j].foto+'" alt="'+data.alunos[j].nome+'">'+
-											'<span>'+data.alunos[j].nome+'</span>'+
+											'<img src="'+data[i].alunos[j].foto+'" alt="'+data[i].alunos[j].nome+'">'+
+											'<span>'+data[i].alunos[j].nome+'</span>'+
 										 '</div>';
 					}
-
+						
+					htmlContAgrup += '</div>';
 				}
-				htmlContAgrup += '</div>';
 			}
-		});
+		}
+	})
 		
 	//Colocando o conteúdo nas divs correspondentes
 	$('.abas_agrupamentos').html(htmlMenuAgrup);

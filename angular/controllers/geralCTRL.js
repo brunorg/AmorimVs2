@@ -1,6 +1,7 @@
 var app = angular.module('app',['ngRoute']);
 
 app.controller('geralCTRL',function($scope,$http){
+	
 	$scope.usuario = function(){		
 		switch (dadosUsuario.perfil.perfil){
 			case "Aluno":
@@ -25,20 +26,33 @@ app.controller('geralCTRL',function($scope,$http){
 				];										
 			break;
 			
-			case "Professor":	
-				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);							
-				var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);				
-				if(oficinas.length > 1){
-					$scope.oficinaHTML = [oficinas];							
+			case "Professor":
+				var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);
+				if(localStorage.getItem("oficinaProfessor") == null) {					
+					localStorage.setItem("oficinaProfessor", JSON.stringify(oficinas[0]));
+					 oficinaAtivaP = oficinas[0];
+				}else{
+					 oficinaAtivaP = JSON.parse(localStorage.getItem("oficinaProfessor"));	
 				}
-
+				
+				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);							
+									
+				var oficinaAtivaP;
+		
+				if(oficinas.length > 1){
+					$scope.oficinaHTML = [oficinas];
+					$scope.mostra = true;							
+				}	
+				
 				$scope.usuarioCabecalho = abreviaNome(dadosUsuario.professor.nome);
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Área do Professor";
 				$scope.usuarioPagina = "areaProfessor.html";
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
-				$scope.menuInfoF = localStorage.getItem("totalForum");			
-				$scope.oficina   = JSON.parse(localStorage.getItem("oficinaProfessor")); 
+				$scope.menuInfoF = localStorage.getItem("totalForum");										
+				$scope.oficina   = oficinaAtivaP; 
+				
+				$scope.oficinaAtiva = oficinaAtivaP.oficina.tipoOficina.nome;
 				
 				$scope.menuHTML = [ 
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano'}, 
@@ -102,6 +116,18 @@ app.controller('geralCTRL',function($scope,$http){
 		$scope.logout = function(){
 			localStorage.clear();		
 			window.location = 'index.html';
+		},
+		
+		$scope.alteraOficina = function(oficina){
+			var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);	
+			for( a in oficinas){
+				if(oficinas[a].oficina.idoficina == oficina){
+					localStorage.setItem("oficinaProfessor", JSON.stringify(oficinas[a]));
+					$scope.oficina   = oficinas[a]; 				
+					$scope.oficinaAtiva = oficinas[a].oficina.tipoOficina.nome;					
+				}
+			}
+			location.reload();
 		}
 	}
 });

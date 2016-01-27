@@ -26,6 +26,11 @@ $(document).ready(function() {
 			 
 		}
 	});
+	
+	$('#trocarOficina').click(function(){
+		$(this).toggleClass('down');
+		$('#box_oficinas').toggleClass('exibe');
+	});
 
 	$("#btn_fechar_evento").click(function(){
 		$("#Evento").hide();

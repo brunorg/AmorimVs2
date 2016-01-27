@@ -597,37 +597,30 @@ function verificaData(dataBr){
 //----------------------------------------------------------------------------
 
 function returnOficinaProfessor() {
-    var idProf = parseInt(localStorage.professorId);
-    
-    $.ajax({
-        url: path + 'Oficina/ListaPorProfessor/' + idProf,
-        crossDomain: true,
-        type: "GET",
-        async: false,
-        success: function(dataOficina) {
-        	nomeOficina = dataOficina[0].tipoOficina.nome;
-        	corForte 	= dataOficina[0].tipoOficina.cor.forte;
-        	corMedia	= dataOficina[0].tipoOficina.cor.medio;
-        	corFraca	= dataOficina[0].tipoOficina.cor.fraco;
-        	nomeOficina	= dataOficina[0].nome.split(' ',1);
+	var dataOficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
+ 
+	nomeOficina = dataOficina.oficina.tipoOficina.nome;
+	corForte 	= dataOficina.oficina.tipoOficina.cor.forte;
+	corMedia	= dataOficina.oficina.tipoOficina.cor.medio;
+	corFraca	= dataOficina.oficina.tipoOficina.cor.fraco;
+	nomeOficina	= dataOficina.oficina.nome.split(' ',1);
+	
+	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('.Bg_Imagem_Calendario').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('#btnSubmit').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('.input_data').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('#data_inicio').css('background-color',dataOficina.oficina.tipoOficina.cor.fraco);
+	$('#data_fim').css('background-color',dataOficina.oficina.tipoOficina.cor.fraco);
+	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1').css('color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('#box_novo').css('border', '1px solid '+dataOficina.oficina.tipoOficina.cor.forte);
+	$('#box_historico').css('border', '1px solid '+dataOficina.oficina.tipoOficina.cor.forte);
+	$('.titulo').text('Plano de aula | Oficina de ' + nomeOficina);
+	$('.ui-datepicker-trigger').css('background-color',dataOficina.oficina.tipoOficina.cor.medio);
+	$('.ui-datepicker-title').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
+	$('.ui-widget-header').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
 
-        	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('.Bg_Imagem_Calendario').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('#btnSubmit').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('.input_data').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('#data_inicio').css('background-color',dataOficina[0].tipoOficina.cor.fraco);
-        	$('#data_fim').css('background-color',dataOficina[0].tipoOficina.cor.fraco);
-        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto1').css('color',dataOficina[0].tipoOficina.cor.forte);
-        	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina[0].tipoOficina.cor.forte);
-        	$('#box_novo').css('border', '1px solid '+dataOficina[0].tipoOficina.cor.forte);
-        	$('#box_historico').css('border', '1px solid '+dataOficina[0].tipoOficina.cor.forte);
-        	$('.titulo').text('Plano de aula | Oficina de ' + nomeOficina);
-        	$('.ui-datepicker-trigger').css('background-color',dataOficina[0].tipoOficina.cor.medio);
-        	$('.ui-datepicker-title').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        	$('.ui-widget-header').css('background-color',dataOficina[0].tipoOficina.cor.forte);
-        }
-    });
 }
 //----------------------------------------------------------------------------
 
