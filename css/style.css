@@ -1201,8 +1201,8 @@ font-family: "proxima-nova",sans-serif;
 #box_oficinas{
     position: absolute;
     z-index: 9;
-    width: 200px;
-    height: 100px;
+    min-width: 100px;
+    min-height: 30px;
     background: #FFFFFF;
     border: 1px solid rgba(22, 190, 207, 36);
     border-top: 0;

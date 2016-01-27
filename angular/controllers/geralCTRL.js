@@ -27,14 +27,19 @@ app.controller('geralCTRL',function($scope,$http){
 			
 			case "Professor":	
 				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);							
-									
+				var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);				
+				if(oficinas.length > 1){
+					$scope.oficinaHTML = [oficinas];							
+				}
+
 				$scope.usuarioCabecalho = abreviaNome(dadosUsuario.professor.nome);
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
 				$scope.usuarioNamePagina = "Área do Professor";
 				$scope.usuarioPagina = "areaProfessor.html";
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
-				$scope.menuInfoF = localStorage.getItem("totalForum");
+				$scope.menuInfoF = localStorage.getItem("totalForum");			
 				$scope.oficina   = JSON.parse(localStorage.getItem("oficinaProfessor")); 
+				
 				$scope.menuHTML = [ 
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'mn_professor recurso rows2'},

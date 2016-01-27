@@ -48,7 +48,7 @@
                 <div id="Cabecalho_Menu_Area">
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
                     <div id="Cabecalho_Menu_Trocar_Oficina"> 
-                    	<a>Oficina<span id="trocarOficina" class="up">&nbsp;</span></a> |
+                    	<a>{{oficina.nome}}<span id="trocarOficina" class="up">&nbsp;</span></a> |
                     </div>
                     <div id="Cabecalho_Menu_Area_Menu2">                    	
                         <a id="senha" onClick="atualizarCadastroModal('professor');">Atualizar Cadastro</a> |
@@ -56,9 +56,10 @@
                         <a href="javascript:history.back()">Voltar</a> |
                         <a id="logout" href="#" ng-click="logout()">Sair</a>
                     </div>
-                    <div id="box_oficinas">
-                    	<p>Oficina 2</p>
-                        <p>Oficina 3</p>
+                    <div id="box_oficinas" ng-repeat="oficina in oficinaHTML">
+                    	<p ng-repeat="(key, val) in oficina">
+                        	{{val.oficina.tipoOficina.nome}}
+                      	</p>
                     </div>
                 </div>
                 <!--Perfil do usuário, neste caso, o aluno-->
