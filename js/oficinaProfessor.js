@@ -27,7 +27,7 @@ $(document).ready(function(){
 					for (var j = 0; j < data[i].alunos.length; j++){
 						htmlContAgrup += '<div class="agrupamento_aluno">'+
 											'<img src="'+data[i].alunos[j].foto+'" alt="'+data[i].alunos[j].nome+'">'+
-											'<span>'+data[i].alunos[j].nome+'</span>'+
+											'<span>'+abreviaNome(data[i].alunos[j].nome)+'</span>'+
 										 '</div>';
 					}
 						
