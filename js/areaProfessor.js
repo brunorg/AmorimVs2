@@ -473,7 +473,7 @@ function iniciarMuralCoordenacao() {
 
 function Mural() {
 
-    self = this;
+    var self = this;
 
     this.open = function() {
         $("#muralConteudo").hide();
@@ -548,7 +548,7 @@ function Mural() {
             }else{
                 parametros = "&agrupamento="+grupoMuraloficina+"&oficina=0";
             }
-            mensagemMural = $(".mensagemMedia").val();
+            mensagemMural = $("#muralTextMsg").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+parametros+"&tutoria=0&grupo=0";
             
         }else if(grupo == "tutoria"){       
@@ -558,7 +558,7 @@ function Mural() {
             }else{
                 parametros = "&tutoria=0&grupo="+grupoMuralTutoria;
             }
-            mensagemMural = $(".mensagemMedia").val();
+            mensagemMural = $("#muralTextMsg").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;     
         }
         if (temMsgMural) {
@@ -569,7 +569,7 @@ function Mural() {
                 type: "POST",
                 data: "action=create"+valores,
                 success: function(data){
-                    mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container')
+                    mural.desenharPosts('#postMural #mCSB_4 #mCSB_4_container')
                     mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
                     mural.close();
                 }
@@ -601,7 +601,9 @@ function Mural() {
             type: "GET",
             success: function(retornoAjax){
 
-                $('#postMural #mCSB_5 #mCSB_5_container').html(""); 
+                console.log(retornoAjax)
+
+                $('#postMural #mCSB_4 #mCSB_4_container').html(""); 
 
 
 
@@ -668,7 +670,7 @@ function Mural() {
                                 type: "POST",
                                 data: "action=update&id="+idPost+"&mensagem="+mensagemMural,
                                 success: function(data){
-                                    mural.desenharPosts('#postMural #mCSB_5 #mCSB_5_container');
+                                    mural.desenharPosts('#postMural #mCSB_4 #mCSB_4_container');
                                     mural.close();
                                 }
                             });
