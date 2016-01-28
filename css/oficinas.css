@@ -5,48 +5,45 @@ html, body
 }
 * { box-sizing: border-box; }
 
-#lista_oficinas{
-	height: 55px;
-}
-
-table{
+table.tabela_oficinas{
 	width:100%;
+	border-collapse: collapse;
 }
-table tr{	
-	background:#EBEBE3;
+tr.linha_abas{	
+	background:#bfbda9;
 }
-table td{
+td.aba_oficina{
 	width:122px; 
 	font-size:13px;
-	color:#78786B;
 	padding:0;
 	height: 53px;
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
+	position: relative;
+	cursor: pointer;
+	border-right: 2px solid #fff;
+}
+td.aba_oficina:last-child {
+	border-right: none;
 }
 p{
 	padding:0;
 	margin:0;
 }
-.aba_oficina {
-	position: relative;
-	height:30px;
-	overflow: hidden;
-	cursor: pointer;
-}
 .fundo_aba {
 	position: absolute;
+	top: 0;
 	width: 100%;
 	height: 100%;
-	top: 100%;
-	transition: top 0.3s ease-in-out;
+	opacity: 0;
 }
 .oficina_titulo {
+	position: relative;
 	width: 100%;
-	height: 24px;
-	padding: 5px;
-	transition: color 0.3s ease-in-out;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
 }
 .feedback_oficinas_false
 {
@@ -54,16 +51,8 @@ p{
 	background-color: #EBEBE3;
 	color: #666;
 }
-table td:hover .fundo_aba, .aba_ativa .fundo_aba {
-	top: 0;
-}
-table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
-	color: #fff;
-}
-.of_Qdr{
-	width:49%;
-	height: 490px;
-	margin-top: 13px;
+table .aba_oficina:hover .fundo_aba, .aba_ativa .fundo_aba {
+	opacity: 1;
 }
 .oficinas_container {
 	width: 100%;
@@ -71,15 +60,15 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 	margin: 0;
 }
 .oficina_content_box {
-	width: 50%;
-	height: 500px;
+	height: 468px;
 	float: left;
-	background-color: antiquewhite;
 }
 .oficina_boxes_container {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+	padding: 18px;
+    background-color: #e5e5dc;
 }
 .oficina_boxes_container::after{
 	content: "";
@@ -90,29 +79,32 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 .box_blog {
 	background: #f1f1ec;
 	overflow: hidden;
+    padding: 15px;
+    padding-right: 0;
+	width: 66.5%;
+}
+.box_roteiros {
+	width: 33.5%;
 }
 .blog_postagens {
-	width: 98%;
+	width: 100%;
+	padding-right: 15px;
 	overflow: hidden;
 }
-.cx_postagem{
+.cx_postagem {
 	width: 100%;
 	min-height: 83px;
-	padding: 0 17px;
 	margin-bottom: 25px;
 	word-break: break-word;
 }
-.cx_postagem:first-of-type {
-	padding-top: 20px;
-}
-.cx_postagem:last-of-type {
-	padding-bottom: 20px;
+.cx_postagem:last-child {
 	margin-bottom: 0;
 }
 .cx_titulo {
 	font-size: 16px;
 	font-weight: normal;
 	text-transform: uppercase;
+    line-height: 1.2em;
 	color: #666666;
 	margin: 0;
 	margin-bottom: 5px;
@@ -131,19 +123,26 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 }
 .cx_texto {
 	margin-top: 10px;
-	display: inline-block;
 	color: #666;
 	line-height: 1.3em;
 }
 .cx_texto:first-of-type {
 	margin-top: 5px;
-	display: inline;
 }
 .fim_postagem {
+	display: block;
+	width: 100%;
+	float: left;
 	margin: 0;
 	margin-top: 10px;
 	border: 0;
-	border-top: 1px solid #aaa
+	border-top: 1px solid #aaa;
+}
+.cx_postagem::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
 }
 .Mensagem_Blog_Vazio, .Mensagem_Roteiro_Vazio {
 	padding: 20px;
@@ -159,30 +158,41 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 }
 
 .Acordeon_Oficina {
-	width: 98%;
+	width: 100%;
+}
+.Acordeon_Oficina h2 {
+	font-size: 18px;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 10px;
+	line-height: 0.8em;
 }
 
 .roteiro_info {
 	position: relative;
-	height: 30px;
-	padding: 8px 40px;
+	padding-left: 30px;
 	color: #666;
 	font-size: 14px;
 	line-height: 1em;
-	border: 1px solid #fff;
-	border-bottom: none;
 	cursor: pointer;
 }
 .roteiro_num_listagem {
 	position: absolute;
 	width: 30px;
-	height: 100%;
+	height: 32px;
 	top: 0;
 	left: 0;
 	padding: 8px 0;
 	color: #fff;
 	text-align: center;
-	border-right: 1px solid #fff;
+	border: 1px solid #fff;
+	border-bottom: none;
+	border-right: none;
+}
+.roteiro_nome {
+	padding: 8px;
+	border: 1px solid #fff;
+	border-bottom: none;
 }
 .objetivo_status {
 	position: absolute;
@@ -193,6 +203,17 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 	right: 7px;
 	background-color: #ccc;
 }
+
+.oficina_planejamento.roteiro_expandido .roteiro_num_listagem,
+.oficina_planejamento:last-child .roteiro_num_listagem,
+.oficina_planejamento:last-child .roteiro_nome {
+	border-bottom: 1px solid #fff;
+}
+
+.oficina_planejamento.roteiro_expandido:last-child .roteiro_nome {
+	border-bottom: none;
+}
+
 .objetivo_aberto {
 	background-color: #f7931d;
 }
@@ -200,9 +221,9 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 	background-color: #8ec449;
 }
 .roteiro_conteudo {
-	width: 93%;
+	width: 100%;
 	position: relative;
-	left: 30px;
+	padding-left: 30px; 
 	overflow: hidden;
 	display: none;
 }
@@ -216,12 +237,14 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 	border-bottom: none;
 	color: #666;
 	font-size: 12px;
-	padding: 7px 7px 7px 20px;
+	padding: 8px;
+	padding-right: 30px;
 }
 .roteiro_descricao {
 	background-color: #e5e5dc;
+	padding-right: 8px;
 }
-.roteiro_recuso {
+.roteiro_recurso {
 	background-position: left center;
 	background-repeat: no-repeat;
 	min-height: 24px;
@@ -251,4 +274,7 @@ table td:hover .oficina_titulo, .aba_ativa .oficina_titulo {
 .scroll_limiter {
 	height: 100%;
 	overflow: hidden;
+}
+.mCSB_scrollTools_vertical {
+	right: 0 !important;
 }
