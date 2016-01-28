@@ -114,7 +114,7 @@ function requestBlogPostagensPorOficina(idOficina) {
 	if ( blog.length > 0 ) {
 		htmlBlog += "<div class=\"postagens_container\">";
 
-		for ( var i = blog.length-1; i >= 0; i-- ) {
+		for ( var i in blog ) {
 			var dia 	 = blog[i].data.slice(8);
 			var mes		 = blog[i].data.slice(5,7);
 			var ano 	 = blog[i].data.slice(0,4);
