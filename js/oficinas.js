@@ -23,7 +23,7 @@ function getBlogPostagensPorOficina(idoficina) {
 	var retorno;
 
 	$.ajax({
-		url: path + "Blog/", //path + "Blog/BlogOficina/" + idoficina,
+		url: path + "Blog/BlogOficina/" + idoficina,
 		async: false,
 		type: "GET",
 		crossDomain: true,
@@ -38,7 +38,7 @@ function getRoteirosPorOficina(idoficina) {
 	var retorno;
 
 	$.ajax({
-		url: path + "RoteiroAula/", //path + "ObjetivoAula/ListarPorOficinaHash/" + idoficina,
+		url: path + "ObjetivoAula/ListarPorOficinaHash/" + idoficina,
 		async: false,
 		type: "GET",
 		crossDomain: true,
