@@ -31,6 +31,10 @@ $(document).ready(function() {
 		$(this).toggleClass('down');
 		$('#box_oficinas').toggleClass('exibe');
 	});
+	
+	$(".scroll_receiver").mCustomScrollbar({
+		axis: "y",
+	});
 
 	$("#btn_fechar_evento").click(function(){
 		$("#Evento").hide();

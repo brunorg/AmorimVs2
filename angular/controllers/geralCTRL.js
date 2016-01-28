@@ -60,7 +60,7 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'mn_professor roteiros'},
 					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'mn_professor tutores'},
 					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'mn_professor oficinas'},
-					{label: 'Registro JEIF/PEA', href: 'jeiffPea.html', class: 'mn_professor jeiff'},
+					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'mn_professor jeiff'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mn_professor mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'mn_professor forum'}
 				];
