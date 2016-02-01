@@ -1,4 +1,6 @@
-var app = angular.module('app',['ngRoute']);
+
+
+var app = angular.module('app',['app.controllers','ngRoute']);
 
 //creating route
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){	
@@ -6,7 +8,7 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider,$locati
 	$locationProvider.html5Mode(true);
 	
 	$routeProvider.
-			when('/',{controller:'loginCTRL', templateUrl:'index.html'});			
+			when('/',{controller:'geralCTRL', templateUrl:'index.html'});			
 			
 }]);
 
