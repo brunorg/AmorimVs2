@@ -256,7 +256,7 @@ function atribuiBotaoEnviar () {
 
         if ($(".Pergunta_Input").val().length > 9)
         {
-            var formData = new FormData($("#frmCadastro_Questao")[0]);
+            var formData = $("#frmCadastro_Questao").serialize();
             var questaoId;
 
             console.log(formData)
@@ -371,7 +371,7 @@ function atribuiEnviarResposta (){
 
         if ($("#resposta").val().length > 9)
         {
-            var formData = new FormData($("#frmCadastro_Resposta")[0]);
+            var formData = $("#frmCadastro_Resposta").serialize();
             var respostaId;
     
             $.ajax({
@@ -379,7 +379,6 @@ function atribuiEnviarResposta (){
                 type: "POST",
                 async: false,
                 crossDomain: true,
-                mimeType:"multipart/form-data",
                 contentType: false,
                 cache: false,
                 processData:false,
