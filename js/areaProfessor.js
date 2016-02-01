@@ -99,7 +99,7 @@ function carregaGrupoOficinaMural () {
 	$("#msgMural").css("display","block");
     var htmlGrupo = '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
     $.ajax({
-        url: path + 'Agrupamento',
+        url: path + 'Agrupamento/ListarPorOficineiro/' + professorId,
         async: false,
         crossDomain: true,
         type: "GET",
@@ -130,7 +130,7 @@ function carregaGrupoTutoriaMural(professorId) {
         }
     });
 
-    $('#grupoMuralTutoria').html('<option value="todos">Todos</option>'+htmlGrupo);
+    $('#grupoMuralTutoria').html(htmlGrupo);
 }
 
 function clickPostagens() {
@@ -503,8 +503,6 @@ function Mural() {
         }
         else if (grupo == "tutoria"){
             $("#oficinaMural").css("display","none");
-            $("#tutoriaMural").css("display","block");
-            carregaGrupoTutoriaMural(professorId);
         }
         else { 
             $("#oficinaMural").css("display","none");
@@ -553,11 +551,9 @@ function Mural() {
             
         }else if(grupo == "tutoria"){       
             var grupoMuralTutoria = $("#grupoMuralTutoria").val();      
-            if(grupoMuralTutoria == "todos"){
-                parametros = "&tutoria=1&grupo=0";
-            }else{
-                parametros = "&tutoria=0&grupo="+grupoMuralTutoria;
-            }
+
+            parametros = "&tutoria=1";
+
             mensagemMural = $("#muralTextMsg").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;     
         }
@@ -589,6 +585,8 @@ function Mural() {
             return "Oficina " + oficina["nome"]
         } else if (agrupamento != null) {
             return "Agrupamento " + agrupamento["nome"]
+        } else {
+
         }
     }
 
