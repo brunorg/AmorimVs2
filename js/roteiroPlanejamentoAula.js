@@ -1,11 +1,13 @@
 //Murano Design 
 
 var userID = usuarioId;
-var professorID = localStorage.getItem("professorId");;
+var professorID = localStorage.getItem("professorId");
+var oficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
 var url = window.location.href;
 p = url.split("planoAula=");
 var planoAulaID = p[1];
-
+var cor = oficina.oficina.tipoOficina.cor;
+console.log(cor);
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -15,6 +17,10 @@ $(document).ready(function(){
 });
 
 function LoadRoteiro(){	
+	
+	//Coloca as cores corretas das oficinas
+	
+	
 	//Traz os roteiros pendentes do aluno
 	var HtmlContent;
 	//var dataRoteiroPendente = getData("PlanejamentoRoteiro/status", alunoID);
@@ -57,6 +63,14 @@ function LoadRoteiro(){
 						'</div>';
 
 	$('.total').append(htmlPopUpContent);
+//	console.log($('.roteiro_nome_tabela_selecionado').val());
+//	$('.roteiro_nome_tabela_selecionado').each(function(){
+//		//console.log('----');
+//		$(this).css('background-color','red');
+//	})
+	$('.roteiro_nome_tabela_selecionado').css('background-color',cor.forte);
+	//$('.td_roteiro_numero_tabela').css('background-color',cor.medio);
+	//$('.roteiro_nome_tabela_selecionado').css('font-color','blue');
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,7 +102,7 @@ function LoadObjetivos(idRoteiro){
 
     num = 1;
 	Limite = dataObjetivo.length;
-
+	if (Limite > 0){
         for(var a = 0; a < Limite; a++){
         	removeClick = false;
         	
@@ -105,10 +119,10 @@ function LoadObjetivos(idRoteiro){
     		
     		HtmlContent +=  "<div class='conteudo_do_roteiro' style='display:block'>"+
     							"<div class='titulo_infos_roteiro' style='margin-left:-60px; width: 944px'>"+
-    								"<div class='td_roteiro_numero_tabela'>"+
+    								"<div class='td_roteiro_numero_tabela' style='background-color:"+cor.medio+"'>"+
     									num+
     								"</div>"+
-	    							"<div class='td_titulo_tabela' style='width: 915px'>"+
+	    							"<div class='td_titulo_tabela' style='width: 915px; color: "+cor.forte+";background-color: "+cor.fraco+"'>"+
 	    								dataObjetivo[a].objetivo+
 	    								"<div class='titulo_infos_roteiro_botoes'>"+
 	    									"<div id='ObjStatus_"+dataObjetivo[a].idobjetivo_aula+"' class='titulo_infos_roteiro_estrela'>";
@@ -122,9 +136,17 @@ function LoadObjetivos(idRoteiro){
 
 			if(dataObjetivo[a].objetivo!=null){
 				$('.box_'+id).append(HtmlContent);
-				console.log('.box_'+id);
+				//console.log('.box_'+id);
 			}
         }
+	}else{
+		HtmlContent =  "<div class='conteudo_do_roteiro' style='display:block'>"+
+							"<div class='titulo_infos_roteiro' style='margin-left:-60px; width: 944px'>"+
+								"<div class='td_titulo_tabela' style='width: 915px; color: "+cor.forte+";background-color: "+cor.fraco+"'>Nenhum objetivo cadastrado.</div>"+
+							"</div>"+
+						"</div>";
+		$('.box_'+id).append(HtmlContent);
+	}
 
 }
 		 
