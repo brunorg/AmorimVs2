@@ -386,7 +386,7 @@ function MuralJeiff() {
 	}
 
 	self.save = function(idPost) {
-		if($('#textareaMuralJeiff').val()!="" || $('#jeiffDatepicker').val()!=""){
+		if($('#textareaMuralJeiff').val()!="" && $('#jeiffDatepicker').val()!=""){
         	getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){			
 				var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
 				$.ajax({
