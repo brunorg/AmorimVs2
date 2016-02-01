@@ -338,9 +338,6 @@
 	}
 }
 
-
-
-
 .barraDeNavegacaoGruposAlunos div{
     width: 120px;
     height: 60px;
@@ -349,31 +346,53 @@
     margin-left: 10px;
 }
 
+.barraDeNavegacaoGruposAlunos:after{
+    content: "";
+    display: block;
+    clear: both;
+}
 
+.imgDoAluno{
+    display: inline-block;
+}
 
+.nomeDoAluno {
+    display: inline-block;
+}
 
+.containerDosAlunos {
+    float: left;
+    background-color: green;
+    width: 200px;
+    margin-top: 120px;
+    
+}
 
+.containerDoAluno{
+    border: 1px solid black;
+    height: 40px;
+}
 
+.tabelaDeFaltas {
+    float: left;
+}
 
+.tabelaDeFaltas td {
+    width:40px;
+    height:40px;
+    border: 1px solid blue;
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.rotate {
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+    /* IE */
+    -ms-transform: rotate(-90deg);
+    /* Opera */
+    -o-transform: rotate(-90deg);
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
