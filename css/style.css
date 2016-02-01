@@ -59,12 +59,12 @@ html, body
 			padding-top: 7px; 
 			margin-right: 40px;
 		}
-		#Cabecalho_Menu_Trocar_Oficina{
-			width: 381px;
-			height: 36px;
-			float: left;
-			padding-top: 7px;
-			text-align: right;		
+		#Cabecalho_Menu_Trocar_Oficina {
+		    width: 345px;
+		    height: 36px;
+		    float: left;
+		    padding-top: 7px;
+		    text-align: right;
 		}
 
 	#Cabecalho_Perfil_Area{
@@ -1206,7 +1206,7 @@ font-family: "proxima-nova",sans-serif;
     background: #FFFFFF;
     border: 1px solid rgba(22, 190, 207, 36);
     border-top: 0;
-    right: 33%;
+    right: 35.2%;   
     top: 36px;
     padding: 5px;
 	display:none;
@@ -2327,9 +2327,6 @@ font-family: "proxima-nova",sans-serif;
 	#agenda{
 		height:558px;
 	}
-	#Cabecalho_Menu_Area_Menu2{
-		margin-right:5px;
-	}
 	#Cabecalho_Perfil_Area_Foto{
 		height: 65px;
 		width: 65px;
@@ -2529,6 +2526,19 @@ font-family: "proxima-nova",sans-serif;
 	.Content_lateral_Menu_Opcao {
 		height: 18%;
 	}
+	#box_oficinas {
+	    position: absolute;
+	    z-index: 9;
+	    min-width: 100px;
+	    min-height: 30px;
+	    background: #FFFFFF;
+	    border: 1px solid rgba(22, 190, 207, 36);
+	    border-top: 0;
+	    right: 35.7%;
+	    top: 36px;
+	    padding: 5px;
+	    display: none;
+	}
 	.mn_professor{
 		padding: 8px 10px 8px 70px !important;
 	}	
@@ -2614,9 +2624,6 @@ font-family: "proxima-nova",sans-serif;
 		margin-left: 256px;
 		background: #fff;
 		border: 1px solid #000;
-	}
-	#Cabecalho_Menu_Area_Menu2{
-		margin-right:5px;
 	}
 	#Cabecalho_Perfil_Area_Foto{
 		height: 65px;
@@ -2895,9 +2902,6 @@ font-family: "proxima-nova",sans-serif;
 		z-index: 1;
 		background: none repeat scroll 0% 0% #FFF;
 		right: 0px;
-	}
-	#Cabecalho_Menu_Area_Menu2{
-		margin-right:5px;
 	}
 	#Cabecalho_Perfil_Area_Foto{
 		height: 65px;
