@@ -27,6 +27,9 @@ html, body
 .scroll_receiver{
 	height:533px;
 }
+.registroJeffFundo{
+	background-color:#E3E3DB;
+}
 #documentoJeffConteudo{
 	width: 100%;
 	height: auto;
@@ -37,6 +40,13 @@ html, body
 	margin:0;
 	padding: 5px 10px;
 	border: #FFFFFF 1px solid;
+}
+.linkJeiff{
+	color:#666666;
+	font-size:14px;
+	margin:0;
+	padding: 5px 10px;
+	text-decoration: none;
 }
 .docJeiff:nth-child(odd){
 	background:#ECEBE5;
@@ -49,17 +59,17 @@ html, body
 	padding: 15px 15px 0;
 }
 
-.tituloJeiff{
-	padding: 0;
-	margin: 0 0 11px 0;
-	font-size: 16px;
-	color: #666666;
-}
-.horaJeiff{
+.tituloJeiff{	
 	padding: 0;
 	margin: 0 0 18px 0;
 	font-size: 12px;
 	color: #BBBBBB;
+}
+.horaJeiff{
+	padding: 0;
+	margin: 0 0 11px 0;
+	font-size: 16px;
+	color: #666666;
 }
 .textJeiff{
 	font-size: 16px;
