@@ -67,7 +67,7 @@ function addBoxNovaPergunta () {
                                 '<input type="text" name="questao" id="questao" class="Pergunta_Input" />'+
                                 '<input type="hidden" name="usuario" id="usuario" value="'+usuarioId+'"/>'+
                                 '<input type="hidden" name="roteiro" id="roteiro" value="'+IdRoteiro+'"/>'+
-                                '<input type="file" name="anexo" id="anexo" size="45" style="display:none;" />'+
+                                //'<input type="file" name="anexo" id="anexo" size="45" style="display:none;" />'+
                             '</div>'+
                             '<div><input id="bt_pergunta_enviar" type="submit" value="Enviar" /></div>'+
                         '</div>'+
@@ -258,13 +258,14 @@ function atribuiBotaoEnviar () {
         {
             var formData = new FormData($("#frmCadastro_Questao")[0]);
             var questaoId;
+
+            console.log(formData)
     
             $.ajax({
                 url: path + "ForumQuestao/",
                 type: "POST",
                 async: false,
                 crossDomain: true,
-                mimeType:"multipart/form-data",
                 contentType: false,
                 cache: false,
                 processData:false,
@@ -334,7 +335,7 @@ function atribuiResponderQuestao () {
                                     '</div> '+
                                     '<input type="hidden" name="action" id="action" value="create"> </input> '+
                                     '<input class="msg_input" name="resposta" id="resposta" type="text" placeholder="Escreva seu comentário."></input> '+
-                                    '<input type="file" name="anexo" id="anexo" size="45" style="display:none;" />'+
+                                    //'<input type="file" name="anexo" id="anexo" size="45" style="display:none;" />'+
                                     '<input type="hidden" name="usuario" id="usuario" value="'+usuarioObjeto.idusuario+'"> </input> '+
                                     '<input type="hidden" name="forumQuestao" id="forumQuestao" value="'+questaoId+'"></input> '+
                                 '</div> '+
