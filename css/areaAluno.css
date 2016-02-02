@@ -781,6 +781,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
     font-weight: 500;
     position: relative;
     margin-right: 10px;
+    display: none;
 }
 
 #bolinha{
