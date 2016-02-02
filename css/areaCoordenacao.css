@@ -520,3 +520,11 @@ input.input_data_jeiff
 	padding:10px;
 	text-align: center;
 }
+
+#descricao{
+	width: 236px;
+	height: 27px;
+	background-color: #F0F0EC;
+	border: 1px solid #BFBFB9;	
+	color: #979797;
+}

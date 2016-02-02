@@ -386,28 +386,40 @@ function MuralJeiff() {
 	}
 
 	self.save = function(idPost) {
+		
 		if($('#textareaMuralJeiff').val()!="" && $('#jeiffDatepicker').val()!=""){
-        	getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val(), true, function(result){			
-				var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
-				$.ajax({
-					url: path+"JeiffPea/upload/"+result,
-					type: "POST",
-					mimeType:"multipart/form-data",
-					contentType: false,
-					cache: false,
-					async:true,
-					processData:false,
-					data: formData,
-					success: function(d) {
-						mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
-					},error: function() {
-						mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
-						$('.blackPainel').hide()
-					},
+
+			var nomeArquivo = $('#ataJeiff').val();
+
+			if(nomeArquivo[0] && $('#descricao').val()==""){
+				mensagem("O campo descrição é obrigatório!","OK","bt_ok","erro");
+			}else{
+
+	        	getAjax("JeiffPea", "POST", "action=create&professor="+coordID+"&ata="+$('#textareaMuralJeiff').val()+"&periodo=8&data="+$('#jeiffDatepicker').val()+"&descricao="+$('#descricao').val(), true, function(result){			
+					
+					if(nomeArquivo[0]){	
+		        		var formData = new FormData($('#form_upload_arquivo_jeiff')[0]);
+						$.ajax({
+							url: path+"JeiffPea/upload/"+result,
+							type: "POST",
+							mimeType:"multipart/form-data",
+							contentType: false,
+							cache: false,
+							async:true,
+							processData:false,
+							data: formData,
+							success: function(d) {
+								mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
+							},error: function() {
+								mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
+								$('.blackPainel').hide()
+							},
+						});
+					}
 				});
-			});
+			}
 		}else{
-			mensagem("O campo data e texto são obrigatórios!","OK","bt_ok","erro");
+			mensagem("Favor preencher todos os campos!","OK","bt_ok","erro");
 		}
 
     };
@@ -433,8 +445,10 @@ function MuralJeiff() {
 function btnUpArquivo(){
 	$(".blackPainel").css("display","none");
 	var nomeArquivo = $('#ataJeiff').val();
-	nomeArquivo = nomeArquivo.split('\\');	
-	$(".ic_pdf_upload").css("display","inline-block").attr('title',nomeArquivo[nomeArquivo.length-1]);	
+	nomeArquivo = nomeArquivo.split('\\');
+	if(nomeArquivo[0] != ""){
+		$(".ic_pdf_upload").css("display","inline-block").attr('title',nomeArquivo[nomeArquivo.length-1]);	
+	}		
 }
 
 var muralGestao = new MuralGestao();

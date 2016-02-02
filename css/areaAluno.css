@@ -307,7 +307,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 	}
 	.Mural_Conteudo_Linha {
 		width: 100%;
-		height: 67px;
+		min-height: 67px;
 		margin: 5px 0;
 		background-color: #fff;
 		text-align: right;
