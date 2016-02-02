@@ -176,6 +176,7 @@ function MuralGestao() {
 		// periodos: 0 = todos, 8 = manha, 9 = tarde, 10 = noite
 
 		getAjax("MuralCoordenacao/", "POST", "action=create&professor="+coordID+"&data="+dataSend+"&hora="+horaSend+"&mensagem="+mensagemSend+"&perfil="+perfilSend+"&periodo="+periodoSend+"&id="+idPost, false, function(result){
+			mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
 		});
 
 		self.refresh();
@@ -280,6 +281,7 @@ function MuralComum() {
 		getAjax("Mural/", "POST", "action=create&idProfessor="+coordID+"&mensagem="+mensagemSend+"&periodo="+periodoSend+"&id="+idPost, true, function(result){
 			self.refresh();
 			loading("final")
+			mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
 		});
 
 	};

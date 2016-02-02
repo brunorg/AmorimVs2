@@ -98,7 +98,7 @@ function gerarRelatorio(){
 		j++;
 	});
 
-	console.log(valores);
+	//console.log(valores);
 	
 	if(existe == true){		
 		var html="",count=0,k=0;
