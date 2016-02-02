@@ -226,7 +226,12 @@ function novaPostagem () {
     var titulo = $("#tituloPostagens").val();
     var imagem = $("#postagemImagem").val();
 
-    if (oficina != 0 && conteudo != '' && titulo != '')
+    var lastValue = imagem.split('.').length - 1
+    var fileIsImage = (imagem.split('.')[lastValue] == 'png' || imagem.split('.')[lastValue] == 'jpg' || imagem.split('.')[lastValue] == 'jpeg' || imagem.split('.')[lastValue] == 'gif' || imagem.split('.')[lastValue] == 'bmp')
+
+    console.log(imagem)
+
+    if (oficina != 0 && conteudo != '' && titulo != '' && fileIsImage)
     {
         $("#postagemTitulo").val(titulo);
         $("#postagemConteudo").val(conteudo);
@@ -282,9 +287,11 @@ function novaPostagem () {
 
         carregaPostsBlog()
     }
-    else
+    else if (fileIsImage)
     {
         mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
+    } else {
+        mensagem("O arquivo deve ser uma imagem.","OK","bt_ok","erro");
     }
     
 }
