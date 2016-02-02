@@ -444,13 +444,24 @@ function MuralJeiff() {
 
 }
 
-function btnUpArquivo(){
-	$(".blackPainel").css("display","none");
+function btnUpArquivo(){	
 	var nomeArquivo = $('#ataJeiff').val();
-	nomeArquivo = nomeArquivo.split('\\');
 	if(nomeArquivo[0] != ""){
-		$(".ic_pdf_upload").css("display","inline-block").attr('title',nomeArquivo[nomeArquivo.length-1]);	
-	}		
+		var nomeArquivoSplit = nomeArquivo.split('\\');
+		var ext = nomeArquivo.split('.');
+		console.log(ext[ext.length-1]);
+		if(ext[ext.length-1] != 'pdf'){
+			$(".blackPainel").css("display","none");
+			mensagem("Este arquivo não é um PDF!","OK","bt_ok","erro");
+			$('#DadosAta').val('');
+			$('#foto').attr('style','');
+		}else{
+			$(".blackPainel").css("display","none");	
+			$(".ic_pdf_upload").css("display","inline-block").attr('title',nomeArquivoSplit[nomeArquivoSplit.length-1]);	
+		}	
+	}else{
+		$(".blackPainel").css("display","none");
+	}
 }
 
 var muralGestao = new MuralGestao();

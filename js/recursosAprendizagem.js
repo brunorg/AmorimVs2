@@ -349,8 +349,8 @@ $(document).ready(function(){
 	/*Listagem de recursos de aprendizagem, para cada tipo de recurso add uma class expecífica*/	
 	HtmlContent = "";
 	var limite = dataRecursoAprendizagem.length;
-	if(limite>4){
-		limite = 5;	
+	if(limite>5){
+		limite = 6;	
 	}else{
 		limite = limite;	
 	}			
@@ -366,8 +366,8 @@ $(document).ready(function(){
 		HtmlContent += "<li> <div class='"+imagem+"'>"+dataRecursoAprendizagem[i].nomeRecurso+"</div> </li>";
 	}
 	
-	if(limite < 5){
-		limite2 = 5 - limite;
+	if(limite < 6){
+		limite2 = 6 - limite;
 		for(var a = 0; a <limite2; a++){
 			HtmlContent += "<li><div class='item_vazio'>&nbsp;</li>";
 		}

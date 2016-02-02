@@ -2429,9 +2429,6 @@ font-family: "proxima-nova",sans-serif;
 	#container_Pesquisa,#container_Inserir{
 		height:96% !important;
 	}
-	#PesquisarInserir_Complementar{
-		margin-top:25px !important;
-	}
 	#Curtidos ul {
 		font-size:12px !important;
 	}
@@ -2729,9 +2726,6 @@ font-family: "proxima-nova",sans-serif;
 	}	
 	#container_Pesquisa,#container_Inserir{
 		height:96% !important;
-	}
-	#PesquisarInserir_Complementar{
-		margin-top:25px !important;
 	}
 	#Curtidos ul {
 		font-size:12px !important;
