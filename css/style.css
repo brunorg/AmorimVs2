@@ -2453,29 +2453,6 @@ font-family: "proxima-nova",sans-serif;
 		padding: 13px 8px;
 	}
 	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 14px;
-	}
-	#container_Pesquisa{
-		font-size: 14px;
-	}
-	.itemTitulo{
-		font-size: 16px !important;
-	}
-	.itemSubtitulo{
-		font-size: 14px !important;
-	}	
-	/*Pagina forum*/
-	#content_central_2{
-		overflow: none;
-		height: 120%;
-		width: 20%;
-	}
-	#btn_topico{
-		font-size: 14px;
-	}
-	
 	/*Pagina mensagens*/
 	#mensagens_container{
 		font-size: 14px;
@@ -2764,29 +2741,6 @@ font-family: "proxima-nova",sans-serif;
 	/*Pagina areaAluno*/
 	#Mensagens{
 		padding: 13px 8px;
-	}
-	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 14px;
-	}
-	#container_Pesquisa{
-		font-size: 14px;
-	}
-	.itemTitulo{
-		font-size: 16px !important;
-	}
-	.itemSubtitulo{
-		font-size: 14px !important;
-	}	
-	/*Pagina forum*/
-	#content_central_2{
-		overflow: none;
-		height: 120%;
-		width: 20%;
-	}
-	#btn_topico{
-		font-size: 14px;
 	}
 	
 	/*Pagina mensagens*/
@@ -3185,20 +3139,6 @@ font-family: "proxima-nova",sans-serif;
 	/*Pagina areaAluno*/
 	#Mensagens{
 		padding: 13px 8px;
-	}
-	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 12px;
-	}
-	.itemTitulo{
-		font-size: 16px;
-	}
-	.itemSubtitulo{
-		font-size: 14px;
-	}	
-	#container_Pesquisa{
-		font-size: 14px;
 	}
 	
 	/*Pagina forum*/

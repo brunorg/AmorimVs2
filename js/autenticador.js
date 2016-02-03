@@ -171,3 +171,17 @@ function getTutoria(professorId){
 	}    
 	return retorno;
 }
+
+function buscaUsuarios(idPerfil){
+	var retorno;
+	$.ajax({
+		url: path+'Usuario/ListarPerfil/'+idPerfil,
+		type: 'Get',
+		async: false,
+		success: function (data) {
+			retorno = data;
+		}
+	});
+
+	return retorno;
+}
