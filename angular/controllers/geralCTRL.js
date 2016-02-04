@@ -54,6 +54,9 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				
+				var mobile = redirecionaMobile();
+				console.log(mobile);
+
 				$scope.menuHTML = [ 
 					{label: 'Plano de Estudo', href: 'planoDeEstudo.html',class: 'plano'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
@@ -188,4 +191,12 @@ function msgInicial(texto){
 						'</div>';
 
 	$( "#boxMensagemGeral" ).html(HtmlContent).show();	
+}
+
+function redirecionaMobile(){
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+	    return true;
+	}else{
+		return false;
+	}
 }
