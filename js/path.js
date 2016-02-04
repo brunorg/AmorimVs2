@@ -5,7 +5,8 @@ var path = "http://plataformaamorim.org/WebServicePlataformaAmorimTesteV2/";
 ////acesso serviço pelo java local
 //var path = "http://172.16.31.178:8888/plataformaAmorim/";
 //
-//var path = "http://192.168.50.83:8888/plataformaAmorim/"; //Diego
+//var path = "http://192.168.50.84:8888/plataformaAmorim/"; //Diego
+//var path = "http://localhost:8888/plataformaAmorim/"
 
 function loading(estado) {
     if(estado == "inicial"){
