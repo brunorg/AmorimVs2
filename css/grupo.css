@@ -229,6 +229,11 @@
     	overflow: hidden;
 	}
 
+	.Alunos_Container_Modal{
+		overflow: hidden;
+    	height: 300px;
+	}
+
 	#Area_Alunos,
 	#Area_Alunos_Modal {
 		width: 98%;

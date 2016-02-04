@@ -1,15 +1,5 @@
 //Murano Design
 
-//------------------------------------------------------------------------------------------------------------------------
-
-//Get Usuario Efetivado
-
-	var aluno=1;
-    var alunoID = 2;
-    var UsuarioAtivo = 2;
-
-//------------------------------------------------------------------------------------------------------------------------
-
 //Carrega os valores utilizados do BD
 
 var dataMateria 				=	getData("Materia", null);
@@ -349,8 +339,8 @@ $(document).ready(function(){
 	/*Listagem de recursos de aprendizagem, para cada tipo de recurso add uma class expecífica*/	
 	HtmlContent = "";
 	var limite = dataRecursoAprendizagem.length;
-	if(limite>4){
-		limite = 5;	
+	if(limite>5){
+		limite = 6;	
 	}else{
 		limite = limite;	
 	}			
@@ -363,11 +353,18 @@ $(document).ready(function(){
 			case 5:imagem ="item_Jogo";break;
 			case 6:imagem ="item_Foto";break;
 		}
-		HtmlContent += "<li> <div class='"+imagem+"'>"+dataRecursoAprendizagem[i].nomeRecurso+"</div> </li>";
+
+		var recurso = dataRecursoAprendizagem[i].nomeRecurso;
+
+		if(recurso.length>25){
+			recurso = recurso.substr(0,25)+'...'; 
+		}
+
+		HtmlContent += "<li> <div class='"+imagem+" linha_item'>"+recurso+"</div> </li>";
 	}
 	
-	if(limite < 5){
-		limite2 = 5 - limite;
+	if(limite < 6){
+		limite2 = 6 - limite;
 		for(var a = 0; a <limite2; a++){
 			HtmlContent += "<li><div class='item_vazio'>&nbsp;</li>";
 		}
@@ -430,4 +427,40 @@ function excluirDefinitivoRecurso(servico,idRecurso){
 
 function carrega(div_id,page){
 	$('#'+div_id).load(page);
+}
+
+
+
+function EnviarMSG()
+{
+	var HtmlContent;
+	//$('#frm_Envia_Mensagens #remetente').attr("value", ""+userID);
+
+	if($('#sugestao').val() != ""){
+
+		var destinatarios="";
+		var coordenadores = buscaUsuarios(26);
+
+
+
+		for( a in coordenadores){
+			destinatarios += '&destinatarios='+coordenadores[a].idusuario;
+		}
+		
+		var sugestao = $('#sugestao').val();
+		var assunto = 'Sugestão de recurso aprendizagem';
+		var valores = 'action=create&id=&lida=1&remetente='+usuarioId+'&assunto='+assunto+'&mensagem='+sugestao+destinatarios; 
+
+		$.ajax({
+		    url: path+"Mensagens/",
+		    type: "POST",
+		    data: valores,
+	    	success: function(d) {
+		    	mensagem("Sugestão enviada com sucesso!","OK","bt_ok","sucesso");
+		    	$('#sugestao').val("");
+		    },error: function() {
+		    	mensagem("Erro ao enviar Sugestão!","OK","bt_ok","erro");
+		    }
+		});
+	} 
 }

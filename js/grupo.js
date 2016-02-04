@@ -43,6 +43,7 @@ $(document).ready(function(){
 	$(".btn_fechar_modal").click(function() {
 		$(this).parent().hide();
 		$("#boxMensagemGeral").hide();
+		$("#boxModaisEdicao").hide();
 	})
 });
 

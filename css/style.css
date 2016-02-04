@@ -444,19 +444,8 @@ html, body
 					margin-top: -13px;	
 				}
 			
-				/*Calendario*/
-				#datepicker{
-				    border-collapse: collapse;
-				    padding: 0;
-				    margin: 0;
-				    width: 182px;
-					height: 208px;
-					margin:auto;
-					font-weight: bold;
-					font-size: 11px;
-					background-repeat: no-repeat;
-					color:rgb(102,102,102);
-				}
+				w
+				
 				.ui-corner-all {
 					cursor: pointer;
 				}
@@ -2429,9 +2418,6 @@ font-family: "proxima-nova",sans-serif;
 	#container_Pesquisa,#container_Inserir{
 		height:96% !important;
 	}
-	#PesquisarInserir_Complementar{
-		margin-top:25px !important;
-	}
 	#Curtidos ul {
 		font-size:12px !important;
 	}
@@ -2454,29 +2440,6 @@ font-family: "proxima-nova",sans-serif;
 	/*Pagina areaAluno*/
 	#Mensagens{
 		padding: 13px 8px;
-	}
-	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 14px;
-	}
-	#container_Pesquisa{
-		font-size: 14px;
-	}
-	.itemTitulo{
-		font-size: 16px !important;
-	}
-	.itemSubtitulo{
-		font-size: 14px !important;
-	}	
-	/*Pagina forum*/
-	#content_central_2{
-		overflow: none;
-		height: 120%;
-		width: 20%;
-	}
-	#btn_topico{
-		font-size: 14px;
 	}
 	
 	/*Pagina mensagens*/
@@ -2730,9 +2693,6 @@ font-family: "proxima-nova",sans-serif;
 	#container_Pesquisa,#container_Inserir{
 		height:96% !important;
 	}
-	#PesquisarInserir_Complementar{
-		margin-top:25px !important;
-	}
 	#Curtidos ul {
 		font-size:12px !important;
 	}
@@ -2770,29 +2730,6 @@ font-family: "proxima-nova",sans-serif;
 	/*Pagina areaAluno*/
 	#Mensagens{
 		padding: 13px 8px;
-	}
-	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 14px;
-	}
-	#container_Pesquisa{
-		font-size: 14px;
-	}
-	.itemTitulo{
-		font-size: 16px !important;
-	}
-	.itemSubtitulo{
-		font-size: 14px !important;
-	}	
-	/*Pagina forum*/
-	#content_central_2{
-		overflow: none;
-		height: 120%;
-		width: 20%;
-	}
-	#btn_topico{
-		font-size: 14px;
 	}
 	
 	/*Pagina mensagens*/
@@ -3191,20 +3128,6 @@ font-family: "proxima-nova",sans-serif;
 	/*Pagina areaAluno*/
 	#Mensagens{
 		padding: 13px 8px;
-	}
-	
-	/*Pagina Recursos Aprendizagem*/
-	#Curtidos, #container_Pesquisa, #bt_Pesquisar, #bt_Inserir{
-		font-size: 12px;
-	}
-	.itemTitulo{
-		font-size: 16px;
-	}
-	.itemSubtitulo{
-		font-size: 14px;
-	}	
-	#container_Pesquisa{
-		font-size: 14px;
 	}
 	
 	/*Pagina forum*/
