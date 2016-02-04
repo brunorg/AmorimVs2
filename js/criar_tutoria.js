@@ -130,7 +130,7 @@ function carregaTutor(){
         dataType: 'json',
         success: function(data){
             for (var i=0; i<data.length; i++) {
-                html+="<option value="+data[i].idprofessor_funcionario+">"+data[i].tutoria+"</option>";
+                html+="<option value=\""+data[i].idprofessor_funcionario+"\">"+data[i].tutoria+"</option>";
              //   console.log("Id Tutoria: " + data[i].idprofessor_funcionario + "\nNome: " + data[i].tutoria);
             };            
         }
@@ -157,7 +157,6 @@ function listarAlunosGruposTutoria() {
     var cicloId = $("#cicloAluno").val();
     var periodoIdAluno = $("#periodoIdAluno").val();
     var urlDinamica = "";
-    //console.log(cicloId,"\n",periodoIdAluno);
     
     if ($("#cicloAluno").val() != '0' && $("#periodoIdAluno").val() != '0') {
         urlDinamica = "AlunoVariavel/listarCicloPeriodoRangeObjeto/" +cicloId+ "/" +periodoIdAluno+ "/";
@@ -196,26 +195,22 @@ function listarAlunosGruposTutoria() {
                                    '</span>' +
                                    '<input type="checkbox" id="Aluno_Ano_Check_'+dataAlunosG[i].idalunoVariavel+'" class="Aluno_Ano_Check" />' +
                                    '<label for="Aluno_Ano_Check_'+dataAlunosG[i].idalunoVariavel+'">'+
-                                       '<span></span>' +
+                                       '<span>&nbsp;</span>' +
                                    '</label>'+
                                    '<span class="Ano_Aluno">'+
                                        dataAlunosG[i].anoEstudo.ano+'º ano'+
                                    '</span>'+
                                 '</div>';                      
             }
-            $("#boxAluno").append(htmlAluno);
-            
-            
-            var c1 = $("#cicloAluno").val(); //variável que recebe o value da box cicloAluno
-            var p1 = $("#periodoIdAluno").val(); // -- recebe o value de periodoIdAluno           
+            $("#boxAluno").append(htmlAluno);        
             
             if (dataAlunosG == ''){
                 acabouDeCarregarTutoria = true;
             }else{
                 var selecionados = $('.Selected');
                 var listaAlunos = $('.Aluno_Ano_Check');
-
                 var linha="";
+
                 for(var j=0;j<selecionados.length;j++){
                     for(var i=0;i<listaAlunos.length;i++){            
                         if(selecionados[j].id == listaAlunos[i].id){
@@ -228,8 +223,7 @@ function listarAlunosGruposTutoria() {
                 for(var j=0;j<selecionados.length;j++){
                     $('#'+selecionados[j].id).prop("checked",true);
                 }
-            }               
-            
+            }        
             contAlunosTutoria++;
             isSelected();
             
@@ -332,7 +326,6 @@ function atualizarAluno(agrupamento){
             });
         }
         alunosId = "";
-        console.log(alunosId);
     });
 }
 
@@ -417,7 +410,6 @@ function carregaSelected(){
     for (var i = 0; i < selected.length; i++) {
         arraySelected.push($(".Selected .Aluno_Ano_Check")[i].id.split('_')[3]);
     }
-    console.log("Selecionados: " + arraySelected);
     return arraySelected;
     
 }

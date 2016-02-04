@@ -4,7 +4,7 @@ var acabouDeCarregar = false;
 $(document).ready(function(){
     carregaPeriodo();
     carregaCiclo();
-    //carregaAlunos();
+    carregaAlunos();
     atribuiChange();
     atribuiFuncoesRolagem();
     salvarAgrupamento();
@@ -21,7 +21,6 @@ function carregaCiclo(){
         success: function (dataCi) {
             for (var i = 0; i < dataCi.length; i++) {
                 HtmlCiclo += '<option class="opcaoCI" value="'+dataCi[i].idciclos+'">'+dataCi[i].ciclo+'</option>';
-                //console.log(dataCi[i].idciclos);
             };
         }
     });
@@ -136,23 +135,21 @@ function atribuiFuncoesRolagem () {
             alwaysTriggerOffsets: false,
             onTotalScrollOffset: 500,
             whileScrolling: function() {
-                if (this.mcs.topPct > 95 && !acabouDeCarregar){
+                if(this.mcs.topPct > 95 && !acabouDeCarregar){
                     carregaAlunos();
-                    carregaAlunosModal();
                 }
 
             },
             onTotalScroll:function(){
                 if (!acabouDeCarregar){
                     carregaAlunos();
-                    carregaAlunosModal();
                 }
             }
         }
     });
 }
 
-function salvarAgrupamento () {
+function salvarAgrupamento() {
     $('.btn_Salvar_Grupo').click(function() {
         var cicloAgrup = $("#cicloGrupo").val();
         if (geraNome() != '' && $('.Aluno_Ano_Check:checked').length > 0)
@@ -197,7 +194,7 @@ function salvaAlunoAgrupamento (idAgrupamento, alunoId) {
         crossDomain: true
     });
 }
-
+//$("#aluno_"+idaluno).attr("id")
 function geraNome () {
     return $('#nomeGrupo').val();
 }

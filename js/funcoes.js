@@ -7,12 +7,12 @@ var saveObjetivo;
 var contAlunos = 1;
 var acabouDeCarregar = false;
 
-var toType = function(obj) {
+var toType = function(obj){
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 // JavaScript Document	
-$(document).ready(function() {	
+$(document).ready(function(){	
 	var url = window.location.href;
 	var retorno = url.split("/"); 
 	var classe = $('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').attr("class");		
@@ -533,8 +533,7 @@ function base64_decode(data) {
 	tipo_msg = Tipo da mensagem que será exibida e icone EX: 'sucesso','erro' 
  */
 
-function centralizarModal()
-{
+function centralizarModal(){
 	var alturaBox = parseInt($('.box_mensagem').height());
 	var marginTopBox = Math.floor(-alturaBox/2).toString() + 'px';
 
@@ -551,8 +550,7 @@ function centralizarModal()
 	});
 }
 
-function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
-{
+function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao){
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
@@ -616,8 +614,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao)
 	}	
 }
 
-function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao)
-{	
+function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao){	
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
 		var HtmlContent = '<div class="box_mensagem">'+
@@ -717,8 +714,7 @@ function selectCidade(idEstado,idCidade){
 }
 /*Fim funções estado e cidade*/
 
-function getAVariavelByAluno(ID)
-{
+function getAVariavelByAluno(ID){
 	var ValorRetorno;
 
 	if(ID == undefined)
@@ -751,8 +747,7 @@ function getAVariavelByAluno(ID)
 		// return dataUsuario.aluno.idAluno;
 	// }
 	
-function getAlunoByUsuario(ID)
-{
+function getAlunoByUsuario(ID){
 var objUsuario = getData("Usuario", ID);
 
 		if(usuario == "Aluno" && objUsuario.aluno != null)
@@ -816,8 +811,7 @@ $.ajax({
 }
 
 var erro;
-function GerarUpload(DivImagem, InputFile, SaveDadosFile)
-{
+function GerarUpload(DivImagem, InputFile, SaveDadosFile){
 	/* Inicio */
 
 	/* Ao clicar na imagem, abre uma janela pra fazer upload direto da escolha de seus arquivos */
@@ -1061,8 +1055,7 @@ function alterarSenha(){
  * @param  {String} Separador Tipo de separador dos numeros, traço ou barra (/ ou -)
  * @return {String}           Retorna a data modificada
  */
-function changeDatePosition(Data, Numero, Separador)
-{
+function changeDatePosition(Data, Numero, Separador){
 	switch(Numero)
 	{
 		case 1:
@@ -1254,7 +1247,7 @@ function retornaMesAbreviacaoByNumero(numMes){
 }
 
 //Numero de mensagens recebidas
-function ContadorMensagens() {
+function ContadorMensagens(){
     $.ajax({
         url: path + "Mensagens/Proprietario/" + userID,
         type: "GET",
@@ -1289,6 +1282,6 @@ function ContadorMensagens() {
     });
 }
 
-function fecharJanela() {
+function fecharJanela(){
     $('#box_msg_alter_banner').css('display', 'none');
 }
