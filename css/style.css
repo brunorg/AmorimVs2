@@ -168,7 +168,7 @@ html, body
 				font-size: 17px;
 				font-weight: 300;
 				text-decoration: none;
-				color: #fff;
+				color: #87cfde;
 				padding: 15px 10px 15px 70px;
 				word-break: keep-all;
 				background-repeat: no-repeat;
@@ -433,6 +433,7 @@ html, body
 				
 				.Content_lateral_Menu_Opcao:hover{
 					background-color: rgba(22, 190, 207, 0.79);
+					color: #fff;
 					cursor: pointer;
 				}	
 				

@@ -1,0 +1,440 @@
+#Conteudo_Area {
+	background-image: url(../img/alfabetizacao/background_alfabetizacao.png);
+}
+#conteudo_principal {
+	float: left;
+	width: 73.5%;
+	height: 100%;
+	margin: 0;
+	padding: 36px 14px 36px 36px;
+}
+#conteudo_lateral {
+	float: left;
+	width: 26.5%;
+	height: 100%;
+	margin: 0;
+	padding: 63px 36px 36px 14px;
+}
+#oficinas_container {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+/* Abas oficinas */
+#abas_oficina {
+	width: 100%;
+	height: 50px;
+	padding: 14px 14px 0;
+	text-align: center;
+}
+.aba_oficina {
+	margin-right: 10px;
+	float: left;
+	width: 11.45%;
+	height: 100%;
+	background-color: #eee;
+	border-top-right-radius: 12px;
+	border-top-left-radius: 12px;
+	position: relative;
+	cursor: pointer;
+	text-align: center;
+}
+.aba_oficina > span {
+	display: block;
+	width: 100%;
+	height: 50px;
+	position: relative;
+	bottom: 55px;
+	height: 90px;
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-size: auto;
+}
+.aba_oficina:hover > span,
+.aba_ativa > span {
+	width: 120%;
+	height: 120px;
+	margin-left: -10%;
+	bottom: 70px;
+}
+.aba_oficina:last-child {
+	margin-right: 0;
+}
+.aba_roteiros {
+	background-color: #C77CB4;
+}
+.aba_roteiros > span {
+	background-image: url(../img/alfabetizacao/ic_roteiros.png);
+}
+.aba_roteiros:hover > span,
+.aba_roteiros.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_roteiros_h.png);
+}
+.aba_tutoria {
+	background-color: #A8D15F;
+}
+.aba_tutoria > span {
+	background-image: url(../img/alfabetizacao/ic_tutoria.png);
+}
+.aba_tutoria:hover > span,
+.aba_tutoria.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_tutoria_h.png);
+}
+.aba_leitura_escrita {
+	background-color: #F28A4D;
+}
+.aba_leitura_escrita > span {
+	background-image: url(../img/alfabetizacao/ic_leitura_escrita.png);
+}
+.aba_leitura_escrita:hover > span,
+.aba_leitura_escrita.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_leitura_escrita_h.png);
+}
+.aba_educacao_fisica {
+	background-color: #FFDE40;
+}
+.aba_educacao_fisica > span {
+	background-image: url(../img/alfabetizacao/ic_educacao_fisica.png);
+}
+.aba_educacao_fisica:hover > span,
+.aba_educacao_fisica.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_educacao_fisica_h.png);
+}
+.aba_artes {
+	background-color: #CC0070;
+}
+.aba_artes > span {
+	background-image: url(../img/alfabetizacao/ic_artes.png);
+}
+.aba_artes:hover > span,
+.aba_artes.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_artes_h.png);
+}
+.aba_matematica {
+	background-color: #A13386;
+}
+.aba_matematica > span {
+	background-image: url(../img/alfabetizacao/ic_matematica.png);
+}
+.aba_matematica:hover > span,
+.aba_matematica.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_matematica_h.png);
+}
+.aba_ingles {
+	background-color: #0090D7;
+}
+.aba_ingles > span {
+	background-image: url(../img/alfabetizacao/ic_ingles.png);
+}
+.aba_ingles:hover > span,
+.aba_ingles.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_ingles_h.png);
+}
+.aba_arte_ciencia {
+	background-color: #F0565F;
+}
+.aba_arte_ciencia > span {
+	background-image: url(../img/alfabetizacao/ic_arte_ciencia.png);
+}
+.aba_arte_ciencia:hover > span,
+.aba_arte_ciencia.aba_ativa > span {
+	background-image: url(../img/alfabetizacao/ic_arte_ciencia_h.png);
+}
+/* Fim abas oficinas */
+
+#faixa_oficina {
+	width: 100%;
+	height: 64px;
+	padding: 0;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#conteudo_oficina {
+	width: 100%;
+	height: 454px;
+	padding: 0 14px;
+}
+#conteudo_container {
+	width: 100%;
+	height: 100%;
+	padding: 18px;
+	margin-top: -14px;
+	background-color: #EBEAE5;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+}
+#blog_oficina_container {
+	width: 65.4%;
+	height: 100%;
+	background-color: #F2F2ED;
+	float: left;
+	margin-right: 36px;
+	padding: 18px 0 18px 18px;
+	overflow: hidden;
+}
+#blog_postagens_container {
+	padding-right: 18px;
+}
+.cx_postagem {
+	width: 100%;
+	min-height: 83px;
+	margin-bottom: 25px;
+	word-break: break-word;
+}
+.cx_postagem:last-child {
+	margin-bottom: 0;
+}
+.cx_titulo {
+	font-size: 16px;
+	font-weight: normal;
+	text-transform: uppercase;
+    line-height: 1.2em;
+	color: #666666;
+	margin: 0;
+	margin-bottom: 5px;
+}
+.cx_info {
+	font-size: 12px;
+	font-weight: normal;
+	color: #BABABA;
+	margin: 0;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	letter-spacing: .005em;
+}
+.img_postagem {
+	width: 50%;
+	margin-right: 10px;
+	float: left;
+}
+.cx_texto {
+	margin-top: 10px;
+	color: #666;
+	line-height: 1.3em;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: .005em;
+}
+.cx_texto:first-of-type {
+	margin-top: 5px;
+}
+.fim_postagem {
+	display: block;
+	width: 100%;
+	float: left;
+	margin: 0;
+	margin-top: 10px;
+	border: 0;
+	border-top: 1px solid #aaa;
+}
+.cx_postagem::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.acordeon_oficina {
+	width: 30.2%;
+    float: left;
+}
+.acordeon_oficina h2 {
+	font-size: 14px;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 10px;
+	line-height: 1.3em;
+	text-transform: uppercase;
+	letter-spacing: .005em;
+}
+
+.roteiro_info {
+	position: relative;
+	padding-left: 30px;
+	color: #666;
+	font-size: 14px;
+	line-height: 1em;
+	cursor: pointer;
+}
+.roteiro_num_listagem {
+	position: absolute;
+	width: 30px;
+	height: 32px;
+	top: 0;
+	left: 0;
+	padding: 8px 0;
+	color: #fff;
+	text-align: center;
+	border: 1px solid #fff;
+	border-bottom: none;
+	border-right: none;
+}
+.roteiro_nome {
+	padding: 8px;
+	border: 1px solid #fff;
+	border-bottom: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: .005em;
+}
+.objetivo_status {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #fff;
+	top: 7px;
+	right: 7px;
+	background-color: #ccc;
+}
+
+.oficina_planejamento.roteiro_expandido .roteiro_num_listagem,
+.oficina_planejamento:last-child .roteiro_num_listagem,
+.oficina_planejamento:last-child .roteiro_nome {
+	border-bottom: 1px solid #fff;
+}
+
+.oficina_planejamento.roteiro_expandido:last-child .roteiro_nome {
+	border-bottom: none;
+}
+
+.objetivo_aberto {
+	background-color: #f7931d;
+}
+.objetivo_entregue {
+	background-color: #8ec449;
+}
+.roteiro_conteudo {
+	width: 100%;
+	position: relative;
+	padding-left: 30px; 
+	overflow: hidden;
+	display: none;
+}
+.roteiro_item {
+	position: relative;
+	min-height: 30px;
+	height: auto;
+	width: 100%;
+	background-color: #f2f2ee;
+	border: 1px solid #fff;
+	border-bottom: none;
+	color: #666;
+	font-size: 12px;
+	padding: 8px;
+	padding-right: 30px;
+	text-transform: uppercase;
+	letter-spacing: .005em;
+	line-height: 1.3em;
+}
+.roteiro_descricao {
+	background-color: #e5e5dc;
+	padding-right: 8px;
+}
+.roteiro_recurso {
+	background-position: left center;
+	background-repeat: no-repeat;
+	min-height: 24px;
+	padding: 5px 25px;
+}
+
+.recurso_foto {
+	background-image: url(../img/ic_foto.png);
+}
+.recurso_link {
+	background-image: url(../img/ic_pgweb.png);
+}
+.recurso_video {
+	background-image: url(../img/ic_video.png);
+}
+.recurso_jogo {
+	background-image: url(../img/ic_jogo.png);
+}
+.recurso_audio {
+	background-image: url(../img/ic_audio.png);
+}
+.recurso_livro {
+	background-image: url(../img/ic_livro2.png);
+}
+
+
+/* Box lateral */
+#abas_box_lateral {
+	width: 100%;
+	height: 70px;
+}
+.aba_box_lateral {
+	float: left;
+	height: 100%;
+	margin-right: 10px;
+	width: 31%;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.aba_box_lateral:last-child {
+	margin-right: 0;
+}
+.aba_rotina {
+	background-color: #008897;
+	background-image: url(../img/alfabetizacao/ic_rotina.png);
+}
+.aba_mensagens {
+	background-color: #EF5480;
+	background-image: url(../img/alfabetizacao/ic_mensagens.png);
+}
+.aba_mural {
+	background-color: #F7C481;
+	background-image: url(../img/alfabetizacao/ic_mural.png);;
+}
+
+#abas_box_lateral::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+#box_lateral {
+	width: 100%;
+	height: 456px;
+}
+#box_lateral > div {
+	width: 100%;
+	height: 100%;
+	padding: 67px 24px 24px;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	background-position: 24px 24px;
+	background-repeat: no-repeat;
+}
+.box_rotina {
+	background-color: #008897;
+	background-image: url(../img/alfabetizacao/cabecalho_rotina.png);
+}
+
+.box_mensagens {
+	background-color: #EF5480;
+	background-image: url(../img/alfabetizacao/cabecalho_mensagens.png);
+}
+
+.box_mural {
+	background-color: #F7C481;
+	background-image: url(../img/alfabetizacao/cabecalho_mural.png);
+}
+.box_conteudo {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	padding: 18px;
+}
+
+
+/* PLUGIN BARRA DE ROLAGEM */
+.mCSB_scrollTools_vertical {
+    right: 0px !important;
+}
