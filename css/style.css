@@ -1449,15 +1449,33 @@ font-family: "proxima-nova",sans-serif;
 		height: 40px;
 	}
 	.Content_lateral_Menu_Opcao {
-	    width: 126px;
+	    width: 113px;
 	    height: 80px;
+	    max-height: 80px;
 	    margin-right: 1px;
 	    background-color: #02818D;
 	    float: left;
+	    padding-top: 85px;
+	    background-position: 50% 20%;
+	    overflow: hidden;
+	}
+
+	.Content_lateral_Menu_Opcao:hover {
+		padding: 5px;
+		background-image:none;
+	}
+
+	.Content_lateral_Menu_Opcao:hover > .label {
+		display: none;
+	}
+
+	#Cabecalho_Menu_Area_Menu2{
+		width: 302px !important;
 	}
 	.visivel{
 		display: block !important;
 	}
+
 	#Content_lateral_Calendario {
 		display:none;
 		height: 212px;
@@ -1537,9 +1555,6 @@ font-family: "proxima-nova",sans-serif;
 	.Content_lateral_Menu_Opcao .plano {
 		background-position: 8px 11px;
 		font-size: 12px;
-		padding: 12px 0px 0px 28px;
-		width: 126px;
-		height: 38px;
 		background-size: 14% auto;
 		-webkit-background-size: 14% auto;
 		-o-background-size: 14% auto;
