@@ -40,7 +40,7 @@
     width: 477px;
     height:200px;
     float: left;
-    margin:124px 0 0 15px;
+    margin:92px 0 0 15px;
 }
 .colunaCalendario{
     border: 1px solid red;
@@ -263,7 +263,10 @@
 }
 
 
-
+#tabelaPresenca td{
+    width: 35px;
+    height: 35px;
+}
 
 
 

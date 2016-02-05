@@ -15,6 +15,7 @@
 		arrowLeftDiv.style.width = "35px"
 		arrowLeftDiv.style.height = "35px"
 		arrowLeftDiv.style.display = "inline-block"
+		arrowLeftDiv.style.backgroundColor = "purple"
 		arrowLeftDiv.id = "calendarLeftArrow"
 
 		centerLargeDiv.style.width = "175px"
@@ -25,6 +26,7 @@
 		arrowRightDiv.style.width = "35px"
 		arrowRightDiv.style.height = "35px"
 		arrowRightDiv.style.display = "inline-block"
+		arrowRightDiv.style.backgroundColor = "black"
 		arrowRightDiv.id = "calendarRightArrow"
 
 		headerDiv.appendChild(arrowLeftDiv)
@@ -132,7 +134,22 @@
 
 }( jQuery ));
 
+function adicionarClickCasas() {
+	for (var k = 1; k <= 5; k++) {
+		for (var i = 0; i <= 6; i++) {
+			var casa = document.getElementById('Aluno' + k + 'Dia' + i)
+			casa.onclick = toggleDia
+		};
+	};
+}
 
+function toggleDia() {
+	if (this.innerHTML == "O") {
+		this.innerHTML = "X"
+	} else {
+		this.innerHTML = "O"
+	}
+}
 
 $(document).ready(function(){
 
@@ -149,6 +166,8 @@ $(document).ready(function(){
 		window.dayOffsetWeekCalendar -= 7
 		$( "#weekdisplay" ).weekdisplay(window.dayOffsetWeekCalendar)
 	})
+
+	adicionarClickCasas()
 
     // $( "#datepickerFaltas" ).datepicker({
     //     showOn: "button",
