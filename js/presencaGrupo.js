@@ -10,7 +10,6 @@
 
 		headerDiv.style.width = "245px";
 		headerDiv.style.height = "35px";
-		headerDiv.style.backgroundColor = "green";
 
 		arrowLeftDiv.style.width = "35px"
 		arrowLeftDiv.style.height = "35px"
@@ -42,7 +41,6 @@
 
 		daysDiv.style.width = "245px";
 		daysDiv.style.height = "35px";
-		daysDiv.style.backgroundColor = "blue";
 		daysDiv.id = divId;
 
 		var i = 0
@@ -102,7 +100,6 @@
 
 			$(this).empty()
 
-			this.css("background-color", "red");
 			this.css("width", "245px");
 			this.css("height", "105px");
 
