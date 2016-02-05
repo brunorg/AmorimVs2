@@ -30,12 +30,38 @@
 	background-position: 39px;
 }
 
+.background_icone{
+	background-repeat: no-repeat;
+	background-position: 8px;
+	background-size: 24px;
+}
+
+.btn_nova_oficina{
+	background-image: url(../img/ic_addG_branco.png);
+}
+
+.btn_editar_oficina{
+	background-image: url(../img/ic_editarG_branco.png);
+}
+
+.btn_atribuir_rotina{
+	background-image: url(../img/ic_menu_rotina_ativo.png);
+}
+
+.btn_concluir_oficina{
+	background-image: url(../img/3_corrigido.png);
+}
+
 .bg_claro{
 	background-color: #f2f2ee;
 }
 
 .bg_escuro{
 	background-color: #e5e5dc;
+}
+
+.inline{
+	display: inline-block;
 }
 
 .area_nome_oficina{
@@ -64,15 +90,13 @@
 }
 
 .btn_feedback_oficina{
-	background-color: #E83F4A;
-    border-radius: 0;
     color: #ffffff;
+    background-color: #E83F4A;
     height: 40px;
     padding: 10px;
-    padding-left: 35px;
+    padding-left: 38px;
     font-size: 20px;
     text-align: right;
-    border: 0;
     cursor: pointer;
     margin-right: 7px;
     display: inline-block;
@@ -117,15 +141,15 @@
 }
 
 .padding_pequeno{
-	padding: 5px 0px;
+	padding: 5px 0;
 }
 
 .vertical_padding{
-	padding: 15px 0px;
+	padding: 15px 0;
 }
 
 .bottom_padding{
-	padding: 0px;
+	padding: 0;
 	padding-bottom: 10px;
 }
 
@@ -157,7 +181,6 @@
 	}
 	.Box_Area_Select {
 		display: inline-block;
-		float: left;
     	width: 296px;
     	height: 40px;
     	margin-right: 7px;
@@ -175,7 +198,7 @@
 
 	.btAdd_Professor{
 		float: right;
-		cursor: pointer;\
+		cursor: pointer;
 		margin-right: 7px;
 	}
 

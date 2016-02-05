@@ -202,13 +202,13 @@
                                     <div id="ficha_oficina" class="bg_claro padding_padrao">
                                         <div id="oficina_tipo" class="bottom_padding area_nome_oficina">Matemática</div>
                                         <div class="padding_pequeno text_padrao"> <span class="caracteristica">Ciclo: </span><span id="oficina_ciclo" class="texto_padrao"> Intermediário </span> | <span class="caracteristica">Periodo: </span><span id="oficina_periodo" class="texto_padrao"> Manhã</span></div>
-                                        <div id="oficina_professor" class="padding_pequeno texto_padrao"><span class="caracteristica">Professor: </span> Teste</div>
+                                        <div class="padding_pequeno texto_padrao"><span class="caracteristica">Professor(es): </span><div id="oficina_professores" class="inline"></div></div>
                                     </div>
                                     <div class="container_btn_feedback_oficina">
-                                        <div class="btn_secundario btn_feedback_oficina">Teste</div>
-                                        <div class="btn_secundario btn_feedback_oficina">Teste adsfadfasdf</div>
-                                        <div class="btn_secundario btn_feedback_oficina">Teste</div>
-                                        <div class="btn_primario btn_feedback_oficina">Teste</div>
+                                        <div class="btn_feedback_oficina background_icone btn_nova_oficina">Nova Oficina</div>
+                                        <div class="btn_feedback_oficina background_icone btn_editar_oficina">Editar Oficina</div>
+                                        <div class="btn_feedback_oficina background_icone btn_atribuir_rotina">Atribuir Rotina</div>
+                                        <div class="btn_feedback_oficina background_icone btn_concluir_oficina">Concluir</div>
                                     </div>
                                 </div>
                                 <div id="Container_Cadastro_Rotina" style="display:none">
@@ -452,6 +452,7 @@
         <!--Modais de editar agrupamento-->
         <div id="boxModaisEdicao">
         	<div class="modal modal_edicao_geral modal_edicao_oficina" style="display: none;">
+                <input type="hidden" id="editar_id_oficina">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar oficina</header>
                 <section class="container_modal_edicao">
@@ -510,6 +511,9 @@
                 </section>
             </div>
             <div class="modal modal_edicao_geral modal_edicao_rotina" style="display: none;">
+                <input type="hidden" id="editar_id_rotina">
+                <input type="hidden" id="id_rotina">
+                <input type="hidden" id="id_agendamento">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar rotina</header>
                 <section class="container_modal_edicao">
@@ -551,6 +555,7 @@
                 </section>
             </div>
             <div class="modal modal_edicao_geral modal_edicao_agrupamento" style="display: none;">
+                <input type="hidden" id="editar_id_agrupamento">
                 <span class="btn_fechar_modal">&nbsp;</span>
                 <header>Editar agrupamento</header>
                 <section class="container_modal_edicao">

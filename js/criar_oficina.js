@@ -32,6 +32,9 @@ function salvarOficina () {
         var periodo = $("#periodoOficina").val();
         var ciclo = $("#cicloOficina").val();
 
+        var cicloNome = $("#cicloOficina option:selected").text();
+        periodoNome = $("#periodoOficina option:selected").text();
+
         if (tipoOficina == '0' ||
             periodo == '0' ||
             ciclo == '0')
@@ -62,10 +65,12 @@ function salvarOficina () {
                         type: "GET",
                         async: false,
                         crossDomain: true,
-                        success: function(d) {
-                            $('.oficina_nome').css('color', d.cor.forte);
+                        success: function(tipoOficinaData) {
+                            adicionaInformacoesFichaOficina(tipoOficinaData, cicloNome, periodoNome);
+                            $('.oficina_nome').css('color', tipoOficinaData.cor.forte);
                         }
                     });
+                    adicionarFuncoesFeedBack(idOficina, ciclo, periodo);
                     cadastrarProfessorOficina(idOficina);
                 },
                 complete: function() {
@@ -102,11 +107,31 @@ function displayNome () {
     else
         nomeOficina = $("#oficinaOficina option:selected").text();
 
-    var conteudoNome =  '<span>' + cicloNome + ' |</span>'+
-                        '<span> ' + periodoNome + ' |</span>'+
+    var conteudoNome =  '<span>' + cicloNome + ' | </span>'+
+                        '<span> ' + periodoNome + ' | </span>'+
                         '<span class="oficina_nome"> Oficina ' + nomeOficina + '</span> |';
     $("#Area_Nome_Oficina").html(conteudoNome);
     $("#Area_Nome_Oficina").css('display', 'block');
+}
+
+function adicionaInformacoesFichaOficina (tipoOficina, nomeCiclo, nomePeriodo) {
+    $('#oficina_tipo').html(tipoOficina.nome);
+    $('#oficina_tipo').css('color', tipoOficina.cor.forte);
+    $('#oficina_ciclo').html(nomeCiclo);
+    $('#oficina_periodo').html(nomePeriodo);
+}
+
+function adicionarFuncoesFeedBack (idOficina, ciclo, periodo) {
+    $('.btn_editar_oficina').click(function() {
+        habilitarModalEdicaoOficina(idOficina, ciclo, periodo);
+    });
+
+    $('.btn_atribuir_rotina').click(function() {
+        habilitarModalEdicaoRotina(0, idOficina, 0, 0, 0, 0, 0);
+    });
+    $('.btn_nova_oficina').click(function() {
+        resetarPaginas();
+    });
 }
 
 function cadastrarProfessorOficina (idOficina) {
@@ -134,9 +159,12 @@ function atribuiSalvarProfessorOficina (idOficina) {
         for (var a = 0; a < $('.Professor_Select').length; a++)
         {
             var idProfessor = $('.Professor_Select')[a].value;
+            var nomeProfessor = $('.Professor_Select')[a].options[$('.Professor_Select')[a].selectedIndex].text;
             if (idProfessor != "0")
             {
                 salvarProfessorOficina(idOficina, idProfessor);
+                adicionaInformacoesFichaOficinaProfessor(nomeProfessor);
+                concluirOficina(idProfessor);
                 profCadastrado = true;
                 mensagem("Professores cadastrados com sucesso! Crie uma rotina para esta oficina!","OK","bt_ok","sucesso"); 
             }
@@ -144,24 +172,11 @@ function atribuiSalvarProfessorOficina (idOficina) {
         if (profCadastrado)
         {
             $("#Container_Cadastro_Oficina_Professor").css('display', 'none');
-            addProfessorNomeOficina();
-            cadastrarRotina(idOficina);
+            $('#Container_Oficina_Completa').css('display', 'block');
         }
         else
             mensagem("Cadastre ao menos um professor para essa oficina!","OK","bt_ok","erro");
     });
-}
-
-function addProfessorNomeOficina () {
-
-    var conteudoNome = '';
-
-    for (var a = 0; a < $('.Professor_Select').length; a++)
-    {
-        conteudoNome += '<span> Professor(a) ' + $('.Professor_Select option:selected')[a].text +' |</span>';
-    }
-
-    $("#Area_Nome_Oficina").append(conteudoNome);
 }
 
 function getNovaLinhaProfessor () {
@@ -238,6 +253,23 @@ function salvarProfessorOficina (idOficina, idProfessor) {
         complete: function() {
             loading('final');
         }
+    });
+}
+
+function adicionaInformacoesFichaOficinaProfessor(nomeProfessor){
+    if ($('#oficina_professores').is(':empty'))
+        $('#oficina_professores').html(nomeProfessor);
+    else
+        $('#oficina_professores').append(', ' + nomeProfessor);
+}
+
+function concluirOficina (idProfessor) {
+    $('.btn_concluir_oficina').click(function() {
+        $('#Pesquisa').trigger('click');
+        $('.pesqTutOfi').val(1);
+        $('.pesqTutOfi').trigger('change');
+        $('.oficinaO').val(idProfessor);
+        $('.oficinaO').trigger('change');
     });
 }
 
@@ -385,6 +417,7 @@ function resetarPaginas () {
     resetarCadastroOficina();
     resetarCadastroProfessores();
     resetarCadastroRotina();
+    resetarFicha();
 }
 
 function resetarCadastroOficina () {
@@ -402,6 +435,11 @@ function resetarCadastroProfessores () {
     $('.Container_Professores').empty();
     $('.btAdd_Professor').unbind('click');
     $(".btn_Salvar_Oficina_Professor").unbind('click');
+}
+
+function resetarFicha () {
+    $('#oficina_professores').empty();
+    $('#Container_Oficina_Completa').hide();
 }
 
 function resetarCadastroRotina () {

@@ -1,15 +1,5 @@
 
 //Get Usuario Efetivado
-
-    var alunoID = 2;
-    var UsuarioAtivo = 2;
-
-//Carrega os valores utilizados do BD
-
-	var dataProfessorFuncionario    =   getData("ProfessorFuncionario", null);
-	var dataPeriodo 				=	getData("Periodo", null);
-//	var dataAnoEstudo 				=	getData("AnoEstudo", null);
-
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery
@@ -19,6 +9,7 @@ var idAgrup = "";
 var idOficina = "";
 var idAlunoV = "";
 var alunosId = [];
+
 $(document).ready(function() {	
 
 	carregaOficineiros();
@@ -29,6 +20,8 @@ $(document).ready(function() {
 	carregaEditDiaSemana();
 	carregaHorarioEdit();
 	carregaSalaEdit();
+	editarOficina();
+	editarRotina();
 	
 	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
 	$( "#anoEstudo" ).change(function() {
@@ -632,35 +625,61 @@ function editarGrupoFun(){
 	});	
 }
 
-function editarModal(modal,id){
-	$('.modal_edicao_'+modal).show();
-	$('.modal_edicao_'+modal).prepend('<input type="hidden" value="'+id+'" id="editar_id_'+modal+'">');	
+function habilitarModalEdicaoOficina(idOficina, ciclo, periodo) {
 	$('#boxModaisEdicao').show();
+	$('.modal_edicao_oficina').show();
+	$('#editar_id_oficina').val(idOficina);
+	$('#cicloOficinaEditar').val(ciclo);
+	$('#periodoOficinaEditar').val(periodo);
+}
+
+function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, horario, sala, agendamento) {
+	$('#boxModaisEdicao').show();
+	$('.modal_edicao_rotina').show();
+	$('#id_rotina').val(idRotina);
+	$('#editar_id_rotina').val(idOficina);
+	$('#agrupamentoEdit').val(agrupamento);
+	$('#Dia_Semana_Edit').val(dia);
+	$('#Horario_Edit').val(horario);
+	$('#Sala_Edit').val(sala);
+	$('#id_agendamento').val(agendamento);
+}
+
+function editarModal(modal,id){
 	if(modal == "oficina"){
-		EditarOficina();		
+		var idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
+		var conteudoCiclo = $("#idOficina_"+idOficina).find(".ciclo").attr('id').split('_')[2];
+		var conteudoPeriodo = $("#idOficina_"+idOficina).find(".periodo").attr('id').split('_')[2];
+		habilitarModalEdicaoOficina(idOficina, conteudoCiclo, conteudoPeriodo);	
 	} else if(modal == "rotina"){
-		editarRotina();
+		var idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
+		var agrupamento = $("#idOficina_"+idOficina).find(".agrupamento").attr('id').split('_')[1];
+		var dia = $("#idOficina_"+idOficina).find(".rotina_dia").attr('id').split('_')[2];
+		var horario = $("#idOficina_"+idOficina).find(".rotina_horario").attr('id').split('_')[2];
+		var sala = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[1];
+		var agendamento = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[2];
+		var idRotina = $(".rotina_oficina").attr('id').split('_')[1];
+		habilitarModalEdicaoRotina(idRotina, idOficina, agrupamento, dia, horario, sala, agendamento);
 	} else if(modal == "agrupamento"){
 		editarAgrupamento();
 	}
 	centralizarModal();	
 }
 
-function EditarOficina(){
-	idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
-	var conteudoCiclo = $("#idOficina_"+idOficina).find(".ciclo").attr('id').split('_')[2];
-	var conteudoPeriodo = $("#idOficina_"+idOficina).find(".periodo").attr('id').split('_')[2];	
-
-	$("#cicloOficinaEditar").val(conteudoCiclo);
-	$("#periodoOficinaEditar").val(conteudoPeriodo);
+function editarOficina(){
 	$('#salvarOficina').click(function(){
+
+		var ciclo = $("#cicloOficinaEditar").val();
+		var periodo = $("#periodoOficinaEditar").val();
+		var idOficina = $('#editar_id_oficina').val();
+
 		$.ajax({
 			url: path+"Oficina",
 			type:"POST",
 			async:false,
 			dataType:"json",
 			crossDomain:true,
-			data:"action=update&ciclo="+$('#cicloOficinaEditar option:selected').val()+"&periodo="+$('#periodoOficinaEditar option:selected').val()+"&id="+idOficina, 
+			data:"action=update&ciclo="+ciclo+"&periodo="+periodo+"&id="+idOficina, 
 			success: function(d){
 				$('#boxModaisEdicao').css('display','none');
 				mensagem("Oficina alterada com sucesso!","OK","bt_ok","sucesso"); 	
@@ -670,38 +689,28 @@ function EditarOficina(){
 }
 
 function editarRotina(){
-	idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
-	var conteudoAgrupamento = $("#idOficina_"+idOficina).find(".agrupamento").attr('id').split('_')[1];
-	var conteudoDia = $("#idOficina_"+idOficina).find(".rotina_dia").attr('id').split('_')[2];
-	var conteudoHorario = $("#idOficina_"+idOficina).find(".rotina_horario").attr('id').split('_')[2];
-	var conteudoSala = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[1];
-
-	idAgendamento = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[2];
-	$("#agrupamentoEdit").val(conteudoAgrupamento);
-	$("#Dia_Semana_Edit").val(conteudoDia);
-	$("#Horario_Edit").val(conteudoHorario);
-	$("#Sala_Edit").val(conteudoSala);
-
 	$(".btn_Edit_Rotina").click(function(){
-		var idOficina = $(".modal_edicao_rotina #editar_id_rotina").val();
-		var idAgrupamentoEdit = $("#agrupamentoEdit").val();
-		var idDiaEdit = $("#Dia_Semana_Edit").val();
-		var idHorarioEdit = $("#Horario_Edit").val();
-		var idSalaEdit = $("#Sala_Edit").val();
-		anoLetivo = getIdAnoLetivo();
-		var idRotina = $(".rotina_oficina").attr('id').split('_')[1];
 
-		if (idAgrupamentoEdit != '0' &&
-			idDiaEdit != '0' &&
-			idHorarioEdit != '0' &&
-			idSalaEdit != '0')
+		var idRotina = $('#id_rotina').val();
+		var idOficina = $('#editar_id_rotina').val();
+		var agrupamento = $('#agrupamentoEdit').val();
+		var dia = $('#Dia_Semana_Edit').val();
+		var horario = $('#Horario_Edit').val();
+		var sala = $('#Sala_Edit').val();
+		var agendamento = $('#id_agendamento').val();
+		var anoLetivo = getIdAnoLetivo();
+
+		if (agrupamento != '0' &&
+			dia != '0' &&
+			horario != '0' &&
+			sala != '0')
 		{
 			$.ajax({
 				url: path + "Rotina",
 				async: false,
 				crossDomain: true,
 				type: "POST",
-				data: "action=update&idOficina="+idOficina+"&idAgrupamento="+idAgrupamentoEdit+"&idDia="+idDiaEdit+"&Hora="+idHorarioEdit+"&idSala="+idSalaEdit+"&anoLetivo="+anoLetivo+"&id="+idRotina,
+				data: "action=create&idOficina="+idOficina+"&idAgrupamento="+agrupamento+"&idDia="+dia+"&Hora="+horario+"&idSala="+sala+"&anoLetivo="+anoLetivo+"&id="+idRotina,
 				beforeSend: function(){
 					loading('inicial');
 				},
@@ -713,7 +722,7 @@ function editarRotina(){
 						async: false,
 						crossDomain: true,
 						type: "POST",
-						data: "action=create&Hora="+idHorarioEdit+"&dia="+idDiaEdit+"&idsala="+idSalaEdit+"&idrotina="+idRotina+"&id="+idAgendamento
+						data: "action=create&Hora="+horario+"&dia="+dia+"&idsala="+sala+"&idrotina="+idRotina+"&id="+agendamento
 					});
 				},
 				complete: function(){
