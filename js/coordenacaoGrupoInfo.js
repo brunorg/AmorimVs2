@@ -738,6 +738,7 @@ function editarAgrupamento(){
 	$("#periodoGrupoModal").prop('disabled',true);
 	$("#nomeGrupoModal").val(conteudoNome);
 	resetAreaModal();
+	limparAlunosAgrup();
 	carregaAlunosAgrupamento();		
 	carregaAlunosModal();
 
@@ -770,6 +771,7 @@ function editarAgrupamento(){
 					loading("final");
 				}
 			});	
+			limparModalAgrupamento();
 		}		
 	});
 }
@@ -792,7 +794,10 @@ function crudAlunoAgrupamento(acaoData, idAluno){
 		type: "POST",
 		data: acaoData + "&Aluno=" + idAluno + "&idAgrupamento=" + idAgrup,
 		async: false,
-		crossDomain: true
+		crossDomain: true,
+		success: function(){
+			$(".Grupo_Aluno_Linha.Selected").attr("data-status","1");
+		}
 	});
 }
 
@@ -875,5 +880,11 @@ function carregaSalaEdit(){
 			$("#Sala_Edit").append(html);
 		}
 	});
+}
+
+function limparModalAgrupamento(){
+	$("#boxModaisEdicao").hide();
+    seletorAluno = [];
+    seletorAlunoAgrup = [];
 }
 

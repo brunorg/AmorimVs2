@@ -39,6 +39,13 @@ function carregaAlunosAgrupamento(){
     });
     return idAlunoAgrupamento;
 }
+
+function limparAlunosAgrup(){
+    var grupoLinhaAgrup = $("[data-status='1']");
+    for(var i = 0; i < grupoLinhaAgrup.length; i++){
+        $(grupoLinhaAgrup)[i].remove();
+    }
+}
 // Editar agrupamento
 function carregaAlunosModal(){
     var cicloModal = $("#cicloGrupoModal").val();
@@ -114,7 +121,7 @@ function carregaAlunosModal(){
     });
 }
 
-function resetAreaModal () {
+function resetAreaModal(){
     contAlunosModal = 0;
     acabouDeCarregarModal = false;
     var grupoLinhas = $(".Grupo_Aluno_Linha");
