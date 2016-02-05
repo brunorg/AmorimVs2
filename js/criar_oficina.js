@@ -57,6 +57,15 @@ function salvarOficina () {
                     $("#Container_Cadastro_Oficina").css('display', 'none');
                     mensagem("Oficina criada com sucesso! Cadastre os professores para esta oficina!","OK","bt_ok","sucesso");   
                     displayNome();
+                    $.ajax({
+                        url: path + "TipoOficina/" + tipoOficina,
+                        type: "GET",
+                        async: false,
+                        crossDomain: true,
+                        success: function(d) {
+                            $('.oficina_nome').css('color', d.cor.forte);
+                        }
+                    });
                     cadastrarProfessorOficina(idOficina);
                 },
                 complete: function() {
@@ -95,7 +104,7 @@ function displayNome () {
 
     var conteudoNome =  '<span>' + cicloNome + ' |</span>'+
                         '<span> ' + periodoNome + ' |</span>'+
-                        '<span class="OF_'+abrev+'_E_txt"> Oficina ' + nomeOficina + '</span> |';
+                        '<span class="oficina_nome"> Oficina ' + nomeOficina + '</span> |';
     $("#Area_Nome_Oficina").html(conteudoNome);
     $("#Area_Nome_Oficina").css('display', 'block');
 }

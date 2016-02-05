@@ -1,398 +1,269 @@
-.grupo{
-    background-color:#1aa0ae;
-    height: 40px;
-    padding-bottom: 5px;
-    margin-bottom:2px;
-    padding-right: 10px;    
-}
-.grupo_nome_tabela_texto{
-    text-transform: uppercase;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    padding:10px;
-    float:left;
-    cursor:pointer;
-}
-.grupo_indicar{
-    background-color: #02818D;
-    text-transform: uppercase;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    float:right;
-    padding-right: 10px;
-    padding-top: 7px;
-    padding-left: 10px;
-    cursor:pointer;
-    height: 100%;
-    display: none;
-}
-
-
-.faltas_aluno{
-    color: #fff;
-    width: 40px !important;
-    height:27px;
-    text-align: center;
-    font-size:12px;
-    float:left;
-    padding-top: 5px;
-    font-size: 10px;
-    font-weight: bold;
-}
-
-.nome_aluno{
-    color: rgb(2, 129, 141);
-    cursor: pointer;
-    float: left;
-    font-size: 13px !important;
-    height: auto;
-    text-transform:uppercase;
-    margin-left: 1px;
-    padding-bottom: 3px;
-    padding-left: 0px;
-    padding-top: 7px;
-    width: 700px;
-}
-
-.ultimo{
-    margin-bottom: 2px;
-}
-
-.titulo_infos_aluno{
-    margin-left: 30px;
-    
-    height: 27px;
-    width: 890px;
-}
-
-.AlunoLeft:nth-child(odd) .titulo_infos_aluno{
-    background-color: rgb(242, 242, 238);
-}
-
-.AlunoLeft:nth-child(even) .titulo_infos_aluno{
-    background-color: rgb(236, 235, 229);
-}
-
-.presenca_botao{
-    float:left;
-    height: auto;
-}
-
-.indicar_presenca_aluno{
-    float:left;
-    margin-top: -4px;
-}
-
-.status_presenca_presenca{
-    background-image:url(../img/presenca_check1.png);
-    background-size: cover;
-    color: transparent !important;
-    width: 19px !important;
-    height: 19px !important;
-    color: #fff;
-    text-align: center;
-    float: left;
-    margin: 3px 10px;
-}
-
-.status_presenca_falta{
-    background-image:url(../img/presenca_checkFalta.png);
-    background-size: cover;
-    color: transparent !important;
-    width: 19px !important;
-    height: 19px !important;
-    color: #fff;
-    text-align: center;
-    float: left;
-    margin: 3px 10px;
-}
-
-.box_rigth{
-    min-height: 223px;
-    height: auto;
-    border-left: 1px solid #FFF;
-    background-color: #b4e2ea;
-    margin:0 0 2px 758px;
-    position:relative;
-    display: none;  
-}
-
-.total {
-    height: auto;
-    padding-top: 30px;
-}
-
-.AlunoLeft{
-    width: 761px;
-    float: left;
-    display: none;
-}
-
-
-.blackPainel
-{
-
-    display:none;
-    background-color: rgba(0, 0, 0, 0.7);
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
+.lista_grupos{
     width: 100%;
-    z-index: 999;
+    height: 55px;
 }
-#foto {
-    background-image: url("../img/foto.png");
-    background-position: center center;
+.nomeGrupos{
+    width: 129px;
+    height: 55px;
+    padding: 16px 0 0 0;
+    text-align: center;
+    font-size: 22px;
+    color: #FFFFFF;
+    background-color: #BFBDA9;
+    float: left;
+    margin:0 7px 14px 0;
+}
+
+#datepickerFaltas{
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 284px;
+    height: 208px;
+    margin:auto;
+    font-weight: bold;
+    font-size: 11px;
     background-repeat: no-repeat;
-    background-size: contain;
-    border: thin solid rgb(180,205,200);
-    border-radius: 5px;
-    cursor: pointer;
-    height: 125px;
-    margin: auto 74px;
-    width: 50%;
+    color:rgb(102,102,102);
 }
 
-#dataPresenca{
-        width: 47%;
-        background-color: #fbeece;
-        float: left;
-        margin-top: 0px;
-        height:50px;
-        font-size: 18px;
-        color:#878787;
+.nomeGrupos:hover, .nomeGrupos .active{
+    background-color: #4795A0;
 }
 
-.ocultar{
-    display:none !important;
+.apontarPresenca{
+    width: 100%;
+    height: 500px;
+    background-color: #E5E4DD;
+}
+.colunaAluno{
+    width: 477px;
+    height:200px;
+    float: left;
+    margin:124px 0 0 15px;
+}
+.colunaCalendario{
+    border: 1px solid red;
+    width: 286px;
+    height: 330px;
+    float: left;
+}
+.colunaInfo{
+    border-left: 1px solid #FFFFFF;
+    width: 163px;
+    height:324px;
+    float: left;
+    margin: 0 14px 0 1px;
 }
 
-.ui-datepicker{
-    height:auto !important;
-    width:196px !important;
+.alunoLinha{
+    padding: 4px 12px;
+    margin: 0;
+    border: 1px solid #FFFFFF;
+    height: 42px;
 }
-.ui-widget
+.alunoLinha span{
+    font-size: 14px;
+    color: #666666;
+    float: left;
+    padding: 9px 37px;
+}
+.foto{
+    position: absolute;
+    float: left;
+}
+
+.alunoLinha img{
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #FFFFFF;
+    position: absolute;
+}
+
+#calendarioFaltas #datepickerFaltas .ui-widget
 {
-    width:95%;
+    width:100%;
     height:100%;
     text-align: center;
     padding: 0;
     border: 0;
+    margin-top: -1px;
+}
+#calendarioFaltas .ui-datepicker{
+    height:auto !important;
+    /*width: 203px !important;*/
 }   
-        
-.ui-widget-header{
+#calendarioFaltas .ui-widget-header{
     border:0 !important;
-    background: rgba(2, 129, 141, 1) !important;
+    background:rgba(2, 129, 141, 1) !important;
 }
-.ui-datepicker th{
-    padding: 4px !important;
-    font-weight:normal !important;
-    font-size:.9em !important;
-    border:1px solid #FFFFFF !important;
-    height:20px !important;;
-    color: #1E8290 !important;
-    background-color: #DDD8D8 !important;
-}
-.ui-corner-all{
+#calendarioFaltas .ui-corner-all{
     border-radius: 0 !important;
 }
-.ui-datepicker 
-.ui-datepicker-header{
+#calendarioFaltas .ui-datepicker .ui-datepicker-header{
     padding: 0px !important;    
     height: 26px !important;
 }
-.ui-widget-content {
-    border: 1px solid #FFFFFF !important;
-}
-.ui-datepicker-title
+
+#calendarioFaltas .ui-datepicker-title
 {
     background-color: rgb(71, 149, 160) !important;
     color: white !important;
-    height: 26px !important;
-    padding: 2px !important;
-    font-weight: bold !important;
-    font-size: 11px !important;
+    height: 26px;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 11px;
     font-family: "proxima-nova" !important;
-    line-height: 21px !important;
 }
-
-.ui-icon{
+#calendarioFaltas .ui-icon{
     background:none !important;
 }
-#ui-datepicker-div .ui-datepicker-next{
+#calendarioFaltas .ui-datepicker-next{
+    background:none;
     background-image:url(../img/rightArrowG.png) !important;
+    right: 0px !important;
     margin-top:1px;
-    background-repeat: no-repeat;
 }
-.ui-state-disabled {
-    opacity: 1 !important;
-}
-#ui-datepicker-div .ui-datepicker-prev{
+#calendarioFaltas .ui-datepicker-prev{
+    background:none;
     background-image:url(../img/leftArrowG.png) !important;
     margin-top:1px;
-    background-repeat: no-repeat;
 }
-.ui-datepicker{
+#calendarioFaltas .ui-datepicker{
     background-color: rgb(236, 235, 229) !important;
     height: 100%
 }
-.ui-datepicker-week-end{
-    color:white !important;
+#calendarioFaltas .ui-datepicker-week-end{
+    color:#FFF !important;
 }
-.ui-datepicker-calendar{
+#calendarioFaltas .ui-datepicker-calendar{
     background-color: rgb(236, 235, 229) !important;
     border: solid thin white !important;
     height: 100px;
 }
-.ui-datepicker table {
+#calendarioFaltas .ui-datepicker table {
     width: 100%;
     font-size: .9em;
     border-collapse: collapse;
     margin: 0 0 .4em;
     height: 150px;
 }
-.ui-state-default{
+#calendarioFaltas .ui-state-default{
     border:0 !important;
     background:none !important;
 }
-.ui-datepicker table tr td{
+#calendarioFaltas .ui-datepicker table tr td{
     border: solid thin white !important;
-    width:21px;
-    height:21px;
+    width: 50px !important;
+    height: 44px;
 }
-.ui-state-default{
-    font-size: .9em !important;
-    text-align: center !important;
-    font-weight:normal !important;
-    color: #C8C7C3 !important;
+#calendarioFaltas .ui-state-default, #calendarioFaltas .ui-widget-content #calendarioFaltas .ui-state-default, #calendarioFaltas .ui-widget-header #calendarioFaltas .ui-state-default{
+    text-align:center !important;
 }
-
-.ui-datepicker td a {
-    font-size: .9em !important;
+#rodape_calendario{
+    border: 1px solid #000;
+    width: 182px;
+    height: 26px;
+    margin:-25px auto;
+    background-color: rgb(22,190,207) !important;
+    border:none !important;
+    color:white !important;
+    font-weight: bold;
+    font-size: 11px;
+    display:none;           
+}
+#rodape_calendario p {
+    height: 26px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: -2px;
+    cursor:pointer;
+    display:none;
+}
+#calendarioFaltas .ui-datepicker td a {
+    text-align: right;
+    text-decoration: none;              
+    font-weight: bold !important;
+    font-size: 11px !important;
     background-repeat: no-repeat !important;
     color: rgb(102,102,102) !important;
     text-align: center !important;                              
 }
-.ui-datepicker-week-end,
-.ui-datepicker-other-month,
-.ui-datepicker-unselectable, 
-.ui-state-disabled{
-    background:#E6E6E6 !important;
+#calendarioFaltas .ui-datepicker-week-end, #calendarioFaltas .ui-datepicker-other-month, #calendarioFaltas .ui-datepicker-unselectable, .ui-state-disabled{
+    background:#DDD8D8 !important;
 }   
-#ui-datepicker-div .ui-datepicker-next {
-    right: -7px !important;
-    background-position: 2px 1px !important;
+#calendarioFaltas .ui-datepicker-today{
+    background-color:rgb(22,190,207) !important;
 }
-#ui-datepicker-div .ui-datepicker-prev:hover{
-    background-color: rgb(71, 149, 160) !important;
-    background-repeat: no-repeat !important;
-    width: 25px !important;
-    height: 25px !important;
+#calendarioFaltas #diaCorrido{
+    color:#FFF !important;  
+}
+#calendarioFaltas .ui-widget-content {
     border: 0 !important;
-    margin-top: 0px !important;
-    background-position: 2px 2px !important;
-    right: 0 !important;
-    margin-left: 0px;
 }
-#ui-datepicker-div .ui-datepicker-next:hover{
-    background-color: rgb(71, 149, 160) !important;
-    background-repeat: no-repeat !important;
-    width: 25px !important;
-    height: 26px !important;
-    border: 0 !important;
-    margin-top: -1px !important;
-    background-position: 3px 4px !important;
-    right: 0px !important;
-}
-
-.ui-datepicker td a.ui-state-highlight{
-    /*background-color:#88CEDD !important;*/
-    background: #1E8690 !important;
-    color:white !important;
-}
-
-.ui-datepicker-trigger{
-    float: right;
-    height: 35px;
-    margin-top: 2px;
-    margin-right: -5px;
-}
-#ui-datepicker-div{
-    margin-top: 39px;
-    margin-left: -155px;
-}
-
-.ui-datepicker td a.ui-state-active{
-    /*background: #1E8690 !important;*/
-    background-color:#88CEDD !important;
-    color: white !important;
-}
-
-@media (min-height: 666px)and (max-height: 667px){
-	#ui-datepicker-div{
-		margin-top: 39px;
-		margin-left: -77px;
-	}
-}
-
-.barraDeNavegacaoGruposAlunos div{
-    width: 120px;
-    height: 60px;
-    background-color: red;
-    float: left;
-    margin-left: 10px;
-}
-
-.barraDeNavegacaoGruposAlunos:after{
-    content: "";
-    display: block;
-    clear: both;
-}
-
-.imgDoAluno{
-    display: inline-block;
-}
-
-.nomeDoAluno {
-    display: inline-block;
-}
-
-.containerDosAlunos {
-    float: left;
-    background-color: green;
-    width: 200px;
-    margin-top: 120px;
+#calendarioFaltas .ui-datepicker th{
     
 }
-
-.containerDoAluno{
-    border: 1px solid black;
-    height: 40px;
+#calendarioFaltas .ui-datepicker th{
+    padding: 4px !important;
+    color:#1E8290 !important;
+    height: 48px !important;
+    font-weight:normal !important;
+    font-size:.9em !important;
+    background-color:#DDD8D8 !important;
+    border: 1px solid #FFF !important;
+}
+#calendarioFaltas .eventoAtivo{
+    background-color:rgba(22, 190, 207, 0.36) !important;
+}
+#calendarioFaltas .feriado{
+    background-color: #DDD8D8 !important;
+}
+#calendarioFaltas .inicioEventos{
+    background-image:url(../img/inicio_evento.png) !important;
+    background-repeat:no-repeat !important;
+}
+#calendarioFaltas #eventos{
+    width: 480px;
+    height: 250px;
+    background: none repeat scroll 0% 0% #16BECF;
+    z-index: 1;
+    position: absolute;
+    top: 519px;
+    margin-left: 256px;
+    font-size:22px;
+    display:none;
+}
+#calendarioFaltas .eventoAtivo .ui-state-default{
+    color:rgba(2, 129, 141, 1) !important;
+}
+#calendarioFaltas .ui-datepicker .ui-datepicker-next {
+    width: 22px !important;
+}
+#calendarioFaltas .ui-datepicker .ui-datepicker-next-hover{
+    background-color: rgb(71, 149, 160) !important;
+    background-repeat:no-repeat !important;
+    background-position: 4px !important;
+    width:26px !important;
+    height:26px !important;
+    border: 0 !important;
+    margin-top:-1px !important;
+    padding: 2px !important;
+}
+#calendarioFaltas .ui-datepicker .ui-datepicker-prev-hover{
+    background-color: rgb(71, 149, 160) !important;
+    background-repeat:no-repeat !important;
+    background-position: 2px !important;
+    width:26px !important;
+    height:26px !important;
+    border: 0 !important;
+    margin-top:-1px !important;
+    padding:2px !important;
 }
 
-.tabelaDeFaltas {
-    float: left;
-}
 
-.tabelaDeFaltas td {
-    width:40px;
-    height:40px;
-    border: 1px solid blue;
 
-}
 
-.rotate {
-    /* Safari */
-    -webkit-transform: rotate(-90deg);
-    /* Firefox */
-    -moz-transform: rotate(-90deg);
-    /* IE */
-    -ms-transform: rotate(-90deg);
-    /* Opera */
-    -o-transform: rotate(-90deg);
-    /* Internet Explorer */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
+
+

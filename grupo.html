@@ -114,7 +114,7 @@
                         </div>                      
                         <div id='cx_conteudo'>
                             <!-- Área Criar Grupo -->
-                            <div id="container_Grupo" class="selecionado">
+                            <div id="container_Grupo" class="selecionado container_central">
                                 <div class="Area_Select_Grupo">
                                     <div class="Box_Area_Select">
                                         <p class="Select_Grupo">Ciclo</p>
@@ -147,11 +147,11 @@
                             </div>
 
                             <!-- Área Criar Oficina -->
-                            <div id="container_Oficina">
-                                <div id="Area_Nome_Oficina">
+                            <div id="container_Oficina" class="dark_bg container_central">
+                                <div class="area_nome_oficina" style="display: none">
                                     <!--<span class="ciclo">Alfabetização |</span><span class="periodo"> Manhã |</span><span class="nome"> Oficina Português</span>-->
                                 </div>
-                                <div id="Container_Cadastro_Oficina">             
+                                <div id="Container_Cadastro_Oficina" style="display: block">             
                                     <div class="Area_Select_Grupo">
                                         <div class="Box_Area_Select">
                                             <p class="Select_Grupo">Ciclo</p>
@@ -197,6 +197,20 @@
                                         <button type="button" class="btns_grupo btn_Salvar_Oficina_Professor">Salvar</button>
                                     </div>
                                 </div>
+                                <div id="Container_Oficina_Completa" style="display: none">
+                                    <div class="area_nome_oficina"> Oficina criada com sucesso!</div>
+                                    <div id="ficha_oficina" class="bg_claro padding_padrao">
+                                        <div id="oficina_tipo" class="bottom_padding area_nome_oficina">Matemática</div>
+                                        <div class="padding_pequeno text_padrao"> <span class="caracteristica">Ciclo: </span><span id="oficina_ciclo" class="texto_padrao"> Intermediário </span> | <span class="caracteristica">Periodo: </span><span id="oficina_periodo" class="texto_padrao"> Manhã</span></div>
+                                        <div id="oficina_professor" class="padding_pequeno texto_padrao"><span class="caracteristica">Professor: </span> Teste</div>
+                                    </div>
+                                    <div class="container_btn_feedback_oficina">
+                                        <div class="btn_secundario btn_feedback_oficina">Teste</div>
+                                        <div class="btn_secundario btn_feedback_oficina">Teste adsfadfasdf</div>
+                                        <div class="btn_secundario btn_feedback_oficina">Teste</div>
+                                        <div class="btn_primario btn_feedback_oficina">Teste</div>
+                                    </div>
+                                </div>
                                 <div id="Container_Cadastro_Rotina" style="display:none">
                                     <div class="Area_Select_Grupo">
                                         <div class="Box_Area_Select Unico_Linha">
@@ -239,7 +253,7 @@
                             </div>
 
                             <!-- Área Criar Tutoria -->
-                            <div id="container_Tutoria">
+                            <div id="container_Tutoria" class="container_central">
                                 <div id="Area_Nome_Tutoria">
                                     <!--<span class="ciclo">Alfabetização |</span><span class="periodo"> Manhã |</span><span class="nome"> Oficina Português</span>-->  
                                 </div>
@@ -310,7 +324,7 @@
                             </div>
 
                             <!-- Área Pesquisa -->
-                            <div id="container_Pesquisa">
+                            <div id="container_Pesquisa" class="container_central">
                                 <div class="box_margin_barra">                  
                                     <div id="linha1" class="linha">
                                         <div class="celulaMedia">

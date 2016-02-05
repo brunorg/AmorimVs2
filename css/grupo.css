@@ -30,6 +30,58 @@
 	background-position: 39px;
 }
 
+.bg_claro{
+	background-color: #f2f2ee;
+}
+
+.bg_escuro{
+	background-color: #e5e5dc;
+}
+
+.area_nome_oficina{
+		padding-top: 15px;
+    	padding-bottom: 15px;
+    	font-size: 24px;
+    	color: #666666;
+}
+
+.container_central{
+	width: 99.6%;
+	height: 94%;
+	padding: 18px 18px;
+	min-height: 490px;
+	background-color: #e5e5dc;
+	float: left;
+	overflow:hidden;
+	position: relative;
+	display: none;
+}
+
+.container_btn_feedback_oficina{
+	position: absolute;
+	bottom: 18px;
+	right: 18px;
+}
+
+.btn_feedback_oficina{
+	background-color: #E83F4A;
+    border-radius: 0;
+    color: #ffffff;
+    height: 40px;
+    padding: 10px;
+    padding-left: 35px;
+    font-size: 20px;
+    text-align: right;
+    border: 0;
+    cursor: pointer;
+    margin-right: 7px;
+    display: inline-block;
+}
+
+.btn_feedback_oficina:last-child{
+	margin-right: 0;
+}
+
 .bt_Off{
 	width: 236px;
 	padding: 17px 16px 11px 16px;
@@ -60,43 +112,32 @@
 	background-color: #E83F4A;
 }
 
-#container_Pesquisa{
-	width: 99.6%;
-	height: 94%;
-	padding: 14px 22px;
-	background-color: #E5E5DC;
-	float: left;
-	overflow:hidden;
-	display: none;
+.padding_padrao{
+	padding: 15px 20px;
 }
 
-#container_Oficina{
-	width: 99.6%;
-	height: 94%;
-	padding: 14px 22px;
-	background-color: #E5E5DC;
-	float: left;
-	overflow:hidden;
-	display: none;
+.padding_pequeno{
+	padding: 5px 0px;
+}
+
+.vertical_padding{
+	padding: 15px 0px;
+}
+
+.bottom_padding{
+	padding: 0px;
+	padding-bottom: 10px;
+}
+
+.texto_padrao{
+	color: #666666;
+}
+
+.caracteristica{
+	color: #999999;
 }
 
 /* Tela Criar Grupo */
-	#container_Grupo{
-		width: 99.6%;
-		height: 94%;
-		padding: 14px 22px;
-		background-color: #E5E5DC;
-		float: left;
-		overflow: hidden;
-		display: none;
-	}
-	#Area_Nome_Oficina{
-		padding-top: 15px;
-    	padding-bottom: 15px;
-    	font-size: 24px;
-    	color: rgb(102,102,102);
-    	display: none;
-	}
 
 	#Area_Nome_Tutoria{
 		font-size: 24px;
@@ -192,6 +233,7 @@
 		overflow: hidden;
     	height: 300px;
 	}
+
 	#Area_Alunos,
 	#Area_Alunos_Modal {
 		width: 98%;
@@ -330,16 +372,6 @@
     	-webkit-margin-start: 0px;
     	-webkit-margin-end: 0px;
 	}
-
-#container_Tutoria{
-	width: 99.6%;
-	height: 94%;
-	padding: 14px 22px;
-	background-color: #E5E5DC;
-	float: left;
-	overflow: hidden;
-	display: none;
-}
 
 .selecionado{
 	display: block !important;
