@@ -1483,14 +1483,15 @@ font-family: "proxima-nova",sans-serif;
 		display:block;
 	}
 
-	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span, .recurso > span {
+	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span {
 		text-align:center;
 		padding: 5px 0px;
 	}
 
-
-
-
+	.recurso > span {
+		text-align:center;
+		padding: 3px 0px;
+	}
 
 	#Cabecalho_Menu_Area_Menu2{
 		width: 302px !important;
