@@ -430,8 +430,55 @@
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
-	padding: 18px;
+	padding: 2px;
 }
+
+/* Box rotina */
+table.tabela_rotina {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+}
+table.tabela_rotina > thead,
+table.tabela_rotina > thead > tr,
+table.tabela_rotina > tbody,
+table.tabela_rotina > tbody > tr {
+	display: block;
+	width: 100%;
+}
+.tabela_rotina > thead > tr > th{
+	height: 44px;
+	display: block;
+	float: left;
+	border: 2px solid #fff;
+}
+.tabela_rotina > thead > tr::after,
+.tabela_rotina > tbody > tr::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+th.rotina_seta {
+	width: 20%;
+	background-color: #129FAE;
+	cursor: pointer;
+}
+th.rotina_dia {
+	width: 60%;
+	background-color: #23BFCD;
+}
+.tabela_rotina > tbody > tr > td{
+	height: 44px;
+	display: block;
+	float: left;
+	border: 2px solid #fff;
+}
+.
+
+
+
 
 
 /* PLUGIN BARRA DE ROLAGEM */
