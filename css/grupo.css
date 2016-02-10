@@ -758,7 +758,7 @@ select::-ms-expand {
 	width:50px;
 }
 @media (max-height: 707px) {
-	.bt_Off { width: 234px; }
+	.bt_Off { width: 24.67%; }
 
 	.Box_Area_Select { width: 293px; }
 
