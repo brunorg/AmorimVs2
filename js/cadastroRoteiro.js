@@ -251,7 +251,6 @@ $(document).ready(function(){
 		idRoteiro = $(this).attr('idRoteiro');
 		
 		//Verifica se os dados do roteiro ja foram carregados
-		console.log('c');
 		if (!$('#objetivosRoteiro'+idRoteiro).hasClass('clicado')) {
 			//Se não, lista os objetivos para conseguir 
 			listarObjetivos(idRoteiro);
