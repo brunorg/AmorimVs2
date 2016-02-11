@@ -318,7 +318,7 @@ function enviarFaltas() {
         async: false,
         crossDomain: true,
         type: "POST",
-        data: JSON.stringify(objetoASerEnviado),
+        data: "stringfiedJson="+JSON.stringify(objetoASerEnviado),
         success: function(data){
             console.log("done")
         }
