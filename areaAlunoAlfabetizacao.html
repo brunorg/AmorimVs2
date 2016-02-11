@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<title> Área do aluno | Alfabetização </title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
- 
+
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
@@ -12,20 +12,21 @@
 		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<link rel="stylesheet" type="text/css" href="css/areaAlunoAlfabetizacao.css" />
 		<!--Fim Style-->
-		
+
 		<!--Script JS-->
-		<script type="text/javascript" src="js/path.js"></script>  
+		<script type="text/javascript" src="js/path.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>  
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                                   
-		<script src="js/jquery-ui.js"></script>         
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
+		<script src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
-		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>        
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
 		<script type="text/javascript" src="js/calendario.js"></script>
-		<script type="text/javascript" src="js/funcoes.js"></script>           
+		<script type="text/javascript" src="js/funcoes.js"></script>
 		<script type="text/javascript" src="js/autenticador.js"></script>
 		<script type="text/javascript" src="js/areaAlunoAlfabetizacao.js"></script>
-						
+
 		<script type="text/javascript" src="angular/angular.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
 		<script type="text/javascript" src="angular/app/app.js"></script>
@@ -36,7 +37,7 @@
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-			
+
 			<div>
 				<div id="Cabecalho_Menu_Area">
 					<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
@@ -45,13 +46,13 @@
 						<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
 						<a href="javascript:history.back()">Voltar</a> | 
 						<a id="logout" href="#" ng-click="logout()">Sair</a>
-					</div>			
+					</div>
 				</div>
 				<!--Perfil do usuário, neste caso, o aluno-->
 				<div id="Cabecalho_Perfil_Area" ng-init="usuario()">
 					<div id="Cabecalho_Perfil_Area_Foto_Content">
 						<!--Foto do usuário, neste caso, do aluno-->
-						<div id="Cabecalho_Perfil_Area_Foto">                        	
+						<div id="Cabecalho_Perfil_Area_Foto">
 							<img id='_foto' src='{{usuarioFoto}}'/>
 						</div>
 					</div>
@@ -62,7 +63,7 @@
 				</div>
 			</div>
 			<div id="Conteudo_Area">
-				
+
 				<div id="conteudo_principal">
 					<div id="oficinas_container">
 						<div id="abas_oficina">
@@ -137,6 +138,7 @@
 											<div class="roteiro_descricao roteiro_item">Descrição: Atirar o pau no gato"</div>
 											<div class="roteiro_item">Atirar um pau em um gato</div>
 											<div class="roteiro_item">Verificar se o gato morreu</div>
+											<div class="roteiro_item">Imitar o berro que o gato deu</div>
 											<div class="roteiro_recursos roteiro_item">
 												<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>
 												<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>
@@ -178,56 +180,173 @@
 									<table class="tabela_rotina">
 										<thead>
 											<tr>
-												<th class="rotina_seta seta_proximo"></th>
-												<th class="rotina_dia"></th>
-												<th class="rotina_seta seta_anterior"></th>
+												<th class="rotina_seta seta_anterior">&nbsp;</th>
+												<th class="rotina_dia">SEGUNDA</th>
+												<th class="rotina_seta seta_proximo">&nbsp;</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>
+													<img src="img/alfabetizacao/horario_07h00.png" alt="07h00">
+												</td>
+												<td style="background-color: #ffde40">
+													<div>Educação física</div>
+													<div>Ibsen</div>
+												</td>
+												<td title="SALA DE INFORMÁTICA">SI</td>
 											</tr>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>
+													<img src="img/alfabetizacao/horario_08h00.png" alt="08h00">
+												</td>
+												<td style="background-color: #f0565f">
+													<div>Arte com ciência</div>
+													<div>Massumi</div>
+												</td>
+												<td title="SALA DE ARTES">SA</td>
 											</tr>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>
+													<img src="img/alfabetizacao/horario_09h00.png" alt="09h00">
+												</td>
+												<td style="background-color: #23bfcd">
+													<div>Inglês</div>
+													<div>Wesley</div>
+												</td>
+												<td title="QUADRA">Q</td>
 											</tr>
 											<tr>
-												<td class="rotina_horario rotina_intervalo"></td>
-												<td colspan="2" class="rotina_intervalo"></td>
+												<td>
+													<img src="img/alfabetizacao/horario_10h00.png" alt="10h00">
+												</td>
+												<td colspan="2">
+												</td>
 											</tr>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>
+													<img src="img/alfabetizacao/horario_10h30.png" alt="10h30">
+												</td>
+												<td style="background-color: #f78f47">
+													<div>Roda de conversa</div>
+													<div>Rafa Agena</div>
+												</td>
+												<td title="SALA DO CICLO ALFABETIZAÇÃO">SCA</td>
 											</tr>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>
+													<img src="img/alfabetizacao/horario_11h00.png" alt="11h00">
+												</td>
+												<td style="background-color: #c77cb4">
+													<div>Roteiros</div>
+													<div>Rafa Agena</div>
+												</td>
+												<td title="SALA CONCEIÇÃO ACCIOLY">SCAC</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<div class="box_lateral box_mensagens">
-								<div class="box_conteudo"></div>
+								<div class="box_conteudo">
+									<div id="abas_mensagens" class="abas_mensagens">
+										<span>Entrada</span>
+										<span>Enviadas</span>
+									</div>
+									<div id="conteudo_mensagens" class="conteudo_mensagens">
+										<div id="mensagens_entrada">
+											<div class="mensagem_post mensagem_nao_lida">
+												<h2>Gustavo Santos</h2>
+												<h1>Oficina de matemática</h1>
+											</div>
+											<div class="mensagem_post_conteudo">
+												<h3>14/08/2015</h3>
+												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+											</div>
+											<div class="mensagem_post">
+												<h2>Gustavo Santos</h2>
+												<h1>Oficina de matemática</h1>
+											</div>
+											<div class="mensagem_post_conteudo">
+												<h3>14/08/2015</h3>
+												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+											</div>
+											<div class="mensagem_post">
+												<h2>Gustavo Santos</h2>
+												<h1>Oficina de matemática</h1>
+											</div>
+											<div class="mensagem_post_conteudo">
+												<h3>14/08/2015</h3>
+												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+											</div>
+										</div>
+										<div id="mensagens_enviadas"></div>
+									</div>
+								</div>
+								<span id="nova_mensagem" class="mensagem_icone nova_mensagem">&nbsp;</span>
 							</div>
 							<div class="box_lateral box_mural">
-								<div class="box_conteudo"></div>
+								<div class="box_conteudo">
+									<div id="mural_container" class="mural_container">
+										<div id="mural_posts_container">
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+											<div class="mural_post">
+												<h1>
+													<span>Luciana Caparro</span>
+													<span>23/04/2015</span>
+												</h1>
+												<p>A partir de maio as oﬁcinas de matemática serão na sala de informática.</p>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-			</div>             
+			</div>
 		</div>
 		<!--Fim Conteudo-->
 		<div id="boxMensagemGeral" ></div>
