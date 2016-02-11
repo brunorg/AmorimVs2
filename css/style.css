@@ -1351,6 +1351,8 @@ font-family: "proxima-nova",sans-serif;
 
 	#Content_lateral_Menu {
 		height: 33%;
+    	width: 89%;
+    	float: right;
 	}
 	#content_central {
 		position: absolute;
@@ -1440,7 +1442,7 @@ font-family: "proxima-nova",sans-serif;
 		background-color: #F2F2EE;
 	}
 	#Content_lateral {
-		width: 78%;
+		width: 69%;
 		background-color: transparent;
 		position: absolute;
 		z-index: 1;
@@ -1449,7 +1451,7 @@ font-family: "proxima-nova",sans-serif;
 		height: 40px;
 	}
 	.Content_lateral_Menu_Opcao {
-	    width: 112px;
+	    width: 86px;
 	    height: 50px;
 	    max-height: 70px;
 	    margin-top:11px;
@@ -1468,7 +1470,7 @@ font-family: "proxima-nova",sans-serif;
 		padding-bottom:14px;
 		padding-left:14px;
 		background-image:none;
-		font-size:15px;
+		font-size:11px;
 	}
 
 	.Content_lateral_Menu_Opcao:hover > .label {
@@ -1485,7 +1487,7 @@ font-family: "proxima-nova",sans-serif;
 
 	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span, .tutores > span, .oficinas > span {
 		text-align:center;
-		padding: 5px 0px;
+		padding: 5px 0px 5px 0px;
 	}
 
 	.recurso > span {
@@ -1493,7 +1495,7 @@ font-family: "proxima-nova",sans-serif;
 		padding: 3px 0px 3px 0px;
 	}
 
-	.plano > span, .recurso > span, .roteiros > span, .jeiff > span {
+	.plano > span, .recurso > span, .roteiros_professor > span, .jeiff > span {
 		text-align:center;
 		padding: 0px;
 	}
