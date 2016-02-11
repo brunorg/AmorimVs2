@@ -1483,14 +1483,19 @@ font-family: "proxima-nova",sans-serif;
 		display:block;
 	}
 
-	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span {
+	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span, .tutores > span, .oficinas > span {
 		text-align:center;
 		padding: 5px 0px;
 	}
 
 	.recurso > span {
 		text-align:center;
-		padding: 3px 0px;
+		padding: 3px 0px 3px 0px;
+	}
+
+	.plano > span, .recurso > span, .roteiros > span, .jeiff > span {
+		text-align:center;
+		padding: 0px;
 	}
 
 	#Cabecalho_Menu_Area_Menu2{
@@ -1548,6 +1553,7 @@ font-family: "proxima-nova",sans-serif;
 		background-color: #16BECF;
 	}
 	#Cabecalho_Menu_Area_Menu1,#Cabecalho_Menu_Area_Menu2,#Cabecalho_Menu_Trocar_Oficina{
+		width:340px;
 		height:24px;
 		padding-top: 3px;
 	}
