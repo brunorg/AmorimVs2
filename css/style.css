@@ -1444,29 +1444,53 @@ font-family: "proxima-nova",sans-serif;
 		background-color: transparent;
 		position: absolute;
 		z-index: 1;
-		margin-top: -51px;
+		margin-top: -70px;
 		right: -3px;
 		height: 40px;
 	}
 	.Content_lateral_Menu_Opcao {
 	    width: 112px;
-	    height: 80px;
-	    max-height: 80px;
+	    height: 50px;
+	    max-height: 70px;
+	    margin-top:11px;
 	    margin-right: 1px;
+	    margin-left: 0.5px;
 	    background-color: #02818D;
 	    float: left;
-	    padding-top: 85px;
-	    background-position: 50% 20%;
+	    background-position: 50% 50%;
 	    overflow: hidden;
+	    background-size: 25%;
 	}
 
 	.Content_lateral_Menu_Opcao:hover {
-		padding: 5px;
+		padding-top: 10px;
+		padding-right:14px;
+		padding-bottom:14px;
+		padding-left:14px;
 		background-image:none;
+		font-size:15px;
 	}
 
 	.Content_lateral_Menu_Opcao:hover > .label {
 		display: none;
+	}
+
+	.Content_lateral_Menu_Opcao > span {
+		display:none;
+	}
+
+	.Content_lateral_Menu_Opcao:hover > span {
+		display:block;
+	}
+
+	.rotinas >span , .roteiros > span, .tutoria > span, .grupos > span, .mensagens > span, .forum > span {
+		text-align:center;
+		padding: 5px 0px;
+	}
+
+	.recurso > span {
+		text-align:center;
+		padding: 3px 0px;
 	}
 
 	#Cabecalho_Menu_Area_Menu2{
@@ -1572,6 +1596,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 15% auto;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
+		margin:0 auto;
 	}
 	.Content_lateral_Menu_Opcao .roteiros {
 		font-size: 12px;
@@ -1584,6 +1609,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 11% auto;
 		-khtml-background-size: 11% auto;
 		-moz-background-size: 11% auto;
+		margin:0 auto;
 	}
 	.Content_lateral_Menu_Opcao .tutoria{
 		background-position: 10px 8px;
@@ -1596,6 +1622,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 9% auto;
 		-khtml-background-size: 9% auto;
 		-moz-background-size: 9% auto;
+		margin:0 auto;
 	}
 	.Content_lateral_Menu_Opcao .forum {
 		background-position: 6px 10px;
@@ -1609,6 +1636,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 15% auto;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
+		margin:0 auto;
 	}
 	.Content_lateral_Menu_Opcao .grupos{
 		background-position: 8px 11px;
@@ -1621,6 +1649,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 10% auto;
 		-khtml-background-size: 10% auto;
 		-moz-background-size: 10% auto;
+		margin:0 auto;
 	}
 	.Content_lateral_Menu_Opcao .mensagens {
 		background-position: 4px 12px;
@@ -1633,6 +1662,7 @@ font-family: "proxima-nova",sans-serif;
 		-o-background-size: 15% auto;
 		-khtml-background-size: 15% auto;
 		-moz-background-size: 15% auto;
+		margin:0 auto;
 	}
 	
 	.Content_lateral_Menu_Opcao .tutores{
