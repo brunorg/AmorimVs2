@@ -161,6 +161,23 @@
 	color: #999999;
 }
 
+.area_rotinas_oficina{
+	padding: 15px 5px;
+}
+
+.rotina_oficina,
+.agrupamento_oficina{
+	font-weight: 500;
+    color: #999;
+    position: relative;
+    margin: 0;
+}
+
+.container_rotinas > span,
+.container_rotinas > article{
+	padding: 2px 0;
+}
+
 /* Tela Criar Grupo */
 
 	#Area_Nome_Tutoria{
@@ -701,15 +718,13 @@ select::-ms-expand {
     font-weight: 500;
 }
 .ciclo_periodo_oficina,
-.rotina_oficina,
-.oficineiros_oficina,
-.agrupamento_oficina
+.oficineiros_oficina
 {
 	font-weight: 500;
 	color: #999;
 	position: relative;
 	margin: 0;
-	padding: 5px;
+	padding: 2px 5px;
 }
 .ciclo_periodo_oficina > p > span,
 .rotina_oficina > span,
@@ -740,7 +755,7 @@ select::-ms-expand {
 	top: 2px;
 	right: 2px;
 	width: 24px;
-	height: 24px;
+	height: 18px;
 	cursor: pointer;
 }
 .ciclo_periodo_oficina:hover > .editar,
