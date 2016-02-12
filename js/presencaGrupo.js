@@ -74,6 +74,7 @@ var professorId= localStorage.getItem("professorId");
             day.setDate(i)
             thisWeekNumbers.unshift(day.getDate())
             globalMonth = day.getMonth()
+            globalDay = day.getDate()
         };
 
         for (var i = todayNumber+1; i <= todayNumber + (6 - todayName); i++) {
@@ -187,7 +188,7 @@ function atualizarCalendario(idGrupo) {
         var todayDay = date.getDate()
 
     $.ajax({
-        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+todayDay+'/'+globalMonth,
+        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+globalMonth,
         //url: path + 'Chamada/ListarGrupo/'+1493+'/'+10+'/'+0,
         async: false,
         crossDomain: true,
@@ -230,10 +231,9 @@ function atualizarCalendario(idGrupo) {
             for (var i = d.length - 1; i >= 0; i--) {
                 for (var k = d[i].faltas.length - 1; k >= 0; k--) {
                     
-                    var dia = d[i].faltas[k].split("-")[2].split(" ")[0]
+                    var dia = +d[i].faltas[k].split("-")[2].split(" ")[0]
 
                     $("#Aluno"+d[i].alunoId+"Dia"+dia).html("0")
-
 
                 };
             };
@@ -292,7 +292,7 @@ function enviarFaltas() {
     var objetoASerEnviado = {}
 
     objetoASerEnviado.dataDia = $('#weekCalendarDay0').html()
-    objetoASerEnviado.dataMes = todayMonth
+    objetoASerEnviado.dataMes = globalMonth
     objetoASerEnviado.listaFaltas = []
 
     var diasPresenca = document.getElementsByClassName('clckableToggle')
