@@ -431,6 +431,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
+	overflow: hidden;
 }
 #box_lateral > div:first-child > div{
 	padding: 2px;
@@ -670,7 +671,7 @@ th.seta_proximo {
 	border: 2px solid #3399a8;
 	background-color: #e6e6e6;
 	padding: 10px;
-	height: 256px;
+	height: auto;
 	display: none;
 }
 .mensagem_post_conteudo > h3 {
@@ -700,10 +701,81 @@ th.seta_proximo {
 }
 .nova_mensagem {
 	background: url(../img/ic_escrever.png) no-repeat center center;
+	right: 18px;
 }
-
-
-
+.formulario_mensagem {
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+}
+.formulario_mensagem > form {
+	position: relative;
+	height: 100%;
+}
+.formulario_mensagem > form > input,
+.formulario_mensagem > form > textarea,
+.formulario_mensagem > form > input:read-only {
+	display: block;
+	border: 1px solid #ccc;
+	background-color: #f1f1ed;
+	border-radius: 0;
+	resize: none;
+	width: 100%;
+	margin-top: 5px;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	line-height: 1.4em;
+	padding: 5px;
+}
+.formulario_mensagem > form > input:read-only {
+	cursor: pointer;
+	background-image: url(../img/ic_drop_claro.png);
+	background-repeat: no-repeat;
+	background-position: right 5px center;
+	margin-top: 0;
+}
+.formulario_mensagem > form > textarea {
+	height: 270px;
+}
+.destinatarios_container {
+	width: 100%;
+	max-height: 250px;
+	position: absolute;
+	background-color: #fff;
+	padding: 8px;
+	padding-right: 0;
+	border: 1px solid #ccc;
+	overflow: hidden;
+	border-top: none;
+	display: none;
+}
+.destinatarios_container .destinatario {
+	padding: 5px;
+	background-color: #EFEFEF;
+	margin-bottom: 5px;
+}
+.destinatarios_container .destinatario:last-child {
+	margin-bottom: 0;
+}
+.destinatarios_container .destinatario > input {
+	float: left;
+	width: auto;
+	cursor: pointer;
+}
+.destinatarios_container .destinatario > label {
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	line-height: 1.4em;
+	color: #666;
+	cursor: pointer;
+}
+.destinatarios_ativo {
+	background-image: url(../img/ic_retract_claro.png);
+}
+.destinatarios_ativo + .destinatarios_container {
+	display: block;
+}
 
 
 
@@ -717,7 +789,13 @@ th.seta_proximo {
 
 /* PLUGIN BARRA DE ROLAGEM */
 .mCSB_scrollTools_vertical {
-	right: 0px !important;
+	right: 0 !important;
+}
+#destinatarios_container .mCSB_scrollTools_vertical  {
+	right: -2px !important;
+}
+#destinatarios_container .mCSB_container {
+	padding-right: 8px;
 }
 #box_lateral > div:last-child > .box_conteudo > .mural_container .mCSB_scrollTools_vertical {
 	right: 6px !important;
