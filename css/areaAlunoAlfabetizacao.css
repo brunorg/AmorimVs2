@@ -192,7 +192,7 @@
 	font-size: 16px;
 	font-weight: normal;
 	text-transform: uppercase;
-    line-height: 1.2em;
+	line-height: 1.2em;
 	color: #666666;
 	margin: 0;
 	margin-bottom: 5px;
@@ -240,7 +240,7 @@
 
 .acordeon_oficina {
 	width: 30.2%;
-    float: left;
+	float: left;
 }
 .acordeon_oficina h2 {
 	font-size: 14px;
@@ -381,11 +381,11 @@
 	margin-right: 0;
 }
 .aba_rotina {
-	background-color: #008897;
+	background-color: #b2d235;
 	background-image: url(../img/alfabetizacao/ic_rotina.png);
 }
 .aba_mensagens {
-	background-color: #EF5480;
+	background-color: #007f92;
 	background-image: url(../img/alfabetizacao/ic_mensagens.png);
 }
 .aba_mural {
@@ -406,20 +406,21 @@
 #box_lateral > div {
 	width: 100%;
 	height: 100%;
-	padding: 67px 24px 24px;
+	padding: 67px 18px 18px;
 	border-bottom-left-radius: 12px;
 	border-bottom-right-radius: 12px;
-	background-position: 24px 24px;
+	background-position: 18px 24px;
 	background-repeat: no-repeat;
 }
 .box_rotina {
-	background-color: #008897;
+	background-color: #b2d235;
 	background-image: url(../img/alfabetizacao/cabecalho_rotina.png);
 }
 
 .box_mensagens {
-	background-color: #EF5480;
+	background-color: #007f92;
 	background-image: url(../img/alfabetizacao/cabecalho_mensagens.png);
+	position: relative;
 }
 
 .box_mural {
@@ -430,7 +431,18 @@
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
+}
+#box_lateral > div:first-child > div{
 	padding: 2px;
+}
+#box_lateral > div:last-child {
+	padding-right: 0;
+}
+#box_lateral > div:nth-child(2) {
+	padding-bottom: 45px;
+}
+#box_lateral > div:last-child > .box_conteudo {
+	background: none;
 }
 
 /* Box rotina */
@@ -464,18 +476,240 @@ th.rotina_seta {
 	width: 20%;
 	background-color: #129FAE;
 	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+th.rotina_seta:hover {
+	background-color: #23BFCD;
 }
 th.rotina_dia {
 	width: 60%;
 	background-color: #23BFCD;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: .05em;
+	padding: 12px 0;
+}
+th.seta_anterior {
+	background-image: url(../img/CA2.png);
+}
+th.seta_proximo {
+	background-image: url(../img/CA1.png);
 }
 .tabela_rotina > tbody > tr > td{
-	height: 44px;
+	height: 54px;
+	width: 60%;
 	display: block;
 	float: left;
 	border: 2px solid #fff;
 }
-.
+.tabela_rotina > tbody > tr > td:first-child,
+.tabela_rotina > tbody > tr > td:last-child {
+	width: 20%;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #EBEAE5;
+	padding: 17px 0;
+}
+.tabela_rotina > tbody > tr:nth-child(4) > td:first-child {
+	background-color: #FBB040;
+}
+.tabela_rotina > tbody > tr:nth-child(4) > td:last-child {
+	background-color: #FBC93F;
+	width: 80%;
+	padding: 0;
+	background-image: url(../img/alfabetizacao/ic_recreio.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 100%;
+}
+.tabela_rotina > tbody > tr > td:last-child {
+	font-size: 12px;
+	text-transform: uppercase;
+}
+.tabela_rotina > tbody > tr > td:nth-child(2) {
+	padding: 8px 0;
+}
+.tabela_rotina > tbody > tr > td:nth-child(2) > div {
+	padding: 1px 5px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: .01em;
+}
+.tabela_rotina > tbody > tr > td:nth-child(2) > div:first-child {
+	height: 20px;
+	font-size: 12px;
+}
+.tabela_rotina > tbody > tr > td:nth-child(2) > div:last-child {
+	height: 15px;
+	font-size: 11px;
+	overflow: hidden
+}
+
+/* Mensagens */
+.abas_mensagens {
+	width: 100%;
+	height: 20px;
+}
+.abas_mensagens::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+.abas_mensagens > span {
+	display: block;
+	float: left;
+	width: 50%;
+	text-align: center;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #007f92;
+	padding: 3px;
+	cursor: pointer;
+	border: 1px solid #007f92;
+}
+.abas_mensagens > .aba_mensagem_ativa {
+	background-color: #fff;
+	color: #007f92;
+	border: none;
+}
+.conteudo_mensagens {
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.conteudo_mensagens > div {
+	padding: 5px;
+}
+.mensagem_post {
+	padding: 10px;
+	background-color: #f2f2f2;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+.mensagem_post:last_child {
+	margin-bottom: 0;
+}
+.mensagem_post > h1 {
+	margin: 0;
+	font-size: 14px;
+	letter-spacing: .02em;
+	line-height: 1.4em;
+	font-weight: 500;
+	color: #666;
+	text-transform: uppercase;
+}
+.mensagem_post > h2 {
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	text-align: right;
+	color: #999;
+}
+
+/* Mural */
+.mural_container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.mural_post {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background-color: #fff;
+	padding: 10px 5px;
+	margin-bottom: 5px;
+}
+.mural_post:last-child {
+	margin-bottom: 0;
+}
+.mural_post > h1 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	text-align: right;
+	font-weight: 500;
+	font-size: 12px;
+	letter-spacing: .02em;
+	color: #999;
+}
+.mural_post > h1 > span:first-child::after {
+	content: " | ";
+}
+.mural_post > p {
+	margin: 0;
+	height: auto;
+	max-height: 45px;
+	overflow: hidden;
+	color: #666;
+	font-size: 12px;
+	text-transform: uppercase;
+	line-height: 1.4em;
+}
+.post_ativo {
+	background-color: #3399a8;
+	margin-bottom: 0;
+}
+.post_ativo > h1,
+.post_ativo > h2 {
+	color: #fff;
+}
+.mensagem_nao_lida {
+	background-color: #e6e6e6;
+	background-image: url(../img/envelope_fechado.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+.mensagem_post_conteudo {
+	border: 2px solid #3399a8;
+	background-color: #e6e6e6;
+	padding: 10px;
+	height: 256px;
+	display: none;
+}
+.mensagem_post_conteudo > h3 {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-weight: 500;
+	color: #999;
+}
+.mensagem_post_conteudo > p {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	line-height: 1.4em;
+	margin: 0;
+	color: #666;
+}
+.mensagem_icone {
+	position: absolute;
+	display: block;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+	bottom: 18px;
+}
+.nova_mensagem {
+	background: url(../img/ic_escrever.png) no-repeat center center;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -483,5 +717,14 @@ th.rotina_dia {
 
 /* PLUGIN BARRA DE ROLAGEM */
 .mCSB_scrollTools_vertical {
-    right: 0px !important;
+	right: 0px !important;
+}
+#box_lateral > div:last-child > .box_conteudo > .mural_container .mCSB_scrollTools_vertical {
+	right: 6px !important;
+}
+#box_lateral > div:last-child > .box_conteudo > .mural_container .mCSB_container {
+	padding-right: 18px;
+}
+.mural_container .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	background-color: #fff !important;
 }

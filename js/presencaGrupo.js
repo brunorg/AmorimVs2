@@ -64,18 +64,21 @@ var professorId= localStorage.getItem("professorId");
         thisNode.appendChild(daysDiv);
     }
 
-    function getAtualWeek(todayNumber, todayName) {
+    function getAtualWeek(todayNumber, todayName, todayMonth) {
 
         var thisWeekNumbers = [todayNumber]
 
         for (var i = todayNumber-1; i >= todayNumber - todayName; i--) {
             var day = new Date()
+            day.setMonth(todayMonth)
             day.setDate(i)
             thisWeekNumbers.unshift(day.getDate())
+            globalMonth = day.getMonth()
         };
 
         for (var i = todayNumber+1; i <= todayNumber + (6 - todayName); i++) {
             var day = new Date()
+            day.setMonth(todayMonth)
             day.setDate(i)
             thisWeekNumbers.push(day.getDate())
         };
@@ -107,10 +110,11 @@ var professorId= localStorage.getItem("professorId");
 
             var todayName = date.getDay()
             var todayNumber = date.getDate()
+            var todayMonth = date.getMonth()
 
             createDivHeader(thisNode)
             createDivDays(thisNode, "daysName", ["D", "S", "T", "Q", "Q", "S", "S"], "weekCalendarName")
-            createDivDays(thisNode, "daysNumber", getAtualWeek(todayNumber, todayName), "weekCalendarDay")
+            createDivDays(thisNode, "daysNumber", getAtualWeek(todayNumber, todayName, todayMonth), "weekCalendarDay")
 
         } else {
 
@@ -121,8 +125,9 @@ var professorId= localStorage.getItem("professorId");
 
             var todayName = date.getDay()
             var todayNumber = date.getDate()
+            var todayMonth = date.getMonth()
 
-            createDivDays(thisNode, "daysNumber", getAtualWeek(todayNumber, todayName), "weekCalendarDay")
+            createDivDays(thisNode, "daysNumber", getAtualWeek(todayNumber, todayName, todayMonth), "weekCalendarDay")
 
         }
 
@@ -182,7 +187,7 @@ function atualizarCalendario(idGrupo) {
         var todayDay = date.getDate()
 
     $.ajax({
-        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+todayDay+'/'+todayMonth,
+        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+todayDay+'/'+globalMonth,
         //url: path + 'Chamada/ListarGrupo/'+1493+'/'+10+'/'+0,
         async: false,
         crossDomain: true,
@@ -312,6 +317,8 @@ function enviarFaltas() {
 
         objetoASerEnviado.listaFaltas.push({"alunoId" : alunos[i].id, "faltas" : presencaSemana})
     };
+
+    console.log(JSON.stringify(objetoASerEnviado))
 
     $.ajax({
         url: path + "Chamada/ChamadaGrupo/",

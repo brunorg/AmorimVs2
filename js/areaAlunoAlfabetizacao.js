@@ -11,10 +11,19 @@ $(document).ready(function() {
 		toggleTabLateral(this);
 	});
 
+	$("#abas_mensagens").children("span").click(function() {
+		toggleTabMensagens(this);
+	});
+	$(".mensagem_post").click(function() {
+		toggleMensagem(this);
+	});
+
 	$(".aba_oficina").filter(":first").trigger("click");
 	$(".aba_box_lateral").filter(":first").trigger("click");
+	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
 	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
+	$("#mural_container").mCustomScrollbar({axis: "y"});
 });
 
 function toggleTabOficina(tab) {
@@ -55,3 +64,43 @@ function toggleTabLateral(tab) {
 	$(tab).addClass("aba_ativa");
 	$(".box_"+box).show();
 }
+
+function toggleTabMensagens(tab) {
+	$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
+	$(tab).addClass("aba_mensagem_ativa");
+}
+function toggleMensagem(item) {
+	if ($(item).hasClass("post_ativo")) {
+		$(item).removeClass("post_ativo");
+		$(".mensagem_post").show();
+		$(".mensagem_post_conteudo").hide();
+	} else {
+		$(".mensagem_post").not(item).hide();
+		$(item).addClass("post_ativo");
+		$(item).next(".mensagem_post_conteudo").show();
+	}
+
+	if ($(item).hasClass("mensagem_nao_lida")) {
+		$(item).removeClass("mensagem_nao_lida");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
