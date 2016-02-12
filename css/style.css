@@ -1364,9 +1364,14 @@ font-family: "proxima-nova",sans-serif;
 
 	#Content_lateral_Menu {
 		height: 33%;
-    	width: 89%;
+    	width: 100%;
     	float: right;
 	}
+
+	.content_Menu_Coordenacao {
+		width: 91%;
+	}
+
 	#content_central {
 		position: absolute;
 		width: 100%;

@@ -27,7 +27,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
 	cursor: pointer;
 	text-align: center;
 }
-.cabecalho_ativo,#cabecalho_roteiro:hover,#cabecalho_pesquisa:hover{
+.cabecalho_ativo,#cabecalho_roteiro:hover,#cabecalho_pesquisaOficial:hover{
 	background-color: #29B8CE !important;
 }
 #cabecalho_pesquisaOficial{
