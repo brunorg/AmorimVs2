@@ -163,6 +163,7 @@
 
 .area_rotinas_oficina{
 	padding: 15px 5px;
+	cursor: pointer;
 }
 
 .rotina_oficina,
@@ -173,9 +174,27 @@
     margin: 0;
 }
 
+.container_rotinas{
+	display: none;
+}
+
 .container_rotinas > span,
 .container_rotinas > article{
 	padding: 2px 0;
+}
+
+.rotina_oficina > p{
+	margin: 0;
+	color: #666;
+}
+
+.dados_rotina{
+	margin-top: 10px;
+}
+
+.nova_rotina{
+	font-size: 14px;
+    color: #999;
 }
 
 /* Tela Criar Grupo */

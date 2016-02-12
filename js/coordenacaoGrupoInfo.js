@@ -37,6 +37,18 @@ $(document).ready(function() {
 
 	$(".oficinaO").change(function() {
 		mostrarAgrupamentos();
+		$('.area_rotinas_oficina').click(function() {
+			if($(this).find('.container_rotinas').css('display') === 'none')
+			{
+				$(this).find('.btn_drop').attr('src', 'img/ic_retract_claro.png');
+				$(this).find('.container_rotinas').slideDown();
+			}
+			else
+			{
+				$(this).find('.btn_drop').attr('src', 'img/ic_drop_claro.png');
+				$(this).find('.container_rotinas').slideUp();
+			}
+		});
 	});
 	//Verificar funcionamento.
 	$("#txtPesq").keyup(function(){ //Evento que acontece toda vez que o usuário solta uma tecla
@@ -203,11 +215,12 @@ function mostrarAgrupamentos(){
 					crossDomain: true,
 					success: function(dataRotina) {
 						htmlOficina += 	'<article class="area_rotinas_oficina">';
-						htmlOficina +=		'<span class="caracteristica"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
+						htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
 						htmlOficina +=		'<div class="container_rotinas">';
 						for (var j = 0; j < dataRotina.length; j++) {
+							htmlOficina += 	  '<div class="dados_rotina">';
 							htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[i].idrotina+'">';
-							htmlOficina += 			'<p><span><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
+							htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
 							$.ajax({
 								url: path + "AgendamentoSala/ListarRotina/" + dataRotina[i].idrotina,
 								type: "GET",
@@ -229,8 +242,9 @@ function mostrarAgrupamentos(){
 							htmlOficina +=			'</p>';
 							htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[i].oficina.idoficina+')"> &nbsp; </span>';
 							htmlOficina +=		'</article>';
-							htmlOficina +=	'</article>';					
+							htmlOficina += 	  '</div>'			
 						}
+						htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+dataOficinaProfessor[i].oficina.idoficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
 						htmlOficina += 		'</div>';
 						htmlOficina +=	'</article>';
 					}
