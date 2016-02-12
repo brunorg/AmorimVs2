@@ -73,6 +73,7 @@ var professorId= localStorage.getItem("professorId");
             day.setMonth(todayMonth)
             day.setDate(i)
             thisWeekNumbers.unshift(day.getDate())
+            globalMonth = day.getMonth()
         };
 
         for (var i = todayNumber+1; i <= todayNumber + (6 - todayName); i++) {
@@ -186,7 +187,7 @@ function atualizarCalendario(idGrupo) {
         var todayDay = date.getDate()
 
     $.ajax({
-        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+todayDay+'/'+todayMonth,
+        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+todayDay+'/'+globalMonth,
         //url: path + 'Chamada/ListarGrupo/'+1493+'/'+10+'/'+0,
         async: false,
         crossDomain: true,
