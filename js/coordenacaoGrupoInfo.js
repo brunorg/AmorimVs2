@@ -22,12 +22,7 @@ $(document).ready(function() {
 	carregaSalaEdit();
 	editarOficina();
 	editarRotina();
-	
-	//Logado como coordenação, na página grupo.html, não encontrei um select com esse id. Verificar em outras páginas
-	$( "#anoEstudo" ).change(function() {
-		MostrarGrupos();
-	});
-	
+		
 	$("#S_Periodo").change(function(){
 		carregarProfessoresByPeriodo($("#S_Periodo").val());
 	})
@@ -42,7 +37,20 @@ $(document).ready(function() {
 
 	$(".oficinaO").change(function() {
 		mostrarAgrupamentos();
+		$('.area_rotinas_oficina').click(function() {
+			if($(this).find('.container_rotinas').css('display') === 'none')
+			{
+				$(this).find('.btn_drop').attr('src', 'img/ic_retract_claro.png');
+				$(this).find('.container_rotinas').slideDown();
+			}
+			else
+			{
+				$(this).find('.btn_drop').attr('src', 'img/ic_drop_claro.png');
+				$(this).find('.container_rotinas').slideUp();
+			}
+		});
 	});
+	//Verificar funcionamento.
 	$("#txtPesq").keyup(function(){ //Evento que acontece toda vez que o usuário solta uma tecla
 		window.clearTimeout(timeHandler); //Evento que limpa o timeOut
 		timeHandler = window.setTimeout(function(){ //Evento que seta um tempo para a função pesquisarGrupoAluno acontecer
@@ -164,57 +172,88 @@ function mostrarAgrupamentos(){
 	var htmlOficina = "";
 	$("#box_grupo_info").html("");
 	$.ajax({
-		url: path + "OficinaProfessor/ListarOficinaProfessorRotina/" + oficineiroOficina,
+		url: path + "OficinaProfessor/listarProfessor/" + oficineiroOficina,
 		type: "GET",
 		async: false,
 		crossDomain: true,
-		success: function(dataAgrupamentos){
-			htmlOficina += '<div class="lista_agrupamentos">';
-
-			for(var i = 0; i < dataAgrupamentos.length; i++){
-				htmlOficina += 		'<section id="idOficina_'+dataAgrupamentos[i].rotina.oficina.idoficina+'" class="oficina_info">';
-				htmlOficina +=			'<header class="tipo_oficina">';
-				htmlOficina +=				'<h1 style="color:'+dataAgrupamentos[i].rotina.oficina.tipoOficina.cor.forte+'">'+dataAgrupamentos[i].rotina.oficina.tipoOficina.nome+ '</h1>';
-				htmlOficina +=			'</header>';
-				htmlOficina +=			'<main>';
-				htmlOficina +=				'<article class="oficineiros_oficina">';
-				htmlOficina +=					'<p class="oficineiro"> Professor(es):';
-				for(var j = 0; j < dataAgrupamentos[i].professores.length; j++){
-									htmlOficina += '<span> '+dataAgrupamentos[i].professores[j].nome +'</span>';
-									htmlOficina += dataAgrupamentos[i].professores.length - 1 != j ?',':''; //If resumido, ternário. Verifica se a lista de professores está na ultima posição, se sim, não poem vírgula, se não, poem vírgula.
-				}
-				htmlOficina +=					'</p>';
-				htmlOficina +=				'</article>';
-				htmlOficina +=				'<article class="ciclo_periodo_oficina">';
-				htmlOficina +=					'<p class="ciclo_periodo"> Ciclo:';
-				htmlOficina +=						'<span id="ciclo_span_'+dataAgrupamentos[i].rotina.oficina.ciclo.idciclos+'" class="ciclo">'+dataAgrupamentos[i].rotina.oficina.ciclo.ciclo+'</span>';
-				htmlOficina +=						' | Período: <span id="periodo_span_'+dataAgrupamentos[i].rotina.oficina.periodo.idperiodo+'" class="periodo">'+dataAgrupamentos[i].rotina.oficina.periodo.periodo+'</span>';
-				htmlOficina +=					'</p>';
-				htmlOficina +=					'<span class="editar editar_rotina" onclick="editarModal(\'oficina\','+dataAgrupamentos[i].rotina.oficina.idoficina+')"> &nbsp; </span>';
-				htmlOficina +=				'</article>';
-				htmlOficina +=				'<article id="idRotina_'+dataAgrupamentos[i].rotina.idrotina+'" class="rotina_oficina"> Rotina:';
-				htmlOficina +=					'<span id="rotina_dia_'+dataAgrupamentos[i].rotina.dia.idsemana+'" class="rotina_dia"> '+dataAgrupamentos[i].rotina.dia.dia+'</span>';
-				htmlOficina +=					'<span id="rotina_horario_'+dataAgrupamentos[i].rotina.hora+'" class="rotina_horario"> '+dataAgrupamentos[i].rotina.hora+':00 </span>';
-				if((dataAgrupamentos[i].sala) == ""){
-					
-					htmlOficina += '<span id="sala_0_0" class="rotina_sala">&nbsp;</span>';
-				} else {
-					htmlOficina +=				'<span id="sala_'+dataAgrupamentos[i].sala.sala.idsalas+'_'+dataAgrupamentos[i].sala.idagendamento_sala+'" class="rotina_sala"> '+dataAgrupamentos[i].sala.sala.sala+' </span>';	
-				}
-
-				htmlOficina +=					'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+dataAgrupamentos[i].rotina.oficina.idoficina+')"> &nbsp; </span>';
-				htmlOficina +=				'</article>';
-				htmlOficina +=				'<article class="agrupamento_oficina">';
-				htmlOficina +=					'<p> Agrupamento:';
-				htmlOficina +=						'<span id="agrupamento_'+dataAgrupamentos[i].rotina.agrupamento.idagrupamento+'" class="agrupamento"> '+dataAgrupamentos[i].rotina.agrupamento.nome+' </span>';
-				htmlOficina +=					'</p>';
-				htmlOficina +=					'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataAgrupamentos[i].rotina.oficina.idoficina+')"> &nbsp; </span>';
-				htmlOficina +=				'</article>';
-				htmlOficina +=			'</main>';
-				htmlOficina +=		'</section>';
+		success: function(dataOficinaProfessor) {
+			//htmlOficina +=	'<div class="lista_agrupamentos">';
+			for (var i = 0; i < dataOficinaProfessor.length; i++){
+				htmlOficina +=	'<section id="idOficina_'+dataOficinaProfessor[i].oficina.idoficina+'" class="oficina_info">';
+				htmlOficina += 		'<header class="tipo_oficina">';
+				htmlOficina +=			'<h1 style="color:'+dataOficinaProfessor[i].oficina.tipoOficina.cor.forte+'">'+dataOficinaProfessor[i].oficina.tipoOficina.nome+ '</h1>';
+				htmlOficina +=		'</header>';
+				htmlOficina +=		'<main>';
+				htmlOficina +=			'<article class="ciclo_periodo_oficina">';
+				htmlOficina +=				'<p class="ciclo_periodo"> Ciclo:';
+				htmlOficina +=					'<span id="ciclo_span_'+dataOficinaProfessor[i].oficina.ciclo.idciclos+'" class="ciclo">'+dataOficinaProfessor[i].oficina.ciclo.ciclo+'</span>';
+				htmlOficina +=					' | Período: <span id="periodo_span_'+dataOficinaProfessor[i].oficina.periodo.idperiodo+'" class="periodo">'+dataOficinaProfessor[i].oficina.periodo.periodo+'</span>';
+				htmlOficina +=				'</p>';
+				htmlOficina +=				'<span class="editar editar_rotina" onclick="editarModal(\'oficina\','+dataOficinaProfessor[i].oficina.idoficina+')"> &nbsp; </span>';
+				htmlOficina +=			'</article>';
+				htmlOficina +=			'<article class="oficineiros_oficina">';
+				htmlOficina +=				'<p class="oficineiro"> Professor(es):';
+				$.ajax({
+					url: path + "OficinaProfessor/listarPorOficina/" + dataOficinaProfessor[i].oficina.idoficina,
+					type: "GET",
+					async: false,
+					crossDomain: true,
+					success: function(professoresOficina) {
+						for (var j = 0; j < professoresOficina.length; j++) {
+							htmlOficina += '<span> '+professoresOficina[j].professor.nome +'</span>';
+							//Verifica se a lista de professores está na ultima posição, se sim, não poem vírgula, se não, poem vírgula.
+							htmlOficina += professoresOficina.length - 1 != j ?',':'';
+						};
+					}
+				});
+				htmlOficina +=				'</p>';
+				htmlOficina +=			'</article>';
+				$.ajax({
+					url: path + "Rotina/ListarOficina/" + dataOficinaProfessor[i].oficina.idoficina,
+					type: "GET",
+					async: false,
+					crossDomain: true,
+					success: function(dataRotina) {
+						htmlOficina += 	'<article class="area_rotinas_oficina">';
+						htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
+						htmlOficina +=		'<div class="container_rotinas">';
+						for (var j = 0; j < dataRotina.length; j++) {
+							htmlOficina += 	  '<div class="dados_rotina">';
+							htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[i].idrotina+'">';
+							htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
+							$.ajax({
+								url: path + "AgendamentoSala/ListarRotina/" + dataRotina[i].idrotina,
+								type: "GET",
+								async: false,
+								crossDomain: true,
+								success: function(dataAgendamento) {
+									if(dataAgendamento.idagendamento_sala == 0){	
+										htmlOficina +=	'<span id="sala_0_0" class="rotina_sala">&nbsp;</span></p>';
+									} else {
+										htmlOficina +=	'<span id="sala_'+dataAgendamento.sala.idsalas+'_'+dataAgendamento.idagendamento_sala+'" class="rotina_sala"> '+dataAgendamento.sala.sala+' </span></p>';	
+									}
+								}
+							});
+							htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+dataOficinaProfessor[i].oficina.idoficina+')"> &nbsp; </span>'
+							htmlOficina +=		'</article>';
+							htmlOficina +=		'<article class="agrupamento_oficina">';
+							htmlOficina +=			'<p>';
+							htmlOficina +=				'<span id="agrupamento_'+dataRotina[i].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[i].agrupamento.nome+' </span>';
+							htmlOficina +=			'</p>';
+							htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[i].oficina.idoficina+')"> &nbsp; </span>';
+							htmlOficina +=		'</article>';
+							htmlOficina += 	  '</div>'			
+						}
+						htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+dataOficinaProfessor[i].oficina.idoficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
+						htmlOficina += 		'</div>';
+						htmlOficina +=	'</article>';
+					}
+				});
+				htmlOficina +=		'</main>';
+				htmlOficina +=	'</section>';
 			}
-			htmlOficina +=	'</div>';
 
+			//htmlOficina +=	'</div>';
 			$("#box_grupo_info").append(htmlOficina);
 		}
 	});
@@ -645,22 +684,32 @@ function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, hora
 	$('#id_agendamento').val(agendamento);
 }
 
+function habilitarModalEdicaoAgrupamento () {
+	$('#boxModaisEdicao').show();
+	$('.modal_edicao_agrupamento').show();
+}
+
 function editarModal(modal,id){
 	if(modal == "oficina"){
-		var idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
-		var conteudoCiclo = $("#idOficina_"+idOficina).find(".ciclo").attr('id').split('_')[2];
-		var conteudoPeriodo = $("#idOficina_"+idOficina).find(".periodo").attr('id').split('_')[2];
-		habilitarModalEdicaoOficina(idOficina, conteudoCiclo, conteudoPeriodo);	
+		$('#editar_id_oficina').val(id);
+		// var idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
+		var conteudoCiclo = $("#idOficina_"+id).find(".ciclo").attr('id').split('_')[2];
+		var conteudoPeriodo = $("#idOficina_"+id).find(".periodo").attr('id').split('_')[2];
+		habilitarModalEdicaoOficina(id, conteudoCiclo, conteudoPeriodo);	
 	} else if(modal == "rotina"){
-		var idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
-		var agrupamento = $("#idOficina_"+idOficina).find(".agrupamento").attr('id').split('_')[1];
-		var dia = $("#idOficina_"+idOficina).find(".rotina_dia").attr('id').split('_')[2];
-		var horario = $("#idOficina_"+idOficina).find(".rotina_horario").attr('id').split('_')[2];
-		var sala = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[1];
-		var agendamento = $("#idOficina_"+idOficina).find(".rotina_sala").attr('id').split('_')[2];
+		$('#editar_id_rotina').val(id);
+		// var idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
+		var agrupamento = $("#idOficina_"+id).find(".agrupamento").attr('id').split('_')[1];
+		var dia = $("#idOficina_"+id).find(".rotina_dia").attr('id').split('_')[2];
+		var horario = $("#idOficina_"+id).find(".rotina_horario").attr('id').split('_')[2];
+		var sala = $("#idOficina_"+id).find(".rotina_sala").attr('id').split('_')[1];
+		var agendamento = $("#idOficina_"+id).find(".rotina_sala").attr('id').split('_')[2];
 		var idRotina = $(".rotina_oficina").attr('id').split('_')[1];
-		habilitarModalEdicaoRotina(idRotina, idOficina, agrupamento, dia, horario, sala, agendamento);
+		habilitarModalEdicaoRotina(idRotina, id, agrupamento, dia, horario, sala, agendamento);
 	} else if(modal == "agrupamento"){
+		$('#boxModaisEdicao').show();
+		$('.modal_edicao_agrupamento').show();
+		$('#editar_id_agrupamento').val(id);
 		editarAgrupamento();
 	}
 	centralizarModal();	
@@ -682,6 +731,8 @@ function editarOficina(){
 			data:"action=update&ciclo="+ciclo+"&periodo="+periodo+"&id="+idOficina, 
 			success: function(d){
 				$('#boxModaisEdicao').css('display','none');
+				$('#oficina_periodo').html($("#periodoOficinaEditar option:selected").text());
+				$('#oficina_ciclo').html($("#cicloOficinaEditar option:selected").text);
 				mensagem("Oficina alterada com sucesso!","OK","bt_ok","sucesso"); 	
 			}	
 		})		
