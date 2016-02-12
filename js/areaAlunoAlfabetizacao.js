@@ -1,3 +1,17 @@
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
+
 $(document).ready(function() {
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
@@ -24,6 +38,10 @@ $(document).ready(function() {
 
 	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
 	$("#mural_container").mCustomScrollbar({axis: "y"});
+
+	var urlParams = getQueryParams(document.location.search)
+
+	console.log(urlParams["aba"])	
 });
 
 function toggleTabOficina(tab) {
