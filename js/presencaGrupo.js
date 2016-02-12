@@ -230,10 +230,9 @@ function atualizarCalendario(idGrupo) {
             for (var i = d.length - 1; i >= 0; i--) {
                 for (var k = d[i].faltas.length - 1; k >= 0; k--) {
                     
-                    var dia = d[i].faltas[k].split("-")[2].split(" ")[0]
+                    var dia = +d[i].faltas[k].split("-")[2].split(" ")[0]
 
                     $("#Aluno"+d[i].alunoId+"Dia"+dia).html("0")
-
 
                 };
             };
@@ -292,7 +291,7 @@ function enviarFaltas() {
     var objetoASerEnviado = {}
 
     objetoASerEnviado.dataDia = $('#weekCalendarDay0').html()
-    objetoASerEnviado.dataMes = todayMonth
+    objetoASerEnviado.dataMes = globalMonth
     objetoASerEnviado.listaFaltas = []
 
     var diasPresenca = document.getElementsByClassName('clckableToggle')
