@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Oficinas</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="css/oficinas_vs2.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="css/oficinas.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>  
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>  
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                                   
+        <script src="js/jquery-ui.js"></script>         
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>        
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="js/oficinas.js"></script>             
+        <script type="text/javascript" src="js/autenticador.js"></script>
+                        
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+        <!--Fim Script-->
+    </head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container" ng-controller="geralCTRL">
+            <div class="Conteudo_Coluna" id="content_central">
+				<div id="oficinasContainer" class="oficinas_container">
+                    <div class="oficina_boxes_container">
+                        <div id="blogContainer" class="oficina_content_box box_blog scroll_receiver">
+                        	<div id="postagensContainer" class="blog_postagens scroll_limiter"></div>
+                        </div>
+                        <div class="oficina_content_box box_roteiros"> 
+                        	<div class="cx_tema_1">
+                                <div class="Acordeon_Oficina">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+		</div>
+        <!--Fim Conteudo-->
+        <div id="boxMensagemGeral" ></div>
+        <div class="boxGlobal"></div>
+	</body>
+</html>

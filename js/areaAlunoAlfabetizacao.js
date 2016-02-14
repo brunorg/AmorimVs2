@@ -13,6 +13,9 @@ function getQueryParams(qs) {
 }
 
 $(document).ready(function() {
+
+	$('#conteudo_oficina').load('oficinasAlfabetizacao.html');
+
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
