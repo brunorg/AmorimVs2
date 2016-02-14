@@ -90,111 +90,51 @@
                 <!--bloqueio para a rolagem top-->              
                 <div class="Conteudo_Coluna" id="content_central">
                     <div class="lista_grupos" id="recebeGrupos">
-                        <p class="nomeGrupos" id="rcebeGrupo1">6M1</p>
-                        <p class="nomeGrupos" id="rcebeGrupo2">6M2</p>
-                        <p class="nomeGrupos" id="rcebeGrupo3">6M3</p>
-                        <p class="nomeGrupos" id="rcebeGrupo4">6M4</p>
-                        <p class="nomeGrupos" id="rcebeGrupo5">6M5</p>                       
-                    </div>
+                        <p class="nomeGrupos" id="rcebeGrupo1">6M1</p>                       
+                    </div>                    
                     <div class="apontarPresenca" >
-                        <div class="colunaAluno" id="recebeAlunos">
-                            <p class="alunoLinha">                                
-                                <img src="img/FotoAluno.png">
-                                <span class="foto" id="Aluno1">
-                                    João da Silva
-                                </span>                                
-                            </p>              
-                            <p class="alunoLinha">                                
-                                <img src="img/FotoAluno.png">
-                                <span class="foto" id="Aluno2">
-                                    João da Silva
-                                </span>                                
-                            </p>
-                            <p class="alunoLinha">                                
-                                <img src="img/FotoAluno.png">
-                                <span class="foto" id="Aluno3">
-                                    João da Silva
-                                </span>                                
-                            </p>
-                            <p class="alunoLinha">                                
-                                <img src="img/FotoAluno.png">
-                                <span class="foto" id="Aluno4">
-                                    João da Silva
-                                </span>                                
-                            </p>
-                            <p class="alunoLinha">                                
-                                <img src="img/FotoAluno.png">
-                                <span class="foto" id="Aluno5">
-                                    João da Silva
-                                </span>                                
-                            </p>
-                        </div>
-                        <div class="colunaCalendario">
-                            <div id="calendarioFaltas">
-                                <div id="weekdisplay">
+                        <div class="boxChamada">
+                            <div class="colunaAluno" id="recebeAlunos">
+                            <!--Carrega dados js-->    
+                            </div>
+                            <div class="colunaCalendario">
+                                <div id="calendarioFaltas">
+                                    <div id="weekdisplay">
 
+                                    </div>
+                                </div>
+                            
+                                <div id="containerTabelaPresenca">
+                                    <table id="tabelaPresenca" cellspacing="0" cellpadding="0">
+                                    </table>                                
                                 </div>
                             </div>
-                        
-                            <div id="containerTabelaPresenca">
-                                <table id="tabelaPresenca">
-                                    <tbody>
-                                        <tr>
-                                            <td id="Aluno1Dia0">O</td>
-                                            <td id="Aluno1Dia1">O</td>
-                                            <td id="Aluno1Dia2">O</td>
-                                            <td id="Aluno1Dia3">O</td>
-                                            <td id="Aluno1Dia4">O</td>
-                                            <td id="Aluno1Dia5">O</td>
-                                            <td id="Aluno1Dia6">O</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="Aluno2Dia0">O</td>
-                                            <td id="Aluno2Dia1">O</td>
-                                            <td id="Aluno2Dia2">O</td>
-                                            <td id="Aluno2Dia3">O</td>
-                                            <td id="Aluno2Dia4">O</td>
-                                            <td id="Aluno2Dia5">O</td>
-                                            <td id="Aluno2Dia6">O</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="Aluno3Dia0">O</td>
-                                            <td id="Aluno3Dia1">O</td>
-                                            <td id="Aluno3Dia2">O</td>
-                                            <td id="Aluno3Dia3">O</td>
-                                            <td id="Aluno3Dia4">O</td>
-                                            <td id="Aluno3Dia5">O</td>
-                                            <td id="Aluno3Dia6">O</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="Aluno4Dia0">O</td>
-                                            <td id="Aluno4Dia1">O</td>
-                                            <td id="Aluno4Dia2">O</td>
-                                            <td id="Aluno4Dia3">O</td>
-                                            <td id="Aluno4Dia4">O</td>
-                                            <td id="Aluno4Dia5">O</td>
-                                            <td id="Aluno4Dia6">O</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="Aluno5Dia0">O</td>
-                                            <td id="Aluno5Dia1">O</td>
-                                            <td id="Aluno5Dia2">O</td>
-                                            <td id="Aluno5Dia3">O</td>
-                                            <td id="Aluno5Dia4">O</td>
-                                            <td id="Aluno5Dia5">O</td>
-                                            <td id="Aluno5Dia6">O</td>
-                                        </tr>
-
-
-                                    </tbody>
+                            <div class="colunaInfo">
+                                <div class="blocoInfo">
+                                    <p>Faltas</p>
+                                    <p>Compensadas</p>
+                                    <p>Totalizadas</p>
+                                    <p>%faltas</p>
+                                </div>
+                                <table id="tableInfo" cellspacing="0" cellpadding="0">                                    
+                                    <tr class="linhaInfo">
+                                        <td>12</td>
+                                        <td>4</td>
+                                        <td>8</td>
+                                        <td>20</td>
+                                    </tr>
+                                     <tr class="linhaInfo">
+                                        <td>12</td>
+                                        <td>4</td>
+                                        <td>8</td>
+                                        <td>20</td>
+                                    </tr>                                   
                                 </table>
-                                <button onclick="enviarFaltas()">enviar</button>
-                            </div>
+                            </div>                                             
                         </div>
-                        <div class="colunaInfo"></div>                        
-                    </div>
-                </div>
-
+                        <button onclick="enviarFaltas()" class="btnChamada">Salvar</button>
+                    </div>                     
+                </div>               
             </div>                  
         </div><!--Fim Conteudo-->
         <div class="boxGlobal"></div>

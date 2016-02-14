@@ -27,7 +27,7 @@
     color:rgb(102,102,102);
 }
 
-.nomeGrupos:hover, .nomeGrupos .active{
+.nomeGrupos:hover, .active{
     background-color: #4795A0;
 }
 
@@ -36,38 +36,164 @@
     height: 500px;
     background-color: #E5E4DD;
 }
+
+.boxChamada{
+    height: 221px;
+}
+
+.btnChamada{
+    background-color: #129FAD;
+    background-image: url(../img/ic_salvar.png);
+    background-repeat: no-repeat;
+    background-position: 12px 5px;
+    margin: 16px 14px 0 0px;
+    font-size: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: 0;
+    height: 40px;
+    padding: 10px 10px 10px 34px;
+    display: block;
+    float: right;
+}
+
+.clckableToggle img{
+    width: 17px;
+    height: 17px;
+    margin: 3px 3px 0px 0px;
+}
 .colunaAluno{
     width: 477px;
     height:200px;
     float: left;
-    margin:92px 0 0 15px;
+    margin: 122px 0 0 15px;
 }
 .colunaCalendario{
-    border: 1px solid red;
-    width: 286px;
-    height: 330px;
+    width: 284px;
+    min-height: 150px;
     float: left;
-}
-.colunaInfo{
-    border-left: 1px solid #FFFFFF;
-    width: 163px;
-    height:324px;
-    float: left;
-    margin: 0 14px 0 1px;
+    background: #D8EFF2;  
 }
 
-.alunoLinha{
+#daysName{
+    background: #BBD9DD;
+}
+
+#daysName p{
+    border: #FFFFFF 1px solid;
+    margin: 0;
+    float: left;
+    padding: 13px 0;
+    width: 40.5px;
+    height: 41px;
+    text-align: center;
+    font-size: 11px;
+    color: #FFFFFF;
+}
+#daysNumber p{
+    border: #FFFFFF 1px solid;
+    margin: 0;
+    float: left;
+    padding: 13px 0;
+    width: 40.5px;
+    height: 41px;
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+}
+
+#weekCalendarDay0,#weekCalendarDay6{
+    background: #B1D0D5;
+}
+
+#calendarMonthName{
+    background: #4795A0;
+    padding: 12px;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-left: 1px solid #4795A0;
+    border-right: 1px solid #4795A0;
+    text-align: center;
+}
+#calendarLeftArrow{
+    cursor: pointer;
+}
+
+#calendarLeftArrow:hover{
+    background-color: #4795A0 !important; 
+}
+#calendarRightArrow:hover{
+    background-color: #4795A0 !important; 
+}
+
+
+.colunaInfo{
+    width: 166px;
+    height: 124px;
+    float: left;        
+}
+
+.blocoInfo{
+    background: url(../img/fundo_table.png);
+    background-size: 41px;
+    padding-top: 80px;
+    border: 1px solid #FFFFFF;
+    height: 123px;
+    width: 164px;
+}
+.colunaInfo p{
+    float: left;
+    margin: 7.7px 7.7px -7.7px 7.7px;
+    padding: 11px 10px 29px 5px;
+    font-size: 14px;
+    color: #666666;
+    width: 25px;
+    height: 20px;
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=6);
+}
+#tableInfo td{
+    width: 41px;
+    height: 41px;
+    text-align: center;
+    border: 1px solid #FFFFFF;
+    color: #666666;
+    font-size: 18px;
+}
+.alunoLinha:nth-child(odd){
     padding: 4px 12px;
     margin: 0;
-    border: 1px solid #FFFFFF;
-    height: 42px;
+    border: 1px solid;
+    border-color: #FFFFFF;
+    height: 41px;
 }
+
+.alunoLinha:nth-child(even){
+    padding: 4px 12px;
+    margin: 0;
+    border: 1px solid;
+    border-color: #FFFFFF;
+    height: 41px;    
+    background: #F2F2EE;
+}
+.linhaInfo:nth-child(odd){
+    background:none;
+}
+
+.linhaInfo:nth-child(even){
+    background: #F2F2EE;
+}
+
 .alunoLinha span{
     font-size: 14px;
     color: #666666;
     float: left;
     padding: 9px 37px;
 }
+
 .foto{
     position: absolute;
     float: left;
@@ -262,11 +388,25 @@
     padding:2px !important;
 }
 
-
 #tabelaPresenca td{
-    width: 35px;
-    height: 35px;
+    width: 41px;
+    height: 41px;
+    text-align: center;
+    border: 1px solid #FFFFFF;
 }
+
+.fimSemana0{
+    background: #9BC3CA;
+    padding: 0 39px 0 0;
+}
+
+.fimSemana1{
+    background: rgb(200,221,225);
+    padding: 0 39px 0 0;
+}
+
+
+
 
 
 

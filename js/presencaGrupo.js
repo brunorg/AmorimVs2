@@ -1,6 +1,7 @@
 //Carrega a funçao de Load do JQuery
 
 var professorId= localStorage.getItem("professorId");
+var globalMonth;
 
 (function ( $ ) {
 
@@ -10,24 +11,27 @@ var professorId= localStorage.getItem("professorId");
         var centerLargeDiv = document.createElement("div");
         var arrowRightDiv = document.createElement("div");
 
-        headerDiv.style.width = "245px";
-        headerDiv.style.height = "35px";
+        headerDiv.style.width = "284px";
+        headerDiv.style.height = "41px";
 
-        arrowLeftDiv.style.width = "35px"
-        arrowLeftDiv.style.height = "35px"
+        arrowLeftDiv.style.width = "41px"
+        arrowLeftDiv.style.height = "41px"
         arrowLeftDiv.style.display = "inline-block"
-        arrowLeftDiv.style.backgroundColor = "purple"
+        arrowLeftDiv.style.background = "url('img/leftArrowG.png') no-repeat center"
+        arrowLeftDiv.style.backgroundColor = '#02818D' 
+        arrowLeftDiv.style.float = "left"
         arrowLeftDiv.id = "calendarLeftArrow"
 
-        centerLargeDiv.style.width = "175px"
-        centerLargeDiv.style.height = "35px"
-        centerLargeDiv.style.display = "inline-block"
+        centerLargeDiv.style.width = "202px"
+        centerLargeDiv.style.height = "41px"
+        centerLargeDiv.style.float = "left"
         centerLargeDiv.id = "calendarMonthName"
 
-        arrowRightDiv.style.width = "35px"
-        arrowRightDiv.style.height = "35px"
-        arrowRightDiv.style.display = "inline-block"
-        arrowRightDiv.style.backgroundColor = "black"
+        arrowRightDiv.style.width = "41px"
+        arrowRightDiv.style.height = "41px"
+        arrowRightDiv.style.background = "url('img/rightArrowG.png') no-repeat center"
+        arrowRightDiv.style.backgroundColor = '#02818D' 
+        arrowRightDiv.style.float = "right"
         arrowRightDiv.id = "calendarRightArrow"
 
         headerDiv.appendChild(arrowLeftDiv)
@@ -41,18 +45,17 @@ var professorId= localStorage.getItem("professorId");
 
         var daysDiv = document.createElement("div");
 
-        daysDiv.style.width = "245px";
-        daysDiv.style.height = "35px";
+        daysDiv.style.width = "284px";
+        daysDiv.style.height = "41px";
         daysDiv.id = divId;
 
         var i = 0
         days.forEach(function(displayDay) {
             var dayDiv = document.createElement("div");
-            dayDiv.style.width = "35px"
-            dayDiv.style.height = "35px"
-            dayDiv.style.display = "inline-block"
+            
+            dayDiv.style.float = "left"
 
-            var displayDaySpan = document.createElement("span");
+            var displayDaySpan = document.createElement("p");
             displayDaySpan.id = id + i;
 
             displayDaySpan.innerHTML = displayDay
@@ -148,10 +151,10 @@ function adicionarClickCasas() {
 }
 
 function toggleDia() {
-    if (this.innerHTML == "1") {
-        this.innerHTML = "0"
+    if (this.innerHTML == '<img src="img/check-presenca-v.png">') {
+        this.innerHTML = '<img src="img/check-presenca.png">'
     } else {
-        this.innerHTML = "1"
+        this.innerHTML = '<img src="img/check-presenca-v.png">'
     }
 }
 
@@ -170,7 +173,7 @@ function atualizarGrupos() {
             recebeGrupos.innerHTML = ""
 
             for (var i = d.length - 1; i >= 0; i--) {
-                recebeGrupos.innerHTML += '<p class="nomeGrupos" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>'
+                recebeGrupos.innerHTML += '<p class="nomeGrupos '+(i == d.length - 1?"active":"")+'" id="'+d[i].idgrupo+'" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>'
             }
 
             atualizarCalendario(window.grupoEscolhido)
@@ -188,7 +191,7 @@ function atualizarCalendario(idGrupo) {
         var todayDay = date.getDate()
 
     $.ajax({
-        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+globalMonth,
+        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
         //url: path + 'Chamada/ListarGrupo/'+1493+'/'+10+'/'+0,
         async: false,
         crossDomain: true,
@@ -196,7 +199,7 @@ function atualizarCalendario(idGrupo) {
         success: function(d) {
 
             $('#recebeAlunos').html("")
-            $('#tabelaPresenca tbody').html("")
+            $('#tabelaPresenca').html("")
             var htmlPiece = "";
 
             for (var i = 0; i < d.length; i++) {
@@ -213,16 +216,16 @@ function atualizarCalendario(idGrupo) {
                 htmlPiece = "";
 
                 htmlPiece += '<tr>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay0').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay1').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay2').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay3').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay4').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay5').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
-                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay6').html()+'" class="clckableToggle '+idGrupo+'">1</td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay0').html()+'" class="'+idGrupo+' fimSemana'+(i%2)+'"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay1').html()+'" class="clckableToggle '+idGrupo+'"><img src="img/check-presenca-v.png"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay2').html()+'" class="clckableToggle '+idGrupo+'"><img src="img/check-presenca-v.png"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay3').html()+'" class="clckableToggle '+idGrupo+'"><img src="img/check-presenca-v.png"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay4').html()+'" class="clckableToggle '+idGrupo+'"><img src="img/check-presenca-v.png"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay5').html()+'" class="clckableToggle '+idGrupo+'"><img src="img/check-presenca-v.png"></td>'
+                htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay6').html()+'" class="'+idGrupo+' fimSemana'+(i%2)+'"></td>'
                 htmlPiece += '</tr>'
 
-                 $('#tabelaPresenca tbody').html($('#tabelaPresenca tbody').html() + htmlPiece)
+                 $('#tabelaPresenca').append(htmlPiece)
 
                  htmlPiece = ""
             };
@@ -233,7 +236,7 @@ function atualizarCalendario(idGrupo) {
                     
                     var dia = +d[i].faltas[k].split("-")[2].split(" ")[0]
 
-                    $("#Aluno"+d[i].alunoId+"Dia"+dia).html("0")
+                    $("#Aluno"+d[i].alunoId+"Dia"+dia).html('<img src="img/check-presenca.png">')
 
                 };
             };
@@ -254,6 +257,8 @@ function mudarGrupo(idGrupo) {
 
     adicionarClickCasas()
 
+    $('.nomeGrupos').removeClass('active');
+    $('#'+idGrupo).addClass('active');
 }
 
 $(document).ready(function(){

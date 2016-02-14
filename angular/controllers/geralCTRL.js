@@ -17,9 +17,15 @@ app.controller('loginCTRL',function ($scope,$http) {
 			}else{
 				localStorage.setItem("objetoUsuario", JSON.stringify(a));
 				if (typeof a !== "undefined") {				
-					if(a.perfil.perfil == "Aluno"){										
-						localStorage.setItem("alunoId",a.aluno.idAluno);
-						window.location = "areaAluno.html";										
+					if(a.perfil.perfil == "Aluno"){	
+						var objAlunoVariavel = alunoVariavelByIdAluno(a.aluno.idAluno);
+
+						if(objAlunoVariavel.anoEstudo.ano <= 2){
+							window.location = "areaAlunoAlfabetizacao.html";
+						}else{
+							window.location = "areaAluno.html";
+						}
+						localStorage.setItem("alunoId",a.aluno.idAluno);										
 					}
 					else if(a.perfil.perfil == "Professor"){
 						localStorage.setItem("professorId", a.professor.idprofessorFuncionario)	;
@@ -54,8 +60,8 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				
-				var mobile = redirecionaMobile();
-				console.log(mobile);
+				//var mobile = redirecionaMobile();
+				//console.log(mobile);
 
 				$scope.menuHTML = [ 
 					{label: 'Plano de Estudo', href: 'planoDeEstudo.html',class: 'plano'}, 
@@ -180,6 +186,7 @@ function okBotao() {
 			$("#boxMensagemGeral").hide()
 		})
 }
+
 function msgInicial(texto){
 	var HtmlContent = '<div class="box_mensagem">'+
 							'<div class="txt_mensagem">'+
@@ -199,4 +206,21 @@ function redirecionaMobile(){
 	}else{
 		return false;
 	}
+}
+
+
+function alunoVariavelByIdAluno(idAluno){
+	var dadosAlunoV;
+
+	$.ajax({
+		url: path+"AlunoVariavel/aluno/"+idAluno,
+		type: "GET",
+		async:false,
+		crossDomain: true,
+		success: function(d) {
+			dadosAlunoV = d;
+		}		
+	});
+
+	return dadosAlunoV;
 }
