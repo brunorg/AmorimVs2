@@ -43,6 +43,10 @@ $(document).ready(function() {
 		showFormularioNovaMensagem();
 	});
 
+	$(".aba_mural").click(function(){
+		toggleTabMural();
+	});
+
 	$(".aba_oficina").filter(":first").trigger("click");
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
@@ -126,19 +130,33 @@ function hideFormularioNovaMensagem() {
 	$("#conteudo_mensagens").show();
 }
 
+function toggleTabMural() {
 
+	$('#mural_posts_container').html("");
 
+	$.ajax({
+		url: path + "MuralAluno/ListarAluno/" + getAVariavelByAluno(alunoID),
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		success: function (data){
 
+			for(var valor of data)
+			{
+				var html = "";
 
+				html += '<div class="mural_post">'
+				html += '	<h1>'
+				html += '		<span>'+valor.mural.professor.nome+'</span>'
+				html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
+				html += '	</h1>'
+				html += '	<p>'+valor.mural.mensagem+'</p>'
+				html += '</div>	'
+				
+				$('#mural_posts_container').append(html);
 
-
-
-
-
-
-
-
-
-
-
-
+			}
+		
+		}
+	});
+}
