@@ -169,7 +169,6 @@ function MostrarGrupos() {
 
 function mostrarAgrupamentos(){
 	var oficineiroOficina = $(".oficinaO").val();
-	var htmlOficina = "";
 	$("#box_grupo_info").html("");
 	$.ajax({
 		url: path + "OficinaProfessor/listarProfessor/" + oficineiroOficina,
@@ -179,6 +178,7 @@ function mostrarAgrupamentos(){
 		success: function(dataOficinaProfessor) {
 			//htmlOficina +=	'<div class="lista_agrupamentos">';
 			for (var i = 0; i < dataOficinaProfessor.length; i++){
+				var htmlOficina = "";
 				htmlOficina +=	'<section id="idOficina_'+dataOficinaProfessor[i].oficina.idoficina+'" class="oficina_info">';
 				htmlOficina += 		'<header class="tipo_oficina">';
 				htmlOficina +=			'<h1 style="color:'+dataOficinaProfessor[i].oficina.tipoOficina.cor.forte+'">'+dataOficinaProfessor[i].oficina.tipoOficina.nome+ '</h1>';
@@ -208,56 +208,99 @@ function mostrarAgrupamentos(){
 				});
 				htmlOficina +=				'</p>';
 				htmlOficina +=			'</article>';
-				$.ajax({
-					url: path + "Rotina/ListarOficina/" + dataOficinaProfessor[i].oficina.idoficina,
-					type: "GET",
-					async: false,
-					crossDomain: true,
-					success: function(dataRotina) {
-						htmlOficina += 	'<article class="area_rotinas_oficina">';
-						htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
-						htmlOficina +=		'<div class="container_rotinas">';
-						for (var j = 0; j < dataRotina.length; j++) {
-							htmlOficina += 	  '<div class="dados_rotina">';
-							htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[i].idrotina+'">';
-							htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
-							$.ajax({
-								url: path + "AgendamentoSala/ListarRotina/" + dataRotina[i].idrotina,
-								type: "GET",
-								async: false,
-								crossDomain: true,
-								success: function(dataAgendamento) {
-									if(dataAgendamento.idagendamento_sala == 0){	
-										htmlOficina +=	'<span id="sala_0_0" class="rotina_sala">&nbsp;</span></p>';
-									} else {
-										htmlOficina +=	'<span id="sala_'+dataAgendamento.sala.idsalas+'_'+dataAgendamento.idagendamento_sala+'" class="rotina_sala"> '+dataAgendamento.sala.sala+' </span></p>';	
-									}
-								}
-							});
-							htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+dataOficinaProfessor[i].oficina.idoficina+')"> &nbsp; </span>'
-							htmlOficina +=		'</article>';
-							htmlOficina +=		'<article class="agrupamento_oficina">';
-							htmlOficina +=			'<p>';
-							htmlOficina +=				'<span id="agrupamento_'+dataRotina[i].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[i].agrupamento.nome+' </span>';
-							htmlOficina +=			'</p>';
-							htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[i].oficina.idoficina+')"> &nbsp; </span>';
-							htmlOficina +=		'</article>';
-							htmlOficina += 	  '</div>'			
-						}
-						htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+dataOficinaProfessor[i].oficina.idoficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
-						htmlOficina += 		'</div>';
-						htmlOficina +=	'</article>';
-					}
-				});
+				htmlOficina += 			'<article class="area_rotinas_oficina">';
+				// $.ajax({
+				// 	url: path + "Rotina/ListarOficina/" + dataOficinaProfessor[i].oficina.idoficina,
+				// 	type: "GET",
+				// 	async: false,
+				// 	crossDomain: true,
+				// 	success: function(dataRotina) {
+				// 		htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
+				// 		htmlOficina +=		'<div class="container_rotinas">';
+				// 		for (var j = 0; j < dataRotina.length; j++) {
+				// 			htmlOficina += 	  '<div class="dados_rotina">';
+				// 			htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[i].idrotina+'">';
+				// 			htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
+				// 			$.ajax({
+				// 				url: path + "AgendamentoSala/ListarRotina/" + dataRotina[i].idrotina,
+				// 				type: "GET",
+				// 				async: false,
+				// 				crossDomain: true,
+				// 				success: function(dataAgendamento) {
+				// 					if(dataAgendamento.idagendamento_sala == 0){	
+				// 						htmlOficina +=	'<span id="sala_0_0" class="rotina_sala">&nbsp;</span></p>';
+				// 					} else {
+				// 						htmlOficina +=	'<span id="sala_'+dataAgendamento.sala.idsalas+'_'+dataAgendamento.idagendamento_sala+'" class="rotina_sala"> '+dataAgendamento.sala.sala+' </span></p>';	
+				// 					}
+				// 				}
+				// 			});
+				// 			htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+dataOficinaProfessor[i].oficina.idoficina+')"> &nbsp; </span>'
+				// 			htmlOficina +=		'</article>';
+				// 			htmlOficina +=		'<article class="agrupamento_oficina">';
+				// 			htmlOficina +=			'<p>';
+				// 			htmlOficina +=				'<span id="agrupamento_'+dataRotina[i].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[i].agrupamento.nome+' </span>';
+				// 			htmlOficina +=			'</p>';
+				// 			htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[i].oficina.idoficina+')"> &nbsp; </span>';
+				// 			htmlOficina +=		'</article>';
+				// 			htmlOficina += 	  '</div>'			
+				// 		}
+				// 		htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+dataOficinaProfessor[i].oficina.idoficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
+				// 		htmlOficina += 		'</div>';
+				// 	}
+				// });
+				htmlOficina +=			'</article>';
 				htmlOficina +=		'</main>';
 				htmlOficina +=	'</section>';
+				$("#box_grupo_info").append(htmlOficina);
+				adicionarRotinasOficina(dataOficinaProfessor[i].oficina.idoficina);
 			}
-
-			//htmlOficina +=	'</div>';
-			$("#box_grupo_info").append(htmlOficina);
 		}
 	});
 	return false;
+}
+
+function adicionarRotinasOficina (idOficina) {
+	htmlOficina = '';
+	$.ajax({
+		url: path + "Rotina/ListarOficina/" + idOficina,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dataRotina) {
+			htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
+			htmlOficina +=		'<div class="container_rotinas">';
+			for (var j = 0; j < dataRotina.length; j++) {
+				htmlOficina += 	  '<div class="dados_rotina">';
+				htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[j].idrotina+'">';
+				htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[j].dia.idsemana+'">'+dataRotina[j].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[j].hora+'">'+dataRotina[j].hora+':00 - </span>';
+				$.ajax({
+					url: path + "AgendamentoSala/ListarRotina/" + dataRotina[j].idrotina,
+					type: "GET",
+					async: false,
+					crossDomain: true,
+					success: function(dataAgendamento) {
+						if(dataAgendamento.idagendamento_sala == 0){	
+							htmlOficina +=	'<span id="sala_0_0" class="rotina_sala">&nbsp;</span></p>';
+						} else {
+							htmlOficina +=	'<span id="sala_'+dataAgendamento.sala.idsalas+'_'+dataAgendamento.idagendamento_sala+'" class="rotina_sala"> '+dataAgendamento.sala.sala+' </span></p>';	
+						}
+					}
+				});
+				htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+idOficina+')"> &nbsp; </span>'
+				htmlOficina +=		'</article>';
+				htmlOficina +=		'<article class="agrupamento_oficina">';
+				htmlOficina +=			'<p>';
+				htmlOficina +=				'<span id="agrupamento_'+dataRotina[j].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[j].agrupamento.nome+' </span>';
+				htmlOficina +=			'</p>';
+				htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[j].oficina.idoficina+')"> &nbsp; </span>';
+				htmlOficina +=		'</article>';
+				htmlOficina += 	  '</div>'			
+			}
+			htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+idOficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
+			htmlOficina += 		'</div>';
+		}
+	});
+	$('#idOficina_'+idOficina+' .area_rotinas_oficina').html(htmlOficina);
 }
 
 function pesquisaGrupoAluno(){
@@ -773,7 +816,10 @@ function editarRotina(){
 						async: false,
 						crossDomain: true,
 						type: "POST",
-						data: "action=create&Hora="+horario+"&dia="+dia+"&idsala="+sala+"&idrotina="+idRotina+"&id="+agendamento
+						data: "action=create&Hora="+horario+"&dia="+dia+"&idsala="+sala+"&idrotina="+idRotina+"&id="+agendamento,
+						success: function() {
+							adicionarRotinasOficina(idOficina);
+						}
 					});
 				},
 				complete: function(){
