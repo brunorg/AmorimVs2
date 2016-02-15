@@ -71,7 +71,6 @@
 					<iframe id="objeto" src="alfabetizacao/index.html" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" msallowfullscreen="true"></iframe>
 				</div>
 
-				<div>
 					<div id="conteudo_principal">
 						<div id="oficinas_container">
 							<div id="abas_oficina">
@@ -263,37 +262,62 @@
 										</div>
 										<div id="conteudo_mensagens" class="conteudo_mensagens">
 											<div id="mensagens_entrada">
-												<div class="mensagem_post mensagem_nao_lida">
+												<div class="mensagem_post mensagem_recebida mensagem_nao_lida">
 													<h2>Gustavo Santos</h2>
 													<h1>Oficina de matemática</h1>
 												</div>
-												<div class="mensagem_post_conteudo">
+												<div class="mensagem_post_conteudo mensagem_recebida_conteudo">
 													<h3>14/08/2015</h3>
 													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
 												</div>
-												<div class="mensagem_post">
+												<div class="mensagem_post mensagem_recebida">
 													<h2>Diego Garcia</h2>
 													<h1>Oficina de Inglês</h1>
 												</div>
-												<div class="mensagem_post_conteudo">
+												<div class="mensagem_post_conteudo mensagem_recebida_conteudo">
 													<h3>14/08/2015</h3>
 													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
 												</div>
-												<div class="mensagem_post">
+												<div class="mensagem_post mensagem_recebida">
 													<h2>Marymar</h2>
 													<h1>Oficina de Artes</h1>
 												</div>
-												<div class="mensagem_post_conteudo">
+												<div class="mensagem_post_conteudo mensagem_recebida_conteudo">
 													<h3>14/08/2015</h3>
 													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
 												</div>
 											</div>
-											<div id="mensagens_enviadas"></div>
+											<div id="mensagens_enviadas">
+												<div class="mensagem_post mensagem_enviada">
+													<h1>Oficina de matemática</h1>
+													<h2>Gustavo Santos</h2>
+												</div>
+												<div class="mensagem_post_conteudo mensagem_enviada_conteudo">
+													<h3>14/08/2015</h3>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+												</div>
+												<div class="mensagem_post mensagem_enviada">
+													<h1>Oficina de Inglês</h1>
+													<h2>Diego Garcia</h2>
+												</div>
+												<div class="mensagem_post_conteudo mensagem_enviada_conteudo">
+													<h3>14/08/2015</h3>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+												</div>
+												<div class="mensagem_post mensagem_enviada">
+													<h1>Oficina de Artes</h1>
+													<h2>Marymar</h2>
+												</div>
+												<div class="mensagem_post_conteudo mensagem_enviada_conteudo">
+													<h3>14/08/2015</h3>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+												</div>
+											</div>
 										</div>
 										<div id="formulario_mensagem" class="formulario_mensagem" style="display: none;">
 											<form action="" class="">
-												<input type="hidden" name="action" value="create" /> <!-- Valores: create, update ou delete -->
-												<input type="hidden" name="destinatarios" />
+												<input type="hidden" id="action_mensagem" name="action" value="create" /> <!-- Valores: create, update ou delete -->
+												<input type="hidden" id="destinatarios_mensagem" name="destinatarios" />
 												<input id="destinatarios_trigger" type="text" placeholder="Destinatários" readonly />
 												<div id="destinatarios_container" class="destinatarios_container">
 													<div class="destinatarios_itens">
@@ -308,12 +332,28 @@
 														<div class="destinatario"><input type="checkbox" id="aluno9" value="9"/><label for="aluno9">Nome do aluno 9</label></div>
 													</div>
 												</div>
-												<input type="text" name="assunto" placeholder="Assunto" />
-												<textarea name="mensagem" maxlength="1200" placeholder="Digite o texto da mensagem"></textarea>
+												<input type="text" id="assunto_mensagem" name="assunto" placeholder="Assunto" />
+												<textarea id="conteudo_mensagem" name="mensagem" maxlength="1200" placeholder="Digite o texto da mensagem"></textarea>
 											</form>
 										</div>
 									</div>
-									<span id="nova_mensagem" class="mensagem_icone nova_mensagem">&nbsp;</span>
+									<div id="bottom_btns" class="bottom_btns">
+										<div class="btns_left" style="display: none;">
+											<span id="cancelar_acao" class="mensagem_icone cancelar_acao">&nbsp;</span>
+										</div>
+										<div class="btns_right">
+											<span id="nova_mensagem" class="mensagem_icone nova_mensagem">&nbsp;</span>
+										</div>
+										<div class="btns_right" style="display: none;">
+											<span id="enviar_mensagem" class="mensagem_icone enviar_mensagem">&nbsp;</span>
+										</div>
+										<div class="btns_right" style="display: none;">
+											<span id="responder_mensagem" class="mensagem_icone responder_mensagem">&nbsp;</span>
+										</div>
+										<div class="btns_right" style="display: none;">
+											<span id="deletar_mensagem" class="mensagem_icone deletar_mensagem">&nbsp;</span>
+										</div>
+									</div>
 								</div>
 								<div class="box_lateral box_mural">
 									<div class="box_conteudo">
@@ -375,11 +415,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 
 			<div id="parteDoC2">
-				
 			</div>
 
 		</div>

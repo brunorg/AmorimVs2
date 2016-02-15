@@ -580,7 +580,7 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao){
 								+'</div>'+
 								'<div class="btn_mensagem">'+
 									'<input type="button" class="bt_ok left" value="OK" onclick="'+funcao+'(\''+servico+'\',\''+id+'\')"/>'+
-									'<input type="button" class="bt_cancelar left" value="Cancelar" />'+
+									'<input type="button" class="bt_cancelar left" value="Cancelar" onclick="closeModal()"/>'+
 								'</div>'+
 							'</div>';
 
@@ -613,7 +613,9 @@ function mensagem(texto,tipo_btn,class_btn,tipo_msg,servico,id,funcao){
 		}, 1000);
 	}	
 }
-
+function closeModal() {
+	$("#boxMensagemGeral").hide();
+}
 function mensagemF(texto,tipo_btn,class_btn,tipo_msg,funcao){	
 	if(tipo_msg=="sucesso" || tipo_msg=="erro" || tipo_msg=="alerta")
 	{
