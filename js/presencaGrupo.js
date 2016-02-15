@@ -167,6 +167,8 @@ function atualizarGrupos() {
         : "GET",
         success: function(d) {
 
+            console.log(d)
+
             window.grupoEscolhido = d[0].idgrupo
 
             var recebeGrupos = document.getElementById('recebeGrupos')
@@ -321,10 +323,10 @@ function enviarFaltas() {
 
                 console.log(diasPresenca[k].innerHTML)
 
-                var falta = 0
+                var falta = 1
 
                 if (diasPresenca[k].innerHTML == '<img src="img/check-presenca.png">') {
-                    falta = 1
+                    falta = 0
                 }
 
                 presencaSemana.push(falta)
