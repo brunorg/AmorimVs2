@@ -174,6 +174,10 @@ html, body
 				background-position: 21px 50%;
 				background-size:25px;
 			}
+
+			.inativo{
+				background-color: #e5e5dc !important;
+			}
 			
 			.rows2 { 
     			padding-top: 8px;

@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 	//Serviço para buscar os agrupamentos do professor e seus respectivos grupos
 	$.ajax({
-		url: path + 'Oficina/AlunosAgrupamento/'+oficina.idoficina_professor,
+		url: path + 'Oficina/AlunosAgrupamento/'+oficina.oficina.idoficina,
 		type: "GET",
 		async: false,
 		crossDomain: true,

@@ -77,6 +77,7 @@ app.controller('geralCTRL',function($scope,$http){
 			case "Professor":
 				var oficinas = oficinaProfessor(dadosUsuario.professor.idprofessorFuncionario);
 				var oficinaAtivaP;
+				var inativo;
 
 				if(typeof oficinas[0] != 'undefined'){
 					if(localStorage.getItem("oficinaProfessor") == null) {					
@@ -90,14 +91,13 @@ app.controller('geralCTRL',function($scope,$http){
 						$scope.oficinaHTML = [oficinas];
 						$scope.mostra = true;							
 					}	
-					$scope.oficinaAtiva = oficinaAtivaP.oficina.tipoOficina.nome;
-				}
+					$scope.oficinaAtiva = oficinaAtivaP.oficina.tipoOficina.nome;					
+				}else{
+					inativo = "inativo";
+				}	
+
 				
-				
-				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);										
-				
-		
-				
+				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);				
 				
 				$scope.usuarioCabecalho = abreviaNome(dadosUsuario.professor.nome);
 				$scope.usuarioFoto = dadosUsuario.professor.fotoProfessorFuncionario;
@@ -107,12 +107,14 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoF = localStorage.getItem("totalForum");										
 				$scope.oficina   = oficinaAtivaP; 				
 				
+
+
 				$scope.menuHTML = [ 
-					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano'}, 
+					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano '+inativo}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'mn_professor recurso rows2'},
-					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'mn_professor roteiros'},
+					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'mn_professor roteiros '+inativo},
 					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'mn_professor tutores'},
-					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'mn_professor oficinas'},
+					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'mn_professor oficinas '+inativo},
 					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'mn_professor jeiff'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mn_professor mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'mn_professor forum'}
