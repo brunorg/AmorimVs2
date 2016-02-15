@@ -66,7 +66,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuHTML = [ 
 					{label: 'Plano de Estudo', href: 'planoDeEstudo.html',class: 'plano'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
-					{label: 'Tutoria', href: 'tutoriaAluno.html', class: 'tutoria'},
+					{label: 'Tutoria', href: 'tutoriaAluno.html', class: 'tutoria inativo'},
 					{label: 'Oficinas', href: 'oficinas.html', class: 'oficinas'},
 					{label: 'Produção do Aluno', href: 'producaoAluno.html', class: 'prodAluno'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
@@ -136,7 +136,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.menuHTML = [ 
-					{label: 'Rotinas', href: 'rotinas.html',class: 'rotinas'}, 
+					{label: 'Rotinas', href: 'rotinas.html',class: 'rotinas inativo'}, 
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
 					{label: 'Roteiros', href: 'roteiros.html', class: 'roteiros'},
 					{label: 'Tutorias', href: 'tutorias.html', class: 'tutoria'},

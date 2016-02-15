@@ -176,7 +176,10 @@ html, body
 			}
 
 			.inativo{
-				background-color: #e5e5dc !important;
+				pointer-events: none;
+				opacity:0.65;
+				-moz-opacity: 0.65;
+				filter: alpha(opacity=65);
 			}
 			
 			.rows2 { 
