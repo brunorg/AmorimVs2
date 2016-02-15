@@ -583,17 +583,17 @@ function Mural() {
 
     }
 
-    this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento) {
+    this.verificarDestinarario = function(tutoria, grupo, oficina, agrupamento, professor) {
         if (tutoria == 1) {
             return "Tutoria"
-        } else if (grupo != null) {
+        } else if (grupo != undefined) {
             return "Grupo " + grupo["nomeGrupo"]
-        } else if (oficina != null) {
+        } else if (oficina != undefined) {
             return "Oficina " + oficina["nome"]
-        } else if (agrupamento != null) {
+        } else if (agrupamento != undefined) {
             return "Agrupamento " + agrupamento["nome"]
         } else {
-
+            return "Prof. " + professor["nome"]
         }
     }
 
@@ -620,8 +620,9 @@ function Mural() {
                     var grupo = retornoAjax[i]["grupo"];
                     var oficina = retornoAjax[i]["oficina"];
                     var agrupamento = retornoAjax[i]["agrupamento"];
+                    var professor = retornoAjax[i]["professor"];
 
-                    var destinatario = self.verificarDestinarario(tutoria, grupo, oficina, agrupamento)
+                    var destinatario = self.verificarDestinarario(tutoria, grupo, oficina, agrupamento, professor)
 
                     mensagem = mensagem + "<br>-" + destinatario
 

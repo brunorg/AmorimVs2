@@ -198,6 +198,8 @@ function atualizarCalendario(idGrupo) {
         type: "GET",
         success: function(d) {
 
+            console.log(d)
+
             $('#recebeAlunos').html("")
             $('#tabelaPresenca').html("")
             var htmlPiece = "";
@@ -316,7 +318,16 @@ function enviarFaltas() {
 
         for (var k = 0; k < diasPresenca.length; k++) {
             if (diasPresenca[k].idAluno == alunos[i].id) {
-                presencaSemana.push(diasPresenca[k].innerHTML)
+
+                console.log(diasPresenca[k].innerHTML)
+
+                var falta = 0
+
+                if (diasPresenca[k].innerHTML == '<img src="img/check-presenca.png">') {
+                    falta = 1
+                }
+
+                presencaSemana.push(falta)
             }
         };
 
