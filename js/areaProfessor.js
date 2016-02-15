@@ -788,9 +788,9 @@ function CarregarRotina() {
 function rotinaMudarDia(quanto) {
 
     horarios.forEach(function(horario) {
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("Carregando")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("Carregando")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("...")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("...")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("...")
             })
 
     diaHoje = (diaHoje + quanto)
