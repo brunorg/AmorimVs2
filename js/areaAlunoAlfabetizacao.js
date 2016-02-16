@@ -13,9 +13,6 @@ function getQueryParams(qs) {
 }
 
 $(document).ready(function() {
-
-	$('#conteudo_oficina').load('oficinasAlfabetizacao.html');
-
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
@@ -35,25 +32,21 @@ $(document).ready(function() {
 		toggleMensagem(this);
 	});
 
-	$("#destinatarios_trigger").click(function() {
-		$(this).toggleClass("destinatarios_ativo");
-	});
-
-	$("#nova_mensagem").click(function() {
-		showFormularioNovaMensagem();
-	});
-
 	$(".aba_oficina").filter(":first").trigger("click");
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
 	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
 	$("#mural_container").mCustomScrollbar({axis: "y"});
-	$("#destinatarios_container").mCustomScrollbar({axis: "y"});
 
 	var urlParams = getQueryParams(document.location.search)
 
-	console.log(urlParams["aba"])
+	if (urlParams["aba"]) {
+		$('#parteDoC2').hide()
+	} else {
+		$('#Conteudo_Area').hide()
+	}
+
 });
 
 function toggleTabOficina(tab) {
@@ -102,29 +95,21 @@ function toggleTabMensagens(tab) {
 function toggleMensagem(item) {
 	if ($(item).hasClass("post_ativo")) {
 		$(item).removeClass("post_ativo");
-		$(".mensagem_post_conteudo").slideUp();
+		$(".mensagem_post").show();
+		$(".mensagem_post_conteudo").hide();
 	} else {
+		$(".mensagem_post").not(item).hide();
 		$(item).addClass("post_ativo");
-		$(item).next(".mensagem_post_conteudo").slideDown();
+		$(item).next(".mensagem_post_conteudo").show();
 	}
 
 	if ($(item).hasClass("mensagem_nao_lida")) {
 		$(item).removeClass("mensagem_nao_lida");
 	}
 }
-function showFormularioNovaMensagem() {
-	$("#nova_mensagem").hide();
-	$("#abas_mensagens").hide();
-	$("#conteudo_mensagens").hide();
-	$("#formulario_mensagem").show();
-}
 
-function hideFormularioNovaMensagem() {
-	$("#formulario_mensagem").hide();
-	$("#nova_mensagem").show();
-	$("#abas_mensagens").show();
-	$("#conteudo_mensagens").show();
-}
+
+
 
 
 
