@@ -602,11 +602,11 @@ th.seta_proximo {
 .mensagem_post {
 	padding: 10px;
 	background-color: #f2f2f2;
-	margin-bottom: 5px;
+	margin-top: 5px;
 	cursor: pointer;
 }
-.mensagem_post:last_child {
-	margin-bottom: 0;
+.mensagem_post:first-child {
+	margin-top: 0;
 }
 .mensagem_post > h1 {
 	margin: 0;
@@ -618,14 +618,16 @@ th.seta_proximo {
 	text-transform: uppercase;
 }
 .mensagem_post > h2 {
-	margin-top: 0;
-	margin-bottom: 5px;
+	margin: 0;
 	font-size: 12px;
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: .02em;
 	text-align: right;
 	color: #999;
+}
+.mensagem_post > :first-child {
+	margin-bottom: 5px;
 }
 
 /* Mural */
@@ -686,6 +688,7 @@ th.seta_proximo {
 }
 .mensagem_post_conteudo {
 	border: 2px solid #3399a8;
+	border-top: none;
 	background-color: #e6e6e6;
 	padding: 10px;
 	height: auto;
@@ -708,17 +711,53 @@ th.seta_proximo {
 	margin: 0;
 	color: #666;
 }
-.mensagem_icone {
+.bottom_btns {
 	position: absolute;
+	width: 100%;
+	bottom: 12px;
+	padding: 0 18px;
+	left: 0;
+}
+.btns_left {
+	float: left;
+	margin-right: 5px;
+}
+.btns_right {
+	float: right;
+	margin-left: 5px;
+}
+.bottom_btns::after {
+	content: "";
 	display: block;
+	width: 100%;
+	clear: both;
+}
+.mensagem_icone {
+	display: block;
+	margin-left: 5px;
 	width: 25px;
 	height: 25px;
 	cursor: pointer;
-	bottom: 18px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.mensagem_icone:last-child {
+	margin-left: 0;
 }
 .nova_mensagem {
-	background: url(../img/ic_escrever.png) no-repeat center center;
-	right: 18px;
+	background-image: url(../img/ic_escrever.png);
+}
+.enviar_mensagem {
+	background-image: url(../img/ic_enviar_w.png);
+}
+.responder_mensagem {
+	background-image: url(../img/ic_responder_w.png);
+}
+.deletar_mensagem {
+	background-image: url(../img/ic_deletar_w.png);
+}
+.cancelar_acao {
+	background-image: url(../img/ic_cancelar_w.png);
 }
 .formulario_mensagem {
 	width: 100%;

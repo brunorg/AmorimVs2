@@ -2574,9 +2574,14 @@ font-family: "proxima-nova",sans-serif;
 	    display: none;
 	}
 	.mn_professor{
-		padding: 8px 10px 8px 70px !important;
+		padding: 10px 2px 4px 60px !important;
+    	background-size: 21px !important;
 	}	
 	
+	.mn_professor .recurso {
+		padding: 5px 8px 5px 60px !important;
+	}	
+
 	.recurso {
 		padding: 5px 8px 5px 70px !important;
 	}	
