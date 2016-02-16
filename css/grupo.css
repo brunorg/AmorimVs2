@@ -217,11 +217,12 @@
 	}
 	.Box_Area_Select {
 		display: inline-block;
-    	width: 296px;
-    	height: 40px;
-    	margin-right: 7px;
-    	background-color: rgb(201,201,196);
-    	border: 1px solid rgb(174,174,166);
+		width: 296px;
+		height: 40px;
+		margin-right: 9px;
+		background-color: rgb(201,201,196);
+		border: 1px solid rgb(174,174,166);
+		float: left;
 	}
 
 	.Unico_Linha{

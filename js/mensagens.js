@@ -611,7 +611,7 @@ function ListarEnviadas(ultima,inicio,fim)
 			
 			if (dataMensagensSaida.length > 0){
 				for(var a=dataMensagensSaida.length-1; a>=0; a--){
-					
+					console.log(dataMensagensSaida[a].remetente_nome);
 					if(dataMensagensSaida[a].mensagem != ''){
 						var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
 						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ' +
