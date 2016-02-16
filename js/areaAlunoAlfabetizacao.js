@@ -13,8 +13,11 @@ function getQueryParams(qs) {
 }
 
 $(document).ready(function() {
+<<<<<<< HEAD
+=======
 	$('#conteudo_oficina').load('oficinasAlfabetizacao.html');
 
+>>>>>>> origin/master
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
@@ -39,6 +42,8 @@ $(document).ready(function() {
 	$(".mensagem_enviada").click(function() {
 		toggleMensagemEnviada(this);
 	});
+<<<<<<< HEAD
+=======
 	$("#destinatarios_trigger").click(function() {
 		$(this).toggleClass("destinatarios_ativo");
 	});
@@ -49,18 +54,33 @@ $(document).ready(function() {
 		verifyFormulario("cancelar");
 	});
 
+	$(".aba_mural").click(function(){
+		toggleTabMural();
+	});
+>>>>>>> origin/master
+
 	$(".aba_oficina").filter(":first").trigger("click");
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
 	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
 	$("#mural_container").mCustomScrollbar({axis: "y"});
-	$("#destinatarios_container").mCustomScrollbar({axis: "y"});
 
 	var urlParams = getQueryParams(document.location.search)
 
-	console.log(urlParams["aba"])
+	if (urlParams["aba"]) {
+		$('#parteDoC2').hide()
+	} else {
+		$('#Conteudo_Area').hide()
+	}
+
+	cr_createRuntime("c2canvas");
+
 });
+
+window.onload = function() {
+
+}
 
 function toggleTabOficina(tab) {
 	$(".aba_oficina").removeClass("aba_ativa");
@@ -119,20 +139,35 @@ function toggleMensagemRecebida(item) {
 
 	if ($(item).hasClass("post_ativo")) {
 		$(item).removeClass("post_ativo");
+<<<<<<< HEAD
+		$(".mensagem_post").show();
+		$(".mensagem_post_conteudo").hide();
+=======
 		$(item).next(".mensagem_recebida_conteudo").slideUp();
 
 		switchBotoes("back")
+>>>>>>> origin/master
 	} else {
+		$(".mensagem_post").not(item).hide();
 		$(item).addClass("post_ativo");
+<<<<<<< HEAD
+		$(item).next(".mensagem_post_conteudo").show();
+=======
 		$(item).next(".mensagem_recebida_conteudo").slideDown();
 
 		switchBotoes("read_inbox");
+>>>>>>> origin/master
 	}
 
 	if ($(item).hasClass("mensagem_nao_lida")) {
 		$(item).removeClass("mensagem_nao_lida");
 	}
 }
+<<<<<<< HEAD
+
+
+
+=======
 function toggleMensagemEnviada(item) {
 	$(".mensagem_enviada").not(item).removeClass("post_ativo");
 	$(".mensagem_enviada").not(item).next(".mensagem_enviada_conteudo").slideUp();
@@ -194,6 +229,38 @@ function hideFormularioNovaMensagem() {
 	$("#nova_mensagem").show();
 	$("#abas_mensagens").show();
 	$("#conteudo_mensagens").show();
+}
+>>>>>>> origin/master
+
+function toggleTabMural() {
+
+	$('#mural_posts_container').html("");
+
+	$.ajax({
+		url: path + "MuralAluno/ListarAluno/" + getAVariavelByAluno(alunoID),
+		async: false,
+		crossDomain: true,
+		type: "GET",
+		success: function (data){
+
+			for(var valor of data)
+			{
+				var html = "";
+
+				html += '<div class="mural_post">'
+				html += '	<h1>'
+				html += '		<span>'+valor.mural.professor.nome+'</span>'
+				html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
+				html += '	</h1>'
+				html += '	<p>'+valor.mural.mensagem+'</p>'
+				html += '</div>	'
+				
+				$('#mural_posts_container').append(html);
+
+			}
+		
+		}
+	});
 
 	cleraFormularioNovaMensagem();
 	switchBotoes("back");
