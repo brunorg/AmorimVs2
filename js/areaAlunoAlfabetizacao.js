@@ -47,7 +47,13 @@ $(document).ready(function() {
 		$('#Conteudo_Area').hide()
 	}
 
+	cr_createRuntime("c2canvas");
+
 });
+
+window.onload = function() {
+
+}
 
 function toggleTabOficina(tab) {
 	$(".aba_oficina").removeClass("aba_ativa");

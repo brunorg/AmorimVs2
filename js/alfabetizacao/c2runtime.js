@@ -1925,7 +1925,7 @@ if (typeof Object.getPrototypeOf !== "function")
 		var datajs_filename = "data.js";
 		if (this.isWindows8App || this.isWindowsPhone8 || this.isWindowsPhone81 || this.isWindows10)
 			datajs_filename = "data.json";
-		xhr.open("GET", datajs_filename, true);
+		xhr.open("GET", "js/alfabetizacao/" + datajs_filename, true);
 		var supportsJsonResponse = false;
 		if (!this.isDomFree && ("response" in xhr) && ("responseType" in xhr))
 		{

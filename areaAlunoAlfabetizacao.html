@@ -366,12 +366,43 @@
 						<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/>
 					</canvas>
 
-					<script src="alfabetizacao/jquery-2.1.1.min.js"></script>
-
-					<script src="alfabetizacao/c2runtime.js"></script>
+					<script src="js/alfabetizacao/c2runtime.js"></script>
 					
 				</div>
 			</div>
+
+			    <script>
+        			// Size the canvas to fill the browser viewport.
+        			jQuery(window).resize(function() {
+        				cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
+        			});
+        			
+        			// Start the Construct 2 project running on window load.
+        			jQuery(document).ready(function ()
+        			{
+        				// Create new runtime using the c2canvas
+        				cr_createRuntime("c2canvas");
+        			});
+        			
+        			// Pause and resume on page becoming visible/invisible
+        			function onVisibilityChanged() {
+        				if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+        					cr_setSuspended(true);
+        				else
+        					cr_setSuspended(false);
+        			};
+        			
+        			document.addEventListener("visibilitychange", onVisibilityChanged, false);
+        			document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+        			document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+        			document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+        			
+        			if (navigator.serviceWorker && navigator.serviceWorker.register)
+        			{
+        				// Register an empty service worker to trigger web app install banners.
+        				navigator.serviceWorker.register("sw.js", { scope: "./" });
+        			}
+        	    </script>
 
 		</div>
 		<!--Fim Conteudo-->
