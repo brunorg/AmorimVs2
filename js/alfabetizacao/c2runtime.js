@@ -2219,6 +2219,9 @@ if (typeof Object.getPrototypeOf !== "function")
 	var webkitRepaintFlag = false;
 	Runtime.prototype["setSize"] = function (w, h, force)
 	{
+		w = $("#c2canvasdiv").innerWidth();
+		h = $("#c2canvasdiv").innerHeight();
+		
 		var offx = 0, offy = 0;
 		var neww = 0, newh = 0, intscale = 0;
 		var tryHideAddressBar = (this.isiPhoneiOS6 && this.isSafari && !navigator["standalone"] && !this.isDomFree && !this.isCordova);
