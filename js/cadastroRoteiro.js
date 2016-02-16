@@ -992,7 +992,6 @@ function inserirObjetivoAtividade() {
 	//Salva as linhas das atividades!!
 	linhaObjHtml += '<div id="Atvs_Obj_Inserido_'+idObjetivo+'" class="Atvs_Obj_Inserido">';
 	if (idAtividade){        
-		 alert('atv');
 		
 		var alturaDiv=0;
 		for(var i = 0; i < atividadesCont.length; i++) {
@@ -1010,7 +1009,7 @@ function inserirObjetivoAtividade() {
 		    '</div>';
 		}
 	}else{
-		alert('nao atv');
+
 		linhaObjHtml +=
 				'<div id="Atv_Obj_Info_" class="Atv_Obj_Info" idObjetivo="'+idObjetivo+'">'+
 				    '<strong>Nenhuma atividade cadastrada.<strong>'+
