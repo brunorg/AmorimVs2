@@ -166,19 +166,20 @@ function atualizarGrupos() {
         type
         : "GET",
         success: function(d) {
+            if(d.length > 0){
+                window.grupoEscolhido = d[0].idgrupo
 
-            console.log(d)
+                var recebeGrupos = document.getElementById('recebeGrupos')
+                recebeGrupos.innerHTML = ""
 
-            window.grupoEscolhido = d[0].idgrupo
-
-            var recebeGrupos = document.getElementById('recebeGrupos')
-            recebeGrupos.innerHTML = ""
-
-            for (var i = d.length - 1; i >= 0; i--) {
-                recebeGrupos.innerHTML += '<p class="nomeGrupos '+(i == d.length - 1?"active":"")+'" id="'+d[i].idgrupo+'" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>'
+                for (var i = d.length - 1; i >= 0; i--) {
+                    recebeGrupos.innerHTML += '<p class="nomeGrupos '+(i == d.length - 1?"active":"")+'" id="'+d[i].idgrupo+'" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>'
+                }
+                atualizarCalendario(window.grupoEscolhido)
+            }else{
+                $('.apontarPresenca').css('display','none');
+                $('.lista_grupos').html('<div class="feedback_oficinas_false">Não há grupos para este professor');
             }
-
-            atualizarCalendario(window.grupoEscolhido)
         }
     });
 }

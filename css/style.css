@@ -762,7 +762,13 @@ html, body
 							font-size: 18px;
 							padding: 10px;
 						}			
-			
+
+.feedback_oficinas_false {
+    padding: 15px;
+    background-color: #EBEBE3;
+    color: #666;
+}
+	
 #Evento{
 	width: 350px;
     height: auto;
@@ -2578,13 +2584,14 @@ font-family: "proxima-nova",sans-serif;
     	background-size: 21px !important;
 	}	
 	
-	.mn_professor .recurso {
-		padding: 5px 8px 5px 60px !important;
-	}	
-
 	.recurso {
 		padding: 5px 8px 5px 70px !important;
 	}	
+
+	.mn_professor.recurso {
+		padding: 5px 8px 5px 60px !important;
+	}
+
 	.prodAluno {
    		background-size: 21px !important;
 	}
