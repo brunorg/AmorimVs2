@@ -1027,24 +1027,24 @@ function diasEntre( data1, data2 ) {
 }
 
 
-function alterarSenha(){
+// function alterarSenha(){
 	
-	var user = $("#user").val();
-	var senhaAtu = $("#senhaAtu").val();
-	var senha = $("#senha").val();
+// 	var user = $("#user").val();
+// 	var senhaAtu = $("#senhaAtu").val();
+// 	var senha = $("#senha").val();
 	
-	//console.log(email);
-	var retorno;
-	var valores =  "user="+user+"&senhaAtu="+senhaAtu+"&senha="+senha;
+// 	//console.log(email);
+// 	var retorno;
+// 	var valores =  "user="+user+"&senhaAtu="+senhaAtu+"&senha="+senha;
 	
-	retorno = getData("Logar/alterarSenha",valores);
+// 	retorno = getData("Logar/alterarSenha",valores);
 	
-	if(retorno != "erro"){
-		return mensagem("Senha alterada com sucesso!","OK","bt_ok","sucesso");
-	}else{
-		//return console.log('erro');
-	}
-}
+// 	if(retorno != "erro"){
+// 		return mensagem("Senha alterada com sucesso!","OK","bt_ok","sucesso");
+// 	}else{
+// 		//return console.log('erro');
+// 	}
+// }
 
 /**
  * Modifica a posição do numero das datas caso seja cadastro em formato DD/MM/YYYY ou YYYY/MM/DD
