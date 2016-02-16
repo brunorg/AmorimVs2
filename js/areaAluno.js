@@ -242,7 +242,7 @@ function CarregaServicoProducaoAluno()
 
 					var apresentacao = "";
 					var capaDiv;
-
+					var roteiroNome = dataProducaoAluno[a].roteiro.nome;
 		    		if(dataProducaoAluno[a].capa != null) {
 		    			capaDiv = '<div class="Img_Roteiro" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
 						apresentacao = '<img src="'+dataProducaoAluno[a].capa+'" class="capa" width="auto" height="100%"/>';
@@ -252,16 +252,22 @@ function CarregaServicoProducaoAluno()
 						capaDiv = '<div class="Img_Roteiro uploadAtivo" id="'+dataProducaoAluno[a].idproducaoAluno+'">'
 						apresentacao = '<img src="img/foto.png" class="upload_capa" width="100%" height="auto"/>';
 					}
-						HtmlContent += '<div class="Portfolio_Conteudo_Box">';
-			        	HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
-			        	HtmlContent += capaDiv;
-						HtmlContent += apresentacao;
-						HtmlContent += '</div>';
-						HtmlContent += '<div class="Nome_Roteiro">';
-						HtmlContent += dataProducaoAluno[a].roteiro.nome;
-						HtmlContent += '</div>';
-						HtmlContent += '</div>';
-						HtmlContent += '</div>';
+
+					HtmlContent += '<div class="Portfolio_Conteudo_Box">';
+		        	HtmlContent += '<div class="portfolio_link" href="'+dataProducaoAluno[a].arquivo+'" target="_blank">';
+		        	HtmlContent += capaDiv;
+					HtmlContent += apresentacao;
+					HtmlContent += '</div>';
+					HtmlContent += '<div class="Nome_Roteiro">';
+					if(roteiroNome.length>50){
+						HtmlContent += roteiroNome.substr(0,50)+'...'; 
+					}else{
+						HtmlContent += roteiroNome;
+					}
+								
+					HtmlContent += '</div>';
+					HtmlContent += '</div>';
+					HtmlContent += '</div>';
 					
 					ContadorPA++;
 
@@ -286,7 +292,11 @@ function CarregaServicoProducaoAluno()
 					HtmlContent += apresentacao;
 					HtmlContent += '</div>';
 					HtmlContent += '<div class="Nome_Roteiro">';
-					HtmlContent += dataProducaoAluno[a].roteiro.nome;
+					if(roteiroNome.length>50){
+						HtmlContent += roteiroNome.substr(0,50)+'...'; 
+					}else{
+						HtmlContent += roteiroNome;
+					}
 					HtmlContent += '</div>';
 					HtmlContent += '</div>';
 					HtmlContent += '</div>';
@@ -371,9 +381,9 @@ function CarregarRotina() {
 function rotinaMudarDia(quanto) {
 
 	horarios.forEach(function(horario) {
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("Carregando")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("Carregando")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("Carregando")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("...")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("...")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("...")
             })
 
 	diaHoje = (diaHoje + quanto)
@@ -417,7 +427,7 @@ function CarregarMural() {
 
 		},
 		error: function (a, status, error) {
-			console.log(stats + " /// " + error)
+			console.log(status + " /// " + error)
 		}
 	});	
 };
