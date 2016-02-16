@@ -86,7 +86,8 @@
 
 <script>
 function alterarSenha(){    
-    var user = localStorage.getItem("login");
+    var objetoUsuario = JSON.parse(localStorage.getItem("objetoUsuario"));
+    var user = objetoUsuario.login
     var senhaAtu = $("#senhaAtu").val();
     var senha = $("#senhaNova").val();
     var senhaNova = $("#senhaConfirma").val();
