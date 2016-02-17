@@ -46,8 +46,10 @@ $('#frmCadastroAluno').click(function(){selecao();});
 
 
 function selecao(){
-	var perfil = $("#perfil").val(); // recebe o valor do elemento de ID estado        
+	var perfil = $("#perfil").val(); // recebe o valor do elemento de ID estado
+	alert(perfil);
 	if(perfil==1){
+		
 		$("#linha4").removeClass("ocultar");
 		$("#linha5").removeClass("ocultar");
 		$("#linha8").removeClass("ocultar");
@@ -70,6 +72,7 @@ function selecao(){
 	else if (perfil == 2){
 		$("#linha4").addClass("ocultar");
 		$("#linha5").addClass("ocultar");
+		$("#linha8").addClass("ocultar");
 		$("#linha6").removeClass("ocultar");
 		$("#linha7").addClass("ocultar");
 		$("#buscaProfessor").removeClass("ocultar");
