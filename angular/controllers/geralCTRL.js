@@ -52,11 +52,17 @@ app.controller('geralCTRL',function($scope,$http){
 			case "Aluno":
 				var dadosAlunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));			
 				var alunoNomeAno = abreviaNome(dadosUsuario.aluno.nome)+" | "+dadosAlunoVariavel.anoEstudo.ano+"º ano";
-								
+
 				$scope.usuarioCabecalho = alunoNomeAno;
 				$scope.usuarioFoto = dadosUsuario.aluno.fotoAluno;
 				$scope.usuarioNamePagina = "Área do Aluno";
-				$scope.usuarioPagina = "areaAluno.html";
+
+				if(dadosAlunoVariavel.anoEstudo.ano <= 2){
+					$scope.usuarioPagina = "areaAlunoAlfabetizacao.html";
+				}else{
+					$scope.usuarioPagina = "areaAluno.html";
+				}
+
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				

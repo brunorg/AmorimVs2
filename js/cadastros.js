@@ -47,7 +47,6 @@ $('#frmCadastroAluno').click(function(){selecao();});
 
 function selecao(){
 	var perfil = $("#perfil").val(); // recebe o valor do elemento de ID estado
-	alert(perfil);
 	if(perfil==1){
 		
 		$("#linha4").removeClass("ocultar");
