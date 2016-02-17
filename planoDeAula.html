@@ -6,38 +6,38 @@
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
 
 		<!--Style-->
-		<link rel="stylesheet" type="text/css" href="css/style.css" />	
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
 		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
         <link rel="stylesheet" type="text/css" href="css/planoDeAula.css" />
         <link rel="stylesheet" type="text/css" href="css/oficinas_vs2.css" />
         <!--Fim Style-->
-        
+
         <!--Script JS-->
-        <script type="text/javascript" src="js/path.js"></script>        
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>        
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        
+
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
       	<script src="js/jquery-ui.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-              
-        <script type="text/javascript" src="js/funcoes.js"></script>       
+
+        <script type="text/javascript" src="js/funcoes.js"></script>
         <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-        <script type="text/javascript" src="js/calendario.js"></script>        
+        <script type="text/javascript" src="js/calendario.js"></script>
 		<script type="text/javascript" src="js/PlanoDeAula.js"></script>
-         
+
 		<script src="js/jquery.secret-source.min.js"></script>
-		<script src="js/bjqs-1.3.min.js"></script> 
+		<script src="js/bjqs-1.3.min.js"></script>
 		<script>
             $(document).ready(function($) {
 				$('#banner-fade').bjqs({
@@ -46,9 +46,9 @@
 					responsive  : true
 				});
             });
-         </script>    
+         </script>
          <!--Fim JS-->
-        
+
 	</head>
 
 	<body ng-app="app">
@@ -57,7 +57,7 @@
             <div>
                 <div id="Cabecalho_Menu_Area">
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
-                    <div id="Cabecalho_Menu_Trocar_Oficina" ng-show="mostra"> 
+                    <div id="Cabecalho_Menu_Trocar_Oficina" ng-show="mostra">
                     	<a>{{oficinaAtiva}}<span id="trocarOficina" class="up">&nbsp;</span></a> |
                     </div>
                     <div id="box_oficinas" ng-repeat="oficina in oficinaHTML">
@@ -67,18 +67,18 @@
                             </p>
                       	</div>
                     </div>
-                    <div id="Cabecalho_Menu_Area_Menu2">                    	
+                    <div id="Cabecalho_Menu_Area_Menu2">
                         <a id="senha" onClick="atualizarCadastroModal('professor');">Atualizar Cadastro</a> |
                         <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> |
                         <a href="javascript:history.back()">Voltar</a> |
                         <a id="logout" href="#" ng-click="logout()">Sair</a>
-                    </div>                    
+                    </div>
                 </div>
                 <!--Perfil do usuário, neste caso, o aluno-->
                 <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
                     <div id="Cabecalho_Perfil_Area_Foto_Content">
                         <!--Foto do usuário, neste caso, do aluno-->
-                        <div id="Cabecalho_Perfil_Area_Foto">                        	
+                        <div id="Cabecalho_Perfil_Area_Foto">
                         	<img id='_foto' src='{{usuarioFoto}}'/>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 </div>
             </div>
 			<div id="Conteudo_Area">
-                    <!--Coluna a esquerda-->    
+                    <!--Coluna a esquerda-->
                     <div class="Conteudo_Coluna" id="Content_lateral">
                         <!--Menu lateral-->
                         <div id="Content_lateral_Menu">
