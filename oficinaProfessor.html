@@ -13,28 +13,28 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<!--Fim Style-->
-		
+
 		<!--Script JS-->
 		<script type="text/javascript" src="js/path.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>        
+		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="js/jquery-latest.js"></script>
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>   
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui.js"></script>
 
-		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>        
+		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-		
+
 		<script type="text/javascript" src="js/funcoes.js"></script>
 		<script type="text/javascript" src="js/autenticador.js"></script>
 		<script type="text/javascript" src="js/oficinaProfessor.js"></script>
-						
+
 		<script type="text/javascript" src="angular/angular.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
 		<script type="text/javascript" src="angular/app/app.js"></script>
 		<script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-		<script type="text/javascript" src="js/calendario.js"></script>              
+		<script type="text/javascript" src="js/calendario.js"></script>
 		<!--Fim JS-->
 
 	</head>
@@ -45,7 +45,7 @@
 			<div>
 				<div id="Cabecalho_Menu_Area">
                     <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
-                    <div id="Cabecalho_Menu_Trocar_Oficina"> 
+                    <div id="Cabecalho_Menu_Trocar_Oficina">
                     	<a>{{oficinaAtiva}}<span id="trocarOficina" class="up">&nbsp;</span></a> |
                     </div>
                     <div id="box_oficinas" ng-repeat="oficina in oficinaHTML">
@@ -55,18 +55,18 @@
                             </p>
                       	</div>
                     </div>
-                    <div id="Cabecalho_Menu_Area_Menu2">                    	
+                    <div id="Cabecalho_Menu_Area_Menu2">
                         <a id="senha" onClick="atualizarCadastroModal('professor');">Atualizar Cadastro</a> |
                         <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> |
                         <a href="javascript:history.back()">Voltar</a> |
                         <a id="logout" href="#" ng-click="logout()">Sair</a>
-                    </div>                    
+                    </div>
                 </div>
 				<!--Perfil do usuário, neste caso, o aluno-->
 				<div id="Cabecalho_Perfil_Area" ng-init="usuario()">
 					<div id="Cabecalho_Perfil_Area_Foto_Content">
 						<!--Foto do usuário, neste caso, do aluno-->
-						<div id="Cabecalho_Perfil_Area_Foto">                           
+						<div id="Cabecalho_Perfil_Area_Foto">
 							<img id='_foto' src='{{usuarioFoto}}'/>
 						</div>
 					</div>
@@ -77,11 +77,11 @@
 				</div>
 			</div>
 			<div id="Conteudo_Area">
-					<!--Coluna a esquerda-->    
-					<div class="Conteudo_Coluna" id="Content_lateral">    
+					<!--Coluna a esquerda-->
+					<div class="Conteudo_Coluna" id="Content_lateral">
 						<!--Menu lateral-->
-						<div id="Content_lateral_Menu">    
-							<div  ng-repeat="menu in menuHTML">                         
+						<div id="Content_lateral_Menu">
+							<div  ng-repeat="menu in menuHTML">
 								<a href="{{menu.href}}">
 									<div class="Content_lateral_Menu_Opcao {{menu.class}}">
 										<div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
@@ -90,8 +90,8 @@
 									</div>
 								</a>
 							</div>
-						</div>      
-						<!--Calendario-->   
+						</div>
+						<!--Calendario-->
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
@@ -110,8 +110,8 @@
 							<span id="abaAgrupamentoDf" class="aba_agrupamento abaAgrupamento">D</span>
 							<span id="abaAgrupamentoEf" class="aba_agrupamento abaAgrupamento">E</span>
 							<span id="abaAgrupamentoFf" class="aba_agrupamento abaAgrupamento">F</span>!-->
-							
-							
+
+
 						</div>
 					</div>
 					<div class="conteudo_principal">
@@ -270,16 +270,16 @@
 							</div>
 						</div>-->
 					</div>
-				</div>                         
-			</div>            
+				</div>
+			</div>
 		</div>
-		<!--Fim Conteudo-->  
+		<!--Fim Conteudo-->
 		<div id="boxMensagemGeral">
 		</div>
 		<div id="boxModaisEdicao">
 		</div>
 		<div class="boxGlobal">
 			<img src="img/loading2.GIF" width="60" height="60" alt=""/>
-		</div>              
+		</div>
 	</body>
 </html>

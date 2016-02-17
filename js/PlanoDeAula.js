@@ -344,67 +344,6 @@ function reSetPlano(ID) {
 	carregarPlano();
 
 }
-//
-//
-//function addHistorico(Inicio, Fim, ID)
-//{
-//
-//	var HtmlConteudo='<p><a onclick="reSetPlano('+ID+');">'+Inicio+' a '+Fim+'</a></p>';
-//	//	DataASerSalva = parseInt(Inicio.substring(3,5));
-//
-//	switch(DataASerSalva)
-//	{
-//
-//		case 1:
-//			$('._janeiro').append(HtmlConteudo);
-//			break;
-//
-//		case 2:
-//			$('._fevereiro').append(HtmlConteudo);
-//			break;
-//
-//		case 3:
-//			$('._marco').append(HtmlConteudo);
-//			break;
-//
-//		case 4:
-//			$('._abril').append(HtmlConteudo);
-//			break;
-//
-//		case 5:
-//			$('._maio').append(HtmlConteudo);
-//			break;
-//
-//		case 6:
-//			$('._junho').append(HtmlConteudo);
-//			break;
-//
-//		case 7:
-//			$('._julho').append(HtmlConteudo);
-//			break;
-//
-//		case 8:
-//			$('._agosto').append(HtmlConteudo);
-//			break;
-//
-//		case 9:
-//			$('._setembro').append(HtmlConteudo);
-//			break;
-//
-//		case 10:
-//			$('._outubro').append(HtmlConteudo);
-//			break;
-//
-//		case 11:
-//			$('._novembro').append(HtmlConteudo);
-//			break;
-//
-//		case 12:
-//			$('._dezembro').append(HtmlConteudo);
-//			break;
-//
-//	}
-//}
 
 function loadHistorico(){
 
