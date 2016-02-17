@@ -505,6 +505,7 @@ th.rotina_dia {
 	font-weight: 500;
 	letter-spacing: .05em;
 	padding: 12px 0;
+	text-transform: uppercase;
 }
 th.seta_anterior {
 	background-image: url(../img/CA2.png);
@@ -530,7 +531,10 @@ th.seta_proximo {
 .tabela_rotina > tbody > tr:nth-child(4) > td:first-child {
 	background-color: #FBB040;
 }
-.tabela_rotina > tbody > tr:nth-child(4) > td:last-child {
+/*.tabela_rotina > tbody > tr:nth-child(4) > td:last-child {
+}*/
+
+.tabela_rotina > tbody > tr > td.recreio {
 	background-color: #FBC93F;
 	width: 80%;
 	padding: 0;
@@ -538,7 +542,9 @@ th.seta_proximo {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto 100%;
+
 }
+
 .tabela_rotina > tbody > tr > td:last-child {
 	font-size: 12px;
 	text-transform: uppercase;

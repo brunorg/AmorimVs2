@@ -42,7 +42,7 @@ switch (usuario){
 	case 'Coordenacao':
 		verificaUsuarioTurtor(dadosUsuario.professor.idprofessorFuncionario);
 		msgNaoVistas(usuarioId);
-		dadosForum(usuarioId);
+		dadosForum(usuarioId);		
 	break;
 	
 	case 'Secretaria':

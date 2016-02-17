@@ -20,7 +20,7 @@ var data = new Date();
 		dia = '0'+dia;
 	}
 
-var dataAtual = Date.UTC(ano, mes, dia);  
+var dataAtual = Date.UTC(ano, mes, dia);
 
 var List = [];
 var confData = '';
@@ -53,22 +53,22 @@ $.ajax({
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function() {
-	
+
 	if (planoAula != ''){
 		carregarPlano();
 	}
-	
+
 	$("body").delegate(".planoPassado","click", function(){
 		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
 		return false;
 	})
-	
+
 	/* Chama a função de edição ao clicar no botão btnSubmit */
   	$("#btnSubmit").click(function () {
 	    editar();
 	});
-	
-	
+
+
 	/*janelas no menu barra plano de estudo "historico e Novo"*/
 	$(".historico").click(function(){
 		$("#box_novo").removeClass("exibir");
@@ -76,7 +76,7 @@ $(document).ready(function() {
 		$(".novo").removeClass("novo_ativo");
 		$(".novo").css("background-color",corForte);
 		$(".historico").toggleClass("historico_ativo");
-		if ( $(".historico").hasClass("historico_ativo") ) {
+		if ($(".historico").hasClass("historico_ativo")) {
 			$(".historico").css("background-color",corMedia);
 		} else {
 			$(".historico").css("background-color",corForte);
@@ -87,21 +87,19 @@ $(document).ready(function() {
 		if($('#box_novo').hasClass("exibir")){
 			$("#box_novo").css("height", "130px");
 			$("#botoes").hide();
-		}				
-		$("#box_historico").removeClass("exibir");
+		}		$("#box_historico").removeClass("exibir");
 		$("#box_novo").toggleClass("exibir");
 		$(".historico").removeClass("historico_ativo");
 		$(".historico").css("background-color",corForte);
 		$(".novo").toggleClass("novo_ativo");
-		if ( $('.novo').hasClass('novo_ativo') ) {
+		if ($('.novo').hasClass('novo_ativo')) {
 			$(".novo").css("background-color",corMedia);
 		} else {
 			$(".novo").css("background-color",corForte);
 		}
-	});	
-	
+	});
+
 	$("#cancelar").click(function(){
-		alert('cancelar');
 		$("#box_novo").removeClass("exibir");
 		$(".novo").removeClass("novo_ativo");
 		$(".novo").css("background-color",corForte);
@@ -112,9 +110,7 @@ $(document).ready(function() {
 	});
 
 	$("#L_Novo_Plano").click(function(){
-		
-			document.getElementsByClassName('novo')[0].click();
-		
+		document.getElementsByClassName('novo')[0].click();
 	});
 
 	$("#enviar").click(function(){
@@ -126,7 +122,7 @@ $(document).ready(function() {
 			mensagem("Data inválida! Verifique os campos!","OK","bt_ok","erro");
 			return false;
 		}
-		
+
 		var dataInicioV = Date.UTC(dataInicio.split("/")[2].toString(), dataInicio.split("/")[1].toString(), dataInicio.split("/")[0].toString());
 		var dataFimV = Date.UTC(dataFim.split("/")[2].toString(), dataFim.split("/")[1].toString(), dataFim.split("/")[0].toString());
 
@@ -143,7 +139,7 @@ $(document).ready(function() {
 		if (erro == true){
 			return false;
 		}else {
-			
+
 			$.ajax({
 				url: path+"PlanoAula/",
 				type: "POST",
@@ -202,7 +198,7 @@ $(document).ready(function() {
 		showOtherMonths:true,
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
-					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
+					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
 
 	$( "#data_fim" ).datepicker({
@@ -232,7 +228,7 @@ $(document).ready(function() {
 		showOtherMonths:true,
 		dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
 		monthNames: ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO',
-					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
+					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
 
 
@@ -250,7 +246,7 @@ $(document).ready(function() {
 
 
 
-	
+
 	$(".Conteudo_Coluna").scroll(function(){
 		$("#box_novo").removeClass("exibir");
 	});
@@ -260,8 +256,9 @@ $(document).ready(function() {
 	$(".Plano_Estudo_Content").scroll(function(){
 		$("#box_novo").removeClass("exibir");
 	});
-	
+
 	loadHistorico();
+	returnOficinaProfessor();
 });
 
 
@@ -269,18 +266,16 @@ $(document).ready(function() {
 function listaObjetivos(idPlanoAula){
 	$.ajax({
 		url: path+"PlanejamentoAula/listarStatus/"+idPlanoAula,
-		type: "GET",		
-		crossDomain: true,		
+		type: "GET",
+		crossDomain: true,
 		success: function(d) {
-		
+
 			htmlContent ='<div class="box_roteiros">';
 			if (d.length > 0){
-				
 				htmlContent +='<div class="Objetivos_Semana_Conteudo_Tarefas_Content">';
 				for(var i=0;i< d.length; i++){
 					htmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas">'
-					
-						htmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas_Numero';
+							htmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas_Numero';
 					if(d[i].status == 2){
 						htmlContent += ' Selected_Tarefas';
 					}else if (d[i].status == 1){
@@ -289,44 +284,40 @@ function listaObjetivos(idPlanoAula){
 						htmlContent += ' Selected_Tarefas finalizado_estado_Objetivo';
 					}
 					htmlContent += '"></div>';
-					
-					htmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas_Texto">'+d[i].objetivo+ '</div> </div>';
+						htmlContent += '<div class="Objetivos_Semana_Conteudo_Tarefas_Texto">'+d[i].objetivo+ '</div> </div>';
 				}
 				htmlContent += '</div>'
-				
 			}else{
 				htmlContent +='<div class="Objetivos_Semana_Conteudo_Tarefas_Content">Nenhum objetivo planejado!!</div>';
 			}
 			htmlContent += '</div>'
-				
 			$(".Plano_Estudo_Content_Planejamento_Content").html(htmlContent);
-			
+
 			return false;
-					
-		}
+			}
 	});
 }
 
-function editar() {	
+function editar() {
 
 	var DF = $('#dataFim').val();
 	var DI = $('#dataInicio').val();
-	
+
 	$.ajax({
 		url: path+"PlanoAula/",
-		type: "POST",		
-		crossDomain: true,		
+		type: "POST",
+		crossDomain: true,
 		data: "id="+$("#id").val()+"&action=update&data_ini="+DI+"&objetivos="+$('#objetivo').val()+"&idBlog=&tarefa_casa="+$('#tarefaDeCasa').val()+"&registro_atividade="+$("#regAtividade").val()+"&data_fim="+DF+"&idProfessor="+professorID,
 		beforeSend:function(){
-			loading("inicial");	
+			loading("inicial");
 		},
 		success: function(d) {
 			loading("final");
-			mensagem("Editado com sucesso!","OK","bt_ok","sucesso"); 
-			setTimeout(function(){ 
+			mensagem("Editado com sucesso!","OK","bt_ok","sucesso");
+			setTimeout(function(){
 				$("#boxMensagemGeral").css("display","none");
 			}, 5000);
-			
+
 		}
 	});
 }
@@ -342,13 +333,13 @@ function reSetPlano(ID) {
 			planoAula = data;
 		}
 	});
-	
+
 	$("#box_novo").removeClass("exibir");
-	$("#box_historico").toggleClass("exibir");
+	$("#box_historico").removeClass("exibir");
 	$(".novo").removeClass("novo_ativo");
 	$(".novo").css("background-color",corForte);
-	$(".historico").toggleClass("historico_ativo");
-	
+	$(".historico").removeClass("historico_ativo");
+
 	$('.dadosObjetivos').empty();
 	carregarPlano();
 
@@ -359,56 +350,55 @@ function reSetPlano(ID) {
 //{
 //
 //	var HtmlConteudo='<p><a onclick="reSetPlano('+ID+');">'+Inicio+' a '+Fim+'</a></p>';
-//					
-//	DataASerSalva = parseInt(Inicio.substring(3,5));
-//	
+//	//	DataASerSalva = parseInt(Inicio.substring(3,5));
+//
 //	switch(DataASerSalva)
 //	{
-//		
+//
 //		case 1:
 //			$('._janeiro').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 2:
 //			$('._fevereiro').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 3:
 //			$('._marco').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 4:
 //			$('._abril').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 5:
 //			$('._maio').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 6:
 //			$('._junho').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 7:
 //			$('._julho').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 8:
 //			$('._agosto').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 9:
 //			$('._setembro').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 10:
 //			$('._outubro').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 11:
 //			$('._novembro').append(HtmlConteudo);
 //			break;
-//		
+//
 //		case 12:
 //			$('._dezembro').append(HtmlConteudo);
 //			break;
@@ -417,7 +407,7 @@ function reSetPlano(ID) {
 //}
 
 function loadHistorico(){
-	
+
 	var HtmlConteudo;
 	var DataASerSalva = 0;
 
@@ -427,128 +417,114 @@ function loadHistorico(){
 
 	    url: path+"PlanoAula/ProfessorData/" + professorID,
     }).then(function(data) {
-    	
-    $('.historicoData').remove();
-    var comprimento = 4;
-    	
-	for(var a=0; a < data.length; a++){
-			HtmlConteudo = "";
 
-			HtmlConteudo+='<p class="historicoData"><a onclick="reSetPlano('+data[a].idplano_aula+');">'+data[a].data_ini.substring(8,10)+'/'+(data[a].data_ini.substring(5,7))+' a '+data[a].data_fim.substring(8,10)+'/'+(data[a].data_fim.substring(5,7))+'</a></p>';
-				
-			DataASerSalva = parseInt(data[a].data_ini.substring(5,7));
-				
-			switch(DataASerSalva)
-			{
-				
-				case 1:
-					$('._janeiro').append(HtmlConteudo);
-					if ($('._janeiro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 2:
-					$('._fevereiro').append(HtmlConteudo);
-					if ($('._fevereiro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 3:
-					$('._marco').append(HtmlConteudo);
-					if ($('._marco .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 4:
-					$('._abril').append(HtmlConteudo);
-					if ($('._abril .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 5:
-					$('._maio').append(HtmlConteudo);
-					if ($('._maio .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 6:
-					$('._junho').append(HtmlConteudo);
-					if ($('._junho .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 7:
-					$('._julho').append(HtmlConteudo);
-					if ($('._julho .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 8:
-					$('._agosto').append(HtmlConteudo);
-					if ($('._agosto .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 9:
-					$('._setembro').append(HtmlConteudo);
-					if ($('._setembro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 10:
-					$('._outubro').append(HtmlConteudo);
-					if ($('._outubro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 11:
-					$('._novembro').append(HtmlConteudo);
-					if ($('._novembro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-				
-				case 12:
-					$('._dezembro').append(HtmlConteudo);
-					if ($('._dezembro .historicoData').length > comprimento)
-					{
-						comprimento++;
-						$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
-					}
-					break;
-			}
+	    $('.historicoData').remove();
+	    var comprimento = 4;
+
+		for(var a=0; a < data.length; a++){
+				HtmlConteudo = "";
+
+				HtmlConteudo+='<p class="historicoData"><a onclick="reSetPlano('+data[a].idplano_aula+');">'+data[a].data_ini.substring(8,10)+'/'+(data[a].data_ini.substring(5,7))+' a '+data[a].data_fim.substring(8,10)+'/'+(data[a].data_fim.substring(5,7))+'</a></p>';
+				DataASerSalva = parseInt(data[a].data_ini.substring(5,7));
+				switch(DataASerSalva)
+				{
+					case 1:
+						$('._janeiro').append(HtmlConteudo);
+						if ($('._janeiro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 2:
+						$('._fevereiro').append(HtmlConteudo);
+						if ($('._fevereiro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 3:
+						$('._marco').append(HtmlConteudo);
+						if ($('._marco .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 4:
+						$('._abril').append(HtmlConteudo);
+						if ($('._abril .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 5:
+						$('._maio').append(HtmlConteudo);
+						if ($('._maio .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 6:
+						$('._junho').append(HtmlConteudo);
+						if ($('._junho .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 7:
+						$('._julho').append(HtmlConteudo);
+						if ($('._julho .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 8:
+						$('._agosto').append(HtmlConteudo);
+						if ($('._agosto .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 9:
+						$('._setembro').append(HtmlConteudo);
+						if ($('._setembro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 10:
+						$('._outubro').append(HtmlConteudo);
+						if ($('._outubro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 11:
+						$('._novembro').append(HtmlConteudo);
+						if ($('._novembro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+					case 12:
+						$('._dezembro').append(HtmlConteudo);
+						if ($('._dezembro .historicoData').length > comprimento)
+						{
+							comprimento++;
+							$("#box_historico").css("height", (parseInt($("#box_historico").css("height").split("p")[0]) + 28) + "px");
+						}
+						break;
+				}
 		}
 
 	});
@@ -566,11 +542,11 @@ function RetornaProfessorPlano()
 			async:false,
 			crossDomain: true,
 			success: function(d) {
-			
+
 				retorno = d.idprofessorFuncionario;
 			}
 		});
-	} else 
+	} else
 	{
 		retorno = base64_decode(GetURLParameter('ID'));
 	}
@@ -578,33 +554,32 @@ function RetornaProfessorPlano()
 }
 
 function verificaData(dataBr){
-	
-	 if(dataBr.length!=10) return false;   
 
-	    var dia         = dataBr.substr(0,2);   
-	    var barra1      = dataBr.substr(2,1);   
-	    var mes         = dataBr.substr(3,2);   
-	    var barra2      = dataBr.substr(5,1);   
-	    var ano         = dataBr.substr(6,4);   
-	    if(dataBr.length!=10||barra1!="/"||barra2!="/"||isNaN(dia)||isNaN(mes)||isNaN(ano)||dia>31||mes>12)return false;   
-	    if((mes==4||mes==6||mes==9||mes==11) && dia==31)return false;   
-	    if(mes==2 && (dia>29||(dia==29 && ano%4!=0)))return false;   
-	    if(ano < 1900)return false;   
-	    return true;   
-  
+	 if(dataBr.length!=10) return false;
+
+	    var dia         = dataBr.substr(0,2);
+	    var barra1      = dataBr.substr(2,1);
+	    var mes         = dataBr.substr(3,2);
+	    var barra2      = dataBr.substr(5,1);
+	    var ano         = dataBr.substr(6,4);
+	    if(dataBr.length!=10||barra1!="/"||barra2!="/"||isNaN(dia)||isNaN(mes)||isNaN(ano)||dia>31||mes>12)return false;
+	    if((mes==4||mes==6||mes==9||mes==11) && dia==31)return false;
+	    if(mes==2 && (dia>29||(dia==29 && ano%4!=0)))return false;
+	    if(ano < 1900)return false;
+	    return true;
+
 }
 
 //----------------------------------------------------------------------------
 
 function returnOficinaProfessor() {
 	var dataOficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
- 
+
 	nomeOficina = dataOficina.oficina.tipoOficina.nome;
 	corForte 	= dataOficina.oficina.tipoOficina.cor.forte;
 	corMedia	= dataOficina.oficina.tipoOficina.cor.medio;
 	corFraca	= dataOficina.oficina.tipoOficina.cor.fraco;
-	nomeOficina	= dataOficina.oficina.nome.split(' ',1);
-	
+
 	$('.Plano_Estudo_Content_Titulo').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
 	$('.Bg_Imagem_Calendario').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
 	$('.Bg_Imagem_Planejamento').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
@@ -616,7 +591,7 @@ function returnOficinaProfessor() {
 	$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2').css('color',dataOficina.oficina.tipoOficina.cor.forte);
 	$('#box_novo').css('border', '1px solid '+dataOficina.oficina.tipoOficina.cor.forte);
 	$('#box_historico').css('border', '1px solid '+dataOficina.oficina.tipoOficina.cor.forte);
-	$('.titulo').text('Plano de aula | Oficina de ' + nomeOficina);
+	$('.titulo').text('Plano de aula | Oficina de ' + dataOficina.oficina.tipoOficina.nome);
 	$('.ui-datepicker-trigger').css('background-color',dataOficina.oficina.tipoOficina.cor.medio);
 	$('.ui-datepicker-title').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
 	$('.ui-widget-header').css('background-color',dataOficina.oficina.tipoOficina.cor.forte);
@@ -633,7 +608,7 @@ function trataDatas(data_ini, data_fim){
 	diaFim = dataFim.substr(8)
 	anoInicio = dataInicio.substr(0,4)
 	anoFim = dataFim.substr(0,4)
-	
+
 	if (mesInicio == mesFim){
 		mes = retornaMesByNumero(parseInt(mesFim));
 		if (diaInicio != diaFim){
@@ -653,20 +628,20 @@ function trataDatas(data_ini, data_fim){
 }
 
 function carregarPlano(){
-	
+
 	var dataN = Date.UTC(planoAula[0].data_fim.split("-")[0].toString(), planoAula[0].data_fim.split("-")[1].toString(), planoAula[0].data_fim.split("-")[2].toString());
 	if (dataN >= dataAtual) confEditar = true;
 	else confEditar = false;
-	
+
 	trataDatas(planoAula[0].data_ini, planoAula[0].data_fim);
-	
-	$('#divObjetivos').append("<textarea name='objetivo' id='objetivo' >"+planoAula[0].objetivos+"</textarea>");
-	$('#divTarefas').append("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula[0].tarefa_casa+"</textarea>");
-	$('#divRegAtividade').append("<textarea name='regAtividade' id='regAtividade' >"+planoAula[0].registro_atividade+"</textarea>");
+
+	$('#divObjetivos').html("<textarea name='objetivo' id='objetivo' >"+planoAula[0].objetivos+"</textarea>");
+	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula[0].tarefa_casa+"</textarea>");
+	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula[0].registro_atividade+"</textarea>");
 	if (confEditar == true) {
 		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula[0].idplano_aula);
 		$('#roteiros').removeClass('dataPassada');
-		$('#btnSubmit').show();	
+		$('#btnSubmit').show();
 	}else {
 		$('#roteiros').attr('href','#');
 		$('#roteiros').addClass('dataPassada');
@@ -678,21 +653,18 @@ function carregarPlano(){
 	$('#id').val(planoAula[0].idplano_aula);
 	$('#dataInicio').val(planoAula[0].data_ini);
 	$('#dataFim').val(planoAula[0].data_fim);
-	
+
 }
-$(document).ready(function(){
-	returnOficinaProfessor();
-});
 
 function estilizarCalendario () {
-	$('#Container + div#ui-datepicker-div .ui-widget-header').css('background-color', corForte);
-	$('#Container + div#ui-datepicker-div .ui-datepicker-title').css('background-color', corMedia);
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('color', corForte);
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('background-color', '#DDD8D8');
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('background-color', '#DDD8D8');
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('color', corForte);
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > thead > tr').css('background-color', '#DDD8D8');
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr > td.ui-datepicker-week-end ').css('background-color', '#DDD8D8');
-	$('#Container + div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr').css('background-color', corFraca);
-	$('#Container + div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
+	$('div#ui-datepicker-div .ui-widget-header').css('background-color', corForte);
+	$('div#ui-datepicker-div .ui-datepicker-title').css('background-color', corMedia);
+	$('div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('color', corForte);
+	$('div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th').css('background-color', '#DDD8D8');
+	$('div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('background-color', '#DDD8D8');
+	$('div#ui-datepicker-div .ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end').css('color', corForte);
+	$('div#ui-datepicker-div .ui-datepicker-calendar > thead > tr').css('background-color', '#DDD8D8');
+	$('div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr > td.ui-datepicker-week-end ').css('background-color', '#DDD8D8');
+	$('div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr').css('background-color', corFraca);
+	$('div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
 }
