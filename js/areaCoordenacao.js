@@ -389,7 +389,7 @@ function MuralJeiff() {
 
 	self.save = function(idPost) {
 		
-		if($('#textareaMuralJeiff').val()!="" && $('#jeiffDatepicker').val()!=""){
+		if($('#textareaMuralJeiff').val()!="" && $('#jeiffDatepicker').val()!="" && $('#ataJeiff').val()){
 
 		var nomeArquivo = $('#ataJeiff').val();
 
@@ -408,6 +408,7 @@ function MuralJeiff() {
 						data: formData,
 						success: function(d) {
 							mensagem("Salvo com sucesso!","OK","bt_ok","sucesso");
+							self.refresh()
 						},error: function() {
 							mensagem("Erro ao enviar arquivo!","OK","bt_ok","erro");
 							$('.blackPainel').hide()
@@ -416,9 +417,11 @@ function MuralJeiff() {
 				}
 			});
 
+		
 		}else{
-			mensagem("Favor preencher todos os campos!","OK","bt_ok","erro");
+			mensagem("Favor preencher todos os campos e adicionar um arquivo.","OK","bt_ok","erro");
 		}
+
 
     };
 
