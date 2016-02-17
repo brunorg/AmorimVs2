@@ -169,7 +169,7 @@ table.grupoTabela tr{
 .grupoNomeAluno{
 	float: left;
     height: 38px;
-    padding: 3.5% 2px;
+    padding: 3px 2px;
     width: 72%;
 }
 .grupoNomeAluno span{
