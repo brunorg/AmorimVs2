@@ -170,6 +170,7 @@ function salvarAgrupamento() {
                         salvaAlunoAgrupamento(idAgrupamento, alunoId);
                     }
                     mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso"); 
+                    limparAgrupamento();
                 },
                 complete: function() {
                     loading("final");
@@ -218,4 +219,11 @@ function getIdAnoLetivo () {
     });
 
     return idAnoLetivo;
+}
+
+function limparAgrupamento(){
+    $("#Area_Alunos").empty();
+    $("#cicloGrupo").val("0");
+    $("#periodoGrupo").val("0");
+    $("#nomeGrupo").val("");
 }

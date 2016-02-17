@@ -7,6 +7,7 @@ $(document).ready(function(){
 		containerAtivo = $(this).attr('id');
 		$('#container_'+containerAtivo).addClass('selecionado');
 		limparCriarTutoria(); // Função responsável por limpar cadastro de tutorias ao navegar pelas abas.
+		limparCriarAgrupamento(); // Função responsável por limpar cadastro de agrupamentos ao navegar pelas abas.
 	}); 
 
 	
@@ -69,5 +70,14 @@ function limparCriarTutoria(){
     	$(".Area_Select_Tutoria").show();
     	$("#listarAluno").show();
     	$("#listarSelect").hide();
+	}
+}
+
+function limparCriarAgrupamento(){
+	if($(".btn_abas").hasClass("bt_Ativo")){
+		$("#Area_Alunos").empty();
+		$("#cicloGrupo").val("0");
+		$("#periodoGrupo").val("0");
+		$("#nomeGrupo").val("");
 	}
 }

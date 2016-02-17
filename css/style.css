@@ -1368,9 +1368,9 @@ font-family: "proxima-nova",sans-serif;
     	float: right;
 	}
 
-	.content_Menu_Coordenacao {
-		width: 91%;
-	}
+	.Content_Menu_Net{
+  		width: 71% !important;
+ 	}
 
 	#content_central {
 		position: absolute;
@@ -1932,6 +1932,11 @@ font-family: "proxima-nova",sans-serif;
 		right: 4px;
 		padding: 20px 14px 36px 36px;
 	}
+
+	.Content_Menu_Net {
+  		width: 71% !important;
+ 	}
+ 	
 	#content_central_2{
 		position: absolute;
 		width: 27%;

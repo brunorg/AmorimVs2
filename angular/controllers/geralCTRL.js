@@ -78,6 +78,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'forum'}
 				];
+
+				$('#Content_lateral').addClass('Content_Menu_Net');
+
 			break;
 
 			case "Professor":
@@ -155,6 +158,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$("#bt_Inserir").show();
 				$("#cad_observacoes").remove();
 				$("#box_geral_observacao").css("height","308px");
+				$('#Content_lateral').addClass('Content_Menu_Net');
 			break;
 
 			case "Secretaria":

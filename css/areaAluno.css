@@ -178,6 +178,7 @@ div[class*="box_col"]:last-of-type {
 	font-size: 10px;
 	text-align: left;
 	font-weight: normal;
+	text-transform: uppercase;
 }
 
 .Nome_Roteiro::first-line { line-height: 1em; }
