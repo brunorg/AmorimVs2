@@ -288,6 +288,16 @@ select[value="0"]{
     padding-top: 5px;
     padding-bottom: 5px;
 }
+.postCorpo > p {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 400;
+    line-height: 1.2em;
+}
+.postCorpo > p:last-child {
+    margin-bottom: 0;
+}
 .postDestinatario{
     color: #CCCCCC;
     font-size: 10px;

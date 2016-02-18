@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $('.postContainer2').mCustomScrollbar({
         axis:"y"
-    });	
+    });
 });
 
 function adicionarBarraRolagem () {
@@ -22,7 +22,7 @@ function adicionarBarraRolagem () {
 
 function carregarDados () {
     carregaPostsBlog();
-    
+
 }
 
 function atribuirEventos () {
@@ -141,7 +141,7 @@ function clickPostagens() {
         $("#conteudoPostagens").html("");
         $("#selectOficina select").html("");
         $("#tituloPostagens").html("");
-        $("#postagemImagem").html(""); 
+        $("#postagemImagem").html("");
 
         $("#postagensConteudo").hide();
         $("#novoPostagens").hide();
@@ -150,7 +150,7 @@ function clickPostagens() {
         $("#postagemAction").val("create")
 
         carregaOficinaPostagens();
-        
+
     });
 }
 
@@ -179,7 +179,7 @@ function imagemPostagemTexto () {
         FR.onload = function(e) {
             $("#imagemArquivo").val(e.target.result);
         };
-        Arquivo = this.files[0];   
+        Arquivo = this.files[0];
 
     });
 }
@@ -187,11 +187,11 @@ function imagemPostagemTexto () {
 function transformarMiniatura(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        
+
         reader.onload = function (e) {
             $('#miniaturaDaFoto').attr('src', e.target.result);
         }
-        
+
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -219,7 +219,7 @@ function removerImagemPostagem(id) {
 }
 
 function novaPostagem () {
-    
+
     var conteudo = $("#conteudoPostagens").val();
     var oficina = $("#selectOficina select").val();
     var agrupamento = $("#selectAgrupamento select").val();
@@ -284,7 +284,7 @@ function novaPostagem () {
                 },
                 complete: function() {loading("final");}
             });
-        } 
+        }
 
         carregaPostsBlog()
     }
@@ -294,7 +294,7 @@ function novaPostagem () {
     } else {
         mensagem("O arquivo deve ser uma imagem.","OK","bt_ok","erro");
     }
-    
+
 }
 
 function carregaPostsBlog () {
@@ -309,10 +309,10 @@ function carregaPostsBlog () {
         crossDomain: true,
         type: "GET",
         success: function(dataPosts) {
-            for (var i = dataPosts.length - 1; i >= 0; i--) {
+            for (var i = 0; i < dataPosts.length; i++) {
                 addPost(dataPosts[i]);
             };
-        }     
+        }
     });
 }
 
@@ -321,16 +321,18 @@ function addPost (post) {
 
     var id = post.idblog;
     var titulo = post.titulo;
-    var corpo = post.descricao;
+    var corpo = post.descricao.split("\n");
     var oficina = post.oficina.nome;
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
                             '<div class="postTitulo" id="blogPostTitulo'+id+'">' +
                                 titulo +
                             '</div>' +
-                            '<div class="postCorpo" id="blogPostCorpo'+id+'">'+
-                                corpo + 
-                            '</div>' +
+                            '<div class="postCorpo" id="blogPostCorpo'+id+'">';
+
+    for (var a in corpo) { htmlPosts += "<p>"+corpo[a]+"</p>"; }
+
+    htmlPosts +=            '</div>' +
                             '<div class="postDestinatario" id="blogPostOficina'+id+'">' +
                                 oficina +
                             '</div>'+
@@ -350,6 +352,7 @@ function addPost (post) {
                             '</div>' +
                         '</div>' +
                     '</div>';
+
     $("#mCSB_2_container").prepend(htmlPosts);
 }
 
@@ -376,10 +379,10 @@ function editPost(id) {
         }
     });
 
-    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html()); 
-    $("#selectOficina select").html($("#blogPostOficina"+id).html()); 
-    $("#tituloPostagens").html($("#blogPostTitulo"+id).html()); 
-    //$("#postagemImagem").html(""); 
+    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html());
+    $("#selectOficina select").html($("#blogPostOficina"+id).html());
+    $("#tituloPostagens").html($("#blogPostTitulo"+id).html());
+    //$("#postagemImagem").html("");
 
 
     $("#postagemAction").val("update")
@@ -392,7 +395,7 @@ function deletePost(id) {
 
     var post = document.getElementById("blogPost"+id)
     if (post) {
-        
+
         $.ajax({
             url: path + "Blog",
             async: false,
@@ -431,7 +434,7 @@ function MuralCoordenacao() {
 
     self = this;
 
-    this.desenharPostIndividual = function(mensagem, destinatario){    
+    this.desenharPostIndividual = function(mensagem, destinatario){
         var html =  '<div class="areaPost">'+
                         '<div class="post postMedio">'+
                             '<div class="postCorpo">'+
@@ -439,12 +442,12 @@ function MuralCoordenacao() {
                             '</div>'+
                         '</div>'+
                     '<div>'
-                                
-        $("#muralCoordenacao").prepend(html);    
+
+        $("#muralCoordenacao").prepend(html);
     }
 
     this.desenharPosts = function() {
-    
+
         $.ajax({
             url: path + "MuralCoordenacao/",
             async: false,
@@ -512,13 +515,13 @@ function Mural() {
         else if (grupo == "tutoria"){
             $("#oficinaMural").css("display","none");
         }
-        else { 
+        else {
             $("#oficinaMural").css("display","none");
             $("#tutoriaMural").css("display","none");
-        }   
+        }
     }
 
-    this.desenharPostIndividual = function(mensagem, id, lugar){        
+    this.desenharPostIndividual = function(mensagem, id, lugar){
         var html = '<div class="areaPost deletablePost" id="muralPost'+id+'">'+
                         '<div class="post postMedio">'+
                             mensagem+
@@ -537,9 +540,9 @@ function Mural() {
                                 '</div>'+
                             '</div>  '+
                         '</div>'+
-                    '</div>';   
-                                
-        return $(lugar).prepend(html);    
+                    '</div>';
+
+        return $(lugar).prepend(html);
     }
 
     this.enviarMsgGrupo = function() {
@@ -548,7 +551,7 @@ function Mural() {
         var parametros,mensagemMural;
         var temMsgMural = $("#muralTextMsg").val();
         if(grupo == "oficina"){
-            var grupoMuraloficina = $("#grupoMuralOficina").val();  
+            var grupoMuraloficina = $("#grupoMuralOficina").val();
             if(grupoMuraloficina == "todos"){
                 parametros = "&agrupamento=0&oficina="+oficina[0].oficina.idoficina;
             }else{
@@ -556,14 +559,14 @@ function Mural() {
             }
             mensagemMural = $("#muralTextMsg").val();
             valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+parametros+"&tutoria=0&grupo=0";
-            
-        }else if(grupo == "tutoria"){       
-            var grupoMuralTutoria = $("#grupoMuralTutoria").val();      
+
+        }else if(grupo == "tutoria"){
+            var grupoMuralTutoria = $("#grupoMuralTutoria").val();
 
             parametros = "&tutoria=1";
 
             mensagemMural = $("#muralTextMsg").val();
-            valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;     
+            valores = "&mensagem="+mensagemMural+"&idProfessor="+professorId+"&agrupamento=0&oficina=0"+parametros;
         }
         if (temMsgMural) {
             $.ajax({
@@ -599,7 +602,7 @@ function Mural() {
     }
 
     this.desenharPosts = function(lugar) {
-    
+
         $.ajax({
             url: path + "Mural/ListarProfessor/"+professorId,
             async: false,
@@ -607,9 +610,7 @@ function Mural() {
             type: "GET",
             success: function(retornoAjax){
 
-                console.log(retornoAjax)
-
-                $('#postMural #mCSB_4 #mCSB_4_container').html(""); 
+                $('#postMural #mCSB_4 #mCSB_4_container').html("");
 
 
 
@@ -641,14 +642,14 @@ function Mural() {
 
     }
 
-    
+
 
     this.editarPost = function(idPost) {
-        
+
         var msg;
         this.open();
         $("#primeiroSelect").hide();
-        
+
         //pega mensagem anterior para editar
         $.ajax({
             url: path + "Mural/ListarProfessor/"+professorId,
@@ -660,15 +661,15 @@ function Mural() {
                 for (var i = retornoAjax.length - 1; i >= 0; i--) {
                     if (retornoAjax[i]["idmural"] == idPost) {
 
-                        var mensagemAnterior = retornoAjax[i]["mensagem"] 
-                        
+                        var mensagemAnterior = retornoAjax[i]["mensagem"]
+
                         $("#containerTextAreaMural").html('<textarea class="inputArea inputMensagem mensagemMedia" id="muralTextMsg" placeholder="Digite aqui a mensagem.">'+mensagemAnterior+'</textarea>')
 
                         $("#enviarMsgGrupo").unbind("click")
                         $("#enviarMsgGrupo").click(function() {
 
                             var mensagemMural = $(".mensagemMedia").val();
-                            
+
                             //envia mensagem nova
                             $.ajax({
                                 url: path + "Mural",
@@ -696,7 +697,7 @@ function Mural() {
     this.deletarPost = function(idPost) {
         var post = document.getElementById("muralPost"+idPost)
         if (post) {
-            
+
             $.ajax({
                 url: path + "Mural",
                 async: false,
@@ -730,7 +731,7 @@ function iniciarMural() {
 
     $("#cancelarMural").click(function() {
         mural.close()
-    }); 
+    });
 
     $("#grupoMural").change(function() {
         mural.atualizarListaGrupos()
@@ -767,12 +768,11 @@ function CarregarRotina() {
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
             })
 
-            console.log(result)
             result.forEach(function(rotina){
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
 
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento)  
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento)
 
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
@@ -782,7 +782,7 @@ function CarregarRotina() {
         error: function (a, status, error) {
             console.log(status + " /// " + error)
         }
-    }); 
+    });
 
 }
 
