@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta charset="UTF-8" />
 <title>Plataforma Amorim</title>
@@ -28,20 +28,20 @@
 <!--Carrega os dados do usuario logado-->
 
 <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+<script type="text/javascript" src="js/visualizarDados.js"></script>
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-<script type="text/javascript" src="js/visualizarDados.js"></script>
+
 
 <script>
-	$(document).ready(function () {		
-		if(($("#editar").val()!="")){			
-			listadados();		
-		}			
-	});	
-	
+	$(document).ready(function () {
+		if(($("#editar").val()!="")){
+			listadados();
+		}
+	});
+
 </script>
 
 <!--Fim JS-->
@@ -50,50 +50,59 @@
 
 <body>
 	<!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL"> 
-		<!--Cabecalho 1 - Navegação-->
-		<div id="Cabecalho_Menu_Area">
-			<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
-			<div id="Cabecalho_Menu_Area_Menu2">
-					<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-					<a href="javascript:history.back()">Voltar</a> | 
-					<a id="logout" href="#">Sair</a>
-				</div>	
-		</div>
-		<!--Perfil do usuário, neste caso, o aluno-->
-		<div id="Cabecalho_Perfil_Area">
-			<div id="Cabecalho_Perfil_Area_Foto_Content"> 
-				
-				<!--Foto do usuário, neste caso, do aluno-->
-				<div id="Cabecalho_Perfil_Area_Foto"></div>
-			</div>
-			
-			<!--Nome | Serie do usuário-->
-			<div id="Cabecalho_Perfil_Area_Descricao_Content">
-				<div id="Cabecalho_Perfil_Area_Descricao"></div>
-			</div>
-		</div>
-		<div id="Conteudo_Area"> 
-			<!--Coluna a esquerda-->
-			
-			<div class="Conteudo_Coluna" id="Content_lateral"> 
-				
-				<!--Menu lateral-->
-				
-				<div id="Content_lateral_Menu"></div>
-				
-				<!--Calendario-->
-				<div id="Content_lateral_Calendario">
-					<div id="datepicker"></div>
-					<div id="rodape_calendario">
-						<p id="apontar_prof">Apontar presen�a professor</p>
-					</div>
-				</div>
-			</div>
+        <div id="Container" ng-controller="geralCTRL">
+
+            <div>
+                <div id="Cabecalho_Menu_Area">
+                    <div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
+                    <div id="Cabecalho_Menu_Area_Menu2">
+                        <a id="senha" onClick="atualizarCadastroModal('aluno');">Atualizar Cadastro</a> |
+                        <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> |
+                        <a href="javascript:history.back()">Voltar</a> |
+                        <a id="logout" href="#" ng-click="logout()">Sair</a>
+                    </div>
+                </div>
+                <!--Perfil do usuário, neste caso, o aluno-->
+                <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
+                    <div id="Cabecalho_Perfil_Area_Foto_Content">
+                        <!--Foto do usuário, neste caso, do aluno-->
+                        <div id="Cabecalho_Perfil_Area_Foto">
+                            <img id='_foto' src='{{usuarioFoto}}'/>
+                        </div>
+                    </div>
+                    <!--Nome | Serie do usuário-->
+                    <div id="Cabecalho_Perfil_Area_Descricao_Content">
+                        <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div>
+                    </div>
+                </div>
+            </div>
+            <div id="Conteudo_Area">
+                    <!--Coluna a esquerda-->
+                    <div class="Conteudo_Coluna" id="Content_lateral">
+                        <!--Menu lateral-->
+                        <div id="Content_lateral_Menu">
+                            <div  ng-repeat="menu in menuHTML">
+                                <a href="{{menu.href}}">
+                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != 0 && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                        <div ng-if="menu.class== 'forum' && menuInfoF != 0 && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                        <span> {{menu.label}} </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--Calendario-->
+                    <div id="Content_lateral_Calendario">
+                        <div id="datepicker"></div>
+                        <div id="rodape_calendario">
+                            <p id="apontar">Apontar Presença grupo</p>
+                        </div>
+                    </div>
+                </div>
 			<!--Coluna geral central-->
 			<div class="Conteudo_Coluna" id="content_central_fixa">
 				<div id="box_cadastro" style="margin-right: 15px;">
-					<form id="frmCadastroAluno">	
+					<form id="frmCadastroAluno">
                         <div id="linha1" class="linha">
                             <div class="celulaPequena">
                                 <div class="infoP "> Matrícula </div>
@@ -153,7 +162,7 @@
                             <div class="celulaPequena">
                                 <div class="infoP"> Sexo </div>
                                 <div class="infoValueP">
-                                    
+
                                         <input id="sexo" name="sexo" value="" readonly >
                                 </div>
                             </div>
@@ -161,7 +170,7 @@
                                 <div class="infoP"> Etnia </div>
                                 <div class="infoValueP">
                                     <input id="etnia" name="etnia" value="" readonly >
-                                    
+
                                 </div>
                             </div>
                             <div class="celulaPequena">
@@ -203,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div id="linha20" class="linha">
                             <div class="celulaGrande">
                                 <div class="infoG">Nome da Mãe</div>
@@ -220,7 +229,7 @@
                                     <input id="nomePai" name="nomePai" value="" readonly >
                                 </div>
                             </div>
-                        </div>		
+                        </div>
                         <div id="linha8" class="linha">
                             <div id="L10L" class="celulaMeio">
                                 <div class="infoP"> Necessidade especial </div>
@@ -296,7 +305,7 @@
                                     <input id="responsavelTexto" readonly>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <div id="DadosOutroVisualizacao">
                             <div id="linha16" class="linha">
@@ -402,7 +411,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="DadosMaeVisualizacao">		
+                        <div id="DadosMaeVisualizacao">
                             <div id="linha21" class="linha">
                                 <div class="celulaPequena rightMargin">
 									<div class="infoP">Celular Mãe</div>
@@ -493,7 +502,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="DadosPaiVisualizacao">		
+                        <div id="DadosPaiVisualizacao">
                             <div id="linha25" class="linha">
                                 <div class="celulaPequena rightMargin">
 									<div class="infoP">Celular Pai</div>
@@ -594,7 +603,7 @@
 			</div>
 		</div>
 	</div>
-                    
+
     <div id="cadAlunoVar">
     	<div id="alunoVariavel">
         	<div id="linha33" class="linha">
@@ -637,16 +646,16 @@
 					<div class="infoValueP">
 						<input id='programaSocial' readonly>
 					</div>
-				</div>						
+				</div>
             </div>
         </div>
     </div>
                         </form>
                     </div>
 				</div>
-			</div>			
+			</div>
 			<div id="boxMensagemGeral"></div>
-            <div class="boxGlobal"></div>			
+            <div class="boxGlobal"></div>
 			<div id="Evento">
 				<p id="btn_fechar_evento">X</p>
 				<div id="Foto_evento"></div>
