@@ -1,5 +1,5 @@
-
-var path = "http://plataformaamorim.org/WebServicePlataformaAmorimTesteV2/";
+//producao
+var path = "http://177.55.99.90/plataformaAmorimV2/";
 
 function loading(estado) {
     if(estado == "inicial"){

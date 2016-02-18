@@ -30,20 +30,8 @@
 
 $(document).ready(function(){
 	
-	/*$('#hora').timepicker({
-	    hourText: 'Horas',
-	    minuteText: 'Minutos',
-	    showPeriodLabels: false
-	    amPmText: ['AM', 'PM'],
-	    timeSeparator: 'h',
-	    nowButtonText: 'Maintenant',
-	    showNowButton: true,
-	    closeButtonText: 'Fermer',
-	    showCloseButton: true,
-	    deselectButtonText: 'Désélectionner',
-	    showDeselectButton: true
-	});*/
-		
+	$('#hora').mask("99:99");
+	
 	/*alimenta combo tipos de evento*/
 	HtmlContentT = ""; 
     for(var a=0;a<dataTipoEvento.length; a++)

@@ -32,10 +32,11 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+        <script src="js/jquery.maskedinput.js"></script>
+        <script src="js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="js/agenda.js"></script> 
-        <script type="text/javascript" src="js/jquery.ui.timepicker.js"></script>
         <!--Fim JS-->
-        
+    
 	</head>
 
 	<body>
@@ -87,32 +88,69 @@
                 </div>
 
                 <!--Coluna geral central-->			
-                <div class="Conteudo_Coluna" id="content_central_fixa">	                    
-                    <div class="boxAgenda">
-                        <div id="linha6" class="btnForm" style="height: 51px;width: 12%;float: right;">
-                            <div class="celulaPequenaBtn1">
-                                <input type="" id="abrirCaixa" value="Novo" />
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div id="agenda_listados"><!--Listagem de roteiros carregada pelo JS--></div>
-                    </div>
-                    
+                <div class="Conteudo_Coluna" id="content_central_fixa">                  
                     <!--Cadastro eventos-->
                     <form id="frmCadastroEvento">  
                         <input type="hidden" id="Dados_Foto_Aluno" />
                         <input type="file" id="Arquivo_Foto_Aluno" />                    
                         <div id="linha1" class="linhaT">
-                           <div class="celulaMediaT rightMargin">
-                               <div class="infoM "> Tipo </div>
-                                <div class="infoValueM">
+                            <div class="celulaMedia rightMargin">
+                                <div class="infoM "> Título </div>
+                                <div class="infoValueM"><input id="titulo" name="titulo"></input></div>
+                            </div>
+                            <div class="celulaPequena">
+                               <div class="infoP"> Tipo </div>
+                                <div class="infoValueP">
                                     <div class="styled-select">
                                         <select id="tipo_evento">
                                         </select>
                                     </div>
                                 </div>
+                            </div>                            
+                        </div>                         
+                         <div id="linha3" class="linhaT"> 	
+                            <div class="celulaPequena"> 
+                                <div class="infoP"> Horário </div>
+                                <div class="infoValueP">
+                                    <input type="text" id="hora" name="hora">
+                                </div>   
                             </div>
-                            <div id="L10L" class="celulaOpcao">
+                            <div class="celulaPequena ambasMargin">	
+                                <div class="infoP"> Início </div>
+                                <div class="infoValueP">
+                                    <div class="styled-select">
+                                        <input type="date" id="dataInicio" name="dataInicio"></input>
+                                    </div>
+                                </div>   
+                             </div>  
+                             <div class="celulaPequena">                      
+                                <div class="infoP"> Término </div>
+                                <div class="infoValueP">
+                                    <div class="styled-select">
+                                        <input type="date" id="dataFinal" name="dataFinal"></input>
+                                    </div>
+                                </div>                                  
+                            </div>                                                                                        
+                         </div>    
+                         <div id="linha4" class="linhaT">
+                            <div class="celulaGrande">
+                                <div class="infoG">Descrição</div>
+                                <div class="infoValueG">
+                                    <input name="descricao">
+                                </div>
+                            </div>
+                        </div>              
+                        <div id="linha5">                            
+                            <div id="L10A" class="celulaOpcao">
+                                <div class="infoPFerAula">Aula</div>
+                                <div class="infoValueMm agendaOpcao"> Sim </div>
+                                <div class="inputImg tipoAg" onclick="reset(2);"> </div>
+                                <input type="radio" name="aula" id="1" value="1">
+                                <div class="infoValueMm agendaOpcao"> Não </div>
+                                <div class="inputImg tipoAg" onclick="reset(2);"> </div>
+                                <input type="radio" name="aula" id="0" value="0">
+                            </div> 
+                            <div id="L10L" class="celulaOpcao ambasMargin">
                                 <div class="infoPFerAula">Feriado</div>
                                 <div class="infoValueMm feriado"> Sim </div>
                                 <div class="inputImg tipoAg" onclick="reset(1);"> </div>
@@ -121,72 +159,21 @@
                                 <div class="inputImg tipoAg" onclick="reset(1);"> </div>
                                 <input type="radio" name="feriado" id="0" value="0">
                             </div>
-                         </div>
-                         <div id="linha2" class="linhaT"> 	
-                            <div class="celulaMediaT rightMargin">	
-                                <div class="infoM"> Início </div>
-                                <div class="infoValueM">
-                                    <div class="styled-select">
-                                        <input type="date" id="dataInicio" name="dataInicio"></input>
-                                    </div>
-                                </div>   
-                             </div>
-                             <div id="L10A" class="celulaOpcao">
-                                <div class="infoPFerAula">Aula</div>
-                                <div class="infoValueMm agenda"> Sim </div>
-                                <div class="inputImg tipoAg" onclick="reset(2);"> </div>
-                                <input type="radio" name="aula" id="1" value="1">
-                                <div class="infoValueMm agenda"> Não </div>
-                                <div class="inputImg tipoAg" onclick="reset(2);"> </div>
-                                <input type="radio" name="aula" id="0" value="0">
-                            </div>                                                                                                    
-                         </div> 
-                         <div id="linha3" class="linhaT">
-                             <div class="celulaMediaT rightMargin">                      
-                                <div class="infoM"> Término </div>
-                                <div class="infoValueM">
-                                    <div class="styled-select">
-                                        <input type="date" id="dataFinal" name="dataFinal"></input>
-                                    </div>
-                                </div>  
-                            </div>
                             <div class="celulaFoto" id="L10F">                      
                                 <div class="infoValueFoto">
                                    <div id="fotoCheck" class="infoValuePFoto BorderBottom"> Foto </div> <div class="inputImg tipoFt BorderBottom" id="6"> </div>
                                 </div> 
-                            </div>
-                        </div>
-                        <div id="linha3-1" class="linhaT"> 	
-                            <div class="celulaMediaT rightMargin">	
-                                <div class="infoM"> Hora </div>
-                                <div class="infoValueM">
-                                    <div class="styled-select">
-                                        <input type="time" id="hora" name="hora"></input>
-                                    </div>
-                                </div>   
-                             </div>
-                         </div>	                                                                                                        
-                        <div id="linha4" class="celulaGrande">
-                            <div class="infoG "> Título </div>
-                            <div class="infoValueP"><input id="titulo" name="titulo"></input></div>
-                        </div>
-                        <div class="linha5">
-                            <div class="celulaGrande">
-                                <div class="infoG"> Descrição </div>
-                                <div class="infoValueG"> <input id="descricao" name="descricao"></input></div>
-                            </div>
-                        </div> 
-                        <div id="linha6" style="  height: 51px;width: 11%;float: right;margin-top: 5px;margin-left: 5px;">  
-                            <input id="btnCancelar" value="Cancelar" style="float:right;"/>                                           		
-                        </div>
-                        <div id="linha6" style="height: 51px;width: 12%;float: right;">
+                            </div> 
+                        </div>                        
+                        <div id="linha6" class="linhaT">
                             <div class="celulaPequenaBtn" style="float:right;">
                                 <input type="button" id="btnSalvarEvento" value="" />
                                 <input type="hidden" id="idEvento" value=""/>
                                 <input type="button" id="btnEditarEvento" onClick="editarEvt();" value="" />
                             </div>
-                        </div>
-                    </form>                       
+                        </div>                        
+                    </form>  
+
                     
                     <div class="blackPainel">
                         <div id="JanelaUploadPortifolio">
@@ -207,7 +194,11 @@
                                 </div>
                             </form> 
                         </div>
-                    </div>   
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="boxAgenda">                       
+                        <div id="agenda_listados"><!--Listagem de roteiros carregada pelo JS--></div>
+                    </div>  
             </div>                  
         </div>		
 		</div><!--Fim Conteudo-->
