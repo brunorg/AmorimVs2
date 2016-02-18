@@ -12,6 +12,20 @@
 		"5" : "Sexta"
 	}
 
+	//Blog Oficina
+
+	var categorias = {
+		"aba_roteiros" : 102,
+		"aba_tutoria" : 102,
+		"aba_leitura_escrita" : 102,
+		"aba_educacao_fisica" : 104,
+		"aba_artes" : 102,
+		"aba_matematica" : 102,
+		"aba_ingles" : 102,
+		"aba_arte_ciencia" : 102
+
+	}
+
 //---------------------------------------------------------
 function getQueryParams(qs) {
     qs = qs.split('+').join(' ');
@@ -27,7 +41,11 @@ function getQueryParams(qs) {
     return params;
 }
 
+
 $(document).ready(function() {
+	
+	loadBlogCategorias();
+
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
@@ -64,7 +82,6 @@ $(document).ready(function() {
 		toggleTabRotina();
 	});
 
-	$(".aba_oficina").filter(":first").trigger("click");
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
@@ -75,8 +92,11 @@ $(document).ready(function() {
 
 	if (urlParams["aba"]) {
 		$('#parteDoC2').hide()
+
+		$('.aba_'+urlParams["aba"]).trigger("click");
 	} else {
 		$('#Conteudo_Area').hide()
+		//$(".aba_oficina").filter(":first").trigger("click");
 	}
 
 });
@@ -91,6 +111,8 @@ function toggleTabOficina(tab) {
 
 	var classAbaAtiva = $(tab).attr("class").split(/\s+/)[1];
 	toggleBarOficina(classAbaAtiva);
+
+	carregaServicoBlog(classAbaAtiva);
 }
 
 function toggleBarOficina(classOficina) {
@@ -99,6 +121,111 @@ function toggleBarOficina(classOficina) {
 }
 
 //----------
+
+function loadBlogCategorias(){
+
+	$.ajax({
+		url: path + "Oficina/ListarPorAluno/" + getAVariavelByAluno(alunoID),
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		//beforeSend:	function()		{ loading("inicial"); },
+		success:	function(data)	{ 
+			
+			for(var valor of data)
+			{
+				switch(valor.tipoOficina.idTipoOficina)
+				{
+					case 1:
+					break;
+					case 2:
+						categorias.aba_educacao_fisica = valor.idoficina;
+					break;
+					case 3:
+						categorias.aba_matematica = valor.idoficina;
+					break;
+					case 4:
+						categorias.aba_artes = valor.idoficina;
+					break;
+					case 5:
+						categorias.aba_leitura_escrita = valor.idoficina;
+					break;
+					case 6:
+					break;
+					case 7:
+					break;
+					case 8:
+						categorias.aba_ingles = valor.idoficina;
+					break;
+						//categorias.aba_roteiros = valor.idoficina;
+						//categorias.aba_tutoria = valor.idoficina;
+						//categorias.aba_arte_ciencia = valor.idoficina;
+				}
+			}
+
+		},
+		//complete:	function()		{ loading("final"); }
+	});
+
+}
+
+function getImagemPorPostagem(idpostagem) {
+	var retorno;
+
+	$.ajax({
+		url: path + "Blog/ImagemMed/" + idpostagem,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dImagem) { retorno = dImagem; }
+	});
+
+	return retorno;
+}
+
+function carregaServicoBlog(classe) {
+
+	var campo = classe;
+
+	$.ajax({
+		url: path + "Blog/BlogOficina/" + categorias[campo],
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		beforeSend: function() 			{ loading("inicial"); },
+		success: function(result) {
+
+			var html = "";
+
+			for(var valor of result)
+			{
+
+
+				html+= '<div class="cx_postagem">';
+				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
+				html+= '	<h2 class="cx_info">11/11/2015 por Hellen Ribeiro</h2>';
+				if(valor.imagem){
+					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
+				}
+				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+				html+= '	<hr class="fim_postagem" />';
+				html+= '</div>';
+
+			}
+
+			$("#blog_postagens_container").html(html);
+
+		},
+		complete: 	function() 			{ loading("final"); }
+	});
+
+}
+
+
+//----------
+
 
 function mudarDataRotinaProxima () {
 	diaHoje = diaHoje != 5 ? (diaHoje+1):1;
@@ -126,45 +253,83 @@ function carregaValoresRotina(){
 	var periodoNumero = JSON.parse(localStorage.getItem('objetoAlunoVariavel')).periodo.idperiodo;
 	//var periodoNumero = 9;
 
+	var horariosManha = {
+		"07:00":null,
+		"08:00":null,
+		"09:00":null,
+		"10:00":null,
+		"10:30":null,
+		"11:00":null
+	};
+
+	var horariosTarde = {
+		"13:00":null,
+		"14:00":null,
+		"15:00":null,
+		"15:30":null,
+		"16:00":null,
+		"17:00":null
+	};
+
 	$.ajax({
 		url: path+"Rotina/RotinaDiariaAluno/"+getAVariavelByAluno(alunoID)+"/"+diaHoje,
-		//url: path+"Rotina/RotinaDiariaAluno/"+getAVariavelByAluno(alunoID)+"/"+2,
 		type: "GET",
 		async: false,
 		crossDomain: true,
 		success: function(result) {
 
-			result.forEach(function(value, i){
+			//result.forEach(function(value, i){
+			for(var i=0; i<6;i++)
+			{
 
 				var html = '';
 
-
 				if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
 				{
-					html+=  '<td>';
-					html+= 	'	<img src="img/alfabetizacao/horario_10h00.png" alt="10h00">';
+					html+=  '<td style="background-color:#FBB040">';
+					html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
 					html+= 	'</td>';
 					html+= 	'<td class="recreio" colspan="2">';
 					html+= 	'</td>';
 
 				} else {
-					html+= '<td>';
-					html+= '	<img src="img/alfabetizacao/horario_0'+value.hora+'h00.png" alt="0'+value.hora+'h00">';
-					html+= '</td>';
-					html+= '<td style="background-color: '+value.sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
-					html+= '	<div>'+value.oficina.tipoOficina.nome+'</div>';
-					html+= '	<div>'+value.professor+'</div>';
-					html+= '</td>';
-					html+= '<td title="SALA DE INFORMÁTICA">'+value.sala[0].sala.sala+'</td>';
+					if(result[i])
+					{
+						html+= '<td>';
+						html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
+						html+= '</td>';
+						html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
+						html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
+						html+= '	<div>'+result[i].professor+'</div>';
+						html+= '</td>';
+						html+= '<td title="SALA DE INFORMÁTICA">'+result[i].sala[0].sala.sala+'</td>';
+					} else {
+						html+= '<td>';
+						html+= '</td>';
+						html+= '<td style="background-color:#ebeae5;">';
+						html+= '</td>';
+						html+= '<td></td>';
+					}
 				}
+
+
+
 
 				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
 
-				//$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').find('td:nth-child(1)').html('<img src="img/alfabetizacao/horario_0'+value.hora+'h00.png" alt="0'+value.hora+'h00">');
-				//$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').find('td:nth-child(2)').find('div:nth-child(1)').html(''+value.oficina.tipoOficina.nome);
-				//$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').find('td:nth-child(2)').find('div:nth-child(2)').html(''+value.professor);
-				//$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').find('td:nth-child(3)').html(''+value.sala[0].sala.sala);
-			});
+			}
+			//});
+
+			/*if(periodoNumero == 8){
+				for(var i=0; i<6;i++){
+					$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
+				}
+			} else if(periodoNumero == 9){
+				for(var i=0; i<6;i++){
+					$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
+				}
+
+			}*/
 
 		}
 	});	
