@@ -237,6 +237,7 @@ function novaPostagem () {
         $("#postagemConteudo").val(conteudo);
         $("#postagemOficina").val(oficina);
         $("#postagemAgrupamento").val(agrupamento);
+        $("#postagemAutor").val(professorId);
         var idPostagem;
 
         console.log($("#formPostagens").serialize())

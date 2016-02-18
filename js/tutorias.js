@@ -53,7 +53,7 @@ function criarPaineisDosAlunos(idDivGrupo, retornoAjax) {
 		if (i != 0) {
 			$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
 		}
-		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .caixaGR").append('<div class="grupoLinhaAluno grupoLinhaAlunoTop borderRight"><div class="grupoGraficoFreqTitulo"><h1 class="freqTitulo">Presenças</h1><h2 class="anoLetivo" id="anoLetivo">' + 0 +'</h2><h1 class="freqTitulo">Faltas</h1><h2 class="faltas" id="faltas">' + 0 + '</h2></div></div>')
+		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .caixaGR").append('<div class="grupoLinhaAluno grupoLinhaAlunoTop borderRight"><div class="grupoGraficoFreqTitulo"><h1 class="freqTitulo">Dias letivos</h1><h2 class="anoLetivo" id="anoLetivo">' + 0 +'</h2><h1 class="freqTitulo">Faltas</h1><h2 class="faltas" id="faltas">' + 0 + '</h2></div></div>')
 
 		criarBarrinhas(idDivGrupo, 'aluno' + i, retornoAjax[i]);
 	};
@@ -89,8 +89,6 @@ function criarBarrinhas(idDivGrupo, id, dadosAluno) {
 		'diasLetivosFaltas'	: 0 * 100,
 	};
 
-	console.log(dadosAluno2.diasLetivos + " / " + dadosAluno2.diasLetivosFaltas)
-
 	// Define tamanho de cada barrinha de acordo com os dadosAluno
 	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atual'				).css('width', dadosAluno2.atual 				* tamanhoPontoPercentual);
 	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atualCorrigido'	).css('width', dadosAluno2.atualCorrigido		* tamanhoPontoPercentual);
@@ -109,7 +107,6 @@ window.onload = function() {
         crossDomain: true,
         type: "GET",
         success: function(retornoAjax){
-        	console.log(retornoAjax)
         	if (retornoAjax.length === 0) {
         		$("#divPrincipalGrupos").append('<p>Não há grupos para serem exibidos.</p>')
         	}

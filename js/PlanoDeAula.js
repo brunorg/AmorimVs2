@@ -1,5 +1,6 @@
 var userID = usuarioId;
 var professorID = localStorage.getItem("professorId");;
+var oficinaAtiva = JSON.parse(localStorage.oficinaProfessor).oficina;
 var confEdita = false;
 var dataUsuario;
 var planoAula;
@@ -26,7 +27,7 @@ var List = [];
 var confData = '';
 
 $.ajax({
-	url: path + "PlanoAula/Ultimo/"+professorID,
+	url: path + "PlanoAula/MaisRecenteProfessorOficina/"+professorID+"/"+ oficinaAtiva.idoficina,
 	type: "GET",
 	async:false,
 	crossDomain: true,
@@ -54,9 +55,7 @@ $.ajax({
 
 $(document).ready(function() {
 
-	if (planoAula != ''){
-		carregarPlano();
-	}
+	if (planoAula.idplano_aula !== 0) { carregarPlano(); }
 
 	$("body").delegate(".planoPassado","click", function(){
 		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
@@ -76,11 +75,11 @@ $(document).ready(function() {
 		$(".novo").removeClass("novo_ativo");
 		$(".novo").css("background-color",corForte);
 		$(".historico").toggleClass("historico_ativo");
-		if ($(".historico").hasClass("historico_ativo")) {
+
+		if ($(".historico").hasClass("historico_ativo"))
 			$(".historico").css("background-color",corMedia);
-		} else {
+		else
 			$(".historico").css("background-color",corForte);
-		}
 	});
 
 	$(".novo").click(function(){
@@ -92,11 +91,11 @@ $(document).ready(function() {
 		$(".historico").removeClass("historico_ativo");
 		$(".historico").css("background-color",corForte);
 		$(".novo").toggleClass("novo_ativo");
-		if ($('.novo').hasClass('novo_ativo')) {
+
+		if ($('.novo').hasClass('novo_ativo'))
 			$(".novo").css("background-color",corMedia);
-		} else {
+		else
 			$(".novo").css("background-color",corForte);
-		}
 	});
 
 	$("#cancelar").click(function(){
@@ -136,9 +135,13 @@ $(document).ready(function() {
 		}
 		dataInicio = changeDatePosition(dataInicio, 1, '-');
 		dataFim = changeDatePosition(dataFim, 1, '-');
+		idOficina = JSON.parse(localStorage.oficinaProfessor).oficina.idoficina;
+
+		postData = "action=create&idOficina="+idOficina+"&data_ini="+dataInicio+"&objetivos=&idBlog=&tarefa_casa=&registro_atividade=&data_fim="+dataFim+"&idProfessor="+professorID;
+
 		if (erro == true){
 			return false;
-		}else {
+		} else {
 
 			$.ajax({
 				url: path+"PlanoAula/",
@@ -149,7 +152,7 @@ $(document).ready(function() {
 
 				},
 
-				data: "action=create&data_ini="+dataInicio+"&objetivos=&idBlog=&tarefa_casa=&registro_atividade=&data_fim="+dataFim+"&idProfessor="+professorID,
+				data: postData,
 				success: function(d) {
 					if (d>0){
 					//IdentificadorPlanoEstudo = d;
@@ -568,30 +571,30 @@ function trataDatas(data_ini, data_fim){
 
 function carregarPlano(){
 
-	var dataN = Date.UTC(planoAula[0].data_fim.split("-")[0].toString(), planoAula[0].data_fim.split("-")[1].toString(), planoAula[0].data_fim.split("-")[2].toString());
+	var dataN = Date.UTC(planoAula.data_fim.split("-")[0].toString(), planoAula.data_fim.split("-")[1].toString(), planoAula.data_fim.split("-")[2].toString());
 	if (dataN >= dataAtual) confEditar = true;
 	else confEditar = false;
 
-	trataDatas(planoAula[0].data_ini, planoAula[0].data_fim);
+	trataDatas(planoAula.data_ini, planoAula.data_fim);
 
-	$('#divObjetivos').html("<textarea name='objetivo' id='objetivo' >"+planoAula[0].objetivos+"</textarea>");
-	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula[0].tarefa_casa+"</textarea>");
-	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula[0].registro_atividade+"</textarea>");
+	$('#divObjetivos').html("<textarea name='objetivo' id='objetivo' >"+planoAula.objetivos+"</textarea>");
+	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula.tarefa_casa+"</textarea>");
+	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula.registro_atividade+"</textarea>");
 	if (confEditar == true) {
-		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula[0].idplano_aula);
+		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
 		$('#roteiros').removeClass('dataPassada');
 		$('#btnSubmit').show();
-	}else {
+	} else {
 		$('#roteiros').attr('href','#');
 		$('#roteiros').addClass('dataPassada');
 		$('textarea').attr('readonly','true');
 		$('#btnSubmit').hide();
 	}
-	listaObjetivos(planoAula[0].idplano_aula);
+	listaObjetivos(planoAula.idplano_aula);
 
-	$('#id').val(planoAula[0].idplano_aula);
-	$('#dataInicio').val(planoAula[0].data_ini);
-	$('#dataFim').val(planoAula[0].data_fim);
+	$('#id').val(planoAula.idplano_aula);
+	$('#dataInicio').val(planoAula.data_ini);
+	$('#dataFim').val(planoAula.data_fim);
 
 }
 

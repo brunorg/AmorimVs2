@@ -1,6 +1,8 @@
+"use strict";
+
 $(document).ready(function(){
 	$(".scroll_receiver").mCustomScrollbar({ axis: "y" });
-	
+
 	requestOficinasAluno();
 });
 
@@ -34,11 +36,12 @@ function getBlogPostagensPorOficina(idoficina) {
 
 	return retorno;
 }
-function getRoteirosPorOficina(idoficina) {
+function getRoteirosPorOficinaData(idoficina) {
 	var retorno;
-
+	var d = new Date();
+	var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
 	$.ajax({
-		url: path + "ObjetivoAula/ListarPorOficinaHash/" + idoficina,
+		url: path + "RoteiroAula/ListarOficinaData/"+idoficina+"/"+dataAtual,
 		async: false,
 		type: "GET",
 		crossDomain: true,
@@ -49,11 +52,13 @@ function getRoteirosPorOficina(idoficina) {
 
 	return retorno;
 }
-function getObjetivosPorRoteiro(idroteiro) {
+function getObjetivosPorRoteiroOficina(idoficina, idroteiro) {
 	var retorno;
+	var d = new Date();
+	var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
 
 	$.ajax({
-		url: path + 'ObjetivoAula/ListarPorRoteiro/' + idroteiro,
+		url: path + "ObjetivoAula/ListarOficinaRoteiroData/" + idoficina + "/" + idroteiro + "/" + dataAtual,
 		async: false,
 		type: "GET",
 		crossDomain: true,
@@ -130,7 +135,7 @@ function requestBlogPostagensPorOficina(idOficina) {
 	        	htmlBlog += imagem;
 	        }
 
-    	    for ( j in conteudo ) { htmlBlog += conteudo[j] ? "<p class=\"cx_texto\">"+conteudo[j]+"</p>": ""; }
+    	    for ( var j in conteudo ) { htmlBlog += conteudo[j] ? "<p class=\"cx_texto\">"+conteudo[j]+"</p>": ""; }
 
 			htmlBlog += 	"<hr class=\"fim_postagem\" />";
         	htmlBlog +=	"</article>";
@@ -143,8 +148,8 @@ function requestBlogPostagensPorOficina(idOficina) {
 
 	return htmlBlog;
 }
-function requestRoteirosPorOficina(idoficina, corForte, corMedia, corFraca) {
-	var roteiros 	 = getRoteirosPorOficina(idoficina);
+function requestRoteirosPorOficinaData(idoficina, corForte, corMedia, corFraca) {
+	var roteiros 	 = getRoteirosPorOficinaData(idoficina);
 	var htmlRoteiros = new String();
 
 	if (roteiros.length > 0) {
@@ -153,7 +158,7 @@ function requestRoteirosPorOficina(idoficina, corForte, corMedia, corFraca) {
 
 		for ( var a in roteiros ) {
 			htmlRoteiros += "<div id=\"roteiro_"+roteiros[a].idroteiro_aula+"\" class=\"oficina_planejamento\">";
-			htmlRoteiros += 	"<div class=\"roteiro_info\"onclick=\"toggleRoteiro("+roteiros[a].idroteiro_aula+")\">";
+			htmlRoteiros += 	"<div class=\"roteiro_info\"onclick=\"toggleRoteiro("+idoficina+","+roteiros[a].idroteiro_aula+")\">";
     		htmlRoteiros +=			"<div class=\"roteiro_num_listagem\" style=\"background-color: "+corForte+";\">"+roteiroNumero+"</div>";
     		htmlRoteiros +=			"<div class=\"roteiro_nome\" style=\"background-color: "+corFraca+";\">"+roteiros[a].roteiro+"</div>";
     		htmlRoteiros +=		"</div>";
@@ -173,8 +178,8 @@ function requestRoteirosPorOficina(idoficina, corForte, corMedia, corFraca) {
 	}
 	return htmlRoteiros;
 }
-function requestObjetivosPorRoteiro(idroteiro) {
-	var objetivos = getObjetivosPorRoteiro(idroteiro);
+function requestObjetivosPorRoteiro(idoficina, idroteiro) {
+	var objetivos = getObjetivosPorRoteiroOficina(idoficina, idroteiro);
 	var htmlObjetivos = new String();
 
 	if (objetivos.length > 0) {
@@ -192,7 +197,7 @@ function requestObjetivosPorRoteiro(idroteiro) {
 			htmlObjetivos += "</div>";
 		}
 	} else {
-		htmlObjetivos += "<div calss=\"roteiro_item roteiro_objetivo\">Nenhum objetivo associado a este roteiro.</div>";
+		htmlObjetivos += "<div class=\"roteiro_item roteiro_objetivo\">Nenhum objetivo associado a este roteiro.</div>";
 	}
 
 	return htmlObjetivos;
@@ -211,17 +216,17 @@ function accessOficina(idoficina, corForte, corMedia, corFraca) {
 	$("#oficina"+idoficina).addClass("aba_ativa");
 
 	var postagens 	= requestBlogPostagensPorOficina(idoficina);
-	var roteiros 	= requestRoteirosPorOficina(idoficina,corForte,corMedia,corFraca);
+	var roteiros 	= requestRoteirosPorOficinaData(idoficina,corForte,corMedia,corFraca);
 
 	$("#postagensContainer").html(postagens);
 	$(".Acordeon_Oficina").html(roteiros);
 }
-function toggleRoteiro(idroteiro) {
+function toggleRoteiro(idoficina, idroteiro) {
 	$(".oficina_planejamento").not("#roteiro_"+idroteiro).removeClass("roteiro_expandido");
 	$(".oficina_planejamento").not("#roteiro_"+idroteiro).find(".roteiro_conteudo").slideUp();
 
 	if (!$("#roteiro_"+idroteiro).hasClass("objetivos_listados")) {
-		var objetivos = requestObjetivosPorRoteiro(idroteiro);
+		var objetivos = requestObjetivosPorRoteiro(idoficina, idroteiro);
 
 		$("#roteiro_"+idroteiro).addClass("objetivos_listados");
 		$("#roteiro_"+idroteiro).find(".roteiro_conteudo").append(objetivos);
