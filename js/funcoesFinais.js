@@ -97,13 +97,22 @@ function refreshCalendario(novoMes) {
 
     getAjax("Calendario/Mes/"+novoMes+"/"+ano, "GET", "", false, function(resultado) {
 
+        console.log(resultado)
+
         htmlNoticias = ""
 
         resultado.forEach(function(noticia){
 
+            var dataArray = noticia.dataInicio.split("-")
+            var dataHash = {
+                ano: dataArray[0],
+                mes: dataArray[1],
+                dia: dataArray[2]       
+            }
+
             htmlNoticias += "<div class=\"info\">";
             htmlNoticias += "<div class=\"Titulo\">";
-            htmlNoticias += noticia.dataInicio + " | " + noticia.hora;
+            htmlNoticias +=  dataHash.dia + "-" + dataHash.mes + " | " + noticia.hora;
             htmlNoticias += "<\/div>";
             htmlNoticias += "<div class=\"Texto\">";
             htmlNoticias += noticia.descricao;
@@ -121,7 +130,8 @@ function refreshCalendario(novoMes) {
 window.onload = function() {
     var d = new Date()
     var mesHoje = d.getMonth() + 1
-    mudarMes(mesHoje)
+    mesAtual = mesHoje
+    mudarMes(mesAtual)
 }
 
 
