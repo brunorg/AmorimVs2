@@ -508,10 +508,16 @@
 
 }
 
-#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Titulo{
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Data{
 	color:rgb(219, 94, 49);
 	font-weight:600;
 	font-size:15px;
+	text-transform: uppercase;
+}
+
+#Conteudo_Corpo .Selecao5.rightSide .Calendario .infos .info .Titulo{
+	color: #666666;
+	font-size:14px;
 	text-transform: uppercase;
 }
 

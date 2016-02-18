@@ -97,8 +97,6 @@ function refreshCalendario(novoMes) {
 
     getAjax("Calendario/Mes/"+novoMes+"/"+ano, "GET", "", false, function(resultado) {
 
-        console.log(resultado)
-
         htmlNoticias = ""
 
         resultado.forEach(function(noticia){
@@ -109,10 +107,15 @@ function refreshCalendario(novoMes) {
                 mes: dataArray[1],
                 dia: dataArray[2]       
             }
+            var dataSemana = new Date(dataHash.ano,dataHash.mes-1,dataHash.dia);
+            var diaSemana  = diaDaSemana(dataSemana.getDay());
 
             htmlNoticias += "<div class=\"info\">";
+            htmlNoticias += "<div class=\"Data\">";
+            htmlNoticias +=  dataHash.dia + "-" + dataHash.mes + " | " + diaSemana + (noticia.hora!="" ? " | " + noticia.hora : "");
+            htmlNoticias += "<\/div>";
             htmlNoticias += "<div class=\"Titulo\">";
-            htmlNoticias +=  dataHash.dia + "-" + dataHash.mes + " | " + noticia.hora;
+            htmlNoticias +=  noticia.evento;
             htmlNoticias += "<\/div>";
             htmlNoticias += "<div class=\"Texto\">";
             htmlNoticias += noticia.descricao;
@@ -126,6 +129,19 @@ function refreshCalendario(novoMes) {
 
 }
 
+function diaDaSemana(diaSemana){
+
+    switch (diaSemana) {
+        case 0: return 'Dom'; break;         
+        case 1: return 'Seg'; break;
+        case 2: return 'Ter'; break;
+        case 3: return 'Qua'; break;
+        case 4: return 'Qui'; break;
+        case 5: return 'Sex'; break;
+        case 6: return 'Sab'; break; 
+              
+    }
+}
 
 window.onload = function() {
     var d = new Date()

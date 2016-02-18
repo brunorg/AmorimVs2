@@ -1178,6 +1178,41 @@ function retornaMesByNumero(numMes){
 	}
 }
 
+function diaDaSemana(diaSemana,formato){
+
+	if(formato == 1){
+		switch (diaSemana) {
+			case 'Sun': return 'Dom'; break;
+			case 'Mon': return 'Seg'; break;
+			case 'Tue': return 'Ter'; break;
+			case 'Wed': return 'Qua'; break;
+			case 'Thu': return 'Qui'; break;
+			case 'Fri': return 'Sex'; break;
+			case 'Sat':	return 'Sab'; break;		
+		}
+	}else if(formato == 2){
+		switch (diaSemana) {
+			case 'Sun': return 'Domingo'; break;
+			case 'Mon': return 'Segunda'; break;
+			case 'Tue': return 'Terça'; break;
+			case 'Wed': return 'Quarta'; break;
+			case 'Thu': return 'Quinta'; break;
+			case 'Fri': return 'Sexta'; break;
+			case 'Sat':	return 'Sabado'; break;		
+		}
+	}else{
+		switch (diaSemana) {
+			case 'Sun': return 'Domingo'; break;
+			case 'Mon': return 'Segunda-feira'; break;
+			case 'Tue': return 'Terça-feira'; break;
+			case 'Wed': return 'Quarta-feira'; break;
+			case 'Thu': return 'Quinta-feira'; break;
+			case 'Fri': return 'Sexta-feira'; break;
+			case 'Sat':	return 'Sabado'; break;		
+		}
+	}	
+}
+
 function datas(SemanaDia){
 	var Data = new Date();
 	dia = Data.getDay();
@@ -1205,6 +1240,8 @@ function datas(SemanaDia){
 		return Dia<10?"0"+Dia:Dia+"/"+(Mes<10?"0"+Mes:Mes)+"/"+Ano;
 	}	
 }
+
+
 
 function retornaMesAbreviacaoByNumero(numMes){
 	switch (numMes) {
