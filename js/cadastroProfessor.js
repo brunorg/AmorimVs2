@@ -233,15 +233,13 @@ $(document).ready(function(){
             $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 1, '-'));
             $('#quinquenio').val($('#QuinquenioNumber').html());
             
-            
-            
             $.ajax({
                 url: path+"ProfessorFuncionario/",
                 type: "POST",
                 crossDomain: true,
                 dataType: 'json',
                 data: $(this).serialize(),                    
-                    success: function(d) {
+                success: function(d) {
                         $('#professorFuncionario').val(d);
                         $('#frmCadastroProfessorVariavel #professorFuncionario').val(d);
                         $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 2, '-'));

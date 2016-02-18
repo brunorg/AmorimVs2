@@ -1,4 +1,3 @@
-
 // JavaScript Document
 var ultimo_id;
 var dataAnoEstudo = getData("AnoEstudo", null);
@@ -87,7 +86,7 @@ $(document).ready(function(){
 				//Verifica se o texto da div com o nome do roteiro é diferente do texto digitado
 				if($('#nome_roteiro_listado_'+id).text().toUpperCase().indexOf(texto)==-1) {
 					$('#roteiro'+id).css('display','none');	//Se diferente, esconde a linha
-					$('#objetivosRoteiro'+idRoteiro).removeClass('Atvs_Expandido').css('height','0px');
+					$('#objetivosRoteiro'+id).removeClass('Atvs_Expandido').css('height','0px');
 					$('.Roteiro_Listado_Btns').show();
 				} else {
 					$('#roteiro'+id).css('display','block'); //Se encontrado, exibe a linha e acresenta 1 na var contadora
@@ -1653,7 +1652,6 @@ function excluirRoteiro(){
 }
 
 function cadastrarAtividade(){
-	alert('dsakdjsafdhga');
 	var nomeAtv = $("#nomeAtv_edt").val();
 	var numeroAtv = $("#numeroAtv_edt").val();		
 	var livroAtv = $("#livroAtv_edt").val();
