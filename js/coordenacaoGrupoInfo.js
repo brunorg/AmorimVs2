@@ -16,7 +16,6 @@ $(document).ready(function() {
 	carregaTutores();
 	pesquisaGrupoAluno();
 	carregarProfessoresByPeriodo('8');
-	carregaEditAgrupamento();
 	carregaEditDiaSemana();
 	carregaHorarioEdit();
 	carregaSalaEdit();

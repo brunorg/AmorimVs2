@@ -127,7 +127,9 @@ function adicionarFuncoesFeedBack (idOficina, ciclo, periodo) {
     });
 
     $('.btn_atribuir_rotina').click(function() {
+        debugger;
         habilitarModalEdicaoRotina(0, idOficina, 0, 0, 0, 0, 0);
+        carregaEditAgrupamento();
     });
     $('.btn_nova_oficina').click(function() {
         resetarPaginas();
