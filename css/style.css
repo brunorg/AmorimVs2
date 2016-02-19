@@ -2833,6 +2833,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 
 }
+
 /*Media NoteBook com barra favoritos*/
 @media (min-height: 640px)and(max-height: 665px) {
 	#Container {
