@@ -122,30 +122,10 @@
                                 <div class="conteudoNovo conteudoMedio" id="postagensNova">
                                     <div class="novoContainer">
                                         <div class="areaNovo">
-                                            <div class="linhaConteudo">
-                                                <div class="containerSelect">
-                                                    <div class="selectArea selectMedio">
-                                                        <div class="selectOptions" id="selectOficina">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="linhaConteudo">
-                                                <div class="containerSelect">
-                                                    <div class="selectArea selectMedio">
-                                                        <div class="selectOptions" id="selectAgrupamento">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="linhaConteudo">
-                                                <textarea class="inputArea inputLinha inputUnicoLinha" id="tituloPostagens" placeholder="Título da Postagem"></textarea>
-                                            </div>
-                                            <div class="linhaConteudo">
-                                                <div class="containerAreaMensagem">
-                                                    <textarea class="inputArea inputMensagem mensagemGrande" id="conteudoPostagens" placeholder="Digite aqui o texto da postagem."></textarea>
-                                                </div>
-                                            </div>
+                                            <select id="oficinaSelecionada" class="inputArea selectOptions"></select>
+                                            <select id="agrupamentoSelecionado" class="inputArea selectOptions" style="display: none;"></select>
+                                            <textarea class="boxTextInput" id="tituloPostagens" placeholder="Título da Postagem"></textarea>
+                                            <textarea class="boxTextInput postagemTutoriaSemImagem" id="conteudoPostagens" placeholder="Digite aqui o texto da postagem."></textarea>
 
                                             <div id="linhaConteudo">
                                                 <img id="miniaturaDaFoto" src="#" alt="ay"/>

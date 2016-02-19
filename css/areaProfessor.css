@@ -111,52 +111,60 @@ div[class*="box_col"]:last-of-type {
 	padding: 10px;
 }
 
-.inputArea{
-	border: 1px solid #CCCCCC;
-	color: #999999;
-	resize: none;
-	font-size: 16px; 
-    background-color: #EFEFEF;
-}
-
-.inputArea::-webkit-input-placeholder{
-    color: #CCCCCC;
-}
-
-.inputArea:-moz-placeholder{
-    color: #CCCCCC;
-}
-
-.inputArea::-moz-placeholder{
-    color: #CCCCCC;
-}
-
-.inputArea::-ms-input-placeholder{
-    color: #CCCCCC;
-}
-
-.inputLinha{
-    height: 51px;
-    padding: 4px 8px;
-}
-
-.inputUnicoLinha{
-	width: 100%;
-}
-
-.inputMensagem{
+input,
+textarea,
+select {
+    display: block;
     width: 100%;
-    border: 1px solid #CCCCCC;
-    font-size: 10px;
-    padding: 4px 8px;
+    font-size: 14px;
+    color: #666;
+    padding-left: 8px;
+    line-height: 1.2em;
+    padding-right: 8px;
+    color: #666;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+         -o-appearance: none;
+            appearance: none;
+}
+select {
+    border-radius: 0;
+    cursor: pointer;
+}
+textarea {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    resize: none;
+}
+.inputArea,
+.boxTextInput {
+    border: 1px solid #ccc;
+    background-color: #efefef;
+    margin-bottom: 5px;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
-.mensagemGrande{
-    height: 259px;
+.inputArea::-webkit-input-placeholder,
+.inputArea::-moz-placeholder,
+.inputArea::-ms-input-placeholder{
+    color: #999;
 }
 
-.mensagemMedia{
-	height: 103px;
+.boxTextInput {
+    height: 51px;
+}
+.postagemOficinaSemImagem {
+    height: 333px;
+}
+.postagemOficinaComImagem {
+    height: 265px;
+}
+.postagemTutoriaComImagem {
+    height: 296px;
+}
+.postagemTutoriaSemImagem {
+    height: 364px;
 }
 .mensagemMural{
     height: 386px;
@@ -169,8 +177,8 @@ div[class*="box_col"]:last-of-type {
 .selectArea{
 	height: 26px;
 	border: 1px solid #CCCCCC;
-	color: #CCCCCC;
-    background-color: #EFEFEF;  
+	color: #666;
+    background-color: #EFEFEF;
 }
 
 .containerSelect{
@@ -190,16 +198,20 @@ div[class*="box_col"]:last-of-type {
 .selectOptions{
 	height: 100%;
 	overflow: hidden;
-    background: url(../img/ic_drop_pequeno.png) no-repeat right -1px;
+    background-image: url(../img/ic_drop_pequeno.png);
     padding: 4px 8px;
 }
 
 .selectOptions select{
-	width: 150%;
-	color: #999999;
-	font-size: 16px;
+	width: 100%;
+	color: #666;
+	font-size: 14px;
     margin-top: -1px;
     cursor: pointer;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+         -o-appearance: none;
+            appearance: none;
 }
 
 select[value="0"]{

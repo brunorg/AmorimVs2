@@ -38,30 +38,39 @@ function atribuirEventos () {
     $("#salvarPostagem").click(novaPostagem);
 }
 
+function verificarImagemTipoBlog(dados) {
+    if ( dados.imagem === "adicionar" && dados.tipo === "tutoria" )
+	    $("#conteudoPostagens").attr("class", "boxTextInput postagemTutoriaComImagem");
+	else if ( dados.imagem === "adicionar" && dados.tipo === "oficina" )
+		$("#conteudoPostagens").attr("class", "boxTextInput postagemOficinaComImagem");
+	else if ( dados.imagem === "remover" && dados.tipo === "tutoria" )
+		$("#conteudoPostagens").attr("class", "boxTextInput postagemTutoriaSemImagem");
+	else
+		$("#conteudoPostagens").attr("class", "boxTextInput postagemOficinaSemImagem");
+}
+
 function carregaOficinaPostagens () {
-    var htmlOficinas =  '<select id="oficinaSelecionada">'+
-                            '<option class="placeholder" value="0" disabled selected hidden>Escolha o Grupo</option>';
+    var htmlOficinas =  "";
+
+    htmlOficinas +=     "<option class=\"placeholder\" value=\"0\" selected>Tutoria</option>";
+
     $.ajax({
         url: path + 'Oficina/ListaPorProfessor/' +  professorId,
-        /*url: path + 'Oficina',*/
         async: false,
         crossDomain: true,
         type: "GET",
         success: function(d) {
-            for (var i = 0; i < d.length; i++)
-            {
-                htmlOficinas += '<option value="'+d[i]["idoficina"]+'">'+d[i]["nome"]+'</option>';
+            for (var i = 0; i < d.length; i++) {
+                htmlOficinas += "<option value=\""+d[i]["idoficina"]+"\">"+d[i]["nome"]+"</option>";
             }
 
-            htmlOficinas += '</select>';
-
-            $('#selectOficina').html(htmlOficinas);
+            $('#oficinaSelecionada').html(htmlOficinas);
 
 
             $('#oficinaSelecionada').change(function(){
-                var oficinaEscolhida = $('#oficinaSelecionada').val()
-                console.log(oficinaEscolhida)
-                if (oficinaEscolhida !== 0) {
+                var oficinaEscolhida = $('#oficinaSelecionada').val();
+
+                if (oficinaEscolhida != 0) {
                     $.ajax({
                         url: path + "Agrupamento/ListarPorOficina/" + oficinaEscolhida,
                         async: false,
@@ -69,30 +78,40 @@ function carregaOficinaPostagens () {
                         type: "GET",
                         success: function(retornoAjax){
 
-                            var htmlAgrupamentos =  '<select id="agrupamentoSelecionado">'+
-                                '<option class="placeholder" value="0" disabled selected hidden>Escolha o Agrupamento</option>';
+                            var htmlAgrupamentos = "";
 
-                            for (var i = 0; i < retornoAjax.length; i++)
-                            {
-                                htmlAgrupamentos += '<option value="'+retornoAjax[i].idagrupamento+'">'+retornoAjax[i].nome+'</option>';
+                            for (var i = 0; i < retornoAjax.length; i++) {
+                                htmlAgrupamentos += "<option value=\""+retornoAjax[i].idagrupamento+"\" "+(i == 0 ? "selected" : "")+">"+retornoAjax[i].nome+"</option>";
                             }
 
-                            htmlAgrupamentos += '</select>';
+                            htmlAgrupamentos += "</select>";
 
-                            $('#selectAgrupamento').html(htmlAgrupamentos);
+                            $('#agrupamentoSelecionado').html(htmlAgrupamentos);
 
                         },
                         error: function(a, status, error) {
                             console.log(status + " /// " + error)
                         }
                     });
+                    $("#agrupamentoSelecionado").show();
+
+					if ($("#miniaturaDaFoto").css("display") == "none")
+						verificarImagemTipoBlog({imagem: "remover", tipo: "oficina"});
+					else
+						verificarImagemTipoBlog({imagem: "adicionar", tipo: "oficina"});
+                } else {
+                	$("#agrupamentoSelecionado").html("<option value=\"0\" selected></option>");
+                    $("#agrupamentoSelecionado").hide();
+
+					if ($("#miniaturaDaFoto").css("display") == "none")
+						verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+					else
+						verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
                 }
-            })
+            });
 
         }
     });
-
-
 }
 
 function carregaGrupoOficinaMural () {
@@ -147,7 +166,7 @@ function clickPostagens() {
         $("#novoPostagens").hide();
         $("#postagensNova").show();
 
-        $("#postagemAction").val("create")
+        $("#postagemAction").val("create");
 
         carregaOficinaPostagens();
 
@@ -159,6 +178,7 @@ function cancelarPostagens () {
         $("#postagensConteudo").show();
         $("#novoPostagens").show();
         $("#postagensNova").hide();
+        verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
     });
 }
 
@@ -192,6 +212,13 @@ function transformarMiniatura(input) {
             $('#miniaturaDaFoto').attr('src', e.target.result);
         }
 
+		if ($("#oficinaSelecionada").find("option:selected").val() == 0)
+			verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
+		else
+			verificarImagemTipoBlog({imagem: "adicionar", tipo: "oficina"});
+
+        $("#uploadPostagem").hide();
+
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -204,6 +231,13 @@ function removerImagemPostagem(id) {
         $("#miniaturaDaFoto").hide();
         $('#miniaturaDaFoto').attr('src', '#');
         $("#postagemImagem").val('');
+
+		if ($("#oficinaSelecionada").find("option:selected").val() == 0)
+			verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+		else
+			verificarImagemTipoBlog({imagem: "remover", tipo: "oficina"});
+
+        $("#uploadPostagem").show();
 
         $.ajax({
             url: path + 'Blog/DeletarImagem/' + window.id,
@@ -221,8 +255,8 @@ function removerImagemPostagem(id) {
 function novaPostagem () {
 
     var conteudo = $("#conteudoPostagens").val();
-    var oficina = $("#selectOficina select").val();
-    var agrupamento = $("#selectAgrupamento select").val();
+    var oficina = $("#oficinaSelecionada").find("option:selected").val();
+    var agrupamento = $("#agrupamentoSelecionado").find("option:selected").val();
     var titulo = $("#tituloPostagens").val();
     var imagem = $("#postagemImagem").val();
 
@@ -231,31 +265,35 @@ function novaPostagem () {
 
     console.log(imagem)
 
-    if (oficina != 0 && conteudo != '' && titulo != '' && fileIsImage)
-    {
+    if (conteudo != '' && titulo != '' && fileIsImage) {
         $("#postagemTitulo").val(titulo);
         $("#postagemConteudo").val(conteudo);
         $("#postagemOficina").val(oficina);
         $("#postagemAgrupamento").val(agrupamento);
         $("#postagemAutor").val(professorId);
+
+        if ( $("#postagemOficina").val() == 0 ) {
+			$("#postagemOficina").addClass("naoEnviar");
+			$("#postagemAgrupamento").addClass("naoEnviar");
+        }
         var idPostagem;
 
-        console.log($("#formPostagens").serialize())
+        console.log($("#formPostagens input").not(".naoEnviar").serialize())
 
         $.ajax({
             url: path + "Blog",
             async: false,
             crossDomain: true,
             type: "POST",
-            data: $("#formPostagens").serialize(),
+            data: $("#formPostagens input").not(".naoEnviar").serialize(),
             beforeSend: function() {loading("inicial");},
             success: function(d) {
                 var post = {titulo : $("#tituloPostagens").val(), descricao : $("#postagemConteudo").val(), idblog : d, oficina : {nome : $("#selectOficina select :selected").text()}};
                 mensagem("Postagem feita com sucesso!","OK","bt_ok","sucesso");
                 $("#tituloPostagens").val('');
                 $("#conteudoPostagens").val('');
-                $("#selectOficina select").val(0);
-                $("#selectAgrupamento select").val(0);
+                $("#oficinaSelecionada").val(0);
+                $("#agrupamentoSelecionado").val(0);
                 $("#cancelarPostagens").trigger("click");
                 idPostagem = d;
             },
@@ -322,7 +360,7 @@ function addPost (post) {
     var id = post.idblog;
     var titulo = post.titulo;
     var corpo = post.descricao.split("\n");
-    var oficina = post.oficina.nome;
+    var oficina = post.oficina.tipoOficina.nome;
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
                             '<div class="postTitulo" id="blogPostTitulo'+id+'">' +
