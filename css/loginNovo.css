@@ -446,9 +446,11 @@
 
 	#Login {
     	width: 707px;
-    	padding-left: 14%;
+    	/*padding-left: 14%;*/
     	float: right;
     	margin-left: 0px;
+    	margin-right: 120px;
+
 	}
 
 	.Submit_Login {
