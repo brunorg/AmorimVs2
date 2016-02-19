@@ -44,7 +44,6 @@ function getQueryParams(qs) {
 
 $(document).ready(function() {
 	
-	loadBlogCategorias();
 
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
@@ -99,6 +98,8 @@ $(document).ready(function() {
 		//$(".aba_oficina").filter(":first").trigger("click");
 	}
 
+	loadBlogCategorias();
+
 });
 
 window.onload = function() {
@@ -113,6 +114,8 @@ function toggleTabOficina(tab) {
 	toggleBarOficina(classAbaAtiva);
 
 	carregaServicoBlog(classAbaAtiva);
+
+	loadRoteirosAlfabetizacao(classAbaAtiva);
 }
 
 function toggleBarOficina(classOficina) {
@@ -120,54 +123,61 @@ function toggleBarOficina(classOficina) {
 	$("#faixa_oficina").css("background-image","url(img/alfabetizacao/faixa_"+oficina+".png)");
 }
 
-//----------
+//----------------------
+//		GETS
+//----------------------
 
-function loadBlogCategorias(){
+function getRoteirosPorOficinaData(idoficina) {
+	var retorno;
+	var d = new Date();
+	var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
 
 	$.ajax({
-		url: path + "Oficina/ListarPorAluno/" + getAVariavelByAluno(alunoID),
+		url: path + "RoteiroAula/ListarOficinaData/"+idoficina+"/"+dataAtual,
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		beforeSend: function()    { loading("inicial"); },
+		success: function(dRoteiros) { retorno = dRoteiros; },
+		complete:  function()    { loading("final"); }
+	})
+
+	return retorno;
+}
+
+
+function getRoteiroAula() {
+	var retorno;
+
+	$.ajax({
+		url: path + "RoteiroAula/",
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		//beforeSend: function() 			{ loading("inicial"); },
+		success: 	function(data) 		{ retorno = data; }
+		//complete: 	function() 			{ loading("final"); }
+	});
+
+	return retorno;
+}
+
+function getOficinasAluno(idalunoVariavel) {
+	var retorno;
+
+	$.ajax({
+		url: path + "Oficina/ListarPorAluno/" + idalunoVariavel,
 		async: false,
 		type: "GET",
 		crossDomain: true,
 		//beforeSend:	function()		{ loading("inicial"); },
-		success:	function(data)	{ 
-			
-			for(var valor of data)
-			{
-				switch(valor.tipoOficina.idTipoOficina)
-				{
-					case 1:
-					break;
-					case 2:
-						categorias.aba_educacao_fisica = valor.idoficina;
-					break;
-					case 3:
-						categorias.aba_matematica = valor.idoficina;
-					break;
-					case 4:
-						categorias.aba_artes = valor.idoficina;
-					break;
-					case 5:
-						categorias.aba_leitura_escrita = valor.idoficina;
-					break;
-					case 6:
-					break;
-					case 7:
-					break;
-					case 8:
-						categorias.aba_ingles = valor.idoficina;
-					break;
-						//categorias.aba_roteiros = valor.idoficina;
-						//categorias.aba_tutoria = valor.idoficina;
-						//categorias.aba_arte_ciencia = valor.idoficina;
-				}
-			}
-
-		},
+		success:	function(data)	{ retorno = data; }
 		//complete:	function()		{ loading("final"); }
 	});
 
+	return retorno;
 }
+
 
 function getImagemPorPostagem(idpostagem) {
 	var retorno;
@@ -183,43 +193,250 @@ function getImagemPorPostagem(idpostagem) {
 	return retorno;
 }
 
-function carregaServicoBlog(classe) {
-
-	var campo = classe;
+function getBlogPostagensPorOficina(idoficina) {
+	var retorno;
 
 	$.ajax({
-		url: path + "Blog/BlogOficina/" + categorias[campo],
+		url: path + "Blog/BlogOficina/" + idoficina,
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		//beforeSend: function() 			{ loading("inicial"); },
+		success: 	function(data) 		{ retorno = data; },
+		//complete: 	function() 			{ loading("final"); }
+	});
+
+	return retorno;
+}
+
+
+function getRotinaDiariaAluno(idalunoVariavel, dia) {
+	var retorno;
+
+	$.ajax({
+		url: path+"Rotina/RotinaDiariaAluno/"+idalunoVariavel+"/"+dia,
 		async: false,
 		type: "GET",
 		crossDomain: true,
 		beforeSend: function() 			{ loading("inicial"); },
-		success: function(result) {
-
-			var html = "";
-
-			for(var valor of result)
-			{
-
-
-				html+= '<div class="cx_postagem">';
-				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-				html+= '	<h2 class="cx_info">11/11/2015 por Hellen Ribeiro</h2>';
-				if(valor.imagem){
-					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
-				}
-				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-				html+= '	<hr class="fim_postagem" />';
-				html+= '</div>';
-
-			}
-
-			$("#blog_postagens_container").html(html);
-
-		},
+		success: 	function(data) 		{ retorno = data; },
 		complete: 	function() 			{ loading("final"); }
 	});
+
+	return retorno;
+}
+
+
+function getMuralAluno(idalunoVariavel) {
+	var retorno;
+
+	$.ajax({
+		url: path + "MuralAluno/ListarAluno/" + idalunoVariavel,
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		beforeSend: function() 			{ loading("inicial"); },
+		success: 	function(data) 		{ retorno = data; },
+		complete: 	function() 			{ loading("final"); }
+	});
+
+	return retorno;
+}
+
+
+
+function getTipoOficina() {
+	var retorno;
+
+	$.ajax({
+		url: path + "TipoOficina/",
+		async: false,
+		type: "GET",
+		crossDomain: true,
+		//beforeSend: function() 			{ loading("inicial"); },
+		success: 	function(data) 		{ retorno = data; }
+		//complete: 	function() 			{ loading("final"); }
+	});
+
+	return retorno;
+}
+
+
+
+
+//----------
+
+function loadBlogCategorias(){
+
+	var data = getOficinasAluno(getAVariavelByAluno(alunoID));
+			
+	for(var valor of data)
+	{
+		switch(valor.tipoOficina.idTipoOficina)
+		{
+			case 1:
+			break;
+			case 2:
+				categorias.aba_educacao_fisica = valor.idoficina;
+			break;
+			case 3:
+				categorias.aba_matematica = valor.idoficina;
+			break;
+			case 4:
+				categorias.aba_artes = valor.idoficina;
+			break;
+			case 5:
+				categorias.aba_leitura_escrita = valor.idoficina;
+			break;
+			case 6:
+			break;
+			case 7:
+			break;
+			case 8:
+				categorias.aba_ingles = valor.idoficina;
+			break;
+				//categorias.aba_roteiros = valor.idoficina;
+				//categorias.aba_tutoria = valor.idoficina;
+				//categorias.aba_arte_ciencia = valor.idoficina;
+		}
+	}
+
+}
+
+
+//----------------------
+
+
+function loadRoteirosAlfabetizacao(classAbaAtiva){
+
+	var idTipoOficina;
+	var idOficina;
+	var corForte;
+	var corMedia;
+	var corFraca;
+
+	switch(classAbaAtiva)
+	{
+		case 'aba_educacao_fisica':
+			idTipoOficina = 2;
+		break;
+		case 'aba_matematica':
+			idTipoOficina = 0;
+		break;
+		case 'aba_artes':
+			idTipoOficina = 4;
+		break;
+		case 'aba_leitura_escrita':
+			idTipoOficina = 0;
+		break;
+		case 'aba_ingles':
+			idTipoOficina = 0;
+		break;
+		case 'aba_roteiros':
+			idTipoOficina = 0;
+		break;
+		case 'aba_tutoria':
+			idTipoOficina = 0;
+		break;
+		case 'aba_arte_ciencia':
+			idTipoOficina = 0;
+		break;
+	}
+
+	var data = getOficinasAluno(getAVariavelByAluno(alunoID));
+
+	for(var valor of data)
+	{
+		if(valor.tipoOficina.idTipoOficina == idTipoOficina)
+		{
+			corForte = valor.tipoOficina.cor.medio;
+			corMedia = valor.tipoOficina.cor.fraco;
+			corFraca = valor.tipoOficina.cor.forte;
+			idOficina = valor.idoficina;
+		}
+	}
+
+	filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
+	
+
+}
+
+
+
+
+function filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca){
+
+	var data = idOficina ? getRoteirosPorOficinaData(idOficina):[];
+
+	//console.log(idTipoOficina, corForte, corMedia, corFraca);
+
+	var html = "";
+		html+= '<h2 style="color: '+corForte+'">Conteúdo</h2>';
+
+	if(idTipoOficina != 0 && idOficina){
+		for(var valor of data)
+		{
+
+			if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+
+				html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
+				html+= '	<div class="roteiro_info">';
+				html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
+				html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
+				html+= '	</div>';
+				html+= '	<div class="roteiro_conteudo">';
+				html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
+				html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
+				html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
+				html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
+				html+= '		<div class="roteiro_recursos roteiro_item">';
+				html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
+				html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
+				html+= '		</div>';
+				html+= '	</div>';
+				html+= '</div>';
+			}
+
+		}
+	}
+
+	$('.acordeon_oficina').html(html);
+
+	$(".oficina_planejamento").click(function(){
+		triggerAccordion(this);
+	});
+}
+
+
+
+function carregaServicoBlog(classe) {
+
+	var campo = classe;
+	var result = getBlogPostagensPorOficina(categorias[campo])
+
+
+	var html = "";
+
+	for(var valor of result)
+	{
+
+
+		html+= '<div class="cx_postagem">';
+		html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
+		html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
+		if(valor.imagem){
+			html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
+		}
+		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+		html+= '	<hr class="fim_postagem" />';
+		html+= '</div>';
+
+	}
+
+	$("#blog_postagens_container").html(html);
+
 
 }
 
@@ -271,68 +488,62 @@ function carregaValoresRotina(){
 		"17:00":null
 	};
 
-	$.ajax({
-		url: path+"Rotina/RotinaDiariaAluno/"+getAVariavelByAluno(alunoID)+"/"+diaHoje,
-		type: "GET",
-		async: false,
-		crossDomain: true,
-		success: function(result) {
+	var result = getRotinaDiariaAluno(getAVariavelByAluno(alunoID),diaHoje);
 
-			//result.forEach(function(value, i){
-			for(var i=0; i<6;i++)
+
+	//result.forEach(function(value, i){
+	for(var i=0; i<6;i++)
+	{
+
+		var html = '';
+
+		if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
+		{
+			html+=  '<td style="background-color:#FBB040">';
+			html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
+			html+= 	'</td>';
+			html+= 	'<td class="recreio" colspan="2">';
+			html+= 	'</td>';
+
+		} else {
+			if(result[i])
 			{
-
-				var html = '';
-
-				if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
-				{
-					html+=  '<td style="background-color:#FBB040">';
-					html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
-					html+= 	'</td>';
-					html+= 	'<td class="recreio" colspan="2">';
-					html+= 	'</td>';
-
-				} else {
-					if(result[i])
-					{
-						html+= '<td>';
-						html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
-						html+= '</td>';
-						html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
-						html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
-						html+= '	<div>'+result[i].professor+'</div>';
-						html+= '</td>';
-						html+= '<td title="SALA DE INFORMÁTICA">'+result[i].sala[0].sala.sala+'</td>';
-					} else {
-						html+= '<td>';
-						html+= '</td>';
-						html+= '<td style="background-color:#ebeae5;">';
-						html+= '</td>';
-						html+= '<td></td>';
-					}
-				}
-
-
-
-
-				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
-
+				html+= '<td>';
+				html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
+				html+= '</td>';
+				html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
+				html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
+				html+= '	<div>'+result[i].professor+'</div>';
+				html+= '</td>';
+				html+= '<td title="SALA DE INFORMÁTICA">'+result[i].sala[0].sala.sala+'</td>';
+			} else {
+				html+= '<td>';
+				html+= '</td>';
+				html+= '<td style="background-color:#ebeae5;">';
+				html+= '</td>';
+				html+= '<td></td>';
 			}
-			//});
-
-			/*if(periodoNumero == 8){
-				for(var i=0; i<6;i++){
-					$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
-				}
-			} else if(periodoNumero == 9){
-				for(var i=0; i<6;i++){
-					$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
-				}
-
-			}*/
-
 		}
-	});	
+
+
+
+
+		$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
+
+	}
+	//});
+
+	/*if(periodoNumero == 8){
+		for(var i=0; i<6;i++){
+			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
+		}
+	} else if(periodoNumero == 9){
+		for(var i=0; i<6;i++){
+			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
+		}
+
+	}*/
+
 }
 
 
@@ -340,31 +551,25 @@ function toggleTabMural() {
 
 	$('#mural_posts_container').html("");
 
-	$.ajax({
-		url: path + "MuralAluno/ListarAluno/" + getAVariavelByAluno(alunoID),
-		async: false,
-		crossDomain: true,
-		type: "GET",
-		success: function (data){
+	var data = getMuralAluno(getAVariavelByAluno(alunoID));
 
-			for(var valor of data)
-			{
-				var html = "";
 
-				html += '<div class="mural_post">'
-				html += '	<h1>'
-				html += '		<span>'+valor.mural.professor.nome+'</span>'
-				html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
-				html += '	</h1>'
-				html += '	<p>'+valor.mural.mensagem+'</p>'
-				html += '</div>	'
-				
-				$('#mural_posts_container').append(html);
+	for(var valor of data)
+	{
+		var html = "";
 
-			}
+		html += '<div class="mural_post">'
+		html += '	<h1>'
+		html += '		<span>'+valor.mural.professor.nome+'</span>'
+		html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
+		html += '	</h1>'
+		html += '	<p>'+valor.mural.mensagem+'</p>'
+		html += '</div>	'
 		
-		}
-	});
+		$('#mural_posts_container').append(html);
+
+	}
+		
 }
 
 //----------
@@ -399,6 +604,7 @@ function toggleTabMensagens(tab) {
 	$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
 	$(tab).addClass("aba_mensagem_ativa");
 }
+
 function toggleMensagem(item) {
 	if ($(item).hasClass("post_ativo")) {
 		$(item).removeClass("post_ativo");
