@@ -156,9 +156,9 @@ $(document).ready(function(){
 		exibirListaOficina(idOficina,idCiclo,IDProfessor);
 	});
 
-	carregaCiclo();
-	carregaPeriodo();
-	carregaOficina();	
+	//carregaCiclo();
+	//carregaPeriodo();
+	//carregaOficina();	
 
 });//fecha document jquery
 function MostrarObjetivo(){

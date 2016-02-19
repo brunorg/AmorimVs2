@@ -6,6 +6,8 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
 	padding:0;
 	margin-right: 9px;	
     border: 1px solid lightgray;
+    height: 41px;
+    overflow: hidden;
 }
 
 #roteiros_cabecalho 
@@ -214,7 +216,7 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
 }
 
 .item{
-	width: 98%;
+	width: 100%;
 	float: left;
 	height: 40px;
 	margin-bottom: 1px;
@@ -497,6 +499,11 @@ div.item:nth-child(even){
     position: relative;
     margin-left: 30px;  
 }
+#linha1{
+    display: block;
+    margin-bottom: 4px;
+    height: 43px;
+}
 .linha4{
     position: relative;
     width: 100%;
@@ -587,7 +594,7 @@ div.item:nth-child(even){
 }
 .excluir{
 	position: absolute;
-    right: 19px;
+    right: 0px;
     float: right;
     padding: 29px 26px 11px 15px;
     background-color: #C9C9C4;
@@ -596,6 +603,7 @@ div.item:nth-child(even){
     background-position: center;
     cursor: pointer;
 }
+
 
 .selecionado{
 	background-color: #C3E4ED !Important;
@@ -786,9 +794,24 @@ div.item:nth-child(even){
 	display:none;
 }
 
+.mCS_no_scrollbar_y > #boxRoteiroAulaPesquisa{
+    width: 100%;
+    height: auto;
+}
+
 #boxRoteiroAulaPesquisa{
-	width: 100%;
+	width: 98%;
 	height: auto;
+}
+
+.mCS_no_scrollbar_y > #box_roteiroAula{
+    width: 100%;
+    height: auto;
+}
+
+#box_roteiroAula{
+    width: 98%;
+    height: auto;
 }
 
 
