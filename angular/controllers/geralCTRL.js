@@ -65,8 +65,6 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 
-
-				console.log($scope.menuInfoM);
 				//var mobile = redirecionaMobile();
 				//console.log(mobile);
 
@@ -174,6 +172,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Carterinhas', href: 'carteirinhas.html', class: 'carteirinhas'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagensSecretaria'},
 				];
+
+				//Classe responsável por organizar o layout do menu da área da secretaria
+				$('#Content_lateral').addClass('Content_Menu_Secretaria');
 			break;
 		}
 		//Logout do usuário
