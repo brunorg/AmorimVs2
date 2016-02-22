@@ -45,14 +45,14 @@ var tipoSelecao = GetURLParameter('tipoProducao');
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function(){
-	
+
 	var cats = getData("CategoriaProducaoAluno", null);
 	htmlCat = '';
 	for(i=0;i<cats.length;i++){
 		htmlCat += '<div class="infoValueP BorderBottom " style="height: 42px"> '+cats[i].categoria+' </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 42px " value="'+cats[i].idcategoriaProducaoAluno+'"> </div>';
 	}
 	$('#opcoesCategoria').html(htmlCat);
-	
+
 	$(".categoria").click(function(){
 		$("div.categoria").css("background-position","0px 0px");
 		$(this).css("background-position","-39px 0px");
@@ -61,9 +61,9 @@ $(document).ready(function(){
 	$("div.inputImg").not(".vazio, .categoria").click(function(){
 		$("div.inputImg").not('.categoria').css("background-position","0px 0px");
 		$(this).css("background-position","-39px 0px");
-		
+
 		tipoArquivo = $(this).attr('value');
-		
+
 		if (tipoArquivo == 'video'){
 			 $("#arquivo").hide();
 			 $("#link").show();
@@ -71,12 +71,12 @@ $(document).ready(function(){
 			 $("#link").hide();
 			 $("#arquivo").show();
 		}
-		
+
 		return false;
 	});
 
 	//----------------------------------------------------------
-	
+
 	//Navegação por abas
 	navItens 		= $('.Prod_Aluno_Nav_Item');
 	contentItens	= $('.Prod_Aluno_Content_Item');
@@ -100,7 +100,7 @@ $(document).ready(function(){
 
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
-	    
+
 	$("#postagemImagem").change(function(e) {
 	    var FR = new FileReader();
 	    FR.onload = function(e) {
@@ -117,7 +117,7 @@ $(document).ready(function(){
 	//----------------------------------------------------------
 
 	CarregaProducao();
-	
+
 	var background = ($(".inputImg").css("background"));
 	background = background.replace("no-repeat", "repeat");
 	$(".inputImg").not($(".vazio")).css("background",background);
@@ -128,19 +128,19 @@ $(document).ready(function(){
 
 
     $('#btn_Sub_AE').click(function(){
-    	
+
     	if ($('#atividadeNova').val() == ''){
 			return mensagem("Preencha o campo da atividade!","OK","bt_ok","erro");
 		}
-		
+
 		if (categoria == ''){
 			return mensagem("Escolha a categoria!","OK","bt_ok","erro");
 		}
-		
+
 		if (tipoArquivo == ''){
 			return mensagem("Escolha um tipo de arquivo!","OK","bt_ok","erro");
 		}
-		
+
     	if (tipoArquivo == 'video'){
     		Arquivo = $('#linkVideo').val();
     		arq = $('#linkVideo').val();
@@ -148,19 +148,19 @@ $(document).ready(function(){
 				return mensagem("Preencha o link do vídeo!","OK","bt_ok","erro");
 			}
     	}else var arq = '';
-    	
+
         if (Arquivo != "" && Arquivo != undefined){
-        	
+
         	var atv = $('#atividadeNova').val();
-        	
-        	
+
+
         	var valores = "anoLetivo=80&texto="+atv+"&data=21-09-2014&aluno="+alunoID+"&tipo=6&categoria="+categoria+"&arquivo="+arq;
-        			
+
 			var retorno = setCreateData("ProducaoAluno",valores);
-			
+
 
 			if(retorno != "erro"){
-			
+
 				$('#Cadastro_Form_imagem_PA #id').val(retorno);
 				if (arq == '') {
 					loading("inicial");
@@ -171,7 +171,7 @@ $(document).ready(function(){
 					mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
 					CarregaProducao();
 				}
-				
+
 				//Limpa os campos!!
 				$('#atividadeNova').val('');
 				$('#linkVideo').val('');
@@ -179,7 +179,7 @@ $(document).ready(function(){
 				tipoArquivo = '';
 				categoria = '';
 				$("#arquivo, #link").hide();
-				
+
 			}else{
 				return mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
 			}
@@ -188,7 +188,7 @@ $(document).ready(function(){
         } else {
             return mensagem("Por Favor, adicione um arquivo!","OK","bt_ok","erro");
         }
-    }); 
+    });
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
     	$("#LegendaUpload").html("Arquivo Carregado");
@@ -211,7 +211,7 @@ function CarregaProducao()
 
 	for(var a = 0; a < dataProducaoAluno.length; a++)
 	{
-		
+
 		if(dataProducaoAluno[a].arquivo){
 			extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
 		}
@@ -227,7 +227,7 @@ function CarregaProducao()
 				{
 					HtmlContent1 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
 				}
-			} 
+			}
 
 			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 6)
 			{
@@ -239,8 +239,8 @@ function CarregaProducao()
 				else
 				{
 					HtmlContent2 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li>";
-				}        		
-			} 
+				}
+			}
 
 			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 4)
 			{
@@ -252,7 +252,7 @@ function CarregaProducao()
 				{
 					HtmlContent3 += "<li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].roteiro.nome+" </li>";
 				}
-				
+
 			}
 		}
     }
@@ -264,7 +264,7 @@ function CarregaProducao()
 	}else{
 		$('#menu_lateral_fichas ul').html("Não há Fichas de Finalização!").css({"position":"relative","width":"150%","color":"#878787","font-size":"16px","padding":"4px"});
 	}
-	
+
 	if(tipoSelecao == "atividade")
 	{
 		//alert(tipoSelecao);
@@ -324,19 +324,19 @@ function reLoadClick(){
             $("#Prod_Aluno_Content li").not(':hidden').css("background-color", "#ECEBE5");
             $(this).not(':hidden').css("background-color", "#D6E5A9");
 		}
-				
+
 		if(ex){
 			if($(this).html().length != 1){
 
 				$("#Prod_Aluno_Content li").not(':hidden').css("background-color", "#ECEBE5");
 				$(this).not(':hidden').css("background-color", "#D6E5A9");
-				
+
 				if($(this).attr('id') == "List_ADD"){
 					$('#objeto_verificar').hide();
 					$('#objeto_adicionar').show();
 
 				} else {
-					
+
 					$('#objeto_adicionar').hide();
 					$('#objeto_verificar').show();
 					if (extensao.length <= 5){
@@ -345,13 +345,13 @@ function reLoadClick(){
 						var video = (arquivo.substring(arquivo.lastIndexOf("=")));
 						video = video.substring(1);
 						$('.imagem_objeto iframe').not(':hidden').attr('src','http://youtube.com/embed/'+video);
-						
+
 					}
 				}
 			}
-		}		
+		}
 	});
-} 
+}
 
 function addFileTo(ID)
 {
@@ -366,7 +366,7 @@ function addFileTo(ID)
     contentType: false,
     cache: false,
     processData:false,
-    data: formData,        
+    data: formData,
         success: function(d) {
             mensagem("Arquivo salvo!","OK","bt_ok","sucesso");
             $('#foto').css("background-image","url(img/foto.png)");
@@ -377,31 +377,31 @@ function addFileTo(ID)
             CarregaProducao();
 
             $("#LegendaUpload").html("Aguardando Arquivo");
-            
+
             //CarregaProducao();
         },error: function() {
             return mensagem("Não modificado, verifique os campos!","OK","bt_ok","erro");
         }
-    }); 
+    });
 }
 
 function getAnoLetivo(formato){
 	var dataSalvaPortifolio = new Date();
 	var anoAtual;
-	
-	if(formato == "idAnoLetivo"){		
+
+	if(formato == "idAnoLetivo"){
 		var dataAnoLetivo = getData("AnoLetivo",null);
 		for(var i=0;i<dataAnoLetivo.length;i++){
 			var anoLetivo = dataAnoLetivo[i].ano;
-			anoLetivo = anoLetivo.split("-");		
+			anoLetivo = anoLetivo.split("-");
 			if(anoLetivo[0]==dataSalvaPortifolio.getUTCFullYear()){
 				anoAtual = dataAnoLetivo[i].idanoLetivo;
 			}
-		}	
+		}
 	}else if(formato == "anoAnoLetivo"){
 		anoAtual = dataSalvaPortifolio.getUTCFullYear();
 	}
-	
+
 	return anoAtual;
 }
 
@@ -499,15 +499,15 @@ function postProducaoOficina()
     $('#anoLetivo').val(anoLetivo);
     $('#data').val(data.ano+"-"+data.mes+"-"+data.dia);
     $('#aluno').val(alunoID);
-    
+
 	$.ajax({
         url: path+"ProducaoAluno/",
         type: "POST",
         crossDomain: true,
         data: $("#form_Nova_Producao").find('input[name!="naoEnviar"]').serialize(),
-        beforeSend: function() { loading("inicial"); }, 
-        success: function(idPost) 
-        { 
+        beforeSend: function() { loading("inicial"); },
+        success: function(idPost)
+        {
 			uploadArquivo(idPost);
 			mensagem("Produção cadastrada com sucesso!","OK","bt_ok","sucesso");
 			showNovaAtividade(idPost);
@@ -516,8 +516,7 @@ function postProducaoOficina()
 		error: function(e) { mensagem("Erro ao cadastrar uma nova produção.","OK","bt_ok","erro"); }
     });
 }
-function uploadArquivo(idpost)
-{
+function uploadArquivo(idpost) {
     var formData = new FormData($("#form_Nova_Producao")[0]);
     formData.append("arquivo", Arquivo);
 
@@ -536,13 +535,11 @@ function uploadArquivo(idpost)
 
 /* ------ Funções SHOW ------ */
 
-function showAcordeonOficinas()
-{
+function showAcordeonOficinas() {
 	var listaOficinas = getOficinasAluno();
 	var acordeonHtml = new String();
 
-	for (var a in listaOficinas)
-	{
+	for (var a in listaOficinas) {
 		oficinas.push(listaOficinas[a]);
 
 		acordeonHtml +=
@@ -556,57 +553,55 @@ function showAcordeonOficinas()
 
 	$('#Prod_Oficina_Acordeon').prepend(acordeonHtml);
 }
-function showOficinaContent(id)
-{
-	if ( ! $('#oficina'+id).hasClass('atividadesListadas') )
-	{
+function showOficinaContent(id) {
+	if ( ! $('#oficina'+id).hasClass('atividadesListadas') ) {
 		var atividades = getAtividadesOficina(id);
 		var htmlAtividades = new String();
 
-		if ( atividades.length > 0 )
-		{
-			for (var a in atividades)
-			{
-				htmlAtividades +=
-					'<div id="prodAluno'+atividades[a].idproducaoAluno+'"" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+atividades[a].arquivo+'\', \''+atividades[a].idproducaoAluno+'\')">'+
-						'<span class="Item_Prod_Titulo">'+atividades[a].texto+'</span>'+
-					'</div>';
+		if ( atividades.length > 0 ) {
+			for (var a in atividades) {
+				htmlAtividades +=	"<div id=\"prodAluno"+atividades[a].idproducaoAluno+"\" class=\"Oficina_Content_Item Item_Prod\" onclick=\"showAtividadeExtra('"+atividades[a].arquivo+"', '"+atividades[a].idproducaoAluno+"')\">";
+				htmlAtividades +=		"<div class=\"Item_Prod_Titulo\">";
+				htmlAtividades +=			"<span>"+atividades[a].texto+"</span>";
+				htmlAtividades +=		"</div>";
+				htmlAtividades +=	"</div>";
+
+				$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			}
-			$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			$('#oficina'+id).addClass('atividadesListadas')
 		}
 	}
 
-	if ( $('#oficina'+id).hasClass('itemExpandido') )
-	{
+	if ( $('#oficina'+id).hasClass('itemExpandido') ) {
 		$('#oficina'+id).removeClass('itemExpandido');
 		$('#oficina'+id).find('.Prod_Oficina_Content').slideUp();
 		$('.Oficina_Content_Item').removeClass('Item_Selected');
 
 		showAtividadesRecentes();
-	}
-	else
-	{
+	} else {
 		$('#oficina'+id).addClass('itemExpandido');
 		$('#oficina'+id).find('.Prod_Oficina_Content').slideDown();
 	}
 
-	$('.Prod_Oficina_Item').not('#oficina'+id).each(function()
-	{
+	$("#oficina"+id).find(".Item_Prod").each(function() {
+		var parent = $(this).find(".Item_Prod_Titulo");
+		var element = $(this).find("span");
+
+		verifyTamanhoNomeRoteiro(parent, element);
+	});
+
+	$('.Prod_Oficina_Item').not('#oficina'+id).each(function() {
 		$(this).removeClass('itemExpandido');
 		$(this).find('.Prod_Oficina_Content').slideUp();
 	});
 }
-function showAtividadesExtraContent()
-{
-	if ( !$('#AtvExtra').hasClass('atividadesListadas') )
-	{
+function showAtividadesExtraContent() {
+	if ( !$('#AtvExtra').hasClass('atividadesListadas') ) {
 		var atividades = getAtividadesExtras();
 		var htmlAtividades = new String();
 
 		if ( atividades.length > 0 ) {
-			for ( a in atividades )
-			{
+			for ( a in atividades ) {
 				htmlAtividades +=
 					'<div id="prodAluno'+atividades[a].idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+atividades[a].arquivo+'\', \''+atividades[a].idproducaoAluno+'\')">'+
 						'<span class="Item_Prod_Titulo">'+atividades[a].texto+'</span>'+
@@ -618,13 +613,10 @@ function showAtividadesExtraContent()
 		$('#AtvExtra').addClass('atividadesListadas')
 	}
 
-	if( !$('#AtvExtra').hasClass('itemExpandido') )
-	{
+	if( !$('#AtvExtra').hasClass('itemExpandido') ) {
 		$('#AtvExtra').find('.Prod_Oficina_Content').slideDown();
 		$('#AtvExtra').addClass('itemExpandido');
-	}
-	else
-	{
+	} else {
 		$('#AtvExtra').find('.Prod_Oficina_Content').slideUp();
 		$('#AtvExtra').removeClass('itemExpandido');
 		$('.Oficina_Content_Item').removeClass('Item_Selected');
@@ -632,20 +624,17 @@ function showAtividadesExtraContent()
 		showAtividadesRecentes();
 	}
 
-	$('.Prod_Oficina_Item').not('#AtvExtra').each(function()
-	{
+	$('.Prod_Oficina_Item').not('#AtvExtra').each(function() {
 		$(this).removeClass('itemExpandido');
 		$(this).find('.Prod_Oficina_Content').slideUp();
 	})
 }
-function showNovaAtividade(idNovaAtividade)
-{
+function showNovaAtividade(idNovaAtividade) {
 	var novaAtividade = getNovaAtividade(idNovaAtividade);
 	var htmlNovaAtividade = new String();
-	
-	if ( novaAtividade.tipo.idtipoProducaoAluno === 6 )
-	{
-		htmlNovaAtividade = 
+
+	if ( novaAtividade.tipo.idtipoProducaoAluno === 6 ) {
+		htmlNovaAtividade =
 			'<div id="prodAluno'+novaAtividade.idproducaoAluno+'" class="Oficina_Content_Item Item_Prod" onclick="showAtividadeExtra(\''+novaAtividade.arquivo+'\', \''+novaAtividade.idproducaoAluno+'\')">'+
 				'<span class="Item_Prod_Titulo">'+novaAtividade.texto+'</span>'+
 			'</div>';
@@ -654,26 +643,19 @@ function showNovaAtividade(idNovaAtividade)
 		$('#AtvExtra').find('#'+novaAtividade.idproducaoAluno).trigger('click');
 	}
 }
-function showAtividadesRecentes()
-{
-	if ( ! $('#container_tela_padrao').hasClass('Atividades_Recentes_Listadas') )
-	{
+function showAtividadesRecentes() {
+	if ( ! $('#container_tela_padrao').hasClass('Atividades_Recentes_Listadas') ) {
 		var atividades = getAtividadesRecentes();
 		var htmlRecentes = new String();
 		var tipoAtividade;
 		var corTipoAtividade;
 
-		if ( atividades !== [] )
-		{
-			for ( var a in atividades )
-			{
-				if ( atividades[a].tipo.idtipoProducaoAluno === 6 )
-				{
+		if ( atividades !== [] ) {
+			for ( var a in atividades ) {
+				if ( atividades[a].tipo.idtipoProducaoAluno === 6 ) {
 					tipoAtividade = atividades[a].tipo.tipo;
 					corTipoAtividade = '#fbb040';
-				}
-				else
-				{
+				} else {
 					tipoAtividade = atividades[a].oficina.tipoOficina.nome;
 					corTipoAtividade = atividades[a].oficina.tipoOficina.cor.forte;
 				}
@@ -687,9 +669,7 @@ function showAtividadesRecentes()
 						'<div class="atividade_recente_tipo" style="background-color: '+corTipoAtividade+';">'+tipoAtividade+'</div>'+
 					'</div>';
 			}
-		}
-		else
-		{
+		} else {
 			htmlRecentes += "<h2 class=\"retono_vazio_recentes\">Ainda não há atividades cadastradas.</h2>"
 		}
 
@@ -703,8 +683,7 @@ function showAtividadesRecentes()
     $('#container_tela_padrao').show();
 }
 
-function showAtividadeExtra(url, idProdAluno)
-{
+function showAtividadeExtra(url, idProdAluno) {
 	$('#container_Nova_Producao').hide();
     $('#container_tela_padrao').hide();
 
@@ -715,8 +694,7 @@ function showAtividadeExtra(url, idProdAluno)
 
 	$('#Prod_Oficina_View').show();
 }
-function showFormNovaProd(idOficina, tipo)
-{
+function showFormNovaProd(idOficina, tipo) {
 	$('.Oficina_Content_Item').removeClass('Item_Selected');
 
 	$('#container_Nova_Producao').show();
@@ -727,14 +705,27 @@ function showFormNovaProd(idOficina, tipo)
 	$('#tipo').val(tipo);
 	$('#oficina').val(idOficina);
 
-	if ( idOficina === 0 )
-	{
+	if ( idOficina === 0 ) {
 		$('#oficina').attr('name','naoEnviar');
 		$('#AtvExtraAdd').addClass('Item_Selected');
-	}
-	else
-	{
+	} else {
 		$('#oficina').attr('name','oficina');
 		$('#oficinaAdd'+idOficina).addClass('Item_Selected');
+	}
+}
+
+function verifyTamanhoNomeRoteiro(parent, element) {
+	var widthParent = $(parent).outerWidth();
+	var widthElement = $(element).outerWidth();
+
+	if (widthElement > widthParent) {
+		$(parent).mouseover(function() {
+			var diferenca = widthElement - widthParent;
+			$(element).animate({ left: -diferenca }, 1500, function() {
+				setTimeout(function() {
+					$(element).css("left", "0");
+				}, 1000)
+			});
+		});
 	}
 }

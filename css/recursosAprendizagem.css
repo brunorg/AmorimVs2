@@ -118,7 +118,7 @@
 	overflow: hidden;
 	cursor: pointer;
 	color: #666;
-
+	padding: 0 8px;
 
 }
 
@@ -139,7 +139,7 @@
 	width: 19.66%;
 	height: 50%;
 	background-color: #F2F1ED;
-	padding: 14.4px;
+	padding: 12px;
 	text-align: right;
 	float: left;
 	border-right: 2px solid #B6B6B0;

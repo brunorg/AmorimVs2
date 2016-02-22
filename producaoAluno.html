@@ -4,49 +4,49 @@
 		<meta charset="UTF-8" />
 		<title>Plataforma Amorim</title>
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
- 
+
 		<!--Style-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/home.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="css/plugins.css" />
-		<link rel="stylesheet" type="text/css" href="css/producaoAluno.css" />  
+		<link rel="stylesheet" type="text/css" href="css/producaoAluno.css" />
 		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
 		<!--Fim Style-->
-		
+
 		<!--Script JS-->
 		<script type="text/javascript" src="js/path.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        			
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
 		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
 		<script type="text/javascript" src="js/calendario.js"></script>
-		<script type="text/javascript" src="js/funcoes.js"></script>   
+		<script type="text/javascript" src="js/funcoes.js"></script>
 		<!--Carrega os dados do usuario logado-->
 		<script type="text/javascript" src="js/autenticador.js"></script>
-						
+
 		<script type="text/javascript" src="angular/angular.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
 		<script type="text/javascript" src="angular/app/app.js"></script>
-		<script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
-		<script type="text/javascript" src="js/producaoAluno.js"></script>   
-		<!--Fim JS-->    
+		<script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+		<script type="text/javascript" src="js/producaoAluno.js"></script>
+		<!--Fim JS-->
 	</head>
 
 	<body>
 		<!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">            
+		<div id="Container" ng-controller="geralCTRL">
 			<div>
 				<div id="Cabecalho_Menu_Area">
 					<div id="Cabecalho_Menu_Area_Menu1"><a id="home">Home</a> | <a href="{{usuarioPagina}}">{{usuarioNamePagina}}</a></div>
 					<div id="Cabecalho_Menu_Area_Menu2">
 						<a id="senha" onClick="atualizarCadastroModal('aluno');">Atualizar Cadastro</a> |
-						<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-						<a href="javascript:history.back()">Voltar</a> | 
+						<a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> |
+						<a href="javascript:history.back()">Voltar</a> |
 						<a id="logout" href="#" ng-click="logout()">Sair</a>
-					</div>			
+					</div>
 				</div>
 				<!--Perfil do usuário, neste caso, o aluno-->
 				<div id="Cabecalho_Perfil_Area" ng-init="usuario()">
@@ -63,11 +63,11 @@
 				</div>
 			</div>
 			<div id="Conteudo_Area">
-					<!--Coluna a esquerda-->    
-					<div class="Conteudo_Coluna" id="Content_lateral">    
+					<!--Coluna a esquerda-->
+					<div class="Conteudo_Coluna" id="Content_lateral">
 						<!--Menu lateral-->
-						<div id="Content_lateral_Menu">    
-							<div  ng-repeat="menu in menuHTML">                        	
+						<div id="Content_lateral_Menu">
+							<div  ng-repeat="menu in menuHTML">
 								<a href="{{menu.href}}">
 									<div class="Content_lateral_Menu_Opcao {{menu.class}}">
 										<div ng-if="menu.class== 'mensagens' && menuInfoM != '' && menuInfoM != '0'" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
@@ -76,20 +76,20 @@
 									</div>
 								</a>
 							</div>
-						</div>    
-					<!--Calendario-->                   
+						</div>
+					<!--Calendario-->
 					<div id="Content_lateral_Calendario">
 						<div id="datepicker"></div>
 						<div id="rodape_calendario">
 							<p id="apontar">Apontar Presença grupo</p>
-						</div>                                                 							
-					</div>                                     
-				</div>          
+						</div>
+					</div>
+				</div>
 
 				<!--Coluna geral central-->
-				<!--  bloqueio para a rolagem top-->				
+				<!--  bloqueio para a rolagem top-->
 				<div class="Conteudo_Coluna" id="content_central">
-				
+
 					<nav id="producao_aluno_cabecalho">
 						<ul id="Producao_Aluno_Nav" class="Prod_Aluno_Nav">
 							<li id="cabecalho_portfolio" class="Prod_Aluno_Nav_Item">Portfólio</li>
@@ -97,9 +97,9 @@
 							<li id="cabecalho_atividade" class="Prod_Aluno_Nav_Item">Oficinas</li>
 						</ul>
 					</nav>
-					
+
 					<main id="Prod_Aluno_Content">
-						
+
 						<!-- Conteudo da aba de Portfolio -->
 						<section id="Portfolio" class="Prod_Aluno_Content_Item">
 							<div id="menu_lateral_portfolio">
@@ -115,26 +115,26 @@
 									<li> </li> -->
 								</ul>
 							</div>
-							
+
 							<div id="conteudo_principal_portfolio">
 								<!-- <div id="Titulo_objeto">
 									Civilizações europeias
 								</div> -->
-								
+
 								<div class="imagem_objeto">
 
 									<iframe src=""></iframe>
-								
+
 								</div>
 							</div>
 						</section>
-							
+
 						<!-- Conteudo da aba das Fichas de finalização -->
 						<section id="Fichas" class="Prod_Aluno_Content_Item">
 							<div id="menu_lateral_fichas">
 								<ul></ul>
 							</div>
-							
+
 							<div id="conteudo_principal_fichas">
 								<div class="imagem_objeto">
 									<iframe src=""></iframe>
@@ -154,11 +154,11 @@
 									</div>
 								</div>
 							</nav>
-							
+
 							<div id="conteudo_principal_oficinas">
 								<div id="container_tela_padrao" class="container_tela_padrao">
 								<h1 class="tela_padrao_titulo">Atividades recentes</h1>
-									
+
 								</div>
 								<div id="container_Nova_Producao" style="display: none">
 									<form id="form_Nova_Producao">
@@ -192,16 +192,16 @@
 							</div>
 						</section>
 
-					</main>	
+					</main>
 
 					<div id="portifolio_aluno_content">
-						
-					</div>	
-						
+
+					</div>
+
 						<div id="back_black">
 							<div class="mensagem_Exclusao">
 								<div class="Mensagem_Texto">
-									
+
 									Você tem certeza que deseja excluir esta atividade?
 
 								</div>
@@ -212,10 +212,10 @@
 							</div>
 						</div>
 
-				</div> 
-			</div>             
+				</div>
+			</div>
 		</div><!--Fim Conteudo-->
 		<div id="boxMensagemGeral"></div>
-		<div class="boxGlobal"></div>    
+		<div class="boxGlobal"></div>
 	</body>
-</html> 
+</html>
