@@ -7,12 +7,12 @@
 //Get Usuario Efetivado
 	var userID = usuarioId;
 	//var usuarioLogado;	//Usuário logado!!
-	var dataUsuarios;	//Variavel para guardar todos os usuários
 	var dataMensagens;
 	var dataMensagensEntrada;
 	var dataMensagensSaida;
 	var observacaoProducao = false;
-	var perfilUsuario;
+	var vazio = false;
+	var contMensagens=1;
 	
 	$.ajax({
 		url: path + "Usuario/ListarObjParte",
@@ -43,70 +43,13 @@ var SelMSGAcao = 0;
 //Carrega a funçao de Load do JQuery msg_selecionada
 
 $(document).ready(function(){
-	var contMensagens=1;
-	var vazio = false;
 	var aba;
-	$("#boxMensagens").mCustomScrollbar({
-		axis:"y",
-		callbacks:{						
-			alwaysTriggerOffsets: false,
-		    onTotalScrollOffset: 100,
-		    whileScrolling: function() {				  	
-				aba = $('.cx_barra').attr('id');
-				if(aba=='Enviadas'){
-					if(this.mcs.topPct > 95){
-						if(vazio == false){
-							retorno = ListarEnviadas('',10*contMensagens,10);
-							contMensagens++;
-							if(typeof retorno == "undefined"){
-								vazio = true;
-							}
-						}					
-					}
-				}else{
-					if(this.mcs.topPct > 95){
-						if(vazio == false){
-							
-							retorno = ListarCaixaEntrada(10*contMensagens,10);
-							contMensagens++;
-							if(typeof retorno == "undefined"){
-								vazio = true;
-							}
-						}					
-					}
-				}
-		    },
-			onTotalScroll:function(){
-				aba = $('.cx_barra').attr('id');
-				if(aba=='Enviadas'){
-					if(this.mcs.topPct > 95){
-						if(vazio == false){
-							retorno = ListarEnviadas('',10*contMensagens,10);
-							contMensagens++;
-							if(typeof retorno == "undefined"){
-								vazio = true;
-							}
-						}					
-					}
-				}else{
-					if(this.mcs.topPct > 95){
-						if(vazio == false){
-							retorno = ListarCaixaEntrada(10*contMensagens,10);
-							contMensagens++;
-							if(typeof retorno == "undefined"){
-								vazio = true;
-							}
-						}					
-					}
-				}
-			}
-		}
-	});
-	
+
+	atribuiFuncoesRolagem();	
 	
 
 	$("#Nav_menu div").click(function(){
-		if($(this).attr("id") == "bt_Excluir" &&
+		if(	$(this).attr("id") == "bt_Excluir" &&
 			$('.msg_selecionada').length > 0)
 		{
 			loading('inicial');
@@ -116,14 +59,14 @@ $(document).ready(function(){
 			//ExcluirMensagem();
 		}
 
-		if($(this).attr("id") != "bt_Excluir" &&
+		if(	$(this).attr("id") != "bt_Excluir" &&
 			$('.msg_selecionada').length > 0)
 		{
 			if($(this).hasClass("estado_ativo") == true){
 				$(this).removeClass("estado_ativo");
 			} else{
-			$("#Nav_menu div").removeClass("estado_ativo");
-			$(this).addClass("estado_ativo")
+				$("#Nav_menu div").removeClass("estado_ativo");
+				$(this).addClass("estado_ativo")
 			};
 		}
 
@@ -217,10 +160,10 @@ $(document).ready(function(){
 		vazio = false;
 		if($(this).attr('id') == "CaixaDeEntrada"){
 			$(this).addClass('cx_barra');			 
-			ListarCaixaEntrada(1,10);
+			ListarCaixaEntrada(0,10);
 		} else if($(this).attr('id') == "Enviadas"){			
 			$(this).addClass('cx_barra');			   
-			ListarEnviadas('',1,10);
+			ListarEnviadas('',0,10);
 		}
 
 
@@ -262,7 +205,7 @@ $(document).ready(function(){
 
 	//Lista a Caixa de Entrada como padrão incial
 	
-	ListarCaixaEntrada(1,10);
+	ListarCaixaEntrada(0,10);
 
 	window.setTimeout(function(){
 		if(IdMsg != undefined)
@@ -314,8 +257,67 @@ $(document).ready(function(){
 			$("#responder").trigger("click");
 		},1500)
 	}
-
 });
+
+function atribuiFuncoesRolagem () {
+	$("#boxMensagens").mCustomScrollbar({
+		axis:"y",
+		callbacks:{						
+			alwaysTriggerOffsets: false,
+		    onTotalScrollOffset: 100,
+		    whileScrolling: function() {
+		    	console.log("scroll");		  	
+				aba = $('.estado_ativo').attr('id');
+				if(	aba == 'Enviadas'){
+					if(this.mcs.topPct > 95 &&
+						vazio == false){
+
+						retorno = ListarEnviadas('',10*contMensagens,10);
+							contMensagens++;
+						if(typeof retorno == "undefined"){
+							vazio = true;
+						}
+					}
+					
+				}else{
+					if(this.mcs.topPct > 95){
+						if(vazio == false){
+							
+							retorno = ListarCaixaEntrada(10*contMensagens,10);
+							contMensagens++;
+							if(typeof retorno == "undefined"){
+								vazio = true;
+							}
+						}					
+					}
+				}
+		    },
+			onTotalScroll:function(){
+				aba = $('.estado_ativo').attr('id');
+				if(	aba=='Enviadas'){
+					if(this.mcs.topPct > 95 &&
+						vazio == false){
+						retorno = ListarEnviadas('',10*contMensagens,10);
+						contMensagens++;
+						if(typeof retorno == "undefined"){
+							vazio = true;
+						}
+					}
+				}else{
+					if(this.mcs.topPct > 95){
+						if(vazio == false){
+							retorno = ListarCaixaEntrada(10*contMensagens,10);
+							contMensagens++;
+							if(typeof retorno == "undefined"){
+								vazio = true;
+							}
+						}					
+					}
+				}
+			}
+		}
+	});
+}
 
 //caixa_mensagem lida msg_selecionada
 //Função de Abrir a carta não lida do Email
@@ -481,7 +483,7 @@ function EnviarMSG()
 				}
 				$("#tela_over").hide();
 		    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");		    	
-				ListarEnviadas('',1,10); //Não precisa enviar a ultima, a lista é atualizada na função ListarEnviadas!!
+				ListarEnviadas('',0,10); //Não precisa enviar a ultima, a lista é atualizada na função ListarEnviadas!!
 				
 				limparCampos();
 				loading('final');
@@ -527,7 +529,7 @@ function ResponderMensagem()
 
 		    	$('#CaixaDeEntrada').trigger("click");
 				//carregaMensagens();
-		    	ListarCaixaEntrada(1,10);
+		    	ListarCaixaEntrada(0,10);
 
 				//Se mudar essa mensagem, tem que mudar o if no funcoes.js!!
 		    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
@@ -554,7 +556,6 @@ function ResponderMensagem()
 function ListarCaixaEntrada(inicio,fim){
 
 	var HtmlContent = "";
-	var Contador = 1;
 
 	$.ajax({
 		type: "GET",
@@ -564,7 +565,7 @@ function ListarCaixaEntrada(inicio,fim){
 		success: function(dataMensagensEntrada){
 		
 			if (dataMensagensEntrada.length > 0){
-				for(var a=dataMensagensEntrada.length-1; a>=0; a--){
+				for(var a = 0; a < dataMensagensEntrada.length; a++){
 
 					if(dataMensagensEntrada[a].mensagem != ''){
 						
@@ -581,7 +582,7 @@ function ListarCaixaEntrada(inicio,fim){
 			}
 	
 			//Após salvar as Strings dentro da variável, adicionar ao HTML
-			if(inicio==1){
+			if(inicio == 0){
 				$('#Col_CaixaDeMensagens').html(HtmlContent);
 			}else{ 
 				$('#Col_CaixaDeMensagens').append(HtmlContent);
@@ -598,7 +599,6 @@ function ListarEnviadas(ultima,inicio,fim)
 {
 	//Carrega a lista das mensagens, não precisando trazer a ultima mensagem!!
 	var HtmlContent = "";
-	var Contador = 1;
 	//Pegar os dados do Serviço JSON das Mensagens
 
 	$.ajax({
@@ -610,11 +610,11 @@ function ListarEnviadas(ultima,inicio,fim)
 		success: function(dataMensagensSaida){
 			
 			if (dataMensagensSaida.length > 0){
-				for(var a=dataMensagensSaida.length-1; a>=0; a--){
+				for(var a = 0; a > dataMensagensSaida.length; a++){
 					console.log(dataMensagensSaida[a].remetente_nome);
 					if(dataMensagensSaida[a].mensagem != ''){
 						var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
-						HtmlContent +='<div id="msg'+(Contador++)+'" class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ' +
+						HtmlContent +='<div class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ' +
 									   	'<div class="caixa_data_hora"> '+dataMSG+' </div>' +
 									   	'<div class="msg_info_wrapper">' +
 									   	  '<div class="caixa_remetente"> '+dataMensagensSaida[a].remetente_nome+' </div>' +
@@ -627,7 +627,7 @@ function ListarEnviadas(ultima,inicio,fim)
 		}
 	});
 	
-	if(inicio==1){
+	if(inicio == 0){
 		$('#Col_CaixaDeMensagens').html(HtmlContent);
 	}else{ 
 		$('#Col_CaixaDeMensagens').append(HtmlContent);
@@ -679,7 +679,6 @@ function ExcluirMensagem()
 				
 				
 				//carregaMensagens();
-				//ListarCaixaEntrada(1,10);
 				//$("msg")
 				
 
