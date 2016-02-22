@@ -425,17 +425,17 @@ html, body
 				/*Fim menu Agenda*/
 				
 				/*Menu PresenÃ§a*/
-				.presenca{
+				.presencaS{
 					background-image: url(../img/presencas-ativo.png);
 					height: 50px !important;
 				    padding: 19px 10px 10px 70px !important;
 				    background-size: 39px !important;
     				background-position: 20px !important;
 				}				
-				.presenca:hover{
+				.presencaS:hover{
 					background-image: url(../img/presencas.png);
 				}
-				.presenca-active{
+				.presencaS-active{
 					background-image: url(../img/presencas.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
