@@ -46,7 +46,6 @@ app.controller('loginCTRL',function ($scope,$http) {
 });
 
 app.controller('geralCTRL',function($scope,$http){
-
 	$scope.usuario = function(){
 		switch (dadosUsuario.perfil.perfil){
 			case "Aluno":
@@ -66,6 +65,8 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 
+
+				console.log($scope.menuInfoM);
 				//var mobile = redirecionaMobile();
 				//console.log(mobile);
 
@@ -116,8 +117,6 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.oficina   = oficinaAtivaP;
 
-
-
 				$scope.menuHTML = [
 					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano '+inativo},
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'mn_professor recurso rows2'},
@@ -125,8 +124,8 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'mn_professor tutores'},
 					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'mn_professor oficinas '+inativo},
 					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'mn_professor jeiff'},
-					{label: 'Mensagens', href: 'mensagens.html', class: 'mn_professor mensagens'},
-					{label: 'Fórum', href: 'forum.html', class: 'mn_professor forum'}
+					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
+					{label: 'Fórum', href: 'forum.html', class: 'forum'}
 				];
 
 				//Visibilidade do perfil
@@ -134,7 +133,7 @@ app.controller('geralCTRL',function($scope,$http){
 				if(confTutor==true){
 					$("#rodape_calendario").css("display","block");
 					$("#rodape_calendario p").show();
-				}
+				}				
 			break;
 
 			case "Coordenacao":
@@ -145,7 +144,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
 				$scope.menuHTML = [
-					{label: 'Rotinas', href: 'rotinas.html',class: 'rotinas inativo'},
+					{label: 'Rotinas', hreFf: 'rotinas.html',class: 'rotinas inativo'},
 					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
 					{label: 'Roteiros', href: 'roteiros.html', class: 'roteiros'},
 					{label: 'Tutorias', href: 'tutorias.html', class: 'tutoria'},
@@ -173,7 +172,7 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Agenda', href: 'agenda.html', class: 'agenda'},
 					{label: 'Presença', href: 'presenca.html', class: 'presenca'},
 					{label: 'Carterinhas', href: 'carteirinhas.html', class: 'carteirinhas'},
-					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
+					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagensSecretaria'},
 				];
 			break;
 		}

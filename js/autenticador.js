@@ -37,6 +37,10 @@ switch (usuario){
 		msgNaoVistas(usuarioId);
 		dadosForum(usuarioId);		
 		localStorage.setItem("tutoriaProfessor",JSON.stringify(getTutoria(dadosUsuario.professor.idprofessorFuncionario)));
+		setTimeout(function(){
+			$(".mensagens").addClass('mn_professor');
+			$(".forum").addClass('mn_professor');
+		},1000);
 	break;
 	
 	case 'Coordenacao':
@@ -67,6 +71,7 @@ function verificaUsuarioTurtor(idProfessor){
 
 //Lista as mensagens não vistas do usuário e mostra no menu
 function msgNaoVistas(usuarioId){
+	var textoMsgNLida;
 	$.ajax({
 		url: path+"Mensagens/ProprietarioCount/"+usuarioId,
 		type: "GET",
@@ -74,9 +79,9 @@ function msgNaoVistas(usuarioId){
 		crossDomain: true,
 		success: function(d) {
 			if (d > 0){
-				textoMsgNLida = d;
+				localStorage.setItem("textoMsgNLida", d);
 			}else 
-				textoMsgNLida = '';
+				localStorage.setItem("textoMsgNLida", '');
 		}		
 	});
 }
@@ -126,8 +131,7 @@ function dadosForum(usuarioId){
 	}else{
 		textoForum = totalForum;
 	}
-	localStorage.setItem("totalForum", totalForum);
-	localStorage.setItem("textoMsgNLida", textoMsgNLida);
+	localStorage.setItem("totalForum", totalForum);	
 }
  
 /*Function que abrevia nome do usuário*/

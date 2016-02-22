@@ -165,10 +165,10 @@ html, body
 				margin-bottom: 1px;
 				background-color: rgba(2, 129, 141, 1);
 				font-size: 17px;
-				font-weight: 300;
+				font-weight: 600;
 				text-decoration: none;
 				padding: 12px 10px 13px 70px;
-				color: #87cfde;
+				color: #c9e7ef;
 				word-break: keep-all;
 				background-repeat: no-repeat;
 				background-position: 21px 50%;
@@ -373,21 +373,50 @@ html, body
 				}
 				
 				/*Menu Cadastro*/
-				.cadastro { background-image: url(../img/ic_cadastro-ativo.png); }
-
-				.cadastro:hover { background-image: url(../img/ic_cadastro.png); }
+				.cadastro { 
+					background-image: url(../img/ic_cadastro-ativo.png); 
+					height: 50px !important;
+				    padding: 19px 10px 10px 70px !important;
+				    background-size: 38px !important;
+				}
+				.cadastro:hover { 
+					background-image: url(../img/ic_cadastro.png); 
+				}
 
 				.cadastro-active {
 					background-image: url(../img/ic_cadastro.png);	
+					background-color: rgba(22, 190, 207, 0.79);				
+				}
+
+				/*Menu mensagens secretaria*/
+				.mensagensSecretaria{
+					background-image: url(../img/Ic_mensagens-ativo.png); 
+					height: 50px !important;
+				    padding: 19px 10px 10px 70px !important;
+				    background-size: 34px !important;
+    				background-position: 24px !important;
+				}
+
+				.mensagensSecretaria:hover { 
+					background-image: url(../img/ic_mensagens.png); 
+				}
+
+				.mensagensSecretaria-active {
+					background-image: url(../img/ic_mensagens.png);	
 					background-color: rgba(22, 190, 207, 0.79);				
 				}
 				
 				/*Menu Agenda*/
 				.agenda{
 					background-image: url(../img/agenda-ativo.png);
+					height: 50px !important;
+				    padding: 19px 10px 10px 70px !important;
+				    background-size: 25px !important;
+    				background-position: 26px !important;
+
 				}				
 				.agenda:hover{
-					background-image: url(../img/agenda.png);
+					background-image: url(../img/agenda.png);					
 				}
 				.agenda-active{
 					background-image: url(../img/agenda.png);	
@@ -398,6 +427,10 @@ html, body
 				/*Menu PresenÃ§a*/
 				.presenca{
 					background-image: url(../img/presencas-ativo.png);
+					height: 50px !important;
+				    padding: 19px 10px 10px 70px !important;
+				    background-size: 39px !important;
+    				background-position: 20px !important;
 				}				
 				.presenca:hover{
 					background-image: url(../img/presencas.png);
@@ -411,7 +444,10 @@ html, body
 				/*Menu Carteirinhas*/
 				.carteirinhas{
 					background-image: url(../img/ic_carteirinha-ativo.png);
-					
+					height: 50px !important;
+				    padding: 19px 10px 10px 70px !important;
+				    background-size: 39px !important;
+    				background-position: 20px !important;
 				}				
 				.carteirinhas:hover{
 					background-image: url(../img/ic_carteirinha.png);
