@@ -168,7 +168,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuHTML = [
 					{label: 'Cadastro', href: 'cadastros.html',class: 'cadastro'},
 					{label: 'Agenda', href: 'agenda.html', class: 'agenda'},
-					{label: 'Presença', href: 'presenca.html', class: 'presenca'},
+					{label: 'Presença', href: 'presenca.html', class: 'presencaS'},
 					{label: 'Carterinhas', href: 'carteirinhas.html', class: 'carteirinhas'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagensSecretaria'},
 				];
