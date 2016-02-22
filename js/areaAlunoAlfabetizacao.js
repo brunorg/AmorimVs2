@@ -373,31 +373,44 @@ function filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedi
 	var html = "";
 		html+= '<h2 style="color: '+corForte+'">Conteúdo</h2>';
 
-	if(idTipoOficina != 0 && idOficina){
-		for(var valor of data)
-		{
+	var conteudo = false;
 
-			if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+	if(data.length > 0)
+	{
 
-				html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
-				html+= '	<div class="roteiro_info">';
-				html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
-				html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
-				html+= '	</div>';
-				html+= '	<div class="roteiro_conteudo">';
-				html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
-				html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
-				html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
-				html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
-				html+= '		<div class="roteiro_recursos roteiro_item">';
-				html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
-				html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
-				html+= '		</div>';
-				html+= '	</div>';
-				html+= '</div>';
+		if(idTipoOficina != 0 && idOficina){
+			for(var valor of data)
+			{
+
+				if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+
+					html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
+					html+= '	<div class="roteiro_info">';
+					html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
+					html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
+					html+= '	</div>';
+					html+= '	<div class="roteiro_conteudo">';
+					html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
+					html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
+					html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
+					html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
+					html+= '		<div class="roteiro_recursos roteiro_item">';
+					html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
+					html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
+					html+= '		</div>';
+					html+= '	</div>';
+					html+= '</div>';
+
+					conteudo = true;
+				}
+
 			}
+		} 
 
-		}
+	} 
+
+	if(data.length < 1 || !conteudo) {
+		html +=	"<p class=\"feedback_oficinas_false\">Ainda não há nenhum roteiro cadastrado para esta oficina.</p>";
 	}
 
 	$('.acordeon_oficina').html(html);
@@ -417,22 +430,28 @@ function carregaServicoBlog(classe) {
 
 	var html = "";
 
-	for(var valor of result)
+	if(result.length > 0)
 	{
 
 
-		html+= '<div class="cx_postagem">';
-		html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-		html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
-		if(valor.imagem){
-			html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
-		}
-		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-		html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-		html+= '	<hr class="fim_postagem" />';
-		html+= '</div>';
+		for(var valor of result)
+		{
 
+
+			html+= '<div class="cx_postagem">';
+			html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
+			html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
+			if(valor.imagem){
+				html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
+			}
+			html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+			html+= '	<hr class="fim_postagem" />';
+			html+= '</div>';
+
+		}
+
+	} else {
+		html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
 	}
 
 	$("#blog_postagens_container").html(html);
