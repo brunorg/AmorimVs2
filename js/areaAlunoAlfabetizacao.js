@@ -55,11 +55,53 @@ $(document).ready(function() {
 
 	$(".aba_box_lateral").click(function() {
 		toggleTabLateral(this);
+
+		//console.log(verifyFormulario("cancelar"));
+
+		
+	});
+
+	$(".aba_mensagens").click(function() {
+		carregaValoresMensagens("aba_entrada");
+		$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
+		$('.aba_entrada').addClass("aba_mensagem_ativa");
 	});
 
 	$("#abas_mensagens").children("span").click(function() {
 		toggleTabMensagens(this);
 	});
+
+	$("#destinatarios_container").find(".destinatario").change(function() {
+		countDestinatarios();
+	});
+	$(".mensagem_recebida").click(function() {
+		toggleMensagemRecebida(this);
+	});
+	$(".mensagem_enviada").click(function() {
+		toggleMensagemEnviada(this);
+	});
+	$("#destinatarios_trigger").click(function() {
+		$(this).toggleClass("destinatarios_ativo");
+	});
+	$("#nova_mensagem").click(function() {
+		showFormularioNovaMensagem();
+	});
+	$("#cancelar_acao").click(function() {
+		verifyFormulario("cancelar");
+	});
+
+	$("#responder_mensagem").click(function() {
+		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+		replyMensagem(numero);
+	});
+
+	$("#deletar_mensagem").click(function() {
+		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+		deleteMensagem(numero);
+		verifyFormulario("cancelar");
+	});
+
+
 	$(".mensagem_post").click(function() {
 		toggleMensagem(this);
 	});
@@ -81,6 +123,19 @@ $(document).ready(function() {
 		toggleTabRotina();
 	});
 
+	$("#cancelar_acao").click(function() {
+		verifyFormulario("cancelar");
+	});
+
+	$("#nova_mensagem").click(function() {
+		showFormularioNovaMensagem();
+	});
+
+
+	$(".aba_mensagens").click(function(){
+		carregaValoresMensagens("aba_entrada");
+	});
+
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
@@ -93,9 +148,14 @@ $(document).ready(function() {
 		$('#parteDoC2').hide()
 
 		$('.aba_'+urlParams["aba"]).trigger("click");
+
+		if(urlParams["aba"] == "mensagens" ||
+			urlParams["aba"] == "rotina" ||
+			urlParams["aba"] == "mural")
+			$(".aba_oficina").filter(":first").trigger("click");
+
 	} else {
 		$('#Conteudo_Area').hide()
-		//$(".aba_oficina").filter(":first").trigger("click");
 	}
 
 	loadBlogCategorias();
@@ -256,6 +316,35 @@ function getTipoOficina() {
 		//beforeSend: function() 			{ loading("inicial"); },
 		success: 	function(data) 		{ retorno = data; }
 		//complete: 	function() 			{ loading("final"); }
+	});
+
+	return retorno;
+}
+
+function getMensagensUsuario(){
+	var retorno;
+
+	$.ajax({
+		url: path+"Mensagens/Proprietario/"+usuarioId,
+		async:false,
+		type: "GET",
+		crossDomain: true,
+		success: function(dataMensagens) {retorno = dataMensagens;}
+	});
+
+	return retorno;
+}
+
+
+function getDestinatariosUsuarios(){
+	var retorno;
+
+	$.ajax({
+		url: path+"Usuario/ListarObjParte",
+		async:false,
+		type: "GET",
+		crossDomain: true,
+		success: function(data) {retorno = data;}
 	});
 
 	return retorno;
@@ -463,9 +552,202 @@ function carregaServicoBlog(classe) {
 //----------
 
 
+function carregaValoresMensagens(aba){
+	var result = getMensagensUsuario();
+
+	var html = "";
+
+	for(var valor of result)
+	{
+		if((aba == "aba_entrada" && valor.cxEntrada == "S") || (aba == "aba_enviadas" && valor.cxEnviada == "S"))
+		{
+
+			html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
+			html += '	<h2>'+valor.destinatarios+'</h2>';
+			html += '	<h1>'+valor.assunto+'</h1>';
+			html += '</div>';
+			html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
+			html += '	<h3>'+(valor.data).replace(/-/g,"/")+'</h3>';
+			html += '	<p>'+valor.mensagem+'</p>';
+			html += '</div>';
+		}
+	}
+
+	$("#mensagens_entrada").html(html);
+
+	$(".mensagem_post").click(function() {
+		toggleMensagem(this);
+	});
+
+	switchBotoes("back");
+}
+
+
+function toggleTabMensagens(tab) {
+
+	$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
+	$(tab).addClass("aba_mensagem_ativa");
+	carregaValoresMensagens($(tab).attr("class").split(' ')[0]);
+
+}
+
+function toggleMensagem(item) {
+	if ($(item).hasClass("post_ativo")) {
+		$(item).removeClass("post_ativo");
+		$(".mensagem_post").show();
+		$(".mensagem_post_conteudo").hide();
+		switchBotoes("back");
+	} else {
+		$(".mensagem_post").not(item).hide();
+		$(item).addClass("post_ativo");
+		$(item).next(".mensagem_post_conteudo").show();
+		switchBotoes("read_inbox");
+	}
+
+	if ($(item).hasClass("mensagem_nao_lida")) {
+		$(item).removeClass("mensagem_nao_lida");
+	}
+}
+
+function showFormularioNovaMensagem() {
+
+	var resultado = getDestinatariosUsuarios();
+
+	var html = "";
+
+	for(var valor of resultado){
+
+		html += '<div class="destinatario">';
+		html += '<input type="checkbox" id="aluno1" value="1"/>';
+		html += '<label for="aluno1">'+valor.nome+'</label>';
+		html += '</div>';
+
+	}
+
+	$('#destinatarios_container .destinatarios_itens').html(html);
+
+	$("#nova_mensagem").hide();
+	$("#abas_mensagens").hide();
+	$("#conteudo_mensagens").hide();
+	$("#formulario_mensagem").show();
+
+	switchBotoes("form");
+
+
+}
+
+function switchBotoes(estado) {
+	switch (estado) {
+		case "read_inbox":
+			$("#bottom_btns").find("div:nth-child(1)").hide();
+			$("#bottom_btns").find("div:nth-child(2)").hide();
+			$("#bottom_btns").find("div:nth-child(3)").hide();
+			$("#bottom_btns").find("div:nth-child(4)").show();
+			$("#bottom_btns").find("div:nth-child(5)").show();
+		break;
+		case "read_sent":
+			$("#bottom_btns").find("div:nth-child(1)").hide();
+			$("#bottom_btns").find("div:nth-child(2)").show();
+			$("#bottom_btns").find("div:nth-child(3)").hide();
+			$("#bottom_btns").find("div:nth-child(4)").hide();
+			$("#bottom_btns").find("div:nth-child(5)").show();
+		break;
+		case "form":
+			$("#bottom_btns").find("div:nth-child(1)").show();
+			$("#bottom_btns").find("div:nth-child(2)").hide();
+			$("#bottom_btns").find("div:nth-child(3)").show();
+			$("#bottom_btns").find("div:nth-child(4)").hide();
+			$("#bottom_btns").find("div:nth-child(5)").hide();
+		break;
+		case "back":
+			$("#bottom_btns").find("div:nth-child(1)").hide();
+			$("#bottom_btns").find("div:nth-child(2)").show();
+			$("#bottom_btns").find("div:nth-child(3)").hide();
+			$("#bottom_btns").find("div:nth-child(4)").hide();
+			$("#bottom_btns").find("div:nth-child(5)").hide();
+
+			$(".mensagem_post").removeClass("post_ativo");
+			$(".mensagem_post").show();
+			$(".mensagem_post_conteudo").hide();
+		break;
+	}
+}
+
+function deleteMensagem(numero)
+{
+	$('#msg_'+numero).remove();
+	$('#msgContent_'+numero).remove();
+}
+
+
+function replyMensagem(numero)
+{
+	var assuntoReply = $('#msg_'+numero).find('h1').html();
+	var conteudoReply = $('#msgContent_'+numero).find('p').html();
+
+	showFormularioNovaMensagem();
+
+	$("#assunto_mensagem").val(assuntoReply);
+	$("#conteudo_mensagem").val(conteudoReply);
+
+}
+
+
+function hideFormularioNovaMensagem() {
+	$("#formulario_mensagem").hide();
+	$("#nova_mensagem").show();
+	$("#abas_mensagens").show();
+	$("#conteudo_mensagens").show();
+
+	cleraFormularioNovaMensagem();
+	switchBotoes("back");
+}
+
+
+function countDestinatarios() {
+	var selecionados = $("#destinatarios_container").find("input").filter(":checked");
+	var idSelecionados = "";
+
+	for (var a = 0; a < selecionados.length; a++ ) {
+		if ( a < selecionados.length-1)
+			idSelecionados += selecionados[a].id + ",";
+		else
+			idSelecionados += selecionados[a].id;
+	}
+
+	if (selecionados.length === 1)
+		$("#destinatarios_trigger").val(selecionados.length + " selecionado");
+	else if (selecionados.length > 1)
+		$("#destinatarios_trigger").val(selecionados.length + " selecionados");
+	else
+		$("#destinatarios_trigger").val("");
+
+	$("#destinatarios_mensagem").val(idSelecionados)
+}
+
+function verifyFormulario(acao) {
+	if (acao === "cancelar") {
+		if ( $("#destinatarios_trigger").val() != "" || $("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
+			mensagem("Tem certeza que deseja cancelar? Todo o progresso será perdido.", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem");
+		else
+			hideFormularioNovaMensagem();
+	}
+}
+
+function cleraFormularioNovaMensagem() {
+	$("#destinatarios_trigger").val("");
+	$("#assunto_mensagem").val("");
+	$("#conteudo_mensagem").val("");
+	$("#destinatarios_mensagem").val("");
+	$("#destinatarios_container").find("input:checkbox").prop("checked",false);
+}
+
+
+//----------
+
+
 function mudarDataRotinaProxima () {
 	diaHoje = diaHoje != 5 ? (diaHoje+1):1;
-	console.log(diaHoje);
 	carregaValoresRotina();
 }
 
@@ -619,23 +901,3 @@ function toggleTabLateral(tab) {
 	$(".box_"+box).show();
 }
 
-function toggleTabMensagens(tab) {
-	$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
-	$(tab).addClass("aba_mensagem_ativa");
-}
-
-function toggleMensagem(item) {
-	if ($(item).hasClass("post_ativo")) {
-		$(item).removeClass("post_ativo");
-		$(".mensagem_post").show();
-		$(".mensagem_post_conteudo").hide();
-	} else {
-		$(".mensagem_post").not(item).hide();
-		$(item).addClass("post_ativo");
-		$(item).next(".mensagem_post_conteudo").show();
-	}
-
-	if ($(item).hasClass("mensagem_nao_lida")) {
-		$(item).removeClass("mensagem_nao_lida");
-	}
-}
