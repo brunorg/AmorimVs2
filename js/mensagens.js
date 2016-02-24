@@ -610,7 +610,7 @@ function ListarEnviadas(ultima,inicio,fim)
 		success: function(dataMensagensSaida){
 			
 			if (dataMensagensSaida.length > 0){
-				for(var a = 0; a > dataMensagensSaida.length; a++){
+				for(var a = 0; a < dataMensagensSaida.length; a++){
 					console.log(dataMensagensSaida[a].remetente_nome);
 					if(dataMensagensSaida[a].mensagem != ''){
 						var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
