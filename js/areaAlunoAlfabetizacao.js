@@ -1,4 +1,4 @@
-//---------------------------------------------------------
+//----------------Variaveis-----------------------------------------
 
 	var d = new Date
 	var diaHoje = d.getDay() != (0 || 6) ? d.getDay():1;
@@ -44,6 +44,7 @@ function getQueryParams(qs) {
 
 $(document).ready(function() {
 	
+	listarDestinatarios();
 
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
@@ -55,16 +56,11 @@ $(document).ready(function() {
 
 	$(".aba_box_lateral").click(function() {
 		toggleTabLateral(this);
-
-		//console.log(verifyFormulario("cancelar"));
-
-		
 	});
 
 	$(".aba_mensagens").click(function() {
-		carregaValoresMensagens("aba_entrada");
-		$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
-		$('.aba_entrada').addClass("aba_mensagem_ativa");
+		verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
+		
 	});
 
 	$("#abas_mensagens").children("span").click(function() {
@@ -86,8 +82,16 @@ $(document).ready(function() {
 	$("#nova_mensagem").click(function() {
 		showFormularioNovaMensagem();
 	});
+
+
+	$("#enviar_mensagem").click(function() {
+		ResponderMensagem();
+	});
+
+
+
 	$("#cancelar_acao").click(function() {
-		verifyFormulario("cancelar");
+		verifyFormulario("cancelar","");
 	});
 
 	$("#responder_mensagem").click(function() {
@@ -98,7 +102,7 @@ $(document).ready(function() {
 	$("#deletar_mensagem").click(function() {
 		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
 		deleteMensagem(numero);
-		verifyFormulario("cancelar");
+		verifyFormulario("cancelar","");
 	});
 
 
@@ -124,7 +128,7 @@ $(document).ready(function() {
 	});
 
 	$("#cancelar_acao").click(function() {
-		verifyFormulario("cancelar");
+		verifyFormulario("cancelar","");
 	});
 
 	$("#nova_mensagem").click(function() {
@@ -132,9 +136,9 @@ $(document).ready(function() {
 	});
 
 
-	$(".aba_mensagens").click(function(){
+	/*$(".aba_mensagens").click(function(){
 		carregaValoresMensagens("aba_entrada");
-	});
+	});*/
 
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
@@ -162,718 +166,830 @@ $(document).ready(function() {
 
 });
 
-window.onload = function() {
-	
-}
-
-function toggleTabOficina(tab) {
-	$(".aba_oficina").removeClass("aba_ativa");
-	$(tab).addClass("aba_ativa");
-
-	var classAbaAtiva = $(tab).attr("class").split(/\s+/)[1];
-	toggleBarOficina(classAbaAtiva);
-
-	carregaServicoBlog(classAbaAtiva);
-
-	loadRoteirosAlfabetizacao(classAbaAtiva);
-}
-
-function toggleBarOficina(classOficina) {
-	var oficina = classOficina.slice(4);
-	$("#faixa_oficina").css("background-image","url(img/alfabetizacao/faixa_"+oficina+".png)");
-}
-
-//----------------------
-//		GETS
-//----------------------
-
-function getRoteirosPorOficinaData(idoficina) {
-	var retorno;
-	var d = new Date();
-	var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
-
-	$.ajax({
-		url: path + "RoteiroAula/ListarOficinaData/"+idoficina+"/"+dataAtual,
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		beforeSend: function()    { loading("inicial"); },
-		success: function(dRoteiros) { retorno = dRoteiros; },
-		complete:  function()    { loading("final"); }
-	})
-
-	return retorno;
-}
 
 
-function getRoteiroAula() {
-	var retorno;
+//------------------------------------------------------------
+//
+//			GETS
+//
+//------------------------------------------------------------
 
-	$.ajax({
-		url: path + "RoteiroAula/",
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		//beforeSend: function() 			{ loading("inicial"); },
-		success: 	function(data) 		{ retorno = data; }
-		//complete: 	function() 			{ loading("final"); }
-	});
+	function getRoteirosPorOficinaData(idoficina) {
+		var retorno;
+		var d = new Date();
+		var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
 
-	return retorno;
-}
+		$.ajax({
+			url: path + "RoteiroAula/ListarOficinaData/"+idoficina+"/"+dataAtual,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			beforeSend: function()    { loading("inicial"); },
+			success: function(dRoteiros) { retorno = dRoteiros; },
+			complete:  function()    { loading("final"); }
+		})
 
-function getOficinasAluno(idalunoVariavel) {
-	var retorno;
-
-	$.ajax({
-		url: path + "Oficina/ListarPorAluno/" + idalunoVariavel,
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		//beforeSend:	function()		{ loading("inicial"); },
-		success:	function(data)	{ retorno = data; }
-		//complete:	function()		{ loading("final"); }
-	});
-
-	return retorno;
-}
+		return retorno;
+	}
 
 
-function getImagemPorPostagem(idpostagem) {
-	var retorno;
+	function getRoteiroAula() {
+		var retorno;
 
-	$.ajax({
-		url: path + "Blog/ImagemMed/" + idpostagem,
-		type: "GET",
-		async: false,
-		crossDomain: true,
-		success: function(dImagem) { retorno = dImagem; }
-	});
+		$.ajax({
+			url: path + "RoteiroAula/",
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
 
-	return retorno;
-}
+		return retorno;
+	}
 
-function getBlogPostagensPorOficina(idoficina) {
-	var retorno;
+	function getOficinasAluno(idalunoVariavel) {
+		var retorno;
 
-	$.ajax({
-		url: path + "Blog/BlogOficina/" + idoficina,
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		//beforeSend: function() 			{ loading("inicial"); },
-		success: 	function(data) 		{ retorno = data; },
-		//complete: 	function() 			{ loading("final"); }
-	});
+		$.ajax({
+			url: path + "Oficina/ListarPorAluno/" + idalunoVariavel,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend:	function()		{ loading("inicial"); },
+			success:	function(data)	{ retorno = data; }
+			//complete:	function()		{ loading("final"); }
+		});
 
-	return retorno;
-}
-
-
-function getRotinaDiariaAluno(idalunoVariavel, dia) {
-	var retorno;
-
-	$.ajax({
-		url: path+"Rotina/RotinaDiariaAluno/"+idalunoVariavel+"/"+dia,
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		beforeSend: function() 			{ loading("inicial"); },
-		success: 	function(data) 		{ retorno = data; },
-		complete: 	function() 			{ loading("final"); }
-	});
-
-	return retorno;
-}
+		return retorno;
+	}
 
 
-function getMuralAluno(idalunoVariavel) {
-	var retorno;
+	function getImagemPorPostagem(idpostagem) {
+		var retorno;
 
-	$.ajax({
-		url: path + "MuralAluno/ListarAluno/" + idalunoVariavel,
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		beforeSend: function() 			{ loading("inicial"); },
-		success: 	function(data) 		{ retorno = data; },
-		complete: 	function() 			{ loading("final"); }
-	});
+		$.ajax({
+			url: path + "Blog/ImagemMed/" + idpostagem,
+			type: "GET",
+			async: false,
+			crossDomain: true,
+			success: function(dImagem) { retorno = dImagem; }
+		});
 
-	return retorno;
-}
+		return retorno;
+	}
+
+	function getBlogPostagensPorOficina(idoficina) {
+		var retorno;
+
+		$.ajax({
+			url: path + "Blog/BlogOficina/" + idoficina,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; },
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getRotinaDiariaAluno(idalunoVariavel, dia) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Rotina/RotinaDiariaAluno/"+idalunoVariavel+"/"+dia,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; },
+			complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getMuralAluno(idalunoVariavel) {
+		var retorno;
+
+		$.ajax({
+			url: path + "MuralAluno/ListarAluno/" + idalunoVariavel,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; },
+			complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
 
 
 
-function getTipoOficina() {
-	var retorno;
+	function getTipoOficina() {
+		var retorno;
 
-	$.ajax({
-		url: path + "TipoOficina/",
-		async: false,
-		type: "GET",
-		crossDomain: true,
-		//beforeSend: function() 			{ loading("inicial"); },
-		success: 	function(data) 		{ retorno = data; }
-		//complete: 	function() 			{ loading("final"); }
-	});
+		$.ajax({
+			url: path + "TipoOficina/",
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
 
-	return retorno;
-}
+		return retorno;
+	}
 
-function getMensagensUsuario(){
-	var retorno;
+	function getMensagensUsuario(){
+		var retorno;
 
-	$.ajax({
-		url: path+"Mensagens/Proprietario/"+usuarioId,
-		async:false,
-		type: "GET",
-		crossDomain: true,
-		success: function(dataMensagens) {retorno = dataMensagens;}
-	});
+		$.ajax({
+			url: path+"Mensagens/Proprietario/"+usuarioId,
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(dataMensagens) {retorno = dataMensagens;}
+		});
 
-	return retorno;
-}
-
-
-function getDestinatariosUsuarios(){
-	var retorno;
-
-	$.ajax({
-		url: path+"Usuario/ListarObjParte",
-		async:false,
-		type: "GET",
-		crossDomain: true,
-		success: function(data) {retorno = data;}
-	});
-
-	return retorno;
-}
+		return retorno;
+	}
 
 
+	function getDestinatariosUsuarios(){
+		var retorno;
+
+		$.ajax({
+			url: path+"Usuario/ListarObjParte",
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(data) {retorno = data;}
+		});
+
+		return retorno;
+	}
 
 
-//----------
 
-function loadBlogCategorias(){
+//------------------------------------------------------------
+//
+//			Abas Oficina (Left)
+//
+//------------------------------------------------------------
 
-	var data = getOficinasAluno(getAVariavelByAluno(alunoID));
-			
-	for(var valor of data)
-	{
-		switch(valor.tipoOficina.idTipoOficina)
+
+
+	function toggleTabOficina(tab) {
+		$(".aba_oficina").removeClass("aba_ativa");
+		$(tab).addClass("aba_ativa");
+
+		var classAbaAtiva = $(tab).attr("class").split(/\s+/)[1];
+		toggleBarOficina(classAbaAtiva);
+
+		carregaServicoBlog(classAbaAtiva);
+
+		loadRoteirosAlfabetizacao(classAbaAtiva);
+	}
+
+	function toggleBarOficina(classOficina) {
+		var oficina = classOficina.slice(4);
+		$("#faixa_oficina").css("background-image","url(img/alfabetizacao/faixa_"+oficina+".png)");
+	}
+
+
+//------------------------------------------------------------
+//
+//			Blog
+//
+//------------------------------------------------------------
+
+
+	function loadBlogCategorias(){
+
+		var data = getOficinasAluno(getAVariavelByAluno(alunoID));
+				
+		for(var valor of data)
 		{
-			case 1:
-			break;
-			case 2:
-				categorias.aba_educacao_fisica = valor.idoficina;
-			break;
-			case 3:
-				categorias.aba_matematica = valor.idoficina;
-			break;
-			case 4:
-				categorias.aba_artes = valor.idoficina;
-			break;
-			case 5:
-				categorias.aba_leitura_escrita = valor.idoficina;
-			break;
-			case 6:
-			break;
-			case 7:
-			break;
-			case 8:
-				categorias.aba_ingles = valor.idoficina;
-			break;
-				//categorias.aba_roteiros = valor.idoficina;
-				//categorias.aba_tutoria = valor.idoficina;
-				//categorias.aba_arte_ciencia = valor.idoficina;
+			switch(valor.tipoOficina.idTipoOficina)
+			{
+				case 1:
+				break;
+				case 2:
+					categorias.aba_educacao_fisica = valor.idoficina;
+				break;
+				case 3:
+					categorias.aba_matematica = valor.idoficina;
+				break;
+				case 4:
+					categorias.aba_artes = valor.idoficina;
+				break;
+				case 5:
+					categorias.aba_leitura_escrita = valor.idoficina;
+				break;
+				case 6:
+				break;
+				case 7:
+				break;
+				case 8:
+					categorias.aba_ingles = valor.idoficina;
+				break;
+					//categorias.aba_roteiros = valor.idoficina;
+					//categorias.aba_tutoria = valor.idoficina;
+					//categorias.aba_arte_ciencia = valor.idoficina;
+			}
 		}
+
 	}
 
-}
 
 
-//----------------------
+	function carregaServicoBlog(classe) {
+
+		var campo = classe;
+		var result = getBlogPostagensPorOficina(categorias[campo])
 
 
-function loadRoteirosAlfabetizacao(classAbaAtiva){
+		var html = "";
 
-	var idTipoOficina;
-	var idOficina;
-	var corForte;
-	var corMedia;
-	var corFraca;
-
-	switch(classAbaAtiva)
-	{
-		case 'aba_educacao_fisica':
-			idTipoOficina = 2;
-		break;
-		case 'aba_matematica':
-			idTipoOficina = 0;
-		break;
-		case 'aba_artes':
-			idTipoOficina = 4;
-		break;
-		case 'aba_leitura_escrita':
-			idTipoOficina = 0;
-		break;
-		case 'aba_ingles':
-			idTipoOficina = 0;
-		break;
-		case 'aba_roteiros':
-			idTipoOficina = 0;
-		break;
-		case 'aba_tutoria':
-			idTipoOficina = 0;
-		break;
-		case 'aba_arte_ciencia':
-			idTipoOficina = 0;
-		break;
-	}
-
-	var data = getOficinasAluno(getAVariavelByAluno(alunoID));
-
-	for(var valor of data)
-	{
-		if(valor.tipoOficina.idTipoOficina == idTipoOficina)
+		if(result.length > 0)
 		{
-			corForte = valor.tipoOficina.cor.medio;
-			corMedia = valor.tipoOficina.cor.fraco;
-			corFraca = valor.tipoOficina.cor.forte;
-			idOficina = valor.idoficina;
-		}
-	}
-
-	filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
-	
-
-}
 
 
-
-
-function filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca){
-
-	var data = idOficina ? getRoteirosPorOficinaData(idOficina):[];
-
-	//console.log(idTipoOficina, corForte, corMedia, corFraca);
-
-	var html = "";
-		html+= '<h2 style="color: '+corForte+'">Conteúdo</h2>';
-
-	var conteudo = false;
-
-	if(data.length > 0)
-	{
-
-		if(idTipoOficina != 0 && idOficina){
-			for(var valor of data)
+			for(var valor of result)
 			{
 
-				if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
 
-					html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
-					html+= '	<div class="roteiro_info">';
-					html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
-					html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
-					html+= '	</div>';
-					html+= '	<div class="roteiro_conteudo">';
-					html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
-					html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
-					html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
-					html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
-					html+= '		<div class="roteiro_recursos roteiro_item">';
-					html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
-					html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
-					html+= '		</div>';
-					html+= '	</div>';
-					html+= '</div>';
-
-					conteudo = true;
+				html+= '<div class="cx_postagem">';
+				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
+				html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
+				if(valor.imagem){
+					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
 				}
+				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+				html+= '	<hr class="fim_postagem" />';
+				html+= '</div>';
 
 			}
-		} 
 
-	} 
+		} else {
+			html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
+		}
 
-	if(data.length < 1 || !conteudo) {
-		html +=	"<p class=\"feedback_oficinas_false\">Ainda não há nenhum roteiro cadastrado para esta oficina.</p>";
+		$("#blog_postagens_container").html(html);
+
+
 	}
 
-	$('.acordeon_oficina').html(html);
-
-	$(".oficina_planejamento").click(function(){
-		triggerAccordion(this);
-	});
-}
 
 
+//------------------------------------------------------------
+//
+//			Roteiros
+//
+//------------------------------------------------------------
 
-function carregaServicoBlog(classe) {
-
-	var campo = classe;
-	var result = getBlogPostagensPorOficina(categorias[campo])
 
 
-	var html = "";
+	function loadRoteirosAlfabetizacao(classAbaAtiva){
 
-	if(result.length > 0)
-	{
+		var idTipoOficina;
+		var idOficina;
+		var corForte;
+		var corMedia;
+		var corFraca;
 
+		switch(classAbaAtiva)
+		{
+			case 'aba_educacao_fisica':
+				idTipoOficina = 2;
+			break;
+			case 'aba_matematica':
+				idTipoOficina = 0;
+			break;
+			case 'aba_artes':
+				idTipoOficina = 4;
+			break;
+			case 'aba_leitura_escrita':
+				idTipoOficina = 0;
+			break;
+			case 'aba_ingles':
+				idTipoOficina = 0;
+			break;
+			case 'aba_roteiros':
+				idTipoOficina = 0;
+			break;
+			case 'aba_tutoria':
+				idTipoOficina = 0;
+			break;
+			case 'aba_arte_ciencia':
+				idTipoOficina = 0;
+			break;
+		}
+
+		var data = getOficinasAluno(getAVariavelByAluno(alunoID));
+
+		for(var valor of data)
+		{
+			if(valor.tipoOficina.idTipoOficina == idTipoOficina)
+			{
+				corForte = valor.tipoOficina.cor.medio;
+				corMedia = valor.tipoOficina.cor.fraco;
+				corFraca = valor.tipoOficina.cor.forte;
+				idOficina = valor.idoficina;
+			}
+		}
+
+		filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
+		
+
+	}
+
+
+
+
+	function filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca){
+
+		var data = idOficina ? getRoteirosPorOficinaData(idOficina):[];
+
+		var html = "";
+			html+= '<h2 style="color: '+corForte+'">Conteúdo</h2>';
+
+		var conteudo = false;
+
+		if(data.length > 0)
+		{
+
+			if(idTipoOficina != 0 && idOficina){
+				for(var valor of data)
+				{
+
+					if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+
+						html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
+						html+= '	<div class="roteiro_info">';
+						html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
+						html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
+						html+= '	</div>';
+						html+= '	<div class="roteiro_conteudo">';
+						html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
+						html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
+						html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
+						html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
+						html+= '		<div class="roteiro_recursos roteiro_item">';
+						html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
+						html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
+						html+= '		</div>';
+						html+= '	</div>';
+						html+= '</div>';
+
+						conteudo = true;
+					}
+
+				}
+			} 
+
+		} 
+
+		if(data.length < 1 || !conteudo) {
+			html +=	"<p class=\"feedback_oficinas_false\">Ainda não há nenhum roteiro cadastrado para esta oficina.</p>";
+		}
+
+		$('.acordeon_oficina').html(html);
+
+		$(".oficina_planejamento").click(function(){
+			triggerAccordion(this);
+		});
+	}
+
+
+
+//------------------------------------------------------------
+//
+//			Mensagens
+//
+//------------------------------------------------------------
+
+
+	function carregaValoresMensagens(aba){
+		var result = getMensagensUsuario();
+
+		var html = "";
 
 		for(var valor of result)
 		{
+			if((aba == "aba_entrada" && valor.cxEntrada == "S") || (aba == "aba_enviadas" && valor.cxEnviada == "S"))
+			{
 
-
-			html+= '<div class="cx_postagem">';
-			html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-			html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
-			if(valor.imagem){
-				html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
+				html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
+				html += '	<h2>'+valor.destinatarios+'</h2>';
+				html += '	<h1>'+valor.assunto+'</h1>';
+				html += '</div>';
+				html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
+				html += '	<h3>'+(valor.data).replace(/-/g,"/")+'</h3>';
+				html += '	<p>'+valor.mensagem+'</p>';
+				html += '</div>';
 			}
-			html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
-			html+= '	<hr class="fim_postagem" />';
-			html+= '</div>';
-
 		}
 
-	} else {
-		html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
-	}
+		$("#mensagens_entrada").html(html);
 
-	$("#blog_postagens_container").html(html);
+		$(".mensagem_post").click(function() {
+			toggleMensagem(this);
+		});
 
-
-}
-
-
-//----------
-
-
-function carregaValoresMensagens(aba){
-	var result = getMensagensUsuario();
-
-	var html = "";
-
-	for(var valor of result)
-	{
-		if((aba == "aba_entrada" && valor.cxEntrada == "S") || (aba == "aba_enviadas" && valor.cxEnviada == "S"))
-		{
-
-			html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
-			html += '	<h2>'+valor.destinatarios+'</h2>';
-			html += '	<h1>'+valor.assunto+'</h1>';
-			html += '</div>';
-			html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
-			html += '	<h3>'+(valor.data).replace(/-/g,"/")+'</h3>';
-			html += '	<p>'+valor.mensagem+'</p>';
-			html += '</div>';
-		}
-	}
-
-	$("#mensagens_entrada").html(html);
-
-	$(".mensagem_post").click(function() {
-		toggleMensagem(this);
-	});
-
-	switchBotoes("back");
-}
-
-
-function toggleTabMensagens(tab) {
-
-	$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
-	$(tab).addClass("aba_mensagem_ativa");
-	carregaValoresMensagens($(tab).attr("class").split(' ')[0]);
-
-}
-
-function toggleMensagem(item) {
-	if ($(item).hasClass("post_ativo")) {
-		$(item).removeClass("post_ativo");
-		$(".mensagem_post").show();
-		$(".mensagem_post_conteudo").hide();
 		switchBotoes("back");
-	} else {
-		$(".mensagem_post").not(item).hide();
-		$(item).addClass("post_ativo");
-		$(item).next(".mensagem_post_conteudo").show();
-		switchBotoes("read_inbox");
 	}
 
-	if ($(item).hasClass("mensagem_nao_lida")) {
-		$(item).removeClass("mensagem_nao_lida");
-	}
-}
 
-function showFormularioNovaMensagem() {
+	function toggleTabMensagens(tab) {
 
-	var resultado = getDestinatariosUsuarios();
-
-	var html = "";
-
-	for(var valor of resultado){
-
-		html += '<div class="destinatario">';
-		html += '<input type="checkbox" id="aluno1" value="1"/>';
-		html += '<label for="aluno1">'+valor.nome+'</label>';
-		html += '</div>';
+		$("#abas_mensagens").find("span").removeClass("aba_mensagem_ativa");
+		$(tab).addClass("aba_mensagem_ativa");
+		carregaValoresMensagens($(tab).attr("class").split(' ')[0]);
 
 	}
 
-	$('#destinatarios_container .destinatarios_itens').html(html);
-
-	$("#nova_mensagem").hide();
-	$("#abas_mensagens").hide();
-	$("#conteudo_mensagens").hide();
-	$("#formulario_mensagem").show();
-
-	switchBotoes("form");
-
-
-}
-
-function switchBotoes(estado) {
-	switch (estado) {
-		case "read_inbox":
-			$("#bottom_btns").find("div:nth-child(1)").hide();
-			$("#bottom_btns").find("div:nth-child(2)").hide();
-			$("#bottom_btns").find("div:nth-child(3)").hide();
-			$("#bottom_btns").find("div:nth-child(4)").show();
-			$("#bottom_btns").find("div:nth-child(5)").show();
-		break;
-		case "read_sent":
-			$("#bottom_btns").find("div:nth-child(1)").hide();
-			$("#bottom_btns").find("div:nth-child(2)").show();
-			$("#bottom_btns").find("div:nth-child(3)").hide();
-			$("#bottom_btns").find("div:nth-child(4)").hide();
-			$("#bottom_btns").find("div:nth-child(5)").show();
-		break;
-		case "form":
-			$("#bottom_btns").find("div:nth-child(1)").show();
-			$("#bottom_btns").find("div:nth-child(2)").hide();
-			$("#bottom_btns").find("div:nth-child(3)").show();
-			$("#bottom_btns").find("div:nth-child(4)").hide();
-			$("#bottom_btns").find("div:nth-child(5)").hide();
-		break;
-		case "back":
-			$("#bottom_btns").find("div:nth-child(1)").hide();
-			$("#bottom_btns").find("div:nth-child(2)").show();
-			$("#bottom_btns").find("div:nth-child(3)").hide();
-			$("#bottom_btns").find("div:nth-child(4)").hide();
-			$("#bottom_btns").find("div:nth-child(5)").hide();
-
-			$(".mensagem_post").removeClass("post_ativo");
+	function toggleMensagem(item) {
+		if ($(item).hasClass("post_ativo")) {
+			$(item).removeClass("post_ativo");
 			$(".mensagem_post").show();
 			$(".mensagem_post_conteudo").hide();
-		break;
-	}
-}
-
-function deleteMensagem(numero)
-{
-	$('#msg_'+numero).remove();
-	$('#msgContent_'+numero).remove();
-}
-
-
-function replyMensagem(numero)
-{
-	var assuntoReply = $('#msg_'+numero).find('h1').html();
-	var conteudoReply = $('#msgContent_'+numero).find('p').html();
-
-	showFormularioNovaMensagem();
-
-	$("#assunto_mensagem").val(assuntoReply);
-	$("#conteudo_mensagem").val(conteudoReply);
-
-}
-
-
-function hideFormularioNovaMensagem() {
-	$("#formulario_mensagem").hide();
-	$("#nova_mensagem").show();
-	$("#abas_mensagens").show();
-	$("#conteudo_mensagens").show();
-
-	cleraFormularioNovaMensagem();
-	switchBotoes("back");
-}
-
-
-function countDestinatarios() {
-	var selecionados = $("#destinatarios_container").find("input").filter(":checked");
-	var idSelecionados = "";
-
-	for (var a = 0; a < selecionados.length; a++ ) {
-		if ( a < selecionados.length-1)
-			idSelecionados += selecionados[a].id + ",";
-		else
-			idSelecionados += selecionados[a].id;
-	}
-
-	if (selecionados.length === 1)
-		$("#destinatarios_trigger").val(selecionados.length + " selecionado");
-	else if (selecionados.length > 1)
-		$("#destinatarios_trigger").val(selecionados.length + " selecionados");
-	else
-		$("#destinatarios_trigger").val("");
-
-	$("#destinatarios_mensagem").val(idSelecionados)
-}
-
-function verifyFormulario(acao) {
-	if (acao === "cancelar") {
-		if ( $("#destinatarios_trigger").val() != "" || $("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
-			mensagem("Tem certeza que deseja cancelar? Todo o progresso será perdido.", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem");
-		else
-			hideFormularioNovaMensagem();
-	}
-}
-
-function cleraFormularioNovaMensagem() {
-	$("#destinatarios_trigger").val("");
-	$("#assunto_mensagem").val("");
-	$("#conteudo_mensagem").val("");
-	$("#destinatarios_mensagem").val("");
-	$("#destinatarios_container").find("input:checkbox").prop("checked",false);
-}
-
-
-//----------
-
-
-function mudarDataRotinaProxima () {
-	diaHoje = diaHoje != 5 ? (diaHoje+1):1;
-	carregaValoresRotina();
-}
-
-
-function mudarDataRotinaAnterior () {
-	diaHoje = diaHoje != 1 ? (diaHoje-1):5;
-	carregaValoresRotina();
-}
-
-
-
-
-function toggleTabRotina() {
-	carregaValoresRotina();
-}
-
-function carregaValoresRotina(){
-
-	$('.tabela_rotina thead tr th.rotina_dia').html(diasSemana[diaHoje]);
-
-	var periodoNumero = JSON.parse(localStorage.getItem('objetoAlunoVariavel')).periodo.idperiodo;
-	//var periodoNumero = 9;
-
-	var horariosManha = {
-		"07:00":null,
-		"08:00":null,
-		"09:00":null,
-		"10:00":null,
-		"10:30":null,
-		"11:00":null
-	};
-
-	var horariosTarde = {
-		"13:00":null,
-		"14:00":null,
-		"15:00":null,
-		"15:30":null,
-		"16:00":null,
-		"17:00":null
-	};
-
-	var result = getRotinaDiariaAluno(getAVariavelByAluno(alunoID),diaHoje);
-
-
-	//result.forEach(function(value, i){
-	for(var i=0; i<6;i++)
-	{
-
-		var html = '';
-
-		if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
-		{
-			html+=  '<td style="background-color:#FBB040">';
-			html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
-			html+= 	'</td>';
-			html+= 	'<td class="recreio" colspan="2">';
-			html+= 	'</td>';
-
+			switchBotoes("back");
 		} else {
-			if(result[i])
-			{
-				html+= '<td>';
-				html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
-				html+= '</td>';
-				html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
-				html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
-				html+= '	<div>'+result[i].professor+'</div>';
-				html+= '</td>';
-				html+= '<td title="SALA DE INFORMÁTICA">'+result[i].sala[0].sala.sala+'</td>';
-			} else {
-				html+= '<td>';
-				html+= '</td>';
-				html+= '<td style="background-color:#ebeae5;">';
-				html+= '</td>';
-				html+= '<td></td>';
+			$(".mensagem_post").not(item).hide();
+			$(item).addClass("post_ativo");
+			$(item).next(".mensagem_post_conteudo").show();
+			switchBotoes("read_inbox");
+		}
+
+		if ($(item).hasClass("mensagem_nao_lida")) {
+			$(item).removeClass("mensagem_nao_lida");
+		}
+	}
+
+	function showFormularioNovaMensagem() {
+
+		var resultado = getDestinatariosUsuarios();
+
+		var html = "";
+
+		for(var valor of resultado){
+
+			html += '<div class="destinatario">';
+			html += '<input type="checkbox" id="aluno1" value="1"/>';
+			html += '<label for="aluno1">'+valor.nome+'</label>';
+			html += '</div>';
+
+		}
+
+		$('#destinatarios_container .destinatarios_itens').html(html);
+
+		$("#nova_mensagem").hide();
+		$("#abas_mensagens").hide();
+		$("#conteudo_mensagens").hide();
+		$("#formulario_mensagem").show();
+
+		switchBotoes("form");
+
+
+	}
+
+	function switchBotoes(estado) {
+		switch (estado) {
+			case "read_inbox":
+				$("#bottom_btns").find("div:nth-child(1)").hide();
+				$("#bottom_btns").find("div:nth-child(2)").hide();
+				$("#bottom_btns").find("div:nth-child(3)").hide();
+				$("#bottom_btns").find("div:nth-child(4)").show();
+				$("#bottom_btns").find("div:nth-child(5)").show();
+			break;
+			case "read_sent":
+				$("#bottom_btns").find("div:nth-child(1)").hide();
+				$("#bottom_btns").find("div:nth-child(2)").show();
+				$("#bottom_btns").find("div:nth-child(3)").hide();
+				$("#bottom_btns").find("div:nth-child(4)").hide();
+				$("#bottom_btns").find("div:nth-child(5)").show();
+			break;
+			case "form":
+				$("#bottom_btns").find("div:nth-child(1)").show();
+				$("#bottom_btns").find("div:nth-child(2)").hide();
+				$("#bottom_btns").find("div:nth-child(3)").show();
+				$("#bottom_btns").find("div:nth-child(4)").hide();
+				$("#bottom_btns").find("div:nth-child(5)").hide();
+			break;
+			case "back":
+				$("#bottom_btns").find("div:nth-child(1)").hide();
+				$("#bottom_btns").find("div:nth-child(2)").show();
+				$("#bottom_btns").find("div:nth-child(3)").hide();
+				$("#bottom_btns").find("div:nth-child(4)").hide();
+				$("#bottom_btns").find("div:nth-child(5)").hide();
+
+				$(".mensagem_post").removeClass("post_ativo");
+				$(".mensagem_post").show();
+				$(".mensagem_post_conteudo").hide();
+			break;
+		}
+	}
+
+	function deleteMensagem(numero)
+	{
+		$('#msg_'+numero).remove();
+		$('#msgContent_'+numero).remove();
+	}
+
+
+	function replyMensagem(numero)
+	{
+		var assuntoReply = $('#msg_'+numero).find('h1').html();
+		var conteudoReply = $('#msgContent_'+numero).find('p').html();
+
+		showFormularioNovaMensagem();
+
+		$("#assunto_mensagem").val(assuntoReply);
+		$("#conteudo_mensagem").val(conteudoReply);
+
+	}
+
+
+	function hideFormularioNovaMensagem() {
+		$("#formulario_mensagem").hide();
+		$("#nova_mensagem").show();
+		$("#abas_mensagens").show();
+		$("#conteudo_mensagens").show();
+
+		cleraFormularioNovaMensagem();
+		switchBotoes("back");
+	}
+
+
+	function countDestinatarios() {
+		var selecionados = $("#destinatarios_container").find("input").filter(":checked");
+		var idSelecionados = "";
+
+		for (var a = 0; a < selecionados.length; a++ ) {
+			if ( a < selecionados.length-1)
+				idSelecionados += selecionados[a].id + ",";
+			else
+				idSelecionados += selecionados[a].id;
+		}
+
+		if (selecionados.length === 1)
+			$("#destinatarios_trigger").val(selecionados.length + " selecionado");
+		else if (selecionados.length > 1)
+			$("#destinatarios_trigger").val(selecionados.length + " selecionados");
+		else
+			$("#destinatarios_trigger").val("");
+
+		$("#destinatarios_mensagem").val(idSelecionados)
+	}
+
+	function verifyFormulario(acao, funcao) {
+		if (acao === "cancelar") {
+			if ( $("#destinatarios_trigger").val() != "" || $("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
+				mensagem("Tem certeza que deseja cancelar? Todo o progresso será perdido.", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();"+funcao);
+			else
+				hideFormularioNovaMensagem();
+		}
+	}
+
+	function cleraFormularioNovaMensagem() {
+		$("#destinatarios_trigger").val("");
+		$("#assunto_mensagem").val("");
+		$("#conteudo_mensagem").val("");
+		$("#destinatarios_mensagem").val("");
+		$("#destinatarios_container").find("input:checkbox").prop("checked",false);
+	}
+
+
+	function listarDestinatarios(){
+
+		//Lista usuarios
+		var arrayUsuariosID = [];
+		var arrayUsuariosNome = [];
+
+		var dataUsuario = getDestinatariosUsuarios();
+
+		for(var a=0; a< dataUsuario.length; a++){
+			if (dataUsuario != null){
+				var encontro = false;
+			
+				if(typeof dataUsuario[a].idProfessor != "undefined"){
+					arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].idProfessor;
+					arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].nome;
+					perfil = 'Professor';
+					encontro = true;
+				} else if(typeof(dataUsuario[a].idAluno) != "undefined"){
+					arrayUsuariosID[arrayUsuariosID.length] = dataUsuario[a].idAluno;
+					arrayUsuariosNome[arrayUsuariosNome.length] = dataUsuario[a].nome;
+					perfil = 'Aluno';
+					encontro = true;
+				}
+				if(encontro){
+					$("#frm_Envia_Mensagens #destinatarios").append('<option title="'+perfil+'" class="'+dataUsuario[a].idUsuario+'" value="'+dataUsuario[a].idUsuario+'">'+arrayUsuariosNome[arrayUsuariosNome.length-1]+'</option>')
+				}
 			}
 		}
 
-
-
-
-		$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
-
+		$("#frm_Envia_Mensagens #destinatarios").append($("#frm_Envia_Mensagens #destinatarios option").remove().sort(function(a, b) {
+		    var at = $(a).text(), bt = $(b).text();
+		    return (at > bt)?1:((at < bt)?-1:0);
+		}));
 	}
-	//});
-
-	/*if(periodoNumero == 8){
-		for(var i=0; i<6;i++){
-			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
-		}
-	} else if(periodoNumero == 9){
-		for(var i=0; i<6;i++){
-			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
-		}
-
-	}*/
-
-}
 
 
-function toggleTabMural() {
-
-	$('#mural_posts_container').html("");
-
-	var data = getMuralAluno(getAVariavelByAluno(alunoID));
-
-
-	for(var valor of data)
+	//Responde uma nova mensagem
+	function ResponderMensagem()
 	{
-		var html = "";
 
-		html += '<div class="mural_post">'
-		html += '	<h1>'
-		html += '		<span>'+valor.mural.professor.nome+'</span>'
-		html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
-		html += '	</h1>'
-		html += '	<p>'+valor.mural.mensagem+'</p>'
-		html += '</div>	'
-		
-		$('#mural_posts_container').append(html);
+		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
+
+		if($('#tela_over #Mensagem').val() != "")
+		{
+			$.ajax({
+			    url: path+"Mensagens/",
+			    type: "POST",
+			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto=RE: "+$('#frm_Envia_Mensagens #assunto_mensagem').val()+"&destinatarios="+$('#frm_Envia_Mensagens #destinatarios').val()+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
+		    	success: function(d) {
+			    	dataMensagens 	=	getData("Mensagens", null);
+
+			    	//$("#tela_over").hide();
+
+			    	//$('#CaixaDeEntrada').trigger("click");
+					//carregaMensagens();
+			    	//ListarCaixaEntrada(0,10);
+
+					//Se mudar essa mensagem, tem que mudar o if no funcoes.js!!
+			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
+
+			    },error: function() {
+			    	////console.log("DDNN : error");
+
+			    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
+			    	loading('final');
+			    	dataMensagens 	=	getData("Mensagens", null);
+			    }
+			}); 
+		} else {
+			mensagem("Sua resposta não tem mensagem, por favor, adicione uma!","OK","bt_ok","erro");
+			loading('final');
+		}
+	}
+
+
+
+//------------------------------------------------------------
+//
+//			Rotina
+//
+//------------------------------------------------------------
+
+
+	function mudarDataRotinaProxima () {
+		diaHoje = diaHoje != 5 ? (diaHoje+1):1;
+		carregaValoresRotina();
+	}
+
+
+	function mudarDataRotinaAnterior () {
+		diaHoje = diaHoje != 1 ? (diaHoje-1):5;
+		carregaValoresRotina();
+	}
+
+
+
+
+	function toggleTabRotina() {
+		carregaValoresRotina();
+	}
+
+	function carregaValoresRotina(){
+
+		$('.tabela_rotina thead tr th.rotina_dia').html(diasSemana[diaHoje]);
+
+		var periodoNumero = JSON.parse(localStorage.getItem('objetoAlunoVariavel')).periodo.idperiodo;
+		//var periodoNumero = 9;
+
+		var horariosManha = {
+			"07:00":null,
+			"08:00":null,
+			"09:00":null,
+			"10:00":null,
+			"10:30":null,
+			"11:00":null
+		};
+
+		var horariosTarde = {
+			"13:00":null,
+			"14:00":null,
+			"15:00":null,
+			"15:30":null,
+			"16:00":null,
+			"17:00":null
+		};
+
+		var result = getRotinaDiariaAluno(getAVariavelByAluno(alunoID),diaHoje);
+
+
+		//result.forEach(function(value, i){
+		for(var i=0; i<6;i++)
+		{
+
+			var html = '';
+
+			if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
+			{
+				html+=  '<td style="background-color:#FBB040">';
+				html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
+				html+= 	'</td>';
+				html+= 	'<td class="recreio" colspan="2">';
+				html+= 	'</td>';
+
+			} else {
+				if(result[i])
+				{
+					html+= '<td>';
+					html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
+					html+= '</td>';
+					html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
+					html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
+					html+= '	<div>'+result[i].professor+'</div>';
+					html+= '</td>';
+					html+= '<td title="SALA DE INFORMÁTICA">'+result[i].sala[0].sala.sala+'</td>';
+				} else {
+					html+= '<td>';
+					html+= '</td>';
+					html+= '<td style="background-color:#ebeae5;">';
+					html+= '</td>';
+					html+= '<td></td>';
+				}
+			}
+
+
+
+
+			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
+
+		}
+		//});
+
+		/*if(periodoNumero == 8){
+			for(var i=0; i<6;i++){
+				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
+			}
+		} else if(periodoNumero == 9){
+			for(var i=0; i<6;i++){
+				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
+			}
+
+		}*/
 
 	}
-		
-}
 
-//----------
+//------------------------------------------------------------
+//
+//			Mural
+//
+//------------------------------------------------------------
+
+
+	function toggleTabMural() {
+
+		$('#mural_posts_container').html("");
+
+		var data = getMuralAluno(getAVariavelByAluno(alunoID));
+
+
+		for(var valor of data)
+		{
+			var html = "";
+
+			html += '<div class="mural_post">'
+			html += '	<h1>'
+			html += '		<span>'+valor.mural.professor.nome+'</span>'
+			html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
+			html += '	</h1>'
+			html += '	<p>'+valor.mural.mensagem+'</p>'
+			html += '</div>	'
+			
+			$('#mural_posts_container').append(html);
+
+		}
+			
+	}
+
+//------------------------------------------------------------
+//
+//			
+//
+//------------------------------------------------------------
 
 function triggerAccordion(accordionItem) {
 	$(".oficina_planejamento").not(accordionItem).each(function(){
