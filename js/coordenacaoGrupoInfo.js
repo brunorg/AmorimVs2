@@ -579,13 +579,13 @@ function alimentaComboAluno(idCombo, AlunoVariavel){
 
 function montagemExclusao(id){
 	$.ajax({
-		url: path+"Grupo",
+		url: path+"Grupo/Delete/",
 		type: "POST",
 		async:false,
 		crossDomain: true,
 		dataType: 'json',
 		contentType: false,	
-		data:"action=delete&idGrupo="+id,			
+		data:"action=delete&id="+id,			
 		success: function(data) {
 			$('#'+id).remove();
 			mensagem("Excluído com sucesso!","OK","bt_ok","success");
