@@ -123,14 +123,15 @@ function carregaCicloTutoria(){
 function carregaTutor(){
     var html = '<option value="0"></option>'; 
     $.ajax({
-        url: path + "Tutoria/ListarDadosPertinentes",
+        url: path + "ProfessorFuncionario",
         type: "GET",
         async: false,
         crossDomain:true,
         dataType: 'json',
         success: function(data){
+            console.log(data);
             for (var i=0; i<data.length; i++) {
-                html+="<option value=\""+data[i].idprofessor_funcionario+"\">"+data[i].tutoria+"</option>";
+                html+="<option value=\""+data[i].idprofessorFuncionario+"\">"+data[i].nome+"</option>";
              //   console.log("Id Tutoria: " + data[i].idprofessor_funcionario + "\nNome: " + data[i].tutoria);
             };            
         }

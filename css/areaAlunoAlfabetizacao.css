@@ -797,7 +797,9 @@ th.seta_proximo {
 	margin-top: 0;
 }
 .formulario_mensagem > form > textarea {
-	height: 270px;
+	height: 260px;
+    margin: 0 6px;
+    width: 95%;
 }
 .destinatarios_container {
 	width: 100%;
@@ -834,6 +836,8 @@ th.seta_proximo {
 }
 .destinatarios_ativo {
 	background-image: url(../img/ic_retract_claro.png);
+	background-position: right center;
+    background-repeat: no-repeat;
 }
 .destinatarios_ativo + .destinatarios_container {
 	display: block;
