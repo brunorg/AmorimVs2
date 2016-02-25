@@ -59,7 +59,7 @@ $(document).ready(function() {
 	});
 
 	$(".aba_mensagens").click(function() {
-		verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
+		//verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
 		
 	});
 
@@ -131,9 +131,6 @@ $(document).ready(function() {
 		verifyFormulario("cancelar","");
 	});
 
-	$("#nova_mensagem").click(function() {
-		showFormularioNovaMensagem();
-	});
 
 
 	/*$(".aba_mensagens").click(function(){
@@ -329,7 +326,7 @@ $(document).ready(function() {
 
 
 
-	function getMensagenUnica(idMensagem){
+	function getMensagemUnica(idMensagem){
 		var retorno;
 
 		$.ajax({
@@ -660,6 +657,7 @@ $(document).ready(function() {
 
 		var resultado = getDestinatariosUsuarios();
 
+		$("#destinatarios").multiselect('uncheckAll');
 		var html = "";
 
 		for(var valor of resultado){
@@ -722,8 +720,30 @@ $(document).ready(function() {
 
 	function deleteMensagem(numero)
 	{
-		$('#msg_'+numero).remove();
-		$('#msgContent_'+numero).remove();
+		
+		var numeroMSG = numero;
+
+		
+			$.ajax({
+			type: "GET",
+			async:false,
+			crossDomain: true,		
+			url: path+"Mensagens/delete/"+numeroMSG,
+			success:function(data){
+				mensagem("Mensagem excluida com sucesso!","OK","bt_ok","sucesso");
+				loading('final');
+				$('#msg_'+numeroMSG).remove();
+				$('#msgContent_'+numeroMSG).remove();
+			}
+			}).then(function(data) {
+				
+
+				$('#msg_'+numeroMSG).remove();
+				$('#msgContent_'+numeroMSG).remove();
+
+				loading('final');
+			});
+		
 	}
 
 
@@ -732,7 +752,16 @@ $(document).ready(function() {
 		var assuntoReply = $('#msg_'+numero).find('h1').html();
 		var conteudoReply = $('#msgContent_'+numero).find('p').html();
 
+		var datamsg = getMensagemUnica(numero);
+
+
 		showFormularioNovaMensagem();
+		
+		$('#destinatarios').multiselect() 
+
+		$("#destinatarios").find("option."+datamsg.remetente.idusuario).prop('selected', true)
+
+		$("#destinatarios").multiselect('refresh');
 
 		$("#assunto_mensagem").val(assuntoReply);
 		$("#conteudo_mensagem").val(conteudoReply);
@@ -774,7 +803,7 @@ $(document).ready(function() {
 
 	function verifyFormulario(acao, funcao) {
 		if (acao === "cancelar") {
-			if ( $("#destinatarios_trigger").val() != "" || $("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
+			if ($("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
 				mensagem("Tem certeza que deseja cancelar? Todo o progresso será perdido.", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();"+funcao);
 			else
 				hideFormularioNovaMensagem();
@@ -824,11 +853,7 @@ $(document).ready(function() {
 		    return (at > bt)?1:((at < bt)?-1:0);
 		}));
 
-		/*$('#destinatarios').multiselect() 
-
-		$("#destinatarios").find("option.1145").prop('selected', true)
-
-		$("#destinatarios").multiselect('refresh');*/
+		
 	}
 
 
@@ -855,6 +880,8 @@ $(document).ready(function() {
 			    	//ListarCaixaEntrada(0,10);
 
 					//Se mudar essa mensagem, tem que mudar o if no funcoes.js!!
+			    	//switchBotoes("back");
+			    	hideFormularioNovaMensagem();
 			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
 
 			    },error: function() {
