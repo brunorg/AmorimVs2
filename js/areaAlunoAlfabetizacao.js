@@ -150,6 +150,8 @@ $(document).ready(function() {
 
 	if (urlParams["aba"]) {
 		$('#parteDoC2').hide()
+		$("#Cabecalho_Perfil_Area").css('opacity', '1');
+		$("#Conteudo_Area").css('opacity', '1');
 
 		$('.aba_'+urlParams["aba"]).trigger("click");
 
@@ -159,7 +161,10 @@ $(document).ready(function() {
 			$(".aba_oficina").filter(":first").trigger("click");
 
 	} else {
-		$('#Conteudo_Area').hide()
+		$("#parteDoC2").css('position', 'relative');
+		$("#parteDoC2").css('top', '-105px');
+		$("#c2canvasdiv").css('height', '628px');
+		$('#Conteudo_Area').hide();
 	}
 
 	loadBlogCategorias();
@@ -313,6 +318,22 @@ $(document).ready(function() {
 
 		$.ajax({
 			url: path+"Mensagens/Proprietario/"+usuarioId,
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(dataMensagens) {retorno = dataMensagens;}
+		});
+
+		return retorno;
+	}
+
+
+
+	function getMensagenUnica(idMensagem){
+		var retorno;
+
+		$.ajax({
+			url: path+"Mensagens/"+idMensagem,
 			async:false,
 			type: "GET",
 			crossDomain: true,
@@ -802,12 +823,19 @@ $(document).ready(function() {
 		    var at = $(a).text(), bt = $(b).text();
 		    return (at > bt)?1:((at < bt)?-1:0);
 		}));
+
+		/*$('#destinatarios').multiselect() 
+
+		$("#destinatarios").find("option.1145").prop('selected', true)
+
+		$("#destinatarios").multiselect('refresh');*/
 	}
 
 
 	//Responde uma nova mensagem
 	function ResponderMensagem()
 	{
+
 
 		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
 

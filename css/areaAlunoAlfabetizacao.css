@@ -849,7 +849,10 @@ th.seta_proximo {
 
 
 
-
+#Conteudo_Area, #Cabecalho_Perfil_Area
+{
+	opacity:0;
+}
 
 
 
