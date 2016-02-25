@@ -577,8 +577,8 @@ $(document).ready(function(){
 		//Percorre apenas as opções do roteiro referentes
 		$('.op_roteiro_'+idVar).each(function(){
 			
-			//Se tiver a classe checado....
-			if($(this).hasClass('checado') == true){
+			//Se tiver estiver checado....
+			if($(this).is(':checked')){
 				//Concatena os valores fixo com o valor do roteiro
 				valoresEnviar = valores+'&idroteiro='+$(this).attr('name');
 				//E salva no banco
