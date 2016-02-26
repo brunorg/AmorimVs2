@@ -45,6 +45,7 @@ function getQueryParams(qs) {
 $(document).ready(function() {
 	
 	listarDestinatarios();
+	loadBlogCategorias();
 
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
@@ -151,6 +152,7 @@ $(document).ready(function() {
 		$("#Conteudo_Area").css('opacity', '1');
 
 		$('.aba_'+urlParams["aba"]).trigger("click");
+		
 
 		if(urlParams["aba"] == "mensagens" ||
 			urlParams["aba"] == "rotina" ||
@@ -461,7 +463,7 @@ $(document).ready(function() {
 	function carregaServicoBlog(classe) {
 
 		var campo = classe;
-		var result = getBlogPostagensPorOficina(categorias[campo])
+		var result = getBlogPostagensPorOficina(categorias[campo]);
 
 
 		var html = "";
@@ -495,6 +497,8 @@ $(document).ready(function() {
 		} else {
 			html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
 		}
+
+		console.log(campo, result, categorias[campo]);
 
 		$("#blog_postagens_container").html(html);
 
@@ -584,7 +588,7 @@ $(document).ready(function() {
 				for(var valor of data)
 				{
 
-					if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+					//if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
 
 						html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
 						html+= '	<div class="roteiro_info">';
@@ -604,7 +608,7 @@ $(document).ready(function() {
 						html+= '</div>';
 
 						conteudo = true;
-					}
+					//}
 
 				}
 			} 
@@ -632,6 +636,8 @@ $(document).ready(function() {
 
 
 	function carregaValoresMensagens(aba){
+
+		loading("inicial");
 		var result = getMensagensUsuario();
 
 		var html = "";
@@ -667,6 +673,7 @@ $(document).ready(function() {
 			toggleMensagem(this);
 		});
 
+		loading("final");
 		switchBotoes("back");
 	}
 
