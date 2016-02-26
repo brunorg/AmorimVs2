@@ -356,6 +356,35 @@ $(document).ready(function() {
 	}
 
 
+	function getDestinatarioValores(usuario){
+		var retorno;
+
+		$.ajax({
+			url: path+"Usuario/ListarUsuarioNome/"+usuario,
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(data) {retorno = data;}
+		});
+
+		return retorno;
+	}
+
+	function mensagemLer(idMensagem){
+		
+
+		$.ajax({
+			url: path+"Mensagens/update/lida/"+idMensagem+"/S",
+			async:false,
+			type: "POST",
+			success: function(d) {
+				//console.log(d);
+			}
+		}); 
+
+	}
+
+
 
 //------------------------------------------------------------
 //
@@ -447,11 +476,17 @@ $(document).ready(function() {
 
 				html+= '<div class="cx_postagem">';
 				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-				html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
+				html+= '	<h2 class="cx_info" title="'+valor.autor.nome+'">'+(valor.data).replace(/-/g,"/")+' por '+abreviaNome(valor.autor.nome)+'</h2>';
 				if(valor.imagem){
 					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
 				}
-				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+
+				var paragrafos = (valor.descricao).split('\n');
+
+				for(var p of paragrafos)
+				{
+					html+= '	<p class="cx_texto">'+p+'</p>';
+				}
 				html+= '	<hr class="fim_postagem" />';
 				html+= '</div>';
 
@@ -607,7 +642,16 @@ $(document).ready(function() {
 			{
 
 				html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
-				html += '	<h2>'+valor.destinatarios+'</h2>';
+					if(aba == "aba_entrada"){
+						var nome = valor.remetente.aluno ? valor.remetente.aluno.nome:valor.remetente.professor.nome;
+						html += '	<h2 title="'+nome+'">'+abreviaNome(nome)+'</h2>';
+					} else {
+						var valorDestinatario = getDestinatarioValores(valor.destinatarios);
+						if(valorDestinatario)
+							var nome = valorDestinatario[0].aluno ? valorDestinatario[0].aluno.nome:valorDestinatario[0].professor.nome;
+							html += '	<h2 title="'+nome+'">'+ abreviaNome(nome)+'</h2>';
+					}
+
 				html += '	<h1>'+valor.assunto+'</h1>';
 				html += '</div>';
 				html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
@@ -648,7 +692,10 @@ $(document).ready(function() {
 			switchBotoes("read_inbox");
 		}
 
+
 		if ($(item).hasClass("mensagem_nao_lida")) {
+			var idmsg = ($(item).attr("id")).replace(/msg_/g,"");
+			mensagemLer(idmsg);
 			$(item).removeClass("mensagem_nao_lida");
 		}
 	}
@@ -663,7 +710,7 @@ $(document).ready(function() {
 		for(var valor of resultado){
 
 			html += '<div class="destinatario">';
-			html += '<input type="checkbox" id="aluno1" value="1"/>';
+			html += '<input type="checkbox" id="aluno'+valor.idUsuario+'" value="'+valor.idUsuario+'"/>';
 			html += '<label for="aluno1">'+valor.nome+'</label>';
 			html += '</div>';
 

@@ -601,6 +601,10 @@ th.seta_proximo {
 	position: relative;
 	margin: 0;
 	padding: 0;
+	height: 322px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 253px;
 }
 .conteudo_mensagens > div {
 	padding: 5px;
