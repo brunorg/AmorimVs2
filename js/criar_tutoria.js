@@ -241,7 +241,7 @@ function limparArea(){
         }
     }    
     $("#listarAluno").show();
-    if($("#cicloAluno").val() == 0){
+    if($("#cicloAluno").val() == 0 && $("#periodoIdAluno").val() == 0){
         $("#listarAluno").hide();
     }
 } //Limpar area de alunos

@@ -18,7 +18,12 @@
 		document.getElementById('loaderImage').style.backgroundImage='url('+cImageSrc+')';
 		document.getElementById('loaderImage').style.width=cWidth+'px';
 		document.getElementById('loaderImage').style.height=cHeight+'px';
-		document.getElementById('loaderImage').style.marginLeft='45%';
+		document.getElementById('loaderImage').style.marginLeft= -cWidth/2+"px";
+		document.getElementById('loaderImage').style.marginTop= -cHeight/2+"px";
+		document.getElementById('loaderImage').style.position="absolute";
+		document.getElementById('loaderImage').style.top = "50%";
+		document.getElementById('loaderImage').style.left = "50%";
+
 		
 		//FPS = Math.round(100/(maxSpeed+2-speed));
 		FPS = Math.round(100/cSpeed);
