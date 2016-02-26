@@ -175,8 +175,14 @@ app.controller('geralCTRL',function($scope,$http){
 
 				//Classe responsável por organizar o layout do menu da área da secretaria
 				$('#Content_lateral').addClass('Content_Menu_Secretaria');
-			break;
-		}
+
+				if(dadosUsuario.idusuario == 1223)
+				{
+					$("#rodape_calendario").html("<p id='mudarSenha'><a href='alterarSenhaAluno.html'  style='color: #FFF;text-decoration: none;font-size: 16px;'>Alterar Senha</a></p>").css("display","block");
+					$("#rodape_calendario p").show();
+				}
+				break;
+			}
 		//Logout do usuário
 		$scope.logout = function(){
 			localStorage.clear();

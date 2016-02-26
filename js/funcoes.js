@@ -34,6 +34,9 @@ $(document).ready(function(){
 	
 	$(".scroll_receiver").mCustomScrollbar({
 		axis: "y",
+		scrollButtons:{
+			enable:true
+		}
 	});
 
 	$("#btn_fechar_evento").click(function(){
