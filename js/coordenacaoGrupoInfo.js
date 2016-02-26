@@ -317,8 +317,6 @@ function pesquisarAlunoTutoria(){
 	var html = "";
 	var nmAluno = $("#txtPesqTut").val();
 
-	debugger;
-
 	if(nmAluno != ""){
 		urlBusca = "AlunoVariavel/ListarNomeSemGrupo/" + nmAluno + "/" + idPeriodo + "/" + idCiclo;
 	} else {
@@ -343,12 +341,12 @@ function pesquisarAlunoTutoria(){
 
 				for(var j = 0; j < arrayPesq.length; j++){
 					if(dataAluno[i].idalunoVariavel == arrayPesq[j]){
-						arrayPesq.spice(j, 1);
+						arrayPesq.splice(j, 1);
 						isOnPesq = true;
 						break;
 					}
 				}
-				if (!isOnPesq)
+				if (!isOnPesq){
 					html += '<div class="Grupo_Aluno_Linha">';
 					html += 	'<span class="Nome_Aluno">';
 					html +=			dataAluno[i].aluno.nome;
@@ -361,8 +359,9 @@ function pesquisarAlunoTutoria(){
 					html +=			dataAluno[i].anoEstudo.ano + 'º ano';
 					html +=		'</span>';
 					html +=	'</div>';
+				}
 			}
-			$("#boxAluno").empty();
+			limparArea();		
 			$("#boxAluno").append(html);
 			contAlunosTutoria++;
 			isSelected();
@@ -384,7 +383,6 @@ function changePesquisa(){
 }
 
 function grupoNovo(){
-
 	//var anoEstudo = $("#S_AnoEstudo option:selected").text();
 	var periodo = $("#S_Periodo option:selected").text();
 	var periodoId = $("#S_Periodo").val();
@@ -606,13 +604,13 @@ function alimentaComboAluno(idCombo, AlunoVariavel){
 
 function montagemExclusao(id){
 	$.ajax({
-		url: path+"Grupo/Delete/",
+		url: path+"Grupo",
 		type: "POST",
 		async:false,
 		crossDomain: true,
 		dataType: 'json',
 		contentType: false,	
-		data:"action=delete&id="+id,			
+		data:"action=delete&idGrupo="+id,			
 		success: function(data) {
 			$('#'+id).remove();
 			mensagem("Excluído com sucesso!","OK","bt_ok","success");

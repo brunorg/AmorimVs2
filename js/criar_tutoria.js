@@ -423,8 +423,7 @@ function carregaSelected(){
     for (var i = 0; i < selected.length; i++) {
         arraySelected.push($(".Selected .Aluno_Ano_Check")[i].id.split('_')[3]);
     }
-    return arraySelected;
-    
+    return arraySelected;    
 }
 
 function resetarTutoria(){
