@@ -13,11 +13,11 @@ var toType = function(obj){
 
 // JavaScript Document	
 $(document).ready(function(){	
-	var url = window.location.href;
-	var retorno = url.split("/"); 
-	var classe = $('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').attr("class");		
-	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
 
+	ativaMenu();
+
+
+	
 	$(function(){
 		if($("#frm_Envia_Mensagens select").length > 0)
 		{
@@ -1326,4 +1326,11 @@ function ContadorMensagens(){
 
 function fecharJanela(){
     $('#box_msg_alter_banner').css('display', 'none');
+}
+
+function ativaMenu(){
+	var url = window.location.href;
+	var retorno = url.split("/"); 
+	var classe = $('a[href="'+retorno[4]+'"] .Content_lateral_Menu_Opcao').attr("class");	
+	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
 }

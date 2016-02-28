@@ -135,7 +135,6 @@ $(document).ready(function(){
 	    						'<div class="respostas R_aparecer"> </div> '+
 	    						'<div class="responder_ocultar bt_responder"> Responder </div>';
 								
-								console.log(boxHtml);
 								
 								$("#FORUM").append(boxHtml)
 								

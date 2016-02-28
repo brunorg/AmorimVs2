@@ -1,0 +1,40 @@
+<style type="text/css">
+	#banner{
+		background: url('img/banner/nome_monstrinho.jpg') no-repeat;
+	    height: 422px;
+	    width: 597px;
+	    padding: 0;
+	    position:absolute;
+		top:50%;
+		left:50%;
+		margin-top:-211px;
+		margin-left:-298.5px;
+	}
+
+	#fechar{
+		height: 22px;
+	    width: 21px;
+	    z-index: 9;
+	    float: right;
+	    margin: 6px;
+	}
+
+	#botao{
+		margin-bottom: 0;
+		position: absolute;
+		bottom: 0;
+		margin: 10px 0 10px 492px;
+	}
+
+</style>
+<script type="text/javascript">
+	function fecharImg(){
+		$('#boxBanner').remove();	
+	}
+</script>
+<div id="banner">
+	<a href="#" id="fechar" onclick="fecharImg()"n><img src="img/cancela_ativo.png"></a>
+	<a href="forumSecao.html?IdRoteiro=MTA1&IdQuestao=Mjc=" id="botao">
+		<img src="img/banner/ir.png">
+	</a>
+</div>

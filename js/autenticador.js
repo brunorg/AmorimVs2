@@ -29,7 +29,7 @@ switch (usuario){
 			}		
 		});
 		msgNaoVistas(usuarioId);
-		dadosForum(usuarioId);
+		dadosForum(usuarioId);		
 	break;
 	
 	case 'Professor':

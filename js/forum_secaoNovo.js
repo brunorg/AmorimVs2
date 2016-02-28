@@ -35,6 +35,12 @@ $(document).ready(function() {
     }
     atribuiMostrarRespostas();
     atribuiResponderQuestao();
+
+    if(IdRoteiro == 105 && IdQuestao == 27){
+        $('#fotoMascote').css('background','url("img/banner/fotoMascote.png")');
+        $('#nomeMascote').remove();
+    }
+
 });
 
 function carregaNomeRoteiro () {
@@ -57,7 +63,7 @@ function carregaNomeRoteiro () {
 function addBoxNovaPergunta () {
     FirstBoxhtml = '<form id="frmCadastro_Questao">'+
                         '<div class="Box_perguntar_wrap">'+
-                            '<div class="foto_aluno" style="background-image: url('+getUsuarioFoto()+')"></div>'+
+                            '<div class="foto_aluno" style="background-image: url('+getUsuarioFoto()+')">bgjkhglkhlkh</div>'+
                             '<div class="box_perguntar">'+
                                 '<div class="perguntar_header">'+
                                     '<div class="nome_serie_aluno">'+getNomeUsuario()+'</div>'+
@@ -182,12 +188,14 @@ function carregaRespostas (questaoId) {
 function adcionarBotaoExcluirResposta (resposta, questaoId) {
     var respostaId = resposta.idforumResposta;
 
+    console.log(usuarioObjeto);
+
     if (resposta.usuario.aluno != null)
     {
         if (alunoID == resposta.usuario.aluno.idAluno)
             $("#idResposta_"+respostaId+" .resposta_header").append('<div id="bt_fechar" onclick="deletarResposta('+respostaId+','+questaoId+');" style="float:right"></div>');
     }
-    else if (resposta.usuario.professor != null)
+    else if (resposta.usuario.professor != null && usuarioObjeto.professor != null)
     {
         if (usuarioObjeto.professor.idprofessorFuncionario == resposta.usuario.professor.idprofessorFuncionario)
             $("#idResposta_"+respostaId+" .resposta_header").append('<div id="bt_fechar" onclick="deletarResposta('+respostaId+','+questaoId+');" style="float:right"></div>');
@@ -235,9 +243,9 @@ function adcionaQuestao(questao) {
     }
     var htmlContent =   '<div class="Pergunta_Resposta_Container" id="idQuestao_'+questaoId+'">'+
                             '<div class="Box_pergunta_wrap">'+
-                                '<div class="foto_aluno" style="background-image:url('+fotoUsuario+')"></div>'+
+                                '<div class="foto_aluno" id="fotoMascote" style="background-image:url('+fotoUsuario+')"></div>'+
                                 '<div class="box_pergunta">'+
-                                    '<div class="pergunta_header">'+
+                                    '<div class="pergunta_header" id="nomeMascote">'+
                                         '<div class="nome_serie_aluno">'+nomeUsuario+'</div>'+
                                     '</div>'+
                                     '<div class="Pergunta"> '+questaoTexto+'</div>'+
@@ -369,8 +377,7 @@ function atribuiEnviarResposta (){
         var questaoId = $(this).attr('id').split('_')[1];
         event.preventDefault();
 
-        if ($("#resposta").val().length > 9)
-        {
+        if(($("#resposta").val().length > 9) || (IdRoteiro == 105 && IdQuestao == 27)){
             var formData = $("#frmCadastro_Resposta").serialize();
             var respostaId;
     
@@ -521,3 +528,11 @@ function getUsuarioFoto () {
 
     return fotoUsuario;
 }
+
+  //Código Banner nome do mascote
+function pesquisaMascote(){  
+    setTimeout(function(){
+        
+    },500);    
+}
+//quando acabar pode apagar este trecho de código   
