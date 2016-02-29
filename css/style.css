@@ -375,9 +375,9 @@ html, body
 				/*Menu Cadastro*/
 				.cadastro { 
 					background-image: url(../img/ic_cadastro-ativo.png); 
-					height: 50px 
-				    padding: 19px 10px 10px 70px
-				    background-size: 38px 
+					height: 50px !important; 
+				    padding: 19px 10px 10px 70px !important; 
+				    background-size: 38px  !important; 
 				}
 				.cadastro:hover { 
 					background-image: url(../img/ic_cadastro.png); 
@@ -391,10 +391,10 @@ html, body
 				/*Menu mensagens secretaria*/
 				.mensagensSecretaria{
 					background-image: url(../img/Ic_mensagens-ativo.png); 
-					height: 50px;
-				    padding: 19px 10px 10px 70px;
-				    background-size: 34px;
-    				background-position: 24px;
+					height: 50px !important; 
+				    padding: 19px 10px 10px 70px !important; 
+				    background-size: 34px !important; 
+    				background-position: 21px !important; 
 				}
 
 				.mensagensSecretaria:hover { 
@@ -409,11 +409,10 @@ html, body
 				/*Menu Agenda*/
 				.agenda{
 					background-image: url(../img/agenda-ativo.png);
-					height: 50px;
-				    padding: 19px 10px 10px 70px;
-				    background-size: 25px;
-    				background-position: 26px;
-
+					height: 50px !important; 
+				    padding: 19px 10px 10px 70px !important; 
+				    background-size: 28px !important;
+    				background-position: 24px !important;
 				}				
 				.agenda:hover{
 					background-image: url(../img/agenda.png);					
@@ -427,10 +426,10 @@ html, body
 				/*Menu PresenÃ§a*/
 				.presencaS{
 					background-image: url(../img/presencas-ativo.png);
-					height: 50px;
-				    padding: 19px 10px 10px 70px;
-				    background-size: 39px;
-    				background-position: 20px;
+					height: 50px !important; 
+				    padding: 19px 10px 10px 70px !important; 
+				    background-size: 39px !important; 
+    				background-position: 20px !important; 
 				}				
 				.presencaS:hover{
 					background-image: url(../img/presencas.png);
@@ -444,10 +443,10 @@ html, body
 				/*Menu Carteirinhas*/
 				.carteirinhas{
 					background-image: url(../img/ic_carteirinha-ativo.png);
-					height: 50px;
-				    /*padding: 19px 10px 10px 70px;*/ 
-				    background-size: 39px;
-    				background-position: 20px;
+					height: 50px !important; 
+				    padding: 19px 10px 10px 70px !important; 
+				    background-size: 39px !important; 
+    				background-position: 20px !important; 
 				}				
 				.carteirinhas:hover{
 					background-image: url(../img/ic_carteirinha.png);
@@ -1085,7 +1084,7 @@ input[type=date]::-webkit-inner-spin-button{
 
 /*----Mensagem---------*/
 
-#boxMensagemGeral,#boxModaisEdicao {
+#boxMensagemGeral,#boxModaisEdicao,#boxBanner{
 	position:absolute;
 	right: 0px;
     width: 100%;
@@ -3108,54 +3107,7 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 14% auto;
 		-moz-background-size: 14% auto;
 	}	
-	.Content_lateral_Menu_Opcao .cadastro{
-		background-position: 19px 9px;
-		font-size: 14px;
-		padding: 18px 33px 8px 54px;
-		width: 256px;
-		height: 52px;
-		background-size: 14% auto;
-		-webkit-background-size: 14% auto;
-		-o-background-size: 14% auto;
-		-khtml-background-size: 14% auto;
-		-moz-background-size: 14% auto;
-	}
-	.Content_lateral_Menu_Opcao .agenda{
-		background-position: 23px 13px;
-		font-size: 14px;
-		padding: 18px 33px 8px 54px;
-		width: 256px;
-		height: 52px;
-		background-size: 9% auto;
-		-webkit-background-size: 9% auto;
-		-o-background-size: 9% auto;
-		-khtml-background-size: 9% auto;
-		-moz-background-size: 9% auto;
-	}
-	.Content_lateral_Menu_Opcao .presenca{
-		background-position: 19px 11px;
-		font-size: 14px;
-		padding: 18px 33px 8px 54px;
-		width: 256px;
-		height: 52px;
-		background-size: 14% auto;
-		-webkit-background-size: 14% auto;
-		-o-background-size: 14% auto;
-		-khtml-background-size: 14% auto;
-		-moz-background-size: 14% auto;
-	}
-	.Content_lateral_Menu_Opcao .carteirinhas{
-		background-position: 17px 11px;
-		font-size: 14px;
-		padding: 20px 33px 8px 54px;
-		width: 256px;
-		height: 52px;
-		background-size: 13% auto;
-		-webkit-background-size: 13% auto;
-		-o-background-size: 13% auto;
-		-khtml-background-size: 13% auto;
-		-moz-background-size: 13% auto;
-	}
+	
 	.Content_lateral_Menu_Opcao .notificacoes{
 		background-position: 20px 15px;
 		font-size: 14px;

@@ -92,7 +92,7 @@ function salvarTutoria(){
                     $(".btn_Salvar_Aluno").show();
                     $("#btn_Salvar_Tutoria").hide();
                     salvarAluno(data);
-                    testeEditar(data);
+                    editarTutoria(data);
                 },
                 complete: function(){
                     loading("final");
@@ -142,6 +142,7 @@ function carregaTutor(){
 
 function atribuiChangeTutoria(){
     $("#cicloAluno").change(function() {
+        cleanSelected();
         limparArea();
         listarAlunosGruposTutoria();
     });
@@ -151,8 +152,6 @@ function atribuiChangeTutoria(){
         listarAlunosGruposTutoria();
     });
 }
-
-
 
 function listarAlunosGruposTutoria() {    
     var cicloId = $("#cicloAluno").val();
@@ -241,7 +240,18 @@ function limparArea(){
             $($(linhas).get(i)).remove();
         }
     }    
+    $("#listarAluno").show();
+    if($("#cicloAluno").val() == 0 && $("#periodoIdAluno").val() == 0){
+        $("#listarAluno").hide();
+    }
 } //Limpar area de alunos
+
+function cleanSelected(){ //Limpa alunos selecionados de acordo com ciclo.
+    var arrayChecked = $(".Grupo_Aluno_Linha.Selected");
+    for(var i = 0; i < arrayChecked.length; i++){
+        arrayChecked[i] += arrayChecked[i].classList.remove("Selected");
+    }
+}
 
 function atribuiFuncoesRolagemGrupo () {
     $("#boxListaAluno").mCustomScrollbar({
@@ -296,6 +306,8 @@ function displayHeader(){
     $("#Area_Nome_Tutoria").html(conteudoHeader);
     $("#Area_Nome_Tutoria").css('display', 'block');
     $("#Container_Cadastro_Aluno").css('display','block');
+    $("#listarAluno").hide();
+    $("#txtPesqTut").show();
     //$(".btn_Salvar_Tutoria").css('display','none');
     //$(".btn_Salvar_Aluno").css('display','block');   
 }
@@ -330,7 +342,7 @@ function atualizarAluno(agrupamento){
     });
 }
 
-function testeEditar(agrupamento){
+function editarTutoria(agrupamento){
     $(".btn_Editar_Tutoria").click(function(){
         var htmlEditTut = "";
         $(".btn_Nova_Tutoria").hide();
@@ -411,8 +423,7 @@ function carregaSelected(){
     for (var i = 0; i < selected.length; i++) {
         arraySelected.push($(".Selected .Aluno_Ano_Check")[i].id.split('_')[3]);
     }
-    return arraySelected;
-    
+    return arraySelected;    
 }
 
 function resetarTutoria(){

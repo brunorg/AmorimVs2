@@ -1,6 +1,4 @@
-
 //Get Usuario Efetivado
-//------------------------------------------------------------------------------------------------------------------------
 
 //Carrega a funçao de Load do JQuery
 var idAgendamento = "";
@@ -56,6 +54,15 @@ $(document).ready(function() {
 			pesquisaGrupoAluno();
 		},1000); //1000 é o tempo, significa 1 segundo.
 		$(".tutoriaT").val(0);
+	});
+
+	$("#txtPesqTut").keyup(function(){
+		window.clearTimeout(timeHandler);
+		timeHandler = window.setTimeout(function(){
+			contAlunosTutoria = 0;
+			pesquisarAlunoTutoria();
+			$("#listarAluno").show();
+		},1000);
 	});
 	
 	//Limpa os campos para o novo cadastro!!
@@ -208,45 +215,6 @@ function mostrarAgrupamentos(){
 				htmlOficina +=				'</p>';
 				htmlOficina +=			'</article>';
 				htmlOficina += 			'<article class="area_rotinas_oficina">';
-				// $.ajax({
-				// 	url: path + "Rotina/ListarOficina/" + dataOficinaProfessor[i].oficina.idoficina,
-				// 	type: "GET",
-				// 	async: false,
-				// 	crossDomain: true,
-				// 	success: function(dataRotina) {
-				// 		htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
-				// 		htmlOficina +=		'<div class="container_rotinas">';
-				// 		for (var j = 0; j < dataRotina.length; j++) {
-				// 			htmlOficina += 	  '<div class="dados_rotina">';
-				// 			htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[i].idrotina+'">';
-				// 			htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[i].dia.idsemana+'">'+dataRotina[i].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[i].hora+'">'+dataRotina[i].hora+':00 - </span>';
-				// 			$.ajax({
-				// 				url: path + "AgendamentoSala/ListarRotina/" + dataRotina[i].idrotina,
-				// 				type: "GET",
-				// 				async: false,
-				// 				crossDomain: true,
-				// 				success: function(dataAgendamento) {
-				// 					if(dataAgendamento.idagendamento_sala == 0){	
-				// 						htmlOficina +=	'<span id="sala_0_0" class="rotina_sala">&nbsp;</span></p>';
-				// 					} else {
-				// 						htmlOficina +=	'<span id="sala_'+dataAgendamento.sala.idsalas+'_'+dataAgendamento.idagendamento_sala+'" class="rotina_sala"> '+dataAgendamento.sala.sala+' </span></p>';	
-				// 					}
-				// 				}
-				// 			});
-				// 			htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+dataOficinaProfessor[i].oficina.idoficina+')"> &nbsp; </span>'
-				// 			htmlOficina +=		'</article>';
-				// 			htmlOficina +=		'<article class="agrupamento_oficina">';
-				// 			htmlOficina +=			'<p>';
-				// 			htmlOficina +=				'<span id="agrupamento_'+dataRotina[i].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[i].agrupamento.nome+' </span>';
-				// 			htmlOficina +=			'</p>';
-				// 			htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[i].oficina.idoficina+')"> &nbsp; </span>';
-				// 			htmlOficina +=		'</article>';
-				// 			htmlOficina += 	  '</div>'			
-				// 		}
-				// 		htmlOficina += 			'<p class="nova_rotina" onclick="habilitarModalEdicaoRotina(0, '+dataOficinaProfessor[i].oficina.idoficina+', 0, 0, 0, 0, 0)">Criar Nova Rotina</p>';
-				// 		htmlOficina += 		'</div>';
-				// 	}
-				// });
 				htmlOficina +=			'</article>';
 				htmlOficina +=		'</main>';
 				htmlOficina +=	'</section>';
@@ -342,6 +310,65 @@ function pesquisaGrupoAluno(){
 return false;
 }
 
+function pesquisarAlunoTutoria(){
+	var urlBusca = "";
+	var idCiclo = $("#cicloAluno").val();
+	var idPeriodo = $("#periodoIdAluno").val();
+	var html = "";
+	var nmAluno = $("#txtPesqTut").val();
+
+	if(nmAluno != ""){
+		urlBusca = "AlunoVariavel/ListarNomeSemGrupo/" + nmAluno + "/" + idPeriodo + "/" + idCiclo;
+	} else {
+		if (idCiclo != '0' && idPeriodo != '0') {
+        	urlBusca = "AlunoVariavel/listarCicloPeriodoRangeObjeto/" +idCiclo+ "/" +idPeriodo+ "/" + contAlunosTutoria * 20 + "/19";
+    	} else if(idCiclo != '0'){
+        	urlBusca = "AlunoVariavel/listarCicloRangeObjeto/" +idCiclo+ "/" + contAlunosTutoria * 20 + "/19";  
+    	} else {
+        	urlBusca = "AlunoVariavel/listarPeriodoRangeObjeto/" +idPeriodo+ "/" + contAlunosTutoria * 20 + "/19";
+    	}
+	}
+	$.ajax({
+		url: path  + urlBusca,
+		type: "GET",
+		aync: false,
+		crossDomain: true,
+		success: function(dataAluno){
+			for(var i = 0; i < dataAluno.length; i++){
+
+				var isOnPesq = false;
+				var arrayPesq = carregaSelected();
+
+				for(var j = 0; j < arrayPesq.length; j++){
+					if(dataAluno[i].idalunoVariavel == arrayPesq[j]){
+						arrayPesq.splice(j, 1);
+						isOnPesq = true;
+						break;
+					}
+				}
+				if (!isOnPesq){
+					html += '<div class="Grupo_Aluno_Linha">';
+					html += 	'<span class="Nome_Aluno">';
+					html +=			dataAluno[i].aluno.nome;
+					html +=		'</span>';
+					html += 	'<input type="checkbox" id="Aluno_Ano_Check_'+dataAluno[i].idalunoVariavel+'" class="Aluno_Ano_Check" />';
+					html += 	'<label for="Aluno_Ano_Check_'+dataAluno[i].idalunoVariavel+'">';
+					html +=	 		'<span>&nbsp;</span>';
+					html +=		'</label>';
+					html +=		'<span class="Ano_Aluno">';
+					html +=			dataAluno[i].anoEstudo.ano + 'º ano';
+					html +=		'</span>';
+					html +=	'</div>';
+				}
+			}
+			limparArea();		
+			$("#boxAluno").append(html);
+			contAlunosTutoria++;
+			isSelected();
+		}
+	})
+}
+
 function changePesquisa(){
 	$("#box_grupo_info").empty();
 	if($(".pesqTutOfi").val() == 2){
@@ -356,7 +383,6 @@ function changePesquisa(){
 }
 
 function grupoNovo(){
-
 	//var anoEstudo = $("#S_AnoEstudo option:selected").text();
 	var periodo = $("#S_Periodo option:selected").text();
 	var periodoId = $("#S_Periodo").val();
@@ -430,8 +456,7 @@ function grupoNovo(){
 						var opcaoTutoria = $('.tutoria');
 						opcaoTutoria.val(opcaoTutoria.find('option[value="Todas"]').val());
 						MostrarGrupos();
-						mensagem("Grupo cadastrado com sucesso!","OK","bt_ok","sucesso");
-						
+						mensagem("Grupo cadastrado com sucesso!","OK","bt_ok","sucesso");						
 					},
 				});										
 			},
@@ -579,13 +604,13 @@ function alimentaComboAluno(idCombo, AlunoVariavel){
 
 function montagemExclusao(id){
 	$.ajax({
-		url: path+"Grupo/Delete/",
+		url: path+"Grupo",
 		type: "POST",
 		async:false,
 		crossDomain: true,
 		dataType: 'json',
 		contentType: false,	
-		data:"action=delete&id="+id,			
+		data:"action=delete&idGrupo="+id,			
 		success: function(data) {
 			$('#'+id).remove();
 			mensagem("Excluído com sucesso!","OK","bt_ok","success");

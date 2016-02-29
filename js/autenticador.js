@@ -29,7 +29,7 @@ switch (usuario){
 			}		
 		});
 		msgNaoVistas(usuarioId);
-		dadosForum(usuarioId);
+		dadosForum(usuarioId);		
 	break;
 	
 	case 'Professor':
@@ -48,14 +48,7 @@ switch (usuario){
 		msgNaoVistas(usuarioId);
 		dadosForum(usuarioId);		
 	break;
-	
-	case 'Secretaria':
-		if(usuarioId == 1173)
-		{
-			$("#rodape_calendario").html("<p id='mudarSenha'><a href='alterarSenhaAluno.html'  style='color: #FFF;text-decoration: none;font-size: 16px;'>Alterar Senha</a></p>").css("display","block");
-			$("#rodape_calendario p").show();
-		}
-	break;
+
 }
 
 //Verfica se o usuário é tutor

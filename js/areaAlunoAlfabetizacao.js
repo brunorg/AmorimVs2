@@ -45,6 +45,7 @@ function getQueryParams(qs) {
 $(document).ready(function() {
 	
 	listarDestinatarios();
+	loadBlogCategorias();
 
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
@@ -59,7 +60,7 @@ $(document).ready(function() {
 	});
 
 	$(".aba_mensagens").click(function() {
-		verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
+		//verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
 		
 	});
 
@@ -131,9 +132,6 @@ $(document).ready(function() {
 		verifyFormulario("cancelar","");
 	});
 
-	$("#nova_mensagem").click(function() {
-		showFormularioNovaMensagem();
-	});
 
 
 	/*$(".aba_mensagens").click(function(){
@@ -150,8 +148,11 @@ $(document).ready(function() {
 
 	if (urlParams["aba"]) {
 		$('#parteDoC2').hide()
+		$("#Cabecalho_Perfil_Area").css('opacity', '1');
+		$("#Conteudo_Area").css('opacity', '1');
 
 		$('.aba_'+urlParams["aba"]).trigger("click");
+		
 
 		if(urlParams["aba"] == "mensagens" ||
 			urlParams["aba"] == "rotina" ||
@@ -159,7 +160,10 @@ $(document).ready(function() {
 			$(".aba_oficina").filter(":first").trigger("click");
 
 	} else {
-		$('#Conteudo_Area').hide()
+		$("#parteDoC2").css('position', 'relative');
+		$("#parteDoC2").css('top', '-105px');
+		$("#c2canvasdiv").css('height', '628px');
+		$('#Conteudo_Area').hide();
 	}
 
 	loadBlogCategorias();
@@ -323,6 +327,22 @@ $(document).ready(function() {
 	}
 
 
+
+	function getMensagemUnica(idMensagem){
+		var retorno;
+
+		$.ajax({
+			url: path+"Mensagens/"+idMensagem,
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(dataMensagens) {retorno = dataMensagens;}
+		});
+
+		return retorno;
+	}
+
+
 	function getDestinatariosUsuarios(){
 		var retorno;
 
@@ -335,6 +355,35 @@ $(document).ready(function() {
 		});
 
 		return retorno;
+	}
+
+
+	function getDestinatarioValores(usuario){
+		var retorno;
+
+		$.ajax({
+			url: path+"Usuario/ListarUsuarioNome/"+usuario,
+			async:false,
+			type: "GET",
+			crossDomain: true,
+			success: function(data) {retorno = data;}
+		});
+
+		return retorno;
+	}
+
+	function mensagemLer(idMensagem){
+		
+
+		$.ajax({
+			url: path+"Mensagens/update/lida/"+idMensagem+"/S",
+			async:false,
+			type: "POST",
+			success: function(d) {
+				//console.log(d);
+			}
+		}); 
+
 	}
 
 
@@ -414,7 +463,7 @@ $(document).ready(function() {
 	function carregaServicoBlog(classe) {
 
 		var campo = classe;
-		var result = getBlogPostagensPorOficina(categorias[campo])
+		var result = getBlogPostagensPorOficina(categorias[campo]);
 
 
 		var html = "";
@@ -429,11 +478,17 @@ $(document).ready(function() {
 
 				html+= '<div class="cx_postagem">';
 				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-				html+= '	<h2 class="cx_info">'+(valor.data).replace(/-/g,"/")+' por '+valor.autor.nome+'</h2>';
+				html+= '	<h2 class="cx_info" title="'+valor.autor.nome+'">'+(valor.data).replace(/-/g,"/")+' por '+abreviaNome(valor.autor.nome)+'</h2>';
 				if(valor.imagem){
 					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
 				}
-				html+= '	<p class="cx_texto">'+valor.descricao+'</p>';
+
+				var paragrafos = (valor.descricao).split('\n');
+
+				for(var p of paragrafos)
+				{
+					html+= '	<p class="cx_texto">'+p+'</p>';
+				}
 				html+= '	<hr class="fim_postagem" />';
 				html+= '</div>';
 
@@ -442,6 +497,8 @@ $(document).ready(function() {
 		} else {
 			html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
 		}
+
+		console.log(campo, result, categorias[campo]);
 
 		$("#blog_postagens_container").html(html);
 
@@ -531,7 +588,7 @@ $(document).ready(function() {
 				for(var valor of data)
 				{
 
-					if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
+					//if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
 
 						html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
 						html+= '	<div class="roteiro_info">';
@@ -551,7 +608,7 @@ $(document).ready(function() {
 						html+= '</div>';
 
 						conteudo = true;
-					}
+					//}
 
 				}
 			} 
@@ -579,6 +636,8 @@ $(document).ready(function() {
 
 
 	function carregaValoresMensagens(aba){
+
+		loading("inicial");
 		var result = getMensagensUsuario();
 
 		var html = "";
@@ -589,7 +648,16 @@ $(document).ready(function() {
 			{
 
 				html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
-				html += '	<h2>'+valor.destinatarios+'</h2>';
+					if(aba == "aba_entrada"){
+						var nome = valor.remetente.aluno ? valor.remetente.aluno.nome:valor.remetente.professor.nome;
+						html += '	<h2 title="'+nome+'">'+abreviaNome(nome)+'</h2>';
+					} else {
+						var valorDestinatario = getDestinatarioValores(valor.destinatarios);
+						if(valorDestinatario)
+							var nome = valorDestinatario[0].aluno ? valorDestinatario[0].aluno.nome:valorDestinatario[0].professor.nome;
+							html += '	<h2 title="'+nome+'">'+ abreviaNome(nome)+'</h2>';
+					}
+
 				html += '	<h1>'+valor.assunto+'</h1>';
 				html += '</div>';
 				html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
@@ -605,6 +673,7 @@ $(document).ready(function() {
 			toggleMensagem(this);
 		});
 
+		loading("final");
 		switchBotoes("back");
 	}
 
@@ -630,7 +699,10 @@ $(document).ready(function() {
 			switchBotoes("read_inbox");
 		}
 
+
 		if ($(item).hasClass("mensagem_nao_lida")) {
+			var idmsg = ($(item).attr("id")).replace(/msg_/g,"");
+			mensagemLer(idmsg);
 			$(item).removeClass("mensagem_nao_lida");
 		}
 	}
@@ -639,12 +711,13 @@ $(document).ready(function() {
 
 		var resultado = getDestinatariosUsuarios();
 
+		$("#destinatarios").multiselect('uncheckAll');
 		var html = "";
 
 		for(var valor of resultado){
 
 			html += '<div class="destinatario">';
-			html += '<input type="checkbox" id="aluno1" value="1"/>';
+			html += '<input type="checkbox" id="aluno'+valor.idUsuario+'" value="'+valor.idUsuario+'"/>';
 			html += '<label for="aluno1">'+valor.nome+'</label>';
 			html += '</div>';
 
@@ -701,8 +774,30 @@ $(document).ready(function() {
 
 	function deleteMensagem(numero)
 	{
-		$('#msg_'+numero).remove();
-		$('#msgContent_'+numero).remove();
+		
+		var numeroMSG = numero;
+
+		
+			$.ajax({
+			type: "GET",
+			async:false,
+			crossDomain: true,		
+			url: path+"Mensagens/delete/"+numeroMSG,
+			success:function(data){
+				mensagem("Mensagem excluida com sucesso!","OK","bt_ok","sucesso");
+				loading('final');
+				$('#msg_'+numeroMSG).remove();
+				$('#msgContent_'+numeroMSG).remove();
+			}
+			}).then(function(data) {
+				
+
+				$('#msg_'+numeroMSG).remove();
+				$('#msgContent_'+numeroMSG).remove();
+
+				loading('final');
+			});
+		
 	}
 
 
@@ -711,7 +806,16 @@ $(document).ready(function() {
 		var assuntoReply = $('#msg_'+numero).find('h1').html();
 		var conteudoReply = $('#msgContent_'+numero).find('p').html();
 
+		var datamsg = getMensagemUnica(numero);
+
+
 		showFormularioNovaMensagem();
+		
+		$('#destinatarios').multiselect() 
+
+		$("#destinatarios").find("option."+datamsg.remetente.idusuario).prop('selected', true)
+
+		$("#destinatarios").multiselect('refresh');
 
 		$("#assunto_mensagem").val(assuntoReply);
 		$("#conteudo_mensagem").val(conteudoReply);
@@ -753,7 +857,7 @@ $(document).ready(function() {
 
 	function verifyFormulario(acao, funcao) {
 		if (acao === "cancelar") {
-			if ( $("#destinatarios_trigger").val() != "" || $("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
+			if ($("#assunto_mensagem").val() != "" || $("#conteudo_mensagem").val() != "")
 				mensagem("Tem certeza que deseja cancelar? Todo o progresso será perdido.", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();"+funcao);
 			else
 				hideFormularioNovaMensagem();
@@ -802,12 +906,15 @@ $(document).ready(function() {
 		    var at = $(a).text(), bt = $(b).text();
 		    return (at > bt)?1:((at < bt)?-1:0);
 		}));
+
+		
 	}
 
 
 	//Responde uma nova mensagem
 	function ResponderMensagem()
 	{
+
 
 		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
 
@@ -827,6 +934,8 @@ $(document).ready(function() {
 			    	//ListarCaixaEntrada(0,10);
 
 					//Se mudar essa mensagem, tem que mudar o if no funcoes.js!!
+			    	//switchBotoes("back");
+			    	hideFormularioNovaMensagem();
 			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
 
 			    },error: function() {

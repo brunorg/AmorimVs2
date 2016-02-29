@@ -79,6 +79,7 @@ app.controller('geralCTRL',function($scope,$http){
 				];
 
 				$('#Content_lateral').addClass('Content_Menu_Net');
+				$('#boxBanner').load('banner.html').css('display','block');				
 
 			break;
 
@@ -131,7 +132,8 @@ app.controller('geralCTRL',function($scope,$http){
 				if(confTutor==true){
 					$("#rodape_calendario").css("display","block");
 					$("#rodape_calendario p").show();
-				}				
+				}	
+				$('#boxBanner').load('banner.html').css('display','block');			
 			break;
 
 			case "Coordenacao":
@@ -156,6 +158,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$("#cad_observacoes").remove();
 				$("#box_geral_observacao").css("height","308px");
 				$('#Content_lateral').addClass('Content_Menu_Net');
+				$('#boxBanner').load('banner.html').css('display','block');
 			break;
 
 			case "Secretaria":
@@ -175,8 +178,14 @@ app.controller('geralCTRL',function($scope,$http){
 
 				//Classe responsável por organizar o layout do menu da área da secretaria
 				$('#Content_lateral').addClass('Content_Menu_Secretaria');
-			break;
-		}
+
+				if(dadosUsuario.idusuario == 1223)
+				{
+					$("#rodape_calendario").html("<p id='mudarSenha'><a href='alterarSenhaAluno.html'  style='color: #FFF;text-decoration: none;font-size: 16px;'>Alterar Senha</a></p>").css("display","block");
+					$("#rodape_calendario p").show();
+				}
+				break;
+			}
 		//Logout do usuário
 		$scope.logout = function(){
 			localStorage.clear();

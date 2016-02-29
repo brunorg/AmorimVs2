@@ -265,7 +265,7 @@ function novaPostagem () {
 
     console.log(imagem)
 
-    if (conteudo != '' && titulo != '' && fileIsImage) {
+    if (conteudo != '' && titulo != '') {
         $("#postagemTitulo").val(titulo);
         $("#postagemConteudo").val(conteudo);
         $("#postagemOficina").val(oficina);
@@ -277,8 +277,6 @@ function novaPostagem () {
 			$("#postagemAgrupamento").addClass("naoEnviar");
         }
         var idPostagem;
-
-        console.log($("#formPostagens input").not(".naoEnviar").serialize())
 
         $.ajax({
             url: path + "Blog",
@@ -360,7 +358,8 @@ function addPost (post) {
     var id = post.idblog;
     var titulo = post.titulo;
     var corpo = post.descricao.split("\n");
-    var oficina = post.oficina.tipoOficina.nome;
+    var oficina = post.oficina !== null ? post.oficina.tipoOficina.nome : "Tutoria";
+
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
                             '<div class="postTitulo" id="blogPostTitulo'+id+'">' +
@@ -390,8 +389,7 @@ function addPost (post) {
                             '</div>' +
                         '</div>' +
                     '</div>';
-
-    $("#mCSB_2_container").prepend(htmlPosts);
+    $("#mCSB_2_container").append(htmlPosts);
 }
 
 function editPost(id) {

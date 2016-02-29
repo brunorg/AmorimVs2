@@ -694,7 +694,7 @@ select::-ms-expand {
 }
 
 .input_Pesq_Aluno {
-	margin: 0;
+	margin-top: 10px;
     background-color: white;
     border: 1px solid lightgrey;
     font-size: 18px;

@@ -116,7 +116,10 @@ window.onload = function() {
 
         },
         error: function(a, status, error) {
-            console.log(status + " /// " + error)
+            console.log(status + " /// " + error);
+        },
+        beforeSend: function(){
+        	loading("inicial");
         }
     });
 
