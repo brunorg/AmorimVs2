@@ -38,7 +38,7 @@ function criarPaineisDosAlunos(idDivGrupo, retornoAjax) {
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + retornoAjax[i].foto + '"></img>' + '</a	>')
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + retornoAjax[i].nome + '</span>' + '</a>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + abreviaNome(retornoAjax[i].nome) + '</span>' + '</a>')
 
 
 
@@ -117,10 +117,10 @@ window.onload = function() {
         },
         error: function(a, status, error) {
             console.log(status + " /// " + error);
-        },
-        beforeSend: function(){
-        	loading("inicial");
-        }
+        }//,
+        //beforeSend: function(){
+        //	loading("inicial");
+        //}
     });
 
 	//criarBarrinhas('aluno1', aluno1dados);
