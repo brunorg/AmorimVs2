@@ -212,8 +212,8 @@
 
 	.Area_Select_Tutoria {
 		width: 100%;
-		height: 65px;
-		padding: 12px 0;
+		height: 58px;
+		padding: 5px 0;
 	}
 	.Box_Area_Select {
 		display: inline-block;
@@ -366,7 +366,7 @@
 		background-image: url(../img/ic_salvar.png);
 		background-repeat: no-repeat;
 		background-position:  10px 6px; 
-		margin-top: 5px;
+		margin-top: 2px;
 	}
 	.Area_Botoes::after
 	{
@@ -398,7 +398,7 @@
 	}*/
 
 	#listarAluno {
-		height: 330px;
+		height: 320px;
     	margin: 5px 0 0 0;
 	}
 	#boxListaAluno{
@@ -694,11 +694,25 @@ select::-ms-expand {
 }
 
 .input_Pesq_Aluno {
+	margin-top: -10px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    height: 37px;
+    padding: 8px;
+    border-radius: 0px !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+}
+
+#txtPesq {
 	margin-top: 10px;
     background-color: white;
     border: 1px solid lightgrey;
     font-size: 18px;
-    height: 39px;
+    height: 37px;
     padding: 8px;
     border-radius: 0px !important;
     -moz-appearance: none;
