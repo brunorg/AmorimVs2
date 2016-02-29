@@ -616,6 +616,14 @@ th.seta_proximo {
     overflow-y: auto;
     width: 257px;
 }
+
+#msg_content
+{
+	height: auto;
+	width:100%;
+	
+}
+
 .conteudo_mensagens > div {
 	padding: 5px;
 }

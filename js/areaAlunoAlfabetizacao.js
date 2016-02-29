@@ -102,13 +102,13 @@ $(document).ready(function() {
 
 	$("#deletar_mensagem").click(function() {
 		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
-		deleteMensagem(numero);
-		verifyFormulario("cancelar","");
+	
+		mensagem("Tem certeza que deseja excluir esta mensagem?", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();deleteMensagem("+numero+");");
 	});
 
 
 	$(".mensagem_post").click(function() {
-		toggleMensagem(this);
+		toggleMensagem(this, true);
 	});
 
 
@@ -128,9 +128,9 @@ $(document).ready(function() {
 		toggleTabRotina();
 	});
 
-	$("#cancelar_acao").click(function() {
+	/*$("#cancelar_acao").click(function() {
 		verifyFormulario("cancelar","");
-	});
+	});*/
 
 
 
@@ -678,7 +678,7 @@ $(document).ready(function() {
 			if((aba == "aba_entrada" && valor.cxEntrada == "S") || (aba == "aba_enviadas" && valor.cxEnviada == "S"))
 			{
 
-				html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+'">';
+				html += '<div id="msg_'+valor.idmensagens+'" class="mensagem_post '+(valor.lida == "N" ? "mensagem_nao_lida":"")+' '+aba+'">';
 					if(aba == "aba_entrada"){
 						var nome = valor.remetente.aluno ? valor.remetente.aluno.nome:valor.remetente.professor.nome;
 						html += '	<h2 title="'+nome+'">'+abreviaNome(nome)+'</h2>';
@@ -701,7 +701,7 @@ $(document).ready(function() {
 		$("#mensagens_entrada").html(html);
 
 		$(".mensagem_post").click(function() {
-			toggleMensagem(this);
+			toggleMensagem(this, $(this).hasClass('aba_entrada'));
 		});
 
 		loading("final");
@@ -717,7 +717,7 @@ $(document).ready(function() {
 
 	}
 
-	function toggleMensagem(item) {
+	function toggleMensagem(item, type) {
 		if ($(item).hasClass("post_ativo")) {
 			$(item).removeClass("post_ativo");
 			$(".mensagem_post").show();
@@ -727,7 +727,11 @@ $(document).ready(function() {
 			$(".mensagem_post").not(item).hide();
 			$(item).addClass("post_ativo");
 			$(item).next(".mensagem_post_conteudo").show();
-			switchBotoes("read_inbox");
+			if(type)
+				switchBotoes("read_inbox");
+			else
+				switchBotoes("read_sent");
+
 		}
 
 
@@ -777,7 +781,7 @@ $(document).ready(function() {
 			break;
 			case "read_sent":
 				$("#bottom_btns").find("div:nth-child(1)").hide();
-				$("#bottom_btns").find("div:nth-child(2)").show();
+				$("#bottom_btns").find("div:nth-child(2)").hide();
 				$("#bottom_btns").find("div:nth-child(3)").hide();
 				$("#bottom_btns").find("div:nth-child(4)").hide();
 				$("#bottom_btns").find("div:nth-child(5)").show();
