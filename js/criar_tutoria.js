@@ -129,7 +129,6 @@ function carregaTutor(){
         crossDomain:true,
         dataType: 'json',
         success: function(data){
-            console.log(data);
             for (var i=0; i<data.length; i++) {
                 html+="<option value=\""+data[i].idprofessorFuncionario+"\">"+data[i].nome+"</option>";
              //   console.log("Id Tutoria: " + data[i].idprofessor_funcionario + "\nNome: " + data[i].tutoria);
