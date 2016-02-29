@@ -141,7 +141,11 @@ $(document).ready(function() {
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
 
+	$("#acordeon_oficina_content").mCustomScrollbar({axis: "y"});
 	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
+	$("#conteudo_mensagens").mCustomScrollbar({axis: "y"});
+	
+
 	$("#mural_container").mCustomScrollbar({axis: "y"});
 
 	var urlParams = getQueryParams(document.location.search)
@@ -177,6 +181,24 @@ $(document).ready(function() {
 //			GETS
 //
 //------------------------------------------------------------
+
+	function getObjetivosPorRoteiroOficina(idoficina, idroteiro) {
+		var retorno;
+		var d = new Date();
+		var dataAtual = d.getFullYear() + "-" + ( (d.getMonth()+1) < 10 ? "0"+(d.getMonth()+1) : (d.getMonth()+1) ) + "-" + d.getDate();
+
+		$.ajax({
+			url: path + "ObjetivoAula/ListarOficinaRoteiroData/" + idoficina + "/" + idroteiro + "/" + dataAtual,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			beforeSend: function() { loading("inicial"); },
+			success: function(dataObj) { retorno = dataObj },
+			complete: function() { loading("final"); }
+		});
+
+		return retorno;
+	}
 
 	function getRoteirosPorOficinaData(idoficina) {
 		var retorno;
@@ -576,10 +598,13 @@ $(document).ready(function() {
 
 		var data = idOficina ? getRoteirosPorOficinaData(idOficina):[];
 
+
+		$(".acordeon_oficina_title").html('<h2 style="color: '+corForte+'">Conteúdo</h2>');
 		var html = "";
-			html+= '<h2 style="color: '+corForte+'">Conteúdo</h2>';
 
 		var conteudo = false;
+
+		var contador=0;
 
 		if(data.length > 0)
 		{
@@ -588,22 +613,28 @@ $(document).ready(function() {
 				for(var valor of data)
 				{
 
+					var objetivosPorOficina = getObjetivosPorRoteiroOficina(idOficina, valor.idroteiro_aula);
 					//if(valor.oficinaprofessor.oficina.tipoOficina.idTipoOficina == idTipoOficina){
 
 						html+= '<div id="roteiro_'+valor.idroteiro_aula+'" class="oficina_planejamento">';
 						html+= '	<div class="roteiro_info">';
-						html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+valor.idroteiro_aula+'</div>';
+						html+= '		<div class="roteiro_num_listagem" style="background-color: '+corForte+'">'+(++contador)+'</div>';
 						html+= '		<div class="roteiro_nome" style="background-color: '+corMedia+';">'+valor.roteiro+'</div>';
 						html+= '	</div>';
 						html+= '	<div class="roteiro_conteudo">';
 						html+= '		<div class="roteiro_descricao roteiro_item">Descrição: '+valor.descricao+'"</div>';
-						html+= '		<div class="roteiro_item">Atirar um pau em um gato</div>';
-						html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
-						html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
-						html+= '		<div class="roteiro_recursos roteiro_item">';
-						html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
-						html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
-						html+= '		</div>';
+						
+						for(var objetivos of objetivosPorOficina)
+						{
+							html+= '		<div class="roteiro_item">'+objetivos.objetivo+'</div>';
+						}
+
+						//html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
+						//html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
+						//html+= '		<div class="roteiro_recursos roteiro_item">';
+						//html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
+						//html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';
+						//html+= '		</div>';
 						html+= '	</div>';
 						html+= '</div>';
 
@@ -803,7 +834,7 @@ $(document).ready(function() {
 
 	function replyMensagem(numero)
 	{
-		var assuntoReply = $('#msg_'+numero).find('h1').html();
+		var assuntoReply = "RE : "+$('#msg_'+numero).find('h1').html();
 		var conteudoReply = $('#msgContent_'+numero).find('p').html();
 
 		var datamsg = getMensagemUnica(numero);

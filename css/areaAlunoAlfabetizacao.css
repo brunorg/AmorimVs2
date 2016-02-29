@@ -253,11 +253,21 @@
 	clear: both;
 }
 
-.acordeon_oficina {
+#acordeon_oficina_content {
 	width: 30.2%;
 	float: left;
+	height:90%;
+	overflow: auto;
 }
-.acordeon_oficina h2 {
+
+.acordeon_oficina {
+	/*width: 30.2%;
+	float: left;
+	height:90%;*/
+	padding-right: 6px;
+	overflow: hidden;
+}
+.acordeon_oficina_title h2 {
 	font-size: 14px;
 	font-weight: 500;
 	margin-top: 0;
@@ -603,12 +613,17 @@ th.seta_proximo {
 	padding: 0;
 	height: 322px;
     overflow-x: hidden;
-    overflow-y: scroll;
-    width: 253px;
+    overflow-y: auto;
+    width: 257px;
 }
 .conteudo_mensagens > div {
 	padding: 5px;
 }
+
+#mensagens_entrada{
+	padding-right: 3px;
+}
+
 .mensagem_post {
 	padding: 10px;
 	background-color: #f2f2f2;
