@@ -47,6 +47,20 @@ $(document).ready(function() {
 	listarDestinatarios();
 	loadBlogCategorias();
 
+	
+
+	$("body").click(function(){
+		$("#menu_Aluno_Dropdown").removeClass("on_Menu_Aluno_Dropdown");
+		$("#Menu_Dropdown_Lista_Aluno").hide();
+	});
+	
+
+	$("#Menu_Superior_Nome_Aluno, #menu_Aluno_Dropdown").click(function(event){
+		event.stopPropagation();
+		toggleMenuAlunoDireita();
+	});
+
+
 	$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
@@ -165,7 +179,7 @@ $(document).ready(function() {
 
 	} else {
 		$("#parteDoC2").css('position', 'relative');
-		$("#parteDoC2").css('top', '-105px');
+		//$("#parteDoC2").css('top', '-105px');
 		$("#c2canvasdiv").css('height', '628px');
 		$('#Conteudo_Area').hide();
 	}
@@ -1161,3 +1175,14 @@ function toggleTabLateral(tab) {
 	$(".box_"+box).show();
 }
 
+function toggleMenuAlunoDireita(){
+	var ativo = $("#menu_Aluno_Dropdown").hasClass('on_Menu_Aluno_Dropdown');
+
+	if(ativo) {
+		$("#menu_Aluno_Dropdown").removeClass("on_Menu_Aluno_Dropdown");
+		$("#Menu_Dropdown_Lista_Aluno").hide();
+	} else {
+		$("#menu_Aluno_Dropdown").addClass("on_Menu_Aluno_Dropdown");
+		$("#Menu_Dropdown_Lista_Aluno").show();
+	}
+}

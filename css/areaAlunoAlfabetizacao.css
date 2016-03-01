@@ -882,6 +882,88 @@ th.seta_proximo {
 }
 
 
+/* Menu Superior Dropdown Alfabetizacao */
+
+#menu_Aluno_Dropdown
+{
+	float: right;
+    height: 32px;
+    margin-top: -5px;
+    width: 33px;
+}
+
+.on_Menu_Aluno_Dropdown
+{
+    background-color: #FFF;
+}
+
+#Cabecalho_Perfil_Area_Foto
+{
+	height:100%;
+	width:33px;
+    margin-top: 0px;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+
+
+#Cabecalho_Perfil_Area_Foto #_foto
+{
+	height: 100% !important; 
+	width: 100% !important; 
+}
+
+#Menu_Superior_Nome_Aluno
+{
+	width:auto;
+	height:36px;
+	float: right;
+    margin: 0 10px;
+    cursor:pointer;
+}
+
+#Menu_Dropdown_Lista_Aluno
+{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #fff;
+    border-color: -moz-use-text-color #16becf #16becf;
+    border-image: none;
+    border-style: none solid solid;
+    border-width: medium 2px 2px;
+    height: auto;
+    position: relative;
+    right: -240px;
+    top: 27px;
+    width: 150px;
+    padding :3px 8px;
+    display: none;
+    z-index: 1;
+}
+
+
+#Menu_Dropdown_Lista_Aluno a
+{
+	color:#666766;
+	font-size: 14px;
+}
+
+#Menu_Dropdown_Lista_Aluno hr
+{
+	background-color: #CCCCCC;
+	margin-top:5px;
+	margin-bottom:1px;
+	height:1px;
+}
+
+
+/* ------------------------------------- */
+
+
 
 /* PLUGIN BARRA DE ROLAGEM */
 .mCSB_scrollTools_vertical {

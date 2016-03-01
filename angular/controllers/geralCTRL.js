@@ -52,6 +52,8 @@ app.controller('geralCTRL',function($scope,$http){
 				var dadosAlunoVariavel = JSON.parse(localStorage.getItem("objetoAlunoVariavel"));
 				var alunoNomeAno = abreviaNome(dadosUsuario.aluno.nome)+" | "+dadosAlunoVariavel.anoEstudo.ano+"º ano";
 
+				$scope.alfNome = abreviaNome(dadosUsuario.aluno.nome);
+				$scope.alfAno = dadosAlunoVariavel.anoEstudo.ano+"º ano";
 				$scope.usuarioCabecalho = alunoNomeAno;
 				$scope.usuarioFoto = dadosUsuario.aluno.fotoAluno;
 				$scope.usuarioNamePagina = "Área do Aluno";
