@@ -408,7 +408,7 @@ function displayAlunos(){
     $(".Aluno_Ano_Check").each(function(){
         $(this).next('label').hide();
     }); 
-
+    $("#txtPesqTut").hide();
     $("#btn_Salvar_Tutoria").hide();
     $(".btn_Nova_Tutoria").show();
     $(".btn_Editar_Tutoria").show();
