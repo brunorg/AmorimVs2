@@ -57,82 +57,6 @@ $(document).ready(function() {
 	});
 
 
-	/*$(".aba_oficina").click(function(){
-		toggleTabOficina(this);
-	});
-
-	$(".oficina_planejamento").click(function(){
-		triggerAccordion(this);
-	});
-
-	$(".aba_box_lateral").click(function() {
-		toggleTabLateral(this);
-	});
-
-
-	$("#abas_mensagens").children("span").click(function() {
-		toggleTabMensagens(this);
-	});
-
-	$("#destinatarios_container").find(".destinatario").change(function() {
-		countDestinatarios();
-	});
-	$(".mensagem_recebida").click(function() {
-		toggleMensagemRecebida(this);
-	});
-	$(".mensagem_enviada").click(function() {
-		toggleMensagemEnviada(this);
-	});
-	$("#destinatarios_trigger").click(function() {
-		$(this).toggleClass("destinatarios_ativo");
-	});
-	$("#nova_mensagem").click(function() {
-		showFormularioNovaMensagem();
-	});
-
-
-	$("#enviar_mensagem").click(function() {
-		ResponderMensagem();
-	});
-
-
-
-	$("#cancelar_acao").click(function() {
-		verifyFormulario("cancelar","");
-	});
-
-	$("#responder_mensagem").click(function() {
-		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
-		replyMensagem(numero);
-	});
-
-	$("#deletar_mensagem").click(function() {
-		var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
-	
-		mensagem("Tem certeza que deseja excluir esta mensagem?", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();deleteMensagem("+numero+");");
-	});
-
-
-	$(".mensagem_post").click(function() {
-		toggleMensagem(this, true);
-	});
-
-
-	$('.tabela_rotina .seta_proximo').click(function(){
-		mudarDataRotinaProxima();
-	});
-
-	$('.tabela_rotina .seta_anterior').click(function(){
-		mudarDataRotinaAnterior();
-	});
-
-	$(".aba_mural").click(function(){
-		toggleTabMural();
-	});
-
-	$(".aba_rotina").click(function(){
-		toggleTabRotina();
-	});*/
 
 	var urlParams = getQueryParams(document.location.search)
 
@@ -175,84 +99,84 @@ $(document).ready(function() {
 		//------------------------------------------------------------------
 
 
-		$(".aba_oficina").click(function(){
-			toggleTabOficina(this);
-		});
+			$(".aba_oficina").click(function(){
+				toggleTabOficina(this);
+			});
 
-		$(".oficina_planejamento").click(function(){
-			triggerAccordion(this);
-		});
+			$(".oficina_planejamento").click(function(){
+				triggerAccordion(this);
+			});
 
-		$(".aba_box_lateral").click(function() {
-			toggleTabLateral(this);
-		});
-
-
-		$("#abas_mensagens").children("span").click(function() {
-			toggleTabMensagens(this);
-		});
-
-		$("#destinatarios_container").find(".destinatario").change(function() {
-			countDestinatarios();
-		});
-		$(".mensagem_recebida").click(function() {
-			toggleMensagemRecebida(this);
-		});
-		$(".mensagem_enviada").click(function() {
-			toggleMensagemEnviada(this);
-		});
-		$("#destinatarios_trigger").click(function() {
-			$(this).toggleClass("destinatarios_ativo");
-		});
-		$("#nova_mensagem").click(function() {
-			showFormularioNovaMensagem();
-		});
+			$(".aba_box_lateral").click(function() {
+				toggleTabLateral(this);
+			});
 
 
-		$("#enviar_mensagem").click(function() {
-			ResponderMensagem();
-		});
+			$("#abas_mensagens").children("span").click(function() {
+				toggleTabMensagens(this);
+			});
+
+			$("#destinatarios_container").find(".destinatario").change(function() {
+				countDestinatarios();
+			});
+			$(".mensagem_recebida").click(function() {
+				toggleMensagemRecebida(this);
+			});
+			$(".mensagem_enviada").click(function() {
+				toggleMensagemEnviada(this);
+			});
+			$("#destinatarios_trigger").click(function() {
+				$(this).toggleClass("destinatarios_ativo");
+			});
+			$("#nova_mensagem").click(function() {
+				showFormularioNovaMensagem();
+			});
+
+
+			$("#enviar_mensagem").click(function() {
+				ResponderMensagem();
+			});
 
 
 
-		$("#cancelar_acao").click(function() {
-			verifyFormulario("cancelar","");
-		});
+			$("#cancelar_acao").click(function() {
+				verifyFormulario("cancelar","");
+			});
 
-		$("#responder_mensagem").click(function() {
-			var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
-			replyMensagem(numero);
-		});
+			$("#responder_mensagem").click(function() {
+				var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+				replyMensagem(numero);
+			});
 
-		$("#deletar_mensagem").click(function() {
-			var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
-		
-			mensagem("Tem certeza que deseja excluir esta mensagem?", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();deleteMensagem("+numero+");");
-		});
-
-
-		$(".mensagem_post").click(function() {
-			toggleMensagem(this, true);
-		});
+			$("#deletar_mensagem").click(function() {
+				var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+			
+				mensagem("Tem certeza que deseja excluir esta mensagem?", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();deleteMensagem("+numero+");");
+			});
 
 
-		$('.tabela_rotina .seta_proximo').click(function(){
-			mudarDataRotinaProxima();
-		});
+			$(".mensagem_post").click(function() {
+				toggleMensagem(this, true);
+			});
 
-		$('.tabela_rotina .seta_anterior').click(function(){
-			mudarDataRotinaAnterior();
-		});
 
-		$(".aba_mural").click(function(){
-			toggleTabMural();
-		});
+			$('.tabela_rotina .seta_proximo').click(function(){
+				mudarDataRotinaProxima();
+			});
 
-		$(".aba_rotina").click(function(){
-			toggleTabRotina();
-		});
+			$('.tabela_rotina .seta_anterior').click(function(){
+				mudarDataRotinaAnterior();
+			});
 
-		
+			$(".aba_mural").click(function(){
+				toggleTabMural();
+			});
+
+			$(".aba_rotina").click(function(){
+				toggleTabRotina();
+			});
+
+
 		//------------------------------------------------------------------
 
 		$(".aba_box_lateral").filter(":first").trigger("click");
@@ -1133,6 +1057,35 @@ $(document).ready(function() {
 		};
 
 		var result = getRotinaDiariaAluno(getAVariavelByAluno(alunoID),diaHoje);
+		
+		var posicaoAdd = 0;
+
+		for(var i=0; i<6;i++)
+		{
+
+			var html = '';
+
+			if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
+			{
+
+				// RECREIO
+
+				html+=  '<td style="background-color:#FBB040">';
+				html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
+				html+= 	'</td>';
+				html+= 	'<td class="recreio" colspan="2">';
+				html+= 	'</td>';
+
+			} else {
+				html+= '<tr><td></td><td style="background-color:#ebeae5;"></td><td></td></tr>';
+			}
+
+			$('.tabela_rotina tbody').find('tr:nth-child('+(posicaoAdd+1)+')').html(html);
+		}
+
+
+
+
 
 
 		//result.forEach(function(value, i){
@@ -1143,6 +1096,9 @@ $(document).ready(function() {
 
 			if((periodoNumero == 8 && i == 3) || (periodoNumero == 9 && i == 2))
 			{
+
+				// RECREIO
+
 				html+=  '<td style="background-color:#FBB040">';
 				html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
 				html+= 	'</td>';
@@ -1150,10 +1106,46 @@ $(document).ready(function() {
 				html+= 	'</td>';
 
 			} else {
+
+				//AULA NORMAL
+
 				if(result[i])
 				{
+					var horaCondicao = result[i].hora;
+
+					//Verifica Posicao
+
+					if(horaCondicao == 8 || horaCondicao == 14)
+					{
+						posicaoAdd = 1;
+					} else if(horaCondicao == 9){
+						posicaoAdd = 2;
+
+					} else if(horaCondicao == 15){
+						posicaoAdd = 3;
+
+					} else if(horaCondicao == 10 || horaCondicao == 16){
+						posicaoAdd = 4;
+
+					} else if(horaCondicao == 11 || horaCondicao == 17){
+						posicaoAdd = 5;
+
+					}
+
+
+					//To String
+
+					if(horaCondicao == 10 || horaCondicao == 15){
+
+						horaCondicao = horaCondicao+"h30";
+
+					} else {
+
+						horaCondicao = (horaCondicao < 10 ? ("0"+horaCondicao):horaCondicao)+"h00";
+					}
+
 					html+= '<td>';
-					html+= '	<img src="img/alfabetizacao/horario_0'+result[i].hora+'h00.png" alt="0'+result[i].hora+'h00">';
+					html+= '	<img src="img/alfabetizacao/horario_'+horaCondicao+'.png" alt="'+horaCondicao+'">';
 					html+= '</td>';
 					html+= '<td style="background-color: '+result[i].sala[0].rotina.oficina.tipoOficina.cor.forte+'">';
 					html+= '	<div>'+result[i].oficina.tipoOficina.nome+'</div>';
@@ -1172,7 +1164,7 @@ $(document).ready(function() {
 
 
 
-			$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(html);
+			$('.tabela_rotina tbody').find('tr:nth-child('+(posicaoAdd+1)+')').html(html);
 
 		}
 		//});
