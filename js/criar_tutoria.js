@@ -141,9 +141,9 @@ function carregaTutor(){
 
 function atribuiChangeTutoria(){
     $("#cicloAluno").change(function() {
-        cleanSelected();
         limparArea();
         listarAlunosGruposTutoria();
+        // cleanSelected(); - Descomentar caso alunos de ciclos diferentes NÃO possam ser incluídos nos mesmos grupos.
     });
 
     $("#periodoIdAluno").change(function(){
@@ -245,12 +245,13 @@ function limparArea(){
     }
 } //Limpar area de alunos
 
-function cleanSelected(){ //Limpa alunos selecionados de acordo com ciclo.
-    var arrayChecked = $(".Grupo_Aluno_Linha.Selected");
-    for(var i = 0; i < arrayChecked.length; i++){
-        arrayChecked[i] += arrayChecked[i].classList.remove("Selected");
-    }
-}
+//Comentada para que alunos de ciclos diferentes possam ser incluidos/alterados das tutorias.
+// function cleanSelected(){ //Limpa alunos selecionados de acordo com ciclo.
+//     var arrayChecked = $(".Grupo_Aluno_Linha.Selected");
+//     for(var i = 0; i < arrayChecked.length; i++){
+//         arrayChecked[i] += arrayChecked[i].classList.remove("Selected");
+//     }
+// }
 
 function atribuiFuncoesRolagemGrupo () {
     $("#boxListaAluno").mCustomScrollbar({

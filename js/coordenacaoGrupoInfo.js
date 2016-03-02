@@ -9,7 +9,6 @@ var idAlunoV = "";
 var alunosId = [];
 
 $(document).ready(function() {	
-
 	carregaOficineiros();
 	carregaTutores();
 	pesquisaGrupoAluno();
