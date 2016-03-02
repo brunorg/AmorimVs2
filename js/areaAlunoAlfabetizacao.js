@@ -142,15 +142,6 @@ $(document).ready(function() {
 		toggleTabRotina();
 	});
 
-	/*$("#cancelar_acao").click(function() {
-		verifyFormulario("cancelar","");
-	});*/
-
-
-
-	/*$(".aba_mensagens").click(function(){
-		carregaValoresMensagens("aba_entrada");
-	});*/
 
 	$(".aba_box_lateral").filter(":first").trigger("click");
 	$("#abas_mensagens").children("span").filter(":first").trigger("click");
@@ -165,29 +156,49 @@ $(document).ready(function() {
 	var urlParams = getQueryParams(document.location.search)
 
 	if (urlParams["aba"]) {
-		$('#parteDoC2').hide()
-		$("#Cabecalho_Perfil_Area").css('opacity', '1');
-		$("#Conteudo_Area").css('opacity', '1');
 
-		$('.aba_'+urlParams["aba"]).trigger("click");
-		
-
-		if(urlParams["aba"] == "mensagens" ||
-			urlParams["aba"] == "rotina" ||
-			urlParams["aba"] == "mural")
-			$(".aba_oficina").filter(":first").trigger("click");
+		loadContent(urlParams["aba"]);
 
 	} else {
-		$("#parteDoC2").css('position', 'relative');
-		//$("#parteDoC2").css('top', '-105px');
-		$("#c2canvasdiv").css('height', '628px');
-		$('#Conteudo_Area').hide();
+		
+		loadC2();
 	}
 
 	loadBlogCategorias();
 
 });
 
+
+
+//------------------------------------------------------------
+//
+//			INIT
+//
+//------------------------------------------------------------
+
+function loadC2(){
+
+		$("#parteDoC2").css('position', 'relative');
+		$("#c2canvasdiv").css('height', '628px');
+		$('#Conteudo_Area').hide();
+
+}
+
+function loadContent(aba){
+
+
+	$('#parteDoC2').hide();
+	$("#Conteudo_Area").css('opacity', '1');
+
+	$('.aba_'+aba).trigger("click");
+	
+
+	if(aba == "mensagens" ||
+		aba == "rotina" ||
+		aba == "mural")
+		$(".aba_oficina").filter(":first").trigger("click");
+
+}
 
 
 //------------------------------------------------------------
@@ -206,9 +217,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			beforeSend: function() { loading("inicial"); },
-			success: function(dataObj) { retorno = dataObj },
-			complete: function() { loading("final"); }
+			//beforeSend: function() { loading("inicial"); },
+			success: function(dataObj) { retorno = dataObj }
+			//complete: function() { loading("final"); }
 		});
 
 		return retorno;
@@ -224,9 +235,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			beforeSend: function()    { loading("inicial"); },
-			success: function(dRoteiros) { retorno = dRoteiros; },
-			complete:  function()    { loading("final"); }
+			//beforeSend: function()    { loading("inicial"); },
+			success: function(dRoteiros) { retorno = dRoteiros; }
+			//complete:  function()    { loading("final"); }
 		})
 
 		return retorno;
@@ -289,7 +300,7 @@ $(document).ready(function() {
 			type: "GET",
 			crossDomain: true,
 			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; },
+			success: 	function(data) 		{ retorno = data; }
 			//complete: 	function() 			{ loading("final"); }
 		});
 
@@ -305,9 +316,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; },
-			complete: 	function() 			{ loading("final"); }
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -322,9 +333,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; },
-			complete: 	function() 			{ loading("final"); }
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -534,7 +545,7 @@ $(document).ready(function() {
 			html +=	"<p class=\"feedback_oficinas_false\">Ainda não foram realizadas postagens para esta oficina.</p>";
 		}
 
-		console.log(campo, result, categorias[campo]);
+		//console.log(campo, result, categorias[campo]);
 
 		$("#blog_postagens_container").html(html);
 
@@ -565,16 +576,16 @@ $(document).ready(function() {
 				idTipoOficina = 2;
 			break;
 			case 'aba_matematica':
-				idTipoOficina = 0;
+				idTipoOficina = 3;
 			break;
 			case 'aba_artes':
 				idTipoOficina = 4;
 			break;
 			case 'aba_leitura_escrita':
-				idTipoOficina = 0;
+				idTipoOficina = 5;
 			break;
 			case 'aba_ingles':
-				idTipoOficina = 0;
+				idTipoOficina = 8;
 			break;
 			case 'aba_roteiros':
 				idTipoOficina = 0;
@@ -643,8 +654,6 @@ $(document).ready(function() {
 							html+= '		<div class="roteiro_item">'+objetivos.objetivo+'</div>';
 						}
 
-						//html+= '		<div class="roteiro_item">Verificar se o gato morreu</div>';
-						//html+= '		<div class="roteiro_item">Imitar o berro que o gato deu</div>';
 						//html+= '		<div class="roteiro_recursos roteiro_item">';
 						//html+= '			<div class="roteiro_recurso recurso_livro">Dona chica e seus gatos</div>';
 						//html+= '			<div class="roteiro_recurso recurso_video">Atirando o pau no gato</div>';

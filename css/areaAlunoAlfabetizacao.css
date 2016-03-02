@@ -887,9 +887,10 @@ th.seta_proximo {
 #menu_Aluno_Dropdown
 {
 	float: right;
-    height: 32px;
-    margin-top: -5px;
-    width: 33px;
+    height: 34px;
+    margin-top: -7px;
+    padding: 1px 2px;
+    width: 37px;
 }
 
 .on_Menu_Aluno_Dropdown
