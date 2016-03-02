@@ -44,10 +44,6 @@ function getQueryParams(qs) {
 
 $(document).ready(function() {
 	
-	listarDestinatarios();
-	loadBlogCategorias();
-
-	
 
 	$("body").click(function(){
 		$("#menu_Aluno_Dropdown").removeClass("on_Menu_Aluno_Dropdown");
@@ -61,7 +57,7 @@ $(document).ready(function() {
 	});
 
 
-	$(".aba_oficina").click(function(){
+	/*$(".aba_oficina").click(function(){
 		toggleTabOficina(this);
 	});
 
@@ -73,10 +69,6 @@ $(document).ready(function() {
 		toggleTabLateral(this);
 	});
 
-	$(".aba_mensagens").click(function() {
-		//verifyFormulario("cancelar","carregaValoresMensagens('aba_entrada');$('#abas_mensagens').find('span').removeClass('aba_mensagem_ativa');$('.aba_entrada').addClass('aba_mensagem_ativa');");
-		
-	});
 
 	$("#abas_mensagens").children("span").click(function() {
 		toggleTabMensagens(this);
@@ -140,20 +132,11 @@ $(document).ready(function() {
 
 	$(".aba_rotina").click(function(){
 		toggleTabRotina();
-	});
-
-
-	$(".aba_box_lateral").filter(":first").trigger("click");
-	$("#abas_mensagens").children("span").filter(":first").trigger("click");
-
-	$("#acordeon_oficina_content").mCustomScrollbar({axis: "y"});
-	$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
-	$("#conteudo_mensagens").mCustomScrollbar({axis: "y"});
-	
-
-	$("#mural_container").mCustomScrollbar({axis: "y"});
+	});*/
 
 	var urlParams = getQueryParams(document.location.search)
+
+	loading("inicial");
 
 	if (urlParams["aba"]) {
 
@@ -163,8 +146,6 @@ $(document).ready(function() {
 		
 		loadC2();
 	}
-
-	loadBlogCategorias();
 
 });
 
@@ -176,29 +157,127 @@ $(document).ready(function() {
 //
 //------------------------------------------------------------
 
-function loadC2(){
+	function loadC2(){
 
 		$("#parteDoC2").css('position', 'relative');
 		$("#c2canvasdiv").css('height', '628px');
 		$('#Conteudo_Area').hide();
 
-}
+		loading("final");
 
-function loadContent(aba){
+	}
+
+	function loadContent(aba){
+
+		listarDestinatarios();
+		loadBlogCategorias();
+
+		//------------------------------------------------------------------
 
 
-	$('#parteDoC2').hide();
-	$("#Conteudo_Area").css('opacity', '1');
+		$(".aba_oficina").click(function(){
+			toggleTabOficina(this);
+		});
 
-	$('.aba_'+aba).trigger("click");
-	
+		$(".oficina_planejamento").click(function(){
+			triggerAccordion(this);
+		});
 
-	if(aba == "mensagens" ||
-		aba == "rotina" ||
-		aba == "mural")
-		$(".aba_oficina").filter(":first").trigger("click");
+		$(".aba_box_lateral").click(function() {
+			toggleTabLateral(this);
+		});
 
-}
+
+		$("#abas_mensagens").children("span").click(function() {
+			toggleTabMensagens(this);
+		});
+
+		$("#destinatarios_container").find(".destinatario").change(function() {
+			countDestinatarios();
+		});
+		$(".mensagem_recebida").click(function() {
+			toggleMensagemRecebida(this);
+		});
+		$(".mensagem_enviada").click(function() {
+			toggleMensagemEnviada(this);
+		});
+		$("#destinatarios_trigger").click(function() {
+			$(this).toggleClass("destinatarios_ativo");
+		});
+		$("#nova_mensagem").click(function() {
+			showFormularioNovaMensagem();
+		});
+
+
+		$("#enviar_mensagem").click(function() {
+			ResponderMensagem();
+		});
+
+
+
+		$("#cancelar_acao").click(function() {
+			verifyFormulario("cancelar","");
+		});
+
+		$("#responder_mensagem").click(function() {
+			var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+			replyMensagem(numero);
+		});
+
+		$("#deletar_mensagem").click(function() {
+			var numero = ($('.mensagem_post_conteudo:visible').attr('id')).replace('msgContent_','');
+		
+			mensagem("Tem certeza que deseja excluir esta mensagem?", "OK", "bt_ok", "confirm", "", "", "hideFormularioNovaMensagem();deleteMensagem("+numero+");");
+		});
+
+
+		$(".mensagem_post").click(function() {
+			toggleMensagem(this, true);
+		});
+
+
+		$('.tabela_rotina .seta_proximo').click(function(){
+			mudarDataRotinaProxima();
+		});
+
+		$('.tabela_rotina .seta_anterior').click(function(){
+			mudarDataRotinaAnterior();
+		});
+
+		$(".aba_mural").click(function(){
+			toggleTabMural();
+		});
+
+		$(".aba_rotina").click(function(){
+			toggleTabRotina();
+		});
+
+		
+		//------------------------------------------------------------------
+
+		$(".aba_box_lateral").filter(":first").trigger("click");
+		$("#abas_mensagens").children("span").filter(":first").trigger("click");
+
+		$("#acordeon_oficina_content").mCustomScrollbar({axis: "y"});
+		$("#blog_oficina_container").mCustomScrollbar({axis: "y"});
+		$("#conteudo_mensagens").mCustomScrollbar({axis: "y"});
+		$("#mural_container").mCustomScrollbar({axis: "y"});
+
+
+		$('#parteDoC2').hide();
+		$("#Conteudo_Area").css('opacity', '1');
+
+		$('.aba_'+aba).trigger("click");
+		
+
+		if(aba == "mensagens" ||
+			aba == "rotina" ||
+			aba == "mural")
+			$(".aba_oficina").filter(":first").trigger("click");
+
+		loading("final");
+
+	}
 
 
 //------------------------------------------------------------
@@ -985,19 +1064,10 @@ function loadContent(aba){
 		    	success: function(d) {
 			    	dataMensagens 	=	getData("Mensagens", null);
 
-			    	//$("#tela_over").hide();
-
-			    	//$('#CaixaDeEntrada').trigger("click");
-					//carregaMensagens();
-			    	//ListarCaixaEntrada(0,10);
-
-					//Se mudar essa mensagem, tem que mudar o if no funcoes.js!!
-			    	//switchBotoes("back");
 			    	hideFormularioNovaMensagem();
 			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
 
 			    },error: function() {
-			    	////console.log("DDNN : error");
 
 			    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
 			    	loading('final');
