@@ -835,7 +835,8 @@ th.seta_proximo {
 .formulario_mensagem > form > textarea {
 	height: 260px;
     margin: 6px;
-    width: 95%;
+    width: 99%;
+    margin-left: 1px;
 }
 .destinatarios_container {
 	width: 100%;

@@ -1036,25 +1036,6 @@ $(document).ready(function() {
 		$('.tabela_rotina thead tr th.rotina_dia').html(diasSemana[diaHoje]);
 
 		var periodoNumero = JSON.parse(localStorage.getItem('objetoAlunoVariavel')).periodo.idperiodo;
-		//var periodoNumero = 9;
-
-		var horariosManha = {
-			"07:00":null,
-			"08:00":null,
-			"09:00":null,
-			"10:00":null,
-			"10:30":null,
-			"11:00":null
-		};
-
-		var horariosTarde = {
-			"13:00":null,
-			"14:00":null,
-			"15:00":null,
-			"15:30":null,
-			"16:00":null,
-			"17:00":null
-		};
 
 		var result = getRotinaDiariaAluno(getAVariavelByAluno(alunoID),diaHoje);
 		
@@ -1091,13 +1072,14 @@ $(document).ready(function() {
 		result.forEach(function(value, i){
 
 			var html = '';
+
+			posicaoAdd = 0;
 			
 			var horaCondicao = value.hora;
 
-			if((periodoNumero == 8 && value.oficina.periodo.periodo == "Manhã") || (periodoNumero == 9 && value.oficina.periodo.periodo == "Tarde"))
+			if((periodoNumero == 8 && value.oficina.periodo.periodo == "Manhã" && horaCondicao == 0) || (periodoNumero == 9 && value.oficina.periodo.periodo == "Tarde" && horaCondicao == 0))
 			{
 
-				// RECREIO
 
 				html+=  '<td style="background-color:#FBB040">';
 				html+= 	'	<img src="img/alfabetizacao/horario_'+(periodoNumero == 8 ? 10:15)+'h00.png" alt="'+(periodoNumero == 8 ? 10:15)+'h00">';
@@ -1111,7 +1093,9 @@ $(document).ready(function() {
 
 				//AULA NORMAL
 
-					if(horaCondicao == 8 || horaCondicao == 14)
+					if(horaCondicao == 7 || horaCondicao == 13){
+						posicaoAdd = 0;
+					} else if(horaCondicao == 8 || horaCondicao == 14)
 					{
 						posicaoAdd = 1;
 					} else if(horaCondicao == 9){
