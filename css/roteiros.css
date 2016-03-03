@@ -846,3 +846,11 @@
     margin: -9px 0 0 0px;
     padding: 8px 5px 5px 4px;
 }
+
+label{
+	display:block;
+}
+
+label > input{
+	width:25px;
+}

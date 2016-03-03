@@ -312,36 +312,6 @@ function displayHeader(){
     //$(".btn_Salvar_Aluno").css('display','block');   
 }
 
-
-
-function atualizarAluno(agrupamento){
-    $(".btn_EditPesq_Tutoria").click(function(){
-        var alunosEdit = $(".Aluno_Ano_Check:checked");
-        carregarAlunos();
-        if(alunosEdit.length == '0'){
-            mensagem("A tutoria deve ter pelo menos 1 aluno.","OK","bt_ok","erro");    
-        } else {
-            $.ajax({
-                url: path + "AlunoVariavel/alunoGrupo",
-                type: "POST",
-                data: "alunos=" + alunosId + "&grupo=" + agrupamento,
-                async: false,
-                crossDomain: true,
-                beforeSend: function(){
-                    loading("inicial");
-                },
-                success: function(){
-                    mensagem("Grupo alterado com sucesso.","OK","bt_ok","sucesso");
-                },
-                complete: function(){
-                    loading("final");
-                }
-            });
-        }
-        alunosId = "";
-    });
-}
-
 function editarTutoria(agrupamento){
     $(".btn_Editar_Tutoria").click(function(){
         var htmlEditTut = "";
@@ -382,7 +352,41 @@ function editarTutoria(agrupamento){
             atualizarAluno(agrupamento);
         }
         });
+    });
+}
 
+function atualizarAluno(agrupamento){
+    $(".btn_EditPesq_Tutoria").click(function(){
+        var alunosEdit = $(".Aluno_Ano_Check:checked");
+        carregarAlunos();
+        if(alunosEdit.length == '0'){
+            mensagem("A tutoria deve ter pelo menos 1 aluno.","OK","bt_ok","erro");    
+        } else {
+            $.ajax({
+                url: path + "AlunoVariavel/alunoGrupo",
+                type: "POST",
+                data: "alunos=" + alunosId + "&grupo=" + agrupamento,
+                async: false,
+                crossDomain: true,
+                beforeSend: function(){
+                    loading("inicial");
+                },
+                success: function(){
+                    $(".Area_Select_Tutoria").hide();
+                    displayAlunos();
+                    $(".btn_EditPesq_Tutoria").hide();
+                    mensagem("Grupo alterado com sucesso.","OK","bt_ok","sucesso");
+                    $(".btn_Nova_Tutoria").click(function(){
+                        resetarTutoria();
+                    });
+                    editarTutoria(agrupamento);
+                },
+                complete: function(){
+                    loading("final");
+                }
+            });
+        }
+        alunosId = "";
     });
 }
 
