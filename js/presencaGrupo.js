@@ -201,7 +201,7 @@ function atualizarCalendario(idGrupo) {
         type: "GET",
         success: function(d) {
 
-            console.log(d)
+            // console.log(d);
 
             $('#recebeAlunos').html("")
             $('#tabelaPresenca').html("")
@@ -322,7 +322,7 @@ function enviarFaltas() {
         for (var k = 0; k < diasPresenca.length; k++) {
             if (diasPresenca[k].idAluno == alunos[i].id) {
 
-                console.log(diasPresenca[k].innerHTML)
+                // console.log(diasPresenca[k].innerHTML);
 
                 var falta = 1
 
@@ -337,7 +337,7 @@ function enviarFaltas() {
         objetoASerEnviado.listaFaltas.push({"alunoId" : alunos[i].id, "faltas" : presencaSemana})
     };
 
-    console.log(JSON.stringify(objetoASerEnviado))
+    // console.log(JSON.stringify(objetoASerEnviado));
 
     $.ajax({
         url: path + "Chamada/ChamadaGrupo/",
@@ -346,7 +346,7 @@ function enviarFaltas() {
         type: "POST",
         data: "stringfiedJson="+JSON.stringify(objetoASerEnviado),
         success: function(data){
-            console.log("done")
+            // console.log("done");
         }
     });
 
