@@ -512,6 +512,8 @@ $(document).ready(function() {
 
 	function carregaServicoBlog(classe) {
 
+		loading("inicial");
+
 		var campo = classe;
 		var result = getBlogPostagensPorOficina(categorias[campo]);
 
@@ -615,6 +617,9 @@ $(document).ready(function() {
 		}
 
 		filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
+
+		
+		loading("final");
 		
 
 	}
