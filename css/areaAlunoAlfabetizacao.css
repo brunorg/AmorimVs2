@@ -567,10 +567,10 @@ th.seta_proximo {
 	text-transform: uppercase;
 }
 .tabela_rotina > tbody > tr > td:nth-child(2) {
-	padding: 8px 0;
+	padding: 8px 4px;
 }
 .tabela_rotina > tbody > tr > td:nth-child(2) > div {
-	padding: 1px 5px;
+	padding: 1px 0px;
 	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: .01em;
@@ -579,11 +579,12 @@ th.seta_proximo {
 .tabela_rotina > tbody > tr > td:nth-child(2) > div:first-child {
 	height: 20px;
 	font-size: 12px;
+	overflow: hidden;
 }
 .tabela_rotina > tbody > tr > td:nth-child(2) > div:last-child {
 	height: 15px;
 	font-size: 11px;
-	overflow: hidden
+	overflow: hidden;
 }
 
 /* Mensagens */
@@ -833,7 +834,7 @@ th.seta_proximo {
 }
 .formulario_mensagem > form > textarea {
 	height: 260px;
-    margin: 0 6px;
+    margin: 6px;
     width: 95%;
 }
 .destinatarios_container {
@@ -946,12 +947,13 @@ th.seta_proximo {
     border-width: medium 2px 2px;
     height: auto;
     position: relative;
-    right: -240px;
+    right: -61.3%;
     top: 27px;
     width: 150px;
     padding :3px 8px;
     display: none;
     z-index: 1;
+
 }
 
 
@@ -1001,4 +1003,70 @@ th.seta_proximo {
     margin: -14px -1px !important;
     width: 67.6% !important;
     padding: 0 !important;
+}
+
+
+
+/*--------------------------------------------*/
+
+@media (max-height: 707px) and (min-width: 1280px){
+
+	#Cabecalho_Perfil_Area_Foto img#_foto {
+		height: 100% !important; 
+		width: 100% !important; 
+	}
+
+
+	#Cabecalho_Perfil_Area_Foto{
+		margin: 0px;
+	}
+
+
+	/* Conteudo Esquerda */
+
+	#conteudo_oficina {
+    	height: 381px;
+	}
+
+	/* Conteudo Direita */
+
+	th.rotina_dia {
+		padding: 7px 0;
+	}
+
+	.tabela_rotina > thead > tr > th {
+		height: 34px;
+	}
+
+	.tabela_rotina > tbody > tr > td {
+	    height: 43px;
+	}
+
+	.tabela_rotina > tbody > tr > td:nth-child(2){
+		padding: 3px 4px !important;
+	}
+
+	#box_lateral {
+	    height: 381px;
+	}
+
+	.tabela_rotina > tbody > tr > td:first-child, .tabela_rotina > tbody > tr > td:last-child
+	{
+		padding: 12px 0;
+	}
+
+	.tabela_rotina > tbody > tr > td:nth-child(2) {
+		padding: 3px 0;
+	}
+
+
+	.conteudo_mensagens{
+		height : 246px;
+	}
+
+	.formulario_mensagem > form > textarea {
+	    height: 180px;
+	}
+
+
 }

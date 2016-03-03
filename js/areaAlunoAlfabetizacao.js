@@ -1089,8 +1089,6 @@ $(document).ready(function() {
 
 
 		result.forEach(function(value, i){
-		/*for(var i=0; i<6;i++)
-		{*/
 
 			var html = '';
 			
@@ -1112,11 +1110,6 @@ $(document).ready(function() {
 			} else {
 
 				//AULA NORMAL
-
-				//if(value)
-				//{
-
-					//Verifica Posicao
 
 					if(horaCondicao == 8 || horaCondicao == 14)
 					{
@@ -1155,13 +1148,7 @@ $(document).ready(function() {
 					html+= '	<div title="'+value.professor+'">'+abreviaNome(value.professor)+'</div>';
 					html+= '</td>';
 					html+= '<td title="SALA DE INFORMÁTICA">'+value.sala[0].sala.sala+'</td>';
-				/*} else {
-					html+= '<td>';
-					html+= '</td>';
-					html+= '<td style="background-color:#ebeae5;">';
-					html+= '</td>';
-					html+= '<td></td>';
-				}*/
+			
 			}
 
 
@@ -1169,19 +1156,8 @@ $(document).ready(function() {
 
 			$('.tabela_rotina tbody').find('tr:nth-child('+(posicaoAdd+1)+')').html(html);
 
-		//}
 		});
 
-		/*if(periodoNumero == 8){
-			for(var i=0; i<6;i++){
-				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosManha[i]);
-			}
-		} else if(periodoNumero == 9){
-			for(var i=0; i<6;i++){
-				$('.tabela_rotina tbody').find('tr:nth-child('+(i+1)+')').html(horariosTarde[i]);
-			}
-
-		}*/
 
 	}
 
