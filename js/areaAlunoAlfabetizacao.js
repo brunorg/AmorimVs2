@@ -530,7 +530,7 @@ $(document).ready(function() {
 
 				html+= '<div class="cx_postagem">';
 				html+= '	<h1 class="cx_titulo">'+valor.titulo+'</h1>';
-				html+= '	<h2 class="cx_info" title="'+valor.autor.nome+'">'+(valor.data).replace(/-/g,"/")+' por '+abreviaNome(valor.autor.nome)+'</h2>';
+				html+= '	<h2 class="cx_info" title="'+valor.autor.nome+'">'+reverseDate((valor.data).replace(/-/g,"/"))+' por '+abreviaNome(valor.autor.nome)+'</h2>';
 				if(valor.imagem){
 					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
 				}
@@ -723,7 +723,7 @@ $(document).ready(function() {
 				html += '	<h1>'+valor.assunto+'</h1>';
 				html += '</div>';
 				html += '<div id="msgContent_'+valor.idmensagens+'" class="mensagem_post_conteudo">';
-				html += '	<h3>'+(valor.data).replace(/-/g,"/")+'</h3>';
+				html += '	<h3>'+reverseDate((valor.data).replace(/-/g,"/"))+'</h3>';
 				html += '	<p>'+valor.mensagem+'</p>';
 				html += '</div>';
 			}
@@ -1178,7 +1178,7 @@ $(document).ready(function() {
 			html += '<div class="mural_post">'
 			html += '	<h1>'
 			html += '		<span>'+valor.mural.professor.nome+'</span>'
-			html += '		<span>'+(valor.mural.data).replace(/-/g,"/")+'</span>'
+			html += '		<span>'+reverseDate((valor.mural.data).replace(/-/g,"/"))+'</span>'
 			html += '	</h1>'
 			html += '	<p>'+valor.mural.mensagem+'</p>'
 			html += '</div>	'
@@ -1232,3 +1232,12 @@ function toggleMenuAlunoDireita(){
 		$("#Menu_Dropdown_Lista_Aluno").show();
 	}
 }
+
+
+/* Reverse Date */
+
+
+function reverseDate(str){
+   return str.split('/').reverse().join('/');
+}
+
