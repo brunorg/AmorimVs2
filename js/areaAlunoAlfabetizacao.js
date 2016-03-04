@@ -336,9 +336,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
+			beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; },
+			complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -980,6 +980,7 @@ $(document).ready(function() {
 	//Responde uma nova mensagem
 	function ResponderMensagem()
 	{
+			
 
 
 		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
@@ -990,16 +991,19 @@ $(document).ready(function() {
 			    url: path+"Mensagens/",
 			    type: "POST",
 			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto=RE: "+$('#frm_Envia_Mensagens #assunto_mensagem').val()+"&destinatarios="+$('#frm_Envia_Mensagens #destinatarios').val()+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
+		    	beforeSend: function()    {loading('inicial');},
 		    	success: function(d) {
 			    	dataMensagens 	=	getData("Mensagens", null);
 
 			    	hideFormularioNovaMensagem();
+			    	loading('final');
 			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
+			    	window.setTimeout(function(){carregaValoresMensagens("aba_entrada");}, 1000);
 
 			    },error: function() {
 
-			    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
 			    	loading('final');
+			    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
 			    	dataMensagens 	=	getData("Mensagens", null);
 			    }
 			}); 
@@ -1037,6 +1041,8 @@ $(document).ready(function() {
 	}
 
 	function carregaValoresRotina(){
+
+		loading("inicial");
 
 		$('.tabela_rotina thead tr th.rotina_dia').html(diasSemana[diaHoje]);
 
@@ -1148,6 +1154,7 @@ $(document).ready(function() {
 		});
 
 
+		loading("final");
 	}
 
 //------------------------------------------------------------
