@@ -837,6 +837,8 @@ th.seta_proximo {
     margin: 6px;
     width: 99%;
     margin-left: 1px;
+    font-size:12px;
+    padding:11px 12px;
 }
 .destinatarios_container {
 	width: 100%;

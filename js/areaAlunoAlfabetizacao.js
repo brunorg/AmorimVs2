@@ -500,9 +500,11 @@ $(document).ready(function() {
 				case 8:
 					categorias.aba_ingles = valor.idoficina;
 				break;
+				case 10:
+					categorias.aba_arte_ciencia = valor.idoficina;
+				break;
 					//categorias.aba_roteiros = valor.idoficina;
 					//categorias.aba_tutoria = valor.idoficina;
-					//categorias.aba_arte_ciencia = valor.idoficina;
 			}
 		}
 
@@ -599,7 +601,7 @@ $(document).ready(function() {
 				idTipoOficina = 0;
 			break;
 			case 'aba_arte_ciencia':
-				idTipoOficina = 0;
+				idTipoOficina = 10;
 			break;
 		}
 
