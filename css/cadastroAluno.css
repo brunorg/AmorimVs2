@@ -87,7 +87,7 @@
 	padding: 10px;
 }
 .inputImg{
-	width: 37px;
+	width: 37.7px;
 	height: 37px;
 	background: url(../img/radio-botao.png) no-repeat;
 	float: left;
@@ -279,7 +279,7 @@ select{
 }
 
 #OutroAluno{
-	width: 15%;
+	width: 19%;
 	background-color: rgb(250,248,246);
 	/* background: #F2F1ED; */
 	float: left;
@@ -609,4 +609,9 @@ select{
 	.psOpcao{
 		width: 14.9% !important;
 	}
+}
+
+#linha6{
+	width: 679px;
+	margin-left:130px;
 }

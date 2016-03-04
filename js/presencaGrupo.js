@@ -163,8 +163,7 @@ function atualizarGrupos() {
         url: path + 'ProfessorFuncionario/ProfessorGrupo/' + professorId,
         async: false,
         crossDomain: true,
-        type
-        : "GET",
+        type: "GET",
         success: function(d) {
             if(d.length > 0){
                 window.grupoEscolhido = d[0].idgrupo
@@ -186,12 +185,12 @@ function atualizarGrupos() {
 
 function atualizarCalendario(idGrupo) {
 
-    var date = new Date() 
+    var date = new Date(); 
 
-        date.setDate(date.getDate() + window.dayOffsetWeekCalendar)
+        date.setDate(date.getDate() + window.dayOffsetWeekCalendar);
 
-        var todayMonth = date.getMonth()
-        var todayDay = date.getDate()
+        var todayMonth = date.getMonth();
+        var todayDay = date.getDate();
 
     $.ajax({
         url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
@@ -209,8 +208,8 @@ function atualizarCalendario(idGrupo) {
 
             for (var i = 0; i < d.length; i++) {
             
-                htmlPiece += '<p class="alunoLinha">'                                
-                htmlPiece +=     '<img src="'+ d[i].foto +'">'
+                htmlPiece += '<p class="alunoLinha">';                                
+                htmlPiece +=     "<img src='"+ (d[i].foto == "-" ? "http://177.55.99.90/files/Masc.png":d[i].foto) +"'>";
                 htmlPiece +=     '<span class="foto aluno" id="'+d[i].alunoId+'">'
                 htmlPiece +=         d[i].alunoNome
                 htmlPiece +=     '</span>'                                
@@ -230,10 +229,10 @@ function atualizarCalendario(idGrupo) {
                 htmlPiece +=        '<td id="Aluno'+d[i].alunoId+'Dia'+$('#weekCalendarDay6').html()+'" class="'+idGrupo+' fimSemana'+(i%2)+'"></td>'
                 htmlPiece += '</tr>'
 
-                 $('#tabelaPresenca').append(htmlPiece)
+                 $('#tabelaPresenca').append(htmlPiece);
 
-                 htmlPiece = ""
-            };
+                 htmlPiece = "";
+            }
 
 
             for (var i = d.length - 1; i >= 0; i--) {
@@ -251,7 +250,8 @@ function atualizarCalendario(idGrupo) {
     });
 }
 
-function mudarGrupo(idGrupo) {
+function mudarGrupo(idGrupo){
+    debugger;
     window.grupoEscolhido = idGrupo
 
     window.dayOffsetWeekCalendar = 0 
@@ -272,7 +272,7 @@ $(document).ready(function(){
 
     window.dayOffsetWeekCalendar = 0
 
-    atualizarGrupos()
+    atualizarGrupos();
 
     $('#calendarRightArrow').click(function(){
         window.dayOffsetWeekCalendar += 7
