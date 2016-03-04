@@ -282,8 +282,16 @@ select{
 }
 
 #btn_cancela_licenca{
-	width: 15%;
+	width: 19%;
 	vertical-align: top;
+	height: 40px;
+    font-size: 15px !important;
+}
+
+#linha11{
+	
+    width: 739px;
+    margin-left: 101px;
 }
 
 
@@ -359,6 +367,23 @@ select{
 .btnSubmit
 {
 	background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.btnSalvarLicenca{
+	border-radius: 0;
+	color: #fff;
+	height: 40px;
+	padding: 10px;
+	font-size: 20px;
+	text-align: right;
+	border: 0;
+	cursor: pointer;
+	margin-right: 7px;
+	width: 100px;		
+	background-repeat: no-repeat;
+	background-position:  10px 6px; 
+	background-image: url(../img/ic_salvar.png);
+	font-size:15px !important;
 }
 .btn_left{
 	float:right;

@@ -209,7 +209,7 @@ function atualizarCalendario(idGrupo) {
             for (var i = 0; i < d.length; i++) {
             
                 htmlPiece += '<p class="alunoLinha">';                                
-                htmlPiece +=     "<img src='"+ (d[i].foto == "-" ? "http://177.55.99.90/files/Masc.png":d[i].foto) +"'>";
+                htmlPiece +=     "<img src='"+ (d[i].foto == "-" ? "http://177.55.99.90/files/Masc.png":d[i].foto) +"'>"; //Se o aluno não possuir foto, receberá a foto padrão do bd. Caso contrário, receberá sua foto cadastrada.
                 htmlPiece +=     '<span class="foto aluno" id="'+d[i].alunoId+'">'
                 htmlPiece +=         d[i].alunoNome
                 htmlPiece +=     '</span>'                                

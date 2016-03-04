@@ -351,6 +351,7 @@
 	}
 
 	.btns_grupo {
+		background-image: url(../img/ic_salvar.png);
 		background-color: #E83F4A;
 		border-radius: 0;
 		color: #fff;
@@ -362,8 +363,7 @@
 		cursor: pointer;
 		float: right;
 		margin-right: 7px;
-		width: 100px;
-		background-image: url(../img/ic_salvar.png);
+		width: 100px;		
 		background-repeat: no-repeat;
 		background-position:  10px 6px; 
 		margin-top: 6px;
