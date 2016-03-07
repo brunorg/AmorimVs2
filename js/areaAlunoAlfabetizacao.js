@@ -65,6 +65,7 @@ $(document).ready(function() {
 	if (urlParams["aba"]) {
 
 		loadContent(urlParams["aba"]);
+		$("#parteDoC2").remove();
 
 	} else {
 		
@@ -1000,25 +1001,25 @@ $(document).ready(function() {
 			$.ajax({
 			    url: path+"Mensagens/",
 			    type: "POST",
-			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto=RE: "+$('#frm_Envia_Mensagens #assunto_mensagem').val()+"&destinatarios="+$('#frm_Envia_Mensagens #destinatarios').val()+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
+			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto="+$('#frm_Envia_Mensagens #assunto_mensagem').val()+"&destinatarios="+$('#frm_Envia_Mensagens #destinatarios').val()+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
 		    	beforeSend: function()    {loading('inicial');},
 		    	success: function(d) {
-			    	dataMensagens 	=	getData("Mensagens", null);
+			    	dataMensagens 	=	getMensagensUsuario();
 
 			    	hideFormularioNovaMensagem();
-			    	loading('final');
-			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");
-			    	window.setTimeout(function(){carregaValoresMensagens("aba_entrada");}, 1000);
+			    	
+			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso", "", "", "console.log('A');");
+			    	window.setTimeout(function(){carregaValoresMensagens("aba_entrada");loading('final');}, 1000);
 
 			    },error: function() {
 
 			    	loading('final');
 			    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
-			    	dataMensagens 	=	getData("Mensagens", null);
+			    	dataMensagens 	=	getMensagensUsuario();
 			    }
 			}); 
 		} else {
-			mensagem("Sua resposta não tem mensagem, por favor, adicione uma!","OK","bt_ok","erro");
+			mensagem("Algum campo está vazio, favor preencher todos!","OK","bt_ok","erro");
 			loading('final');
 		}
 	}

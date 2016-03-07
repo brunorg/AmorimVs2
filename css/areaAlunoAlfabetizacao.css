@@ -782,6 +782,9 @@ th.seta_proximo {
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-position: center center;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 .mensagem_icone:last-child {
 	margin-left: 0;
