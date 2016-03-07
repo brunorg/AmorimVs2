@@ -995,6 +995,28 @@ th.seta_proximo {
 /* ------------------------------------- */
 
 
+/* Blog Alfabetizacao */
+
+.feedback_oficinas_false {
+    font-size: 12px;
+}
+
+
+
+/* ------------------------------------- */
+
+
+/* Mensagem Alfabetizacao */
+
+
+
+.txt_mensagem {
+    height: auto;
+}
+
+/* ------------------------------------- */
+
+
 
 /* PLUGIN BARRA DE ROLAGEM */
 .mCSB_scrollTools_vertical {

@@ -480,6 +480,8 @@ $(document).ready(function() {
 			switch(valor.tipoOficina.idTipoOficina)
 			{
 				case 1:
+					//categorias.aba_roteiros = valor.idoficina;
+					//categorias.aba_tutoria = valor.idoficina;
 				break;
 				case 2:
 					categorias.aba_educacao_fisica = valor.idoficina;
@@ -503,8 +505,6 @@ $(document).ready(function() {
 				case 10:
 					categorias.aba_arte_ciencia = valor.idoficina;
 				break;
-					//categorias.aba_roteiros = valor.idoficina;
-					//categorias.aba_tutoria = valor.idoficina;
 			}
 		}
 
@@ -601,9 +601,11 @@ $(document).ready(function() {
 				idTipoOficina = 8;
 			break;
 			case 'aba_roteiros':
+				//idTipoOficina = 1;
 				idTipoOficina = 0;
 			break;
 			case 'aba_tutoria':
+				//idTipoOficina = 1;
 				idTipoOficina = 0;
 			break;
 			case 'aba_arte_ciencia':
@@ -993,7 +995,7 @@ $(document).ready(function() {
 
 		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
 
-		if($('#tela_over #Mensagem').val() != "")
+		if($('#conteudo_mensagem').val() != "" && $('#assunto_mensagem').val() != "" && $("#frm_Envia_Mensagens #destinatarios :selected").length > 0)
 		{
 			$.ajax({
 			    url: path+"Mensagens/",
