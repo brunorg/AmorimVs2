@@ -537,6 +537,12 @@ $(document).ready(function() {
 					html+= '	<img class="img_postagem" src="'+getImagemPorPostagem(valor.idblog)+'" alt="Espaço Catavento" />';
 				}
 
+				var findA = "<p>";
+				var findB = "</p>";
+
+				valor.descricao = valor.descricao.replace(new RegExp(findA, 'g'), "");
+				valor.descricao = valor.descricao.replace(new RegExp(findB, 'g'), "");
+
 				var paragrafos = (valor.descricao).split('\n');
 
 				for(var p of paragrafos)

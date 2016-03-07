@@ -833,13 +833,30 @@ th.seta_proximo {
 	margin-top: 0;
 }
 .formulario_mensagem > form > textarea {
-	height: 260px;
+	height: 250px;
     margin: 6px;
     width: 99%;
     margin-left: 1px;
     font-size:12px;
     padding:11px 12px;
+    background-color: #F1F1ED;
+    border: solid thin #CCCCCC;
+    resize: none;
 }
+
+.formulario_mensagem > form > #assunto_mensagem {
+	/*height: 250px;*/
+    width: 99%;
+    
+    margin: 3px 6px -3px 1px;
+    font-size:12px;
+    padding:11px 12px;
+    background-color: #F1F1ED;
+    border: solid thin #CCCCCC;
+    resize: none;
+}
+
+
 .destinatarios_container {
 	width: 100%;
 	max-height: 250px;
@@ -1072,4 +1089,9 @@ th.seta_proximo {
 	}
 
 
+}
+
+
+*{
+	text-transform: uppercase;
 }
