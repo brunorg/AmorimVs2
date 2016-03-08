@@ -920,7 +920,7 @@ th.seta_proximo {
 {
 	float: right;
     height: 34px;
-    margin-top: -7px;
+    margin-top: -10px;
     padding: 1px 2px;
     width: 37px;
 }
@@ -970,10 +970,10 @@ th.seta_proximo {
     border-width: medium 2px 2px;
     height: auto;
     position: relative;
-    right: -61.3%;
-    top: 27px;
-    width: 150px;
-    padding :3px 8px;
+    right: -56.3%;
+    top: 24px;
+    width: 170px;
+    padding: 6px 8px;
     display: none;
     z-index: 1;
 
@@ -983,15 +983,21 @@ th.seta_proximo {
 #Menu_Dropdown_Lista_Aluno a
 {
 	color:#666766;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 #Menu_Dropdown_Lista_Aluno hr
 {
 	background-color: #CCCCCC;
-	margin-top:5px;
-	margin-bottom:1px;
+	margin-top: 5px;
+    margin-bottom: 4px;
 	height:1px;
+}
+
+#Cabecalho_Menu_Area_Menu1, #Cabecalho_Menu_Area_Menu2{
+	font-size: 14px;
+    padding-top: 11px;
+    letter-spacing: 0.05em;
 }
 
 
@@ -1015,9 +1021,25 @@ th.seta_proximo {
 
 .txt_mensagem {
     height: auto;
+    max-width: 450px;
 }
 
 /* ------------------------------------- */
+
+
+
+/* popup Alfabetizacao */
+
+
+
+.box_mensagem {
+    width: auto;
+    padding: 10px;
+}
+
+/* ------------------------------------- */
+
+
 
 
 
@@ -1119,4 +1141,6 @@ th.seta_proximo {
 
 *{
 	text-transform: uppercase;
+	letter-spacing: 0.03em;
 }
+

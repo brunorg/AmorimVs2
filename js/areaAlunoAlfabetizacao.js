@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	var urlParams = getQueryParams(document.location.search)
 
-	loading("inicial");
+	//loading("inicial");
 
 	if (urlParams["aba"]) {
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		$("#c2canvasdiv").css('height', '628px');
 		$('#Conteudo_Area').hide();
 
-		loading("final");
+		//loading("final");
 
 	}
 
@@ -101,7 +101,9 @@ $(document).ready(function() {
 
 
 			$(".aba_oficina").click(function(){
-				toggleTabOficina(this);
+				//loading("inicial");
+				var self = this;
+				$.when(function(){loading("inicial");console.log("inicio");}).done(function(){toggleTabOficina(self); console.log("meio");}).done(function(){loading("final"); console.log("fim");});
 			});
 
 			$(".oficina_planejamento").click(function(){
@@ -200,7 +202,7 @@ $(document).ready(function() {
 			aba == "mural")
 			$(".aba_oficina").filter(":first").trigger("click");
 
-		loading("final");
+		//loading("final");
 
 	}
 
@@ -337,9 +339,9 @@ $(document).ready(function() {
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; },
-			complete: 	function() 			{ loading("final"); }
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -448,6 +450,7 @@ $(document).ready(function() {
 
 
 	function toggleTabOficina(tab) {
+
 		$(".aba_oficina").removeClass("aba_ativa");
 		$(tab).addClass("aba_ativa");
 
@@ -457,6 +460,7 @@ $(document).ready(function() {
 		carregaServicoBlog(classAbaAtiva);
 
 		loadRoteirosAlfabetizacao(classAbaAtiva);
+
 	}
 
 	function toggleBarOficina(classOficina) {
@@ -515,7 +519,7 @@ $(document).ready(function() {
 
 	function carregaServicoBlog(classe) {
 
-		loading("inicial");
+		//loading("inicial");
 
 		var campo = classe;
 		var result = getBlogPostagensPorOficina(categorias[campo]);
@@ -630,7 +634,7 @@ $(document).ready(function() {
 		filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
 
 		
-		loading("final");
+		//loading("final");
 		
 
 	}
@@ -710,7 +714,7 @@ $(document).ready(function() {
 
 	function carregaValoresMensagens(aba){
 
-		loading("inicial");
+		//loading("inicial");
 		var result = getMensagensUsuario();
 
 		var html = "";
@@ -746,7 +750,7 @@ $(document).ready(function() {
 			toggleMensagem(this, $(this).hasClass('aba_entrada'));
 		});
 
-		loading("final");
+		//loading("final");
 		switchBotoes("back");
 	}
 
@@ -1008,8 +1012,9 @@ $(document).ready(function() {
 
 			    	hideFormularioNovaMensagem();
 			    	
-			    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso", "", "", "console.log('A');");
-			    	window.setTimeout(function(){carregaValoresMensagens("aba_entrada");loading('final');}, 1000);
+			    	
+			    	
+			    	window.setTimeout(function(){carregaValoresMensagens("aba_entrada");loading('final');mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso", "", "", "console.log('');");}, 1000);
 
 			    },error: function() {
 
@@ -1053,7 +1058,7 @@ $(document).ready(function() {
 
 	function carregaValoresRotina(){
 
-		loading("inicial");
+		//loading("inicial");
 
 		$('.tabela_rotina thead tr th.rotina_dia').html(diasSemana[diaHoje]);
 
@@ -1165,7 +1170,7 @@ $(document).ready(function() {
 		});
 
 
-		loading("final");
+		//loading("final");
 	}
 
 //------------------------------------------------------------
