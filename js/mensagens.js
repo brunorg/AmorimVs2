@@ -690,6 +690,12 @@ function ExcluirMensagem()
 			loading('final');
 		}
 		}).then(function(data) {
+			if($("#CaixaDeEntrada").hasClass("estado_ativo"))
+			{
+				ListarCaixaEntrada(0,10);
+			} else {
+				ListarEnviadas('',0,10);
+			}
 			dataMensagens = null;
 			dataMensagens 	=	getData("Mensagens", null);
 			loading('final');
