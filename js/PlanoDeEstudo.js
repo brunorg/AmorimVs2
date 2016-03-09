@@ -62,6 +62,7 @@ $.ajax({
 
 $(document).ready(function() {
 	
+	verificarAtribuirRoteirosPassados();
 	
 	$("body").delegate(".planoPassado","click", function(){
 		mensagem("Crie um plano de estudos para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
@@ -1216,4 +1217,21 @@ function verificaData(dataBr){
 	    if(ano < 1900)return false;   
 	    return true;   
   
+}
+
+function verificarAtribuirRoteirosPassados () {
+	if (JSON.parse(localStorage.getItem("objetoAlunoVariavel")).verificarRoteiros > 0){
+		$.ajax({
+			url: path + "AtribuicaoRoteiroExtra/AtribuirRoteirosIncompletosAnoAnterior/" + localStorage.getItem("alunoId"),
+			async: false,
+			crossDomain: true,
+			type: "GET",
+			beforeSend: function() {
+				loading("inicial");
+			},
+			complete: function() {
+				loading("final");
+			}
+		});
+	}
 }
