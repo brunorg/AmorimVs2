@@ -13,47 +13,295 @@ var alunoIdCoded = GetURLParameter('ID');
 
 //------------------------------------------------------------------------------------------------------------------------
 
-var dataPlanoEstudoAtual;
-$.ajax({
-	url: path + "PlanoEstudo/aluno/" +  alunoID,
-	async: false,
-	crossDomain: true,
-	type: "GET",
-	success: function (d) {
-		dataPlanoEstudoAtual = d;
-	}
-});
+var dataPlanoEstudoAtual = getPlanoEstudoAtual(alunoID);
 
-var dataUsuario;
-$.ajax({
-	url: path + "Usuario/" + usuarioID,
-	async: false,
-	crossDomain: true,
-	type: "GET",
-	success: function (d) {
-		dataUsuario = d;
-	}
-});
+var dataUsuario = getDataUsuario(usuarioID);
 
 //Carrega a funçao de Load do JQuery
 
 /*Gráfico area_aluno*/
 
 
+//------------------------------------------------------------------------------------------------------------
+//
+//		GETS
+//
+//------------------------------------------------------------------------------------------------------------
+
+	function getPlanoEstudoAtual(alunoID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "PlanoEstudo/aluno/" +  alunoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+	function getAluno(alunoID){
+		var auxAL;
+		$.ajax({
+			type: "GET",
+			crossDomain: true,
+			async: false,
+			url: path+"Alunos/"+alunoID	
+		}).then(function(data) {
+			auxAL = data;
+		});  	
+		return auxAL;
+	}
+
+
+	function getDataUsuario(usuarioID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "Usuario/" + usuarioID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getAlunoVariavel(alunoID) {
+		var retorno;
+
+		$.ajax({
+			url: path+"AlunoVariavel/aluno/"+alunoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getRoteiroExtra(alunoID, alunoVarSelecionado) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Roteiro/RoteiroAluno/"+alunoID+"/"+alunoVarSelecionado.anoLetivo.ano,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getRoteirosAluno(alunoVarSelecionado) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Roteiro/RoteiroAno/"+alunoVarSelecionado.anoEstudo.idanoEstudo,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getRoteiroID(RoteiroID) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Roteiro/"+RoteiroID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getObjetivosFiltrados(alunoVarSelecionado) {
+		var retorno;
+
+		$.ajax({
+			url: path + "Objetivo/ObjetivoAluno/" + alunoVarSelecionado.idalunoVariavel,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getProfessorTutoria(professorID, Ano) {
+		var retorno;
+
+		$.ajax({
+			url: path + "Tutoria/Professor/"+professorID+"/"+Ano,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getObjetivoRoteiro(RoteiroID) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Objetivo/ObjetivoRoteiro/"+RoteiroID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getObjetivoRoteiroTotal(RoteiroID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "Objetivo/ObjetivoRoteiroTotal/" + RoteiroID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+	function getFichaFinalizacao(RoteiroID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "FichaFinalizacao/" + RoteiroID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getProducaoAlunoFiltos(AlunoID, Numero, RoteiroID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "ProducaoAluno/Filtos/" + AlunoID + "/"+Numero+"/" + RoteiroID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getGrupoAlunoVariavel(grupoID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "AlunoVariavel/grupo/" + grupoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+//
+//		Ready
+//
+//------------------------------------------------------------------------------------------------------------
+
 
 $(document).ready(function(){
+	
+	init();
+	
+//Fim Jquery ready	
+}); 
+	
+	
+function init(){
+
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
 		var ano = data.getFullYear();	
-		$.ajax({
-			url: path + "Tutoria/Professor/"+localStorage.getItem("professorId")+"/"+ano,
-			async: false,
-			crossDomain: true,
-			type: "GET",
-			success: function (d) {
-				$('#tutoria').val(d[0].idtutoria);
-			}
-		});	
+		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+		$('#tutoria').val(tutoria[0].idtutoria);
+			
 	}else{
 		$('#tutoria').val(base64_decode(GetURLParameter('TU')));
 	}
@@ -62,11 +310,15 @@ $(document).ready(function(){
 		$('#observacao_box').css('display','block');
 	}
 
-	//Cria as variaveis q serão utilizadas
-	//var objetivos;
-	var alunoVarSelecionado = -1;
+	//Cria as variaveis que serão utilizadas
+
+	//Pego todos os alunos variaveis para colocar no grupo!!
+	var alunoVarSelecionado = getAlunoVariavel(alunoID);
+	//Pego os dados do aluno váriavel pelo seu ID
+	var roteiroExtra = getRoteiroExtra(alunoID, alunoVarSelecionado)
 	var planejamentosAluno = [];
-	var roteiros = [];
+	//Busca os roteiros atribuidos do aluno
+	var roteiros = getRoteirosAluno(alunoVarSelecionado);
 	var roteirosFiltrados = [];
 	var htmlContent = '';
 	var arrayAux = [];
@@ -78,49 +330,9 @@ $(document).ready(function(){
 	var aluno = getAluno(alunoID);
 
 	$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
-	
-	//Pego todos os alunos variaveis para colocar no grupo!!
 
-	//Pego os dados do aluno váriavel pelo seu ID
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"AlunoVariavel/aluno/"+alunoID
-	}).then(function(data) {
-		alunoVarSelecionado = data;
-	});
-		
-	//Busca os roteiros atribuidos do aluno
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"Roteiro/RoteiroAluno/"+alunoID+"/"+alunoVarSelecionado.anoLetivo.ano
-	}).then(function(data) {
-		roteiroExtra = data;
-	});
-	
 	//Busca os roteiros do ano
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"Roteiro/RoteiroAno/"+alunoVarSelecionado.anoEstudo.idanoEstudo
-	}).then(function(data) {
-		roteiros = data;
-	});
-
-	var objetivosFiltrados;
-	$.ajax({
-		url: path + "Objetivo/ObjetivoAluno/" + alunoVarSelecionado.idalunoVariavel,
-		async: false,
-		crossDomain: true,
-		type: "GET",
-		success: function (d) {
-			objetivosFiltrados = d;
-		}
-	});	
+	var objetivosFiltrados = getObjetivosFiltrados(alunoVarSelecionado);
 
 	//Executa 3 FORs com os resultados dos serviços anteriores e monta apenas um vetor
 	//Variavel IdsRoteirosPendentes serve como um verificador para não permitir que duplique os roteiros.
@@ -130,14 +342,7 @@ $(document).ready(function(){
 	}
 	for (var i = 0; i < roteiroExtra.length; i++){
 			roteirosFiltrados[roteirosFiltrados.length] = [];
-			$.ajax({
-				type: "GET",
-				crossDomain: true,
-				async: false,
-				url: path+"Roteiro/"+roteiroExtra[i].roteiro.idroteiro
-			}).then(function(data) {
-				roteirosFiltrados[roteirosFiltrados.length-1][0] = data;
-			});
+			roteirosFiltrados[roteirosFiltrados.length-1][0] = getRoteiroID(roteiroExtra[i].roteiro.idroteiro);
 	}
 			
 						
@@ -157,22 +362,19 @@ $(document).ready(function(){
 	//faz um for no roteiro colocando os objetivos conforme explificado acima
 	for (var j = 0; j < roteirosFiltrados.length; j++){	
 		objetivo = '';
+		
 		//Busca os objetivos de cada roteiro
-		$.ajax({
-			type: "GET",
-			crossDomain: true,
-			async: false,
-			url: path+"Objetivo/ObjetivoRoteiro/"+roteirosFiltrados[j][0].idroteiro
-		}).then(function(data) {
-			if (data.length>0){
-				for (var i = 0; i<data.length;i++){
-					arrayAux[0]=data[i];
-					arrayAux[1]=0;
-					roteirosFiltrados[j][parseInt(data[i].numero)]=data[i];
-					roteirosFiltrados[j][parseInt(data[i].numero)]=arrayAux.slice();
-				}
+		var objetivosRoteiros = getObjetivoRoteiro(roteirosFiltrados[j][0].idroteiro);
+
+		if (objetivosRoteiros.length>0){
+			for (var i = 0; i<objetivosRoteiros.length;i++){
+				arrayAux[0]=objetivosRoteiros[i];
+				arrayAux[1]=0;
+				roteirosFiltrados[j][parseInt(objetivosRoteiros[i].numero)]=objetivosRoteiros[i];
+				roteirosFiltrados[j][parseInt(objetivosRoteiros[i].numero)]=arrayAux.slice();
 			}
-		});
+		}
+		
 	}
 	//Daqui para baixo, nada foi alterado!!
 	
@@ -332,17 +534,7 @@ $(document).ready(function(){
 
 	for(var i = 0; i < roteirosFiltrados.length; i++){
 		
-		var totalObjetivos;
-
-		$.ajax({
-			url: path + "Objetivo/ObjetivoRoteiroTotal/" + roteirosFiltrados[i][0].idroteiro,
-			async: false,
-			crossDomain: true,
-			type: "GET",
-			success: function(d) {
-				totalObjetivos = d;
-			}
-		});		   
+		var totalObjetivos = getObjetivoRoteiroTotal(roteirosFiltrados[i][0].idroteiro);   
 
 		if($("#" + roteirosFiltrados[i][0].idroteiro + " .verde_tk").length == totalObjetivos)
 		{
@@ -352,28 +544,14 @@ $(document).ready(function(){
 
 			var portfolio;
 			var fichaFinalizacao = -1;
-			var existeFicha;
-			$.ajax({
-				url: path + "FichaFinalizacao/" + roteirosFiltrados[i][0].idroteiro,
-				async: false,
-				crossDomain: true,
-				type: "GET",
-				success: function(d){
-					existeFicha = d;
-				}
-			});
+			var existeFicha = getFichaFinalizacao(roteirosFiltrados[i][0].idroteiro);
+			var producaoFiltos;
 
 			if (existeFicha.length > 0)
 			{
-				$.ajax({
-					url: path + "ProducaoAluno/Filtos/" + alunoID + "/4/" + roteirosFiltrados[i][0].idroteiro,
-					async: false,
-					crossDomain: true,
-					type: "GET",
-					success: function(d){
-						fichaFinalizacao = (d.length > 0) ? d[0] : "";
-					}
-				});
+
+				producaoFiltos = getProducaoAlunoFiltos(alunoID, "4",roteirosFiltrados[i][0].idroteiro);
+				fichaFinalizacao = (producaoFiltos.length > 0) ? producaoFiltos[0] : "";
 
 				if (fichaFinalizacao != "")
 				{
@@ -382,16 +560,10 @@ $(document).ready(function(){
 					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
 				}
 			}
-
-			$.ajax({
-				url: path + "ProducaoAluno/Filtos/" + alunoID + "/5/" + roteirosFiltrados[i][0].idroteiro,
-				async: false,
-				crossDomain: true,
-				type: "GET",
-				success: function(d){
-					portfolio = (d.length > 0) ? d[0] : "";
-				}
-			});
+			
+			producaoFiltos = getProducaoAlunoFiltos(alunoID, "5",roteirosFiltrados[i][0].idroteiro);
+			portfolio = (producaoFiltos.length > 0) ? producaoFiltos[0] : "";
+				
 
 			if (portfolio != "")
 			{
@@ -427,17 +599,7 @@ $(document).ready(function(){
 
 	aux = '';
 
-	var grupoAluno;
-
-	$.ajax({
-		url: path + "AlunoVariavel/grupo/" + alunoVarSelecionado.grupo.idgrupo,
-		async: false,
-		crossDomain: true,
-		type: "GET",
-		success: function (d) {
-			grupoAluno = d;
-		}
-	});
+	var grupoAluno = getGrupoAlunoVariavel(alunoVarSelecionado.grupo.idgrupo);
 
 	for(var i = 0; i<grupoAluno.length;i++){
 		aux += '<p>'+grupoAluno[i].aluno.nome+'</p>';       		     	
@@ -502,13 +664,9 @@ $(document).ready(function(){
   	$("#left_scroll").click(function(){
   		$("#horiz_container li").css('margin-left', parseInt($("#horiz_container li").css('margin-left')) + 10);
   	});		
-	
-//Fim Jquery ready	
-}); 
-	
-	
-	
-//Carol
+
+}
+
 
 function corrigir(){
 	$('.corrigir').click(function(){
@@ -744,7 +902,7 @@ function getPlanejamentoRoteiro(){
 	return auxPR;
 }
 
-function getRoteiros(){
+/*function getRoteiros(){
 	var auxR;
 	$.ajax({
 		type: "GET",
@@ -755,20 +913,9 @@ function getRoteiros(){
 		auxR = data;
 	});	
 	return auxR;
-}
+}*/
 
-function getAluno(alunoID){
-	var auxAL;
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"Alunos/"+alunoID	
-	}).then(function(data) {
-		auxAL = data;
-	});  	
-	return auxAL;
-}
+
 
 /*function getUltimoPE(ID){
 	var max= 0;
