@@ -103,7 +103,10 @@ $(document).ready(function() {
 			$(".aba_oficina").click(function(){
 				//loading("inicial");
 				var self = this;
-				$.when(function(){loading("inicial");console.log("inicio");}).done(function(){toggleTabOficina(self); console.log("meio");}).done(function(){loading("final"); console.log("fim");});
+
+				//if(!$(self).hasClass('aba_ativa'))
+					$.when(function(){return loading("inicial");}).done(function(){ return toggleTabOficina(self);}).done(function(){ return loading("final");});
+				
 			});
 
 			$(".oficina_planejamento").click(function(){
