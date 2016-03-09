@@ -45,16 +45,20 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 	function getAluno(alunoID){
-		var auxAL;
+		
+		var retorno;
+		
 		$.ajax({
+			url: path + "Alunos/" + alunoID,
+			async: false,
 			type: "GET",
 			crossDomain: true,
-			async: false,
-			url: path+"Alunos/"+alunoID	
-		}).then(function(data) {
-			auxAL = data;
-		});  	
-		return auxAL;
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
 	}
 
 
@@ -109,6 +113,22 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
+	function getPlanejamentoRoteiro(){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "PlanejamentoRoteiro/aluno/" + alunoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
 
 
 	function getRoteirosAluno(alunoVarSelecionado) {
@@ -128,8 +148,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
-
-
 	function getRoteiroID(RoteiroID) {
 		var retorno;
 
@@ -145,8 +163,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 		return retorno;
 	}
-
-
 
 
 	function getObjetivosFiltrados(alunoVarSelecionado) {
@@ -166,8 +182,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
-
-
 	function getProfessorTutoria(professorID, Ano) {
 		var retorno;
 
@@ -183,8 +197,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 		return retorno;
 	}
-
-
 
 
 	function getObjetivoRoteiro(RoteiroID) {
@@ -221,7 +233,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
-
 	function getFichaFinalizacao(RoteiroID) {
 		var retorno;
 
@@ -256,13 +267,59 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
-
-
 	function getGrupoAlunoVariavel(grupoID) {
 		var retorno;
 
 		$.ajax({
 			url: path + "AlunoVariavel/grupo/" + grupoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+	function getUsuarioProfessor(professorFuncionarioID) {
+		var retorno;
+
+		$.ajax({
+			url: path+"Usuario/professor/"+professorFuncionarioID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+	function getPerfilProfessor(professorFuncionarioID) {
+		var retorno;
+
+			var professor = getUsuarioProfessor(professorFuncionarioID);
+				retorno = professor.perfil.perfil;
+
+		return retorno;
+
+	}
+
+
+	function getRelatorioTutoria(professorId, alunoID){
+
+		var retorno;
+
+		$.ajax({
+			url: path+"RelatorioTutoria/RelatorioTutorAluno/"+professorId+"/"+alunoID,
 			async: false,
 			type: "GET",
 			crossDomain: true,
@@ -683,7 +740,7 @@ function corrigir(){
 			}
 		}
 		//elementos[1] => id do roteiro selecionado
-		var totalObjetivos = verificaTodalObjetivos(elementos[1]);
+		var totalObjetivos = getObjetivoRoteiroTotal(elementos[1]);
 		
 		if(totalObjetivos == selecionados.length){
 			verificaPendencias(alunoID,elementos[1]);	
@@ -726,7 +783,7 @@ function corrigir(){
 }
 
 //carol
-function verificaTodalObjetivos(idRoteiro){
+/*function verificaTodalObjetivos(idRoteiro){
 	var totalObjetivos;
 	$.ajax({
 		url: path+"Objetivo/ObjetivoRoteiroTotal/" + idRoteiro,
@@ -738,7 +795,7 @@ function verificaTodalObjetivos(idRoteiro){
 		},
 	});
 	return totalObjetivos;
-}	
+}	*/
 
 function verificaPendencias(alunoID,roteiroID){
 	$.ajax({
@@ -773,40 +830,35 @@ function listaObservacao(){
 	var resultado;
 	var professorId = $('#tutoria').val();
 	var HtmlContent_rt="";
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async:false,
-		url: path+"RelatorioTutoria/RelatorioTutorAluno/"+professorId+"/"+alunoID,		
-		success: function(data_rt){	
-			console.log(data_rt);
-			if(data_rt!=""){
-				$("#box_geral_observacao").css('display','block');	
-				$("#observacao_box").css('padding-bottom','25px');
-				for(var p=data_rt.length-1; p>=0;p--)
-				{												
-					var dataBR = data_rt[p].data;
-					var retorno = dataBR.split("-");
-					dataBR = retorno[2]+"/"+retorno[1]+"/"+retorno[0];
-	
-					HtmlContent_rt+='<div class="box_obs">'
-						+'<p class="titulo_obs">'
-							+'<span class="nome">'+data_rt[p].tutoria.tutor.nome+'</span> | ' 
-							+'<span class="cargo">'+retornaPerfil(data_rt[p].tutoria.tutor.idprofessorFuncionario)+'</span></span>'	
-							+'<span class="right">'+dataBR+'</span>'	
-						+'</p>'	
-						+'<div class="vizu"><a href="#" onclick="mostrarAba(\''+data_rt[p].idrelatorioTutoria+'\')">Visualizar</a></div></div>';				
-				}
-				resultado = $("#observacoes").html(HtmlContent_rt);
-			}
-		}
 
-	}); 
+	var data_rt = getRelatorioTutoria(professorId,alunoID);
+
+	console.log(data_rt);
+	if(data_rt!=""){
+		$("#box_geral_observacao").css('display','block');	
+		$("#observacao_box").css('padding-bottom','25px');
+		for(var p=data_rt.length-1; p>=0;p--)
+		{												
+			var dataBR = data_rt[p].data;
+			var retorno = dataBR.split("-");
+			dataBR = retorno[2]+"/"+retorno[1]+"/"+retorno[0];
+
+			HtmlContent_rt+='<div class="box_obs">'
+				+'<p class="titulo_obs">'
+					+'<span class="nome">'+data_rt[p].tutoria.tutor.nome+'</span> | ' 
+					+'<span class="cargo">'+getPerfilProfessor(data_rt[p].tutoria.tutor.idprofessorFuncionario)+'</span></span>'	
+					+'<span class="right">'+dataBR+'</span>'	
+				+'</p>'	
+				+'<div class="vizu"><a href="#" onclick="mostrarAba(\''+data_rt[p].idrelatorioTutoria+'\')">Visualizar</a></div></div>';				
+		}
+		resultado = $("#observacoes").html(HtmlContent_rt);
+	}
+		
 
 	return (resultado);	
 }
 
-function retornaPerfil(idProfessorFuncionario){
+/*function retornaPerfil(idProfessorFuncionario){
 	var perfil;
 	$.ajax({
 		url: path+"Usuario/professor/"+idProfessorFuncionario,
@@ -820,7 +872,7 @@ function retornaPerfil(idProfessorFuncionario){
 	});
 	
 	return perfil; 	
-}
+}*/
 
 
 
@@ -888,19 +940,6 @@ function editarObservacao () {
 	});
 }
 
-function getPlanejamentoRoteiro(){
-	var auxPR;
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"PlanejamentoRoteiro/aluno/" + alunoID
-	}).then(function(data) {
-		auxPR = data;
-	});  
-	
-	return auxPR;
-}
 
 /*function getRoteiros(){
 	var auxR;
