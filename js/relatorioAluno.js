@@ -131,6 +131,24 @@ var dataUsuario = getDataUsuario(usuarioID);
 	}
 
 
+	function getPlanejamentoRoteiroAtivos(planoEstudoID){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "PlanejamentoRoteiro/RoteirosAtivos/" + planoEstudoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
 	function getRoteirosAluno(alunoVarSelecionado) {
 		var retorno;
 
@@ -283,9 +301,6 @@ var dataUsuario = getDataUsuario(usuarioID);
 		return retorno;
 	}
 
-
-
-
 	function getUsuarioProfessor(professorFuncionarioID) {
 		var retorno;
 
@@ -320,6 +335,25 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 		$.ajax({
 			url: path+"RelatorioTutoria/RelatorioTutorAluno/"+professorId+"/"+alunoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+	function getPlanoEstudoTotal(alunoID){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "PlanoEstudo/alunoTotal/" + alunoID,
 			async: false,
 			type: "GET",
 			crossDomain: true,
@@ -968,72 +1002,60 @@ function graficoBarra(alunoID, planejamentosAluno){
 	//esse código assume que todos os planejamentos desse aluno pertencem a algum plano desse aluno
 	var htmlContentgrafico = "";
 
-	$.ajax({
-		url: path + "PlanoEstudo/alunoTotal/" + alunoID,
-		async: false,
-		crossDomain: true,
-		type: "GET",
-		success: function(dataPlanosEstudo){
-			
-			dataPlanosEstudo.sort(function (a, b) {
-				if (a.dataInicio > b.dataInicio)
-					return -1;
-				else
-					return 1;
-			})
+	var dataPlanosEstudo = getPlanoEstudoTotal(alunoID);
 
-			for (var i = 0; i < dataPlanosEstudo.length; i++)
+	dataPlanosEstudo.sort(function (a, b) {
+		if (a.dataInicio > b.dataInicio)
+			return -1;
+		else
+			return 1;
+	})
+
+	for (var i = 0; i < dataPlanosEstudo.length; i++)
+	{
+		var countPlanejados = 0;
+		var countFeitos = 0;
+
+		var dataPlanejamentos = getPlanejamentoRoteiroAtivos(dataPlanosEstudo[i].idplanoEstudo);
+
+		for (var j = 0; j < dataPlanejamentos.length; j++)
+		{
+			if (dataPlanejamentos[j].status == 1)
 			{
-				var countPlanejados = 0;
-				var countFeitos = 0;
+				countPlanejados++;
+			}
 
-
-				$.ajax({
-					url: path + "PlanejamentoRoteiro/RoteirosAtivos/" + dataPlanosEstudo[i].idplanoEstudo,
-					async: false,
-					crossDomain: true,
-					type: "GET",
-					success: function (dataPlanejamentos) {
-						for (var j = 0; j < dataPlanejamentos.length; j++)
-						{
-							if (dataPlanejamentos[j].status == 1)
-							{
-								countPlanejados++;
-							}
-
-							else if (dataPlanejamentos[j].status == 2 || dataPlanejamentos[j].status == 3)
-							{
-								countPlanejados++;
-								countFeitos++;
-							}
-						}
-					}
-				});
-
-				var planejadosPorcento = (countPlanejados/20) * 100;
-				var feitosPorcento = (countFeitos/20) * 100;
-
-				if (i == 0 || dataPlanosEstudo[i-1].dataInicio.substring(5,7) != dataPlanosEstudo[i].dataInicio.substring(5,7))
-					htmlContentgrafico += '<div class="divMes">'
-
-
-				htmlContentgrafico +=   '<div class="barra">'+
-											'<div class="col_barra">'+
-												'<p class="laranja barra_proposto" style="height:'+planejadosPorcento+'%"></p>'+
-												'<p class="verde barra_concluido" style="height:'+feitosPorcento+'%"></p>'+
-											'</div>'+
-											 '<p class="dia_plano">'+ dataPlanosEstudo[i].dataInicio.substring(8,10) + '</p>'+
-										'</div>';
-
-				if (i == dataPlanosEstudo.length -1 || dataPlanosEstudo[i].dataInicio.substring(5,7) != dataPlanosEstudo[i + 1].dataInicio.substring(5,7))
-				{	
-					htmlContentgrafico += '<center><div class="mesNome">' + retornaMesAbreviacaoByNumero(parseInt(dataPlanosEstudo[i].dataInicio.substring(5,7))) + '</div></center>'
-					htmlContentgrafico += '</div>'
-				}
-
+			else if (dataPlanejamentos[j].status == 2 || dataPlanejamentos[j].status == 3)
+			{
+				countPlanejados++;
+				countFeitos++;
 			}
 		}
-	});
+			
+
+		var planejadosPorcento = (countPlanejados/20) * 100;
+		var feitosPorcento = (countFeitos/20) * 100;
+
+		if (i == 0 || dataPlanosEstudo[i-1].dataInicio.substring(5,7) != dataPlanosEstudo[i].dataInicio.substring(5,7))
+			htmlContentgrafico += '<div class="divMes">'
+
+
+		htmlContentgrafico +=   '<div class="barra">'+
+									'<div class="col_barra">'+
+										'<p class="laranja barra_proposto" style="height:'+planejadosPorcento+'%"></p>'+
+										'<p class="verde barra_concluido" style="height:'+feitosPorcento+'%"></p>'+
+									'</div>'+
+									 '<p class="dia_plano">'+ dataPlanosEstudo[i].dataInicio.substring(8,10) + '</p>'+
+								'</div>';
+
+		if (i == dataPlanosEstudo.length -1 || dataPlanosEstudo[i].dataInicio.substring(5,7) != dataPlanosEstudo[i + 1].dataInicio.substring(5,7))
+		{	
+			htmlContentgrafico += '<center><div class="mesNome">' + retornaMesAbreviacaoByNumero(parseInt(dataPlanosEstudo[i].dataInicio.substring(5,7))) + '</div></center>'
+			htmlContentgrafico += '</div>'
+		}
+
+	}
+		
 
 	$('.box_mes').empty();
 	$('.box_mes').append(htmlContentgrafico);
