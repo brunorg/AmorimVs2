@@ -45,35 +45,8 @@ var tipoSelecao = GetURLParameter('tipoProducao');
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function(){
-
-	var cats = getData("CategoriaProducaoAluno", null);
-	htmlCat = '';
-	for(i=0;i<cats.length;i++){
-		htmlCat += '<div class="infoValueP BorderBottom " style="height: 42px"> '+cats[i].categoria+' </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 42px " value="'+cats[i].idcategoriaProducaoAluno+'"> </div>';
-	}
-	$('#opcoesCategoria').html(htmlCat);
-
-	$(".categoria").click(function(){
-		$("div.categoria").css("background-position","0px 0px");
-		$(this).css("background-position","-39px 0px");
-		categoria = $(this).attr('value');
-	});
-	$("div.inputImg").not(".vazio, .categoria").click(function(){
-		$("div.inputImg").not('.categoria').css("background-position","0px 0px");
-		$(this).css("background-position","-39px 0px");
-
-		tipoArquivo = $(this).attr('value');
-
-		if (tipoArquivo == 'video'){
-			 $("#arquivo").hide();
-			 $("#link").show();
-		}else {
-			 $("#link").hide();
-			 $("#arquivo").show();
-		}
-
-		return false;
-	});
+	//carregaCategoria(); <<<<----- Será implementado
+	
 
 	//----------------------------------------------------------
 
@@ -118,7 +91,7 @@ $(document).ready(function(){
 
 	CarregaProducao();
 
-	var background = ($(".inputImg").css("background"));
+	var background = $(".inputImg").css("background");
 	background = background.replace("no-repeat", "repeat");
 	$(".inputImg").not($(".vazio")).css("background",background);
 
@@ -652,7 +625,7 @@ function showAtividadesRecentes() {
 
 		if ( atividades !== [] ) {
 			for ( var a in atividades ) {
-				if ( atividades[a].tipo.idtipoProducaoAluno === 6 ) {
+				if ( atividades[a].tipo.idtipoProducaoAluno !== 6 ) {
 					tipoAtividade = atividades[a].tipo.tipo;
 					corTipoAtividade = '#fbb040';
 				} else {
@@ -729,3 +702,43 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 		});
 	}
 }
+
+// function carregaCategoria(){
+// 	htmlCategoria = "";
+// 	debugger;
+// 	$.ajax({
+// 		url: path + "CategoriaProducaoAluno",
+// 		async: false,
+// 		crossDomain: true,
+// 		type: "GET",
+// 		success: function(dataCategoria){
+// 			debugger;
+// 			for(var i = 0; i < dataCategoria.length; i++){
+// 				htmlCategoria += '<div class="infoValueP BorderBottom " style="height: 42px"> '+dataCategoria[i].categoria+' </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 42px " value="'+dataCategoria[i].idcategoriaProducaoAluno+'"> </div>';
+// 			}
+// 			console.log(htmlCategoria);
+
+// 			//$('#opcoesCategoria').html(htmlCategoria); <<<<------- Será implementado
+
+// 			$(".categoria").click(function(){
+// 				$("div.categoria").css("background-position","0px 0px");
+// 				$(this).css("background-position","-39px 0px");
+// 				categoria = $(this).attr('value');
+// 			});
+// 			$("div.inputImg").not(".vazio, .categoria").click(function(){
+// 				$("div.inputImg").not('.categoria').css("background-position","0px 0px");
+// 				$(this).css("background-position","-39px 0px");
+
+// 				tipoArquivo = $(this).attr('value');
+
+// 				if (tipoArquivo == 'video'){
+// 					$("#arquivo").hide();
+// 			 		$("#link").show();
+// 				}else {
+// 					$("#link").hide();
+// 			 		$("#arquivo").show();
+// 				}
+// 			});
+// 		}
+// 	});
+// }
