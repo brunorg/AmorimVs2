@@ -808,6 +808,14 @@
 		background-size: 21px;
 		background-repeat: no-repeat;
 	}
+
+	.corrigir{
+		display:none;
+	}
+
+	.selTodosTd{
+		display:none;
+	}
 }
 @page {
 	size: A4;
