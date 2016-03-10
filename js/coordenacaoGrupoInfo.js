@@ -16,6 +16,7 @@ $(document).ready(function() {
 	carregaEditDiaSemana();
 	carregaHorarioEdit();
 	carregaSalaEdit();
+	carregaEditAgrupamento();
 	editarOficina();
 	editarRotina();
 		
@@ -236,8 +237,8 @@ function adicionarRotinasOficina (idOficina) {
 			htmlOficina +=		'<span class="caracteristica btn_mostrar_rotinas"> Rotina <img class="btn_drop" src="img/ic_drop_claro.png"></span>'
 			htmlOficina +=		'<div class="container_rotinas">';
 			for (var j = 0; j < dataRotina.length; j++) {
-				htmlOficina += 	  '<div class="dados_rotina">';
-				htmlOficina += 		'<article  class="rotina_oficina" id="idRotina_'+dataRotina[j].idrotina+'">';
+				htmlOficina += 	  '<div class="dados_rotina" id="idRotina_'+dataRotina[j].idrotina+'">';
+				htmlOficina += 		'<article  class="rotina_oficina">';
 				htmlOficina += 			'<p><span class="rotina_dia" id="rotina_dia_'+dataRotina[j].dia.idsemana+'">'+dataRotina[j].dia.dia+'</span> - <span class="rotina_horario" id="rotina_horario_'+dataRotina[j].hora+'">'+dataRotina[j].hora+':00 - </span>';
 				$.ajax({
 					url: path + "AgendamentoSala/ListarRotina/" + dataRotina[j].idrotina,
@@ -252,13 +253,13 @@ function adicionarRotinasOficina (idOficina) {
 						}
 					}
 				});
-				htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+idOficina+')"> &nbsp; </span>'
+				htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+idOficina+','+dataRotina[j].idrotina+')"> &nbsp; </span>'
 				htmlOficina +=		'</article>';
 				htmlOficina +=		'<article class="agrupamento_oficina">';
 				htmlOficina +=			'<p>';
 				htmlOficina +=				'<span id="agrupamento_'+dataRotina[j].agrupamento.idagrupamento+'" class="agrupamento">Agrupamento '+dataRotina[j].agrupamento.nome+' </span>';
 				htmlOficina +=			'</p>';
-				htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[j].oficina.idoficina+')"> &nbsp; </span>';
+				htmlOficina +=			'<span class="editar editar_agrupamento" onclick="editarModal(\'agrupamento\','+dataRotina[j].oficina.idoficina+','+dataRotina[j].idrotina+')"> &nbsp; </span>';
 				htmlOficina +=		'</article>';
 				htmlOficina += 	  '</div>'			
 			}
@@ -738,7 +739,7 @@ function habilitarModalEdicaoOficina(idOficina, ciclo, periodo) {
 	$('#periodoOficinaEditar').val(periodo);
 }
 
-function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, horario, sala, agendamento) {
+function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, horario, sala, agendamento){
 	$('#boxModaisEdicao').show();
 	$('.modal_edicao_rotina').show();
 	$('#id_rotina').val(idRotina);
@@ -755,30 +756,49 @@ function habilitarModalEdicaoAgrupamento () {
 	$('.modal_edicao_agrupamento').show();
 }
 
-function editarModal(modal,id){
+function editarModal_Impl(modal,id){
 	if(modal == "oficina"){
 		$('#editar_id_oficina').val(id);
 		// var idOficina = $('.modal_edicao_oficina #editar_id_oficina').val();
 		var conteudoCiclo = $("#idOficina_"+id).find(".ciclo").attr('id').split('_')[2];
 		var conteudoPeriodo = $("#idOficina_"+id).find(".periodo").attr('id').split('_')[2];
 		habilitarModalEdicaoOficina(id, conteudoCiclo, conteudoPeriodo);	
-	} else if(modal == "rotina"){
+	} 
+	centralizarModal();	
+}
+
+function editarModal_Impl2(modal, id, idRotina){
+	if(modal == "rotina"){
 		$('#editar_id_rotina').val(id);
+		$('#id_rotina').val(idRotina);
 		// var idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
-		var agrupamento = $("#idOficina_"+id).find(".agrupamento").attr('id').split('_')[1];
-		var dia = $("#idOficina_"+id).find(".rotina_dia").attr('id').split('_')[2];
-		var horario = $("#idOficina_"+id).find(".rotina_horario").attr('id').split('_')[2];
-		var sala = $("#idOficina_"+id).find(".rotina_sala").attr('id').split('_')[1];
-		var agendamento = $("#idOficina_"+id).find(".rotina_sala").attr('id').split('_')[2];
-		var idRotina = $(".rotina_oficina").attr('id').split('_')[1];
+		var agrupamento = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".agrupamento").attr('id').split('_')[1];
+		var dia = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".rotina_dia").attr('id').split('_')[2];
+		var horario = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".rotina_horario").attr('id').split('_')[2];
+		var sala = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".rotina_sala").attr('id').split('_')[1];
+		var agendamento = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".rotina_sala").attr('id').split('_')[2];
+		var varIdRotina = $("#idOficina_"+id).find("#idRotina_"+idRotina).attr('id').split('_')[1];
 		habilitarModalEdicaoRotina(idRotina, id, agrupamento, dia, horario, sala, agendamento);
 	} else if(modal == "agrupamento"){
 		$('#boxModaisEdicao').show();
 		$('.modal_edicao_agrupamento').show();
 		$('#editar_id_agrupamento').val(id);
-		editarAgrupamento();
+		$("#id_rotina").val(idRotina);
+		idAgrup = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".agrupamento").attr('id').split('_')[1];
+		var conteudoCiclo = carregaCicloAgrup(idAgrup);
+		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim();
+
+		editarAgrupamento(conteudoCiclo, conteudoNome);
 	}
-	centralizarModal();	
+	centralizarModal();
+}
+
+//Aplicação de polimorfismo na função de editar as rotinas da oficina.
+function editarModal(modal, id, idRotina){
+	if(arguments.length == 2)
+		return editarModal_Impl(modal, id);
+	else
+		return editarModal_Impl2(modal, id, idRotina);
 }
 
 function editarOficina(){
@@ -855,15 +875,9 @@ function editarRotina(){
 	});
 }
 
-function editarAgrupamento(){
-	idOficina = $(".modal_edicao_agrupamento #editar_id_agrupamento").val();
-	idAgrup = $("#idOficina_"+idOficina).find(".agrupamento").attr('id').split('_')[1];
-	var conteudoCiclo = $("#idOficina_"+idOficina).find(".ciclo").attr('id').split('_')[2];
-	var conteudoPeriodo = $("#idOficina_"+idOficina).find(".periodo").attr('id').split('_')[2];
-	var conteudoNome = $("#idOficina_"+idOficina).find(".agrupamento").text().trim();
-	
+function editarAgrupamento(conteudoCiclo, conteudoNome){
 	$("#cicloGrupoModal").val(conteudoCiclo);
-	$("#periodoGrupoModal").val(conteudoPeriodo);
+	$("#periodoGrupoModal").val(0);
 	$("#periodoGrupoModal").prop('disabled',true);
 	$("#nomeGrupoModal").val(conteudoNome);
 	resetAreaModal();
@@ -903,6 +917,20 @@ function editarAgrupamento(){
 			limparModalAgrupamento();
 		}		
 	});
+}
+
+function carregaCicloAgrup(idAgrup){
+	var htmlCicloAgrup = "";
+	$.ajax({
+		url: path + "Agrupamento/" + idAgrup,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success:function(dataCiclo){
+			htmlCicloAgrup = dataCiclo.ciclo.idciclos;
+		}
+	});
+	return htmlCicloAgrup;
 }
 
 function editarAlunoAgrupamento(idAgrupamento, idAluno, alunoObj){
