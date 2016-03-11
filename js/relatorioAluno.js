@@ -389,6 +389,26 @@ var alunosVariaveisStore = [];
 
 
 
+	function getAlunoVariaveisDeAlunoPorAno(alunoID, ano){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "AlunoVariavel/AlunoAno/" + alunoID + "/" + ano,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -404,6 +424,7 @@ $(document).ready(function(){
 
 	var anos = [];
 	var IdsAlunoVariavel = [];
+	var dataAlunoVariavel = [];
 	
 	for(var valores of alunosVariaveisStore){
 
@@ -411,23 +432,32 @@ $(document).ready(function(){
 
 		anos.unshift(parseInt(anoLetivo[0]));
 		IdsAlunoVariavel.unshift(valores.idalunoVariavel);
+		dataAlunoVariavel.unshift(valores);
+
+		$("#SelecionaAno").append("<option value="+parseInt(anoLetivo[0])+">"+parseInt(anoLetivo[0])+"</option>");
 		
 	}
 
-	console.log(anos, IdsAlunoVariavel);
+	$("#SelecionaAno").change(function(){
+
+		init(this.value, getAlunoVariaveisDeAlunoPorAno( alunoID, this.value));
+	});
 
 
-	init();
+	init(anos[anos.length-1], dataAlunoVariavel[dataAlunoVariavel.length-1]);
 	
 //Fim Jquery ready	
 }); 
 	
 	
-function init(){
+function init(ano, alunoVar){
+
+	loading("inicial");
 
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
-		var ano = data.getFullYear();	
+		//var ano = data.getFullYear();	
+
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
 		$('#tutoria').val(tutoria[0].idtutoria);
 			
@@ -442,7 +472,7 @@ function init(){
 	//Cria as variaveis que serão utilizadas
 
 	//Pego todos os alunos variaveis para colocar no grupo!!
-	var alunoVarSelecionado = getAlunoVariavel(alunoID);
+	var alunoVarSelecionado = alunoVar;
 	//Pego os dados do aluno váriavel pelo seu ID
 	var roteiroExtra = getRoteiroExtra(alunoID, alunoVarSelecionado)
 	var planejamentosAluno = [];
@@ -793,6 +823,9 @@ function init(){
   	$("#left_scroll").click(function(){
   		$("#horiz_container li").css('margin-left', parseInt($("#horiz_container li").css('margin-left')) + 10);
   	});		
+
+
+	loading("final");
 
 }
 
