@@ -17,6 +17,8 @@ var dataPlanoEstudoAtual = getPlanoEstudoAtual(alunoID);
 
 var dataUsuario = getDataUsuario(usuarioID);
 
+var alunosVariaveisStore = [];
+
 //Carrega a funçao de Load do JQuery
 
 /*Gráfico area_aluno*/
@@ -367,6 +369,25 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 
 
+	function getAlunoVariaveisDeAluno(alunoID){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "AlunoVariavel/alunoTodos/" + alunoID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
 
 
 
@@ -379,6 +400,23 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 $(document).ready(function(){
 	
+	alunosVariaveisStore = getAlunoVariaveisDeAluno(alunoID);
+
+	var anos = [];
+	var IdsAlunoVariavel = [];
+	
+	for(var valores of alunosVariaveisStore){
+
+		var anoLetivo = valores.anoLetivo.ano.split("-");
+
+		anos.unshift(parseInt(anoLetivo[0]));
+		IdsAlunoVariavel.unshift(valores.idalunoVariavel);
+		
+	}
+
+	console.log(anos, IdsAlunoVariavel);
+
+
 	init();
 	
 //Fim Jquery ready	
