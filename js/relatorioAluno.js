@@ -746,13 +746,15 @@ function init(ano, alunoVar){
 	$('.ano').append( alunoVarSelecionado.anoEstudo.ano + '° ano' );
 
 	$('#tutor_nome').empty();
-	if(alunoVarSelecionado.grupo.tutoria != null)
-	{
-		
-		$('#tutor_nome').append(alunoVarSelecionado.grupo.tutoria.tutor.nome);
+	if(alunoVarSelecionado.grupo){
+		if(alunoVarSelecionado.grupo.tutoria != null)
+		{
+			
+			$('#tutor_nome').append(alunoVarSelecionado.grupo.tutoria.tutor.nome);
 
-	} else {
-		$('#tutor_nome').append("Não Atribuido");
+		} else {
+			$('#tutor_nome').append("Não Atribuido");
+		}
 	}
 
 
