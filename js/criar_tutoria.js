@@ -114,7 +114,7 @@ function carregaCicloTutoria(){
             for (var i = 0; i < data.length; i++) {
                 HtmlCiclo += '<option class="opcaoCI" value="'+data[i].sigla+'_'+data[i].idciclos+'">'+data[i].ciclo+'</option>';
                // console.log("Sigla do ciclo: " + data[i].sigla);
-            };
+            }
         }
     });
     $('#cicloTutoria').append(HtmlCiclo);
