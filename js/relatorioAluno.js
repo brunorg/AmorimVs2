@@ -755,6 +755,8 @@ function init(ano, alunoVar){
 		} else {
 			$('#tutor_nome').append("Não Atribuido");
 		}
+	} else {
+		$('#tutor_nome').append("Não Atribuido");
 	}
 
 
