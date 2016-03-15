@@ -3,8 +3,7 @@
 var professorId= localStorage.getItem("professorId");
 var globalMonth;
 
-(function ( $ ) {
-
+(function ($) {
     function createDivHeader(thisNode) {
         var headerDiv = document.createElement("div");
         var arrowLeftDiv = document.createElement("div");
@@ -158,7 +157,8 @@ function toggleDia() {
     }
 }
 
-function atualizarGrupos() {
+function atualizarGrupos(){
+    debugger;
     $.ajax({
         url: path + 'ProfessorFuncionario/ProfessorGrupo/' + professorId,
         async: false,
@@ -166,15 +166,15 @@ function atualizarGrupos() {
         type: "GET",
         success: function(d) {
             if(d.length > 0){
-                window.grupoEscolhido = d[0].idgrupo
-
+                window.grupoEscolhido = d[d.length-1].idgrupo;
                 var recebeGrupos = document.getElementById('recebeGrupos')
                 recebeGrupos.innerHTML = ""
 
                 for (var i = d.length - 1; i >= 0; i--) {
-                    recebeGrupos.innerHTML += '<p class="nomeGrupos '+(i == d.length - 1?"active":"")+'" id="'+d[i].idgrupo+'" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>'
+                    recebeGrupos.innerHTML += '<p class="nomeGrupos '+(i == d.length - 1?"active":"")+'" id="'+d[i].idgrupo+'" onclick="mudarGrupo('+d[i].idgrupo+')">'+d[i].nomeGrupo+'</p>';
                 }
-                atualizarCalendario(window.grupoEscolhido)
+
+                atualizarCalendario(window.grupoEscolhido);
             }else{
                 $('.apontarPresenca').css('display','none');
                 $('.lista_grupos').html('<div class="feedback_oficinas_false">Não há grupos para este professor');
@@ -183,31 +183,26 @@ function atualizarGrupos() {
     });
 }
 
-function atualizarCalendario(idGrupo) {
-
-    var date = new Date(); 
-
-        date.setDate(date.getDate() + window.dayOffsetWeekCalendar);
-
-        var todayMonth = date.getMonth();
-        var todayDay = date.getDate();
+function atualizarCalendario(idGrupo){
+    var date = new Date();
+    date.setDate(date.getDate() + window.dayOffsetWeekCalendar);
+    //var todayMonth = date.getMonth();
+    var todayDay = date.getDate();
 
     $.ajax({
-        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
-        //url: path + 'Chamada/ListarGrupo/'+1493+'/'+10+'/'+0,
+        url: path + 'Chamada/FaltasTotaisGrupo/' + idGrupo,
+        //url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
         async: false,
         crossDomain: true,
         type: "GET",
-        success: function(d) {
-
-            // console.log(d);
+        success: function(d){
 
             $('#recebeAlunos').html("")
             $('#tabelaPresenca').html("")
+            $("#tableInfo").html("")
             var htmlPiece = "";
 
-            for (var i = 0; i < d.length; i++) {
-            
+            for (var i = 0; i < d.length; i++) {            
                 htmlPiece += '<p class="alunoLinha">';                                
                 htmlPiece +=     "<img src='"+ (d[i].foto == "-" ? "http://177.55.99.90/files/Masc.png":d[i].foto) +"'>"; //Se o aluno não possuir foto, receberá a foto padrão do bd. Caso contrário, receberá sua foto cadastrada.
                 htmlPiece +=     '<span class="foto aluno" id="'+d[i].alunoId+'">'
@@ -232,31 +227,51 @@ function atualizarCalendario(idGrupo) {
                  $('#tabelaPresenca').append(htmlPiece);
 
                  htmlPiece = "";
-            }
 
+                 htmlPiece += '<tr class="linhaInfo">';
+                 htmlPiece +=   '<td>' + d[i].faltasCalculadas + '</td>'; 
+                 htmlPiece +=   '<td>' + d[i].faltasCompensadas + '</td>';
+                 htmlPiece +=   '<td>' + d[i].faltasTotais + '</td>';
+                 htmlPiece +=   '<td>' + d[i].percentualFaltas + '</td>';
+                 htmlPiece += '</tr>';
 
-            for (var i = d.length - 1; i >= 0; i--) {
-                for (var k = d[i].faltas.length - 1; k >= 0; k--) {
+                 $("#tableInfo").append(htmlPiece);
+
+                 htmlPiece = "";
+            }            
+        }
+    });
+    carregaFaltas(idGrupo);
+}
+
+function carregaFaltas(idGrupo){
+    var date = new Date();
+    var todayMonth = date.getMonth();
+    $.ajax({
+        url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success:function(dataF){
+            for (var i = dataF.length - 1; i >= 0; i--) {
+                for (var k = dataF[i].faltas.length - 1; k >= 0; k--) {
                     
-                    var dia = +d[i].faltas[k].split("-")[2].split(" ")[0]
+                    var dia = +dataF[i].faltas[k].split("-")[2].split(" ")[0]
 
-                    $("#Aluno"+d[i].alunoId+"Dia"+dia).html('<img src="img/check-presenca.png">')
+                    $("#Aluno"+dataF[i].alunoId+"Dia"+dia).html('<img src="img/check-presenca.png">')
 
-                };
-            };
-
-
+                }
+            }
         }
     });
 }
 
 function mudarGrupo(idGrupo){
-    debugger;
-    window.grupoEscolhido = idGrupo
+    window.grupoEscolhido = idGrupo;
 
-    window.dayOffsetWeekCalendar = 0 
+    window.dayOffsetWeekCalendar = 0;
 
-    $( "#weekdisplay" ).weekdisplay(0)
+    $("#weekdisplay").weekdisplay(0);
 
     atualizarCalendario(window.grupoEscolhido)
 
@@ -267,8 +282,7 @@ function mudarGrupo(idGrupo){
 }
 
 $(document).ready(function(){
-
-    $( "#weekdisplay" ).weekdisplay()
+    $("#weekdisplay").weekdisplay()
 
     window.dayOffsetWeekCalendar = 0
 
