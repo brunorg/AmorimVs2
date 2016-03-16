@@ -543,7 +543,14 @@ function init(ano, alunoVar){
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][1]=planejamentosAluno[i].status;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][2]=planejamentosAluno[i].idplanejamentoRoteiro;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][3]=planejamentosAluno[i].objetivo.idobjetivo;
-				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo.idplanoEstudo;
+
+				if(planejamentosAluno[i].planoEstudo != null){
+					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo.idplanoEstudo;
+				} else {
+					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo;
+					console.log(planejamentosAluno[i]);
+				}
+
 			}
 		}
 	}
@@ -891,20 +898,6 @@ function corrigir(){
 	});	
 }
 
-//carol
-/*function verificaTodalObjetivos(idRoteiro){
-	var totalObjetivos;
-	$.ajax({
-		url: path+"Objetivo/ObjetivoRoteiroTotal/" + idRoteiro,
-		type: "GET",
-		async:false,
-		crossDomain: true,
-		success: function(data){
-			totalObjetivos = data;
-		},
-	});
-	return totalObjetivos;
-}	*/
 
 function verificaPendencias(alunoID,roteiroID){
 	$.ajax({
@@ -967,21 +960,6 @@ function listaObservacao(){
 	return (resultado);	
 }
 
-/*function retornaPerfil(idProfessorFuncionario){
-	var perfil;
-	$.ajax({
-		url: path+"Usuario/professor/"+idProfessorFuncionario,
-		type: "GET",
-		crossDomain: true,
-		dataType: 'json',
-		async:false,
-		success: function(dataProf) {
-			perfil = dataProf.perfil.perfil;
-		}
-	});
-	
-	return perfil; 	
-}*/
 
 
 
@@ -1050,28 +1028,6 @@ function editarObservacao () {
 }
 
 
-/*function getRoteiros(){
-	var auxR;
-	$.ajax({
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		url: path+"Roteiro"
-	}).then(function(data) {
-		auxR = data;
-	});	
-	return auxR;
-}*/
-
-
-
-/*function getUltimoPE(ID){
-	var max= 0;
-	for(var a=0; a< dataPlanoEstudo.length; a++){
-			max = (max < dataPlanoEstudo[a].idplanoEstudo ? dataPlanoEstudo[a].idplanoEstudo:max);
-	}
-	return max;
-}*/
    
 function graficoBarra(alunoID, planejamentosAluno){
 	//esse código assume que todos os planejamentos desse aluno pertencem a algum plano desse aluno
