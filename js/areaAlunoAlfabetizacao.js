@@ -368,6 +368,24 @@ $(document).ready(function() {
 		return retorno;
 	}
 
+
+
+	function getTipoOficinaById(OficinaID) {
+		var retorno;
+
+		$.ajax({
+			url: path + "TipoOficina/" + OficinaID,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
 	function getMensagensUsuario(){
 		var retorno;
 
@@ -623,16 +641,19 @@ $(document).ready(function() {
 
 		var data = getOficinasAluno(getAVariavelByAluno(alunoID));
 
+		var dataOficina = getTipoOficinaById(idTipoOficina);
+
 		for(var valor of data)
 		{
 			if(valor.tipoOficina.idTipoOficina == idTipoOficina)
 			{
-				corForte = valor.tipoOficina.cor.medio;
-				corMedia = valor.tipoOficina.cor.fraco;
-				corFraca = valor.tipoOficina.cor.forte;
 				idOficina = valor.idoficina;
 			}
 		}
+
+		corForte = dataOficina.cor.medio;
+		corMedia = dataOficina.cor.fraco;
+		corFraca = dataOficina.cor.forte;
 
 		filtroRoteirosAlfabetizacao(idTipoOficina, idOficina, corForte, corMedia, corFraca);
 
