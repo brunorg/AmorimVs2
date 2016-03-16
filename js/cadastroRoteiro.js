@@ -905,7 +905,7 @@ function confereLinhasObj() {
 }
 
 // Inserir Objetivo
-function inserirObjetivoAtividade() {
+function inserirObjetivoAtividade(){
 	
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
 	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
@@ -918,7 +918,7 @@ function inserirObjetivoAtividade() {
 	cont = 1;
 	var erroAtv = false;
 	
-	for ( var i = 0; i < atividadesCont.length; i++ ) { //Verificação para ver se as atividades estão salvas de maneira correta.
+	for ( var i = 0; i < atividadesCont.length; i++ ){ //Verificação para ver se as atividades estão salvas de maneira correta.
 
 		//Primeiro verifica se todos os campos estão vazios, se estiver, não precisa salvar
 		if($(".nomeAtv").eq(i).val() == "" && $(".livroAtv").eq(i).val() == "" && $(".paginaAtv").eq(i).val() == ""){
@@ -948,7 +948,7 @@ function inserirObjetivoAtividade() {
 	atvCount = cont; //seta o valor da atvCount de acordo com a quantidade de atividades.
 	
 	if (erroAtv == true){
-		return mensagem("Os campos título da atividade, e informações do livro são obrigatórios! Se não tiver o interesse de cadastrar, deixar todos os campos vazios de uma atividade.","OK","bt_ok","alerta");
+		return mensagem("Título da atividade e informações do livro são obrigatórios. Caso não queira cadastrar, deixe os campos da atividade vazios.","OK","bt_ok","alerta");
 	}
 	//Seta um novo valor na variavel para verificar se estão corretos.
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário após excluir os inválidos

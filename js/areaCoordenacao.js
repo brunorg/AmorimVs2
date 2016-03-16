@@ -76,7 +76,6 @@ function carregarListaProfessores() {
 
 /** Objeto do MuralGestao */
 function MuralGestao() {
-
 	var self = this;
 
 	/** Atualiza os posts do mural. Apaga e sobrescreve "div#conteudoMuralGestao" */
@@ -118,7 +117,6 @@ function MuralGestao() {
 	 * @param {string} optional default="" - mensagem - mensagem do post a ser editado.
 	 */
 	self.new = function(idPost, mensagem) {
-
 		if (idPost === undefined) {
 			idPost = 0;
 			mensagem = "";
@@ -138,13 +136,11 @@ function MuralGestao() {
 		htmlPost += "<span class=\"ic_cancelar\" onclick=\"muralGestao.refresh()\">&nbsp;<\/span>";
 		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralGestao.save("+idPost+")\">&nbsp;<\/span>";
 		htmlPost += "<\/aside>";
-
-
+		
 		$("#conteudoMuralGestao2").html(htmlPost);
 		$("#conteudoMuralGestao2").show();
 		$("#boxMuralGestao").hide();
 		$("#iconeNovaPostagem").hide();
-
 	};
 
 	/**
@@ -188,7 +184,6 @@ function MuralGestao() {
 	 */
 	self.edit = function(idPost) {
 		var mensagemPost = $("#mensagemPostMuralGestao"+idPost).html();
-
 		self.new(idPost, mensagemPost);
 	};
 
@@ -205,7 +200,7 @@ function MuralGestao() {
 
 }
 
-function MuralComum() {
+function MuralComum(){
 
 	var self = this;
 
@@ -240,9 +235,9 @@ function MuralComum() {
 		});
 	};
 
-	self.new = function(idPost, mensagem) {
+	self.new = function(idPost, mensagem){
 
-		if (idPost === undefined) {
+		if (idPost === undefined){
 			idPost = 0;
 			mensagem = "";
 		}
@@ -261,12 +256,11 @@ function MuralComum() {
 		htmlPost += "<span class=\"ic_salvar\" onclick=\"muralComum.save("+idPost+")\">&nbsp;<\/span>";
 		htmlPost += "<\/aside>";
 
-
 		$("#conteudoMuralComum2").html(htmlPost);
 		$("#conteudoMuralComum2").show();
 		$("#boxMuralComum").hide();
 		$("#iconeNovaPostagem2").hide();
-
+		$("#selectMuralComum").hide();
 	};
 
 	self.save = function(idPost) {
@@ -291,22 +285,19 @@ function MuralComum() {
 		self.new(idPost, mensagemPost);
 	};
 
-	self.delete = function(idPost) {
+	self.delete = function(idPost){
 
 		loading("inicial")
-		getAjax("x`/", "POST", "action=delete&id="+idPost, true, function(result){
+		getAjax("Mural/", "POST", "action=delete&id="+idPost, true, function(result){
 			self.refresh();
 			loading("final");
 		});
-
 	};
-
 }
 
 function MuralJeiff() {
 
 	var self = this;
-
 
 	self.refresh = function() {
 
@@ -425,22 +416,19 @@ function MuralJeiff() {
 
     };
 
-	self.edit = function(idPost) {
+	self.edit = function(idPost){
 		var mensagemPost = $("#mensagemPostMuralComum"+idPost).html();
 		self.new(idPost, mensagemPost);
 	};
 
-	self.delete = function(idPost) {
-
+	self.delete = function(idPost){
 		loading("inicial")
-		getAjax("x`/", "POST", "action=delete&id="+idPost, true, function(result){
+		getAjax("Mural/", "POST", "action=delete&id="+idPost, true, function(result){
 			console.log(result);
 			self.refresh();
 			loading("final");
 		});
-
 	};
-
 }
 
 function btnUpArquivo(){	

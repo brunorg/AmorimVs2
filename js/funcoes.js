@@ -992,22 +992,24 @@ function chamaFormSenha(){
 }
 
 function atualizarCadastroModal(perfil){
+	console.log(perfil);		 
+	debugger;
+	$(".box_margin_alter").css("display","block");
 
-//alert(perfil);		 
-	$( ".box_margin_alter" ).css("display","block");
-
-	if (perfil == 'aluno') $( ".box_margin_alter" ).load("alterarCadastroAluno.html");
-		else $(".box_margin_alter").load("alterarCadastroProfessor.html");
+	if (perfil == 'aluno')
+		$(".box_margin_alter").load("alterarCadastroAluno.html");
+	else 
+		$(".box_margin_alter").load("alterarCadastroProfessor.html");
 			//Coordenador tem o mesmo procedimento do professor!!
 			//secretaria altera de maneira diferente!!
 	
 	window.setTimeout(function(){
-		$( "#fecharAlter" ).css("display","block");
+		$("#fecharAlter").css("display","block");
 	}, 500);	
 }
 
 function fechaFormAtualizar(){
-	$( ".box_margin_alter" ).css("display","none");
+	$(".box_margin_alter").css("display","none");
 }
 
 function cancelaAlter(){
