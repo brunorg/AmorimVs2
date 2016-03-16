@@ -610,11 +610,11 @@ $(document).ready(function() {
 			break;
 			case 'aba_roteiros':
 				//idTipoOficina = 1;
-				idTipoOficina = 0;
+				idTipoOficina = 11;
 			break;
 			case 'aba_tutoria':
 				//idTipoOficina = 1;
-				idTipoOficina = 0;
+				idTipoOficina = 12;
 			break;
 			case 'aba_arte_ciencia':
 				idTipoOficina = 10;
