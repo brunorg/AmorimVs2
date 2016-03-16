@@ -506,8 +506,6 @@ $(document).ready(function() {
 			switch(valor.tipoOficina.idTipoOficina)
 			{
 				case 1:
-					//categorias.aba_roteiros = valor.idoficina;
-					//categorias.aba_tutoria = valor.idoficina;
 				break;
 				case 2:
 					categorias.aba_educacao_fisica = valor.idoficina;
@@ -521,15 +519,17 @@ $(document).ready(function() {
 				case 5:
 					categorias.aba_leitura_escrita = valor.idoficina;
 				break;
-				case 6:
-				break;
-				case 7:
-				break;
 				case 8:
 					categorias.aba_ingles = valor.idoficina;
 				break;
 				case 10:
 					categorias.aba_arte_ciencia = valor.idoficina;
+				break;
+				case 11:
+					categorias.aba_roteiros = valor.idoficina;
+				break;
+				case 12:
+					categorias.aba_tutoria = valor.idoficina;
 				break;
 			}
 		}
@@ -626,16 +626,14 @@ $(document).ready(function() {
 			case 'aba_ingles':
 				idTipoOficina = 8;
 			break;
+			case 'aba_arte_ciencia':
+				idTipoOficina = 10;
+			break;
 			case 'aba_roteiros':
-				//idTipoOficina = 1;
 				idTipoOficina = 11;
 			break;
 			case 'aba_tutoria':
-				//idTipoOficina = 1;
 				idTipoOficina = 12;
-			break;
-			case 'aba_arte_ciencia':
-				idTipoOficina = 10;
 			break;
 		}
 
