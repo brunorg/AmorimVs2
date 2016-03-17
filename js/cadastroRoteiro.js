@@ -9,6 +9,8 @@ var atvCount = 2;
 var objCount = 1;
 
 $(document).ready(function(){
+
+	$("#paginaAtv1").mask("9999");
 	
 	$('#cabecalho_roteiro').addClass('Item_Ativo');
 	
