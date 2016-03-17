@@ -1022,12 +1022,22 @@ $(document).ready(function() {
 
 		$('#frm_Envia_Mensagens #remetente').attr("value", ""+usuarioId);
 
+		var destinatarios = "";
+
+
+		for(var valores of $('#frm_Envia_Mensagens #destinatarios').val())
+		{
+			destinatarios += "&destinatarios="+valores;
+		}
+
+		console.log("id=0&action=create&lida=1&remetente="+usuarioId+"&assunto="+$('#frm_Envia_Mensagens #assunto_mensagem').val()+""+destinatarios+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val());
+
 		if($('#conteudo_mensagem').val() != "" && $('#assunto_mensagem').val() != "" && $("#frm_Envia_Mensagens #destinatarios :selected").length > 0)
 		{
 			$.ajax({
 			    url: path+"Mensagens/",
 			    type: "POST",
-			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto="+$('#frm_Envia_Mensagens #assunto_mensagem').val()+"&destinatarios="+$('#frm_Envia_Mensagens #destinatarios').val()+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
+			    data: "id=0&action=create&lida=1&remetente="+usuarioId+"&assunto="+$('#frm_Envia_Mensagens #assunto_mensagem').val()+""+destinatarios+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val(),
 		    	beforeSend: function()    {loading('inicial');},
 		    	success: function(d) {
 			    	dataMensagens 	=	getMensagensUsuario();
