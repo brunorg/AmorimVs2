@@ -66,11 +66,13 @@ $(document).ready(function() {
 
 		loadContent(urlParams["aba"]);
 		$("#parteDoC2").remove();
+		$("#boxBanner").remove();
 
 	} else {
 		
 		loadC2();
 	}
+
 
 });
 
@@ -300,18 +302,33 @@ $(document).ready(function() {
 		return retorno;
 	}
 
-	function getBlogPostagensPorOficina(idoficina) {
+	function getBlogPostagensPorOficina(Tipo, idoficina) {
 		var retorno;
 
-		$.ajax({
-			url: path + "Blog/BlogOficina/" + idoficina,
-			async: false,
-			type: "GET",
-			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
-		});
+		if(Tipo == 1){
+
+			$.ajax({
+				url: path + "Blog/BlogOficina/" + idoficina,
+				async: false,
+				type: "GET",
+				crossDomain: true,
+				//beforeSend: function() 			{ loading("inicial"); },
+				success: 	function(data) 		{ retorno = data; }
+				//complete: 	function() 			{ loading("final"); }
+			});
+		} else {
+
+			$.ajax({
+				url: path + "Blog/BlogTutoria/" + JSON.parse(localStorage.getItem('objetoAlunoVariavel')).grupo.tutoria.tutor.idprofessorFuncionario,
+				async: false,
+				type: "GET",
+				crossDomain: true,
+				//beforeSend: function() 			{ loading("inicial"); },
+				success: 	function(data) 		{ retorno = data; }
+				//complete: 	function() 			{ loading("final"); }
+			});
+
+		}
 
 		return retorno;
 	}
@@ -503,6 +520,7 @@ $(document).ready(function() {
 				
 		for(var valor of data)
 		{
+
 			switch(valor.tipoOficina.idTipoOficina)
 			{
 				case 1:
@@ -543,7 +561,11 @@ $(document).ready(function() {
 		//loading("inicial");
 
 		var campo = classe;
-		var result = getBlogPostagensPorOficina(categorias[campo]);
+
+		var tipo = (campo == "aba_tutoria" ? 0:1);
+
+		var result = getBlogPostagensPorOficina(tipo, categorias[campo]);
+		console.log(campo, tipo, categorias[campo],result);
 
 
 		var html = "";
