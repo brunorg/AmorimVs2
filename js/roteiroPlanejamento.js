@@ -334,6 +334,8 @@ function IncluirRoteirosPendentes () {
             $('.total').append(HtmlContent);
         }      
         getLinhaObjetivos(dataRoteiro[a].idroteiro);
+        VerificaObjetivosCompletos(dataRoteiro[a].idroteiro);
+        verificaTamanhoNome(dataRoteiro[a].idroteiro);
     }
 }
 
