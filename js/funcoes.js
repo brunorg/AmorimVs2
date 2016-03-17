@@ -991,9 +991,7 @@ function chamaFormSenha(){
 	$( "#boxMensagemGeral" ).load("AlterPass.html");
 }
 
-function atualizarCadastroModal(perfil){
-	console.log(perfil);		 
-	debugger;
+function atualizarCadastroModal(perfil){		 
 	$(".box_margin_alter").css("display","block");
 
 	if (perfil == 'aluno')
