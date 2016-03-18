@@ -625,7 +625,7 @@ function showAtividadesRecentes() {
 
 		if ( atividades !== [] ) {
 			for ( var a in atividades ) {
-				if ( atividades[a].tipo.idtipoProducaoAluno !== 6 ) {
+				if ( atividades[a].tipo.idtipoProducaoAluno !== 7 ) {
 					tipoAtividade = atividades[a].tipo.tipo;
 					corTipoAtividade = '#fbb040';
 				} else {
