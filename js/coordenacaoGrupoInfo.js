@@ -786,9 +786,10 @@ function editarModal_Impl2(modal, id, idRotina){
 		$("#id_rotina").val(idRotina);
 		idAgrup = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".agrupamento").attr('id').split('_')[1];
 		var conteudoCiclo = carregaCicloAgrup(idAgrup);
+		var conteudoPeriodo = $("#periodoGrupoModal").val();
 		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim();
 
-		editarAgrupamento(conteudoCiclo, conteudoNome);
+		editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo);
 	}
 	centralizarModal();
 }
@@ -875,14 +876,13 @@ function editarRotina(){
 	});
 }
 
-function editarAgrupamento(conteudoCiclo, conteudoNome){
+function editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo){
 	$("#cicloGrupoModal").val(conteudoCiclo);
-	$("#periodoGrupoModal").val(0);
-	$("#periodoGrupoModal").prop('disabled',true);
+	$("#periodoGrupoModal").val(conteudoPeriodo);
 	$("#nomeGrupoModal").val(conteudoNome);
 	resetAreaModal();
 	limparAlunosAgrup();
-	carregaAlunosAgrupamento();		
+	carregaAlunosAgrupamento();	
 	carregaAlunosModal();
 
 	$(".btn_Edit_Agrupamento").click(function(){
@@ -932,6 +932,19 @@ function carregaCicloAgrup(idAgrup){
 	});
 	return htmlCicloAgrup;
 }
+
+// function carregaPeriodoAgrup(idAgrup){
+// 	var htmlPeriodoAgrup = "";
+// 	$.ajax({
+// 		url:path + "Periodo/" + idAgrup,
+// 		type:"GET",
+// 		async:false,
+// 		crossDomain:true,
+// 		success:function(dataPeriodo){
+// 			htmlPeriodoAgrup = 
+// 		}
+// 	});
+// }
 
 function editarAlunoAgrupamento(idAgrupamento, idAluno, alunoObj){
 	var acaoData = "";
