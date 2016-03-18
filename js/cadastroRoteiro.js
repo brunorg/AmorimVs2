@@ -600,9 +600,11 @@ $(document).ready(function(){
 			mensagem("Por favor, selecione um roteiro!","OK","bt_ok","erro");
 		}else{
 			mensagem("Roteiros adicionados com sucesso!","OK","bt_ok","sucesso");
-		}
-
-		
+			$(".anoEstudo").val("");
+			$(".infoValueM").find("input").val("");
+			$(".checkboxes").empty();
+			$(".selectBox").find("select").val("");
+		}		
 		return false;
 	});
 	
