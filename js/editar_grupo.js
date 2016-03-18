@@ -12,6 +12,12 @@ function atruiChangesModal(){
         carregaAlunosModal();
         isSelectedModal();
     });
+
+    $("#periodoGrupoModal").change(function(){
+        resetAreaModal();
+        carregaAlunosModal();
+        isSelectedModal();
+    });
 }
 
 function carregaAlunosAgrupamento(){
@@ -68,6 +74,7 @@ function carregaAlunosModal(){
         crossDomain: true,
         dataType: 'json',
         success: function(dataAlunos) {
+            debugger;
             // if (!arraySelected.length > 0) {
             //     arraySelected = carregaAlunosAgrupamento(); trocar isso pra função de carregar alunos dos agrupamentos mais tarde
             // }

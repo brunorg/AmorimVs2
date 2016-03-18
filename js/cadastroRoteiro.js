@@ -10,7 +10,7 @@ var objCount = 1;
 
 $(document).ready(function(){
 
-	$("#paginaAtv1").mask("9999");
+	$("#paginaAtv1").mask("9999"); //Máscara no campo página do livro para só aceitar números.
 	
 	$('#cabecalho_roteiro').addClass('Item_Ativo');
 	
