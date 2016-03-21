@@ -13,544 +13,458 @@ h1,h2,h3,h4,h5,h6{
 	padding: 0;
 }
 
-/* a{
-	color:rgb(134,134,134);
-} */
 
- /*--------------------- CONTEUDO AREA ----------------------*/
-
-#Cabecalho_Menu_Area_Menu2 *{
-}
 /* COLUNA2 -----------------------------------------------------------------------------------------*/
-
-				#Coluna2 {
-					position: relative;
-                    width: 60%;
-                    padding: 36px 24px 36px 36px;
-                    height: auto;
-                    float: left;
-				}
-
-
-       /*-PORTIFOLIO-*/
-
-					#aluno_box_tiles
-					{
-						height: auto;
-						background-color: #C6DB87;
-						overflow: scroll;
-						overflow-y: hidden;
-						overflow-x: hidden;
-						padding: 18px;
-					}
-
-
-						#aluno_box_tiles_texto{
-							font-size:18px;
-							text-align:center;
-							width:750px;
-							height:auto;
-							margin-bottom:10px;
-							font-weight:bold;
-							color: rgb(102, 102, 102);
-						}
-
-							.barra
-							{
-								top: 10px;
-								left: 20px;
-								position: relative;
-								height:37px;
-								width:50%;
-								z-index: 1;
-								float:left;
-							}
-							.Objetivos_Semana_Cabecalho_Nome {
-								position: absolute;
-								margin-left: 3%;
-								font-size: 2vmax;
-								color: rgb(102, 102, 102);
-								z-index: 999;
-							}
-
-							.portfolio_secao 
-							{
-								width: 212px;
-								height: 180px;
-								float:left;
-								padding: 16px 15px;
-							}
-
-							.portfolio_secao_vazio
-							{
-								width: 208px;
-								height: 189px;
-								float:left;
-								padding: 16px 15px;
-								background: url("../img/FotoPortifolioVazio.png");
-								background-position: -2px -5px;
-							}
-
-									.verde {
-										background-color: #9EBA4C;
-										margin-right: 24px;
-									}
-
-									.verdeNoMargin {
-									background-color: #9EBA4C;
-									}
-
-											.roteiro {
-												width:100%;
-												height:85%;
-												background-color: rgb(242, 242, 238);
-												background-repeat: no-repeat;
-												background-position: center;		
-												clear: both;
-												text-align:center;
-												text-align: -webkit-center;
-											}
-
-											.nome_roteiro {
-												width: 100%;
-												height: 20%;
-												margin-top: 5px;
-												float: left;
-												clear: both;
-												color: white;
-												font-size: 1.3vmax;
-											}
-
-
-
-							.Block_Conteudo_Portifolio_Image
-							{
-								width: 450px;
-								height: 220px;
-								float: left;
-								background-size: auto 220px;
-								background-repeat: no-repeat;
-								background-image: url("../img/ilustra_portfolio.png");
-							}
-
-							.upLi{margin: -6px 18px 0 0 !important;}
-
-		/*-ROTEIROS-*/
-											
-					#Objetivos_Semana
-					{
-							width:64.8%;
-							height: auto;
-							margin-top: 3.5%;
-							float: left;
-							background-color: rgb(242, 203, 103);
-							padding: 18px;
-					}
-
-							.Objetivos_Semana_Cabecalho
-							{
-								height:39px;
-								width:100%;
-							}
-
-									.Roteiros_Semana_Cabecalho_Nome
-									{
-										width:100%;
-										float:left;										
-										font-size: 22px;
-										color: rgb(102, 102, 102);
-									}
-
-											.Objetivos_Semana_Cabecalho_Image
-											{
-												width:52px;
-												height:54px;
-												float:left;
-												background-image: url("../img/OS1.png");
-												background-repeat: no-repeat;
-												background-position: 0px 8px;
-											}
-
-							.Objetivos_Semana_Conteudo
-							{
-								height:auto;
-							}
-								
-									#boxRoteiros {
-										width:334px;
-										height: 197px;
-										overflow: auto;
-									}
-
-									.Objetivos_Semana_Conteudo_Tarefas_Content
-									{
-											width:98%;
-											height:auto;	
-									}
-
-											.Objetivos_Semana_Conteudo_Tarefas
-											{
-												width:100%;
-												min-height: 62px;
-												height: auto;
-												background-color:#FCF9EF;
-												margin: 4px 0px;
-												padding: 6px 12px;
-											}
-
-												.Objetivos_Semana_Conteudo_Tarefas_Texto
-												{
-													font-size: 12px;
-													color: #88868B;
-													text-transform: uppercase;
-												}
-
-												.tabela_colorida_roteiro_Area_Aluno
-												{
-													float: left;
-													margin-top: 0px;
-													margin-right: 10px;
-												}
-
-												.tabela_colorida_roteiro_Area_Aluno td:nth-child(1){
-													background-color: #8DC63F;
-												}
-
-												/* .td_roteiro_numero_tabela{
-													background-color:#60c9d7;
-													color: #fff;
-													width: 28px !important;
-													height:27px;
-													text-align: center;
-													font-size:12px;
-													float:left;
-													padding-top: 5px;
-													border-right:1px #fff solid;
-												} */
-
-												.td_roteiro_verde{
-													background-color: rgb(141,198,63) !important;
-													width: 18px !important;
-													height: 18px  !important;
-													color: #fff;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1 solid;
-												}
-
-												.td_roteiro_verde_tk{
-													background-color: rgb(141,198,63) !important;
-													background-image:url(../img/R_check.png);
-													background-size: cover;
-													width: 18px !important;
-													height: 18px  !important;
-													color: transparent;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1 solid;
-												}
-
-												.td_roteiro_branco{
-													background-color:#FCF9EF !important;
-													width: 18px !important;
-													height: 18px  !important;
-													text-align: center;
-													border: 0px #FCF5E1  solid;
-												}
-
-												.td_roteiro_laranja{
-													background-color: rgb(247,148,30)  !important;
-													width: 18px !important;
-													height: 18px  !important;
-													color: #fff;
-													font-size:12px;
-													text-align: center;
-													border: 0px #FCF5E1  solid;
-												}
-
-									.Objetivos_Semana_Conteudo_Grafico
-									{
-											width:88px;
-											height:194px;
-											background-color:#FCF9EF;
-											margin: 4px 0px 0px 0px;
-											float: right;
-											
-									}
-
-												#grafico1
-												{
-													background: url() no-repeat;
-													/*background-color: gainsboro;*/
-													background-color: #FCF9EF;
-												}
-												
-												#grafico2
-												{
-													background: url() no-repeat;
-													/*background-color: scrollbar;*/
-													background-color: #FCF9EF;
-												}
-												
-												#grafico1 p, #grafico2 p 
-												{
-													text-align: center;
-													margin-top: 12px;
-													margin-right: 5px;
-												}
-												
-												#grafico1 span
-												{
-													color: #C31A37;
-												}
-												#grafico2 span{
-													color: #6B66AD;
-												}
-
-													/*Falme*/
-
-													.Grafico_Holder
-													{
-														width:100%;
-														height:100%;
-													}
-
-													/*EndFalme*/
-
-												.graficos_roteiros
-												{
-													width: 100%;
-													height: 50%;
-													margin-top: 0px;
-													float: right;
-													font-size: 9px;
-													text-align: center; 
-												}
-
-
-								    
-
-		/*-MENSAGENS-*/										
-		
-
-					#Mensagens
-					{
-						width:31.8%;
-						height: auto;
-						min-height: 276px;
-						float: left;
-						margin-left: 24px;
-						margin-top: 24px;
-						padding:18px;
-						background-color: rgba(252, 192, 102, 0.8);
-					}
-
-						
-						.user{
-							margin: 0 0 6px 0;	
-						}
-						.Mensagens_Cabecalho_Nome
-							{
-								height:37px;
-								width:100%;
-								float:left;
-								font-size: 22px;
-								color: rgb(102, 102, 102);
-								background: url("../img/OS2.png") no-repeat;
-								background-position: 142px -2px;
-
-
-							}
-							
-							.Mensagens_Cabecalho_Nome a{
-								color: rgb(102, 102, 102);
-								text-decoration: none;
-							}
-
-								.Mensagens_Cabecalho_Imagem_Contador
-								{
-									width:23px;
-									height:23px;
-									border-radius: 50%;
-									background-color: rgb(255, 107, 64);
-									font-size: 12px;
-									color:white;
-									text-align: center;
-									margin-left: 173px;
-									margin-top: -30px;
-    								padding-top: 5px;
-								}
-
-						.mensagensTabela{
-							margin-top: 3px;
-							border-spacing: 4px;
-
-						}
-
-						.Mensagens_Conteudo
-						{
-							width:100%;
-							height:auto;
-							font-size: 12px;
-						}
-
-							#mensagensTabela 
-							{
-							width: 100%;
-							color: #88868B;
-							border-collapse: separate;
-							border-spacing: 0px 4px;
-							}
-
-
-
-							.td_mensagens1
-							{
-								padding: 10px;
-								background: rgb(247, 242, 222);
-								border: 0px 0px;
-							}
-
-
-							.td_mensagens2
-							{
-								padding: 10px;
-								background: rgb(241, 229, 192);
-								border: 0px 0px;
-							}
-
-							.Mensagens_Conteudo_Aviso
-							{
-								background-image: url("../img/OAviso.png");
-								background-repeat: no-repeat;
-								background-position: 4.5px 10px;
-							}
-
-				
-							.Mensagens_Conteudo_Aviso
-							{
-								background-image: url("../img/OAviso.png");
-								background-repeat: no-repeat;
-								background-position: 4.5px 10px;
-							}
-							.dataMsg{
-								padding: 10px !important;
-								 width: 181px;
-							}
-
-
-							.mensagensTabela tr:nth-child(odd) > .dataMsg{
-								background-color:rgb(247, 242, 222);
-							}	
-
-
-							.mensagensTabela tr:nth-child(even) > .dataMsg{
-								background-color:rgb(241, 229, 192);
-							}				
-						
-
-/* COLUNA3 -----------------------------------------------------------------------------------------*/
-
-		#Coluna3
-		{
-			background-color: rgba(129, 205, 211, 0.7);
-			margin-top: 36px;
-			height: 560px;
-			padding: 18px;
-		}
-
-        /*-AGENDA-*/	
-
-
-				#Conteudo_Coluna3_Agenda_Content
-                {
-                    width: 100%;
-                    height: auto;
-                }
-
-                    #Conteudo_Coluna3_Agenda_Content_Nome
-				    {
-                        height:37px;
-						width:100%;
-						float:left;
-						font-size: 22px;
-						color: rgb(102, 102, 102);
-
-				    }
-
-                    .Conteudo_Coluna3_Agenda_Evento
-					{
-						height:auto;
-						width:100%;
-						background-color: white;
-						margin-top: 5px;
-					}
-
-                    #box_agenda
-                    {
-				      position: relative;
-				      height: 483px;
-				      width: 106%;
-				      overflow-y: auto;       
-				    }
-				      
-                    #Conteudo_Coluna3_Agenda_Evento_Content
-                    {
-				      position: relative;
-				      height: auto;
-				      width:95%;
-			        }
-
-
-						.Conteudo_Coluna3_Agenda_Evento_Titulo
-						{
-							width:100%;
-							height:auto;
-							color:rgb(219, 94, 49);
-							font-size: 18px;
-							padding: 10px 10px 5px 0px;
-						}
-
-						.Conteudo_Coluna3_Agenda_Evento_Conteudo
-						{
-							width:100%;
-							height:auto;
-							color: rgb(102, 102, 102);
-							font-size: 18px;
-							padding: 10px;
-						}
-
-
-		.SlidePort{
-			width: 700px;
-			padding: 0;
-/*			width: auto;
-			padding-right: 100%;*/
-		}
-		.Objetivos_Resultado_Desempenho{
-			background-color:rgb(200,220,141) !important;
-		}
-
-		#content_central{
-				padding: 36px 25px 36px 36px;
-			}
-
-			#content_central_1{
-				overflow:hidden;
-			}
-
-		#content_central_1{
-		overflow:hidden;
-	}
-
-.microfiche-controls{
-	display: none !important;
+.boxLinha {
+	display: block;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*border: 1px solid blue;*/
+}
+.boxLinha:first-of-type {
+	padding-top: 0;	
+}
+.boxLinha:last-of-type {
+	padding-bottom: 0;	
+}
+.boxLinha::after {
+	content: "";
+	clear: both;
+	display: block;
+}
+div[class*="box_col"] {
+	float: left;
+    /*border: 1px solid red;*/
+    padding-left: 10px;
+    padding-right: 10px;
+}
+div[class*="box_col"]:first-of-type {
+	padding-left: 0;
+}
+div[class*="box_col"]:last-of-type {
+	padding-right: 0;
+}
+.box_col4 {
+	height: auto;
+	width: 33%;
+	box-sizing: border-box;
+}
+.box_col6 {
+	height: auto;
+	width: 50%;
+	box-sizing: border-box;
+}
+.box_col8 {
+	height: auto;
+	width: 66%;
+	padding-right: 15px;
+	box-sizing: border-box;
+}
+
+
+/*-PORTIFOLIO-*/	
+.Objetivos_Semana_Cabecalho_Nome {
+	font-size: 18px;
+	z-index: 1;
+}
+
+.Objetivos_Semana_Cabecalho_Nome a{
+	color: white;
+}
+
+.verdeNoMargin {
+	background-color: #9EBA4C;
+}
+
+.Objetivos_Resultado_Desempenho{
+	background-color: #a2cc77 !important;
+	width: 100%;
+	height: 256px;
+	padding: 15px;
+}
+
+#Portfolio_Conteudo {
+	position: relative;
+	width: 100% !important;
+	padding-top: 10px;
+    height: 200px !important;
+}
+.microfiche-prev-button, .microfiche-next-button {
+	display: inline-block;
+	position: absolute;
+	top: 136px;
+	width: 13px;
+	margin: 0 !important;
+	cursor: pointer;
+	z-index: 1;
+}
+.microfiche-prev-button {
+	left: 40px;
+}
+.microfiche-next-button {
+	left: 587px;
 }
 
 .microfiche-screen{
-	height: 256px !important;
+    height: 100% !important;
+    width: 93.2% !important;
+    margin: 0px auto;
 }
 
+.microfiche-film {
+    height: 100% !important;
+    margin: 0px 11px !important;
+    transition: transform 0.35s;
+}
+
+.microfiche-controls{ display: none !important; }
+
+.Portfolio_Conteudo_Container li {
+	height: 180px;
+	width: 212px;
+	display: block;
+	float: left;
+	margin: 18px 18px 0 0;
+	padding: 0;
+}
+.Portfolio_Conteudo_Box {
+	float: left;
+	display: inline-block;
+	width: 27%;
+	height: 100%;
+	margin-right: 31px;
+}
+
+.Portfolio_Conteudo_Box:last-of-type { margin-right: 0px; }
+
+.Portfolio_Conteudo_Box > div {
+	float: left;
+	display: inline-block;
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+}
+
+.Nome_Roteiro {
+	display: inline-block;
+	width: 100%;
+	height: 21%;
+    overflow: hidden;
+	color: #666666;
+	line-height: 1.2em;
+	margin-top: 5px;
+	font-size: 10px;
+	text-align: left;
+	font-weight: normal;
+}
+
+.Nome_Roteiro::first-line { line-height: 1em; }
+
+.Img_Roteiro {
+	display: inline-block;
+	width:123px;
+	height:123px;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+	text-align: center;
+	border: 1px solid #666666;
+}
+
+.uploadAtivo{
+	cursor: pointer;
+}
+
+/* Rotina Semanal */
+#Rotina_Semanal {
+	width: 100%;
+	height: 256px;
+	background-color: #7bccd8;
+	float: left;
+}
+#Rotina_Semanal_Nome {
+    height: 43px;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 0 0 12px;
+}
+#Rotina_Semanal_Nome a {
+	color: #fff;
+	text-decoration: none;
+}
+#Rotina_Semanal_Conteudo {
+	padding: 15px;
+    padding-top: 0;
+}
+table#Rotina_Semanal_Tabela {
+	width: 100%;
+	border: 1.5px solid #fff;
+	background-color: #fff;
+	text-align: center;
+	font-size: 12px;
+	border-spacing: 0;
+	border-collapse: none;
+}
+table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
+	height: 30px;
+	border: inherit;
+}
+.Rotina_Semanal_Linha_Recreio {
+	background-color: rgb(223,222,212)
+}
+table#Rotina_Semanal_Tabela>thead>tr {
+	background-color: #23BECD;
+	color: #fff;
+	height: 25px;
+	font-size: 13px;	
+}
+.Rotina_Semanal_btn_Seta {
+	background-color: #129fad;
+	cursor: pointer;
+}
+.Rotina_Semanal_Horario {
+	background-color: rgb(236,235,229);
+	color: #78776b;
+}
+.Rotina_Semanal_Materia { color: #fff; }
+
+table#Rotina_Semanal_Tabela td, table#Rotina_Semanal_Tabela th { 
+	border: 1.5px solid #fff;
+	padding-left: 3px;
+    padding-right: 3px;
+    width: 95px;
+    line-height: 1em;
+}
+
+table#Rotina_Semanal_Tabela td:first-of-type, table#Rotina_Semanal_Tabela th:first-of-type,
+table#Rotina_Semanal_Tabela td:last-of-type, table#Rotina_Semanal_Tabela th:last-of-type 
+{ 
+	width: 56px;
+}
+
+tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
+
+.Rotina_Pesquisa { background-color: #1c828e; }
+
+.Rotina_Artes { background-color: #bf4b69; }
+
+.Rotina_Matematica { background-color: #f25954; }
+
+.Rotina_Leitura_Escrita { background-color: #755b91; }
+
+.Rotina_Ingles { background-color: #3f5ba8; }
+
+.Rotina_Roda_Conversa { background-color: #f68f46; }
+
+.Rotina_Semanal_Professor { background-color: rgba(255, 255, 255, .5); }
+
+.Rotina_Semanal_Local { background-color: rgba(255, 255, 255, .7); }
+
+/* MURAL */
+	#Mural {
+		width: 100%;
+		height: 273px;
+		background-color: #677db8;
+		float: left;
+		padding: 15px;
+	}
+	.Mural_Cabecalho_Nome {
+		height: 37px;
+	    width: 100%;
+	    font-size: 18px;
+	}
+	.Mural_Cabecalho_Nome p {
+	    color: #fff;
+		text-decoration: none;
+		margin:0;
+	}
+	#Mural_Conteudo {
+		height: 200px;
+		overflow: auto; 
+	}
+	.Mural_Conteudo_Linha {
+		width: 100%;
+		min-height: 67px;
+		margin: 5px 0;
+		background-color: #fff;
+		text-align: right;
+		padding: 5px 10px 10px;
+	}
+	
+	.Mural_Conteudo_Linha:first-of-type { margin-top: 0; }
+	
+	.Mural_Conteudo_Linha:last-of-type { margin-bottom: 0; }
+	
+	.Mural_Linha_Cabecalho { margin-bottom: 5px; }	
+
+	.Mural_Linha_Cabecalho > span {
+		color: #78776b;
+		font-size: 12px;
+	}
+	span.Mural_Nome::after {
+		content: " |";
+		display: inline;
+	}
+	.Mural_Linha_Texto {
+		text-align: left;
+	}
+	p.Mural_Texto {
+		font-size: 12px;
+		-webkit-margin-before: 0;
+    	-webkit-margin-after: 0;
+    	-webkit-margin-start: 0;
+    	-webkit-margin-end: 0;
+	}
+
+/* PLANO DE ESTUDOS */
+	#PlanoEstudo {
+		width: 100%;
+	    height: 273px;
+	    background-color: #f9af4c;
+        float: left;
+		padding: 15px;
+	}
+	.PlanoEstudo_Cabecalho_Nome {
+		/*height: 20px;*/
+	    width: 100%;
+	    font-size: 18px;
+	    color: white;
+	}
+	.Conteudo_PlanoEstudo{
+		padding-top: 5px;
+	}
+	.botao_novo_plano{
+		float: right;
+		cursor: pointer;
+		margin-top: -5px;
+	}
+
+	.botao_novo_plano img{
+		width: 74%;
+    	float: right;
+	}
+	.PlanoEstudo_Cabecalho_Nome a {
+	    color: white;
+		text-decoration: none;
+	}
+	.PlanoEstudo_Cabecalho_Nome span {
+		font-size: 12px;
+		margin-left: 6px;
+	}
+	#PlanoEstudo_Conteudo {
+		height: 176px;
+		overflow: auto;
+		font-weight: normal;
+		padding-top: 15px;
+	}
+	#Planejamento_Container,#Registro_Container{
+		background-color: white;
+		font-size: 14px;
+		padding: 10px;
+		font-weight: bold;
+		color: #fd7822;
+	}
+	#PlanoEstudo_Conteudo_Container_Registro{
+		height: 176px;
+		padding-top: 12px;
+		background-color: white;
+		font-weight: normal;
+		font-size: 12px;
+		color: #78776b;
+	}
+	.PlanoEstudo_Linha {
+		width: 100%;
+		height: auto;
+		background-color: #fff;
+		padding: 10px 0px 0px;
+	}
+	.PlanoEstudo_Linha_Conteudo{
+		margin-bottom: 5px;
+	}
+	.PlanoEstudo_Linha:first-of-type {
+		padding: 0px 0px 0px;
+		margin-top: 0;
+	}
+	.PlanoEstudo_Linha:last-of-type {
+		margin-bottom: 0;
+	}
+	p.PlanoEstudo_Nome {
+		color: #78776b;
+		font-size: 12px;
+		-webkit-margin-before: 0;
+    	-webkit-margin-after: 0;
+    	-webkit-margin-start: 0;
+    	-webkit-margin-end: 0;
+    	margin-bottom: 5px;
+	}
+	.PlanoEstudo_Num {
+	    text-align: center;
+	    display: inline-block;
+	    width: 26px;
+	    height: 20px;
+	    margin-right: 3px;
+	    background-color: rgb(255, 167, 89);
+	    color: #fff;
+	    padding-top: 2px;
+	    cursor: pointer;
+	}
+	.iniciado {
+		background-color: rgb(141, 192, 63);
+	}
+	.revisado {
+		background-image:url(../img/R_check.png);
+		background-size: cover;
+		background-position: 1px -1px;
+	}
+	.dia_registro_box{
+		width: 20%;
+    	float: left;
+    	padding: 2px;
+    	margin-bottom: 3px;
+    	color: white;
+    	font-size: 12px;
+    	font-weight: normal;
+	}
+	.dia_registro_box:first-of-type{
+		padding-left: 0;
+	}
+	.dia_registro_box:last-of-type{
+		padding-right: 0;
+	}
+	.dia_registro{
+		padding: 4px;
+		background-color: #fdad6c;
+		text-align: center;
+	}
+	.dia_ativo{
+		background-color: #fd7822;
+	}
+	.textarea_registro{
+		margin-bottom: 35px;
+		height: 85px;
+	}
+	.textarea_registro textarea{
+		resize: none;
+		width: 100%;
+		height: 100%;
+	}
+	.editar_button{
+		cursor: pointer;
+		float: right;
+	}
+	.editar_button img{
+	}
+
+	#mCSB_4_scrollbar_vertical {
+		right: -5px;
+	}
+
+/* -------------------------------------------------------------------- */
 
 .appear{
 	display: block !important;
@@ -559,26 +473,14 @@ h1,h2,h3,h4,h5,h6{
 #frmCadastroAluno{
 	position: relative;
 	width: 100%;
-	/*padding: 36px 30px 36px 36px;*/
+	padding: 36px 30px 36px 36px;
 }
 .opcaoFoto {	
 	padding: 36px;
 }
-.box_margin_alter {
-	display: none;
-	position: absolute;
-	width: 53.4%;
-	background-color: #FFF;
-	margin-top: 0px;
-	right: 0;
-	z-index: 999;
-	float: left;
-	overflow: auto;
-	margin-right:0;
-}
 
 #mCSB_3_scrollbar_vertical{
-	left: 93%;
+	right: -5px;
 }
 
 #boxMensagem {
@@ -590,23 +492,113 @@ h1,h2,h3,h4,h5,h6{
 	background: none;
 	left: 0;
 	width: 100%;
-	z-index: 999;
+	z-index: 9;
 	margin-top: 0;
 }
-
-.example{
-	width: 60%;
-    overflow: hidden;
+.box_margin_alter {
+    display:none;
+    position: absolute;
+    width: 53%;
+    background-color: #FFF;
+    right: 16.7%;
+    z-index: 9;
+    height: 627px;
+    overflow: auto;      
 }
 
-.mCSB_inside > .mCSB_container{
-	margin-right: 10px !important;
+@media (width: 1024px) and (max-height: 509px) {
+	.Objetivos_Semana_Cabecalho_Nome {
+		height: 37px;
+		font-size: 22px;
+		color: rgb(102, 102, 102);
+		z-index: 9;
+	}
+    .box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 9;
+        height: 413px;
+        overflow: auto;
+        right:0;
+	}
 }
 
-.example ul{
-	height: auto;
+@media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
+
+	.box_margin_alter{
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.box_margin_alter {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 9;
+        height: 627px;
+        overflow: auto;
+        right:0;
+	}
 }
 
-.microfiche-button{
-	display: none;
+.microfiche-controls {
+    position: absolute;
+    bottom: 441px;
+    left: 540px;
+}
+
+/* Barra de rolagem */
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	/*background-color: #fff !important;*/
+	border-radius: 0 !important;
+}
+.mCSB_scrollTools {
+	width: 4px !important;
+}
+.mCSB_scrollTools_vertical {
+	right: 0px !important;
+}
+.Linha_Scroll {
+	width: 99% !important;
+}
+	
+#pendencias{
+    float: right;
+    font-size: 12px;
+    font-weight: 500;
+    position: relative;
+    margin-right: 10px;
+    display: none;
+}
+
+#bolinha{
+    font-size: 11px;
+    font-weight: 500;
+    background-color: #ff6b3f;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    border-color: #fff;
+    padding-top: 1.5px;
+    /* padding-left: 2.5px; */
+    position: absolute;
+    top: -8px;
+    right: -15px;
+}
+
+.Portfolio_Conteudo_Container {
+    width: 569px !important;
+    height: 90% !important;
+    margin: 0 auto;
+    margin-right: 18px;
+}
+
+.microfiche-prev-button {
+  	left: 40px;
 }

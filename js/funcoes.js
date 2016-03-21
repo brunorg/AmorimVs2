@@ -14,9 +14,26 @@ var toType = function(obj){
 // JavaScript Document	
 $(document).ready(function(){	
 
-	ativaMenu();
+	$(window).bind("orientationchange", function(){
+	    var orientation = window.orientation;
+	    var new_orientation = (orientation) ? 0 : 180 + orientation;
+	    $('body').css({
+	        "-webkit-transform": "rotate(" + new_orientation + "deg)",           //Chrome
+	        "-moz-transform": "rotate(" + new_orientation + "deg)",              //Firefox
+	        "-o-transform": "rotate(" + new_orientation + "deg)",                //Opera
+	        "-ms-transform": "rotate(" + new_orientation + "deg)",               //IE's novos
+	        "transform": "rotate(" + new_orientation + "deg)",                   //nativa
+	        "filter": "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)" //IE's antigos
+	    });
+	});
 
-
+	
+	
+	var url = window.location.href;
+	var retorno = url.split("/"); 
+	var classe = $('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').attr("class");		
+	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
+	
 	
 	$(function(){
 		if($("#frm_Envia_Mensagens select").length > 0)
@@ -345,7 +362,40 @@ $(document).ready(function(){
 	
 	$('#rodape_calendario').before('<a href="index.html?ref=calendario" id="linkParaAgenda" target="_blank">VER AGENDA COMPLETA</a>')
 
+	menuHamburguer('.menuHamb','left','Content_lateral_left');
+	//menuHamburguer('#_foto','right','Content_lateral');
+
 });	
+
+function menuHamburguer(btn, posicao, classDivMenu){
+
+	$(btn).click(function(){
+
+		event.preventDefault();
+    	// create menu variables
+    	var slideoutMenu = $('#'+classDivMenu);
+    	var slideoutMenuWidth = $('#'+classDivMenu).width();
+    	
+    	// toggle open class
+    	slideoutMenu.toggleClass("open");
+    	// slide menu
+    	if (slideoutMenu.hasClass("open")) {
+    		if(posicao == "left")
+	    		slideoutMenu.animate({ left : "0px" });	
+	    	else
+	    		slideoutMenu.animate({ right : "0px" });
+
+    	} else {
+    		if(posicao == "left")
+	    		slideoutMenu.animate({ left : -slideoutMenuWidth }, 250);	
+	    	else
+	    		slideoutMenu.animate({ right : -slideoutMenuWidth }, 250);	
+
+	    	
+    	}
+	});
+
+}
 
 function myFunction() {
   	document.getElementById('roteiro_nome_tabela_selecionado').style.cssText = 'background-color: red; color: white; font-size: 44px';

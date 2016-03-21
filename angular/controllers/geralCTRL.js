@@ -15,6 +15,11 @@ app.controller('loginCTRL',function ($scope,$http) {
 				msgInicial("Login e senha inválidos!");
 				okBotao();
 			}else{
+				var mobile = redirecionaMobile();
+				var m = ""; 
+				if(mobile){
+					m = "m_";
+				}
 				localStorage.setItem("objetoUsuario", JSON.stringify(a));
 				if (typeof a !== "undefined") {
 					if(a.perfil.perfil == "Aluno"){
@@ -26,17 +31,18 @@ app.controller('loginCTRL',function ($scope,$http) {
 							window.location = "areaAluno.html";
 						}
 						localStorage.setItem("alunoId",a.aluno.idAluno);
+						window.location = m+"areaAluno.html";
 					}
 					else if(a.perfil.perfil == "Professor"){
 						localStorage.setItem("professorId", a.professor.idprofessorFuncionario)	;
-						window.location = "areaProfessor.html";
+						window.location = m+"areaProfessor.html";
 					}
 					else if(a.perfil.perfil=="Coordenacao"){
-						window.location = "areaCoordenacao.html";
+						window.location = m+"areaCoordenacao.html";
 						localStorage.setItem("professorId", a.professor.idprofessorFuncionario)	;
 					}
 					else if(a.perfil.perfil=="Secretaria"){
-						window.location = "cadastros.html";
+						window.location = m+"cadastros.html";
 						localStorage.setItem("professorId", a.professor.idprofessorFuncionario)	;
 					}
 				}
@@ -66,18 +72,24 @@ app.controller('geralCTRL',function($scope,$http){
 
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
+				var mobile = redirecionaMobile();
+				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
+				var m = ""; 
+				if(mobile){
+					m = "m_";
+				}
 
 				//var mobile = redirecionaMobile();
 				//console.log(mobile);
 
 				$scope.menuHTML = [
-					{label: 'Plano de Estudo', href: 'planoDeEstudo.html',class: 'plano'},
-					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso rows2'},
-					{label: 'Tutoria', href: 'tutoriaAluno.html', class: 'tutoria inativo'},
-					{label: 'Oficinas', href: 'oficinas.html', class: 'oficinas'},
-					{label: 'Produção do Aluno', href: 'producaoAluno.html', class: 'prodAluno'},
-					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
-					{label: 'Fórum', href: 'forum.html', class: 'forum'}
+					{label: 'Plano de Estudo', href: m+'planoDeEstudo.html',class: 'plano'},
+					{label: 'Recursos de aprendizagem', href: m+'recursosAprendizagem.html', class: 'recurso rows2'},
+					{label: 'Tutoria', href: m+'tutoriaAluno.html', class: 'tutoria inativo'},
+					{label: 'Oficinas', href: m+'oficinas.html', class: 'oficinas'},
+					{label: 'Produção do Aluno', href: m+'producaoAluno.html', class: 'prodAluno'},
+					{label: 'Mensagens', href: m+'mensagens.html', class: 'mensagens'},
+					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
 
 				$('#Content_lateral').addClass('Content_Menu_Net');
