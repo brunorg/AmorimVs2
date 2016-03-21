@@ -161,7 +161,8 @@ $(document).ready(function(){
 		if($(this).attr('id') == "CaixaDeEntrada"){
 			$(this).addClass('cx_barra');			 
 			ListarCaixaEntrada(0,10);
-		} else if($(this).attr('id') == "Enviadas"){			
+		} else if($(this).attr('id') == "Enviadas"){
+		debugger;			
 			$(this).addClass('cx_barra');			   
 			ListarEnviadas('',0,10);
 		}
@@ -265,8 +266,7 @@ function atribuiFuncoesRolagem () {
 		callbacks:{						
 			alwaysTriggerOffsets: false,
 		    onTotalScrollOffset: 100,
-		    whileScrolling: function() {
-		    	console.log("scroll");		  	
+		    whileScrolling: function() {	  	
 				aba = $('.estado_ativo').attr('id');
 				if(	aba == 'Enviadas'){
 					if(this.mcs.topPct > 95 &&
@@ -608,19 +608,20 @@ function ListarEnviadas(ultima,inicio,fim)
         //url: path+ "Mensagens/email/enviado/"+userID+"/"+inicio+"/"+fim,           
         url: path+ "Mensagens/emailHash/enviado/"+userID+"/"+inicio+"/"+fim,
 		success: function(dataMensagensSaida){
-			
+			debugger;
 			if (dataMensagensSaida.length > 0){
 				for(var a = 0; a < dataMensagensSaida.length; a++){
 					console.log(dataMensagensSaida[a].remetente_nome);
 					if(dataMensagensSaida[a].mensagem != ''){
 						var dataMSG = (dataMensagensSaida[a].data.substr(8, 2))+'/'+(dataMensagensSaida[a].data.substr(5, 2))+'/'+(dataMensagensSaida[a].data.substr(0, 4));
-						HtmlContent +='<div class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ' +
-									   	'<div class="caixa_data_hora"> '+dataMSG+' </div>' +
-									   	'<div class="msg_info_wrapper">' +
-									   	  '<div class="caixa_remetente"> '+dataMensagensSaida[a].remetente_nome+' </div>' +
-									   	  '<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>' +
-									   	'</div>' +
-									  '</div>';
+						HtmlContent +='<div class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ';
+						HtmlContent +=	'<div class="caixa_data_hora"> '+dataMSG+' </div>';
+						HtmlContent	+=	'<div class="msg_info_wrapper">';
+						debugger;
+						HtmlContent +=		getUserRemetente(dataMensagensSaida[a].remetente_idUsuario);
+						HtmlContent +=		'<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>';
+						HtmlContent +=	'</div>';
+						HtmlContent +='</div>';
 					}
 				}
 			}
@@ -632,6 +633,20 @@ function ListarEnviadas(ultima,inicio,fim)
 	}else{ 
 		$('#Col_CaixaDeMensagens').append(HtmlContent);
 	}
+}
+
+function getUserRemetente(idUser){
+	var html = '';
+	$.ajax({
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		url: path + "Usuario/" + idUser,
+		success:function(dataUser){
+			html += '<div class="caixa_remetente"> ' +dataUser.professor.nome+ ' </div>';			
+		}
+	});
+	return html;
 }
 
 function ExcluirMensagem()
