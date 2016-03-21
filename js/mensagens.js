@@ -161,8 +161,7 @@ $(document).ready(function(){
 		if($(this).attr('id') == "CaixaDeEntrada"){
 			$(this).addClass('cx_barra');			 
 			ListarCaixaEntrada(0,10);
-		} else if($(this).attr('id') == "Enviadas"){
-		debugger;			
+		} else if($(this).attr('id') == "Enviadas"){			
 			$(this).addClass('cx_barra');			   
 			ListarEnviadas('',0,10);
 		}
@@ -608,7 +607,6 @@ function ListarEnviadas(ultima,inicio,fim)
         //url: path+ "Mensagens/email/enviado/"+userID+"/"+inicio+"/"+fim,           
         url: path+ "Mensagens/emailHash/enviado/"+userID+"/"+inicio+"/"+fim,
 		success: function(dataMensagensSaida){
-			debugger;
 			if (dataMensagensSaida.length > 0){
 				for(var a = 0; a < dataMensagensSaida.length; a++){
 					console.log(dataMensagensSaida[a].remetente_nome);
@@ -617,7 +615,6 @@ function ListarEnviadas(ultima,inicio,fim)
 						HtmlContent +='<div class="caixa_mensagem lida" msgId="'+dataMensagensSaida[a].idMensagem+'" onclick="selecionarMensagem(this);"> ';
 						HtmlContent +=	'<div class="caixa_data_hora"> '+dataMSG+' </div>';
 						HtmlContent	+=	'<div class="msg_info_wrapper">';
-						debugger;
 						HtmlContent +=		getUserRemetente(dataMensagensSaida[a].remetente_idUsuario);
 						HtmlContent +=		'<div class="caixa_assunto"> '+ (dataMensagensSaida[a].assunto != "" ? dataMensagensSaida[a].assunto:"Sem Assunto") +'</div>';
 						HtmlContent +=	'</div>';

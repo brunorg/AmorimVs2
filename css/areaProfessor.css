@@ -199,7 +199,9 @@ textarea {
 	height: 100%;
 	overflow: hidden;
     background-image: url(../img/ic_drop_pequeno.png);
-    padding: 4px 8px;
+    padding: 4px 8px;    
+    background-repeat: no-repeat;
+    background-position: center right;
 }
 
 .selectOptions select{

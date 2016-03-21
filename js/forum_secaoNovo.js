@@ -63,7 +63,7 @@ function carregaNomeRoteiro () {
 function addBoxNovaPergunta () {
     FirstBoxhtml = '<form id="frmCadastro_Questao">'+
                         '<div class="Box_perguntar_wrap">'+
-                            '<div class="foto_aluno" style="background-image: url('+getUsuarioFoto()+')">bgjkhglkhlkh</div>'+
+                            '<div class="foto_aluno" style="background-image: url('+getUsuarioFoto()+')"></div>'+
                             '<div class="box_perguntar">'+
                                 '<div class="perguntar_header">'+
                                     '<div class="nome_serie_aluno">'+getNomeUsuario()+'</div>'+
