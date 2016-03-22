@@ -19,6 +19,8 @@ var dataUsuario = getDataUsuario(usuarioID);
 
 var alunosVariaveisStore = [];
 
+var idProfFunc = "";
+
 //Carrega a funçao de Load do JQuery
 
 /*Gráfico area_aluno*/
@@ -166,7 +168,6 @@ var alunosVariaveisStore = [];
 
 		return retorno;
 	}
-
 
 	function getRoteiroID(RoteiroID) {
 		var retorno;
@@ -341,7 +342,9 @@ var alunosVariaveisStore = [];
 			type: "GET",
 			crossDomain: true,
 			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
+			success: 	function(data) { 
+				retorno = data;
+			}
 			//complete: 	function() 			{ loading("final"); }
 		});
 
@@ -419,7 +422,6 @@ var alunosVariaveisStore = [];
 
 
 $(document).ready(function(){
-	
 	alunosVariaveisStore = getAlunoVariaveisDeAluno(alunoID);
 
 	var anos = [];
@@ -451,7 +453,6 @@ $(document).ready(function(){
 	
 	
 function init(ano, alunoVar){
-
 	loading("inicial");
 
 	if(!base64_decode(GetURLParameter('TU'))){
@@ -535,8 +536,7 @@ function init(ano, alunoVar){
 		}
 		
 	}
-	//Daqui para baixo, nada foi alterado!!
-	
+	//Daqui para baixo, nada foi alterado.
 	for(var i = 0; i < planejamentosAluno.length; i++){
 		for(var j = 0; j < roteirosFiltrados.length; j++){				
 			if(planejamentosAluno[i].objetivo.roteiro.nome == roteirosFiltrados[j][0].nome){
@@ -548,7 +548,7 @@ function init(ano, alunoVar){
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo.idplanoEstudo;
 				} else {
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo;
-					console.log(planejamentosAluno[i]);
+					//console.log(planejamentosAluno[i]);
 				}
 
 			}
@@ -741,7 +741,6 @@ function init(ano, alunoVar){
 			}
 		}
 	}
-
 	$(".FotoAluno").html("<img src='"+aluno.fotoAluno+"' width='110' height='110'/>");
 
 	//preenche cabecalho aluno
@@ -758,6 +757,7 @@ function init(ano, alunoVar){
 		{
 			
 			$('#tutor_nome').append(alunoVarSelecionado.grupo.tutoria.tutor.nome);
+		    idProfFunc = alunoVarSelecionado.grupo.tutoria.tutor.idprofessorFuncionario;
 
 		} else {
 			$('#tutor_nome').append("Não Atribuido");
@@ -765,7 +765,6 @@ function init(ano, alunoVar){
 	} else {
 		$('#tutor_nome').append("Não Atribuido");
 	}
-
 
 	aux = '';
 
@@ -788,9 +787,8 @@ function init(ano, alunoVar){
 		$(".mudar").attr("id","Cabecalho_Perfil_Area_Foto_cood");
 	}
 
-	
 	listaObservacao();
-		
+	
 	//Passa o id do aluno para o cadastro de observação
 	$('#aluno').val(alunoID);
 	//Passa o id do aluno para o cadastro de observação
@@ -834,7 +832,6 @@ function init(ano, alunoVar){
   	$("#left_scroll").click(function(){
   		$("#horiz_container li").css('margin-left', parseInt($("#horiz_container li").css('margin-left')) + 10);
   	});		
-
 
 	loading("final");
 
@@ -930,10 +927,9 @@ function btnFechar(){
 function listaObservacao(){
 	//Lista as observações que o tutor fez sobre o aluno
 	var resultado;
-	var professorId = $('#tutoria').val();
 	var HtmlContent_rt="";
 
-	var data_rt = getRelatorioTutoria(professorId,alunoID);
+	var data_rt = getRelatorioTutoria(idProfFunc,alunoID);
 
 	console.log(data_rt);
 	if(data_rt!=""){
