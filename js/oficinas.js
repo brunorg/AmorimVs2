@@ -95,10 +95,17 @@ function requestOficinasAluno() {
 
 
 		for ( var i in oficinas ) {
-			htmlOficinas += "<td class=\"aba_oficina\" id=\"oficina"+oficinas[i].idoficina+"\" onclick=\"accessOficina("+oficinas[i].idoficina+", \'"+oficinas[i].tipoOficina.cor.forte+"\', \'"+oficinas[i].tipoOficina.cor.medio+"\', \'"+oficinas[i].tipoOficina.cor.fraco+"\')\">";
-			htmlOficinas += 	"<div class=\"fundo_aba\" style=\"background:"+oficinas[i].tipoOficina.cor.forte+"\">&nbsp;</div>";
-			htmlOficinas +=		"<p class=\"oficina_titulo\">"+oficinas[i].tipoOficina.nome+"</p>";
-			htmlOficinas +=	"</td>";
+			//id das oficinas que não aparece
+			var oficinasOff = [11,13,14];
+
+			var tem = jQuery.inArray(oficinas[i].tipoOficina.idTipoOficina, oficinasOff);
+			
+			if(tem){
+				htmlOficinas += "<td class=\"aba_oficina\" id=\"oficina"+oficinas[i].idoficina+"\" onclick=\"accessOficina("+oficinas[i].idoficina+", \'"+oficinas[i].tipoOficina.cor.forte+"\', \'"+oficinas[i].tipoOficina.cor.medio+"\', \'"+oficinas[i].tipoOficina.cor.fraco+"\')\">";
+				htmlOficinas += 	"<div class=\"fundo_aba\" style=\"background:"+oficinas[i].tipoOficina.cor.forte+"\">&nbsp;</div>";
+				htmlOficinas +=		"<p class=\"oficina_titulo\">"+oficinas[i].tipoOficina.nome+"</p>";
+				htmlOficinas +=	"</td>";
+			}
 		}
 
 		htmlOficinas +=		"</tr>";

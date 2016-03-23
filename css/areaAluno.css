@@ -179,6 +179,7 @@ div[class*="box_col"]:last-of-type {
 	text-align: left;
 	font-weight: normal;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 
 .Nome_Roteiro::first-line { line-height: 1em; }
@@ -234,7 +235,7 @@ table#Rotina_Semanal_Tabela tr.Rotina_Semanal_Linha {
 	border: inherit;
 }
 .Rotina_Semanal_Linha_Recreio {
-	background-color: rgb(223,222,212)
+	background-color: #fbf9f8;
 }
 table#Rotina_Semanal_Tabela>thead>tr {
 	background-color: #23BECD;
@@ -247,7 +248,7 @@ table#Rotina_Semanal_Tabela>thead>tr {
 	cursor: pointer;
 }
 .Rotina_Semanal_Horario {
-	background-color: rgb(236,235,229);
+	background-color: rgb(223,222,212);
 	color: #78776b;
 }
 .Rotina_Semanal_Materia { color: #fff; }
