@@ -253,7 +253,8 @@ function adicionarRotinasOficina (idOficina) {
 						}
 					}
 				});
-				htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+idOficina+','+dataRotina[j].idrotina+')"> &nbsp; </span>'
+				htmlOficina += 			'<span class="editar editar_rotina" onclick="editarModal(\'rotina\','+idOficina+','+dataRotina[j].idrotina+')"> &nbsp; </span>';
+				htmlOficina +=			'<span class="excluir excluir_rotina" onclick="excluirData(\'rotina\', '+idOficina+', '+dataRotina[j].idrotina+')"> &nbsp; </span>';
 				htmlOficina +=		'</article>';
 				htmlOficina +=		'<article class="agrupamento_oficina">';
 				htmlOficina +=			'<p>';
@@ -769,7 +770,7 @@ function editarModal_Impl(modal,id){
 
 function editarModal_Impl2(modal, id, idRotina){
 	if(modal == "rotina"){
-		$('#editar_id_rotina').val(id);
+		$('#editar_id_rotina').val(id); //Id oficina
 		$('#id_rotina').val(idRotina);
 		// var idOficina = $('.modal_edicao_rotina #editar_id_rotina').val();
 		var agrupamento = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".agrupamento").attr('id').split('_')[1];
@@ -792,6 +793,44 @@ function editarModal_Impl2(modal, id, idRotina){
 		editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo);
 	}
 	centralizarModal();
+}
+
+function excluirData(modal, id, idRotina){
+	if(modal == "rotina"){
+		$('#editar_id_rotina').val(id); //Id oficina
+		$('#id_rotina').val(idRotina);
+		var agendamento = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".rotina_sala").attr('id').split('_')[2];
+		$("#id_agendamento").val(agendamento);
+		excluirAgendamentoRotina(agendamento, idRotina, id);
+	}	
+}
+
+function excluirAgendamentoRotina(idAgendamento, idRotina, idOficina){
+	$.ajax({
+		url: path + "AgendamentoSala",
+		async: false,
+		crossDomain: true,
+		type: "POST",
+		data: "action=delete&id=" + idAgendamento,
+		beforeSend:function(){
+			loading("inicial");
+		},
+		success: function(){
+			$.ajax({
+				url: path + "Rotina",
+				async: false,
+				crossDomain: true,
+				type: "POST",
+				data: "action=delete&id=" + idRotina,
+				success: function(){
+					adicionarRotinasOficina(idOficina);
+				}
+			});
+		},
+		complete: function(){
+			loading("final");
+		}
+	});
 }
 
 //Aplicação de polimorfismo na função de editar as rotinas da oficina.

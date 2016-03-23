@@ -787,7 +787,7 @@ select::-ms-expand {
 	position: absolute;
 	background: url(../img/ic_editar_peq.png) no-repeat center center;
 	top: 2px;
-	right: 2px;
+	right: 30px;
 	width: 24px;
 	height: 18px;
 	cursor: pointer;
@@ -797,12 +797,28 @@ select::-ms-expand {
 .oficineiros_oficina:hover > .editar,
 .agrupamento_oficina:hover > .editar
 {
-	display: block;
+	display: block;	
 }
-.editar:hover
+.editar:hover, .excluir:hover
 {
 	background-color: #EDEDEB;
 }
+
+.excluir{
+	display:none;
+	position:absolute;
+	background: url(../img/ic_editar_peq.png) no-repeat center center;
+	width: 24px;
+	height: 18px;
+	cursor: pointer;
+	top: 2px;
+	right: 2px;
+}
+
+.rotina_oficina:hover > .excluir{
+	display: block;
+}
+
 .checkLimpar{
 	width:50px;
 }

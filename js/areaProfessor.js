@@ -569,7 +569,7 @@ function Mural() {
                                         '</div>'+
                                     '</div>'+
                                     '<div class="containerIcone">'+
-                                        '<div class="botaoIco   ne" onclick="mural.editarPost('+id+')">'+
+                                        '<div class="botaoIcone" onclick="mural.editarPost('+id+')">'+
                                             '<img src="img/ic_editar_peq.png">'+
                                         '</div>'+
                                     '</div>'+
