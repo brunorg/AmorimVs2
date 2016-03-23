@@ -177,9 +177,9 @@ html, body
 
 			.inativo{
 				pointer-events: none;
-				opacity:0.65;
-				-moz-opacity: 0.65;
-				filter: alpha(opacity=65);
+				opacity: 0.5;
+				-moz-opacity: 0.5;
+				filter: alpha(opacity=5);
 			}
 			
 			.rows2 { 
@@ -215,9 +215,11 @@ html, body
 					background-image: url(../img/ic_plano.png); 
 				}
 				
-				.plano-active {
-					background-image: url(../img/ic_plano.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+				.plano-active {					    
+					background-image: url(../img/ic_plano.png) !important;	
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 					
 				/*Menu recurso*/
@@ -231,7 +233,9 @@ html, body
 
 				.recurso-active {
 					background-image: url(../img/ic_livro.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;			
 				}	
 				/* Menu roteiros */
 				.roteiros { 
@@ -244,7 +248,9 @@ html, body
 				
 				.roteiros-active {
 					background-image:  url(../img/ic_menu_roteiros_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;		
 				}	
 				
 				/* Menu Jeiff */
@@ -258,7 +264,9 @@ html, body
 				
 				.jeiff-active {
 					background-image:  url(../img/ic_registroJEIF_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);	
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;
 				}	
 				
 				/* Menu rotinas */
@@ -272,7 +280,9 @@ html, body
 
 				.rotinas-active {
 					background-image:  url(../img/ic_menu_rotina_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;			
 				}		
 				
 				/*Menu oficinas*/
@@ -286,7 +296,9 @@ html, body
 
 				.oficinas-active {
 					background-image: url(../img/ic_oficinas-ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;			
 				}
 
 				/*Menu Produções do aluno*/
@@ -300,7 +312,9 @@ html, body
 
 				.prodAluno-active {
 					background-image: url(../img/ic_prodAluno-ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}	
 				
 				/*Menu forum*/
@@ -314,7 +328,9 @@ html, body
 
 				.forum-active {
 					background-image: url(../img/ic_forum.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 				
 				/*Menu mensagens*/				
@@ -327,7 +343,9 @@ html, body
 
 				.mensagens-active {
 					background-image: url(../img/ic_mensagens.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}		
 				
 				/*Menu Tutoria*/
@@ -341,7 +359,9 @@ html, body
 
 				.tutoria-active {
 					background-image: url(../img/bt_tutores_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;		
 				}
 				
 				/*Menu Tutores*/
@@ -355,7 +375,9 @@ html, body
 
 				.tutores-active {
 					background-image: url(../img/bt_tutores_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;			
 				}
 				
 				/*Menu Grupos*/
@@ -369,7 +391,9 @@ html, body
 
 				.grupos-active {
 					background-image: url(../img/bt_grupo_ativo.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 				
 				/*Menu Cadastro*/
@@ -385,7 +409,9 @@ html, body
 
 				.cadastro-active {
 					background-image: url(../img/ic_cadastro.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;			
 				}
 
 				/*Menu mensagens secretaria*/
@@ -403,7 +429,9 @@ html, body
 
 				.mensagensSecretaria-active {
 					background-image: url(../img/ic_mensagens.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 				
 				/*Menu Agenda*/
@@ -419,7 +447,9 @@ html, body
 				}
 				.agenda-active{
 					background-image: url(../img/agenda.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 				/*Fim menu Agenda*/
 				
@@ -436,7 +466,9 @@ html, body
 				}
 				.presencaS-active{
 					background-image: url(../img/presencas.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;				
 				}
 				/*Fim menu PresenÃ§a*/
 				
@@ -453,7 +485,9 @@ html, body
 				}
 				.carteirinhas-active{
 					background-image: url(../img/ic_carteirinha.png);	
-					background-color: rgba(22, 190, 207, 0.79);				
+					background-color: rgba(22, 190, 207, 0.79) !important;
+				    color: #fff !important;
+				    cursor: pointer;		
 				}
 				/*Fim menu Carteirinhas*/
 				

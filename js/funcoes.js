@@ -28,11 +28,18 @@ $(document).ready(function(){
 	});
 
 	
-	
-	var url = window.location.href;
-	var retorno = url.split("/"); 
-	var classe = $('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').attr("class");		
-	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
+	setTimeout(function(){
+
+		var url = window.location.href;
+		var retorno = url.split("/"); 
+		var teste = "";
+		teste = $('a[href="'+retorno[retorno.length-1]+'"] div').attr('class');
+
+		var classe = teste.split(" ");
+
+		$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
+		
+	},500);
 	
 	
 	$(function(){
