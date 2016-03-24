@@ -206,7 +206,7 @@
 	}
 	.Area_Select_Grupo {
 		width: 100%;
-		height: 65px;
+		height: 50px;
 		padding: 12px 0;
 	}
 
@@ -828,6 +828,10 @@ select::-ms-expand {
 	.Box_Area_Select { width: 293px; }
 
 	.Select_Grupo_Input { width: 172px;}
+
+	.Unico_Linha{
+		width: 902px;
+	}
 }
 
 /* Modais de edição */

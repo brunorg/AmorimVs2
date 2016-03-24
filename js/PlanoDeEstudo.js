@@ -209,7 +209,7 @@ $(document).ready(function() {
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']	
 	});
 	
-	$( "#data_fim" ).datepicker({
+	$("#data_fim").datepicker({
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
