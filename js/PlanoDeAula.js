@@ -70,8 +70,10 @@ $(document).ready(function() {
 
 	/*janelas no menu barra plano de estudo "historico e Novo"*/
 	$(".historico").click(function(){
+		debugger;
 		$("#box_novo").removeClass("exibir");
 		$("#box_historico").toggleClass("exibir");
+		// window.setTimeout(estilizarHistorico, 1);
 		$(".novo").removeClass("novo_ativo");
 		$(".novo").css("background-color",corForte);
 		$(".historico").toggleClass("historico_ativo");
@@ -173,7 +175,7 @@ $(document).ready(function() {
 		mensagem("Crie um plano de aula para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
 		return false;
 	});
-	$( "#data_inicio" ).datepicker({
+	$("#data_inicio").datepicker({
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
@@ -204,7 +206,7 @@ $(document).ready(function() {
 					 'SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO']
 	}).next(".ui-datepicker-trigger").css('background-color',corMedia);
 
-	$( "#data_fim" ).datepicker({
+	$("#data_fim").datepicker({
 		showOn: "button",
 		beforeShow: function () {
 			$("#box_novo").css("height", "285px");
@@ -609,4 +611,10 @@ function estilizarCalendario () {
 	$('div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr > td.ui-datepicker-week-end ').css('background-color', '#DDD8D8');
 	$('div#ui-datepicker-div .ui-datepicker-calendar > tbody > tr').css('background-color', corFraca);
 	$('div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
+	$('.ui-datepicker-today').css('background-color', corMedia);
 }
+
+// function estilizarHistorico(){
+// 	debugger;
+// 	$('.historico_mes').css('background-color', corForte);
+// }

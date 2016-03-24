@@ -359,6 +359,10 @@ $(document).ready(function(){
 		axis:"x",
 		mouseWheel:{ enable: false } // vertical and horizontal scrollbar
 	});
+
+	$(".Container_Professores").mCustomScrollbar({
+		axis:"y"
+	});
 		
 	$("#btn_fechar").click(function(){
 		$(".tela_over").hide();	

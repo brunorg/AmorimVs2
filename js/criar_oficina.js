@@ -149,7 +149,7 @@ function atribuiAddProfessor () {
 }
 
 function addLinhaProfessor () {
-    $(".Container_Professores").append(getNovaLinhaProfessor());
+    $(".ContainerExpandivel").append(getNovaLinhaProfessor());
     removeProfessores();
     addEventsSelect();
 }

@@ -239,15 +239,12 @@ $(document).ready(function() {
 		$("#box_novo").css("height", "285px");
 	});*/
 	$(".Conteudo_Coluna").scroll(function(){
-		console.log("Coluna");
 		$("#box_novo").removeClass("exibir");
 	});
 	$(".conteudo_plano").scroll(function(){
-		console.log("conteudo");
 		$("#box_novo").removeClass("exibir");
 	});
 	$(".Plano_Estudo_Content").scroll(function(){
-		console.log("Content");
 		$("#box_novo").removeClass("exibir");
 	});
 	
@@ -603,21 +600,19 @@ function InitSetPlanoEstudo()
 				var dataFinal = Date.UTC(data.dataFim.split('-')[0], data.dataFim.split('-')[1], data.dataFim.split('-')[2]);
 				
 				if (dataFinal < dataAtual){
-					console.log('DF Menor q a data atual. Não pode ter o link');
 					$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','#');
 					
 					if (confData == ''){
-						console.log('Prieira verificação!!');
+
 						$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').addClass('planoPassado');
 						confData = dataFinal;
 					}else {
-						console.log('Clicou em um plano do historico!!');
+
 						$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').removeClass('planoPassado');
 						
 					}
 					
 				}else{
-					console.log('Plano com a data OK');
 					confData = dataFinal;		
 					$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','roteirosPlanejamento.html');
 				}
@@ -816,8 +811,6 @@ function preencheData(dataInicio, dataFinal)
 	var dataAux = new Date(((dataInicio.split("-"))[0]), ( ( (dataInicio.split("-") ) [1] ) -1 ), ((dataInicio.split("-"))[2]));
 	var dataAuxFim = new Date(((dataFinal.split("-"))[0]), ( ( ( dataFinal.split("-" ) ) [1])-1), ((dataFinal.split("-"))[2]));
 	var contadorRegistros = 1;
-	
-	console.log(dataAux, dataAuxFim, IdentificadorPlanoEstudo, alunoID);
 
 	callRegistroHtml(dataAux, dataAuxFim, IdentificadorPlanoEstudo, alunoID);			
 
