@@ -17,6 +17,7 @@ $(document).ready(function(){
 		if(abaClicada.id=="cabecalho_pesquisaOficial"){
 			carregaRoteiroPesquisa();
 		}else if(abaClicada.id=="cabecalho_pesquisa"){
+			$("#pesquisaRoteiro").val("");
 			carregaRoteiro();
 		}else{
 			$('.linha4').hide();
