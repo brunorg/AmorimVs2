@@ -1213,7 +1213,8 @@ function verificaData(dataBr){
 }
 
 function verificarAtribuirRoteirosPassados () {
-	if (JSON.parse(localStorage.getItem("objetoAlunoVariavel")).verificarRoteiros > 0){
+	if (if (JSON.parse(localStorage.getItem("objetoUsuario").aluno != null) && 
+			JSON.parse(localStorage.getItem("objetoAlunoVariavel")).verificarRoteiros > 0)){
 		$.ajax({
 			url: path + "AtribuicaoRoteiroExtra/AtribuirRoteirosIncompletosAnoAnterior/" + localStorage.getItem("alunoId"),
 			async: false,
