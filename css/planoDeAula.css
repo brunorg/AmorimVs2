@@ -781,8 +781,9 @@ li.bloco_historico p:nth-child(odd){
 li.bloco_historico p:nth-child(even){
 	background-color: #faeac2;
 }
+
 .historico_mes{
-	background-color: #f7941e !important;
+	background-color: #f7941e;
 	color: #FFFFFF !important;
 	margin: 0;
 	text-align: center;

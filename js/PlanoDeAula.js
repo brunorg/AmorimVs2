@@ -78,10 +78,14 @@ $(document).ready(function() {
 		$(".novo").css("background-color",corForte);
 		$(".historico").toggleClass("historico_ativo");
 
-		if ($(".historico").hasClass("historico_ativo"))
+		if ($(".historico").hasClass("historico_ativo")){
 			$(".historico").css("background-color",corMedia);
-		else
+			$(".historico_mes").css("background-color",corMedia);
+			$(".bjqs-prev").find("a").css("background-color", corForte);
+			$(".bjqs-next").find("a").css("background-color", corForte);
+		}else{
 			$(".historico").css("background-color",corForte);
+		}
 	});
 
 	$(".novo").click(function(){
