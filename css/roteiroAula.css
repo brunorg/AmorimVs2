@@ -404,17 +404,15 @@ div.item:nth-child(even){
     }
     .Btn_Editar_Obj { 
         background-image: url(../img/ic_editar_peq.png);
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 34px;
-    position: relative;
-    left: -6px;
-    display: inline-block;
-    width: 33px;
-    height: 34px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    background-position: 7px 5px;
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 34px;
+        position: relative;
+        display: inline-block;
+        width: 35px;
+        height: 34px;
+        background-repeat: no-repeat;
+        cursor: pointer;
     }
     .Btn_AddAtv_Obj { 
         background-image: url(../img/iic_add_peq.png);

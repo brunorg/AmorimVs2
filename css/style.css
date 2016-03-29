@@ -192,7 +192,7 @@ html, body
 
 				.label {
 					position: absolute;
-				    width: 20px;
+				    width: 23px;
 				    height: 20px;
 				    left: 35px;
 				    top: 5px;
@@ -202,7 +202,7 @@ html, body
 				    letter-spacing: .5px;
 				    text-align: center;
 				    line-height: 10px;
-				  	padding: 4.5px;
+				  	padding: 3.5px;
 				    border-radius: 50%;
 				}
 

@@ -390,12 +390,7 @@ function change_Curtir(QAtivo,idRecurso){
 		async:false,
 		crossDomain: true,
 		dataType: 'json',
-		data: "action=update",
-		success: function(d) {
-			dataMensagens 	=	getData("Mensagens", null);
-		},error: function() {
-			
-		}
+		data: "action=update"
    	}); 
 }
 
