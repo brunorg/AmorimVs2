@@ -415,9 +415,8 @@ function MostrarMensagem(idMensagem){
 		async:false,
 		crossDomain: true,
 		//url: path+ "Mensagens/MensagemByUser/"+userID+"/"+idMensagem,
-		url: path+ "Mensagens/emailHashId/"+idMensagem,
-		success: function(dataMensagens){		
-
+		url: path+ "Mensagens/emailHashId/"+idMensagem,		
+		success: function(dataMensagens){			
 			$('#Col_Mensagem #Mensagem_wrapper #mensagem_remetente').html(dataMensagens[0].remetente_nome);
 
 			$('#Col_Mensagem #Mensagem_wrapper #mensagem_destinatario').html(getNomeByIdsUsuario(dataMensagens[0].IdDestinatarios,0));

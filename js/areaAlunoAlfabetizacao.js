@@ -318,16 +318,19 @@ $(document).ready(function() {
 			});
 		} else {
 
-			$.ajax({
-				url: path + "Blog/BlogTutoria/" + JSON.parse(localStorage.getItem('objetoAlunoVariavel')).grupo.tutoria.tutor.idprofessorFuncionario,
-				async: false,
-				type: "GET",
-				crossDomain: true,
-				//beforeSend: function() 			{ loading("inicial"); },
-				success: 	function(data) 		{ retorno = data; }
-				//complete: 	function() 			{ loading("final"); }
-			});
-
+			if(JSON.parse(localStorage.getItem('objetoAlunoVariavel')).grupo != null){
+				$.ajax({
+					url: path + "Blog/BlogTutoria/" + JSON.parse(localStorage.getItem('objetoAlunoVariavel')).grupo.tutoria.tutor.idprofessorFuncionario,
+					async: false,
+					type: "GET",
+					crossDomain: true,
+					//beforeSend: function() 			{ loading("inicial"); },
+					success: 	function(data) 		{ retorno = data; }
+					//complete: 	function() 			{ loading("final"); }
+				});
+			} else {
+				retorno = [];
+			} 
 		}
 
 		return retorno;
@@ -565,8 +568,6 @@ $(document).ready(function() {
 		var tipo = (campo == "aba_tutoria" ? 0:1);
 
 		var result = getBlogPostagensPorOficina(tipo, categorias[campo]);
-		console.log(campo, tipo, categorias[campo],result);
-
 
 		var html = "";
 
@@ -1051,8 +1052,6 @@ $(document).ready(function() {
 		{
 			destinatarios += "&destinatarios="+valores;
 		}
-
-		console.log("id=0&action=create&lida=1&remetente="+usuarioId+"&assunto="+$('#frm_Envia_Mensagens #assunto_mensagem').val()+""+destinatarios+"&mensagem="+$('#frm_Envia_Mensagens #conteudo_mensagem').val());
 
 		if($('#conteudo_mensagem').val() != "" && $('#assunto_mensagem').val() != "" && $("#frm_Envia_Mensagens #destinatarios :selected").length > 0)
 		{
