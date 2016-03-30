@@ -7,8 +7,7 @@ var idAgrup = "";
 var idOficina = "";
 var idAlunoV = "";
 var alunosId = [];
-
-$(document).ready(function() {	
+$(document).ready(function() {
 	carregaOficineiros();
 	carregaTutores();
 	pesquisaGrupoAluno();
@@ -332,7 +331,7 @@ function pesquisarAlunoTutoria(){
 	$.ajax({
 		url: path  + urlBusca,
 		type: "GET",
-		aync: false,
+		async: false,
 		crossDomain: true,
 		success: function(dataAluno){
 			for(var i = 0; i < dataAluno.length; i++){

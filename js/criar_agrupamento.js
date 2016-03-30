@@ -8,6 +8,14 @@ $(document).ready(function(){
     atribuiChange();
     atribuiFuncoesRolagem();
     salvarAgrupamento();
+
+    $("#txtPesqAgrup").keyup(function(){
+        window.clearTimeout(timeHandler);
+        timeHandler = window.setTimeout(function(){
+            resetArea();
+            carregaAlunos();
+        },1000);
+    });
 });
 
 function carregaCiclo(){
@@ -48,24 +56,48 @@ function atribuiChange() {
 
     $("#cicloGrupo").change(function () {
         resetArea();
+        $("#txtPesqAgrup").val("");
         carregaAlunos();
     });
 
     $("#periodoGrupo").change(function () {
         resetArea();
+        $("#txtPesqAgrup").val("");
         carregaAlunos();
     });
     
 }
 
 function carregaAlunos(){
+    var urlServico = "";
+    var html = "";
+    var idCiclo = $("#cicloGrupo").val();
+    var idPeriodo = $("#periodoGrupo").val();
+    var nmAluno = $("#txtPesqAgrup").val();
 
-    if ($("#cicloGrupo").val() != '0' && $("#periodoGrupo").val() != '0')
-        buscarCicloPeriodo();
-    else if ($("#cicloGrupo").val() != '0')
-        buscarCiclo();
+    if (idCiclo != '0' && idPeriodo != '0') 
+        urlServico = "AlunoVariavel/listarCicloPeriodoRange/" + idCiclo + "/" + idPeriodo + "/" + contAlunos * 20 + "/19";
+    else if (idCiclo != '0')
+        urlServico = "AlunoVariavel/listarCicloRange/" + idCiclo + "/" + contAlunos * 20 + "/19";
     else
-        buscarPeriodo();
+        urlServico = "AlunoVariavel/listarPeriodoRange/" + idPeriodo + "/" + contAlunos * 20 + "/19";
+
+    if(nmAluno != "")
+        urlServico = "AlunoVariavel/buscarAgrupamentoHtml/" + nmAluno;
+    $.ajax({
+        url: path + urlServico,
+        type: "GET",
+        aync: false,
+        crossDomain: true,
+        dataType: "html",
+        success: function(dataAluno){
+            if(dataAluno == "")
+                acabouDeCarregar = true;
+            else
+                $("#Area_Alunos").append(dataAluno);
+            contAlunos++;
+        }
+    });
 }
 
 function resetArea () {
@@ -74,63 +106,12 @@ function resetArea () {
     $('#Area_Alunos').empty();
 }
 
-function buscarCicloPeriodo () {
-    $.ajax({
-        url: path + "AlunoVariavel/listarCicloPeriodoRange/" + $("#cicloGrupo").val() + "/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
-        type: "GET",
-        async: false,
-        crossDomain: true,
-        dataType: 'html',
-        success: function(dataAlunos) {
-            if (dataAlunos == '')
-                acabouDeCarregar = true;
-            else
-                $('#Area_Alunos').append(dataAlunos);
-            contAlunos++;
-        }
-    });
-}
-
-function buscarCiclo () {
-    $.ajax({
-        url: path + "AlunoVariavel/listarCicloRange/" + $("#cicloGrupo").val() + "/" + contAlunos * 20 + "/19",
-        type: "GET",
-        async: false,
-        crossDomain: true,
-        dataType: 'html',
-        success: function(dataAlunos) {
-            if (dataAlunos == '')
-                acabouDeCarregar = true;
-            else
-                $('#Area_Alunos').append(dataAlunos);
-            contAlunos++;
-        }
-    });
-}
-
-function buscarPeriodo () {
-    $.ajax({
-        url: path + "AlunoVariavel/listarPeriodoRange/" + $("#periodoGrupo").val() + "/" + contAlunos * 20 + "/19",
-        type: "GET",
-        async: false,
-        crossDomain: true,
-        dataType: 'html',
-        success: function(dataAlunos) {
-            if (dataAlunos == '')
-                acabouDeCarregar = true;
-            else
-                $('#Area_Alunos').append(dataAlunos);
-            contAlunos++;
-        }
-    });
-}
-
 function atribuiFuncoesRolagem () {
     $(".Area_Alunos_Container").mCustomScrollbar({
         axis:"y", // vertical and horizontal scrollbar
-        scrollButtons:{
-            enable:true
-        },
+        // scrollButtons:{
+        //     enable:true
+        // },
         callbacks:{
             alwaysTriggerOffsets: false,
             onTotalScrollOffset: 500,
