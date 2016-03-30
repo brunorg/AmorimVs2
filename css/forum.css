@@ -18,6 +18,7 @@ a.barra_titulo{
 	text-transform:uppercase;
 	color:#666;
 	font-size:15px;
+	font-weight: bold;
 }
 .btn_topico{
 	float: right;
@@ -32,6 +33,7 @@ a.barra_titulo{
 	background: #d7d5ea;
 	padding-left: 20px;
 	position:relative;
+	text-decoration: none;
 }
 .aparecer{
 	display:block;
@@ -56,6 +58,7 @@ a.barra_titulo{
 }
 .direita2{
 	float: right;
+	font-weight: bold;
 	/* margin-right: 43px; */
 }
 .esquerda {
@@ -69,7 +72,7 @@ a.barra_titulo{
 .info_secao_forum{
 	font-size: 12px;
 	text-transform: lowercase;
-	margin: 38px -13px 0px 35px;
+	margin: 38px -13px 0px 57px;
 	width: 95%;
 	display:none;
 }
@@ -88,7 +91,7 @@ a.barra_titulo{
 	text-transform: lowercase;
 	width: 100%;
 	background-color: #f4f3f9;
-	min-height: 36px;
+	height: 40px;
 }
 
 .info_secao_forum_div:nth-child(even){
@@ -96,7 +99,7 @@ a.barra_titulo{
 	text-transform: lowercase;
 	width: 100%;
 	background-color: #e5e4f1;
-	min-height: 36px;
+	height: 40px;
 }
 
 .FontSize14
@@ -117,7 +120,7 @@ a.barra_titulo{
 .infoPes{
 	width: 45%;
 	height: 39px;
-	background-color: #E1DFF5;
+	background-color: #e6e6e6;
 	text-align: right;
 	float: left;
 	color: #666;
@@ -162,7 +165,7 @@ select{
 }
 
 .infoG{
-	background-color: #E1DFF5;
+	background-color: #e6e6e6;
 	border:none;
 	color: #666;
 	padding:10px;
@@ -180,7 +183,7 @@ select{
 }
 
 #linha8 {
-	bottom: 0px;
+	margin-right:17px;
 }
 
 input{
