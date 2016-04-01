@@ -853,8 +853,6 @@ function callRegistroHtml(PrimeiraData, SegundaData, IdentificadorPlano, Identif
 					PermitidoSalvarRegistro=true;
 					Salvo = true;
 				}*/
-
-				console.log("oi");
 					
 				/*var DataCampoDia = parseInt(dataRegistroDiario[a].data.substring(8));
 				var DataCampoMes = parseInt(dataRegistroDiario[a].data.substring(5,7));
@@ -1213,7 +1211,7 @@ function verificaData(dataBr){
 }
 
 function verificarAtribuirRoteirosPassados () {
-	if (if (JSON.parse(localStorage.getItem("objetoUsuario").aluno != null) && 
+	if ((JSON.parse(localStorage.getItem("objetoUsuario").aluno != null) && 
 			JSON.parse(localStorage.getItem("objetoAlunoVariavel")).verificarRoteiros > 0)){
 		$.ajax({
 			url: path + "AtribuicaoRoteiroExtra/AtribuirRoteirosIncompletosAnoAnterior/" + localStorage.getItem("alunoId"),

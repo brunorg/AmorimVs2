@@ -910,7 +910,6 @@ function confereLinhasObj() {
 
 // Inserir Objetivo
 function inserirObjetivoAtividade(){
-	
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
 	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
 	
@@ -929,7 +928,7 @@ function inserirObjetivoAtividade(){
 		
 			$('.Atividade_Linha').eq(i).hide();//apenas escondo a div para depois excluir. Excluir agora atrapalha o resultado do for  
 		
-		}else{	//Veriica se um cmapo esta em vazio de forma incorreta. 
+		}else{	//Veriica se um campo esta em vazio de forma incorreta. 
 			if($(".nomeAtv").eq(i).val() == "" || $(".livroAtv").eq(i).val() == "" || $(".paginaAtv").eq(i).val() == ""){
 				erroAtv = true;
 			}

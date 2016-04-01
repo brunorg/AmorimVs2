@@ -8,12 +8,12 @@ html, body
 table.tabela_oficinas{
 	width:100%;
 	border-collapse: collapse;
+	table-layout:fixed;
 }
 tr.linha_abas{	
 	background:#bfbda9;
 }
 td.aba_oficina{
-	width:122px; 
 	font-size:13px;
 	padding:0;
 	height: 53px;
@@ -23,6 +23,9 @@ td.aba_oficina{
 	position: relative;
 	cursor: pointer;
 	border-right: 2px solid #fff;
+	width: 79px;
+    display: block;
+    float: left;
 }
 td.aba_oficina:last-child {
 	border-right: none;

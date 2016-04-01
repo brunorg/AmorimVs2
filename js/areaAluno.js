@@ -358,7 +358,6 @@ function CarregarRotina() {
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
             })
-			console.log(result);
 			result.forEach(function(rotina){
 				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.tipoOficina.nome)
 				$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
