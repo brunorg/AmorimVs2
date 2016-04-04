@@ -21,6 +21,7 @@ function getOficinasAluno(idalunoVariavel) {
 
 	return retorno;
 }
+
 function getBlogPostagensPorOficina(idoficina) {
 	var retorno;
 
@@ -36,6 +37,7 @@ function getBlogPostagensPorOficina(idoficina) {
 
 	return retorno;
 }
+
 function getRoteirosPorOficinaData(idoficina) {
 	var retorno;
 	var d = new Date();

@@ -85,7 +85,7 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.menuHTML = [
 					{label: 'Plano de Estudo', href: m+'planoDeEstudo.html',class: 'plano'},
 					{label: 'Recursos de aprendizagem', href: m+'recursosAprendizagem.html', class: 'recurso rows2'},
-					{label: 'Tutoria', href: m+'tutoriaAluno.html', class: 'tutoria inativo'},
+					{label: 'Tutoria', href: m+'blogTutoria.html', class: 'tutoria'},
 					{label: 'Oficinas', href: m+'oficinas.html', class: 'oficinas'},
 					{label: 'Produção do Aluno', href: m+'producaoAluno.html', class: 'prodAluno'},
 					{label: 'Mensagens', href: m+'mensagens.html', class: 'mensagens'},
