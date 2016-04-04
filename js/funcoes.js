@@ -37,6 +37,8 @@ $(document).ready(function(){
 
 		var classe = teste.split(" ");
 
+		console.log(classe);
+
 		$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
 		
 	},500);

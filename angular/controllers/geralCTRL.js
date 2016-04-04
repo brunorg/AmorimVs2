@@ -131,12 +131,12 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.oficina   = oficinaAtivaP;
 
 				$scope.menuHTML = [
-					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'mn_professor plano '+inativo},
-					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'mn_professor recurso rows2'},
-					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'mn_professor roteiros '+inativo},
-					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'mn_professor tutores'},
-					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'mn_professor oficinas '+inativo},
-					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'mn_professor jeiff'},
+					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano mn_professor '+inativo},
+					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso mn_professor rows2'},
+					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'roteiros mn_professor '+inativo},
+					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'tutores mn_professor'},
+					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'oficinas mn_professor '+inativo},
+					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'jeiff mn_professor'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: 'forum.html', class: 'forum'}
 				];
