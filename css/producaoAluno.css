@@ -84,9 +84,14 @@
 			estiver ativo: background-color: #D6E5A9
 		*/
 		#menu_lateral_oficinas {
-			width: 150px;
+			width: 100%;
 			display: inline-block;
 			float: left;
+		}
+		#Prod_Oficina_Acordeon {
+			width: 150px;
+			height: 460px;
+			overflow: hidden;
 		}
 		.Prod_Oficina_Nome {
 		    min-height: 30px;
@@ -105,6 +110,9 @@
         }
 		.Prod_Aluno_Content_Item {
 			height: 100%;
+		}
+		#Oficinas {
+			position: relative;
 		}
 
 		.itemExpandido > .Prod_Oficina_Nome {
@@ -272,7 +280,8 @@
 			width: 755px;
 			background-color: #fff;
 			padding: 15px;
-			display: inline-block;
+			position: absolute;
+			left: 150px;
 		}
 
 		.Prod_Oficina_Conteudo {
