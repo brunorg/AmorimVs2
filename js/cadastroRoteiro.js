@@ -292,7 +292,7 @@ $(document).ready(function(){
 						'</div>'+
 					'</div>'+												
 				'</div>'+
-				'<div class="btn_mensagemCad" style="margin: 66px 199px">'+
+				'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 					'<input type="button" class="bt_ok left" value="OK" onclick="criarObjetivoExtra()"/>'+
 					'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 				'</div>'+
@@ -345,7 +345,7 @@ $(document).ready(function(){
 								'</div>'+
 							'</div>'+												
 						'</div>'+
-						'<div class="btn_mensagemCad" style="margin: 66px 199px">'+
+						'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiroLista('+idRoteiro+')"/>'+
 							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 						'</div>'+
@@ -477,23 +477,20 @@ $(document).ready(function(){
 						'<div class="celulaPequena rightMargin">'+
 							'<div class="infoP"> Ano estudo </div>'+
 							'<div class="infoValueP">'+
-								'<div class="anoEstudoValor styled-select" >'+
+								'<div class="anoEstudoValor" >'+
 									//'<input value="'+ano+'" type="text" class="anoEstudo" readonly id="ano_'+data[i].idalunoVariavel+'" value="" >'+
-									'<select class="anoEstudo" name="ano_'+data[i].idalunoVariavel+'" id="ano_'+data[i].idalunoVariavel+'" onchange="listaRoteiroMultiplaEscolhas(\'ano_'+data[i].idalunoVariavel+'\',\'roteiro_'+data[i].idalunoVariavel+'\',\''+data[i].aluno.idAluno+'\')"></select>'+
+									'<select class="anoEstudo Input_Area" name="ano_'+data[i].idalunoVariavel+'" id="ano_'+data[i].idalunoVariavel+'" onchange="listaRoteiroMultiplaEscolhas(\'ano_'+data[i].idalunoVariavel+'\',\'roteiro_'+data[i].idalunoVariavel+'\',\''+data[i].aluno.idAluno+'\')"></select>'+
 								'</div>'+
 							'</div>'+
 						'</div>'+                   
 						'<div class="celulaMedia">'+
 							'<div class="infoM"> Motivo </div>'+
 							'<div class="infoValueM">'+
-								'<input type="text" class="" name="motivo'+data[i].idalunoVariavel+'" id="motivo'+data[i].idalunoVariavel+'" >'+
+								'<input type="text" class="Input_Area" name="motivo'+data[i].idalunoVariavel+'" id="motivo'+data[i].idalunoVariavel+'" >'+
 							'</div>'+
 						'</div>'+
-						'<div class="celulaGrande">'+
-							'<div class="infoP" style="width: 14.5%"> Roteiro </div>'+
-							'<div class="infoValueG">'+
-								'<div id="roteiro_'+data[i].idalunoVariavel+'">'+
-							'</div>'+
+						'<div class="celulaGrande roteiroLista">'+
+							'<div id="roteiro_'+data[i].idalunoVariavel+'">'+
 						'</div>'+
 					'</div>'+
 						//Botão enviar carrega o id do aluno variavel, id do aluno e o id do ano letivo
@@ -664,7 +661,7 @@ function botaoEditarRoteiro(){
 								'</div>'+
 							'</div>'+												
 						'</div>'+
-						'<div class="btn_mensagemCad" style="margin: 66px 199px">'+
+						'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiro('+idRoteiro+')"/>'+
 							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 						'</div>'+
@@ -693,6 +690,8 @@ function botaoEditarRoteiro(){
 
 function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	
+	$('.roteiroLista').css('display','block');
+
 	//Retira ano_ da variavel 'anoEstudo' e coloca lista_combo_
 	var idCombo =  "lista_combo_"+anoEstudo.substring(4);
 
@@ -701,21 +700,13 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	
 	//Busca os roteiros que podem ser atribuidos ao aluno (apenas os roteiros do ano seguinte)
 	var dataRoteiroAno = getData("Roteiro/RoteiroAno", anoEstudo);
-	
-	//Cria o Html com os selects
-	HtmlContentR = '<div class="multiselect">';
-	HtmlContentR += '<div class="selectBox  styled-select" onclick="showCheckboxes(\'check_'+comboRoteiro+'\')" name="ok">';
-	HtmlContentR += '<select>'
-	HtmlContentR += '<option>Selecione um roteiro</option>';
-	HtmlContentR += '</select>';
-	HtmlContentR += '<div class="overSelect"></div>';
-	HtmlContentR += '</div>';
-	HtmlContentR += '<div class="checkboxes check_'+comboRoteiro+'">';
-
-	//variavel para contar quantos roteiros estão disponiveis
 	var cont = 0;
 
-	//Passa por todos os roteiros...
+	//Cria o Html com os selects
+	HtmlContentR = '<div class="multiselect">';
+	HtmlContentR += '<div class="selectBox" onclick="showCheckboxes(\'check_'+comboRoteiro+'\')" name="ok">';
+	HtmlContentR += '<div class="boxNomes">'
+	//Passa por todos os roteiros...	
 	for(var a=0;a<dataRoteiroAno.length; a++){
 		//e verifica se não está atribuido ao aluno
 		if(VerificaAtribuicaoRoteiroExtra(idAluno, dataRoteiroAno[a].idroteiro)==0){
@@ -723,8 +714,15 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 			HtmlContentR += '<label class="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'" for="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'"><input type="checkbox" id="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'" name="'+dataRoteiroAno[a].idroteiro+'" class="op op_'+comboRoteiro+'" />'+dataRoteiroAno[a].nome+'</label>';
 			cont++;
 		}
-	}
+	}	
+	HtmlContentR += '</div>';
+	HtmlContentR += '<div class="overSelect"></div>';
+	HtmlContentR += '</div>';
+	HtmlContentR += '<div class="checkboxes check_'+comboRoteiro+'">';
+
+	//variavel para contar quantos roteiros estão disponiveis
 	
+
 	HtmlContentR += '</div>';
 	HtmlContentR += '</div>';
 	if (cont > 0){

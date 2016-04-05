@@ -802,13 +802,17 @@ function CarregarRotina() {
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
-            })
+            });
 
             result.forEach(function(rotina){
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.nome)
+
+                var nomeOficina = rotina.oficina.nome;
+                nomeOficina = nomeOficina.split('-');
+
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(nomeOficina[0].trim())
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
 
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento+'-'+nomeOficina[1].trim())
 
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)

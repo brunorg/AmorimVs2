@@ -157,7 +157,7 @@
 			display:none;
 		}
 		#conteudo_principal_roteiroExtra{
-			width:98%;
+			width:100%;
 		}		
 		.ambasMargin{
 			margin: 0 0.5%;
@@ -828,8 +828,12 @@
 }
 /*Lista atribuir roteiro*/
 .lista_combo{
-	display:none;	
+	display:none;
+    height: 137px;
+    width: 98.5%;
+    padding: 45px 0 0 21px;
 }
+
 #pesquisaAluno{
 	background-color: white;
 	border: 1px solid lightgrey;
@@ -853,4 +857,17 @@ label{
 
 label > input{
 	width:25px;
+}
+
+.btnAtribuirRoteiro{
+	margin: 6px 0px 10px 34px;
+}
+
+.roteiroLista{
+	display: none;
+	margin-top: 0.5%;
+}
+
+.boxNomes{
+	padding: 10px 8px;
 }
