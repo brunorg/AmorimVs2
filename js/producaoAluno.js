@@ -46,7 +46,8 @@ var tipoSelecao = GetURLParameter('tipoProducao');
 
 $(document).ready(function(){
 	//carregaCategoria(); <<<<----- Será implementado
-	
+
+	$("#Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
 
 	//----------------------------------------------------------
 
@@ -524,7 +525,7 @@ function showAcordeonOficinas() {
 			'</div>';
 	}
 
-	$('#Prod_Oficina_Acordeon').prepend(acordeonHtml);
+	$('#Prod_Oficina_Acordeon_Itens').prepend(acordeonHtml);
 }
 function showOficinaContent(id) {
 	if ( ! $('#oficina'+id).hasClass('atividadesListadas') ) {
