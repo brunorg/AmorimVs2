@@ -36,6 +36,7 @@ html, body
 		font-size: 18px;
 		color:#fff;
 		background-color: rgba(22, 190, 207, 36);
+		position: relative;
 	}
 
 	#Cabecalho_Menu_Area a{
@@ -1287,8 +1288,8 @@ font-family: "proxima-nova",sans-serif;
     background: #FFFFFF;
     border: 1px solid rgba(22, 190, 207, 36);
     border-top: 0;
-    right: 22.8%;   
-    top: 36px;
+    right: 21.6%;   
+    top: 24px;
     padding: 5px;
 	display:none;
 }
@@ -1591,7 +1592,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 
 	#Cabecalho_Menu_Area_Menu2{
-		width: 302px !important;
+		width: 175px !important;
 	}
 	.visivel{
 		display: block !important;
@@ -1645,7 +1646,7 @@ font-family: "proxima-nova",sans-serif;
 		background-color: #16BECF;
 	}
 	#Cabecalho_Menu_Area_Menu1,#Cabecalho_Menu_Area_Menu2,#Cabecalho_Menu_Trocar_Oficina{
-		width:340px;
+		width:402px;
 		height:24px;
 		padding-top: 3px;
 	}
@@ -2656,7 +2657,7 @@ font-family: "proxima-nova",sans-serif;
 	    background: #FFFFFF;
 	    border: 1px solid rgba(22, 190, 207, 36);
 	    border-top: 0;
-	    right: 35.7%;
+	    right: 21%;
 	    top: 36px;
 	    padding: 5px;
 	    display: none;
