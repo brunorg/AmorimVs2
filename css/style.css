@@ -2056,6 +2056,8 @@ font-family: "proxima-nova",sans-serif;
 		margin-right: 1px;
 		background-color: #02818D;
 		float: left;
+		font-size: 17px;
+		font-weight:600;
 	}
 	.visivel{
 		display: block !important;
@@ -2340,6 +2342,10 @@ font-family: "proxima-nova",sans-serif;
 		-khtml-background-size: 20% auto;
 		-moz-background-size: 20% auto;
 	}	
+
+	.Content_lateral_Menu_Opcao > span{
+		display:none;
+	}
 	#menuCalendario{
 		display:block;	
 	}

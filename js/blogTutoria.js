@@ -65,3 +65,25 @@ function getBlogPostagensPorTutoria(idProfessor){
 	return retorno;
 }
 
+function requestImagemPorPostagem(idpostagem) {
+	var imagem = getImagemPorPostagem(idpostagem);
+	var htmlImagem = new String();
+
+	if (imagem.length) { htmlImagem += "<img src=\""+imagem+"\" class=\"img_postagem\" />"; }
+
+	return htmlImagem;
+}
+
+function getImagemPorPostagem(idpostagem) {
+	var retorno;
+
+	$.ajax({
+		url: path + "Blog/ImagemMed/" + idpostagem,
+		type: "GET",
+		async: false,
+		crossDomain: true,
+		success: function(dImagem) { retorno = dImagem; }
+	});
+
+	return retorno;
+}
