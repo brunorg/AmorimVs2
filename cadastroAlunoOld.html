@@ -1,10 +1,6 @@
 <script src="js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/cadastroAluno.js"></script>
-
-<link rel="stylesheet" type="text/css" href="css/formularios.css" />
-
-
-
+<link rel="stylesheet" type="text/css" href="css/cadastroAluno.css" />
 <script src="js/jquery.maskedinput.js"></script>
 <script src="js/jquery.maskedinput.min.js"></script>
 
@@ -37,190 +33,177 @@
 			
 		if(($("#editar").val()!="")){			
 			listadados();		
-		}
+		}			
 	});	
 	
 </script>
 <form id="frmCadastroAluno">
-	<input type="hidden" name="action" id="action" value="create"/>
+	<div id="fecharAlter" onClick="fechaFormAtualizar()" style="float:right;cursor:pointer">
+    	<img src="img/fechar_box.png" width="39" height="33" alt=""/>
+    </div>
+    <input type="hidden" name="action" id="action" value="create"/>
 	<input type="hidden" name="editarId" id="editarId" value=""/>
 	<input type="hidden" name="necessidadeEspecial" id="necessidadeEspecial"  value=""/>
 	<input type="hidden" name="responsaveisResponsavel" id="responsaveisResponsavel" value=""/>
-
-	<div class="row row-2">
-	  <div class="col-pequena">
-	  	<p class="foto"></p>
-	  </div>
-
-	  <div class="col-grande margin-left">  	
-	  	<div class="row">
-		  <div class="col-media">
-		  	<div class="label-geral label-P">Matrícula</div>
-		  	<span class="inputContainer">
-		  		<input type="date" class="inputCalendario" id="dataMatricula" name="dataMatricula">
-		  	</span>
-		  </div>
-		  <div class="col-media margin-left">
-			<div class="label-geral label-P">RAE</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" name="">
-			</span>
-		  </div>
+	<div id="linha1" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP "> Matrícula </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<input type="date" id="dataMatricula" name="dataMatricula"></input>
+				</div>
+			</div>
 		</div>
-
-		<div class="row">
-		  <div class="col-media">
-			<div class="label-geral label-P">EOL</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="numeroEol" name="numeroEol" maxlength="45" title="Quantidade de caracteres permitidos: 45">
-			</span>
-		  </div>
-		  <div class="col-media margin-left">
-			<div class="label-geral label-P">Status</div>
-			<span class="inputContainer">
-				<select class="inputSelect" name="ativo" id="ativo">
-					<option value="s">Ativo</option>
-					<option value="n">Inativo</option>
-				</select>
-			</span>
-		  </div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP "> EOL </div>
+			<div class="infoValueP">
+				<input id="numeroEol" name="numeroEol" value="" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
+			</div>
 		</div>
-		
-		<div class="row">
-		  <div class="col-media">
-		  	<div class="label-geral label-Check">Necessidade especial</div>
-			<span class="inputContainer">				
-				<input class="inputCheck" name=""></input>
-			</span>
-		  </div>
-		</div>
-
-	  </div>
-	</div>
-
-	<div class="row">
-		<div class="col-grande">
-			<div class="label-geral label-P">Nome</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="nome" name="nome" maxlength="200" title="Quantidade de caracteres permitidos: 200">
-			</span>
-		</div>
-		<div class="col-pequena margin-left">
-			<div class="label-geral label-P">RA</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="numeroRA" name="numeroRA" maxlength="45" title="Quantidade de caracteres permitidos: 45">
-			</span>
+		<div class="celulaPequena">
+			<div class="infoP "> Status </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select name="ativo" id="ativo">
+						<option value="s">Ativo</option>
+						<option value="n">Inativo</option>
+					</select>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-pequena">
-			<div class="label-geral label-P">Celular</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="celular" name="celular">
-			</span>
+	<div id="linha5" class="linha">
+		<div class="celulaMedia rightMargin">
+			<div class="infoM"> Nome </div>
+			<div class="infoValueM">
+				<input id="nome" name="nome" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
 		</div>
-
-		<div class="col-grande margin-left">
-			<div class="label-geral label-P">Email</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="email" name="email" maxlength="100" title="Quantidade de caracteres permitidos: 100">
-			</span>
-		</div>		
+		<div class="celulaPequena">
+			<div class="infoP"> RA </div>
+			<div class="infoValueP">
+				<input id="numeroRA" name="numeroRA" value="" maxlength="45" title="Quantidade de caracteres permitidos: 45"/>
+			</div>
+		</div>
 	</div>
-  	<div class="row">
-	  <div class="col-pequena">
-	  	<div class="label-geral label-P">Sexo</div>
-	  		<span class="inputContainer">
-	  			<select class="inputSelect" id="sexo" name="sexo">
-					<option value=""></option>
-					<option value="m">Masculino</option>
-					<option value="f">Feminino</option>
-				</select>
-	  		</span>
-	  	</div>	  
-	  	<div class="col-pequena margin-dois-lados">
-	  		<div class="label-geral label-P">Nascimento</div>
-	  		<span class="inputContainer">
-	  			<input type="date" class="inputCalendario" id="dataNascimento" name="dataNascimento" onChange="dateAniversario();">
-	  		</span>
-	  	</div>
-	   	<div class="col-pequena">
-			<div class="label-geral label-P">Naturalidade</div>
-			<span class="inputContainer">
-				<input type="text" class="inputText" id="numeroEol" name="numeroEol" maxlength="45" title="Quantidade de caracteres permitidos: 45">
-			</span>
-		</div>	  
+	<div id="linha6" class="linha">
+		<div class="celulaPequena rightMargin">
+			<div class="infoP"> Celular </div>
+			<div class="infoValueP">
+				<input id="celular" name="celular" value=""></input>
+			</div>
+		</div>
+		<div class="celulaMedia">
+			<div class="infoM"> Email </div>
+			<div class="infoValueM">
+				<input id="email" name="email" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha7" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> Sexo </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="sexo" name="sexo">
+						<option value=""></option>
+						<option value="m">Masculino</option>
+						<option value="f">Feminino</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> Cor/Raça </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="etnia" name="etnia">
+						<option value=""></option>
+                        <option value="Amarela">Amarela</option>
+						<option value="Branca">Branca</option> 
+						<option value="Indígena">Indígena</option>
+						<option value="Parda">Parda</option>
+						<option value="Preta">Preta</option>
+						<option value="Não declarado">Não declarado</option>						
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaPequena">
+			<div class="infoP"> Nascimento </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<input type="date" id="dataNascimento" name="dataNascimento" onChange="dateAniversario();"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="linha9" class="linha">
+		<div class="celulaPequena">
+			<div class="infoP"> RG </div>
+			<div class="infoValueP">
+				<input id="rg" name="rg" value=""></input>
+			</div>
+		</div>
+		<div class="celulaPequena ambasMargin">
+			<div class="infoP"> CPF </div>
+			<div class="infoValueP">
+				<input id="cpf" name="cpf" value=""></input>
+			</div>
+		</div>
+	</div>
+	<div id="linha95" class="linha">
+		<div class="celulaMeio rightMargin">
+			<div class="infoP"> Naturalidade UF </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="naturalEstado" name="naturalEstado" onChange="selectCidade('naturalEstado','naturalCidade')"></select>
+				</div>
+			</div>
+		</div>
+		<div class="celulaMeio">
+			<div class="infoP"> Naturalidade Cidade </div>
+			<div class="infoValueP">
+				<div class="styled-select">
+					<select id="naturalCidade" name="naturalCidade"></select>
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>	
-	<div class="row">		
-		<div class="col-pequena margin-right">
-			<div class="label-geral label-P">UF</div>
-			<div class="inputContainer">
-				<select id="naturalEstado" class="inputSelect" name="naturalEstado" onChange="selectCidade('naturalEstado','naturalCidade')">
-					
-				</select>
-			</div>
-		</div>
-		<div class="col-grande">
-			<div class="label-geral label-P">Cidade</div>
-			<div class="inputContainer">
-				<select class="inputSelect" id="naturalCidade" name="naturalCidade"></select>
-			</div>
-		</div>
-	</div>	
-
-	<div class="row">
-		<div class="col-pequena">
-			<div class="label-geral label-P">Cor/Raça</div>
-			<span class="inputContainer">
-				<select class="inputSelect" id="etnia" name="etnia">
-					<option value=""></option>
-			        <option value="Amarela">Amarela</option>
-					<option value="Branca">Branca</option> 
-					<option value="Indígena">Indígena</option>
-					<option value="Parda">Parda</option>
-					<option value="Preta">Preta</option>
-				</select>
-			</span>
-		</div>
-
-		<div class="col-pequena margin-dois-lados">
-			<div class="label-geral label-P"> RG </div>
-			<div class="inputContainer">
-				<input class="inputText" id="rg" name="rg" value=""></input>
-			</div>
-		</div>
-
-		<div class="col-pequena">
-			<div class="label-geral label-P"> CPF </div>
-			<div class="inputContainer">
-				<input class="inputText" id="cpf" name="cpf" value=""></input>
+	<div id="linha20" class="linha">
+		<div class="celulaGrande">
+			<div class="infoG">Nome da Mãe</div>
+			<div class="infoValueG">
+				<input id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class=".col-unica">
-			<div class="label-geral label-P">Mãe</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+	<div id="linha24" class="linha">
+		<div class="celulaGrande">
+			<div class="infoG">Nome do Pai</div>
+			<div class="infoValueG">
+				<input id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class=".col-unica">
-			<div class="label-geral label-P">Pai</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
-			</div>
+	</div>		
+	<div id="linha8" class="linha">
+		<div id="L10L" class="celulaMeio">
+			<div class="infoP"> Necessidade especial </div>
+			<div class="infoValueMm"> Sim </div>
+			<div class="inputImg tipoP" onclick="reset(4);"> </div>
+			<input type="radio" name="enecessidadeEspecial" id="S" value="S">
+			<div class="infoValueMm"> Não </div>
+			<div class="inputImg tipoP" onclick="reset(4);"> </div>
+			<input type="radio" name="enecessidadeEspecial" id="N" value="N">
 		</div>
 	</div>
-
 	<div id="linha12" class="linha">
 		<div class="celulaMedia rightMargin">
-			<div class="label-geral label-P"> Endereço </div>
-			<div class="inputContainer">
-				<input class="inputText" id="endereco" name="endereco" value="" maxlength="250" title="Quantidade de caracteres permitidos: 250"></input>
+			<div class="infoM"> Endereço </div>
+			<div class="infoValueM">
+				<input id="endereco" name="endereco" value="" maxlength="250" title="Quantidade de caracteres permitidos: 250"></input>
 			</div>
 		</div>
 		<div class="celulaPequena">

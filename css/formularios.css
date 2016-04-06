@@ -1,0 +1,94 @@
+.row{width: 100%; height:40px; margin-bottom:4px;}
+.row-2{height: 130px;}
+.col-pequena{width:32.3%; float:left; overflow: hidden;}
+.col-p-pequena{width:12.3%; float:left; overflow: hidden;}
+.col-media{width: 48.8%;float: left; overflow: hidden;}
+.col-m-media{width: 38.8%;float: left; overflow: hidden;}
+.col-grande{width: 66%;float: left; overflow: hidden;}
+.col-unica{width: 100%;float: left; overflow: hidden;}
+
+.margin-left{margin-left:14px;}
+.margin-right{margin-right: 14px;}
+.margin-dois-lados{margin:0 14px;}
+
+.foto{
+	height:40px;
+}
+
+.label-geral{
+	background:#E8E8E3; 
+	height:40px; 
+	padding: 10px 14px 0; 
+	text-align: right; 
+	float:left;
+	color:#666;
+	font-size: 18px;	
+}
+
+.label-P{width: 120px;}
+.label-M{width: 735px;}
+.label-G{}
+.label-GG{}
+.label-Check{width: 86.9%;background: #FBF9F7; }
+
+.inputContainer{
+	height: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.inputCalendario{
+	width: 100%;
+	float: left;
+	height: 40px;
+	color: #666;
+	font-size: 18px;
+	text-transform: lowercase;
+	background: #FBF9F7;	
+    background: url(../img/select_calendario.png) no-repeat right rgb(250, 248, 246); 
+    background-color: rgb(250, 248, 246);
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+}
+.inputSelect{
+	width: 100%;
+	height:40px !important; 
+	float: left;
+	font-size: 18px;
+	color: #666;
+	background: #FBF9F7;
+    background: url(../img/select_seta.png) no-repeat right rgb(250, 248, 246) !important;
+    background-color: rgb(250, 248, 246);
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+}
+.inputSelectGrudado{
+	
+}
+.inputText{
+	width: 100%;
+	height:40px; 
+	float: left;
+	font-size: 18px;
+	padding: 13px 12px 10px !important;
+	color: #666;
+	background: #FBF9F7;
+}
+
+.inputCheck{
+	width: 40px;
+    height: 40px;
+    background: url(../img/checkbox.png) no-repeat;
+    float: left;
+    cursor: pointer;
+}
+
+.inputTextArea{}
+.inputButton{}
+
+.celulaMeio, .celulaMeioPs {
+    height: 40px !important;
+    color: #666;
+}

@@ -4,7 +4,7 @@
 	height: 513px;
 	padding:10px 0 10px 10px;
 	float:left;
-	background: #F1F211 !important;
+	background: #F1F1EC;
 }
 #abas_cadastro{
 	height: 50px;
@@ -308,7 +308,7 @@
 		background: #F1F1EC;
 	}
 	.abas {
-		width: 228.4px;
+		width: 232px;
 		background-color: #FBB040;
 		font-size: 20px;
 		color: white;

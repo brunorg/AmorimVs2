@@ -751,10 +751,10 @@ function listarEstadoCidade(id){
 		}).then(function(data) {
 			for(var f=0;f<data['estados'].length; f++)
 			{
-				HtmlContentEstados += "<option value='"+data['estados'][f].sigla+"'>"+data['estados'][f].nome+"</option>";
+				HtmlContentEstados += "<option value='"+data['estados'][f].sigla+"'>"+data['estados'][f].sigla+"</option>";
 			}
 		});
-	$("#"+id).html("<option></option>"+HtmlContentEstados);;
+	$("#"+id).html("<option>Selecione</option>"+HtmlContentEstados);;
 }
 
 function selectCidade(idEstado,idCidade){

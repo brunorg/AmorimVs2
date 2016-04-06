@@ -87,7 +87,7 @@
 	padding: 10px;
 }
 .inputImg{
-	width: 37.7px;
+	width: 37px;
 	height: 37px;
 	background: url(../img/radio-botao.png) no-repeat;
 	float: left;
@@ -155,33 +155,7 @@ input{
 	color: #666;
 }
 /* CSS do input tipo date*/
-input[type=date]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
-    color: #666;
-}
 
-input[type=date]{
-	padding: 8.9px;
-	color: #666;
-}
-
-input[type=submit], input[type=button]{
-	background-color: rgba(112, 160, 152, 1);
-	font-size:20px;
-	color:white;
-    cursor:pointer;
-}
-input[type=submit]:hover, input[type=button]:hover{
-	background-color: #02818D;
-	font-size:20px;
-	color:white;
-    cursor:pointer;
-}
-
-input[type=button]:disabled{
-	opacity: 0.6;
-}
 
 /* ---- FIM ---- */
 
@@ -279,7 +253,7 @@ select{
 }
 
 #OutroAluno{
-	width: 14%;
+	width: 15%;
 	background-color: rgb(250,248,246);
 	/* background: #F2F1ED; */
 	float: left;
@@ -609,9 +583,4 @@ select{
 	.psOpcao{
 		width: 14.9% !important;
 	}
-}
-
-#linha6{
-	width: 679px;
-	margin-left:130px;
 }
