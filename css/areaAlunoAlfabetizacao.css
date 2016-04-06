@@ -951,7 +951,7 @@ th.seta_proximo {
 #Menu_Superior_Nome_Aluno
 {
 	width:auto;
-	height:36px;
+	height: auto;
 	float: right;
     margin: 0 10px;
     cursor:pointer;
@@ -970,7 +970,7 @@ th.seta_proximo {
     border-width: medium 2px 2px;
     height: auto;
     position: relative;
-    right: -56.6%;
+    right: -23.6%;
     top: 24px;
     width: 170px;
     padding: 6px 8px;
@@ -985,7 +985,10 @@ th.seta_proximo {
 	color:#666766;
 	font-size: 12px;
 }
-
+#Menu_Dropdown_Lista_Aluno a:hover
+{
+	text-decoration: underline;
+}
 #Menu_Dropdown_Lista_Aluno hr
 {
 	background-color: #CCCCCC;
