@@ -39,6 +39,7 @@ function atribuirEventos () {
 }
 
 function verificarImagemTipoBlog(dados) {
+    debugger;
     if ( dados.imagem === "adicionar" && dados.tipo === "tutoria" )
 	    $("#conteudoPostagens").attr("class", "boxTextInput postagemTutoriaComImagem");
 	else if ( dados.imagem === "adicionar" && dados.tipo === "oficina" )
@@ -69,7 +70,6 @@ function carregaOficinaPostagens () {
 
             $('#oficinaSelecionada').change(function(){
                 var oficinaEscolhida = $('#oficinaSelecionada').val();
-
                 if (oficinaEscolhida != 0) {
                     $.ajax({
                         url: path + "Agrupamento/ListarPorOficina/" + oficinaEscolhida,
@@ -245,7 +245,7 @@ function removerImagemPostagem(id) {
             crossDomain: true,
             type: "GET",
             success: function(d) {
-                console.log("imagem deletadaf")
+                
             }
         });
 
@@ -262,8 +262,6 @@ function novaPostagem () {
 
     var lastValue = imagem.split('.').length - 1
     var fileIsImage = (imagem.split('.')[lastValue] == 'png' || imagem.split('.')[lastValue] == 'jpg' || imagem.split('.')[lastValue] == 'jpeg' || imagem.split('.')[lastValue] == 'gif' || imagem.split('.')[lastValue] == 'bmp')
-
-    console.log(imagem)
 
     if (conteudo != '' && titulo != '') {
         $("#postagemTitulo").val(titulo);
@@ -354,7 +352,6 @@ function carregaPostsBlog () {
 
 function addPost (post) {
     var htmlPosts = '';
-
     var id = post.idblog;
     var titulo = post.titulo;
     var corpo = post.descricao.split("\n");
@@ -393,8 +390,7 @@ function addPost (post) {
 }
 
 function editPost(id) {
-
-    removerImagemPostagem(id)
+    removerImagemPostagem(id);
 
     $("#postagensConteudo").hide();
     $("#novoPostagens").hide();
@@ -412,13 +408,16 @@ function editPost(id) {
                 $("#miniaturaDaFoto").show();
                 $("#arquivoUpload").show();
             }
+            if ($("#miniaturaDaFoto").css("display") == "none")
+                verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+            else
+                verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
         }
     });
 
     $("#conteudoPostagens").html($("#blogPostCorpo"+id).html());
     $("#selectOficina select").html($("#blogPostOficina"+id).html());
     $("#tituloPostagens").html($("#blogPostTitulo"+id).html());
-    //$("#postagemImagem").html("");
 
 
     $("#postagemAction").val("update")
