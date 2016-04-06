@@ -267,7 +267,7 @@ table#Rotina_Semanal_Tabela td:last-of-type, table#Rotina_Semanal_Tabela th:last
 	width: 56px;
 }
 
-tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
+tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; background-color: rgb(223,222,212); }
 
 .Rotina_Pesquisa { background-color: #1c828e; }
 
@@ -284,6 +284,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; }
 .Rotina_Semanal_Professor { background-color: rgba(255, 255, 255, .5); }
 
 .Rotina_Semanal_Local { background-color: rgba(255, 255, 255, .7); }
+
 
 /* MURAL */
 	#Mural {
