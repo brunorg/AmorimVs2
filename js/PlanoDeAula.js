@@ -54,7 +54,6 @@ $.ajax({
 //Carrega a funçao de Load do JQuery
 
 $(document).ready(function() {
-
 	if (planoAula.idplano_aula !== 0) { carregarPlano(); }
 
 	$("body").delegate(".planoPassado","click", function(){
@@ -70,7 +69,6 @@ $(document).ready(function() {
 
 	/*janelas no menu barra plano de estudo "historico e Novo"*/
 	$(".historico").click(function(){
-		debugger;
 		$("#box_novo").removeClass("exibir");
 		$("#box_historico").toggleClass("exibir");
 		// window.setTimeout(estilizarHistorico, 1);
