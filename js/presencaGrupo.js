@@ -158,7 +158,6 @@ function toggleDia() {
 }
 
 function atualizarGrupos(){
-    debugger;
     $.ajax({
         url: path + 'ProfessorFuncionario/ProfessorGrupo/' + professorId,
         async: false,
@@ -360,7 +359,12 @@ function enviarFaltas() {
         type: "POST",
         data: "stringfiedJson="+JSON.stringify(objetoASerEnviado),
         success: function(data){
-            // console.log("done");
+            if(data == 'Post Completo'){
+               mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso"); 
+           }else{
+                mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
+           }
+            
         }
     });
 

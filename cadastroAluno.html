@@ -199,58 +199,58 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class=".col-unica">
-			<div class="label-geral label-P">Mãe</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class=".col-unica">
-			<div class="label-geral label-P">Pai</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+	<div class="row-text-area">
+		<div class="col-unica">
+			<div class="label-geral label-textArea"> Observações </div>
+			<div id="inputContainerTextArea">
+				<textarea class="inputTextArea" id="" name="observacao" value=""></textarea>
 			</div>
 		</div>
 	</div>
 
-	<div id="linha12" class="linha">
-		<div class="celulaMedia rightMargin">
-			<div class="label-geral label-P"> Endereço </div>
+
+	<div class="row">
+		<div class="col-unica">
+			<div class="label-geral label-P">Logradouro</div>
 			<div class="inputContainer">
 				<input class="inputText" id="endereco" name="endereco" value="" maxlength="250" title="Quantidade de caracteres permitidos: 250"></input>
 			</div>
 		</div>
-		<div class="celulaPequena">
-			<div class="infoP"> País </div>
-			<div class="infoValueP">
-				<input id="naturalPais" name="naturalPais" maxlength="10" value="" title="Quantidade de caracteres permitidos: 10"></input>
+	</div>
+	<div class="row">
+		<div class="col-pequena">
+			<div class="label-geral label-P"> Número </div>
+			<div class="inputContainer">
+				<input class="inputText" id="numero" name="numero"  value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
+			</div>
+		</div>
+		<div class="col-pequena margin-dois-lados">
+			<div class="label-geral label-P"> Complem. </div>
+			<div class="inputContainer">
+				<input class="inputText" id="complemento" name="complemento" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
+			</div>
+		</div>
+		<div class="col-pequena">
+			<div class="label-geral label-P"> CEP </div>
+			<div class="inputContainer">
+				<input class="inputText" id="cep" name="cep" value=""></input>
 			</div>
 		</div>
 	</div>
-	<div id="linha13" class="linha">
-		<div class="celulaPequena">
-			<div class="infoP"> Número </div>
-			<div class="infoValueP">
-				<input id="numero" name="numero"  value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
-			</div>
-		</div>
-		<div class="celulaPequena ambasMargin">
-			<div class="infoP"> Complem. </div>
-			<div class="infoValueP">
-				<input id="complemento" name="complemento" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
-			</div>
-		</div>
-		<div class="celulaPequena">
-			<div class="infoP"> CEP </div>
-			<div class="infoValueP">
-				<input id="cep" name="cep" value=""></input>
-			</div>
+
+
+
+
+
+
+
+	<div class="celulaPequena">
+		<div class="infoP"> País </div>
+		<div class="infoValueP">
+			<input id="naturalPais" name="naturalPais" maxlength="10" value="" title="Quantidade de caracteres permitidos: 10"></input>
 		</div>
 	</div>
-	<div id="linha14" class="linha">
+	<div class="row">
 		<div class="celulaPequena">
 			<div class="infoP"> Bairro </div>
 			<div class="infoValueP">
@@ -274,6 +274,34 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+	<div class="row">
+		<div class="col-unica">
+			<div class="label-geral label-P">Mãe</div>
+			<div class="inputContainer">
+				<input class="inputText" id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-unica">
+			<div class="label-geral label-P">Pai</div>
+			<div class="inputContainer">
+				<input class="inputText" id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div>
+
+	
 	<div id="linha15" class="linha">
 		<div class="celulaGrande">
 			<div class="infoPRes"> Responsável </div>
@@ -620,15 +648,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="linha11" class="linha">
-		<div class="celulaGrande">
-			<div id="infoObs"> Observações </div>
-			<div id="infoValueObs">
-				<textarea id="observacao" name="observacao" value=""></textarea>
-			</div>
-		</div>
-	</div>
+	</div>	
 	<div id="linha31" class="linha">
 		<div class="celulaPequena btn_left">
 			<input type="button" class="btnSubmit" id="btnSubmit" name="btnSubmit" onClick="cadastraEditaAluno()" />
