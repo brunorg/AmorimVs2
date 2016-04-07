@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/cadastroProfessor.css">
+<link rel="stylesheet" href="css/formularios.css">
 <script src="js/cadastroProfessor.js"></script>
 
 <script type="text/javascript">
@@ -272,44 +273,44 @@ function DataHora(evento, objeto)
     <input type="hidden" id="foto_professor_funcionario" name="foto_professor_funcionario" value="1" />
     <!-- <input type="hidden" id="perfil" name="perfil" value="8" /> -->                            
  <!--    <input type="hidden" id="fotoProfessorFuncionario" name="fotoProfessorFuncionario" value="http://plataformaamorim.org/files/Masc.png" /> -->                          
-    <div id="linha2" class="linha">
-        <div class="celulaPequena">
-            <div class="infoP"> Status </div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select id="ativo" name="ativo">
-                        <option value="S">Ativo</option>
-                        <option value="N">Inativo</option>
-                    </select>
+    <div class="row row2">
+        <div class="col-pequena">
+            <p class="foto"> </p>
+        </div>
+        <div class="col-grande margin-left"> 
+            <div class="row">
+                <div class="col-media">
+                    <div class="label-geral label-P linha-dupla"> Inicio Escola </div>
+                    <span class="inputContainer">
+                        <input id="dataEntradaEscola" name="dataEntradaEscola" type="date" maxlength="10" size="10" onKeyPress="DataHora(event, this)" class="inputCalendario"></input>
+                    </span>
+                </div>
+                <div class="col-media margin-left">
+                    <div class="label-geral label-P linha-dupla"> Início PMSP </div>
+                    <span class="inputContainer">
+                       <input type="date" name="dataEntradaPrefeitura" id="dataEntradaPrefeitura" maxlength="10" size="10" onKeyPress="DataHora(event, this)" class="inputCalendario"></input> 
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-media">
+                    <div class="label-geral label-P linha-dupla"> <span id="QuinquenioNumber">1</span>º Quinquênio </div>
+                    <span class="inputContainer" id="btn_licenca_parent" style="background-color:white">
+                        <input type="button" id="btn_licenca" class="input_licenca_prof" value="licença &#x271a;"/>  
+                    </span>
+                </div>
+                <div class="col-media margin-left">
+                    <div class="label-geral label-P"> Status </div>
+                    <span class="inputContainer">
+                        <select class="inputSelect" id="ativo" name="ativo">
+                            <option value="S">Ativo</option>
+                            <option value="N">Inativo</option>
+                        </select>
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="celulaPequena ambasMargin">
-            <div class="infoP"> Início Escola</div>
-            <div class="infoValueP">
-                <div class="">
-                    <input id="dataEntradaEscola" name="dataEntradaEscola" type="text" maxlength="10" size="10" onKeyPress="DataHora(event, this)"></input>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="linha2" class="linha">
-        <div class="celulaPequena">       
-            <div class="infoP colunaBranca_Esquerda"> Início PMSP </div>
-            <div class="infoValueP">
-                <div class="">
-                    <input type="text" name="dataEntradaPrefeitura" id="dataEntradaPrefeitura" maxlength="10" size="10" onKeyPress="DataHora(event, this)"></input>
-                </div>
-            </div>
-        </div>
-        <div class="celulaPequena ambasMargin">
-            <div class="infoP"> <span id="QuinquenioNumber">1</span>º Quinquênio </div>
-            <div class="infoValueP" id="btn_licenca_parent" style="background-color:white">
-                <input type="button" id="btn_licenca" class="input_licenca_prof" value="licença &#x271a;" />
-            </div>
-        </div>            
-     
-    </div>                  
+    </div>                         
     <div id="linha4" class="celulaPequena rightMargin">
         
     </div>

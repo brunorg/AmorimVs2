@@ -102,6 +102,10 @@
     color: #666;
 }
 
+.linha-dupla{
+	padding-top:1px !important;
+	font-size: 17px;
+}
 .col-responsavel{
 	width: 87%;
 	background: #FFF;

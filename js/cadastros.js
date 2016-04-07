@@ -4,7 +4,7 @@ var tutoriaArray = Array();
 var posicaoAlunoAtual = 0;
 
 $(document).ready(function(){	
-	$(".box_margin_barra").load( "cadastroAluno.html");
+	$(".box_margin_barra").load( "cadastroProfessor.html"); //Mudar para cadastroAluno.html
     $(".abas").click(function(){
 		var aba = $(this).attr("id");
 		if(aba == "abaCadAluno"){

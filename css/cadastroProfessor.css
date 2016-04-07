@@ -345,12 +345,6 @@ select{
 	/* width: 43%; */
 }
 
-#btn_licenca_parent
-{
-	width: 45%;
-}
-
-
 #DadosMaeVisualizacao, #DadosPaiVisualizacao, #DadosOutroVisualizacao, #RetornoCheckedOutro, #RetornoCheckedMae, #RetornoCheckedPai
 {
 	display: none;
