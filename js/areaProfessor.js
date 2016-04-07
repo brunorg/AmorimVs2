@@ -39,7 +39,6 @@ function atribuirEventos () {
 }
 
 function verificarImagemTipoBlog(dados) {
-    debugger;
     if ( dados.imagem === "adicionar" && dados.tipo === "tutoria" )
 	    $("#conteudoPostagens").attr("class", "boxTextInput postagemTutoriaComImagem");
 	else if ( dados.imagem === "adicionar" && dados.tipo === "oficina" )
