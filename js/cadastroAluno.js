@@ -34,7 +34,7 @@
 			window.setTimeout(function(){
 				if($(objeto).hasClass("clicado") == false)
 				{
-					$(objeto).css("background-position","-37px 0px").addClass("clicado");
+					$(objeto).css("background-position","-40px 0px").addClass("clicado");
 				}
 				else{ 
 					$(objeto).css("background-position","0px 0px").removeClass("clicado"); 

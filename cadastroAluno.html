@@ -209,7 +209,7 @@
 	</div>
 
 
-	<div class="row">
+	<div class="row separador-top">
 		<div class="col-unica">
 			<div class="label-geral label-P">Logradouro</div>
 			<div class="inputContainer">
@@ -238,51 +238,63 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-	<div class="celulaPequena">
-		<div class="infoP"> País </div>
-		<div class="infoValueP">
-			<input id="naturalPais" name="naturalPais" maxlength="10" value="" title="Quantidade de caracteres permitidos: 10"></input>
+	<div class="row separador-bottom">
+		<div class="col-pequena">
+			<div class="label-geral label-P"> Bairro </div>
+			<div class="inputContainer">
+				<input class="inputText" id="bairro" name="bairro" value="" maxlength="50" title="Quantidade de caracteres permitidos: 50"></input>
+			</div>
+		</div>
+		<div class="col-pequena margin-dois-lados">
+			<div class="label-geral label-P"> Estado </div>
+			<div class="inputContainer">
+				<select class="inputSelect" value="" id="uf" name="uf" onChange="selectCidade('uf','cidade')"></select>
+			</div>
+		</div>
+		<div class="col-pequena">
+			<div class="label-geral label-P"> Cidade </div>
+			<div class="inputContainer">
+				<select class="inputSelect" name="cidade" id="cidade"></select>
+			</div>
 		</div>
 	</div>
+	
 	<div class="row">
-		<div class="celulaPequena">
-			<div class="infoP"> Bairro </div>
-			<div class="infoValueP">
-				<input id="bairro" name="bairro" value="" maxlength="50" title="Quantidade de caracteres permitidos: 50"></input>
-			</div>
-		</div>
-		<div class="celulaPequena ambasMargin">
-			<div class="infoP"> Estado </div>
-			<div class="infoValueP">
-				<div class="styled-select">
-					<select value="" id="uf" name="uf" onChange="selectCidade('uf','cidade')"></select>
+		<div class="col-unica">
+			<div class="col-p-pequena">
+				<div class="label-geral label-P"> Responsável </div>	
+			</div>	
+			<div class="col-grande col-responsavel">
+				<div class="col-responsavel-p">
+					<div class="label-geral label-Check label-responsavel-p"> Pai </div>
+					<div class="inputContainerCheck">				
+						<div class="inputImg inputCheck" onclick="reset(1);AA('DadosPaiVisualizacao',true);"> </div>
+						<input type="radio" name="eresponsavelLegalPai" id="eresponsavelLegalPai" value="S">
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="celulaPequena">
-			<div class="infoP"> Cidade </div>
-			<div class="infoValueP">
-				<div class="styled-select">
-					<select name="cidade" id="cidade"></select>
+				<div class="col-responsavel-p">
+					<div class="label-geral label-Check label-responsavel-p"> Mãe </div>
+		            <div class="inputContainerCheck">
+						<div class="inputImg inputCheck" onclick="reset(1);AA('DadosMaeVisualizacao',true);"> </div>
+						<input type="radio" name="eresponsavelLegalMae" id="eresponsavelLegalMae" value="S">
+					</div>
 				</div>
-			</div>
-		</div>
+				<div class="col-responsavel-m">
+					<div class="label-geral label-Check label-responsavel"> Aluno maior de idade </div>
+					<div class="inputContainerCheck">				
+						<div class="inputImg inputCheck" onclick="reset(1);"> </div>
+					</div>
+				</div>
+				<div class="col-responsavel-p">
+					<div class="label-geral label-Check label-responsavel-p"> Outro </div>
+		            <div class="inputContainerCheck">
+						<div class="inputImg inputCheck" onclick="reset(1);AA('DadosOutroVisualizacao',true);"> </div>
+						<input type="radio" name="eresponsavelLegalResponsavel" id="eresponsavelLegalResponsavel" value="S">
+					</div>
+				</div>
+			</div>            
+		</div>	
 	</div>
-
-
-
-
-
-
-
-
-
 
 	<div class="row">
 		<div class="col-unica">
@@ -302,26 +314,7 @@
 	</div>
 
 	
-	<div id="linha15" class="linha">
-		<div class="celulaGrande">
-			<div class="infoPRes"> Responsável </div>
-			<div id="PaiMaeAluno" class="resp"> Pai </div>
-			<div class="inputImg" onclick="reset(1);AA('DadosPaiVisualizacao',true);"> </div>
-			<input type="radio" name="eresponsavelLegalPai" id="eresponsavelLegalPai" value="S">
-			
-            <div id="PaiMaeAluno" class="resp"> Mãe </div>
-			<div class="inputImg" onclick="reset(1);AA('DadosMaeVisualizacao',true);"> </div>
-			<input type="radio" name="eresponsavelLegalMae" id="eresponsavelLegalMae" value="S">
-			
-            <div id="AlunoMaiorAluno" class="resp"> Aluno maior de idade </div>
-			<div class="inputImg" onclick="reset(1);"></div>
-			
-            <div id="OutroAluno" class="resp"> Outro </div>			
-            <div class="inputImg" onclick="reset(1);AA('DadosOutroVisualizacao',true);"> </div>
-			<input type="radio" name="eresponsavelLegalResponsavel" id="eresponsavelLegalResponsavel" value="S">
-            
-		</div>
-	</div>
+	
 	<div id="DadosOutroVisualizacao">
 		<div id="linha16" class="linha">
 			<div class="celulaPequena rightMargin">

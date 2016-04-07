@@ -2,30 +2,39 @@
 .row-2{height: 130px;}
 .row-text-area{height: 70px;margin-bottom:4px;}
 
-
+.col-p-pequena{width:12.9%; float:left; overflow: hidden;}
 .col-pequena{width:32.3%; float:left; overflow: hidden;}
-.col-p-pequena{width:12.3%; float:left; overflow: hidden;}
-.col-media{width: 48.8%;float: left; overflow: hidden;}
-.col-m-media{width: 38.8%;float: left; overflow: hidden;}
-.col-grande{width: 66%;float: left; overflow: hidden;}
-.col-unica{width: 100%;float: left; overflow: hidden;}
+.col-m-media{width: 38.8%; float: left; overflow: hidden;}
+.col-media{width: 48.8%; float: left; overflow: hidden;}
+.col-grande{width: 66%; float: left; overflow: hidden;}
+.col-unica{width: 100%; float: left; overflow: hidden;}
 
 .margin-left{margin-left:14px;}
 .margin-right{margin-right: 14px;}
 .margin-dois-lados{margin:0 14px;}
 
+.separador-top{margin-top: 15px;}
+.separador-bottom{margin-bottom: 15px;}
+
 .foto{height:40px;}
 
-.label-geral{background:#E8E8E3; height:40px; padding: 10px 14px 0; text-align: right; float:left;color:#666;font-size: 18px;}
+.label-geral{background:#E8E8E3; height:40px; padding: 10px 7px 0; text-align: right; float:left;color:#666;font-size: 18px;}
 .label-P{width: 120px;}
 .label-M{width: 735px;}
 .label-G{}
 .label-GG{}
+.label-Check-p{width: 100%;background: #FBF9F7; }
 .label-Check{width: 86.9%;background: #FBF9F7; }
 .label-textArea{width: 12.9%; height:70px; padding:8px; border: none;}
 
 .inputContainer{
 	height: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.inputContainerCheck{
+	width: 40px;
 	display: block;
 	overflow: hidden;
 }
@@ -92,3 +101,24 @@
     height: 40px !important;
     color: #666;
 }
+
+.col-responsavel{
+	width: 87%;
+	background: #FFF;
+}
+.col-responsavel-p{
+	width: 20%;
+	float: left;
+}
+.col-responsavel-m{
+	width: 40%;
+	float: left;
+}
+
+.label-responsavel-p{
+	width: 75%;
+}
+.label-responsavel{
+	width: 87.6%;
+}
+
