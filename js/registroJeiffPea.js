@@ -9,7 +9,6 @@ function carregaJeiffPea(){
 		dataType: 'json',
 	})
 	.done(function(data) {
-		console.log(data);
 		var html = "";
 		var htmlDocumentos = "";
 		if (data.length > 0) {
