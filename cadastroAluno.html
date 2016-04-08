@@ -42,6 +42,24 @@
 	
 </script>
 <form id="frmCadastroAluno">
+	
+	<!-- <div class="row">
+		<div class="col-unica">
+			<div class="label-geral label-P">Mãe</div>
+			<div class="inputContainer">
+				<input class="inputText" id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-unica">
+			<div class="label-geral label-P">Pai</div>
+			<div class="inputContainer">
+				<input class="inputText" id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+			</div>
+		</div>
+	</div> -->
+
 	<input type="hidden" name="action" id="action" value="create"/>
 	<input type="hidden" name="editarId" id="editarId" value=""/>
 	<input type="hidden" name="necessidadeEspecial" id="necessidadeEspecial"  value=""/>
@@ -128,6 +146,7 @@
 			</span>
 		</div>		
 	</div>
+
   	<div class="row">
 	  <div class="col-pequena">
 	  	<div class="label-geral label-P">Sexo</div>
@@ -259,7 +278,7 @@
 		</div>
 	</div>
 	
-	<div class="row">
+	<div class="row separador-bottom">
 		<div class="col-unica">
 			<div class="col-p-pequena">
 				<div class="label-geral label-P"> Responsável </div>	
@@ -268,7 +287,7 @@
 				<div class="col-responsavel-p">
 					<div class="label-geral label-Check label-responsavel-p"> Pai </div>
 					<div class="inputContainerCheck">				
-						<div class="inputImg inputCheck" onclick="reset(1);AA('DadosPaiVisualizacao',true);"> </div>
+						<div class="inputImg inputCheck clicado" onclick="reset(1);AA('DadosPaiVisualizacao',true);"> </div>
 						<input type="radio" name="eresponsavelLegalPai" id="eresponsavelLegalPai" value="S">
 					</div>
 				</div>
@@ -287,149 +306,116 @@
 				</div>
 				<div class="col-responsavel-p">
 					<div class="label-geral label-Check label-responsavel-p"> Outro </div>
-		            <div class="inputContainerCheck">
 						<div class="inputImg inputCheck" onclick="reset(1);AA('DadosOutroVisualizacao',true);"> </div>
 						<input type="radio" name="eresponsavelLegalResponsavel" id="eresponsavelLegalResponsavel" value="S">
 					</div>
 				</div>
 			</div>            
 		</div>	
-	</div>
-
-	<div class="row">
-		<div class="col-unica">
-			<div class="label-geral label-P">Mãe</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomeMae" name="nomeMae" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-unica">
-			<div class="label-geral label-P">Pai</div>
-			<div class="inputContainer">
-				<input class="inputText" id="nomePai" name="nomePai" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
-			</div>
-		</div>
-	</div>
-
-	
+	</div>	
 	
 	<div id="DadosOutroVisualizacao">
-		<div id="linha16" class="linha">
-			<div class="celulaPequena rightMargin">
-				<div class="infoP"> Parentesco </div>
-				<div class="infoValueP">
-					<div class="styled-select">
-						<select id="parentescoResponsavel" name="parentescoResponsavel">
-							<option value=""></option>
-							<option value="tio">Tio/Tia</option>
-							<option value="tio">Vô/Vó</option>
-							<option value="tio">Irmão/Irmã</option>
-						</select>
+		<div class="row">
+			<div class="col-pequena margin-right">
+				<div class="label-geral label-P"> Parentesco </div>
+				<div class="inputContainer">
+					<select class="inputSelect" id="parentescoResponsavel" name="parentescoResponsavel">
+						<option value=""></option>
+						<option value="tio">Tio/Tia</option>
+						<option value="tio">Vô/Vó</option>
+						<option value="tio">Irmão/Irmã</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-grande">
+				<div class="inputContainer">
+					<input class="inputText" id="nomeResponsavel" name="nomeResponsavel" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200" placeholder="Nome Responsável"></input>
+				</div>
+			</div>
+		</div>
+		<div class="row">			
+			<div class="col-unica">
+				<div class="label-geral label-P"> e-mail </div>
+				<div class="inputContainer">
+					<input class="inputText" id="email1Responsavel" name="email1Responsavel" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-pequena">
+				<div class="label-geral label-P"> Celular </div>
+				<div class="inputContainer">
+					<input class="inputText" id="telefoneCelularResponsavel" name="telefoneCelularResponsavel" value=""></input>
+				</div>
+			</div>
+			<div class="col-pequena margin-dois-lados">
+				<div class="label-geral label-P"> Tel. Casa</div>
+				<div class="inputContainer">
+					<input class="inputText" id="telefoneResidencialResponsavel" name="telefoneResidencialResponsavel" value=""></input>
+				</div>
+			</div>
+			<div class="celulaPequena">
+				<div class="label-geral label-P"> Tel. trabalho </div>
+				<div class="inputContainer">
+					<input class="inputText" id="telefoneComercialResponsavel" name="telefoneComercialResponsavel" value=""></input>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-unica">
+				<div class="label-geral label-endereco"> Endereço do responsável é o mesmo do aluno? </div>
+				<div class="col-endereco">
+					<div class="label-geral label-Check label-endereco-p"> Sim </div>
+					<div class="inputContainerCheck">
+						<div class="inputImg inputCheck" onclick="reset(2);AA('boxRespEnd', false);"> </div>
 					</div>
 				</div>
-			</div>
-			<div class="celulaMedia">
-				<div class="infoM"> Nome Resp.</div>
-				<div class="infoValueM">
-					<input id="nomeResponsavel" name="nomeResponsavel" value="" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+				<div class="col-endereco">
+					<div class="label-geral label-Check label-endereco-p"> Não </div>
+					<div class="inputContainerCheck">
+						<div class="inputImg inputCheck" onclick="reset(2);AA('boxRespEnd', true);"> </div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div id="linha17" class="linha">
-			<div class="celulaPequena rightMargin">
-				<div class="infoP"> Celular </div>
-				<div class="infoValueP">
-					<input id="telefoneCelularResponsavel" name="telefoneCelularResponsavel" value=""></input>
-				</div>
-			</div>
-			<div class="celulaMedia">
-				<div class="infoM"> e-mail </div>
-				<div class="infoValueM">
-					<input id="email1Responsavel" name="email1Responsavel" value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
-				</div>
-			</div>
-		</div>
-		<div id="linha28" class="linha">
-			<div class="celulaGrande">
-				<div class="infoG">Email Resp. 2</div>
-				<div class="infoValueG">
-					<input id="email2Responsavel" name="email2Responsavel"  value="" maxlength="100" title="Quantidade de caracteres permitidos: 100"></input>
-				</div>
-			</div>
-		</div>
-		<div id="linha18" class="linha">
-			<div class="celulaPequena">
-				<div class="infoP"> Residência </div>
-				<div class="infoValueP">
-					<input id="telefoneResidencialResponsavel" name="telefoneResidencialResponsavel" value=""></input>
-				</div>
-			</div>
-			<div class="celulaPequena ambasMargin">
-				<div class="infoP"> Trabalho </div>
-				<div class="infoValueP">
-					<input id="telefoneComercialResponsavel" name="telefoneComercialResponsavel" value=""></input>
-				</div>
-			</div>
-			<div class="celulaPequena">
-				<div class="infoP"> Cep </div>
-				<div class="infoValueP">
-					<input id="cepResponsavel" name="cepResponsavel" value=""></input>
-				</div>
-			</div>
-		</div>
-		<div id="linha19" class="linha">
-			<div class="celulaCheck">
-				<div class="infoGG"> Endereço do responsável é o mesmo do aluno? </div>
-				<div class="infoGGValue"> Sim </div>
-				<div class="inputImg" onclick="reset(2);AA('boxRespEnd', false);"> </div>
-				<div class="infoGGValue"> Não </div>
-				<div class="inputImg" onclick="reset(2);AA('boxRespEnd', true);"> </div>
 			</div>
 		</div>
 		<div id="boxRespEnd">
-			<div id="linha28" class="linha">
-				<div class="celulaGrande">
-					<div class="infoG">Endereço</div>
-					<div class="infoValueG">
-						<input id="enderecoResponsavel" name="enderecoResponsavel" maxlength="250"  value="" title="Quantidade de caracteres permitidos: 250"></input>
+			<div class="row">
+				<div class="col-unica">
+					<div class="label-geral label-P">Endereço</div>
+					<div class="inputContainer">
+						<input class="inputText" id="enderecoResponsavel" name="enderecoResponsavel" maxlength="250"  value="" title="Quantidade de caracteres permitidos: 250"></input>
 					</div>
 				</div>
 			</div>
-			<div id="linha95" class="linha">
-				<div class="celulaMeio rightMargin">
-					<div class="infoP"> Número</div>
-					<div class="infoValueP">
-						<input id="numeroResponsavel" name="numeroResponsavel" value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
+			<div class="row">
+				<div class="col-pequena margin-right">
+					<div class="label-geral label-P"> Número</div>
+					<div class="inputContainer">
+						<input class="inputText" id="numeroResponsavel" name="numeroResponsavel" value="" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input>
 					</div>
 				</div>
-				<div class="celulaMeio">
-					<div class="infoP"> Complemento</div>
-					<div class="infoValueP">
-						<input id="complementoResponsavel" name="complementoResponsavel" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
+				<div class="col-grande">
+					<div class="label-geral label-P"> Complemento</div>
+					<div class="inputContainer">
+						<input class="inputText" id="complementoResponsavel" name="complementoResponsavel" maxlength="50" value="" title="Quantidade de caracteres permitidos: 50"></input>
 					</div>
 				</div>
 			</div>
-			<div id="linha23" class="linha">
-				<div class="celulaMeio rightMargin">
-					<div class="infoP"> Estado Resp. </div>
-					<div class="infoValueP">
-						<div class="styled-select">
-							<select id="ufResponsavel" name="ufResponsavel" onChange="selectCidade('ufResponsavel','cidadeResponsavel')">
-								<option  value=""></option>
-							</select>
-						</div>
+			<div class="row">
+				<div class="col-pequena margin-right">
+					<div class="label-geral label-P"> UF</div>
+					<div class="inputContainer">
+						<select class="inputSelect" id="ufResponsavel" name="ufResponsavel" onChange="selectCidade('ufResponsavel','cidadeResponsavel')">
+							<option  value=""></option>
+						</select>
 					</div>
 				</div>
-				<div class="celulaMeio">
-					<div class="infoP"> Cidade Resp.</div>
-					<div class="infoValueP">
-						<div class="styled-select">
-							<select name="cidadeResponsavel" id="cidadeResponsavel">
-								<option  value=""></option>
-							</select>
-						</div>
+				<div class="col-grande">
+					<div class="label-geral label-P"> Cidade</div>
+					<div class="inputContainer">
+						<select class="inputSelect" name="cidadeResponsavel" id="cidadeResponsavel">
+							<option  value=""></option>
+						</select>
 					</div>
 				</div>
 			</div>

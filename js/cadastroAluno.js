@@ -90,37 +90,29 @@ function reset(Numero)
 {
     if(Numero == 1)
     {
-       /* AA('RetornoCheckedPai',false);
-        AA('RetornoCheckedMae',false);
-        AA('RetornoCheckedOutro',false);*/
         AA('DadosMaeVisualizacao',false);
         AA('DadosPaiVisualizacao',false);
         AA('DadosOutroVisualizacao',false);
-        $('#linha15 .inputImg').removeClass( "clicado" );
-        $('#linha15 .inputImg').css("background-position","0px 0px");
+        $('.col-unica .inputImg').removeClass( "clicado" );
+        $('.col-unica .inputImg').css("background-position","0px 0px");
         reset(2);
-    } else if(Numero == 2)
-    {
+    } else if(Numero == 2){
         $('#linha27 .inputImg').removeClass( "clicado" );
         $('#linha27 .inputImg').css("background-position","0px 0px");
         $('#linha23 .inputImg').removeClass( "clicado" );
         $('#linha23 .inputImg').css("background-position","0px 0px");
         $('#linha19 .inputImg').removeClass( "clicado" );
         $('#linha19 .inputImg').css("background-position","0px 0px");
-    } else if(Numero == 3)
-    {
+    } else if(Numero == 3){
         $('#linha8 #L10R .inputImg').removeClass( "clicado" );
         $('#linha8 #L10R .inputImg').css("background-position","0px 0px");
-    } else if(Numero == 4)
-    {
+    } else if(Numero == 4){
         $('#linha8 #L10L .inputImg').removeClass( "clicado" );
         $('#linha8 #L10L .inputImg').css("background-position","0px 0px");
-    } else if(Numero == 5)
-    {
+    } else if(Numero == 5){
         $('#linha34 #PSL .inputImg').removeClass( "clicado" );
         $('#linha34 #PSL .inputImg').css("background-position","0px 0px");
-    }else if(Numero == 6)
-    {
+    }else if(Numero == 6){
 		$('#linha8 #UpFoto .inputImg').removeClass( "clicado" );
         $('#linha8 #UpFoto .inputImg').css("background-position","0px 0px");
 	}
