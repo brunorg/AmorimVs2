@@ -12,6 +12,7 @@
     background-color: #BFBDA9;
     float: left;
     margin:0 7px 14px 0;
+    cursor: pointer;
 }
 
 #datepickerFaltas{
@@ -62,6 +63,7 @@
     width: 17px;
     height: 17px;
     margin: 3px 3px 0px 0px;
+    cursor: pointer;
 }
 .colunaAluno{
     width: 477px;
