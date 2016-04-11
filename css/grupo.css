@@ -1,5 +1,12 @@
 * { box-sizing: border-box !important; }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
 #PesquisarInserir{
 	width:100%;
 	height: 556px;
@@ -250,6 +257,7 @@
 		height: 100%;
     	padding: 8px 5px;
 	    line-height: 1.2em;
+	    margin: 0;
 	    color: #656565;
 	    font-size: 18px;
 		-webkit-margin-before: 0em;
