@@ -85,7 +85,7 @@
 </style>
 
 <script>
-function alterarSenha(){    
+function alterarSenha(){
     var objetoUsuario = JSON.parse(localStorage.getItem("objetoUsuario"));
     var user = objetoUsuario.login
     var senhaAtu = $("#senhaAtu").val();
@@ -93,8 +93,23 @@ function alterarSenha(){
     var senhaNova = $("#senhaConfirma").val();
     
 	var valores =  "login="+user+"&senhaAnt="+senhaAtu+"&senha="+senha+"&senhaNova="+senhaNova;		
-	$("#boxMensagemGeral").css("display","none");
-	
+
+    this.returnDadosInvalidos = function() {
+
+        var htmlMensagem = new String();
+
+        htmlMensagem = "<div class='mensagem_erro_modal'>Não foi possível alterar sua senha.<br />Verifique os dados inseridos.</div>";
+
+        $(".boxForm").css("height", "253px");
+        $("#frm").find("div").filter(":nth-child(3)").after(htmlMensagem);
+
+        window.setTimeout(function() {
+            $("#frm").find("div").filter(":nth-child(4)").fadeOut(500, function() {
+                $(".boxForm").css("height", "224px");
+            });
+        }, 3000);
+    };
+
 	$.ajax({
 		url: path+"Logar/alterarSenha",
 		type: "POST",
@@ -102,16 +117,12 @@ function alterarSenha(){
 		crossDomain: true,
 		dataType:"text",
 		data: "action=update&"+valores,
-		beforeSend: function(){
-			loading("inicial");	
-		},
 		success: function(d) {
 			if(d=="ok"){
 				loading("final");				
-				return mensagem("Senha alterada com sucesso!","OK","bt_ok","sucesso");				
-			}else{	
-				loading("final");			
-				return  mensagem("Erro na alteração. Verifique os campos!","OK","bt_ok","erro");
+				return mensagem("Senha alterada com sucesso!","OK","bt_ok","sucesso");
+			}else{
+				returnDadosInvalidos();
 			}
 		}
 	}); 
@@ -120,7 +131,7 @@ function alterarSenha(){
 </head>
 
 <body>
-<div class="boxForm">
+<div id="boxForm" class="boxForm">
     <form name="frm" id="frm" method="POST">
         <div id="linha13" class="linhaS">
             <div class="celulaPequenaS">

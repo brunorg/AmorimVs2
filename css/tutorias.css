@@ -298,3 +298,7 @@ table.grupoTabela tr{
 .grupoNomeAluno a{
 	text-decoration: none;
 }
+
+.mCSB_container {
+	padding-right: 15px !important;
+}

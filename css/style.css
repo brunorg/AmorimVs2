@@ -3523,4 +3523,11 @@ object{
     height: 26px;
     float: right;
 }
+
+.mensagem_erro_modal {
+	font-size: 14px;
+    color: #B90C0C;
+    letter-spacing: 0.2px;
+}
+}
 /*fim style presença aluno*/	
