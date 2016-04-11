@@ -54,14 +54,13 @@ html, body
 		    background-position: 40px 50%;
 		}
 		#Cabecalho_Menu_Area_Menu2{
-			width: 222px;
 			height:36px;
 			float:right;
 			padding-top: 7px; 
 			margin-right: 40px;
 		}
 		#Cabecalho_Menu_Trocar_Oficina {
-		    width: 513px;
+		    width: 575px;
 		    height: 36px;
 		    float: left;
 		    padding-top: 7px;
@@ -1288,8 +1287,8 @@ font-family: "proxima-nova",sans-serif;
     background: #FFFFFF;
     border: 1px solid rgba(22, 190, 207, 36);
     border-top: 0;
-    right: 21.6%;   
-    top: 24px;
+    right: 16.7%;   
+    top: 36px;
     padding: 5px;
 	display:none;
 }
@@ -1592,7 +1591,7 @@ font-family: "proxima-nova",sans-serif;
 	}
 
 	#Cabecalho_Menu_Area_Menu2{
-		width: 175px !important;
+		width: 130px !important;
 	}
 	.visivel{
 		display: block !important;
@@ -1646,7 +1645,7 @@ font-family: "proxima-nova",sans-serif;
 		background-color: #16BECF;
 	}
 	#Cabecalho_Menu_Area_Menu1,#Cabecalho_Menu_Area_Menu2,#Cabecalho_Menu_Trocar_Oficina{
-		width:402px;
+		width:422px;
 		height:24px;
 		padding-top: 3px;
 	}
@@ -1927,6 +1926,11 @@ font-family: "proxima-nova",sans-serif;
 		border-color: #1E8290;
 		color: rgb(102, 102, 102);
 		margin-top: 2px;
+	}
+
+	#box_oficinas {
+		top: 24px;
+		right: 18.3%;
 	}
 }
 /*media NetBook*/
@@ -2663,7 +2667,7 @@ font-family: "proxima-nova",sans-serif;
 	    background: #FFFFFF;
 	    border: 1px solid rgba(22, 190, 207, 36);
 	    border-top: 0;
-	    right: 21%;
+	    right: 16.7%;
 	    top: 36px;
 	    padding: 5px;
 	    display: none;
