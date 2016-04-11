@@ -1,5 +1,5 @@
 // JavaScript Document// JavaScript Document
-$(document).ready(function(e) {		
+$(document).ready(function(e) {	
 	//Verifica se já foi feita uma chamada no dia 
 	var bool = false;
 	var dataP = new Date();										

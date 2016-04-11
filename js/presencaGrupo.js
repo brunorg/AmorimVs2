@@ -195,7 +195,6 @@ function atualizarCalendario(idGrupo){
         crossDomain: true,
         type: "GET",
         success: function(d){
-
             $('#recebeAlunos').html("")
             $('#tabelaPresenca').html("")
             $("#tableInfo").html("")
@@ -227,7 +226,7 @@ function atualizarCalendario(idGrupo){
 
                  htmlPiece = "";
 
-                 htmlPiece += '<tr class="linhaInfo">';
+                 htmlPiece += '<tr id="faltas_'+d[i].alunoId+'" class="linhaInfo">';
                  htmlPiece +=   '<td>' + d[i].faltasCalculadas + '</td>'; 
                  htmlPiece +=   '<td>' + d[i].faltasCompensadas + '</td>';
                  htmlPiece +=   '<td>' + d[i].faltasTotais + '</td>';
@@ -241,6 +240,7 @@ function atualizarCalendario(idGrupo){
         }
     });
     carregaFaltas(idGrupo);
+    habilitaSalvarPresenca(idGrupo);
 }
 
 function carregaFaltas(idGrupo){
@@ -305,67 +305,95 @@ $(document).ready(function(){
 
 });
 
-function enviarFaltas() {
+function habilitaSalvarPresenca(idGrupo){
+    $("#btnSalvarPresenca").click(function(){
+       date = new Date()
+       date.setDate(date.getDate() + window.dayOffsetWeekCalendar)
+       var todayMonth = date.getMonth()
 
-    date = new Date()
+        var objetoASerEnviado = {}
 
-    date.setDate(date.getDate() + window.dayOffsetWeekCalendar)
-    var todayMonth = date.getMonth()
+        objetoASerEnviado.dataDia = $('#weekCalendarDay0').html()
+        objetoASerEnviado.dataMes = globalMonth
+        objetoASerEnviado.listaFaltas = []
 
-    var objetoASerEnviado = {}
+        var diasPresenca = document.getElementsByClassName('clckableToggle')
 
-    objetoASerEnviado.dataDia = $('#weekCalendarDay0').html()
-    objetoASerEnviado.dataMes = globalMonth
-    objetoASerEnviado.listaFaltas = []
-
-    var diasPresenca = document.getElementsByClassName('clckableToggle')
-
-    for (var i = diasPresenca.length - 1; i >= 0; i--) {
-        diasPresenca[i].idAluno = diasPresenca[i].id.split("Dia")[0].split("Aluno")[1]
-        diasPresenca[i].diaReferente = diasPresenca[i].id.split("Dia")[1]
-    };
-
-    var alunos = document.getElementsByClassName('aluno')
-    var listaFaltas = {}
-    
-    for (var i = alunos.length - 1; i >= 0; i--) {
-
-        var presencaSemana = []
-
-        for (var k = 0; k < diasPresenca.length; k++) {
-            if (diasPresenca[k].idAluno == alunos[i].id) {
-
-                // console.log(diasPresenca[k].innerHTML);
-
-                var falta = 1
-
-                if (diasPresenca[k].innerHTML == '<img src="img/check-presenca.png">') {
-                    falta = 0
-                }
-
-                presencaSemana.push(falta)
-            }
+        for (var i = diasPresenca.length - 1; i >= 0; i--) {
+            diasPresenca[i].idAluno = diasPresenca[i].id.split("Dia")[0].split("Aluno")[1]
+            diasPresenca[i].diaReferente = diasPresenca[i].id.split("Dia")[1]
         };
 
-        objetoASerEnviado.listaFaltas.push({"alunoId" : alunos[i].id, "faltas" : presencaSemana})
-    };
+        var alunos = document.getElementsByClassName('aluno')
+        var listaFaltas = {}
+            
+        for (var i = alunos.length - 1; i >= 0; i--) {
 
-    // console.log(JSON.stringify(objetoASerEnviado));
+            var presencaSemana = []
 
+            for (var k = 0; k < diasPresenca.length; k++) {
+                if (diasPresenca[k].idAluno == alunos[i].id) {
+
+                    // console.log(diasPresenca[k].innerHTML);
+
+                    var falta = 1
+
+                    if (diasPresenca[k].innerHTML == '<img src="img/check-presenca.png">') {
+                        falta = 0
+                    }
+
+                    presencaSemana.push(falta)
+                }
+            };
+
+            objetoASerEnviado.listaFaltas.push({"alunoId" : alunos[i].id, "faltas" : presencaSemana})
+        };
+
+        $.ajax({
+            url: path + "Chamada/ChamadaGrupo/",
+            async: true,
+            crossDomain: true,
+            type: "POST",
+            data: "stringfiedJson="+JSON.stringify(objetoASerEnviado),
+            beforeSend: function(){
+                loading("inicial");
+            },
+            success: function(data){
+                if(data == 'Post Completo'){
+                   mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso"); 
+                   atualizarFaltas(idGrupo);
+               }else{
+                    mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
+               }                
+            },
+            complete: function(){
+                loading("final");
+            }
+        }); 
+    });
+}
+
+function atualizarFaltas(idGrupo){
+    
     $.ajax({
-        url: path + "Chamada/ChamadaGrupo/",
+        url: path + "Chamada/FaltasTotaisGrupo/" + idGrupo,
         async: false,
         crossDomain: true,
-        type: "POST",
-        data: "stringfiedJson="+JSON.stringify(objetoASerEnviado),
+        type: "GET",
         success: function(data){
-            if(data == 'Post Completo'){
-               mensagem("Presença apontada com sucesso!","OK","bt_ok","sucesso"); 
-           }else{
-                mensagem("Erro ao apontar presença!","OK","bt_ok","erro");
-           }
-            
+            for(var i = 0; i < data.length; i++){
+                for(var j = 0; j < 4; j++){
+                    $($("#faltas_"+data[i].alunoId+" > td").get(j)).html("");
+                    if(j == 0)
+                        $($("#faltas_"+data[i].alunoId+" > td").get(j)).append(data[i].faltasCalculadas); 
+                    else if(j == 1)
+                        $($("#faltas_"+data[i].alunoId+" > td").get(j)).append(data[i].faltasCompensadas); 
+                    else if(j == 2)
+                        $($("#faltas_"+data[i].alunoId+" > td").get(j)).append(data[i].faltasTotais);
+                    else if(j == 3)
+                        $($("#faltas_"+data[i].alunoId+" > td").get(j)).append(data[i].percentualFaltas); 
+                }                    
+            }
         }
     });
-
 }
