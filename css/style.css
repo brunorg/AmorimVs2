@@ -59,12 +59,17 @@ html, body
 			padding-top: 7px; 
 			margin-right: 40px;
 		}
+
 		#Cabecalho_Menu_Trocar_Oficina {
-		    width: 575px;
+		    width: 513px;
 		    height: 36px;
 		    float: left;
 		    padding-top: 7px;
 		    text-align: right;
+		}
+
+		#Cabecalho_Menu_Trocar_Oficina.Cabecalho_Menu_Area_Menu2_Inicial {
+			width: 575px;
 		}
 
 	#Cabecalho_Perfil_Area{
