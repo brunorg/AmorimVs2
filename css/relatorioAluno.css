@@ -352,10 +352,13 @@
 	margin-bottom:0;
 	padding: 1px 21px;
 }
-#cad_observacoes{
-	margin-bottom:55px;
+#cad_observacoes, .cad_observacoes{
+	/*margin-bottom:55px;*/
+	height:auto;
+	width:100%;
+	display: inline-block
 }
-#observacao{
+#observacao, .observacaoTextArea{
 	margin: 0px;
 	height: 130px;
 	width: 893px;
@@ -364,7 +367,7 @@
 	border:0;
 	padding:10px;
 }
-#btnSalvar{
+#btnSalvar, .btnSalvar{
 	background: url(../img/bt_salvar.png) no-repeat;
 	float: right;
 	width: 101px;

@@ -21,6 +21,8 @@ var alunosVariaveisStore = [];
 
 var idProfFunc = "";
 
+var idTutoria;
+
 //Carrega a funçao de Load do JQuery
 
 /*Gráfico area_aluno*/
@@ -413,6 +415,29 @@ var idProfFunc = "";
 
 
 
+	function getRelatorioTutoriaPorAno(IDtutoria, alunoID, ano){
+
+		console.log(IDtutoria, alunoID, ano);
+
+		var retorno;
+
+		$.ajax({
+			url: path + "RelatorioTutoria/TutoriaAlunoAno/"+IDtutoria+"/"+alunoID+"/"+ano,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
+
 
 //------------------------------------------------------------------------------------------------------------
 //
@@ -460,10 +485,18 @@ function init(ano, alunoVar){
 		//var ano = data.getFullYear();	
 
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+
+		idTutoria = tutoria[0].idtutoria;
+
 		$('#tutoria').val(tutoria[0].idtutoria);
 			
 	}else{
-		$('#tutoria').val(base64_decode(GetURLParameter('TU')));
+		//$('#tutoria').val(base64_decode(GetURLParameter('TU')));
+		//console.log(getProfessorTutoria(localStorage.getItem("professorId"),ano));
+		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+
+		idTutoria = tutoria[0].idtutoria;
+		$('#tutoria').val(tutoria[0].idtutoria);
 	}
 
 	if (confTutor == true){
@@ -488,6 +521,15 @@ function init(ano, alunoVar){
 	var aux;
 	var aux2;
 	var aluno = getAluno(alunoID);
+	var relatorioTutoria = getRelatorioTutoriaPorAno(idTutoria, aluno.idAluno, ano);
+
+	console.log(alunoVarSelecionado);
+	console.log(roteiroExtra);
+	console.log(roteiros);
+	console.log(aluno);
+	console.log(relatorioTutoria);
+
+	listarRelatorioTutoria(relatorioTutoria);
 
 	$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
 
@@ -1003,13 +1045,13 @@ function mostrarAba(id){
 		$("#btnAtualizar").css("display", "none");
 }
 
-function editarObservacao () {
+function editarObservacao (numero) {
 	$.ajax({
 		url: path+"RelatorioTutoria/",
 		type: "POST",
 		crossDomain: true,
 		dataType: 'json',
-		data: "relatorio="+$("#texto").val()+"&aluno="+$("#aluno").val()+"&action=update&tutoria="+$("#tutoria").val()+"&data="+$("#data").val()+"&id="+$("#id").val(),				
+		data: "relatorio="+$("#obsRelatorio"+numero+" #observacao").val()+"&aluno="+$("#obsRelatorio"+numero+" #aluno").val()+"&action=update&tutoria="+$("#obsRelatorio"+numero+" #tutoria").val()+"&data="+$("#obsRelatorio"+numero+" #data").val()+"&id="+$("#obsRelatorio"+numero+" #id").val(),				
 		beforeSend: function() {
 			$("#caixaRelatorio").css("display", "none");
 			loading("inicial");
@@ -1023,6 +1065,42 @@ function editarObservacao () {
 	});
 }
 
+
+function listarRelatorioTutoria(relatorio){
+
+	$("#observacao_box").html('<p id="titulo_observacao">Relatórios tutoria</p>');
+
+	console.log(relatorio);
+
+	for(var a = 0; a<relatorio.length; a++){
+
+		$("#observacao_box").append('<div class="cad_observacoes">'+
+			'<form id="obsRelatorio'+a+'">'+
+			'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="texto">'+relatorio[a].relatorio+'</textarea>'+
+			'<input type="hidden" id="id" name="id" value="'+relatorio[a].idrelatorioTutoria+'">'+
+			'<input type="hidden" id="aluno" name="aluno" value="'+relatorio[a].aluno.idAluno+'">'+
+			'<input type="hidden" id="" name="action" value="update">'+
+			'<input type="hidden" id="tutoria" name="tutoria" value="'+relatorio[a].tutoria.idtutoria+'">'+
+			'<input type="hidden" id="data" name="data" value="'+relatorio[a].data+'">'+
+			'<input type="button" onclick="editarObservacao('+a+');" class="btnSalvar">'+
+			'</form>'+
+			'</div>');
+			$("#observacao_box").append('<hr style="margin-top: 60px; margin-bottom: 20px; width: 891px; border-top: medium none #898989;">');
+
+	}
+
+	$("#observacao_box").append('<div class="cad_observacoes">'+
+	'<form id="obsRelatorio">'+
+	'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="observacao"></textarea>'+
+	'<input type="hidden" id="aluno" name="aluno" value="'+alunoID+'">'+
+	'<input type="hidden" id="" name="action" value="create">'+
+	'<input type="hidden" id="tutoria" name="tutoria" value="'+idTutoria+'">'+
+	'<input type="hidden" id="data" name="data">'+
+	'<input type="button" id="btnSalvar">'+
+	'</form>'+
+	'</div>');
+
+}
 
    
 function graficoBarra(alunoID, planejamentosAluno){

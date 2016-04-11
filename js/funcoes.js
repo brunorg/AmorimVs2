@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 
 	
-	setTimeout(function(){
+	/*setTimeout(function(){
 
 		var url = window.location.href;
 		var retorno = url.split("/"); 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 		$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
 		
-	},500);
+	},500);*/
 	
 	
 	$(function(){
