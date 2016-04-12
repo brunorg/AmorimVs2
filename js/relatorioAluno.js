@@ -1074,8 +1074,6 @@ function listarRelatorioTutoria(relatorio){
 
 	$("#observacao_box").html('<p id="titulo_observacao">Relatórios tutoria</p>');
 
-	console.log(relatorio);
-
 	for(var a = 0; a<relatorio.length; a++){
 
 		$("#observacao_box").append('<div class="cad_observacoes">'+
@@ -1099,17 +1097,21 @@ function listarRelatorioTutoria(relatorio){
 	var ano = data.getFullYear();	
 	var dataFull = ano+"-"+mes+"-"+dia;
 
-	// YYYY-MM-DD
-	$("#observacao_box").append('<div class="cad_observacoes">'+
-	'<form id="obsRelatorio">'+
-	'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="observacao"></textarea>'+
-	'<input type="hidden" id="aluno" name="aluno" value="'+alunoID+'">'+
-	'<input type="hidden" id="" name="action" value="create">'+
-	'<input type="hidden" id="tutoria" name="tutoria" value="'+idTutoria+'">'+
-	'<input type="hidden" id="data" name="data" value="'+dataFull+'">'+
-	'<input type="button" id="btnSalvar">'+
-	'</form>'+
-	'</div>');
+	if($("#SelecionaAno").val() == ano+""){
+
+		$("#observacao_box").append('<div class="cad_observacoes">'+
+		'<form id="obsRelatorio">'+
+		'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="observacao"></textarea>'+
+		'<input type="hidden" id="aluno" name="aluno" value="'+alunoID+'">'+
+		'<input type="hidden" id="" name="action" value="create">'+
+		'<input type="hidden" id="tutoria" name="tutoria" value="'+idTutoria+'">'+
+		'<input type="hidden" id="data" name="data" value="'+dataFull+'">'+
+		'<input type="button" id="btnSalvar">'+
+		'</form>'+
+		'</div>');
+	} else {
+		$("hr:last-child").remove();
+	}
 
 }
 
