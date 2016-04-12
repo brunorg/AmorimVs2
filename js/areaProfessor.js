@@ -33,6 +33,7 @@ function atribuirEventos () {
     removerImagemPostagem();
     clickRelatorio();
     cancelarRelatorio();
+    alterarPeriodoRotina();
     iniciarMural();
     iniciarMuralCoordenacao();
     $("#salvarPostagem").click(novaPostagem);
@@ -790,6 +791,7 @@ function CarregarRotina() {
 
     $('#Rotina_Semanal_Dia').html(diasSemana[diaHoje])
         $.ajax({
+
         url: path+"Rotina/RotinaDiariaProfessor/"+professorId+"/"+diaHoje,
         type: "GET",
         async: true,
@@ -838,3 +840,17 @@ function rotinaMudarDia(quanto) {
     CarregarRotina()
 }
 
+function alterarPeriodoRotina() {
+    $(".dropIc").click(function() {
+        $(this).toggleClass("up");
+        $(this).toggleClass("down");
+        $(".itensDropSimples").toggleClass("visible")
+    });
+
+    $(".itemDrop").click(function() {
+        $(".itemSelected").text($(this).html());
+        $(".dropIc").toggleClass("up");
+        $(".dropIc").toggleClass("down");
+        $(".itensDropSimples").toggleClass("visible")
+    });
+}

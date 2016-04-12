@@ -74,7 +74,78 @@ div[class*="box_col"]:last-of-type {
     font-size: 18px;
     color: white;
 }
-
+.halfsize {
+    width: 50%;
+    float: left;
+}
+.halfsize::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
+.areaDropTitulo  {
+    height: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.areaDropTitulo::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
+.dropSimples {
+    float: right;
+    height: 20px;
+    min-width: 100px;
+    padding: 2px 30px 2px 20px;
+    font-size: 18px;
+    color: #fff;
+    text-align: right;
+    position: relative;
+    cursor: pointer;
+}
+.dropIc {
+    background-size: 40%;
+    background-position: center 7px;
+    background-repeat: no-repeat;
+    padding: 10px 12.5px;
+    cursor: pointer;
+    margin-left: 5px;
+    position: absolute;
+    top: 0;
+    right: 1px;
+}
+.dropIc.up {
+    background-image: url(../img/arrow_fichas.png);
+}
+.dropIc.down {
+    background-color: #73D8E2;
+    background-image: url(../img/arrow_fichas_2.png);
+    background-position: center 6px;
+}
+.itensDropSimples {
+    position: absolute;
+    width: 100px;
+    background-color: #fff;
+    border: 1px solid #7bccd7;
+    right: 0;
+    top: 20px;
+    padding: 5px 7.5px;
+    display: none;
+}
+.itensDropSimples.visible {
+    display: block;
+}
+.itemDrop {
+    padding: 3px 2.5px;
+    color: #666;
+    cursor: pointer;
+}
+.itemDrop:hover {
+    background-color: #efefef;
+}
 .botaoNovo{
 	float: right;
 	cursor: pointer;
