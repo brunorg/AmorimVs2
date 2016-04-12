@@ -1061,7 +1061,7 @@ function editarObservacao (numero) {
 			loading("inicial");
 		},
 		success: function(d) {
-			mensagem("Dados salvos com sucesso!","OK","bt_ok","sucesso");
+			mensagem("Dados atualizados com sucesso!","OK","bt_ok","sucesso");
 		},
 		complete: function() {
 			loading("final");
