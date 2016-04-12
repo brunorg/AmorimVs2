@@ -23,6 +23,8 @@ var idProfFunc = "";
 
 var idTutoria;
 
+var perfilAtivo = JSON.parse(localStorage.getItem("objetoUsuario")).perfil.perfil;
+
 //Carrega a funçao de Load do JQuery
 
 /*Gráfico area_aluno*/
@@ -437,6 +439,26 @@ var idTutoria;
 
 
 
+	function getProfessorPorTutoria(IDtutoria){
+
+		var retorno;
+
+		$.ajax({
+			url: path + "Tutoria/"+IDtutoria,
+			async: false,
+			type: "GET",
+			crossDomain: true,
+			//beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data) 		{ retorno = data; }
+			//complete: 	function() 			{ loading("final"); }
+		});
+
+		return retorno;
+	}
+
+
+
+
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -493,10 +515,24 @@ function init(ano, alunoVar){
 	}else{
 		//$('#tutoria').val(base64_decode(GetURLParameter('TU')));
 		//console.log(getProfessorTutoria(localStorage.getItem("professorId"),ano));
-		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+		if(perfilAtivo == "Coordenacao"){
 
-		idTutoria = tutoria[0].idtutoria;
-		$('#tutoria').val(tutoria[0].idtutoria);
+			var tutoria = getProfessorTutoria(getProfessorPorTutoria(base64_decode(GetURLParameter('TU'))).tutor.idprofessorFuncionario,ano);
+			console.log("Tutoria+1"+tutoria);
+		} else{
+			var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+			console.log("Tutoria+2"+tutoria);
+		}
+
+
+		if(!tutoria[0]){
+			idTutoria = tutoria;
+		} else {
+
+			idTutoria = tutoria[0].idtutoria;
+		}
+
+		$('#tutoria').val(idTutoria);
 	}
 
 	if (confTutor == true){
@@ -1078,13 +1114,13 @@ function listarRelatorioTutoria(relatorio){
 
 		$("#observacao_box").append('<div class="cad_observacoes">'+
 			'<form id="obsRelatorio'+a+'">'+
-			'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="texto">'+relatorio[a].relatorio+'</textarea>'+
+			'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="texto" '+(perfilAtivo == "Coordenacao" ? 'disabled':'')+'>'+relatorio[a].relatorio+'</textarea>'+
 			'<input type="hidden" id="id" name="id" value="'+relatorio[a].idrelatorioTutoria+'">'+
 			'<input type="hidden" id="aluno" name="aluno" value="'+relatorio[a].aluno.idAluno+'">'+
 			'<input type="hidden" id="" name="action" value="update">'+
 			'<input type="hidden" id="tutoria" name="tutoria" value="'+relatorio[a].tutoria.idtutoria+'">'+
 			'<input type="hidden" id="data" name="data" value="'+relatorio[a].data+'">'+
-			'<input type="button" onclick="editarObservacao('+a+');" class="btnSalvar">'+
+			(perfilAtivo == "Coordenacao" ? '':'<input type="button" onclick="editarObservacao('+a+');" class="btnSalvar">')+
 			'</form>'+
 			'</div>');
 			$("#observacao_box").append('<hr />');
@@ -1097,7 +1133,7 @@ function listarRelatorioTutoria(relatorio){
 	var ano = data.getFullYear();	
 	var dataFull = ano+"-"+mes+"-"+dia;
 
-	if($("#SelecionaAno").val() == ano+""){
+	if($("#SelecionaAno").val() == ano+"" && perfilAtivo != "Coordenacao"){
 
 		$("#observacao_box").append('<div class="cad_observacoes">'+
 		'<form id="obsRelatorio">'+
