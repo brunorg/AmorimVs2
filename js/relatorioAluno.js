@@ -531,6 +531,7 @@ function init(ano, alunoVar){
 
 	listarRelatorioTutoria(relatorioTutoria);
 
+
 	$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
 
 	//Busca os roteiros do ano
@@ -854,6 +855,9 @@ function init(ano, alunoVar){
 				success: function(d) {
 					mensagem("Dados salvos com sucesso!","OK","bt_ok","sucesso");
 					listaObservacao();
+					var aluno = getAluno(alunoID);
+					var relatorioTutoria = getRelatorioTutoriaPorAno(idTutoria, aluno.idAluno, $("#SelecionaAno").val());
+					listarRelatorioTutoria(relatorioTutoria);
 					$("#observacao").val("");
 				}
 			});
@@ -1051,7 +1055,7 @@ function editarObservacao (numero) {
 		type: "POST",
 		crossDomain: true,
 		dataType: 'json',
-		data: "relatorio="+$("#obsRelatorio"+numero+" #observacao").val()+"&aluno="+$("#obsRelatorio"+numero+" #aluno").val()+"&action=update&tutoria="+$("#obsRelatorio"+numero+" #tutoria").val()+"&data="+$("#obsRelatorio"+numero+" #data").val()+"&id="+$("#obsRelatorio"+numero+" #id").val(),				
+		data: "relatorio="+$("#obsRelatorio"+numero+" #texto").val()+"&aluno="+$("#obsRelatorio"+numero+" #aluno").val()+"&action=update&tutoria="+$("#obsRelatorio"+numero+" #tutoria").val()+"&data="+$("#obsRelatorio"+numero+" #data").val()+"&id="+$("#obsRelatorio"+numero+" #id").val(),				
 		beforeSend: function() {
 			$("#caixaRelatorio").css("display", "none");
 			loading("inicial");
@@ -1085,17 +1089,24 @@ function listarRelatorioTutoria(relatorio){
 			'<input type="button" onclick="editarObservacao('+a+');" class="btnSalvar">'+
 			'</form>'+
 			'</div>');
-			$("#observacao_box").append('<hr style="margin-top: 60px; margin-bottom: 20px; width: 891px; border-top: medium none #898989;">');
+			$("#observacao_box").append('<hr />');
 
 	}
 
+	var data = new Date();
+	var dia = (data.getDate().toString().length<2 ? "0"+data.getDate():data.getDate());
+	var mes = data.getMonth()+1;
+	var ano = data.getFullYear();	
+	var dataFull = ano+"-"+mes+"-"+dia;
+
+	// YYYY-MM-DD
 	$("#observacao_box").append('<div class="cad_observacoes">'+
 	'<form id="obsRelatorio">'+
 	'<textarea class="observacaoTextArea" name="relatorio" cols="" rows="" id="observacao"></textarea>'+
 	'<input type="hidden" id="aluno" name="aluno" value="'+alunoID+'">'+
 	'<input type="hidden" id="" name="action" value="create">'+
 	'<input type="hidden" id="tutoria" name="tutoria" value="'+idTutoria+'">'+
-	'<input type="hidden" id="data" name="data">'+
+	'<input type="hidden" id="data" name="data" value="'+dataFull+'">'+
 	'<input type="button" id="btnSalvar">'+
 	'</form>'+
 	'</div>');

@@ -352,6 +352,14 @@
 	margin-bottom:0;
 	padding: 1px 21px;
 }
+
+#observacao_box hr{
+	margin-top: 60px;
+	margin-bottom: 20px;
+	width: 891px;
+	border-top: medium none #898989;
+	border-left: none;
+}
 #cad_observacoes, .cad_observacoes{
 	/*margin-bottom:55px;*/
 	height:auto;
