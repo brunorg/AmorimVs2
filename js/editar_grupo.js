@@ -74,10 +74,6 @@ function carregaAlunosModal(){
         crossDomain: true,
         dataType: 'json',
         success: function(dataAlunos) {
-            debugger;
-            // if (!arraySelected.length > 0) {
-            //     arraySelected = carregaAlunosAgrupamento(); trocar isso pra função de carregar alunos dos agrupamentos mais tarde
-            // }
 
             for(var i = 0; i < dataAlunos.length; i++){
                 var isOnList = false;
