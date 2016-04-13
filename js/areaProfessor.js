@@ -799,24 +799,49 @@ function CarregarRotina() {
         success: function(result) {
 
             horarios.forEach(function(horario) {
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
+                /*$('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")*/
+                $('.Rotina_Semanal_Linha .Rotina_Semanal_Materia').html(" ")
+                $('.Rotina_Semanal_Linha .Rotina_Semanal_Professor').html(" ")
+                $('.Rotina_Semanal_Linha .Rotina_Semanal_Local').html(" ")
             });
 
             result.forEach(function(rotina){
 
-                var nomeOficina = rotina.oficina.nome;
-                nomeOficina = nomeOficina.split('-');
+                var permitidoDraw = false;
 
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(nomeOficina[0].trim())
+                for(var H of horarios){
+                    console.log(H+"", rotina.hora+"");
+                    if(H+"" == rotina.hora+""){
+                        permitidoDraw = true;
+                    }
+                }
+
+
+                /*$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(nomeOficina[0].trim())
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
 
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento+'-'+nomeOficina[1].trim())
 
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)*/
+                
+                if(permitidoDraw){
+
+                    var nomeOficina = rotina.oficina.nome;
+                    nomeOficina = nomeOficina.split('-');
+
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Materia').html(nomeOficina[0].trim())
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
+
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.agrupamento)
+
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
+                    $('.L' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)
+                }
             })
         },
         error: function (a, status, error) {
@@ -829,9 +854,14 @@ function CarregarRotina() {
 function rotinaMudarDia(quanto) {
 
     horarios.forEach(function(horario) {
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("...")
+                /*$('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html("...")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html("...")
-                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("...")
+                $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html("...")*/
+
+                $('.L' + horario + ' .Rotina_Semanal_Materia').html("...")
+                $('.L' + horario + ' .Rotina_Semanal_Professor').html("...")
+                $('.L' + horario + ' .Rotina_Semanal_Local').html("...")
+
             })
 
     diaHoje = (diaHoje + quanto)
@@ -851,6 +881,22 @@ function alterarPeriodoRotina() {
         $(".itemSelected").text($(this).html());
         $(".dropIc").toggleClass("up");
         $(".dropIc").toggleClass("down");
-        $(".itensDropSimples").toggleClass("visible")
+        $(".itensDropSimples").toggleClass("visible");
+        trocaPeriodoArray($(".itemSelected").html());
+
+        rotinaMudarDia(0);
     });
+
+}
+
+function trocaPeriodoArray(palavra){
+
+    console.log(palavra);
+
+    if(palavra == "Tarde"){
+        horarios = [13, 14, 15, 16, 17];
+    } else {
+        horarios = [7, 8, 9, 10, 11];
+    }
+
 }
