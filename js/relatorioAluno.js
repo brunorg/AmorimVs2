@@ -117,22 +117,22 @@ var idProfFunc = "";
 	}
 
 
-	function getPlanejamentoRoteiro(){
+	function getPlanejamentoRoteiro(Ano){
 
-		var retorno;
+  		var retorno;
 
-		$.ajax({
-			url: path + "PlanejamentoRoteiro/aluno/" + alunoID,
-			async: false,
-			type: "GET",
-			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
-		});
-
-		return retorno;
-	}
+	  	$.ajax({
+	   		url: path + "PlanejamentoRoteiro/AlunoAno/" + alunoID + "/" + Ano,
+	   		async: false,
+	   		type: "GET",
+	   		crossDomain: true,
+	   		//beforeSend: function()    { loading("inicial"); },
+	   		success:  function(data)   { retorno = data; }
+	   		//complete:  function()    { loading("final"); }
+	  	});
+	
+	  	return retorno;
+	 }
 
 
 	function getPlanejamentoRoteiroAtivos(planoEstudoID){
@@ -341,12 +341,11 @@ var idProfFunc = "";
 			var data = new Date();										
 			var anoAtual = data.getFullYear();	
 		}
-
-		if(professorId == ""){
-			idtutoria = getProfessorTutoria(professorId, new Date().getFullYear())[0];
-		}else{
-			idtutoria = professorId;
+		else{
+			var anoAtual = ano;
 		}
+
+		idtutoria = getProfessorTutoria(professorId, anoAtual)[0];
 		
 		$.ajax({
 			url: path+"RelatorioTutoria/TutoriaAlunoAno/"+idtutoria.idtutoria+"/"+alunoID+"/"+anoAtual,
@@ -360,7 +359,7 @@ var idProfFunc = "";
 			}
 		});
 
-		//return retorno;
+		return retorno;
 	}
 
 
@@ -468,7 +467,7 @@ function init(ano, alunoVar){
 
 	$('#cad_observacoes').css('display','none');	
 
-	loading("inicial");
+	//loading("inicial");
 
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
@@ -522,7 +521,7 @@ function init(ano, alunoVar){
 			
 						
 	//Seleciona os planejamentos do aluno
-	planejamentosAluno = getPlanejamentoRoteiro();
+	planejamentosAluno = getPlanejamentoRoteiro(ano);
 
 	//Coloca os objetivos em roteirosFiltrados, dessa forma 
 	//roteirosFiltrados é uma matrix e cada posição do array corresponde a um roteiro através
@@ -945,8 +944,9 @@ function listaObservacao(){
 	//Lista as observações que o tutor fez sobre o aluno
 	var resultado;
 	var HtmlContent_rt="";
+	var ano = $('#SelecionaAno').val()
 
-	var data_rt = getRelatorioTutoria(idProfFunc,alunoID);
+	var data_rt = getRelatorioTutoria(idProfFunc,alunoID, ano);
 
 	if(data_rt!=""){
 		$("#box_geral_observacao").css('display','block');	
