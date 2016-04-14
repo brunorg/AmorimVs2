@@ -480,11 +480,12 @@ function EnviarMSG()
 					observacaoProducao = false;
 				}
 				$("#tela_over").hide();
+				
+				loading('final');
 		    	mensagem("Mensagem enviada com sucesso!","OK","bt_ok","sucesso");		    	
 				ListarEnviadas('',0,10); //Não precisa enviar a ultima, a lista é atualizada na função ListarEnviadas!!
 				
 				limparCampos();
-				loading('final');
 				return false;
 		    },error: function() {
 		    	mensagem("Erro ao enviar mensagem!","OK","bt_ok","erro");
