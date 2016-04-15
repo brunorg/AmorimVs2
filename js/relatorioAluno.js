@@ -336,25 +336,29 @@ var idProfFunc = "";
 
 		var retorno;
 		var idtutoria;
+		var anoLetivo;
+		var data = new Date();										
+		var anoAtual = data.getFullYear();
 
-		if(ano == ""){
-			var data = new Date();										
-			var anoAtual = data.getFullYear();	
+		if(ano < anoAtual){
+			anoLetivo = ano;
+			$('#cad_observacoes').css('display','none');
+			console.log(anoLetivo,'ifffff');			
 		}
 		else{
-			var anoAtual = ano;
+			anoLetivo = anoAtual;
+			console.log(anoLetivo,'elseeee');			
 		}
 
-		idtutoria = getProfessorTutoria(professorId, anoAtual)[0];
+		idtutoria = getProfessorTutoria(professorId, anoLetivo)[0];
 		
 		$.ajax({
-			url: path+"RelatorioTutoria/TutoriaAlunoAno/"+idtutoria.idtutoria+"/"+alunoID+"/"+anoAtual,
+			url: path+"RelatorioTutoria/TutoriaAlunoAno/"+idtutoria.idtutoria+"/"+alunoID+"/"+anoLetivo,
 			async: false,
 			type: "GET",
 			crossDomain: true,
 			dataType: 'json',
-			success: function(data) { 
-				console.log(data);
+			success: function(data) {
 				retorno = data;
 			}
 		});
@@ -456,23 +460,18 @@ $(document).ready(function(){
 		init(this.value, getAlunoVariaveisDeAlunoPorAno( alunoID, this.value));
 	});
 
-
 	init(anos[anos.length-1], dataAlunoVariavel[dataAlunoVariavel.length-1]);
 	
 //Fim Jquery ready	
 }); 
 	
 	
-function init(ano, alunoVar){
-
-	$('#cad_observacoes').css('display','none');	
+function init(ano, alunoVar){	
 
 	//loading("inicial");
 
 	if(!base64_decode(GetURLParameter('TU'))){
-		var data = new Date();										
-		//var ano = data.getFullYear();	
-
+		var data = new Date();
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
 		$('#tutoria').val(tutoria[0].idtutoria);
 			

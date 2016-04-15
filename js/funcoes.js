@@ -741,7 +741,7 @@ function botoes(tipo_btn,class_btn){
 /*Funçoes que manipula as combo-box de estado e cidade*/
 function listarEstadoCidade(id){
 	var estados= new Array();
-	var HtmlContentEstados;
+	var HtmlContentEstados="";
 	$.ajax({
 		type: "GET",
 		async:false,
@@ -753,7 +753,7 @@ function listarEstadoCidade(id){
 				HtmlContentEstados += "<option value='"+data['estados'][f].sigla+"'>"+data['estados'][f].sigla+"</option>";
 			}
 		});
-	$("#"+id).html("<option>Selecione</option>"+HtmlContentEstados);;
+	$("#"+id).html("<option value='0'>Selecione</option>"+HtmlContentEstados);
 }
 
 function selectCidade(idEstado,idCidade){
