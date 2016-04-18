@@ -1135,13 +1135,14 @@ input[type=date]::-webkit-inner-spin-button{
     top:0;
 }
 #caixaRelatorio{
-	width: 80%;
+	position: absolute;
+	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.7);
-	position: relative;
-	left: 20%;
+	background-color: rgba(0,0,0,0.7);	
 	display: none; 
-	z-index:999;
+	z-index:9;
+	top:0;
+	right: 0px;
 }
 
 .box_mensagem{
@@ -2527,17 +2528,6 @@ font-family: "proxima-nova",sans-serif;
 	.Content_lateral_Menu_Opcao {
 		height: 13%;
 	}
-	#caixaRelatorio {
-		width: 80%;
-		height: 126%;
-		background-color: rgba(0,0,0,0.7);
-		position: relative;
-		left: 20%;
-		display: none;
-		z-index: 999;
-		top: -105px;
-	}
-	
 	#datepicker {
 		height: 198px !important;
 	}
@@ -2801,17 +2791,6 @@ font-family: "proxima-nova",sans-serif;
 	#Content_lateral_Menu {
 		width: 100%;
 		height: 40%;
-	}
-		
-	#caixaRelatorio {
-		width: 80%;
-		height: 126%;
-		background-color: rgba(0,0,0,0.7);
-		position: relative;
-		left: 20%;
-		display: none;
-		z-index: 999;
-		top: -105px;
 	}
 
 	#datepicker {
@@ -3173,16 +3152,7 @@ font-family: "proxima-nova",sans-serif;
 	.microfiche-next-button, .microfiche-prev-button{
 		top:-121px !important;
 	}
-	#caixaRelatorio {
-		width: 80%;
-		height: 126%;
-		background-color: rgba(0,0,0,0.7);
-		position: relative;
-		left: 20%;
-		display: none;
-		z-index: 999;
-		top: -105px;
-	}
+
 	#presenca{
 		top: -246px;
 		left: 256px;

@@ -520,7 +520,7 @@ function MudarNovoPlano(IdPlanoNovo)
 function InitSetPlanoEstudo()
 {
 	Salvo = false;
-	
+
 	if(IdentificadorPlanoEstudo > 0){
 		$.ajax({
 			url: path+"PlanoEstudo/"+IdentificadorPlanoEstudo,
@@ -684,6 +684,9 @@ function InitSetPlanoEstudo()
 				$("#content_btn_Registro_Diario").css("display", "none");
 			}
 		}
+	}else{
+		$(".Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a").removeAttr('href');
+		mensagem("Crie um plano de estudos para essa semana! Para isso, clique no botão “novo”.","OK","bt_ok","alerta");
 	}
 }
 
