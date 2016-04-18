@@ -551,7 +551,7 @@ function listadados(){
 		/*fim preenchimento formulário aluno*/	
 		
 		/*Aqui será carregado todo os dados do Aluno Variavel no formulário para que possa ser editado*/
-		var dataAV = getData("AlunoVariavel/aluno", alunoEdt);				
+		var dataAV = getData("AlunoVariavel/alunoInativo", alunoEdt);				
 			
 		if(dataAV != undefined && dataAV.aluno != null){								
 			$("#idEdtUserVar").val(dataAV.idalunoVariavel);

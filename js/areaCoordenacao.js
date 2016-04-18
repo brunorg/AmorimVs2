@@ -55,7 +55,8 @@ function getAjax(url, postOrGet, data, async, callback) {
 
 /** Carrega lista de edicadores com link que redireciona para os gráficos de tutoria de cada um. */
 function carregarListaProfessores() {
-	getAjax("Tutoria/TutoriaAno/2015", "GET", "", false, function(result){
+	var d = new Date()
+	getAjax("Tutoria/TutoriaAno/" + d.getFullYear(), "GET", "", false, function(result){
 		result.forEach(function(professor){
 
 			var professorId = base64_encode(""+professor.tutor.idprofessorFuncionario);
