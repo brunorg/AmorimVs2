@@ -108,7 +108,7 @@ var globalMonth;
 
             $(this).empty()
 
-            this.css("width", "245px");
+            this.css("width", "284px");
             this.css("height", "105px");
 
             var todayName = date.getDay()

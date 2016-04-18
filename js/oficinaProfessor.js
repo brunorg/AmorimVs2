@@ -2,7 +2,6 @@ var IDProfessor = localStorage.getItem("professorId");
 var oficina = JSON.parse(localStorage.getItem("oficinaProfessor"));
 
 $(document).ready(function(){
-
 	//Variáveis para receber os htmls com o agrupamento.
 	htmlMenuAgrup = '';
 	htmlContAgrup = '';
@@ -14,8 +13,7 @@ $(document).ready(function(){
 		async: false,
 		crossDomain: true,
 		dataType: 'json',
-		success: function (data) {
-
+		success: function (data){
 			if (data.length > 0){
 				
 				//Percorre os agrupamentos criando os botões do menu e do conteúdo
@@ -49,7 +47,6 @@ $(document).ready(function(){
 		$(this).addClass('aba_ativa');
 
 		$('.agrupamento').hide();
-		console.log("#containerAgrupamento"+agrupId);
 		$("#containerAgrupamento"+agrupId).show();
 	});
 

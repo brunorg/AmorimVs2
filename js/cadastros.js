@@ -4,11 +4,11 @@ var tutoriaArray = Array();
 var posicaoAlunoAtual = 0;
 
 $(document).ready(function(){	
-	$(".box_margin_barra").load( "cadastroAluno.html"); //Mudar para cadastroAluno.html
+	$(".box_margin_barra").load("cadastroAluno.html");
     $(".abas").click(function(){
 		var aba = $(this).attr("id");
 		if(aba == "abaCadAluno"){
-			$(".box_margin_barra").load( "cadastroAluno.html");
+			$(".box_margin_barra").load("cadastroAluno.html");
 			$("#box_cadastro").css("background","#F1F1EC");
 		}else if(aba == "abaCadProfessor"){
 			$(".box_margin_barra").load( "cadastroProfessor.html");
@@ -63,9 +63,6 @@ function selecao(){
 		carregaAnoEstudo();
 		carregaPeriodo("aluno");
 		carregaAluno();
-		/*var abaAtiva = $(".abas_ativa").attr("id");
-		$("#"+abaAtiva).removeClass("abas_ativa");
-		$("#abaCadAluno").addClass("abas_ativa");*/
 		
 	}
 	else if (perfil == 2){
@@ -93,16 +90,11 @@ function selecao(){
 		$("#buscaProfessor").removeClass("ocultar");
 		$("#buscaAluno").addClass("ocultar");
 		carregaTutores();
-		/*var abaAtiva = $(".abas_ativa").attr("id");
-		$("#"+abaAtiva).removeClass("abas_ativa");
-		$("#abaCadAluno").addClass("abas_ativa");*/
-
 	}	
 }
 
 function carregaAluno(){
-	/*lista alunos*/
-	//var dataAlunoVariavel = getData("AlunoVariavel", null);	
+	
 	var HtmlContent = "";
 	var anoEstudo = $("#PesqAnoEstudo").val();
 	var periodo = $("#periodo").val();
@@ -121,7 +113,6 @@ function carregaAluno(){
 			error: function (data) {
 				console.log("ERRO");
 			}
-
 		});
 	}
 
@@ -157,6 +148,7 @@ function carregaAluno(){
 
 	$('#lista').html(HtmlContent);
 }
+
 function carregaProfessor(todos){
 	
 	var HtmlContentP = "";
@@ -215,7 +207,6 @@ function carregaTutores(){
 		});
 
 	$("#Tutores").html(HtmlContent);
-
 }
 
 function carregaTutorandos(){
@@ -234,7 +225,6 @@ function carregaTutorandos(){
 	});
 
 	$("#lista").html(HtmlContent);
-
 }
 									
 //variavel, vem true se tiver dados variaveis e false se não tiver
@@ -339,6 +329,7 @@ function carregaPeriodo(pefil){
 		$('#periodoP').html("<option></option>"+HtmlContent);
 	}	
 }
+
 function carregaAnoEstudo(){
 	/*lista anoEstudo*/
 	var dataAnoEstudo = getData("AnoEstudo", null);	
@@ -594,12 +585,11 @@ function listadados(){
 	localStorage.setItem("alunoEdt","");
 }
 
-timerBusca = setTimeout(function(){}, 1)
+timerBusca = setTimeout(function(){}, 1);
+
 function buscaAluno () {
-
-	clearTimeout(timerBusca)
-	timerBusca = setTimeout(efetuarBusca, 1000)
-
+	clearTimeout(timerBusca);
+	timerBusca = setTimeout(efetuarBusca, 1000);
 }
 
 function efetuarBusca() {

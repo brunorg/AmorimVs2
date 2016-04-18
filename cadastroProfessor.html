@@ -273,7 +273,7 @@ function DataHora(evento, objeto)
     <input type="hidden" id="foto_professor_funcionario" name="foto_professor_funcionario" value="1" />
     <!-- <input type="hidden" id="perfil" name="perfil" value="8" /> -->                            
  <!--    <input type="hidden" id="fotoProfessorFuncionario" name="fotoProfessorFuncionario" value="http://plataformaamorim.org/files/Masc.png" /> -->                          
-    <div class="row row2">
+    <div class="row row-3">
         <div class="col-pequena">
             <p class="foto"> </p>
         </div>
@@ -310,98 +310,96 @@ function DataHora(evento, objeto)
                 </div>
             </div>
         </div>
-    </div>                         
-    <div id="linha4" class="celulaPequena rightMargin">
-        
-    </div>
-    <div id="linha6" class="linha">
-            
-        <div class="celulaGrande">
-            <div class="infoG"> Nome </div>
-            <div class="infoValueG"> <input id="nome" name="nome" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input></div>
-        </div>
-    </div>                                                              
-    <div id="linha9" class="linha">
-        <div class="celulaPequena rightMargin">
-            <div class="infoP"> País </div>
-            <div class="infoValueP">
-                <input id="naturalidadePais" name="naturalidadePais" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
-            </div>
-        </div>
-        <div class="celulaMeio rightMargin">
-            <div class="infoP">Estado</div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select id="naturalidadeEstado" name="naturalidadeEstado">
-                        <option value=""></option>
-                    </select>
-                </div>
-            </div>
-        </div>              
-    </div>  
-    <div id="linha12" class="linha">
-        <div class="celulaMedia rightMargin">
-            <div class="infoM"> Logradouro </div>
-            <div class="infoValueM"> <input name="rua" id="rua" maxlength="45" title="Quantidade de caracteres permitidos: 45"></div>
-        </div>
-         <div class="celulaPequena">
-            <div class="infoP"> Bairro </div>
-            <div class="infoValueP">
-                <input name="bairro" id="bairro" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
-            </div>
-        </div>
-    </div>                 
-    <div id="linha13" class="linha">
-        <div class="celulaPequena">
-            <div class="infoP"> Número </div>
-            <div class="infoValueP"><input id="numero" name="numero" maxlength="15" title="Quantidade de caracteres permitidos: 15"></input></div>
-        </div>
-        <div class="celulaPequena ambasMargin">
-            <div class="infoP"> Complem. </div>
-            <div class="infoValueP"><input id="complemento" name="complemento" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input></div>
-        </div>
-        <div class="celulaPequena">
-            <div class="infoP"> CEP </div>
-            <div class="infoValueP"><input id="cep" name="cep"></input></div>
-        </div>
-    
-    </div>                  
-    <div id="linha23" class="linha">            
-        <div class="celulaMeio rightMargin">
-            <div class="infoP">Estado</div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select id="estado" name="estado" onChange="selectCidade('estado','cidade')">
-                        <option value=""></option>
-                    </select>
-                </div>
-            </div>
-        </div>
-       <div class="celulaMeio">
-            <div class="infoP">Cidade</div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select name="cidade" id="cidade">
-                        <option  value=""></option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>               
-    <div id="linha11" class="linha">
-        <div class="celulaGrande">
-            <div id="infoObs"> Observações </div>
-            <div id="infoValueObs"> <textarea id="observacao" name="observacao"></textarea></div>
-        </div>
     </div>     
+    <div class="row">
+        <div class="col-unica">
+            <div class="label-geral label-P"> Nome </div>
+            <span class="inputContainer">
+               <input id="nome" type="text" class="inputText" maxlength="200" title="Quantidade de caracteres permitidos: 200"></input>
+            </span>
+        </div>
+    </div>                
+    <div class="row">
+        <div class="col-grande">
+            <div class="label-geral label-P"> País </div>
+            <span class="inputContainer">
+                <input id="naturalidadePais" maxlength="200" title="Quantidade de caracteres permitidos: 200" class="inputText"></input>
+            </span>
+        </div>
+        <div class="col-pequena margin-left">
+            <div class="label-geral label-P"> Estado </div>
+            <span class="inputContainer">
+                <select class="inputSelect" id="naturalidadeEstado" name="naturalidadeEstado">
+                    <option value=""></option>
+                </select>
+            </span>
+        </div>
+    </div> 
+    <div class="row-text-area">
+        <div class="col-unica">
+            <div class="label-geral label-textArea"> Observações </div>
+                <div class="inputContainerTextArea">
+                    <textarea class="inputTextArea" id="observacao"></textarea>
+                </div>
+        </div>
+    </div> 
+    <div class="row separador-top">
+        <div class="col-unica">
+            <div class="label-geral label-P"> Logradouro</div>
+            <span class="inputContainer">
+                <input class="inputText" name="rua" id="rua" maxlength="250" title="Quantidade de caracteres permitidos: 250">
+            </span>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Número </div>
+            <div class="inputContainer">
+                <input id="numero" class="inputText" name="numero" maxlength="10" title="Quantidade de caracteres permitidos: 10"></input> 
+            </div>
+        </div>
+        <div class="col-pequena margin-dois-lados">
+            <div class="label-geral label-P"> Complem.</div>
+            <div class="inputContainer">
+                <input id="complemento" class="inputText" name="complemento" maxlength="50" title="Quantidade de caracteres permitidos: 50"></input>
+            </div>
+        </div>
+        <div class="col-pequena">
+            <div class="label-geral label-P"> CEP </div>
+            <div class="inputContainer">
+                <input class="inputText" id="cep" name="cep"></input>
+            </div>
+        </div>
+    </div>
+
+    <div class="row separador-bottom">
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Bairro </div>
+            <div class="inputContainer">
+                <input class="inputText" name="bairro" id="bairro" maxlength="50" title="Quantidade de caracteres permitidos: 50"></input>
+            </div>
+        </div>
+        <div class="col-pequena margin-dois-lados">
+            <div class="label-geral label-P"> Estado </div>
+            <div class="inputContainer">
+                <select class="inputSelect" id="estado" name="estado" onChange="selectCidade('estado','cidade')">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Cidade </div>
+            <div class="inputContainer">
+                <select class="inputSelect" name="cidade" id="cidade"></select>
+            </div>
+        </div>
+    </div>                                                                                
     <div id="linha31" class="linha">
         <div class="celulaPequena btn_left">
             <input type="submit" class="btnSubmit btnFuncionario" name="btnSubmit" value="" />
         </div>
     </div>
 </form>
-
-<div id="linha" class="linha"></div>
 
 <form id="frmCadastroProfessorVariavel">
     <input type="hidden" id="id" name="id" value="0" />
@@ -411,38 +409,39 @@ function DataHora(evento, objeto)
     <!-- <input type="hidden" id="quinquenio" name="quinquenio" value="1" /> -->
                             
     <input type="hidden" id="descontoQuinquenio" name="descontoQuinquenio" value="0" />
-    <div id="linha2" class="linha">
-        <div class="celulaPequena">
-            <div class="infoP">Formação</div>
-            <div class="infoValueP">
-                <input id="formacao" name="formacao" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
+    <div class="row separador-top">
+        <div class="col-unica">
+            <div class="label-geral label-P"> Formação </div>
+            <div class="inputContainer">
+                <input class="inputText" id="formacao" name="formacao" maxlength="45" title="Quantidade de caracteres permitidos: 45"></input>
             </div>
         </div>
-        <div class="celulaPequena ambasMargin">
-            <div class="infoP"> Cargo </div>
-            <div class="infoValueP">
-                <input name="cargo" id="cargo" maxlength="255" title="Quantidade de caracteres permitidos: 255"></input>
+    </div>
+    <div class="row">
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Cargo </div>
+            <div class="inputContainer">
+                <input class="inputText" name="cargo" id="cargo" maxlength="255" title="Quantidade de caracteres permitidos: 255"></input>
             </div>
         </div>
-        <div class="celulaPequena">
-            <div class="infoP"> Quinquênio </div>
-            <div class="infoValueP">
-                <input name="quinquenio" id="quinquenio"></input>
+        <div class="col-pequena margin-dois-lados">
+            <div class="label-geral label-P"> Quinquênio </div>
+            <div class="inputContainer">
+                <input class="inputText" name="quinquenio" id="quinquenio"></input>
             </div>
-        </div>              
-    </div> 
-    <div id="linha9" class="linha">                           
-        <div id="linha3" class="celulaPequena">
-           <div class="infoP "> QPE </div>
-           <div class="infoValueP">
-               <input id="qpe" name="qpe" maxlength="2" maxlength="200" title="Quantidade de caracteres permitidos: 200"/>
-           </div>
-       </div>
-       <div class="celulaPequena ambasMargin">
-           <div class="infoP "> Letra </div>
-           <div class="infoValueP">
-               <div class="styled-select">
-                   <select id='letra' name="letra">
+        </div>
+        <div class="col-pequena">
+            <div class="label-geral label-P"> QPE </div>
+            <div class="inputContainer">
+                <input class="inputText" id="qpe" name="qpe" maxlength="2" maxlength="200" title="Quantidade de caracteres permitidos: 200"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Letra </div>
+            <div class="inputContainer">
+                <select  class="inputSelect" id='letra' name="letra">
                        <option value="A">A</option>
                        <option value="B">B</option>
                        <option value="C">C</option>
@@ -470,102 +469,86 @@ function DataHora(evento, objeto)
                        <option value="Y">Y</option>
                        <option value="Z">Z</option>
                    </select>
-               </div>
-           </div>
-              </div>
-        <div class="celulaPequena">
-            <div class="infoP"> Período </div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select id="periodo" name="periodo">
-                    </select>
-                </div>
             </div>
         </div>
-    </div>               
-    <div id="linha12" class="linha">
-        <div class="celulaPequena">
-            <div class="infoP "> Ano Letivo </div>
-            <div class="infoValueP">
-                <div class="styled-select">
-                    <select id="anoLetivo" name="anoLetivo">
-                    </select>
-                </div>
+        <div class="col-pequena margin-dois-lados">
+            <div class="label-geral label-P"> Período </div>
+            <div class="inputContainer">
+                <select class="inputSelect" id="periodo" name="periodo"></select>
             </div>
         </div>
-    </div>
-    <div id="linha11" class="linha">
-        <div class="celulaGrande">
-            <div id="infoObs"> Observações </div>
-            <div id="infoValueObs"> <textarea id="observacao" name="observacao"></textarea></div>
-        </div>
-    </div>     
-    <div id="linha31" class="linha">
-        <div class="celulaPequena btn_left">
-            <input type="submit" class="btnSubmit btnFuncionarioVariavel" name="btnSubmit" value="" />
+        <div class="col-pequena">
+            <div class="label-geral label-P"> Ano Letivo </div>
+            <div class="inputContainer">
+                <select class="inputSelect" id="anoLetivo" name="anoLetivo"></select>
+            </div>
         </div>
     </div>
 </form>
 
-<div class="linha"></div>
-
-<div id="linha8" class="linha opcaoFoto">
-    <div id="UpFotoProfessor" class="celulaMeio">
-        <div class="infoP"> Upload Foto Professor </div>
-        <div class="infoValueMm"> Sim </div>
-        <div class="inputImg tipoP" onclick="upFotoProfessor('S');"> </div>
-        <input type="radio" name="uploadFoto" id="uploadFotoS" value="S">
-        <div class="infoValueMm"> Não </div>
-        <div class="inputImg tipoP" onclick="upFotoProfessor('N');"> </div>
-        <input type="radio" name="uploadFoto" id="uploadFotoN" value="N">
-    </div>
-    <div id="box_foto">
-        <div id="fotoCad"></div>
+<div class="row separador-top">
+    <div class="col-unica">
+        <div class="col-p-pequena">
+            <div class="label-geral label-P"> Upload Foto </div>
+        </div>
+        <div class="col-grande col-upload-foto">
+            <div class="col-responsavel-p">
+                <div class="label-geral label-Check label-responsavel-p">Sim</div>
+                <div class="inputContainerCheck">
+                    <div class="inputImg inputCheck" onclick="upFotoProfessor('S');"> </div>
+                    <input type="radio" name="uploadFoto" id="uploadFotoS" value="S">
+                </div>
+            </div>
+            <div class="col-responsavel-p">
+                <div class="label-geral label-Check label-responsavel-p">Não</div>
+                <div class="inputContainerCheck">
+                    <div class="inputImg inputCheck" onclick="upFotoProfessor('N');"> </div>
+                    <input type="radio" name="uploadFoto" id="uploadFotoN" value="N">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<div class="linha"></div>
 
 <div id="cadUsuarioProfessor">
     <form id="frmCadastroUsuarioProfessor">
         <input type="hidden" name="actionUserProfessor" id="actionUserProfessor" value="create"/>
         <input type="hidden" id="idEdtUserProfessor" name="idEdtUserProfessor" value=""/>
         <input type="hidden" id="professorUser" name="professorUser" value=""/>
-        <div id="linha5" class="linha">
-            <div class="celulaPequena rightMargin">
-                <div class="infoM"> Login </div>
-                <div class="infoValueM">
-                    <input id="loginProfessor" name="loginProfessor" value="" title="Quantidade de caracteres permitidos: 10" maxlength="10">
+        
+        <div class="row separador-top">
+            <div class="col-pequena">
+                <div class="label-geral label-P">Login</div>
+                <div class="inputContainer">
+                    <input class="inputText" id="loginProfessor" name="loginProfessor" value="" title="Quantidade de caracteres permitidos: 10" maxlength="10"> 
                 </div>
             </div>
-            <div class="celulaPequena rightMargin">
-                <div class="infoP"> Senha </div>
-                <div class="infoValueP">
-                    <input id="senhaUserProfessor" name="senhaUserProfessor" type="password" value="" title="Quantidade de caracteres permitidos:6" maxlength="6"/>
+            <div class="col-pequena margin-dois-lados">
+                <div class="label-geral label-P">Senha</div>
+                <div class="inputContainer">
+                    <input class="inputText" id="senhaUserProfessor" name="senhaUserProfessor" type="password" value="" title="Quantidade de caracteres permitidos:6" maxlength="6"/>
                 </div>
             </div>
-            <div class="celulaPequena">       
-                <div class="infoP colunaBranca_Esquerda"> Perfil </div>
-                <div class="infoValueP">
-                    <div class="styled-select">
-                        <select id="perfilCadastro">
-                            <option value="24">Professor</option>
-                            <option value="25">Secretaria</option>
-                            <option value="26">Coordenação</option>
-                            <option value="27">Administrador</option>
-                            <option value="28">Professor Curador</option>
-                        </select>
-                    </div>
+            <div class="col-pequena">
+                <div class="label-geral label-P">Perfil</div>
+                <div class="inputContainer">
+                    <select class="inputSelect" id="perfilCadastro">
+                        <option value="24">Professor</option>
+                        <option value="25">Secretaria</option>
+                         <option value="26">Coordenação</option>
+                         <option value="27">Administrador</option>
+                         <option value="28">Professor Curador</option>
+                     </select>
                 </div>
-            </div> 
+            </div>
         </div>
-        <div id="linha28" class="linha">
-            <div class="celulaGrande">
-                <div class="infoG">Email</div>
-                <div class="infoValueG">
-                    <input id="emailUsuarioProfessor" name="emailUsuarioProfessor"  value="" title="Quantidade de caracteres permitidos: 45" maxlength="45"></input>
+        <div class="row">
+            <div class="col-unica">
+                <div class="label-geral label-P">Email</div>
+                <div class="inputContainer">
+                    <input class="inputText" id="emailUsuarioProfessor" name="emailUsuarioProfessor"  value="" title="Quantidade de caracteres permitidos: 45" maxlength="45"></input>
+                    <input type="hidden" id="perfilProfessor" name="perfilProfessor"  value=""></input>
                 </div>
-                <input type="hidden" id="perfilProfessor" name="perfilProfessor"  value=""></input>
             </div>
         </div>
         <div class="celulaPequena btn_left">
