@@ -34,7 +34,6 @@ function validaForm (formulario) {
         case "ProfessorFuncionario":{
         	
             var dataAtual = new Date;
-            
             if ($("#ativo").val() == null)
             {
                 mensagem("Por favor, selecione um status!","OK","bt_ok","erro");
@@ -207,15 +206,12 @@ function validaForm (formulario) {
             }
         }
         break;
-
     }
 }
 
 /*-----------------------------Inicio jquery---------------------------*/
 
 $(document).ready(function(){
-	
-	
     $("#cep").mask("99999-999");
 
     /* POST da tabela ProfessorFuncionario */
@@ -250,7 +246,7 @@ $(document).ready(function(){
                         
                         if ($('#frmCadastroProfessor #action').val() == 'create'){
                         	loading('final');
-                        	mensagem("Dados cadastrados com sucesso!!<br>Continue com o cadastro!","OK","bt_ok","sucesso");
+                        	mensagem("Dados cadastrados com sucesso.<br>Continue com o cadastro!","OK","bt_ok","sucesso");
                         	$(".btnFuncionario").hide();
 
                             return false;
@@ -518,7 +514,6 @@ function salvarFotoProfessor(){
                 mensagem("Arquivo salvo com sucesso!","OK","bt_ok","sucesso");
                 var dataProfessores = getData("ProfessorFuncionario", idProfessor);
                 $("#fotoCad").css("display","block").html("<img id='_foto' src='"+dataProfessores.fotoProfessorFuncionario+"' width='150' height='150'/>");
-                debugger;
             }
         });
     }else{

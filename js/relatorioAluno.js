@@ -209,7 +209,6 @@ var perfilAtivo = JSON.parse(localStorage.getItem("objetoUsuario")).perfil.perfi
 
 	function getProfessorTutoria(professorID, Ano) {
 		var retorno;
-
 		$.ajax({
 			url: path + "Tutoria/Professor/"+professorID+"/"+Ano,
 			async: false,
@@ -219,7 +218,6 @@ var perfilAtivo = JSON.parse(localStorage.getItem("objetoUsuario")).perfil.perfi
 			success: 	function(data) 		{ retorno = data; }
 			//complete: 	function() 			{ loading("final"); }
 		});
-
 		return retorno;
 	}
 
@@ -419,8 +417,6 @@ var perfilAtivo = JSON.parse(localStorage.getItem("objetoUsuario")).perfil.perfi
 
 	function getRelatorioTutoriaPorAno(IDtutoria, alunoID, ano){
 
-		console.log(IDtutoria, alunoID, ano);
-
 		var retorno;
 
 		$.ajax({
@@ -488,7 +484,6 @@ $(document).ready(function(){
 	}
 
 	$("#SelecionaAno").change(function(){
-
 		init(this.value, getAlunoVariaveisDeAlunoPorAno( alunoID, this.value));
 	});
 
@@ -505,7 +500,6 @@ function init(ano, alunoVar){
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();										
 		//var ano = data.getFullYear();	
-
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
 
 		idTutoria = tutoria[0].idtutoria;
@@ -516,12 +510,9 @@ function init(ano, alunoVar){
 		//$('#tutoria').val(base64_decode(GetURLParameter('TU')));
 		//console.log(getProfessorTutoria(localStorage.getItem("professorId"),ano));
 		if(perfilAtivo == "Coordenacao"){
-
 			var tutoria = getProfessorTutoria(getProfessorPorTutoria(base64_decode(GetURLParameter('TU'))).tutor.idprofessorFuncionario,ano);
-			console.log("Tutoria+1"+tutoria);
 		} else{
 			var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
-			console.log("Tutoria+2"+tutoria);
 		}
 
 
@@ -558,12 +549,6 @@ function init(ano, alunoVar){
 	var aux2;
 	var aluno = getAluno(alunoID);
 	var relatorioTutoria = getRelatorioTutoriaPorAno(idTutoria, aluno.idAluno, ano);
-
-	console.log(alunoVarSelecionado);
-	console.log(roteiroExtra);
-	console.log(roteiros);
-	console.log(aluno);
-	console.log(relatorioTutoria);
 
 	listarRelatorioTutoria(relatorioTutoria);
 
@@ -627,7 +612,6 @@ function init(ano, alunoVar){
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo.idplanoEstudo;
 				} else {
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo;
-					//console.log(planejamentosAluno[i]);
 				}
 
 			}
@@ -695,7 +679,6 @@ function init(ano, alunoVar){
 		  
 	graficoBarra(alunoID,planejamentosAluno);
 	//preenche estatisticas de roteiros e objetivos feitos
-
 	$('#res_roteiros').empty();
 	$('#res_roteiros').append('<span id="res_vermelho">'+contadorRoteiros+'</span> roteiros de '+ roteirosFiltrados.length+'</p>');		
 	
@@ -960,7 +943,6 @@ function corrigir(){
 	
 	///carol
 	$('.selTodos').click(function(){
-		console.log("selecionou");
 		var elemento = $(this).attr('id');
 		var objetivos = "";;
 		var elementos =  elemento.split("_");
@@ -1013,7 +995,6 @@ function listaObservacao(){
 
 	var data_rt = getRelatorioTutoria(idProfFunc,alunoID);
 
-	console.log(data_rt);
 	if(data_rt!=""){
 		$("#box_geral_observacao").css('display','block');	
 		$("#observacao_box").css('padding-bottom','25px');

@@ -249,11 +249,6 @@ $(document).ready(function() {
 		//$(".ui-corner-all").css("background-color", corForte);
 	}
 
-
-
-
-
-
 	$(".Conteudo_Coluna").scroll(function(){
 		$("#box_novo").removeClass("exibir");
 	});
@@ -267,8 +262,6 @@ $(document).ready(function() {
 	loadHistorico();
 	returnOficinaProfessor();
 });
-
-
 
 function listaObjetivos(idPlanoAula){
 	$.ajax({
@@ -349,7 +342,6 @@ function reSetPlano(ID) {
 
 	$('.dadosObjetivos').empty();
 	carregarPlano();
-
 }
 
 function loadHistorico(){
@@ -615,8 +607,3 @@ function estilizarCalendario () {
 	$('div#ui-datepicker-div table.ui-datepicker-calendar').css('margin-bottom', '0');
 	$('.ui-datepicker-today').css('background-color', corMedia);
 }
-
-// function estilizarHistorico(){
-// 	debugger;
-// 	$('.historico_mes').css('background-color', corForte);
-// }
