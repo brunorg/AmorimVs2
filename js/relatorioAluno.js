@@ -205,6 +205,7 @@ var idProfFunc = "";
 
 	function getProfessorTutoria(professorID, Ano) {
 		var retorno;
+
 		$.ajax({
 			url: path + "Tutoria/Professor/"+professorID+"/"+Ano,
 			async: false,
@@ -214,6 +215,7 @@ var idProfFunc = "";
 			success: 	function(data) 		{ retorno = data; }
 			//complete: 	function() 			{ loading("final"); }
 		});
+
 		return retorno;
 	}
 
@@ -427,43 +429,6 @@ var idProfFunc = "";
 
 
 
-	function getRelatorioTutoriaPorAno(IDtutoria, alunoID, ano){
-
-		var retorno;
-
-		$.ajax({
-			url: path + "RelatorioTutoria/TutoriaAlunoAno/"+IDtutoria+"/"+alunoID+"/"+ano,
-			async: false,
-			type: "GET",
-			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
-		});
-
-		return retorno;
-	}
-
-
-
-
-	function getProfessorPorTutoria(IDtutoria){
-
-		var retorno;
-
-		$.ajax({
-			url: path + "Tutoria/"+IDtutoria,
-			async: false,
-			type: "GET",
-			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
-		});
-
-		return retorno;
-	}
-
 //------------------------------------------------------------------------------------------------------------
 //
 //		Ready
@@ -491,6 +456,7 @@ $(document).ready(function(){
 	}
 
 	$("#SelecionaAno").change(function(){
+
 		init(this.value, getAlunoVariaveisDeAlunoPorAno( alunoID, this.value));
 	});
 
@@ -502,7 +468,7 @@ $(document).ready(function(){
 	
 function init(ano, alunoVar){	
 
-
+	//loading("inicial");
 
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();
@@ -510,24 +476,7 @@ function init(ano, alunoVar){
 		$('#tutoria').val(tutoria[0].idtutoria);
 			
 	}else{
-		//$('#tutoria').val(base64_decode(GetURLParameter('TU')));
-		//console.log(getProfessorTutoria(localStorage.getItem("professorId"),ano));
-		if(perfilAtivo == "Coordenacao"){
-			var tutoria = getProfessorTutoria(getProfessorPorTutoria(base64_decode(GetURLParameter('TU'))).tutor.idprofessorFuncionario,ano);
-		} else{
-			var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
-		}
-
-
-		if(!tutoria[0]){
-			idTutoria = tutoria;
-		} else {
-
-			idTutoria = tutoria[0].idtutoria;
-		}
-
-		$('#tutoria').val(idTutoria);
-
+		$('#tutoria').val(base64_decode(GetURLParameter('TU')));
 	}
 
 	if (confTutor == true){
@@ -552,10 +501,6 @@ function init(ano, alunoVar){
 	var aux;
 	var aux2;
 	var aluno = getAluno(alunoID);
-
-	var relatorioTutoria = getRelatorioTutoriaPorAno(idTutoria, aluno.idAluno, ano);
-
-	listarRelatorioTutoria(relatorioTutoria);
 
 	$('.link_plano a').attr("href","planoDeEstudo.html?ID="+alunoIdCoded);	
 
@@ -616,6 +561,7 @@ function init(ano, alunoVar){
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo.idplanoEstudo;
 				} else {
 					roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][4]=planejamentosAluno[i].planoEstudo;
+					//console.log(planejamentosAluno[i]);
 				}
 
 			}
@@ -668,7 +614,15 @@ function init(ano, alunoVar){
 			contadorRoteiros++;
 		}
 		
-		if(correcao == true){
+		var tutoriaAtual;
+		try{
+			tutoriaAtual = JSON.parse(localStorage.getItem("tutoriaProfessor"))[0];
+		}
+		catch(erro){
+			tutoriaAtual = ""
+		}
+		
+		if(correcao == true && $('#tutoria').val() == tutoriaAtual.idtutoria){
 			htmlSelelecionar = '<td class="selTodosTd"><input type="checkbox" class="selTodos" id="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><label for="selTodos_'+roteirosFiltrados[i][0].idroteiro+'"><span></span></label><p>Selecionar todos</p></td>';
 			htmlCorrigir = '<tr><td><span class="corrigir" id="corrigir_'+roteirosFiltrados[i][0].idroteiro+'">Corrigir</span></td></tr>';
 			htmlContent += htmlSelelecionar+'</tr>'+htmlCorrigir+'</table></div>';			
@@ -683,6 +637,7 @@ function init(ano, alunoVar){
 		  
 	graficoBarra(alunoID,planejamentosAluno);
 	//preenche estatisticas de roteiros e objetivos feitos
+
 	$('#res_roteiros').empty();
 	$('#res_roteiros').append('<span id="res_vermelho">'+contadorRoteiros+'</span> roteiros de '+ roteirosFiltrados.length+'</p>');		
 	
@@ -887,9 +842,10 @@ function init(ano, alunoVar){
 						
 	});
 	
-	$('td.verde').click(function(){
-		$(this).addClass( "verde_tk" );	
-  	});
+	if ($('#tutoria').val() == tutoriaAtual.idtutoria)
+		$('td.verde').click(function(){
+			$(this).addClass( "verde_tk" );	
+  		});
 	
 
   	$("#right_scroll").click(function(){
@@ -946,6 +902,7 @@ function corrigir(){
 	
 	///carol
 	$('.selTodos').click(function(){
+		console.log("selecionou");
 		var elemento = $(this).attr('id');
 		var objetivos = "";;
 		var elementos =  elemento.split("_");
