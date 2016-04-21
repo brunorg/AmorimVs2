@@ -215,7 +215,6 @@ $(document).ready(function(){
     $("#cep").mask("99999-999");
 
     /* POST da tabela ProfessorFuncionario */
-
     $('.dataFixaSalva').remove();
 
     $('#frmCadastroProfessor').unbind('submit').on("submit", function(event) {
@@ -225,10 +224,10 @@ $(document).ready(function(){
         
         if (typeof retorno == 'undefined'){
         	loading('inicio');
-            $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 1, '-'));
-            $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 1, '-'));
+            $('#dataEntradaPrefeitura').val();
+            $('#dataEntradaEscola').val();
             $('#quinquenio').val($('#QuinquenioNumber').html());
-            
+
             $.ajax({
                 url: path+"ProfessorFuncionario/",
                 type: "POST",
@@ -236,38 +235,31 @@ $(document).ready(function(){
                 dataType: 'json',
                 data: $(this).serialize(),                    
                 success: function(d) {
-                        $('#professorFuncionario').val(d);
-                        $('#frmCadastroProfessorVariavel #professorFuncionario').val(d);
-                        $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 2, '-'));
-                        $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 2, '-'));
-                        $('#professorUser').val(d);
+                    $('#professorFuncionario').val(d);
+                    $('#frmCadastroProfessorVariavel #professorFuncionario').val(d);
+                    $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 2, '-'));
+                    $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 2, '-'));
+                    $('#professorUser').val(d); 
+                    $('#frmCadastroProfessorVariavel').css('display', 'block');
                         
-                        $('#frmCadastroProfessorVariavel').css('display', 'block');
-                        
-                        if ($('#frmCadastroProfessor #action').val() == 'create'){
-                        	loading('final');
-                        	mensagem("Dados cadastrados com sucesso.<br>Continue com o cadastro!","OK","bt_ok","sucesso");
-                        	$(".btnFuncionario").hide();
+                    if ($('#frmCadastroProfessor #action').val() == 'create'){
+                    	loading('final');
+                    	mensagem("Dados cadastrados com sucesso.<br>Continue com o cadastro!","OK","bt_ok","sucesso");
+                    	$(".btnFuncionario").hide();
 
-                            return false;
-                        	
-                        	
-                        }else {
-                        	loading('final');
-                        	mensagem("Dados alterados com sucesso!!","OK","bt_ok","sucesso");
-                        }
-                        
-                        
-                    },error: function() {
-                        $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 2, '-'));
-                        $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 2, '-'));
+                        return false;
+                    }else {
                         loading('final');
-                        mensagem("Não modificado, verifique os campos.","OK","bt_ok","erro");
+                        mensagem("Dados alterados com sucesso!!","OK","bt_ok","sucesso");
                     }
-                });
-        }
-          
-
+                },error: function(){
+                    $('#dataEntradaPrefeitura').val(''+changeDatePosition($('#dataEntradaPrefeitura').val(), 2, '-'));
+                    $('#dataEntradaEscola').val(''+changeDatePosition($('#dataEntradaEscola').val(), 2, '-'));
+                    loading('final');
+                    mensagem("Não modificado, verifique os campos.","OK","bt_ok","erro");
+                }
+            });
+        }       
     });
 
 
@@ -288,9 +280,7 @@ $(document).ready(function(){
                 dataType: 'json',
                 data: $(this).serialize(),                    
                     success: function(d) {
-    
-
-            	 		if ($('#frmCadastroProfessor #action').val() == 'create'){
+                        if ($('#frmCadastroProfessor #action').val() == 'create'){
             	 			loading('final');
             	 			mensagem("Dados cadastrados com sucesso!<br>Continue com o cadastro!","OK","bt_ok","sucesso");
                             $(".btnFuncionarioVariavel").hide();

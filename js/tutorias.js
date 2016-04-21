@@ -27,34 +27,25 @@ function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId
 }
 
 function criarPaineisDosAlunos(idDivGrupo, retornoAjax) {
-
-
-            // for(var i = 0; i < retornoAjax.length; i++){
-                
-            // }
-
-			console.log(retornoAjax[0].idProfessor);
-			console.log(retornoAjax[1].idProfessor);
-
-            for (var i = retornoAjax.length - 1; i >= 0; i--) {
-				$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
-				$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<a href=\"grupoTutoria.html?ID='+base64_encode(""+retornoAjax[i].idProfessor)+'\"> <div class="grupoFotoAluno"></div> </a>')
-        		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + retornoAjax[i].foto + '"></img>')
-				$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
-        		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + abreviaNome(retornoAjax[i].nome) + '</span>')
-				$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr id="aluno' + i + '"></tr>')
-       			$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody tr#aluno" + i).append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
-        		if (i != 0) {
-        			$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
-        		}
-				$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr id="aluno' + i + 'freq"></tr>')
-        		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody tr#aluno" + i + "freq").append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
-        		if (i != 0) {
-            		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
-        		}
-        		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .caixaGR").append('<div class="grupoLinhaAluno grupoLinhaAlunoTop borderRight"><div class="grupoGraficoFreqTitulo"><h1 class="freqTitulo">Dias letivos</h1><h2 class="anoLetivo" id="anoLetivo">' + 0 +'</h2><h1 class="freqTitulo">Faltas</h1><h2 class="faltas" id="faltas">' + 0 + '</h2></div></div>')
-				criarBarrinhas(idDivGrupo, 'aluno' + i, retornoAjax[i]);		
-			}
+	for (var i = retornoAjax.length - 1; i >= 0; i--) {
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<a href=\"grupoTutoria.html?ID='+base64_encode(""+retornoAjax[i].idProfessor)+'\"> <div class="grupoFotoAluno"></div> </a>')
+      	$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + retornoAjax[i].foto + '"></img>')
+		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
+      	$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<span>' + abreviaNome(retornoAjax[i].nome) + '</span>')
+		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr id="aluno' + i + '"></tr>')
+      	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody tr#aluno" + i).append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
+      	if (i != 0) {
+      		$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
+      	}
+		$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr id="aluno' + i + 'freq"></tr>')
+      	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody tr#aluno" + i + "freq").append('<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="ultimaColunaBBranca"></td>')
+      	if (i != 0) {
+         	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .grupoTabela tbody").append('<tr class="tableSeparacao"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>')
+      	}
+      	$('#' + idDivGrupo + " .grupoBlocoGraficoFreq .caixaGR").append('<div class="grupoLinhaAluno grupoLinhaAlunoTop borderRight"><div class="grupoGraficoFreqTitulo"><h1 class="freqTitulo">Dias letivos</h1><h2 class="anoLetivo" id="anoLetivo">' + 0 +'</h2><h1 class="freqTitulo">Faltas</h1><h2 class="faltas" id="faltas">' + 0 + '</h2></div></div>')
+		criarBarrinhas(idDivGrupo, 'aluno' + i, retornoAjax[i]);		
+	}
 }
 
 function adicionarBarrinhasNoHtml(idDivGrupo, id) {

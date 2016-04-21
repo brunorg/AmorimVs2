@@ -86,8 +86,7 @@ function AA(Palavra, Ativo)
 }
 
 
-function reset(Numero)
-{
+function reset(Numero){
     if(Numero == 1)
     {
         AA('DadosMaeVisualizacao',false);
