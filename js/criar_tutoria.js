@@ -356,6 +356,7 @@ function editarTutoria(agrupamento){
 }
 
 function atualizarAluno(agrupamento){
+    $(".btn_EditPesq_Tutoria").unbind("click");
     $(".btn_EditPesq_Tutoria").click(function(){
         var alunosEdit = $(".Aluno_Ano_Check:checked");
         carregarAlunos();
