@@ -86,14 +86,13 @@ function AA(Palavra, Ativo)
 }
 
 
-function reset(Numero)
-{
+function reset(Numero){
     if(Numero == 1)
     {
         AA('DadosMaeVisualizacao',false);
         AA('DadosPaiVisualizacao',false);
         AA('DadosOutroVisualizacao',false);
-        $('.col-unica .inputImg').removeClass( "clicado" );
+        $('.col-unica .inputImg').removeClass("clicado");
         $('.col-unica .inputImg').css("background-position","0px 0px");
         reset(2);
     } else if(Numero == 2){
@@ -149,8 +148,7 @@ function cadastraEditaAluno(){
 		}
 		
 		var responsavelM ="N",responsavelP="N",responsavelR="N";
-		var responsavel = $('#linha15 .clicado').next().attr("name");
-		
+		var responsavel = $('.col-responsavel-p .clicado').next().attr("name");
 		if(responsavel == "eresponsavelLegalMae"){
 			responsavelM = "S";
 		}else if(responsavel == "eresponsavelLegalPai"){
@@ -298,6 +296,7 @@ function upFoto(valor){
 }
 
 function cadastraUser(){
+	var retorno = validaForm("User");
 	if(typeof retorno == 'undefined'){	
 		var valores = "&email="+$('#emailUsuario').val()+
 					"&aluno="+$('#alunoUser').val()+
@@ -309,7 +308,7 @@ function cadastraUser(){
 		if(action=="create"){
 			if($('#senhaUser').val().length > 6){
 				mensagem("A senha deve conter no máximo 6 caracteres!","OK","bt_ok","alerta");
-			}else{
+			} else {
 				valores+="&senha="+$('#senhaUser').val();
 			}
 		}else if(action=="update" && $("#idEdtUser").val() != ""){
@@ -319,8 +318,8 @@ function cadastraUser(){
             action = "create";
             if($('#senhaUser').val().length > 6){
                 mensagem("A senha deve conter no máximo 6 caracteres!","OK","bt_ok","alerta");
-            }else{
-                valores+="&senha="+$('#senhaUser').val();
+            } else {
+            	valores+="&senha="+$('#senhaUser').val();
             }
         }
 				
@@ -450,19 +449,23 @@ function validaForm (formulario) {
                 return false;
             }
 
-            if ($("#nomeMae").val() == "")
-            {
-                mensagem("Por favor, preencha o campo Nome da Mãe!","OK","bt_ok","erro");
-                $('#nomeMae').focus();
-                return false;
+            if($('.col-responsavel-p .clicado').next().attr("name") == "eresponsavelLegalMae"){
+            	if ($("#nomeMae").val() == "")
+            	{
+      
+                	mensagem("Por favor, preencha o campo Nome da Mãe!","OK","bt_ok","erro");
+                	$('#nomeMae').focus();
+                	return false;
+            	}
+            } else if($('.col-responsavel-p .clicado').next().attr("name") == "eresponsavelLegalPai"){
+            	if ($("#nomePai").val() == "")
+            	{
+                	mensagem("Por favor, preencha o campo Nome do Pai!","OK","bt_ok","erro");
+                	$('#nomePai').focus();
+                	return false;
+            	}
             }
-
-            if ($("#nomePai").val() == "")
-            {
-                mensagem("Por favor, preencha o campo Nome do Pai!","OK","bt_ok","erro");
-                $('#nomePai').focus();
-                return false;
-            }
+            
 
             if ($("#endereco").val() == "")
             {
@@ -556,8 +559,12 @@ function validaForm (formulario) {
                 mensagem("Por favor, preencha o campo Senha!","OK","bt_ok","erro");
                 $('#senhaUser').focus();
                 return false;
-            }  
+            } 
 
+            if ($("#emailUsuario").val() == ""){
+            	mensagem("Por favor, preencha o campo email.","OK","bt_ok","erro");
+            	return false;
+            }            
         }
 
 

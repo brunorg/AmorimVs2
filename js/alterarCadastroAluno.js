@@ -359,7 +359,6 @@ function validaForm () {
         $('#dataNascimento').focus();
         return false;
     }
-
     if ($("#nomeMae").val() == "")
     {
         mensagem("Por favor, preencha o campo Nome da Mãe!","OK","bt_ok","erro");

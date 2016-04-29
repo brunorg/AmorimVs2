@@ -561,7 +561,31 @@ select{
 
 
 .btnSubmit{
-	background: url("../img/bt_salvar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background: url("../img/bt_salvar_laranja.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	height: 39px;
+}
+
+.cad-user{
+	width: 596px;
+	height: auto;
+}
+
+.col-login{
+	width: 294px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.col-pass{
+	width: 294px;
+	margin-left: 8px;
+	float: left;
+}
+
+.btnCadastro{
+	width: 16.6%;
+	margin-right: 10px;
+	margin-top: 20px;
 }
 
 @media (width: 1024px) and (min-height: 510px) and (max-height: 639px){
