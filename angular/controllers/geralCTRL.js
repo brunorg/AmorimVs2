@@ -20,18 +20,21 @@ app.controller('loginCTRL',function ($scope,$http) {
 				if(mobile){
 					m = "m_";
 				}
+
 				localStorage.setItem("objetoUsuario", JSON.stringify(a));
 				if (typeof a !== "undefined") {
 					if(a.perfil.perfil == "Aluno"){
 						var objAlunoVariavel = alunoVariavelByIdAluno(a.aluno.idAluno);
 
-						if(objAlunoVariavel.anoEstudo.ano <= 2){
+						if(objAlunoVariavel.anoEstudo.ano == 2 || objAlunoVariavel.anoEstudo.ano == 1){
 							window.location = "areaAlunoAlfabetizacao.html";
 						}else{
 							window.location = "areaAluno.html";
 						}
+
 						localStorage.setItem("alunoId",a.aluno.idAluno);
-						window.location = m+"areaAluno.html";
+						// window.location = m+"areaAluno.html";
+						
 					}
 					else if(a.perfil.perfil == "Professor"){
 						localStorage.setItem("professorId", a.professor.idprofessorFuncionario)	;
@@ -63,8 +66,8 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.usuarioCabecalho = alunoNomeAno;
 				$scope.usuarioFoto = dadosUsuario.aluno.fotoAluno;
 				$scope.usuarioNamePagina = "Área do Aluno";
-
-				if(dadosAlunoVariavel.anoEstudo.ano <= 2){
+				
+				if(dadosAlunoVariavel.anoEstudo.ano == 2 || dadosAlunoVariavel.anoEstudo.ano == 1){
 					$scope.usuarioPagina = "areaAlunoAlfabetizacao.html";
 				}else{
 					$scope.usuarioPagina = "areaAluno.html";
