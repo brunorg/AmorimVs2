@@ -11,6 +11,7 @@ app.controller('loginCTRL',function ($scope,$http) {
 			data    : data,
 			headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 		}).success(function(a,status) {
+
 			if(status == 204){
 				msgInicial("Login e senha inválidos!");
 				okBotao();
@@ -33,7 +34,7 @@ app.controller('loginCTRL',function ($scope,$http) {
 						}
 
 						localStorage.setItem("alunoId",a.aluno.idAluno);
-						// window.location = m+"areaAluno.html";
+						window.location = m+"areaAluno.html";
 						
 					}
 					else if(a.perfil.perfil == "Professor"){
@@ -82,8 +83,8 @@ app.controller('geralCTRL',function($scope,$http){
 					m = "m_";
 				}
 
-				//var mobile = redirecionaMobile();
-				//console.log(mobile);
+				var mobile = redirecionaMobile();
+				console.log(mobile);
 
 				$scope.menuHTML = [
 					{label: 'Plano de Estudo', href: m+'planoDeEstudo.html',class: 'plano'},

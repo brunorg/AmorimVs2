@@ -1,126 +1,128 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="app">
-        <head>
-            <meta charset="UTF-8" />
-            <title>Plataforma Amorim</title>
-            <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
-     
-            <!--Style-->
-            <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />    
-            <link rel="stylesheet" type="text/css" href="mobilecss/loginNovo.css" />  
-            <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
-            <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
-            <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css"/>
-            <!--Fim Style-->
-            
-            <!--Script JS-->
-            <script type="text/javascript" src="js/path.js"></script>
-            <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-            <script type="text/javascript">
-                try{
-                    Typekit.load();
-                }catch(e){
-                    
-                }
-            </script> 
-            <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                           
-            <script src="js/jquery-ui.js"></script> 
-            <script src="js/login.js"></script>      
-            <!--Fim JS-->
-
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+        <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />    
+        <link rel="stylesheet" type="text/css" href="mobilecss/loginNovo.css" />  
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css"/>        
+        <!--Fim Style-->
         
-        </head>
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>        
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                           
+        <script src="js/jquery-ui.js"></script> 
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script src="siteAmorim/js/contentIndex.js"></script>
+        <script type="text/javascript" src="js/funcoesInicial.js"></script> 
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
+        <!--Fim JS-->
 
-        <body>
-            <!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">
-                <div id="Conteudo_Area">
-                    <div class="row" id="Login_Row">
-                        <div id="Amorim_logo" title="Uma escola que é asa" class="col-4">
-                            <img src="img/PAL_logo.png">
-                        </div>
-                        <div id="Login" class="col-8">
-                            <div id="Login_Box">
-                                <form name="frm" id="frm" method="POST" >           
-                                    <input class="Submit_Login" type="submit" value="Entrar" name="btnSubmit" id="btnSubmit"  tabindex=3 />
-                                    <div id="usuario_">
-                                        Usuário
-                                        <input id="usuario" name="usuario" type="text" tabindex=1> </input>
-                                    </div>
-                                    <div id="senhaBox">
-                                        Senha
-                                        <input id="senha" type="password"  name="senha" tabindex=2 style="cursor: auto;"> </input>
-                                        <span id="senhaEsqueci" onClick="caixaEsqueci();">Esqueceu a senha?</span>
-                                    </div>
-                                </form>
-                            </div>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    </head>
+
+    <body ng-controller="loginCTRL">
+    <!--Conteudo Geral-->
+    <div id="Container">
+            <div id="Conteudo_Area">
+                <div class="row" id="Login_Row">
+                    <div id="Amorim_logo" title="Uma escola que é asa" class="col-4">
+                        <img src="img/PAL_logo.png">
+                    </div>
+                    <div id="Login" class="col-8">
+                        <div id="Login_Box">
+                            <form name="frm" id="frm" method="POST" ng-submit="logar()">            
+                                <input class="Submit_Login" type="submit" value="Entrar" name="btnSubmit" id="btnSubmit"  tabindex=3 /> 
+                                <div id="usuario_">
+                                    Usuário
+                                    <input id="usuario" name="usuario" type="text" tabindex=1 ng-model="usuario"> </input>
+                                </div>
+                                <div id="senhaBox">
+                                    Senha
+                                    <input id="senha" type="password"  name="senha" tabindex=2 style="cursor: auto;" ng-model="senha"> </input>
+                                    <span id="senhaEsqueci" onClick="caixaEsqueci();">Esqueceu a senha?</span>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div id="Menu" class="row">
-                        <div id="Desenvolvido" class="col-4">
-                            <a href="http://muranodesign.com.br/"><img src="img/desenv_murano.png"></a>
-                        </div>
-                        <div class="col-8">
-                            <div class="btnMenu primeiro">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                            <div class="btnMenu">
-                                Teste
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" id="Conteudo_Corpo">
-                        <div id="Texto_Entrada" class="col-7">
-                            <p>Há escolas que são gaiolas. Há escolas que são asas[...]</p>
-                            <p>Escolas que são asas não amam pássaros engaiolados.</p>
-                            <p>O que elas amam são os pássaros em vôo.</p>
-                            <p>Existem para dar aos pássaros coragem para voar.</p>
-                            <p>Ensinar o vôo, isso elas não podem fazer,</p>
-                            <p>porque o vôo já nasce dentro dos pássaros.</p>
-                            <p>O vôo não pode ser ensinado.</p>
-                            <p>Só pode ser encorajado.</p>
-                            <p>&nbsp</p>
-                            <p class="naoItalico">Rubem Alves</p>
-                        </div>
-                        <div class="col-5" id="divImagem">
-                            <img id="Imagem_Abertura" src="img/login1GL.png">
-                            <div id="Creditos_Imagem">
-                                <p>desenho gentilmente</p>
-                                <p>cedido por <b>guto lacaz</b></p>
-                            </div>
-                        </div>
-                    </div>  
                 </div>
+                <div id="Menu" class="row">
+                    <div id="Desenvolvido" class="col-4">
+                        <a href="http://muranodesign.com.br/"><img src="img/desenv_murano.png"></a>
+                    </div>
+                    <div class="col-8">
+                        <div class="btnMenu primeiro">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                        <div class="btnMenu">
+                            Teste
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="Conteudo_Corpo">
+                    <div id="Texto_Entrada" class="col-7">
+                        <p>Há escolas que são gaiolas. Há escolas que são asas[...]</p>
+                        <p>Escolas que são asas não amam pássaros engaiolados.</p>
+                        <p>O que elas amam são os pássaros em vôo.</p>
+                        <p>Existem para dar aos pássaros coragem para voar.</p>
+                        <p>Ensinar o vôo, isso elas não podem fazer,</p>
+                        <p>porque o vôo já nasce dentro dos pássaros.</p>
+                        <p>O vôo não pode ser ensinado.</p>
+                        <p>Só pode ser encorajado.</p>
+                        <p>&nbsp</p>
+                        <p class="naoItalico">Rubem Alves</p>
+                    </div>
+                    <div class="col-5" id="divImagem">
+                        <img id="Imagem_Abertura" src="img/login1GL.png">
+                        <div id="Creditos_Imagem">
+                            <p>desenho gentilmente</p>
+                            <p>cedido por <b>guto lacaz</b></p>
+                        </div>
+                    </div>
+                </div>  
             </div>
-            <div id="boxMensagemGeral"></div>
-                <div class="boxGlobal">
-                    <div id="esquecisenha" class="boxOverlay">
-                    <form>
-                        <label>Email</label>
-                        <input type="text" id="email">
-                        <div class="row">
-                            <input type="button" onClick="cancelar();" value="Cancelar" class="botao_esqueci_senha col-2" style="margin-left: 65.6%">        
-                            <input type="button" onClick="esqueciSenha();" value="Enviar" class="botao_esqueci_senha col-2" style="margin-left: 1%">
-                        </div> 
-                    </form>
-                </div>
-            </div>          
-        </body>
-    </html>
+        </div>
+        <div id="boxMensagemGeral"></div>
+            <div class="boxGlobal">
+                <div id="esquecisenha" class="boxOverlay">
+                <form>
+                    <label>Email</label>
+                    <input type="text" id="email">
+                    <div class="row">
+                        <input type="button" onClick="cancelar();" value="Cancelar" class="botao_esqueci_senha col-2" style="margin-left: 65.6%">        
+                        <input type="button" onClick="esqueciSenha();" value="Enviar" class="botao_esqueci_senha col-2" style="margin-left: 1%">
+                    </div> 
+                </form>
+            </div>
+        </div>          
+    </body>
+</html>
