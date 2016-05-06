@@ -136,7 +136,7 @@ function dateAniversario(){
 
 
 function cadastraEditaAluno(){
-    //debugger;
+	var estadoBtn = true;
     var retorno = validaForm("Aluno");		
 	if(typeof retorno == 'undefined'){				
 		var dataMatricula = $('#dataMatricula').val().substring(0, 4)+"-"+$('#dataMatricula').val().substring(5, 7)+"-"+$('#dataMatricula').val().substring(8, 10);
@@ -245,22 +245,26 @@ function cadastraEditaAluno(){
 			dataType: 'json',
 			data:"action="+action+"&"+valores,
 			beforeSend: function(){
-				loading("inicial");
+				//loading("inicial");
 			},			
-			success: function(d) {							
-				if(action=="create"){
-					$("#aluno").val(d);
-					$("#frmCadastroAluno input").attr("disabled","true");
-					$("#frmCadastroAluno select").attr("disabled","true");
-					$("#frmCadastroAluno radio").attr("disabled","true");
-					$("#alunoUser").val(d);
-					$("#idAluno").val(d);
-					$(".opcaoFoto").css("display","block");	
-					mensagem("Dados salvos com sucesso! Continue o cadastro!","OK","bt_ok","sucesso");
-				}else{
-					mensagem("Dados alterados com sucesso!","OK","bt_ok","sucesso");
-				}
+			success: function(d) {	
+				estadoBtn = false;
+				if(!estadoBtn){
+					if(action=="create"){
+						$("#aluno").val(d);
+						$("#frmCadastroAluno select").attr("disabled","true");
+						$("#frmCadastroAluno radio").attr("disabled","true");
+						$("#alunoUser").val(d);
+						$("#idAluno").val(d);
+						$(".opcaoFoto").css("display","block");	
+						mensagem("Dados salvos com sucesso! Continue o cadastro!","OK","bt_ok","sucesso");
+					}else{
+						mensagem("Dados alterados com sucesso!","OK","bt_ok","sucesso");
+					}
+				}		
+				
 			},complete: function() {
+				estadoBtn = true;
 				loading("final");
 			}
 		});
