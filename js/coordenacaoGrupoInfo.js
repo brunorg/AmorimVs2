@@ -462,6 +462,9 @@ function grupoNovo(){
 			},
 			complete: function(){
 				loading("final");
+			},
+			erro: function(){
+				mensagem("Grupo não cadastrado.","OK","bt_ok","alerta");
 			}
 		});	
 	}else{
@@ -724,6 +727,7 @@ function editarGrupoFun(){
 					mensagem("Grupo editado com sucesso!","OK","bt_ok","sucesso"); 
 					loading("final");
 				},error: function(d) {
+					mensagem("Erro, grupo não editado.","OK","bt_ok","alerta");
 					loading("final");
 				}
 			});			
@@ -828,6 +832,9 @@ function excluirAgendamentoRotina(idAgendamento, idRotina, idOficina){
 		},
 		complete: function(){
 			loading("final");
+		},
+		erro: function(){
+			mensagem("Erro, agendamento não foi excluído.","OK","bt_ok","alerta");
 		}
 	});
 }
@@ -859,6 +866,9 @@ function editarOficina(){
 				$('#oficina_periodo').html($("#periodoOficinaEditar option:selected").text());
 				$('#oficina_ciclo').html($("#cicloOficinaEditar option:selected").text);
 				mensagem("Oficina alterada com sucesso!","OK","bt_ok","sucesso"); 	
+			},
+			erro: function(){
+				mensagem("Erro, oficina não foi alterada.","OK","bt_ok","alerta");
 			}	
 		})		
 	});	
@@ -906,6 +916,9 @@ function editarRotina(){
 				},
 				complete: function(){
 					loading('final');
+				},
+				erro: function(){
+					mensagem("Erro, rotina não foi alterada.","OK","bt_ok","alerta");
 				}
 			});
 		} else {
@@ -950,6 +963,9 @@ function editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo){
 				},
 				complete: function(){
 					loading("final");
+				},
+				erro: function(){
+					mensagem("Cadastro não realizado.","OK","bt_ok","alerta");
 				}
 			});	
 			limparModalAgrupamento();

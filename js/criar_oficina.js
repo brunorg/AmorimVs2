@@ -75,6 +75,9 @@ function salvarOficina () {
                 },
                 complete: function() {
                     loading('final');
+                },
+                erro: function(){
+                    mensagem("Erro ao criar oficina.","OK","bt_ok","alerta");
                 }
             });
         }
@@ -217,7 +220,6 @@ function addEventsSelect () {
     $(".Professor_Select").focus(function () {
         previous = this.value;
     }).change(function() {
-        console.log(this.value);
         if (previous != '0')
         {
             $(".Professor_Select [value="+previous+"]").css('display', 'block');
@@ -388,6 +390,9 @@ function atribuiSalvarRotina (idOficina) {
                 },
                 complete: function() {
                     loading('final');
+                },
+                erro: function(){
+                    mensagem("erro ao criar rotina.","OK","bt_ok","alerta");
                 }
             });
         }

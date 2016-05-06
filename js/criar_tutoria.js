@@ -39,6 +39,9 @@ function salvarAluno(agrupamento){
                 },
                 complete:function(){
                     loading("final");
+                },
+                erro: function(){
+                    mensagem("erro, aluno(s) não cadastrado(s).","OK","bt_ok","alerta");
                 }
             });
         } 
@@ -96,6 +99,9 @@ function salvarTutoria(){
                 },
                 complete: function(){
                     loading("final");
+                },
+                erro: function(){
+                    mensagem("erro, tutoria não cadastrada.","OK","bt_ok","alerta");
                 }
             });
         }
@@ -384,6 +390,9 @@ function atualizarAluno(agrupamento){
                 },
                 complete: function(){
                     loading("final");
+                },
+                erro: function(){
+                    mensagem("Erro, grupo não alterado.","OK","bt_ok","alerta");
                 }
             });
         }

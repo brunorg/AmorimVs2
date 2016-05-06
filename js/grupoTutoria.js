@@ -20,9 +20,8 @@ function mudarLider(grupo, lider){
 
 		},
 		success: function(data){
-			console.log("lider alterado")
 		},error: function(d) {
-			console.log("erro na alteracao de lider");
+			mensagem("Erro na alteracao de líder","OK","bt_ok","aviso");
 		}
 	});	
 }
@@ -129,9 +128,6 @@ function criarBarrinhas(idDivGrupo, id, dadosAluno) {
 		'diasLetivos'		: dadosAluno.presencas/totalDiasLetivos * 100,
 		'diasLetivosFaltas'	: dadosAluno.faltas/totalDiasLetivos * 100,
 	};
-
-	console.log(dadosAluno2.diasLetivos + " / " + dadosAluno2.diasLetivosFaltas)
-
 	// Define tamanho de cada barrinha de acordo com os dadosAluno
 	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atual'				).css('width', dadosAluno2.atual 				* tamanhoPontoPercentual);
 	$('#' + idDivGrupo + " .grupoBlocoGraficoObj .grupoTabela tbody"  + ' #' + id + 		  ' .atualCorrigido'	).css('width', dadosAluno2.atualCorrigido		* tamanhoPontoPercentual);
@@ -188,9 +184,6 @@ window.onload = function() {
             nomeProf = retornoAjax[0].tutoria
 
 
-        },
-        error: function(a, status, error) {
-            console.log(status + " /// " + error)
         }
     });
 

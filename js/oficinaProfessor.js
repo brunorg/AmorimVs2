@@ -5,7 +5,6 @@ $(document).ready(function(){
 	//Variáveis para receber os htmls com o agrupamento.
 	htmlMenuAgrup = '';
 	htmlContAgrup = '';
-
 	//Serviço para buscar os agrupamentos do professor e seus respectivos grupos
 	$.ajax({
 		url: path + 'Oficina/AlunosAgrupamento/'+oficina.oficina.idoficina,
