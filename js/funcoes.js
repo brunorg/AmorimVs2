@@ -27,6 +27,8 @@ $(document).ready(function(){
 	    });
 	});
 
+	var altura = window.innerHeight; 
+	$('#m_blocoGeral').css('height',altura-30);
 	
 	setTimeout(function(){
 
@@ -35,10 +37,10 @@ $(document).ready(function(){
 		var teste = "";
 		teste = $('a[href="'+retorno[retorno.length-1]+'"] div').attr('class');
 
-		var classe = teste.split(" ");
-
-
-		$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
+		if(typeof teste != "undefined"){
+			var classe = teste.split(" ");
+			$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
+		}	
 		
 	},500);
 	
@@ -108,7 +110,11 @@ $(document).ready(function(){
 			enable:true
 		}
 	});	
-	
+
+	$("#m_blocoGeral").mCustomScrollbar({
+		axis:"y",
+	});	
+
 	var valor=0;
 	$("#box_cadastro").mCustomScrollbar({
 		axis:"y", // vertical and horizontal scrollbar
@@ -375,14 +381,15 @@ $(document).ready(function(){
 	$('#rodape_calendario').before('<a href="index.html?ref=calendario" id="linkParaAgenda" target="_blank">VER AGENDA COMPLETA</a>')
 
 	menuHamburguer('.menuHamb','left','Content_lateral_left');
-	//menuHamburguer('#_foto','right','Content_lateral');
 
+
+	$("#box_logout").click(function(){
+		$(this).css('transform','translate(300px)');
+	});
 });	
 
 function menuHamburguer(btn, posicao, classDivMenu){
-
 	$(btn).click(function(){
-
 		event.preventDefault();
     	// create menu variables
     	var slideoutMenu = $('#'+classDivMenu);

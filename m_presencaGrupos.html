@@ -1,0 +1,121 @@
+    <!DOCTYPE html>
+<html ng-app="app">
+<!-- -->
+    <head>       
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+        <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />  
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="mobilecss/plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <link rel="stylesheet" type="text/css" href="mobilecss/presencaGrupo.css" />
+        <!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>  
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>  
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                                   
+        <script src="js/jquery-ui.js"></script>         
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>                     
+        <script type="text/javascript" src="js/autenticador.js"></script>
+                        
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+        <script type="text/javascript" src="js/presencaGrupo.js"></script>                     
+        <!--Fim JS-->
+        
+    </head>
+
+    <body>
+        <!--Conteudo Geral-->
+		<div id="Container" ng-controller="geralCTRL">
+          <div>
+                <div id="Cabecalho_Menu_Area">
+                    <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
+                    <div id="Cabecalho_Menu_Area_Menu2">
+                        <div ng-init="usuario()">
+                            <div id="Cabecalho_Perfil_Area_Foto_Content">
+                                <!--Foto do usuário, neste caso, do aluno-->
+                                <div id="Cabecalho_Perfil_Area_Foto">  
+                                    <img id='_foto' src='{{usuarioFoto}}'/>                          
+                                </div>
+                                 <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
+                            </div>                            
+                        </div>
+                    </div>  
+                </div>                
+            </div>
+            <div id="Conteudo_Area">
+                    <!--Coluna a esquerda-->    
+                <div class="Conteudo_Coluna" id="Content_lateral_left">
+                    <div id="Content_lateral_Menu">    
+                        <div  ng-repeat="menu in menuHTML">                         
+                            <a href="{{menu.href}}">
+                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                                    <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                                    <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                                    {{menu.label}}
+                                </div>
+                            </a>                               
+                        </div>
+                        <div class="Content_lateral_Menu_Opcao" id="apontar_presenca_mobile">
+                            <div>Apontar Presença</div>
+                        </div>
+                    </div>    
+                </div>
+    
+                <!--Coluna geral central-->
+                <div id="m_blocoGeral">         
+                    <div class="Conteudo_Coluna" id="content_central">
+                        <div class="lista_grupos" id="recebeGrupos">
+                                                  
+                        </div>                    
+                        <div class="apontarPresenca" >
+                            <div class="boxChamada">
+                                <div class="colunaAluno" id="recebeAlunos">
+                                <!--Carrega dados js-->    
+                                </div>
+                                <div class="colunaCalendario">
+                                    <div id="calendarioFaltas">
+                                        <div id="weekdisplay" style="display: table;border-collapse: collapse">
+
+                                        </div>
+                                    </div>
+                                
+                                    <div id="containerTabelaPresenca">
+                                        <table id="tabelaPresenca" cellspacing="0" cellpadding="0">
+                                        </table>                                
+                                    </div>
+                                </div>
+                                <div class="colunaInfo">
+                                    <div class="blocoInfo">
+                                        <p>Faltas</p>
+                                        <p>Compensadas</p>
+                                        <p>Totalizadas</p>
+                                        <p>%faltas</p>
+                                    </div>
+                                    <table id="tableInfo" cellspacing="0" cellpadding="0">             
+                                                                          
+                                    </table>
+                                </div>                                             
+                            </div>
+                            <div style="clear: both;"></div>
+                            <button id="btnSalvarPresenca" class="btnChamada">Salvar</button>
+                        </div>                     
+                    </div> 
+                </div>              
+            </div>                  
+        </div><!--Fim Conteudo-->
+        <div class="boxGlobal"></div>
+		<div id="boxMensagemGeral"></div>       
+    </body>
+</html>
