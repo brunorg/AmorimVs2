@@ -101,9 +101,10 @@ function  anoLetivoId(){
     return idAnoLetivo;
 }
 
-function LoadRoteiro(){ 
-    IncluirRoteirosAnoAtual();
+function LoadRoteiro(){
     IncluirRoteirosPendentes();
+    adicionaPortfoliosPendentes();
+    IncluirRoteirosAnoAtual();
     IncluirTelaUpload();
 }
 
@@ -142,6 +143,101 @@ function IncluirRoteirosAnoAtual () {
 
     } 
 }
+
+function adicionaPortfoliosPendentes () {
+    $.ajax({
+        url: path + "PendenciasProducaoAluno/PendenciasPassadoAluno/" + alunoID,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(data) {
+            for (var i = 0; i < data.length; i++) {
+
+                htmlProducao = '<td id="producaoTD">';
+                if (data[i].portfolioCompleto == 0){
+                    htmlProducao += '<div id="portfolio">';
+                    htmlProducao +=     '<a style="text-align:right;color:white" onclick="showUpload(5,'+data[i].roteiro.idroteiro+');" href="#">';
+                    htmlProducao +=         '<div class="botoesPortfolio portfolio">';
+                    htmlProducao +=             'Portfólio';
+                    htmlProducao +=         '</div>';
+                    htmlProducao +=     '</a>';
+                    htmlProducao += '</div>';
+                }
+                else{
+                    var producao = verificaProducaoExistente(5, data[i].roteiro.idroteiro);
+                    switch (getProducaoStatus(producao)){
+                        case 1:
+                        {
+                            htmlProducao += ('<div class="excluir" id="ex_5_'+data[i].roteiro.idroteiro+'"><div class="iconeExcluir"></div>Portfólio</div>');
+                            break;
+                        }
+                        case 2:
+                        {
+                            htmlProducao += ('<div class="botoesPortfolio portfolio">Portfólio<div class="icone observacao" onclick="responderObservacao('+producao.mensagens.idmensagens+')"></div></div>');
+                            break;
+                        }
+                        case 3:
+                        {
+                            htmlProducao += ('<div class="botoesPortfolio portfolio">Portfólio<div class="icone corrigido"></div></div>');
+                            break;
+                        }
+                    }
+                }
+                if (data[i].fichaFinalizacaoCompleta == 0){
+                    htmlProducao += '<div id="ficha" class="fichaFinalizacao">';
+                    htmlProducao +=     '<a style="text-align:right;color:white" onclick="abreCaixaFicha('+data[i].roteiro.idroteiro+');" href="#">';
+                    htmlProducao +=         '<div class="botoesPortfolio ficha">';
+                    htmlProducao +=             'Ficha de Finalização';
+                    htmlProducao +=         '</div>';
+                    htmlProducao +=     '</a>';
+                    htmlProducao += '</div>';
+                }
+                else if (data[i].fichaFinalizacaoCompleta == 1){
+                    var producao = verificaProducaoExistente(4, data[i].roteiro.idroteiro);
+                    switch (getProducaoStatus(producao))
+                    {
+                        case 1:
+                        {
+                            htmlProducao += ('<div class="excluir" id="ex_4_'+data[i].roteiro.idroteiro+'"><div class="iconeExcluir"></div>Ficha de Finalização</div>');
+                            break;
+                        }
+                        case 2:
+                        {
+                            htmlProducao += ('<div class="botoesPortfolio ficha">Ficha de Finalização<div class="icone observacao" onclick="responderObservacao('+producao.mensagens.idmensagens+')"></div></div>');
+                            break;
+                        }
+                        case 3:
+                        {
+                            htmlProducao += ('<div class="botoesPortfolio ficha"> Ficha de Finalização<div class="icone corrigido"></div></div>');
+                            break;
+                        }
+                    }
+                }
+                htmlProducao += '</td>';
+
+                HtmlContent = "";
+                HtmlContent += "<div class='Content_Roteiro_Aluno_"+data[i].roteiro.idroteiro+"'>";   
+                    HtmlContent += "<div id='Roteiro_Id_"+data[i].roteiro.idroteiro+"' class='roteiro_nome_tabela_anterior'>"
+                        HtmlContent += "<div class='roteiro_nome_tabela_texto"+( (data[i].roteiro.nome.length >= 63) ? ' roteiro_nome_grande' : '' ) + "'>";
+                            HtmlContent += "<span class='nome_"+data[i].roteiro.idroteiro+"'>"+data[i].roteiro.nome+"</span>";
+                        HtmlContent += "</div>";
+                        HtmlContent += "<span class='tabela_colorida_roteiro'>";
+                        HtmlContent += "<table>";
+                            HtmlContent += "<tr class='QuadObj_"+data[i].roteiro.idroteiro+"'>";
+                            HtmlContent += htmlProducao
+                            HtmlContent += "</tr>";
+                        HtmlContent += "</table>";
+                    HtmlContent += "</span>";
+                HtmlContent += "</div>";
+
+
+                $('.total').append(HtmlContent);
+                verificaTamanhoNome(dataRoteiro[a].idroteiro);
+            }
+        }
+    });
+}
+
 function verificaTamanhoNome (idRoteiro) 
 {
     var roteiro = $('#Roteiro_Id_'+idRoteiro);
@@ -229,12 +325,12 @@ function SubstituirObjetivos(idRoteiro)
         {
             case 0:
             {
-                HtmlContent += ('<div id="ficha"><a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+idRoteiro+');"><div class="botoesPortfolio ficha">Ficha de Finalização |</div></a></div>');
+                HtmlContent += ('<div id="ficha" class="fichaFinalizacao"><a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+idRoteiro+');"><div class="botoesPortfolio ficha">Ficha de Finalização</div></a></div>');
                 break;
             }
             case 1:
-            {
-                HtmlContent += ('<div class="excluir" id="ex_4_'+idRoteiro+'"><div class="iconeExcluir"></div>Ficha de Finalização |</div>');
+            {''
+                HtmlContent += ('<div class="excluir" id="ex_4_'+idRoteiro+'"><div class="iconeExcluir"></div>Ficha de Finalização</div>');
                 break;
             }
             case 2:
@@ -387,10 +483,14 @@ function SalvarPortifolio(tipoProducao, roteiroAcionado){
 					mensagem("Arquivo enviado com sucesso!","OK","bt_ok","sucesso");  
                 }, 
                 success: function(d) {
-                    addFileTo(d, roteiroAcionado,tipoProducao);						
-					 
+                    addFileTo(d, roteiroAcionado,tipoProducao);
+                    var tipo;					
+					if (tipoProducao == 5)
+                        tipo = "Portfolio";
+                    else
+                        tipo = "FichaFinalizacao";
 					$.ajax({
-						url: path+"PendenciasProducaoAluno/EntregarPortfolio/"+ alunoID + "/" + roteiroAcionado,
+						url: path+"PendenciasProducaoAluno/Entregar"+tipo+"/"+ alunoID + "/" + roteiroAcionado,
 						async: true,
 						type: "GET",
 						success: function(d){
@@ -439,7 +539,7 @@ function excluirProducao(tipo, roteiro){
 			var msg;
 			if(tipo == 4){
 				msg = "Ficha de finalização excluída com sucesso!";
-				htmlNovo = '<a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+roteiro+');"><div class="botoesPortfolio ficha">Ficha de Finalização |</div></a>';
+				htmlNovo = '<a href="#" style="text-align:right;color:white" onclick="abreCaixaFicha('+roteiro+');"><div class="botoesPortfolio ficha">Ficha de Finalização</div></a>';
 				$('.QuadObj_'+roteiro+' #ficha').html(htmlNovo); 
 			}else{			
 				msg = "Portfólio excluído com sucesso!";
@@ -473,7 +573,7 @@ function addFileTo(ID, roteiroAcionado,tipoProducao){
             if(tipoProducao == 5){
 				$('.QuadObj_'+roteiroAcionado+' .portfolio').html('<div class="excluir" id="ex_5_'+roteiroAcionado+'"><div class="iconeExcluir"></div>Portfólio</div>');
 			}else{
-				$('.QuadObj_'+roteiroAcionado+' .ficha').html('<div class="excluir" id="ex_4_'+roteiroAcionado+'"><div class="iconeExcluir"></div>Ficha de Finalização |</div>');
+				$('.QuadObj_'+roteiroAcionado+' .ficha').html('<div class="excluir" id="ex_4_'+roteiroAcionado+'"><div class="iconeExcluir"></div>Ficha de Finalização</div>');
 			}			
 			//chama a função para o html que acabou de ser criado
 			setTimeout(function(){excluirProducaoConfirm();}, 1000);               

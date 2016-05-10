@@ -646,12 +646,12 @@ select {
 	margin-right: 5px;
 }
 
-.botoesPortfolio::after{
-	content: "|";
-	margin-left: 9px;
+.fichaFinalizacao .ficha::after{
+	content: " |";
+	margin-left: 0px;
 }
 
-.botoesPortfolio:first-child::after{
+.fichaFinalizacao:first-child .ficha::after{
 	content: "";
 	margin-left: 0px;
 }
@@ -674,7 +674,7 @@ select {
 #portfolio{
 	float:right;	
 }
-#ficha{
+.fichaFinalizacao{
 	float: left;
 }
 @media (width: 1024px) and (min-height: 510px) and (max-height: 590px){
