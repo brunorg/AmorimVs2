@@ -20,12 +20,16 @@ function carregaJeiffPea(){
 	                        '<div class="textJeiff">'+data[a].ata+'</div>'+
 	                        '<p class="barra"></p>'+
 	                    '</div>';
-
-	            if(data[a].arquivo != null) {
+	            debugger;
+	            if(data[a].arquivo != null && data[a].descricao != null) {
 	            	htmlDocumentos += '<p class="docJeiff">'+
 	                                    '<a href="'+data[a].arquivo+'" target="_blank" class="linkJeiff">'+data[a].descricao+'</a>'+
 	                              	   '</p>';
-	            };
+	            } else {
+	            	htmlDocumentos += '<p class="docJeiff">'+
+	            					  	'<a href="" target="_blank" class="linkJeiff"> (Sem Título) </a>'+
+	            					  '</p>';
+	            }
 			};
 		} else {
 			html += '<div class="blocoInd">';

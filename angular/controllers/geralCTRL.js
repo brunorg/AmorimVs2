@@ -80,11 +80,8 @@ app.controller('geralCTRL',function($scope,$http){
 				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
 				var m = ""; 
 				if(mobile){
-					m = "m_";
+					m = "m_";					
 				}
-
-				var mobile = redirecionaMobile();
-				console.log(mobile);
 
 				$scope.menuHTML = [
 					{label: 'Plano de Estudo', href: m+'planoDeEstudo.html',class: 'plano'},

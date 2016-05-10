@@ -205,15 +205,16 @@ var idProfFunc = "";
 
 	function getProfessorTutoria(professorID, Ano) {
 		var retorno;
-
 		$.ajax({
 			url: path + "Tutoria/Professor/"+professorID+"/"+Ano,
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
-			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
+			beforeSend: function() 			{ loading("inicial"); },
+			success: 	function(data){ 
+				retorno = data; 
+			},
+			complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -333,7 +334,6 @@ var idProfFunc = "";
 
 
 	function getRelatorioTutoria(professorId, alunoID,ano){
-
 		var retorno;
 		var idtutoria;
 		var anoLetivo;
@@ -342,27 +342,24 @@ var idProfFunc = "";
 
 		if(ano < anoAtual){
 			anoLetivo = ano;
-			$('#cad_observacoes').css('display','none');
-			console.log(anoLetivo,'ifffff');			
+			$('#cad_observacoes').css('display','none');		
 		}
 		else{
-			anoLetivo = anoAtual;
-			console.log(anoLetivo,'elseeee');			
+			anoLetivo = anoAtual;			
 		}
-
-		idtutoria = getProfessorTutoria(professorId, anoLetivo)[0];
-		
-		$.ajax({
-			url: path+"RelatorioTutoria/TutoriaAlunoAno/"+idtutoria.idtutoria+"/"+alunoID+"/"+anoLetivo,
-			async: false,
-			type: "GET",
-			crossDomain: true,
-			dataType: 'json',
-			success: function(data) {
-				retorno = data;
-			}
-		});
-
+		idtutoria = getProfessorTutoria(professorId, anoLetivo);
+		if(idtutoria != ""){
+			$.ajax({
+				url: path+"RelatorioTutoria/TutoriaAlunoAno/"+idtutoria[0].idtutoria+"/"+alunoID+"/"+anoLetivo,
+				async: false,
+				type: "GET",
+				crossDomain: true,
+				dataType: 'json',
+				success: function(dtRelatorio) {
+					retorno = dtRelatorio;
+				}
+			});	
+		}
 		return retorno;
 	}
 
@@ -404,21 +401,17 @@ var idProfFunc = "";
 		return retorno;
 	}
 
-
-
-
 	function getAlunoVariaveisDeAlunoPorAno(alunoID, ano){
 
 		var retorno;
-
 		$.ajax({
 			url: path + "AlunoVariavel/AlunoAno/" + alunoID + "/" + ano,
 			async: false,
 			type: "GET",
 			crossDomain: true,
-			//beforeSend: function() 			{ loading("inicial"); },
+			// beforeSend: function() 			{ loading("inicial"); },
 			success: 	function(data) 		{ retorno = data; }
-			//complete: 	function() 			{ loading("final"); }
+			// complete: 	function() 			{ loading("final"); }
 		});
 
 		return retorno;
@@ -456,8 +449,9 @@ $(document).ready(function(){
 	}
 
 	$("#SelecionaAno").change(function(){
-
+		//loading("inicial");
 		init(this.value, getAlunoVariaveisDeAlunoPorAno( alunoID, this.value));
+		//loading("final");
 	});
 
 	init(anos[anos.length-1], dataAlunoVariavel[dataAlunoVariavel.length-1]);
@@ -466,13 +460,11 @@ $(document).ready(function(){
 }); 
 	
 	
-function init(ano, alunoVar){	
-
+function init(ano, alunoVar){
 	//loading("inicial");
-
 	if(!base64_decode(GetURLParameter('TU'))){
-		var data = new Date();
-		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano);
+		var data = new Date();		
+		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano)[0];
 		$('#tutoria').val(tutoria[0].idtutoria);
 			
 	}else{
@@ -856,9 +848,7 @@ function init(ano, alunoVar){
   	});		
 
 	loading("final");
-
-	getRelatorioTutoria(tutoria, alunoID, ano);
-
+	getRelatorioTutoria($("#tutoria").val(), alunoID, ano);
 }
 
 
@@ -902,7 +892,6 @@ function corrigir(){
 	
 	///carol
 	$('.selTodos').click(function(){
-		console.log("selecionou");
 		var elemento = $(this).attr('id');
 		var objetivos = "";;
 		var elementos =  elemento.split("_");
@@ -952,8 +941,7 @@ function listaObservacao(){
 	//Lista as observações que o tutor fez sobre o aluno
 	var resultado;
 	var HtmlContent_rt="";
-	var ano = $('#SelecionaAno').val()
-
+	var ano = $('#SelecionaAno').val();
 	var data_rt = getRelatorioTutoria(idProfFunc,alunoID, ano);
 
 	if(data_rt!=""){
@@ -974,9 +962,9 @@ function listaObservacao(){
 				+'<div class="vizu"><a href="#" onclick="mostrarAba(\''+data_rt[p].idrelatorioTutoria+'\')">Visualizar</a></div></div>';				
 		}
 		resultado = $("#observacoes").html(HtmlContent_rt);
+	} else{
+		resultado = $("#observacoes").html("Sem observações");
 	}
-		
-
 	return (resultado);	
 }
 

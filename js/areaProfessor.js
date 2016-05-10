@@ -64,7 +64,7 @@ function carregaOficinaPostagens () {
             for (var i = 0; i < d.length; i++) {
                 htmlOficinas += "<option value=\""+d[i]["idoficina"]+"\">"+d[i]["nome"]+"</option>";
             }
-
+            console.log(htmlOficinas);
             $('#oficinaSelecionada').html(htmlOficinas);
 
 
@@ -812,7 +812,6 @@ function CarregarRotina() {
                 var permitidoDraw = false;
 
                 for(var H of horarios){
-                    console.log(H+"", rotina.hora+"");
                     if(H+"" == rotina.hora+""){
                         permitidoDraw = true;
                     }
