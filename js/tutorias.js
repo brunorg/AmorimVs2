@@ -27,7 +27,7 @@ function criarPainelDoGrupo(idDivPrincipal, idDivGrupo, retornoAjax, professorId
 }
 
 function criarPaineisDosAlunos(idDivGrupo, retornoAjax) {
-	for (var i = retornoAjax.length - 1; i >= 0; i--) {
+	for (var i = 0; i < retornoAjax.length; i++) {
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<a href=\"grupoTutoria.html?ID='+base64_encode(""+retornoAjax[i].idProfessor)+'\"> <div class="grupoFotoAluno"></div> </a>')
       	$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<img src="' + retornoAjax[i].foto + '"></img>')
