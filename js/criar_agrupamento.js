@@ -4,7 +4,7 @@ var acabouDeCarregar = false;
 $(document).ready(function(){
     carregaPeriodo();
     carregaCiclo();
-    carregaAlunos();
+    //carregaAlunos();
     atribuiChange();
     atribuiFuncoesRolagem();
     salvarAgrupamento();
@@ -84,10 +84,11 @@ function carregaAlunos(){
 
     if(nmAluno != "")
         urlServico = "AlunoVariavel/buscarAgrupamentoHtml/" + nmAluno;
+
     $.ajax({
         url: path + urlServico,
         type: "GET",
-        aync: false,
+        async: false,
         crossDomain: true,
         dataType: "html",
         success: function(dataAluno){
@@ -117,6 +118,7 @@ function atribuiFuncoesRolagem () {
             onTotalScrollOffset: 500,
             whileScrolling: function() {
                 if(this.mcs.topPct > 95 && !acabouDeCarregar){
+                    //debugger;
                     carregaAlunos();
                 }
 
