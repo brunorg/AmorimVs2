@@ -344,6 +344,8 @@ var horarios = [7, 8, 9, 10, 11]
 
 //Preencher Rotina Semanal
 function CarregarRotina() {
+	var cicloPeriodo = verificarCicloPeridoAluno();
+
 
 	$('#Rotina_Semanal_Dia').html(diasSemana[diaHoje])
 		$.ajax({
@@ -352,7 +354,8 @@ function CarregarRotina() {
 		async: false,
 		crossDomain: true,
 		success: function(result) {
-
+			console.log(result);
+			estruturarDadosRotina(result);
 			horarios.forEach(function(horario) {
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Materia').html(" ")
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Professor').html(" ")
@@ -752,6 +755,7 @@ $(document).ready(function() {
 
 	contadorRoteirosTotal = contagemRoteiro();
 	contadorObjetivosTotal = contagemObjetivo();
+	verificarCicloPeridoAluno();
 
 	CarregaServicoCalendarioEventos();
 	CarregaServicoMensagens();
@@ -1019,4 +1023,34 @@ function contagemObjetivo()
 
 function getUTC (data) {
 	return Date.UTC(data.split('-')[0], data.split('-')[1], data.split('-')[2])
+}
+
+function verificarCicloPeridoAluno() {
+	var alunoVariavel = JSON.parse(localStorage.objetoAlunoVariavel);
+	var ciclo;
+
+	if (parseInt(alunoVariavel.anoEstudo.ano) < 3)
+		ciclo = 1;
+	else if (parseInt(alunoVariavel.anoEstudo.ano) >= 3 && parseInt(alunoVariavel.anoEstudo.ano) < 6)
+		ciclo = 2
+	else if (parseInt(alunoVariavel.anoEstudo.ano) >= 7 && parseInt(alunoVariavel.anoEstudo.ano) < 10)
+		ciclo = 3;
+	else
+		return false;
+
+	return {
+		ciclo: ciclo,
+		periodo: alunoVariavel.periodo.idperiodo
+	};
+}
+
+function estruturarDadosRotina(horarios) {
+	var estrutura = [];
+	horarios.forEach(function(horario) {
+		var linha = [horario.hora, horario.oficina, horario.professor, horario.sala[0]];
+		estrutura.push(linha);
+	});
+
+	console.log(estrutura);
+	return estrutura;
 }

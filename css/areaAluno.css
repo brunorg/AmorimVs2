@@ -264,7 +264,7 @@ table#Rotina_Semanal_Tabela td:last-of-type, table#Rotina_Semanal_Tabela th:last
 	width: 56px;
 }
 
-tr.Rotina_Semanal_Linha_Recreio { height: 20px !important; background-color: rgb(223,222,212); }
+tr.Rotina_Semanal_Linha_Recreio { height: 25px !important; background-color: rgb(223,222,212); }
 
 .Rotina_Pesquisa { background-color: #1c828e; }
 
