@@ -390,7 +390,6 @@ function rotinaMudarDia(quanto) {
             })
 
     diaHoje = (diaHoje + quanto);
-    console.log(diaHoje);
     if (diaHoje !== diaTutoria) {
         if (diaHoje > 5) {diaHoje = 1};
         if (diaHoje < 1) {diaHoje = 5}
