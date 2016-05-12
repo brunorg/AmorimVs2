@@ -362,6 +362,8 @@ function CarregarRotina() {
                 $('#Rotina_Semanal_Linha' + horario + ' .Rotina_Semanal_Local').html(" ")
             });
             result.forEach(function(rotina){
+                var sala = rotina.sala[0] ? rotina.sala[0].sala.sala : "";
+                
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').html(rotina.oficina.tipoOficina.nome)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Materia').css("background-color", rotina.oficina.tipoOficina.cor.forte)
 
@@ -369,7 +371,7 @@ function CarregarRotina() {
                 //$('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').html(rotina.professor) //Descomentar e deletar linha acima caso for mostrar nome inteiro do professor
 
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Professor').css("background-color", rotina.oficina.tipoOficina.cor.medio)
-                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(rotina.sala[0].sala.sala)
+                $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').html(sala)
                 $('#Rotina_Semanal_Linha' + rotina.hora + ' .Rotina_Semanal_Local').css("background-color", rotina.oficina.tipoOficina.cor.fraco)
             });
         },
