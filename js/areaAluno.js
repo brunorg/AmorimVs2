@@ -1143,6 +1143,7 @@ function estruturarTabelaRotinaDia(rotina) {
 function carregarTabelaTutoria() {
     var tutoria = JSON.parse(localStorage.objetoAlunoVariavel).grupo.tutoria;
     
+    // Alterar o valor das células das linhas da tabela que não são a de recreio nem a de roda de conversa
     $('#Rotina_Semanal_Dia').html(diasSemana[diaHoje]);
     $("#Rotina_Semanal_Tabela").find("tbody")
         .find("tr")
@@ -1154,6 +1155,7 @@ function carregarTabelaTutoria() {
             $(this).find(".Rotina_Semanal_Local").html("");
         });
 
+    // Aplicar cor de fundo de tutoria nas linhas da tabela
     $("#Rotina_Semanal_Tabela").find(".Rotina_Semanal_Materia").css("background-color", "#D35393");
     $("#Rotina_Semanal_Tabela").find(".Rotina_Semanal_Professor").css("background-color", "#E598BE");
     $("#Rotina_Semanal_Tabela").find(".Rotina_Semanal_Local").css("background-color", "#EDBAD4");    
