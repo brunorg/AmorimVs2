@@ -274,8 +274,8 @@ function atribuiFuncoesRolagemGrupo () {
                     var cicloAluno = $("#cicloAluno").val();
                     cicloAluno = cicloAluno.split('_')[1];
                     var periodoIdAluno = $("#periodoIdAluno").val();
-                   listarAlunosGruposTutoria();
-                   isSelected();
+                    listarAlunosGruposTutoria();
+                    isSelected();
                }
 
             },
