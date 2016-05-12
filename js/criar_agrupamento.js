@@ -1,18 +1,17 @@
 var contAlunos = 0;
 var acabouDeCarregar = false;
+var arraySelecionados = [];
 
 $(document).ready(function(){
     carregaPeriodo();
     carregaCiclo();
-    //carregaAlunos();
     atribuiChange();
-    atribuiFuncoesRolagem();
     salvarAgrupamento();
-
+    atribuiRolagemAgrup();
     $("#txtPesqAgrup").keyup(function(){
         window.clearTimeout(timeHandler);
         timeHandler = window.setTimeout(function(){
-            resetArea();
+            arraySelecionados = resetArea();
             carregaAlunos();
         },1000);
     });
@@ -53,19 +52,17 @@ function carregaPeriodo(){
 }
 
 function atribuiChange() {
-
     $("#cicloGrupo").change(function () {
-        resetArea();
+        arraySelecionados = resetArea();
         $("#txtPesqAgrup").val("");
         carregaAlunos();
     });
 
     $("#periodoGrupo").change(function () {
-        resetArea();
+        arraySelecionados = resetArea();
         $("#txtPesqAgrup").val("");
         carregaAlunos();
-    });
-    
+    });    
 }
 
 function carregaAlunos(){
@@ -75,15 +72,14 @@ function carregaAlunos(){
     var idPeriodo = $("#periodoGrupo").val();
     var nmAluno = $("#txtPesqAgrup").val();
 
-    if (idCiclo != '0' && idPeriodo != '0') 
-        urlServico = "AlunoVariavel/listarCicloPeriodoRange/" + idCiclo + "/" + idPeriodo + "/" + contAlunos * 20 + "/19";
-    else if (idCiclo != '0')
-        urlServico = "AlunoVariavel/listarCicloRange/" + idCiclo + "/" + contAlunos * 20 + "/19";
-    else
-        urlServico = "AlunoVariavel/listarPeriodoRange/" + idPeriodo + "/" + contAlunos * 20 + "/19";
-
     if(nmAluno != "")
         urlServico = "AlunoVariavel/buscarAgrupamentoHtml/" + nmAluno;
+    else if(idCiclo != '0' && idPeriodo != '0') 
+        urlServico = "AlunoVariavel/listarCicloPeriodoRange/" + idCiclo + "/" + idPeriodo + "/" + contAlunos * 20 + "/19";
+        else if(idCiclo != '0')
+            urlServico = "AlunoVariavel/listarCicloRange/" + idCiclo + "/" + contAlunos * 20 + "/19";
+        else
+            urlServico = "AlunoVariavel/listarPeriodoRange/" + idPeriodo + "/" + contAlunos * 20 + "/19";
 
     $.ajax({
         url: path + urlServico,
@@ -92,39 +88,64 @@ function carregaAlunos(){
         crossDomain: true,
         dataType: "html",
         success: function(dataAluno){
-            if(dataAluno == "")
+            if(dataAluno == ""){
                 acabouDeCarregar = true;
-            else
+            }else{
                 $("#Area_Alunos").append(dataAluno);
+                if(arraySelecionados != ""){
+                    var lstAluno = $(".Aluno_Ano_Check");
+                    for(var i = 0; i < lstAluno.length; i++){
+                        var lstAlunoId = $(".Aluno_Ano_Check")[i].id.split("_")[2];
+                        for(var j = 0; j < arraySelecionados.length; j++){
+                            if(lstAlunoId == arraySelecionados[j]  && lstAluno[i].checked != true){ //Verifica se o input atual já foi selecionado E se ele não está marcado
+                                $(lstAluno.get(i)).parent(".Grupo_Aluno_Linha").addClass("target"); //Se ele não estiver marcado e já foi selecionado, é um input repetido e recebe a classe 'target'
+                                break;                      
+                            }
+                        }   
+                    }
+                $(".target").remove(); //Após as verificações, todos os inputs que contém a classe target são removidos, evitando alunos repetidos nas listas.
+                }
+            }                
             contAlunos++;
+            arraySelecionados = [];
         }
     });
 }
 
-function resetArea () {
+function resetArea() {
     contAlunos = 0;
     acabouDeCarregar = false;
-    $('#Area_Alunos').empty();
+    var arrayAlunoId = [];
+    var arrayChecked = [];
+    var lstCheck = $(".Aluno_Ano_Check"); //Array com inputs de alunos carregados
+    for(var i = 0; i < lstCheck.length; i++){
+        arrayAlunoId.push(lstCheck[i].id.split("_")[2]); //Array com seus id's
+        if(lstCheck[i].checked != true){ // Verifica quais inputs NÃO estão marcados
+            $("#Aluno_Check_"+arrayAlunoId[i]).parent(".Grupo_Aluno_Linha").remove(); //Remove a linha do input que não estiver marcado
+        } else {
+            arrayChecked.push(lstCheck[i].id.split("_")[2]); //Caso o input esteja marcado, seu id é add ao vetor arrayChecked
+        }        
+    }
+    return arrayChecked; //Retorna um vetor com os id's de inputs marcados.
 }
 
-function atribuiFuncoesRolagem () {
-    $(".Area_Alunos_Container").mCustomScrollbar({
+function atribuiRolagemAgrup () {
+    $("#viewAlunos").mCustomScrollbar({
         axis:"y", // vertical and horizontal scrollbar
-        // scrollButtons:{
-        //     enable:true
-        // },
+        scrollButtons:{
+            enable:true
+        },
         callbacks:{
             alwaysTriggerOffsets: false,
             onTotalScrollOffset: 500,
             whileScrolling: function() {
-                if(this.mcs.topPct > 95 && !acabouDeCarregar){
-                    //debugger;
-                    carregaAlunos();
-                }
-
+            if(this.mcs.topPct > 95 && !acabouDeCarregar)
+            {
+                    carregaAlunos();   
             },
             onTotalScroll:function(){
-                if (!acabouDeCarregar){
+                if (!acabouDeCarregar)
+                {
                     carregaAlunos();
                 }
             }
@@ -157,6 +178,9 @@ function salvarAgrupamento() {
                 },
                 complete: function() {
                     loading("final");
+                },
+                erro: function(){
+                    mensagem("Erro, não cadastrado.","OK","bt_ok","alerta");
                 }
             });
         }
@@ -178,7 +202,7 @@ function salvaAlunoAgrupamento (idAgrupamento, alunoId) {
         crossDomain: true
     });
 }
-//$("#aluno_"+idaluno).attr("id")
+
 function geraNome () {
     return $('#nomeGrupo').val();
 }
@@ -210,3 +234,4 @@ function limparAgrupamento(){
     $("#periodoGrupo").val("0");
     $("#nomeGrupo").val("");
 }
+
