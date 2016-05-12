@@ -1128,9 +1128,9 @@ function estruturarTabelaRotinaDia(rotina) {
 
             htmlTable += "<tr id=\"Rotina_Semanal_Linha"+estruturaDados.horarios[i]+"\" class=\"Rotina_Semanal_Linha\">";
             htmlTable +=     "<td class=\"Rotina_Semanal_Horario\">"+hrOficina+"h00</td>";
-            htmlTable +=     "<td class=\"Rotina_Semanal_Materia\">Carregando...</td>";
-            htmlTable +=     "<td class=\"Rotina_Semanal_Professor\">Carregando...</td>";
-            htmlTable +=     "<td class=\"Rotina_Semanal_Local\">Carregando...</td>";
+            htmlTable +=     "<td class=\"Rotina_Semanal_Materia\">...</td>";
+            htmlTable +=     "<td class=\"Rotina_Semanal_Professor\">...</td>";
+            htmlTable +=     "<td class=\"Rotina_Semanal_Local\">...</td>";
             htmlTable += "</tr>";
         }
     }
