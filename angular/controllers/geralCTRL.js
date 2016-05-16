@@ -14,6 +14,9 @@ app.controller('loginCTRL',function ($scope,$http) {
 
 			if(status == 204){
 				msgInicial("Login e senha inválidos!");
+				$("#textLoginInvalido").show();
+				$("#usuario").addClass("input-danger");
+				$("#senha").addClass("input-danger");
 				okBotao();
 			}else{
 				var mobile = redirecionaMobile();
