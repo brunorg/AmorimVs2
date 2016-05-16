@@ -828,11 +828,11 @@ select::-ms-expand {
 .excluir{
 	display:none;
 	position:absolute;
-	background: url(../img/ic_editar_peq.png) no-repeat center center;
+	background: url(../img/ic_del_peq.png) no-repeat center center;
 	width: 24px;
 	height: 18px;
 	cursor: pointer;
-	top: 2px;
+	top: 1px;
 	right: 2px;
 }
 
