@@ -288,11 +288,13 @@ $(document).ready(function(){
     atualizarGrupos();
 
     $('#calendarRightArrow').click(function(){
-        window.dayOffsetWeekCalendar += 7
-        $( "#weekdisplay" ).weekdisplay(window.dayOffsetWeekCalendar)
-        atualizarCalendario(window.grupoEscolhido)
-        adicionarClickCasas()
-    })
+        if (window.dayOffsetWeekCalendar < 0){
+            window.dayOffsetWeekCalendar += 7
+            $( "#weekdisplay" ).weekdisplay(window.dayOffsetWeekCalendar)
+            atualizarCalendario(window.grupoEscolhido)
+            adicionarClickCasas()
+        }
+            })
 
     $('#calendarLeftArrow').click(function(){
         window.dayOffsetWeekCalendar -= 7
@@ -306,6 +308,7 @@ $(document).ready(function(){
 });
 
 function habilitaSalvarPresenca(idGrupo){
+    $("#btnSalvarPresenca").unbind("click");
     $("#btnSalvarPresenca").click(function(){
        date = new Date()
        date.setDate(date.getDate() + window.dayOffsetWeekCalendar)
