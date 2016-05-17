@@ -55,12 +55,20 @@ $(document).ready(function() {
 		$(".tutoriaT").val(0);
 	});
 
-	$("#txtPesqTut").keyup(function(){
+	$("#txtPesqTut").keyup(function(){ //Campo de pesquisa da aba de tutoria
 		window.clearTimeout(timeHandler);
 		timeHandler = window.setTimeout(function(){
 			contAlunosTutoria = 0;
 			pesquisarAlunoTutoria();
 			$("#listarAluno").show();
+		},1000);
+	});
+
+	$("#pesqGrupoModal").keyup(function(){
+		window.clearTimeout(timeHandler);
+		timeHandler = window.setTimeout(function(){
+			resetAreaModal();
+			carregaAlunosModal();
 		},1000);
 	});
 	
@@ -316,7 +324,6 @@ function pesquisarAlunoTutoria(){
 	var idPeriodo = $("#periodoIdAluno").val();
 	var html = "";
 	var nmAluno = $("#txtPesqTut").val();
-
 	if(nmAluno != ""){
 		urlBusca = "AlunoVariavel/ListarNomeSemGrupo/" + nmAluno + "/" + idPeriodo + "/" + idCiclo;
 	} else {
@@ -741,6 +748,7 @@ function habilitarModalEdicaoOficina(idOficina, ciclo, periodo) {
 	$('#editar_id_oficina').val(idOficina);
 	$('#cicloOficinaEditar').val(ciclo);
 	$('#periodoOficinaEditar').val(periodo);
+	centralizarModal();
 }
 
 function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, horario, sala, agendamento){
@@ -753,6 +761,7 @@ function habilitarModalEdicaoRotina (idRotina, idOficina, agrupamento, dia, hora
 	$('#Horario_Edit').val(horario);
 	$('#Sala_Edit').val(sala);
 	$('#id_agendamento').val(agendamento);
+	centralizarModal();
 }
 
 function habilitarModalEdicaoAgrupamento () {
@@ -886,10 +895,10 @@ function editarRotina(){
 		var agendamento = $('#id_agendamento').val();
 		var anoLetivo = getIdAnoLetivo();
 
-		if (agrupamento != '0' &&
-			dia != '0' &&
-			horario != '0' &&
-			sala != '0')
+		if (agrupamento != null &&
+			dia != null &&
+			horario != null &&
+			sala != null)
 		{
 			$.ajax({
 				url: path + "Rotina",
@@ -922,9 +931,14 @@ function editarRotina(){
 				}
 			});
 		} else {
+			$("#boxModaisEdicao").hide();
 			mensagem("Todos os campos devem ser preenchidos.","OK","bt_ok","erro");
+			$(".bt_ok.left").on('click', function(){
+				$("#boxModaisEdicao").show();
+			});
 		}
 	});
+	
 }
 
 function editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo){
