@@ -579,7 +579,7 @@ function displayEdicao(id){
 			$("#Container_Cadastro_Tutoria").css('display','none')
 		    $("#Area_Nome_Tutoria").css('display', 'block');
 		    $("#Container_Cadastro_Aluno").css('display','block');
-		    $("#txtPesqTut").show();
+		    
 		    $("#listarAluno").css('display','block');
 		}
 	});
