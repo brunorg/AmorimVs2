@@ -153,6 +153,9 @@ function adicionaPortfoliosPendentes () {
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
 
+                var portfolioCorrigido = false;
+                var fichaCorrigida = false;
+
                 htmlProducao = '<td id="producaoTD">';
                 if (data[i].portfolioCompleto == 0){
                     htmlProducao += '<div id="portfolio">';
@@ -179,6 +182,7 @@ function adicionaPortfoliosPendentes () {
                         case 3:
                         {
                             htmlProducao += ('<div class="botoesPortfolio portfolio">Portfólio<div class="icone corrigido"></div></div>');
+                            portfolioCorrigido = true;
                             break;
                         }
                     }
@@ -209,10 +213,13 @@ function adicionaPortfoliosPendentes () {
                         case 3:
                         {
                             htmlProducao += ('<div class="botoesPortfolio ficha"> Ficha de Finalização<div class="icone corrigido"></div></div>');
+                            fichaCorrigida = true;
                             break;
                         }
                     }
                 }
+                else
+                    fichaCorrigida = true;
                 htmlProducao += '</td>';
 
                 HtmlContent = "";
@@ -231,8 +238,11 @@ function adicionaPortfoliosPendentes () {
                 HtmlContent += "</div>";
 
 
-                $('.total').append(HtmlContent);
-                verificaTamanhoNome(dataRoteiro[a].idroteiro);
+                if (!portfolioCorrigido || !fichaCorrigida)
+                {
+                    $('.total').append(HtmlContent);
+                    verificaTamanhoNome(data[i].roteiro.idroteiro);
+                }
             }
         }
     });
@@ -360,7 +370,7 @@ function verificaPendencias(alunoID,roteiroID){
 		dataType: 'json',
 		async: false,		
 		success: function(d){
-			if(d==0){
+			if(!d){
 				$.ajax({
 					url : path+"PendenciasProducaoAluno/",
 					type:"POST",
