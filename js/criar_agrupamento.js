@@ -139,9 +139,10 @@ function atribuiRolagemAgrup () {
             alwaysTriggerOffsets: false,
             onTotalScrollOffset: 500,
             whileScrolling: function() {
-            if(this.mcs.topPct > 95 && !acabouDeCarregar)
-            {
-                    carregaAlunos();   
+                if(this.mcs.topPct > 95 && !acabouDeCarregar)
+                {
+                        carregaAlunos();   
+                }
             },
             onTotalScroll:function(){
                 if (!acabouDeCarregar)
