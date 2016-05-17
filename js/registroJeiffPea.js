@@ -20,7 +20,6 @@ function carregaJeiffPea(){
 	                        '<div class="textJeiff">'+data[a].ata+'</div>'+
 	                        '<p class="barra"></p>'+
 	                    '</div>';
-	            debugger;
 	            if(data[a].arquivo != null && data[a].descricao != null) {
 	            	htmlDocumentos += '<p class="docJeiff">'+
 	                                    '<a href="'+data[a].arquivo+'" target="_blank" class="linkJeiff">'+data[a].descricao+'</a>'+

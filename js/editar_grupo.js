@@ -8,12 +8,14 @@ $(document).ready(function(){
 
 function atruiChangesModal(){
     $("#cicloGrupoModal").change(function (){
+        $("#pesqGrupoModal").val("");
         resetAreaModal();
         carregaAlunosModal();
-        isSelectedModal();
+        isSelectedModal();        
     });
 
     $("#periodoGrupoModal").change(function(){
+        $("#pesqGrupoModal").val("");
         resetAreaModal();
         carregaAlunosModal();
         isSelectedModal();
@@ -59,22 +61,24 @@ function carregaAlunosModal(){
     var urlDinamica = "";
     var htmlAlunos = "";
     var isOnList = "";
+    var nmAluno = $("#pesqGrupoModal").val();
 
-    if (cicloModal !== 0 && periodoModal !== 0)
-        urlDinamica = "AlunoVariavel/listarCicloPeriodoRangeObjeto/" + cicloModal + "/"+ periodoModal + "/";
+    if(nmAluno != "")
+        urlDinamica = "AlunoVariavel/ListarNomeSemGrupo/" + nmAluno + "/" + periodoModal + "/" + cicloModal;
+    else if (cicloModal !== 0 && periodoModal !== 0)
+        urlDinamica = "AlunoVariavel/listarCicloPeriodoRangeObjeto/" + cicloModal + "/"+ periodoModal + "/" + contAlunosModal * 20 + "/19";
     else if ($("#cicloGrupoModal").val() !== 0)
-        urlDinamica = "AlunoVariavel/listarCicloRangeObjeto/" + cicloModal + "/";
+        urlDinamica = "AlunoVariavel/listarCicloRangeObjeto/" + cicloModal + "/" + contAlunosModal * 20 + "/19";
     else
-        urlDinamica = "AlunoVariavel/listarPeriodoRangeObjeto/" + periodoModal + "/";
+        urlDinamica = "AlunoVariavel/listarPeriodoRangeObjeto/" + periodoModal + "/" + contAlunosModal * 20 + "/19";
 
     $.ajax({
-        url: path + urlDinamica + contAlunosModal * 20 + "/19",
+        url: path + urlDinamica,
         type: "GET",
         async: false,
         crossDomain: true,
         dataType: 'json',
         success: function(dataAlunos) {
-
             for(var i = 0; i < dataAlunos.length; i++){
                 var isOnList = false;
                 var arraySelected = carregaSelectedModal();

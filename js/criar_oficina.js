@@ -26,14 +26,13 @@ function carregarTipoOficina() {
 
 function salvarOficina () {
     $('.btn_Salvar_Oficina').click(function() {
-
-        var tipoOficina = $("#oficinaOficina").val()
+        var tipoOficina = $("#oficinaOficina").val();
         var nomeOficina = $("#nomeOficina").val();
         var periodo = $("#periodoOficina").val();
         var ciclo = $("#cicloOficina").val();
 
         var cicloNome = $("#cicloOficina option:selected").text();
-        periodoNome = $("#periodoOficina option:selected").text();
+        var periodoNome = $("#periodoOficina option:selected").text();
 
         if (tipoOficina == '0' ||
             periodo == '0' ||
