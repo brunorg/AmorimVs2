@@ -579,7 +579,7 @@ function displayEdicao(id){
 			$("#Container_Cadastro_Tutoria").css('display','none')
 		    $("#Area_Nome_Tutoria").css('display', 'block');
 		    $("#Container_Cadastro_Aluno").css('display','block');
-		    
+		    $("#txtPesqTut").show();
 		    $("#listarAluno").css('display','block');
 		}
 	});
@@ -801,7 +801,6 @@ function editarModal_Impl2(modal, id, idRotina){
 		var conteudoCiclo = carregaCicloAgrup(idAgrup);
 		var conteudoPeriodo = $("#periodoGrupoModal").val();
 		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim();
-
 		editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo);
 	}
 	centralizarModal();

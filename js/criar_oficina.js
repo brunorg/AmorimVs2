@@ -418,7 +418,7 @@ function addNomeRotina () {
     $("#Area_Nome_Oficina").append(conteudoNome);
 }
 
-function resetarPaginas () {
+function resetarPaginas() {
     resetarCadastroOficina();
     resetarCadastroProfessores();
     resetarCadastroRotina();
@@ -436,8 +436,8 @@ function resetarCadastroOficina () {
     $("#cicloOficina").val('0');
 }
 
-function resetarCadastroProfessores () {
-    $('.Container_Professores').empty();
+function resetarCadastroProfessores() {
+    $('.Container_Professores .Area_Select_Grupo').remove();
     $('.btAdd_Professor').unbind('click');
     $(".btn_Salvar_Oficina_Professor").unbind('click');
 }
