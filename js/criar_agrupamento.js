@@ -200,7 +200,10 @@ function salvaAlunoAgrupamento (idAgrupamento, alunoId) {
         type: "POST",
         data: "action=create&Aluno="+alunoId+"&idAgrupamento="+idAgrupamento,
         async: false,
-        crossDomain: true
+        crossDomain: true,
+        erro: function(){
+            mensagem("Erro, aluno(s) não cadastrado(s).","OK","bt_ok","alerta");
+        }
     });
 }
 
