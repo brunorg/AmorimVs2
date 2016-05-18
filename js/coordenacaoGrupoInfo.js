@@ -801,7 +801,6 @@ function editarModal_Impl2(modal, id, idRotina){
 		var conteudoCiclo = carregaCicloAgrup(idAgrup);
 		var conteudoPeriodo = $("#periodoGrupoModal").val();
 		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim();
-
 		editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo);
 	}
 	centralizarModal();
