@@ -156,7 +156,9 @@ function atribuiRolagemAgrup () {
 
 function salvarAgrupamento() {
     $('.btn_Salvar_Grupo').click(function() {
+        // var alunos = $(".Grupo_Aluno_Linha");
         var cicloAgrup = $("#cicloGrupo").val();
+        debugger;
         if (geraNome() != '' && $('.Aluno_Ano_Check:checked').length > 0)
         {
             $.ajax({
@@ -169,6 +171,7 @@ function salvarAgrupamento() {
                     loading("inicial");
                 },
                 success: function(idAgrupamento){
+
                     for (var a = 0; a < $('.Aluno_Ano_Check:checked').length; a++)
                     {
                         var alunoId =  $('.Aluno_Ano_Check:checked')[a].id.split("_")[2];
@@ -189,7 +192,7 @@ function salvarAgrupamento() {
             mensagem("O grupo deve possuir um nome e ao menos um aluno!","OK","bt_ok","erro");
         else if (geraNome() == '')
             mensagem("O grupo deve possuir um nome!","OK","bt_ok","erro");
-        else
+        else if($.trim($("#Area_Alunos").html())=='')
             mensagem("O grupo deve possuir ao menos um aluno!","OK","bt_ok","erro");
     });
 }
