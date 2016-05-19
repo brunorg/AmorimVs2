@@ -800,7 +800,7 @@ function editarModal_Impl2(modal, id, idRotina){
 		idAgrup = $("#idOficina_"+id).find("#idRotina_"+idRotina).find(".agrupamento").attr('id').split('_')[1];
 		var conteudoCiclo = carregaCicloAgrup(idAgrup);
 		var conteudoPeriodo = $("#periodoGrupoModal").val();
-		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim();
+		var conteudoNome = $("#idOficina_"+id).find("#idRotina_"+idRotina).find("#agrupamento_"+idAgrup).text().trim().substring(12);
 		editarAgrupamento(conteudoCiclo, conteudoNome, conteudoPeriodo);
 	}
 	centralizarModal();
