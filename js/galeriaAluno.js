@@ -151,7 +151,6 @@ $(document).ready(function(){
         if (tipoArquivo == ''){
             return mensagem("Escolha um tipo de arquivo!","OK","bt_ok","erro");
         }
-        console.log(tipoArquivo);
         
         if (tipoArquivo == 'video'){
             Arquivo = $('#linkVideo').val();
