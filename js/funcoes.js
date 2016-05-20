@@ -386,6 +386,8 @@ $(document).ready(function(){
 	$("#box_logout").click(function(){
 		$(this).css('transform','translate(300px)');
 	});
+
+	$("#alterar_foto").click(showUploadFileBox);
 });	
 
 function menuHamburguer(btn, posicao, classDivMenu){
@@ -1402,4 +1404,42 @@ function ativaMenu(){
 	var retorno = url.split("/"); 
 	var classe = $('a[href="'+retorno[4]+'"] .Content_lateral_Menu_Opcao').attr("class");	
 	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
+}
+function showUploadFileBox() {
+	var html = "";
+
+	html += '<div class="blackPainel">';
+	html += 	'<div id="JanelaUploadPortifolio">';
+	html += 		'<div class="Titulo_janela_upload">';
+	html += 			'Upload Foto Aluno';
+	html += 			'<div class="close_upload_producao"></div>';
+	html += 		'</div>';
+	html += 		'<div id="box_foto">';
+	html += 			'<div id="foto"></div>';
+	html += 		'</div>';
+	html += 		'<div id="LegendaUpload">Aguardando Arquivo</div>';
+	html += 		'<form id="inserirArquivo">';
+	html += 			'<input type="hidden" id="action" name="action" value="update">';
+	html += 			'<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
+	html += 			'<input type="hidden" class="perfil" id="idAluno" value="">                           ';
+	html += 			'<div class="campoConfirmaUpload">';
+	html += 				'<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="salvarFoto()">';
+	html += 			'</div>';
+	html += 		'</form> ';
+	html += 	'</div>';
+	html += '</div>';
+
+	$("body").append(html);
+	$(".blackPainel").show();
+}
+
+function alterarFoto() {
+	if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
+	{
+		salvarFotoAluno();
+	}
+	else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 25)
+	{
+		salvarFotoProfessor();
+	}
 }

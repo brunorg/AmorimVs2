@@ -390,16 +390,7 @@ function editarAluno(idAluno){
 	
 }
 
-function salvarFoto(){
-	if($(".abas_ativa").attr("id") == "abaCadAluno")
-	{
-		salvarFotoAluno();
-	}
-	else
-	{
-		salvarFotoProfessor();
-	}
-}
+
 
 function listadados(){	
 	var a;		
