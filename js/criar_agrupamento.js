@@ -158,7 +158,6 @@ function salvarAgrupamento() {
     $('.btn_Salvar_Grupo').click(function() {
         // var alunos = $(".Grupo_Aluno_Linha");
         var cicloAgrup = $("#cicloGrupo").val();
-        debugger;
         if (geraNome() != '' && $('.Aluno_Ano_Check:checked').length > 0)
         {
             $.ajax({
