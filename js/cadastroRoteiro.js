@@ -10,8 +10,6 @@ var objCount = 1;
 
 $(document).ready(function(){
 
-	$("#paginaAtv1").mask("9999"); //Máscara no campo página do livro para só aceitar números.
-	
 	$('#cabecalho_roteiro').addClass('Item_Ativo');
 	
 	/*Function do accordion*/
@@ -954,11 +952,14 @@ function inserirObjetivoAtividade(){
 	//Seta um novo valor na variavel para verificar se estão corretos.
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário após excluir os inválidos
 	
+	console.log($(".Numero_Objetivo_Input").val());
+
 	var objetivo = { 								//Objeto com as propriedades do objetivo a ser inserido
 		nome: $(".Nome_Objetivo_Input").val(),
 		numero: $(".Numero_Objetivo_Input").val()
 	}; 
-	
+
+
 	var roteiro = $('#id').val();
 	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);	
 	
@@ -1155,11 +1156,12 @@ function inserirObjetivoAtividade(){
 
 /*Function para cadastrar objetivo*/
 function criarObjetivo(nome,numero,descricao,roteiro){
-	console.log('nome'+nome);
-	console.log('numero'+numero);
-	console.log('roteiro'+roteiro);
+	// console.log('nome'+nome);
+	// console.log('numero'+numero);
+	// console.log('roteiro'+roteiro);
 	var retorno;
-	var valores = "nome="+nome+"&numero=&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
+	var valores = "nome="+nome+"&numero="+numero+"&descricao="+descricao+"&roteiro="+roteiro+"&ativo=1";
+
 	$.ajax({
 		url: path+"Objetivo",
 		type: "POST",
