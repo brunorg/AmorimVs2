@@ -19,8 +19,8 @@ var Arquivo;
 
 	var aluno=1;
     var UsuarioAtivo = 2;
-	var tipoArquivo = '';
-	var categoria = '';
+	// var tipoArquivo = '';
+	// var categoria = '';
 	var alunoVarObj = localStorage.objetoAlunoVariavel;
 	var alunoVar = parseInt(alunoVarObj.substring(19).split(",",1));
 
@@ -37,7 +37,6 @@ var dataProducaoAluno 	=	getData("ProducaoAluno", null);
 
 var userID = usuarioId;
 var alunoID = getAlunoByUsuario();
-
 var tipoSelecao = GetURLParameter('tipoProducao');
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -48,8 +47,6 @@ $(document).ready(function(){
 	//carregaCategoria(); <<<<----- Será implementado
 
 	$("#Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
-
-	//----------------------------------------------------------
 
 	//Navegação por abas
 	navItens 		= $('.Prod_Aluno_Nav_Item');
@@ -78,7 +75,6 @@ $(document).ready(function(){
 	$("#postagemImagem").change(function(e) {
 	    var FR = new FileReader();
 	    FR.onload = function(e) {
-	    	console.log(e.target);
 	        $("#imagemArquivo").val(e.target.result);
 	    };
 	    Arquivo = this.files[0];
@@ -88,6 +84,25 @@ $(document).ready(function(){
 		$('#postagemImagem').trigger('click');
 	});
 
+	$("div.inputImg").click(function(){
+		for(var i = 0; i < $(".inputImg").length; i++){
+				$($(".inputImg").get(i)).css("background-position", "0px 0px").removeClass("clicado");
+		}
+		if($(this).hasClass("clicado") == false){
+			$(this).css("background-position", "-39px 0px").addClass("clicado");
+		} else {
+			$(".inputImg").css("background-position", "0px 0px").removeClass("clicado");
+		}
+
+		if($(this).prev().attr("id") != "arquivo-icon"){
+			$("#link").show();
+			$("#arquivo").hide();
+		} else {
+			$("#arquivo").show();
+			$("#link").hide();
+		}				
+	});
+
 	//----------------------------------------------------------
 
 	CarregaProducao();
@@ -95,73 +110,61 @@ $(document).ready(function(){
 	var background = $(".inputImg").css("background");
 	background = background.replace("no-repeat", "repeat");
 	$(".inputImg").not($(".vazio")).css("background",background);
-
-
-	GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
-
-
+	GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'));
 
     $('#btn_Sub_AE').click(function(){
+    	validarCampos();
+    	var nmAtividade = $("#atividadeNova").val();
+    	var dsArquivo = $("#inputLink").val();
+    	var nrAnoLetivo = getAnoLetivo('idAnoLetivo');
+    	salvarAtividade(nrAnoLetivo, dsArquivo, nmAtividade);
+   //  	if (tipoArquivo == 'video'){
+   //  		Arquivo = $('#linkVideo').val();
+   //  		arq = $('#linkVideo').val();
+			// if (arq == ''){
+			// 	return mensagem("Preencha o link do vídeo!","OK","bt_ok","erro");
+			// }
+   //  	}else var arq = '';
 
-    	if ($('#atividadeNova').val() == ''){
-			return mensagem("Preencha o campo da atividade!","OK","bt_ok","erro");
-		}
+   //      if (Arquivo != "" && Arquivo != undefined){
 
-		if (categoria == ''){
-			return mensagem("Escolha a categoria!","OK","bt_ok","erro");
-		}
-
-		if (tipoArquivo == ''){
-			return mensagem("Escolha um tipo de arquivo!","OK","bt_ok","erro");
-		}
-
-    	if (tipoArquivo == 'video'){
-    		Arquivo = $('#linkVideo').val();
-    		arq = $('#linkVideo').val();
-			if (arq == ''){
-				return mensagem("Preencha o link do vídeo!","OK","bt_ok","erro");
-			}
-    	}else var arq = '';
-
-        if (Arquivo != "" && Arquivo != undefined){
-
-        	var atv = $('#atividadeNova').val();
+   //      	var atv = $('#atividadeNova').val();
 
 
-        	var valores = "anoLetivo=80&texto="+atv+"&data=21-09-2014&aluno="+alunoID+"&tipo=6&categoria="+categoria+"&arquivo="+arq;
+   //      	var valores = "anoLetivo=80&texto="+atv+"&aluno="+alunoID+"&tipo=6&arquivo="+arq;
 
-			var retorno = setCreateData("ProducaoAluno",valores);
+			// var retorno = setCreateData("ProducaoAluno",valores);
 
 
-			if(retorno != "erro"){
+			// if(retorno != "erro"){
 
-				$('#Cadastro_Form_imagem_PA #id').val(retorno);
-				if (arq == '') {
-					loading("inicial");
-					addFileTo(retorno);
-				}else{
-		            dataProducaoAluno 	=	getData("ProducaoAluno", null);
-		            tipoSelecao = "atividade";
-					mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-					CarregaProducao();
-				}
+			// 	$('#Cadastro_Form_imagem_PA #id').val(retorno);
+			// 	if (arq == '') {
+			// 		loading("inicial");
+			// 		addFileTo(retorno);
+			// 	}else{
+		 //            dataProducaoAluno 	=	getData("ProducaoAluno", null);
+		 //            tipoSelecao = "atividade";
+			// 		mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
+			// 		CarregaProducao();
+			// 	}
 
-				//Limpa os campos!!
-				$('#atividadeNova').val('');
-				$('#linkVideo').val('');
-				$("div.inputImg").css("background-position","0px 0px");
-				tipoArquivo = '';
-				categoria = '';
-				$("#arquivo, #link").hide();
+			// 	//Limpa os campos!!
+			// 	$('#atividadeNova').val('');
+			// 	$('#linkVideo').val('');
+			// 	$("div.inputImg").css("background-position","0px 0px");
+			// 	tipoArquivo = '';
+			// 	categoria = '';
+			// 	$("#arquivo, #link").hide();
 
-			}else{
-				return mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
-			}
-			return false;
+			// }else{
+			// 	return mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
+			// }
+			// return false;
 
-        } else {
-            return mensagem("Por Favor, adicione um arquivo!","OK","bt_ok","erro");
-        }
+   //      } else {
+   //          return mensagem("Por Favor, adicione um arquivo!","OK","bt_ok","erro");
+   //      }
     });
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
@@ -169,14 +172,45 @@ $(document).ready(function(){
     });
 });
 
+function validarCampos(){
+	if($("#atividadeNova").val() == "")
+		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+	else if(!$(".inputImg").hasClass("clicado"))
+		mensagem("Escolha um tipo de atividade.","OK","bt_ok","erro");
+	else if($("#foto").html() == "" && $(".clicado").prev().attr("id") == "arquivo-icon")
+		mensagem("Escolha um arquivo.","OK","bt_ok","erro");
+	else if($("#inputLink").val() == "")
+		mensagem("Preencha com o link.", "OK","bt_ok","erro");
+}
+function salvarAtividade(pAnoLetivo, pArquivo, pAtividade){
+	$.ajax({
+		url: path + "ProducaoAluno",
+		type: "POST",
+		data: "action=create&anoLetivo=" +pAnoLetivo+"&texto="+pAtividade+"&aluno="+alunoID+"&tipo=6&categoria=1&arquivo="+pArquivo,
+		async: false,
+		crossDomain: true,
+		beforeSend: function(){
+			loading("inicial");
+		},
+		success:function(data){
+			mensagem("Atividade extra cadastrada com sucesso.","OK","bt_ok","sucesso");
+			uploadArquivo(data);
+		}, 
+		complete:function(){
+			loading("final");
+		},
+		erro: function(){
+			mensagem("Erro, atividade extra não cadastrada.","OK","bt_ok","alerta");
+		}
+	});
+}
 function CarregaProducao()
 {
 	var PrimeiroAtividade = false;
-
 	HtmlContent1="";
 	HtmlContent2="";
 	HtmlContent3="";
-
+	
 	if(!PrimeiroAtividade)
 	{
 		HtmlContent2 += "<li id='List_ADD' ArquivoSelect=''> Nova Atividade </li>";
@@ -185,7 +219,6 @@ function CarregaProducao()
 
 	for(var a = 0; a < dataProducaoAluno.length; a++)
 	{
-
 		if(dataProducaoAluno[a].arquivo){
 			extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
 		}
@@ -205,7 +238,6 @@ function CarregaProducao()
 
 			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 6)
 			{
-
 				if (extensao == ".docx" || extensao == ".doc")
 				{
 					HtmlContent2 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li></a>";
@@ -288,7 +320,8 @@ function getAlunoByUsuario()
 }
 
 function reLoadClick(){
-	$("#menu_lateral_portfolio li").click(function(){
+	var itensNav = $("#menu_lateral_atividade li,#menu_lateral_portfolio li");
+	$(itensNav).click(function(){
         var ex = true;
 		var arquivo = $(this).attr('arquivoselect');
 		extensao = (arquivo.substring(arquivo.lastIndexOf("."))).toLowerCase();
@@ -301,7 +334,6 @@ function reLoadClick(){
 
 		if(ex){
 			if($(this).html().length != 1){
-
 				$("#Prod_Aluno_Content li").not(':hidden').css("background-color", "#ECEBE5");
 				$(this).not(':hidden').css("background-color", "#D6E5A9");
 
@@ -329,7 +361,6 @@ function reLoadClick(){
 
 function addFileTo(ID)
 {
-
     var formData = new FormData($('#Cadastro_Form_imagem_PA')[0]);
     formData.append("arquivo", Arquivo);
 
@@ -349,7 +380,6 @@ function addFileTo(ID)
             dataProducaoAluno 	=	getData("ProducaoAluno", null);
             tipoSelecao = "atividade";
             CarregaProducao();
-
             $("#LegendaUpload").html("Aguardando Arquivo");
 
             //CarregaProducao();
@@ -491,6 +521,7 @@ function postProducaoOficina()
     });
 }
 function uploadArquivo(idpost) {
+	debugger;
     var formData = new FormData($("#form_Nova_Producao")[0]);
     formData.append("arquivo", Arquivo);
 
@@ -706,14 +737,12 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 
 // function carregaCategoria(){
 // 	htmlCategoria = "";
-// 	debugger;
 // 	$.ajax({
 // 		url: path + "CategoriaProducaoAluno",
 // 		async: false,
 // 		crossDomain: true,
 // 		type: "GET",
 // 		success: function(dataCategoria){
-// 			debugger;
 // 			for(var i = 0; i < dataCategoria.length; i++){
 // 				htmlCategoria += '<div class="infoValueP BorderBottom " style="height: 42px"> '+dataCategoria[i].categoria+' </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 42px " value="'+dataCategoria[i].idcategoriaProducaoAluno+'"> </div>';
 // 			}
@@ -726,7 +755,7 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 // 				$(this).css("background-position","-39px 0px");
 // 				categoria = $(this).attr('value');
 // 			});
-// 			$("div.inputImg").not(".vazio, .categoria").click(function(){
+// 			$(" inputImg").not(".vazio, .categoria").click(function(){
 // 				$("div.inputImg").not('.categoria').css("background-position","0px 0px");
 // 				$(this).css("background-position","-39px 0px");
 
@@ -743,3 +772,4 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 // 		}
 // 	});
 // }
+
