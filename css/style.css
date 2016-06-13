@@ -84,6 +84,7 @@ html, body
 			float:left;
 		}
 			#Cabecalho_Perfil_Area_Foto{
+				position: relative;
 				height: 86px;
 				width:86px;
 				float:right;
@@ -120,7 +121,27 @@ html, body
 				width:80px;
 				height:80px;
 			}			
-			
+			#alterar_foto {
+				position: absolute;
+				padding: 5px;
+				width: 100%;
+				text-align: center;
+				background-color: rgba(0, 0, 0, .4);
+				margin: 0;
+				cursor: pointer;
+				transition: transform 0.2s ease-in-out;
+			}
+			#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+				transform: translate(0, -32px);
+			}
+			#alterar_foto > span {
+				line-height: 1;
+				font-size: 14px;
+				color: #fff;
+			}
+			#alterar_foto:hover > span {
+				text-decoration: underline;
+			}
 		#Cabecalho_Perfil_Area_Descricao_Content{
 			height:100%;
 			width:90%;

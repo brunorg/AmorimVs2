@@ -575,6 +575,18 @@ function validaForm (formulario) {
     }
 }
 
+function salvarFoto()
+{
+	if($(".abas_ativa").attr("id") == "abaCadAluno")
+	{
+		salvarFotoAluno();
+	}
+	else
+	{
+		salvarFotoProfessor();
+	}
+}
+
 function salvarFotoAluno(){
 	var idAluno = $("#idAluno").val();
 	var tipoArquivo = $("#fotoAluno").val();

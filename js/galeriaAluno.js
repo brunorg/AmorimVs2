@@ -119,26 +119,31 @@ $(document).ready(function(){
         $("#producao_aluno_cabecalho div").css("background", "#ADCC53");
         $(this).css("background-color", "#8FAE38");
     
-    if($(this).attr("id") == "cabecalho_portfolio"){
-        $("#Portfolio").show();
-        $("#Atividade").hide();
-        $("#Fichas").hide();
-    }
-    else if($(this).attr("id") == "cabecalho_atividade"){
-        $("#Portfolio").hide();
-        $("#Atividade").show();
-        $("#Fichas").hide();
-    } else{
-        $("#Portfolio").hide();
-        $("#Atividade").hide();
-        $("#Fichas").show();
+        if($(this).attr("id") == "cabecalho_portfolio"){
+            $("#Portfolio").show();
+            $("#Atividade").hide();
+            $("#Fichas").hide();
+            $("#Oficina").hide();
+        }
+        else if($(this).attr("id") == "cabecalho_atividade"){
+            $("#Portfolio").hide();
+            $("#Atividade").show();
+            $("#Fichas").hide();
+            $("#Oficina").hide();
+        } else if($(this).attr("id") == "cabecalho_fichas"){
+            $("#Portfolio").hide();
+            $("#Atividade").hide();
+            $("#Fichas").show();
+            $("#Oficina").hide();
+        } else {
+            $("#Portfolio").hide();
+            $("#Atividade").hide();
+            $("#Fichas").hide();
+            $("#Oficina").show();
         }
     });
 
-
-
     CarregaProducao();
-
 
     $('#btn_Sub_AE').click(function(){
         
@@ -161,7 +166,6 @@ $(document).ready(function(){
         }else var arq = '';
         
         if (Arquivo != "" && Arquivo != undefined){
-            console.log('idAluno: '+alunoID);
             var atv = $('#atividadeNova').val();
             
             
@@ -253,16 +257,12 @@ $(document).ready(function(){
 function CarregaProducao()
 {
     var PrimeiroAtividade = false;
-
     HtmlContent1="";
     HtmlContent2="";
     HtmlContent3="";
-
     for(var a = 0; a < dataProducaoAluno.length; a++)
     {
-
         extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
-
 
         if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5)
         {
