@@ -44,171 +44,143 @@
 	<body >
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-			<div>
-                <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
-                    <div id="Cabecalho_Menu_Area_Menu2">
-                        <div ng-init="usuario()">
-                            <div id="Cabecalho_Perfil_Area_Foto_Content">
-                                <!--Foto do usuário, neste caso, do aluno-->
-                                <div id="Cabecalho_Perfil_Area_Foto">  
-                                    <img id='_foto' src='{{usuarioFoto}}'/>                          
-                                </div>
-                                 <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
-                            </div>                            
-                        </div>
-                    </div>	
-                </div>                
+			<div ng-include="'m_header.html'">
+                <!-- Template: m_header.html -->
             </div>
-			<div id="Conteudo_Area">
-                    <div class="Conteudo_Coluna" id="Content_lateral_left">
-                        <div id="Content_lateral_Menu">    
-                            <div  ng-repeat="menu in menuHTML">                         
-                                <a href="{{menu.href}}">
-                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                        {{menu.label}}
-                                    </div>
-                                </a>
-                            </div>
-                        </div>    
-                    </div>
-    
-                    <!--Coluna geral central-->
-					<div id="m_blocoGeral">
-						<div class="boxLinha">
-							<div class="box_col8">
-								<!-- Portfólio -->
-								<div class="Objetivos_Resultado_Desempenho">
-									<div class="Objetivos_Semana_Cabecalho_Nome">
-										<a href="producaoAluno.html">Portfólio</a>
-                                        <a href="roteirosPlanejamento.html" id="pendencias">
-                                             Pendências <span class="pendencias_count" id="bolinha"> </span>
-                                        </a>
-									</div>
-									<div class="microfiche-prev-button">&#25C0;</div>
-									<div class="microfiche-next-button">&#25C0;</div>
-									<div id="Portfolio_Conteudo">
-										
-									</div>
+			<div id="Conteudo_Area">          
+                <!--Coluna geral central-->
+				<div id="m_blocoGeral">
+					<div class="boxLinha">
+						<div class="box_col12">
+							<!-- Portfólio -->
+							<div class="Objetivos_Resultado_Desempenho">
+								<div class="Objetivos_Semana_Cabecalho_Nome">
+									<a href="producaoAluno.html">Portfólio</a>
+                                    <a href="roteirosPlanejamento.html" id="pendencias">
+                                         Pendências <span class="pendencias_count" id="bolinha"> </span>
+                                    </a>
+								</div>
+								<div class="microfiche-prev-button">&#25C0;</div>
+								<div class="microfiche-next-button">&#25C0;</div>
+								<div id="Portfolio_Conteudo">
+									
 								</div>
 							</div>
-							<div class="box_col4">
-								<!-- Rotina semanal -->
-								<div id="Rotina_Semanal">
-                                    <div id="Rotina_Semanal_Nome">
-                                        <a href="#">Rotina Semanal</a>
+						</div>
+						<div class="box_col4">
+							<!-- Rotina semanal -->
+							<div id="Rotina_Semanal">
+                                <div id="Rotina_Semanal_Nome">
+                                    <a href="#">Rotina Semanal</a>
+                                </div>
+                                <div id="Rotina_Semanal_Conteudo">
+                                    <div id="Rotina_Semanal_Conteudo_Container">
+                                        <table id="Rotina_Semanal_Tabela">
+                                            <thead>
+                                                <tr>
+                                                    <th class="Rotina_Semanal_btn_Seta" id="Rotina_Seta_Anterior" onclick="rotinaMudarDia(-1)">&#9664;</th>
+                                                    <th id="Rotina_Semanal_Dia" colspan="2">SEGUNDA</th>
+                                                    <th class="Rotina_Semanal_btn_Seta" id="Rotina_Seta_Proximo" onclick="rotinaMudarDia(1)">&#9654;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="Rotina_Semanal_Linha7" class="Rotina_Semanal_Linha Rotina_Pesquisa">
+                                                    <td class="Rotina_Semanal_Horario">07h00</td>
+                                                    <td class="Rotina_Semanal_Materia">Carregando</td>
+                                                    <td class="Rotina_Semanal_Professor">Carregando</td>
+                                                    <td class="Rotina_Semanal_Local">Carregando</td>
+                                                </tr>
+                                                <tr id="Rotina_Semanal_Linha8" class="Rotina_Semanal_Linha Rotina_Artes">
+                                                    <td class="Rotina_Semanal_Horario">08h00</td>
+                                                    <td class="Rotina_Semanal_Materia">Carregando</td>
+                                                    <td class="Rotina_Semanal_Professor">Carregando</td>
+                                                    <td class="Rotina_Semanal_Local">Carregando</td>
+                                                </tr>
+                                                <tr id="Rotina_Semanal_Linha9" class="Rotina_Semanal_Linha Rotina_Ingles">
+                                                    <td class="Rotina_Semanal_Horario">09h00</td>
+                                                    <td class="Rotina_Semanal_Materia">Carregando</td>
+                                                    <td class="Rotina_Semanal_Professor">Carregando</td>
+                                                    <td class="Rotina_Semanal_Local">Carregando</td>
+                                                </tr>
+                                                <tr id="Rotina_Semanal_Linha10000" class="Rotina_Semanal_Linha Rotina_Semanal_Linha_Recreio">
+                                                    <td class="Rotina_Semanal_Horario">10h00</td>
+                                                    <td class="Rotina_Semanal_Recreio" colspan="3">RECREIO</td>
+                                                </tr>
+                                                <tr id="Rotina_Semanal_Linha10" class="Rotina_Semanal_Linha Rotina_Roda_Conversa">
+                                                    <td class="Rotina_Semanal_Horario">10h30</td>
+                                                    <td class="Rotina_Semanal_Materia">Carregando</td>
+                                                    <td class="Rotina_Semanal_Professor">Carregando</td>
+                                                    <td class="Rotina_Semanal_Local">Carregando</td>
+                                                </tr>
+                                                <tr id="Rotina_Semanal_Linha11" class="Rotina_Semanal_Linha Rotina_Pesquisa">
+                                                    <td class="Rotina_Semanal_Horario">11h30</td>
+                                                    <td class="Rotina_Semanal_Materia">Carregando</td>
+                                                    <td class="Rotina_Semanal_Professor">Carregando</td>
+                                                    <td class="Rotina_Semanal_Local">Carregando</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div id="Rotina_Semanal_Conteudo">
-                                        <div id="Rotina_Semanal_Conteudo_Container">
-                                            <table id="Rotina_Semanal_Tabela">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="Rotina_Semanal_btn_Seta" id="Rotina_Seta_Anterior" onclick="rotinaMudarDia(-1)">&#9664;</th>
-                                                        <th id="Rotina_Semanal_Dia" colspan="2">SEGUNDA</th>
-                                                        <th class="Rotina_Semanal_btn_Seta" id="Rotina_Seta_Proximo" onclick="rotinaMudarDia(1)">&#9654;</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr id="Rotina_Semanal_Linha7" class="Rotina_Semanal_Linha Rotina_Pesquisa">
-                                                        <td class="Rotina_Semanal_Horario">07h00</td>
-                                                        <td class="Rotina_Semanal_Materia">Carregando</td>
-                                                        <td class="Rotina_Semanal_Professor">Carregando</td>
-                                                        <td class="Rotina_Semanal_Local">Carregando</td>
-                                                    </tr>
-                                                    <tr id="Rotina_Semanal_Linha8" class="Rotina_Semanal_Linha Rotina_Artes">
-                                                        <td class="Rotina_Semanal_Horario">08h00</td>
-                                                        <td class="Rotina_Semanal_Materia">Carregando</td>
-                                                        <td class="Rotina_Semanal_Professor">Carregando</td>
-                                                        <td class="Rotina_Semanal_Local">Carregando</td>
-                                                    </tr>
-                                                    <tr id="Rotina_Semanal_Linha9" class="Rotina_Semanal_Linha Rotina_Ingles">
-                                                        <td class="Rotina_Semanal_Horario">09h00</td>
-                                                        <td class="Rotina_Semanal_Materia">Carregando</td>
-                                                        <td class="Rotina_Semanal_Professor">Carregando</td>
-                                                        <td class="Rotina_Semanal_Local">Carregando</td>
-                                                    </tr>
-                                                    <tr id="Rotina_Semanal_Linha10000" class="Rotina_Semanal_Linha Rotina_Semanal_Linha_Recreio">
-                                                        <td class="Rotina_Semanal_Horario">10h00</td>
-                                                        <td class="Rotina_Semanal_Recreio" colspan="3">RECREIO</td>
-                                                    </tr>
-                                                    <tr id="Rotina_Semanal_Linha10" class="Rotina_Semanal_Linha Rotina_Roda_Conversa">
-                                                        <td class="Rotina_Semanal_Horario">10h30</td>
-                                                        <td class="Rotina_Semanal_Materia">Carregando</td>
-                                                        <td class="Rotina_Semanal_Professor">Carregando</td>
-                                                        <td class="Rotina_Semanal_Local">Carregando</td>
-                                                    </tr>
-                                                    <tr id="Rotina_Semanal_Linha11" class="Rotina_Semanal_Linha Rotina_Pesquisa">
-                                                        <td class="Rotina_Semanal_Horario">11h30</td>
-                                                        <td class="Rotina_Semanal_Materia">Carregando</td>
-                                                        <td class="Rotina_Semanal_Professor">Carregando</td>
-                                                        <td class="Rotina_Semanal_Local">Carregando</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                </div>
+                            </div>
+						</div>
+					</div>					
+					<div class="boxLinha">
+                        <div class="box_col8">
+                            <!--Plano de estudo-->
+                            <div id="PlanoEstudo">
+                                <div class="PlanoEstudo_Cabecalho_Nome">
+                                    <a href="planoDeEstudo.html">Plano de Estudo</a>
+                                    <span id="PlanoEstudo_Semana"></span>
+                                </div>
+                                <div class="boxLinha Conteudo_PlanoEstudo">
+                                    <div class="box_col6">
+                                        <div id="Planejamento_Container">
+                                            Planejamento
+                                            <div id="PlanoEstudo_Conteudo">
+                                                <div id="PlanoEstudo_Conteudo_Container">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box_col6">
+                                        <div id="Registro_Container">
+                                            <div id="PlanoEstudo_Registro">
+                                                Registro Diário
+                                                <div id="PlanoEstudo_Conteudo_Container_Registro">
+                                                    <div class="box_linha linha_datas_registro">
+                                                    </div>
+                                                    <div class="textarea_registro">
+                                                        <textarea disabled class="txtArea"></textarea>
+                                                    </div>
+                                                    <div style='clear: both'></div>
+                                                    <div class='editar_button'>
+                                                        <img src="img/salvar_ed.png">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-							</div>
-						</div>
-						
-						<div class="boxLinha">
-                            <div class="box_col8">
-                                <!--Plano de estudo-->
-                                <div id="PlanoEstudo">
-                                    <div class="PlanoEstudo_Cabecalho_Nome">
-                                        <a href="planoDeEstudo.html">Plano de Estudo</a>
-                                        <span id="PlanoEstudo_Semana"></span>
-                                    </div>
-                                    <div class="boxLinha Conteudo_PlanoEstudo">
-                                        <div class="box_col6">
-                                            <div id="Planejamento_Container">
-                                                Planejamento
-                                                <div id="PlanoEstudo_Conteudo">
-                                                    <div id="PlanoEstudo_Conteudo_Container">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box_col6">
-                                            <div id="Registro_Container">
-                                                <div id="PlanoEstudo_Registro">
-                                                    Registro Diário
-                                                    <div id="PlanoEstudo_Conteudo_Container_Registro">
-                                                        <div class="box_linha linha_datas_registro">
-                                                        </div>
-                                                        <div class="textarea_registro">
-                                                            <textarea disabled class="txtArea"></textarea>
-                                                        </div>
-                                                        <div style='clear: both'></div>
-                                                        <div class='editar_button'>
-                                                            <img src="img/salvar_ed.png">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
-							<div class="box_col4">	
-								<!--Mural-->
-								<div id="Mural">
-									<div class="Mural_Cabecalho_Nome">
-										<p> Mural </p>
+                            </div>  
+                        </div>
+						<div class="box_col4">	
+							<!--Mural-->
+							<div id="Mural">
+								<div class="Mural_Cabecalho_Nome">
+									<p> Mural </p>
+								</div>
+								<div id="Mural_Conteudo">
+									<div id="Mural_Conteudo_Container">
 									</div>
-									<div id="Mural_Conteudo">
-										<div id="Mural_Conteudo_Container">
-										</div>
-									</div>
-								</div>	
-							</div>
+								</div>
+							</div>	
 						</div>
-					</div>           
-               </div>
+					</div>
+				</div>           
+            </div>
             <div class="box_margin_alter"></div> 
-			</div>
+        </div>
         <div id="boxMensagemGeral"></div> 
         <div class="boxGlobal" style="position: absolute"></div>
         <div class="box_margin_barra"></div>

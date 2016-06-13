@@ -6,37 +6,35 @@
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
 
         <!--Style-->
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />  
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+        <link rel="stylesheet" type="text/css" href="css/mensagens.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="css/m_plugins.css" />
         <link rel="stylesheet" type="text/css" href="css/mCustomScrollbar.css" />        
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="css/m_style.css" /> 
-        <link rel="stylesheet" type="text/css" href="mobilecss/mensagens.css" />     
+        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.filter.css">        
         <!--Fim Style-->
         
         <!--Script JS-->
-        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="js/path.js"></script>        
         <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>        
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-        <script src="js/jquery-1.10.2.js"></script>
-        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery-1.10.2.js"></script>        
+        <script src="js/jquery-ui.js"></script>        
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="js/calendario.js"></script>
- 
-        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css">
-        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.filter.css">
-        
+        <script type="text/javascript" src="js/calendario.js"></script>  
+
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-        <script src="js/prettify.js"></script>
+
         <script src="js/jquery.multiselect.js"></script>
-            <script type="text/javascript" src="js/jquery.multiselect.filter.js"></script>
-        <script type="text/javascript" src="js/funcoes.js"></script>           
-        <!--Carrega os dados do usuario logado-->
-        
-        <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+        <script type="text/javascript" src="js/jquery.multiselect.filter.js"></script>
+
+        <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="js/autenticador.js"></script>         
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
@@ -45,112 +43,37 @@
         <!--Fim JS-->
                 
     </head>
-
     <body>
         <!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">
-            <div>
-                <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
-                    <div id="Cabecalho_Menu_Area_Menu2">
-                        <div ng-init="usuario()">
-                            <div id="Cabecalho_Perfil_Area_Foto_Content">
-                                <!--Foto do usuário, neste caso, do aluno-->
-                                <div id="Cabecalho_Perfil_Area_Foto">  
-                                    <img id='_foto' src='{{usuarioFoto}}'/>                          
-                                </div>
-                                 <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
-                            </div>                            
-                        </div>
-                    </div>  
-                </div>                
+        <div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: m_header.html -->
             </div>
             <div id="Conteudo_Area">
-                <!--Coluna a esquerda-->    
-                    <div class="Conteudo_Coluna" id="Content_lateral">    
-                        <!--Menu lateral-->
-                        <!--Perfil do usuário, neste caso, o aluno--> 
-                        <!--Nome | Serie do usuário-->                      
-                        <!--Calendario-->
-                        <div id="Content_lateral_Calendario" style="display:none">
-                            <div id="datepicker"></div>
-                            <div id="rodape_calendario">
-                                <p id="apontar">Apontar Presença grupo</p>
-                            </div>                      
-                        </div>    
-                    </div>
+                <!--Coluna a esquerda-->
+                <!--Coluna geral central-->         
+                <div class="Conteudo_Coluna" id="content_central_fixa">                   
+                    <div id="Container_Conteudo_Content_Central">
+                        <!-- FORM Campo salvar dados dos campos -->
+                        <form id="frm_Post_Mensagens" style="display:none;">
+                            <input type="text" id="id" name="id" />
+                            <input type="text" id="action" name="action" />
+                            <input type="text" id="lida" name="lida" />
+                            <input type="text" id="remetente" name="remetente" />
+                            <input type="text" id="assunto" name="assunto" />
+                            <input type="text" id="mensagem" name="mensagem" />
+                            <input type="text" id="cxEntrada" name="cxEntrada" />
+                            <input type="text" id="cxEnviada" name="cxEnviada" />
+                            <input type="text" id="tipoMensagem" name="tipoMensagem" />
+                            <input type="text" id="data" name="data" />
+                            <input type="text" id="proprietario" name="proprietario" />
+                            <input type="text" id="destinatario" name="destinatario" />
+                            <input type="text" id="destinatarios" name="destinatarios" value="" />
+                            <input type="file" id="anexo" name="anexo" />
+                        </form>
 
-                    <div class="Conteudo_Coluna" id="Content_lateral_left">
-                        <div id="Content_lateral_Menu">    
-                            <div  ng-repeat="menu in menuHTML">                         
-                                <a href="{{menu.href}}">
-                                    <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                        <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                        <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                        {{menu.label}}
-                                    </div>
-                                </a>
-                            </div>
-                        </div>    
-                    </div>
-                <div id="m_blocoGeral">
-                    <form id="frm_Post_Mensagens" style="display:none;">
-                        <input type="text" id="id" name="id" />
-                        <input type="text" id="action" name="action" />
-                        <input type="text" id="lida" name="lida" />
-                        <input type="text" id="remetente" name="remetente" />
-                        <input type="text" id="assunto" name="assunto" />
-                        <input type="text" id="mensagem" name="mensagem" />
-                        <input type="text" id="cxEntrada" name="cxEntrada" />
-                        <input type="text" id="cxEnviada" name="cxEnviada" />
-                        <input type="text" id="tipoMensagem" name="tipoMensagem" />
-                        <input type="text" id="data" name="data" />
-                        <input type="text" id="proprietario" name="proprietario" />
-                        <input type="text" id="destinatario" name="destinatario" />
-                        <input type="text" id="destinatarios" name="destinatarios" value="" />
-                        <input type="file" id="anexo" name="anexo" />
-                    </form>
 
-                            <!-- Tela de resposta mensagem, basear-se nela -->
-                    <div id="tela_over">
-                        <div id="tela_responder">                        
-                            <div id="Mensagem_wrapper">   
-                                <div id='Resp_frame'>
-                                <div id="bt_resp_cancelar" class="bts_responder_opcoes"></div>
-                                <div id="bt_resp_enviar" class="bts_responder_opcoes"></div>
-                                <div id="De">De: <span id="mensagem_remetente">  </span> </div>
-                                <input type="hidden" id="Resposta_Remetente" />
-                                <div id="Para">Para: <span id="mensagem_destinatario">  </span> </div>                                
-                                <hr>                                
-                                <div id="mensagem_assunto"> Re: </div>
-                                <div id="mensagem_data_hora">  </div>                                
-                                <hr>                                
-                                <textarea id="Mensagem"></textarea>
-                                </div>
-                                <!-- ------------------------------------------------------------------------ -->
-                                <div id='Nova_frame'>
-                                <div id="bt_enviar_cancelar" class="bts_responder_opcoes"></div>
-                                <div id="bt_enviar_enviar" onclick="enviar();" class="bts_responder_opcoes"></div>
-                                <form id="frm_Envia_Mensagens">
-                                    <table>
-                                        <input type="hidden" id="action"    name="action"       value="create" />
-                                        <input type="hidden" id="id"        name="id"           value="" />
-                                        <input type="hidden" id="lida"        name="lida"         value="1" />
-                                        <input type="hidden" id="remetente"   name="remetente"    value="" />
-                                        
-                                        <tr><td style="width:63px;">assunto:</td>   <td><input type="text" id="assunto" name="assunto" class="inputAssunto" value="" /></td></tr>
-                                        <tr><td colspan="2">mensagem:</td></tr>  
-                                        <tr><td colspan="2"><textarea type="text" id="mensagem" name="mensagem" style="border-bottom:solid thin #ccc;border-left:solid thin #ccc;height: 200px;width: 410px;" class="inputMensagem"></textarea></td></tr>
-                                        
-                                        <select name="destinatarios" id="destinatarios" style="height: 130px;" multiple></select> 
-                                    </table>
-                                </form>
-                                </div>
-                            </div>                        
-                        </div>                        
-                    </div>
-
-                    <div class="row" style="position:relative">
+                        <!-- Ao clicar na primeira opção do menu, abrir uma aba com estas informações abaixo -->
                         <div id="menu_responder"> 
                             <span id="responder">Responder </span>
                             <hr>
@@ -158,49 +81,88 @@
                             <hr>
                             <span id="encaminhar"> Encaminhar </span>
                         </div>
-                        <div class="col-12">
-                            <div id="Nav_menu">
-                                <div id="bt_Excluir" title="Excluir mensagem!"> </div>
-                                <div id="bt_Escrever" title="Nova mensagem!"> </div>
-                                <div id="bt_Responder" title="Responder mensagem!"> </div>
-                            </div> 
-                        </div>
-                    </div>
 
-                    <div class="row" id="mensagens_container">
-                        <div id="Col_Menu" class="col-3">
-                            <div id="CaixaDeEntrada" class="caixa_Menu estado_ativo"> Caixa de entrada </div>
-                            <div id="Enviadas" class="caixa_Menu menu_margins"> Enviadas </div>
-                        </div>
-                        <div id="boxMensagens" class="col-4">                            
-                            <div id="Col_CaixaDeMensagens" >                                                     
-                            </div>
-                        </div>
-                        <div id="Col_Mensagem" class="col-5">                            
-                            <div id="boxResp">
-                                <div id="Mensagem_wrapper">                            
-                                    <div id="De">De: <span id="mensagem_remetente"> </span> </div>
-                                    <div id="Para">Para: <span id="mensagem_destinatario"> <p /> </span> </div>                                
+                        <!-- Tela de resposta mensagem, basear-se nela -->
+                        <div id="tela_over">
+                            <div id="tela_responder">                        
+                                <div id="Mensagem_wrapper">   
+
+                                    <div id='Resp_frame'>
+                                    <div id="bt_resp_cancelar" class="bts_responder_opcoes"></div>
+                                    <div id="bt_resp_enviar" class="bts_responder_opcoes"></div>
+                                    <div id="De">De: <span id="mensagem_remetente">  </span> </div>
+                                    <input type="hidden" id="Resposta_Remetente" />
+                                    <div id="Para">Para: <span id="mensagem_destinatario">  </span> </div>                                
                                     <hr>                                
-                                    <div id="mensagem_assunto"> <p /> </div>
-                                    <div id="mensagem_data_hora"> <p /> </div>                                
+                                    <div id="mensagem_assunto"> Re: </div>
+                                    <div id="mensagem_data_hora">  </div>                                
                                     <hr>                                
-                                    <div id="boxCaixa">
-                                        <textarea id="Mensagem" disabled></textarea>    
+                                    <textarea id="Mensagem"></textarea>
                                     </div>
-                                </div> 
-                             </div>                       
+
+                                    <!-- ------------------------------------------------------------------------ -->
+
+                                    <div id='Nova_frame'>
+                                    <div id="bt_enviar_cancelar" class="bts_responder_opcoes"></div>
+                                    <div id="bt_enviar_enviar" onclick="enviar();" class="bts_responder_opcoes"></div>
+                                    <form id="frm_Envia_Mensagens">
+                                        <table>
+                                            <input type="hidden" id="action"    name="action"       value="create" />
+                                            <input type="hidden" id="id"        name="id"           value="" />
+                                            <input type="hidden" id="lida"        name="lida"         value="1" />
+                                            <input type="hidden" id="remetente"   name="remetente"    value="" />
+                                            
+                                            <tr><td style="width:63px;">assunto:</td>   <td><input type="text" id="assunto" name="assunto" class="inputAssunto" value="" /></td></tr>
+                                            <tr><td colspan="2">mensagem:</td></tr>  
+                                            <tr><td colspan="2"><textarea type="text" id="mensagem" name="mensagem" style="border-bottom:solid thin #ccc;border-left:solid thin #ccc;height: 200px;width: 410px;" class="inputMensagem"></textarea></td></tr>
+                                            
+                                            <select name="destinatarios" id="destinatarios" style="height: 130px;" multiple></select> 
+                                        </table>
+                                    </form>
+                                    </div>
+
+
+                                </div>                        
+                            </div>                        
+                        </div>   
+                        <div id="Nav_menu">
+                            <div id="bt_Excluir" title="Excluir mensagem!"> </div>
+                            <div id="bt_Escrever" title="Nova mensagem!"> </div>
+                            <div id="bt_Responder" title="Responder mensagem!"> </div>
+                        </div>                    
+                        <div id="mensagens_container">
+                            <div id="Col_Menu" >
+                                <div id="CaixaDeEntrada" class="caixa_Menu estado_ativo"> Caixa de entrada </div>
+                                <div id="Enviadas" class="caixa_Menu menu_margins"> Enviadas </div>
+                                <!-- <div id="Lixo" class="caixa_Menu"> Lixo </div> -->
+                            </div>
+                            <div id="boxMensagens">                            
+                                <div id="Col_CaixaDeMensagens" >                                                     
+                                </div>
+                            </div>                            
+                            <div id="Col_Mensagem" >                            
+                                <div id="boxResp">
+                                    <div id="Mensagem_wrapper">                            
+                                        <div id="De">De: <span id="mensagem_remetente"> </span> </div>
+                                        <div id="Para">Para: <span id="mensagem_destinatario"> <p /> </span> </div>                                
+                                        <hr>                                
+                                        <div id="mensagem_assunto"> <p /> </div>
+                                        <div id="mensagem_data_hora"> <p /> </div>                                
+                                        <hr>                                
+                                        <div id="boxCaixa">
+                                            <textarea id="Mensagem" disabled></textarea>
+                                            
+                                        </div>
+                                        
+                                    </div> 
+                                 </div>                       
+                            </div>                                    
                         </div>
-                    </div>
-
-                    <div style="clear: both;"></div>
-                </div>
-                </div>
-                <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
-                <div class="boxGlobal" style="width: 100%; left: auto;"></div>
-                <div id="tela_over" style="width: 100%; left: auto;">
-            </div>
-
-        </div><!--Fim Conteudo-->        
+                    </div>   
+                </div>                
+            </div>                        
+        </div><!--Fim Conteudo-->  
+        <div id="boxMensagemGeral" ></div> 
+        <div class="boxGlobal"></div>       
     </body>
 </html>
