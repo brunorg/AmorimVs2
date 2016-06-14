@@ -522,14 +522,14 @@ function postProducaoOficina()
 }
 function uploadArquivo(idpost) {
 	debugger;
-    var formData = new FormData($("#form_Nova_Producao")[0]);
+    var formData = new FormData($("#Cadastro_Form_imagem_PA")[0]);
     formData.append("arquivo", Arquivo);
 
     $.ajax({
     	url: path + 'ProducaoAluno/upload/producaoAluno/arquivo/' + idpost,
     	type: "POST",
     	crossDomain: true,
-    	async: false,
+    	async: true,
 		mimeType:"multipart/form-data",
         contentType: false,
         cache: false,
