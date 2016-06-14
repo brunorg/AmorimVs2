@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>       
+        <meta charset="UTF-8" />
+		<title>Plataforma Amorim</title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+ 		<!--Style-->
+		<link rel="stylesheet" type="text/css" href="css/m_style.css" />	
+        <link rel="stylesheet" type="text/css" href="css/roteirosAluno.css" />
+        <link rel="stylesheet" type="text/css" href="css/m_roteirosAluno.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/m_plugins.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+    	<!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>		                			
+      	<script src="js/jquery-ui.js"></script>
+
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+                	
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		<script type="text/javascript" src="js/calendario.js"></script>		
+        <script type="text/javascript" src="js/autenticador.js"></script>
+        <script type="text/javascript" src="js/roteiroPlanejamentoAula.js"></script>                
+        <!--Fim JS-->
+        
+	</head>
+
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: topo.html -->
+            </div>
+            <div id="Conteudo_Area">
+                <!--Coluna a esquerda-->
+                <div class="Conteudo_Coluna" id="m_blocoGeral">
+					<div id="conteudo_roteiro_aluno">
+                         <div class="menu_roteiro">
+                            <div class="menu_roteiro_laranja">
+                            	<div class="menu_roteiro_texto">Proposto</div>
+                            	<div class="titulo_infos_roteiro_caixa_laranja_menu"></div>
+                        	</div>                        
+                            <div class="menu_roteiro_verde">
+                                <div class="menu_roteiro_texto">Concluído</div>
+                                <div class="titulo_infos_roteiro_caixa_verde_menu"></div>
+							</div>
+                        </div>
+                        <br/>                      
+                        <br/>
+                    	<div class="total"></div>
+                    </div>
+                </div>                
+            </div>             
+		</div><!--Fim Conteudo--> 
+        <div class="boxGlobal"></div>
+		<div id="boxMensagemGeral"></div>              
+	</body>
+</html>

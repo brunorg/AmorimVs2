@@ -1,0 +1,9 @@
+#conteudo_roteiro_aluno{
+	margin: 0;
+}
+
+.titulo_infos_roteiro_caixa_branco,
+.titulo_infos_roteiro_caixa_laranja,
+.titulo_infos_roteiro_caixa_verde {
+	margin: 3px 20px;
+}

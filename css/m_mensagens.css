@@ -1,0 +1,21 @@
+#content_central_fixa{
+	height: 528px;
+}
+
+.caixa_Menu{
+	height: 199px;
+	padding: 115px 30px 0;
+}
+
+#Enviadas{
+	background-position: 50% 60px;
+	padding: 130px 30px 0;
+}
+
+#mensagens_container{
+	height: 400px;
+}
+
+#boxMensagens{
+	height: 400px;
+}

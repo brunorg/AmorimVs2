@@ -576,7 +576,10 @@ function carregarPlano(){
 	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula.tarefa_casa+"</textarea>");
 	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula.registro_atividade+"</textarea>");
 	if (confEditar == true) {
-		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+			$('#roteiros').attr('href','m_roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		else
+			$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
 		$('#roteiros').removeClass('dataPassada');
 		$('#btnSubmit').show();
 	} else {
