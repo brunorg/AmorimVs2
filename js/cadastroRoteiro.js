@@ -364,31 +364,31 @@ $(document).ready(function(){
 	})
 		
 	//Evento para excluir um roteiro
-	$('body').delegate('.Roteiro_Listado_Del', 'click', function(){
+	// $('body').delegate('.Roteiro_Listado_Del', 'click', function(){
 		
-		//Pega o id do roteiro
-		idRoteiro = $(this).attr('idRoteiro');
+	// 	//Pega o id do roteiro
+	// 	idRoteiro = $(this).attr('idRoteiro');
 
-		//Ajax para excluir
-		$.ajax({
-			url: path+'Roteiro/InativarRoteiro/'+idRoteiro,
-			type: "GET",
-			async:false,
-			crossDomain: true,
-			beforeSend: function(){		
-				loading("inicial");
-			},success: function(d) {
-				//Esconde a div do roteiro e a div com seus objetivos
-				$('#objetivosRoteiro'+idRoteiro).hide();
-				$('#roteiro'+idRoteiro).hide();
-			},complete: function(){
-				loading("final");	
-			},error: function() {
-				retorno = "erro";
-			}
-		});
-		return false
-	})
+	// 	//Ajax para excluir
+	// 	$.ajax({
+	// 		url: path+'Roteiro/InativarRoteiro/'+idRoteiro,
+	// 		type: "GET",
+	// 		async:false,
+	// 		crossDomain: true,
+	// 		beforeSend: function(){		
+	// 			loading("inicial");
+	// 		},success: function(d) {
+	// 			//Esconde a div do roteiro e a div com seus objetivos
+	// 			$('#objetivosRoteiro'+idRoteiro).hide();
+	// 			$('#roteiro'+idRoteiro).hide();
+	// 		},complete: function(){
+	// 			loading("final");	
+	// 		},error: function() {
+	// 			retorno = "erro";
+	// 		}
+	// 	});
+	// 	return false
+	// })
 	
 	//Montao html da edição do objetivo na página de pesquisa
     $('body').delegate('.Btn_Editar_Obj_Pesq', 'click', function(){
@@ -985,7 +985,7 @@ function inserirObjetivoAtividade(){
 				'<div id="Obj_Inserido_Btns_'+objCount+'" class="Obj_Inserido_Btns">'+
 					'<div id="Btn_AddAtv_Obj_'+objCount+'" class="Btn_Obj Btn_AddAtv_Obj" idObjetivo="'+idObjetivo+'"></div>'+
 					'<div id="Btn_Editar_Obj_'+objCount+'" class="Btn_Obj Btn_Editar_Obj"></div>'+
-					'<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
+					//'<div id="Btn_Del_Obj_'+objCount+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
 				'</div>'+
 			'</div>';
 	}
@@ -1799,9 +1799,9 @@ function carregarPesquisaByAno(idAno){
 						 '<div id="roteiro'+id+'" idRoteiro="'+id+'" class="roteiro_listado" style="cursor:pointer">'+
 						 	'<span id="nome_roteiro_listado_'+id+'" class="nome_roteiro_listado">'+d[i].nome+'</span>'+
 						 	'<div class="Roteiro_Listado_Btns" id="Roteiro_Listado_Btns'+id+'">'+
-						 		'<div class="Roteiro_Listado_Add" idRoteiro='+id+' style="width: 33%"></div>'+
-						 		'<div class="Roteiro_Listado_Edit" idRoteiro='+id+' style="width: 33%"></div>'+
-						 		'<div class="Roteiro_Listado_Del" idRoteiro='+id+' style="width: 33%"></div>'+
+						 		'<div class="Roteiro_Listado_Add" idRoteiro='+id+' style="width: 50%"></div>'+
+						 		'<div class="Roteiro_Listado_Edit" idRoteiro='+id+' style="width: 50%"></div>'+
+						 		//'<div class="Roteiro_Listado_Del" idRoteiro='+id+' style="width: 33%"></div>'+
 						 	'</div>'+
 						 '</div>'+
 						 '<div class="Objetivos_Lista" id="objetivosRoteiro'+id+'" style="display: block"></div>';
@@ -1862,7 +1862,7 @@ function criarObjetivoExtra(){
 						'<div id="Obj_Inserido_Btns_'+idObjetivo+'" class="Obj_Inserido_Btns">'+
 							'<div id="Btn_AddAtv_Obj_'+idObjetivo+'" class="Btn_Obj Btn_AddAtv_Obj" onclick=editarAtividade("",'+idObjetivo+')></div>'+
 							'<div class="Btn_Editar_Obj_Pesq Btn_Obj Btn_Editar_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
-							'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
+							//'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_Obj Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
 						'</div>'+
 					'</div>'+
 					'<span id="spanObjetivo'+idObjetivo+'" class="spanObjetivo"></span>'+
@@ -1981,7 +1981,7 @@ function listarObjetivos(idRoteiro){
 							'<div id="Obj_Listado_Btns_'+idObjetivo+'" class="Obj_Listado_Btns">'+
 								'<div id="Btn_AddAtv_Obj_'+idObjetivo+'" class="Btn_ObjList Btn_AddAtv_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
 								'<div class="Btn_Editar_Obj_Pesq Btn_ObjList Btn_Editar_Obj" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'"></div>'+
-								'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_ObjList Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
+								//'<div id="Btn_Del_Obj_'+idObjetivo+'" class="Btn_ObjList Btn_Del_Obj" onclick=excluirObj('+idObjetivo+')></div>'+
 							'</div>'+
 						'</div>'+
 					'<span id="spanObjetivo'+idObjetivo+'" class="spanObjetivo"></span>'+
