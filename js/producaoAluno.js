@@ -23,7 +23,6 @@ var Arquivo;
 	// var categoria = '';
 	var alunoVarObj = localStorage.objetoAlunoVariavel;
 	var alunoVar = parseInt(alunoVarObj.substring(19).split(",",1));
-
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega os valores utilizados do BD
@@ -118,53 +117,6 @@ $(document).ready(function(){
     	var dsArquivo = $("#inputLink").val();
     	var nrAnoLetivo = getAnoLetivo('idAnoLetivo');
     	salvarAtividade(nrAnoLetivo, dsArquivo, nmAtividade);
-   //  	if (tipoArquivo == 'video'){
-   //  		Arquivo = $('#linkVideo').val();
-   //  		arq = $('#linkVideo').val();
-			// if (arq == ''){
-			// 	return mensagem("Preencha o link do vídeo!","OK","bt_ok","erro");
-			// }
-   //  	}else var arq = '';
-
-   //      if (Arquivo != "" && Arquivo != undefined){
-
-   //      	var atv = $('#atividadeNova').val();
-
-
-   //      	var valores = "anoLetivo=80&texto="+atv+"&aluno="+alunoID+"&tipo=6&arquivo="+arq;
-
-			// var retorno = setCreateData("ProducaoAluno",valores);
-
-
-			// if(retorno != "erro"){
-
-			// 	$('#Cadastro_Form_imagem_PA #id').val(retorno);
-			// 	if (arq == '') {
-			// 		loading("inicial");
-			// 		addFileTo(retorno);
-			// 	}else{
-		 //            dataProducaoAluno 	=	getData("ProducaoAluno", null);
-		 //            tipoSelecao = "atividade";
-			// 		mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-			// 		CarregaProducao();
-			// 	}
-
-			// 	//Limpa os campos!!
-			// 	$('#atividadeNova').val('');
-			// 	$('#linkVideo').val('');
-			// 	$("div.inputImg").css("background-position","0px 0px");
-			// 	tipoArquivo = '';
-			// 	categoria = '';
-			// 	$("#arquivo, #link").hide();
-
-			// }else{
-			// 	return mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
-			// }
-			// return false;
-
-   //      } else {
-   //          return mensagem("Por Favor, adicione um arquivo!","OK","bt_ok","erro");
-   //      }
     });
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
@@ -417,8 +369,7 @@ function getAnoLetivo(formato){
 /* ------ Requisições Ajax ------ */
 
 // Requisições GET
-function getOficinasAluno()
-{
+function getOficinasAluno(){
 	var retorno;
 
     $.ajax({
@@ -521,7 +472,6 @@ function postProducaoOficina()
     });
 }
 function uploadArquivo(idpost) {
-	debugger;
     var formData = new FormData($("#form_Nova_Producao")[0]);
     formData.append("arquivo", Arquivo);
 
@@ -649,7 +599,7 @@ function showNovaAtividade(idNovaAtividade) {
 	}
 }
 function showAtividadesRecentes() {
-	if ( ! $('#container_tela_padrao').hasClass('Atividades_Recentes_Listadas') ) {
+	if ( ! $('#id_tela_padrao').hasClass('Atividades_Recentes_Listadas') ) {
 		var atividades = getAtividadesRecentes();
 		var htmlRecentes = new String();
 		var tipoAtividade;
