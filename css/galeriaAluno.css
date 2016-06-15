@@ -73,8 +73,101 @@
             Cor de fundo quando o item do menu 
             estiver ativo: background-color: #D6E5A9 
         */
+        #menu_lateral_oficinas {
+            width: 100%;
+            display: inline-block;
+            float: left;
+        }
+        #Prod_Oficina_Acordeon {
+            width: 150px;
+            height: 460px;
+            overflow: hidden;
+        }
+        .Prod_Oficina_Nome {
+            min-height: 30px;
+            padding: 7px;
+            text-transform: uppercase;
+            font-size: 12px;
+            border-left: 2px solid #fff;
+            border-right: none;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            cursor: pointer;
+        }
 
+        .itemExpandido > .Prod_Oficina_Nome {
+            border-bottom: 2px solid #fff;
+        }
+
+        .itemExpandido + .Prod_Oficina_Item > .Prod_Oficina_Nome {
+            border-top: 2px solid #fff;
+        }
+
+        .container_tela_padrao{
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .tela_padrao_titulo{
+            display: block;
+            margin: 0;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #8FAE38;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        .Prod_Oficina_Item:first-of-type .Prod_Oficina_Nome {
+            border-top: 2px solid #fff;
+        }
+
+        .Prod_Oficina_Item:last-of-type .Prod_Oficina_Nome {
+            border-bottom: 2px solid #fff;
+        }
+
+        .Oficina_Content_Item:first-child {
+            border-top: none;
+        }
+        .Oficina_Content_Item:last-child {
+            border-bottom: none;
+        }
+
+        .Prod_Oficina_Item:last-of-type > .Prod_Oficina_Content > .Oficina_Content_Item:last-of-type {
+            border-bottom: 2px solid #fff;
+        }
+
+        .Prod_Oficina_Content {
+            display: none;
+        }
+
+        .Prod_Oficina_Content::after {
+            content: '';
+            display: block;
+            width: 100%;
+            clear: both;
+        }
         
+        .bt{
+            display: inline-block;
+            height: 35px;
+            background-color: rgb(173, 204, 83);
+            color: white;
+            padding: 10px;
+            padding-left: 33px;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .bt:hover {
+            background-color: #8FAE38;
+        }
         #menu_lateral_portfolio li:last-child,
         #menu_lateral_atividade li:last-child
         #menu_lateral_fichas li:last-child{
@@ -91,6 +184,21 @@
             padding: 5px;
             overflow: auto;
         }
+
+        #conteudo_principal_oficinas {
+            height: 100%;
+            min-height: 460px;
+            width: 755px;
+            background-color: #fff;
+            padding: 15px;
+            position: absolute;
+            left: 150px;
+        }
+
+        .Prod_Oficina_View {
+            display: none;
+            position: static;
+        }
         
         #Titulo_objeto{
             font-size: 24px;
@@ -105,15 +213,60 @@
             margin: 0 auto;
         }
         
-        #Portfolio{
-            height: 100%;
-            display:none;
-        }
         #Atividade,
-        #Fichas
+        #Fichas, 
+        #Portfolio,
+        #Oficina
         {
             height: 100%;
             display: none;
+            position:relative;
+        }
+
+        #Oficina > div.mCustomScrollBox{
+            background-color: rgba(255,255,255,0);
+        }
+
+        .Titulo_Nova_Prod_Oficina{
+            display: inline-block;
+            margin: 0;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #8FAE38;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        .celulaGrande_container::after{
+            content: '';
+            display: block;
+            width: 100%;
+            clear:both
+        }
+
+        .Oficina_Content_Item {
+            width: 130px;
+            height: 30px;
+            float: right;
+            padding: 7px;
+            background-color: #ecebe5;
+            border-top: 1px solid #fff;
+            border-left: 2px solid #fff;
+            border-bottom: 1px solid #fff;
+            border-right: 2px solid #fff;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .Add_Item {
+            background-color: #d9d7cc;
+            padding: 7px 7px 7px 25px;
+            background-image: url(../img/ic_add_peq.png);
+            background-repeat: no-repeat;
+            background-position: 7px center;
+            background-size: 13px;
         }
         
     /*----Mensagem Exclusao---------*/
