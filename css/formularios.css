@@ -26,7 +26,7 @@
 .label-GG{}
 .label-Check-p{width: 100%;background: #FBF9F7; }
 .label-Check{width: 86.9%;background: #FBF9F7; }
-.label-textArea{width: 12.9%; height:70px; padding:8px; border: none;}
+.label-textArea{width: 13.4%; height:70px; padding:8px; border: none;}
 
 .inputContainer{
 	height: 100%;
@@ -92,7 +92,7 @@
 }
 
 .inputTextArea{
-    width: 87%;
+    width: 86.6%;
     height: 70px;
     resize: none;
     border: none;

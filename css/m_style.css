@@ -138,7 +138,7 @@ html, body
 	background-color: #F2F2ED;
 	position: absolute;
 	left: -330px;
-	z-index: 3;
+	z-index: 9;
 	width: 330px;
 	height: 100%;
 }
@@ -592,8 +592,8 @@ html, body
 #content_central{
 	position: relative;
 	width: 100%;
-	padding: 36px 30px 36px 36px;
-	height: 630px;
+    padding: 15px 15px 15px 15px;
+    height: 448px;
 	float:left;
 	overflow:auto;
 }
@@ -1681,4 +1681,22 @@ object{
     background-position: 21px 50%;
     background-size: 25px;
     border-bottom: 1px solid #999;
+}
+
+
+/* Smartphone*/
+@media only screen and (max-width : 600px) {
+    #content_central {
+	    height: 350px;
+	}
+}
+
+/* Smartphone*/
+@media only screen and (max-width : 480px) {
+      /* estilos */
+}
+
+/* iPads*/
+@media only screen and (max-device-width : 1024px) {
+      /* estilos */
 }

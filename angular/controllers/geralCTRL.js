@@ -123,6 +123,12 @@ app.controller('geralCTRL',function($scope,$http){
 					inativo = "inativo";
 				}
 
+				var mobile = redirecionaMobile();
+				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
+				var m = ""; 
+				if(mobile){
+					m = "m_";					
+				}
 
 				localStorage.setItem("professorId",dadosUsuario.professor.idprofessorFuncionario);
 
@@ -135,14 +141,14 @@ app.controller('geralCTRL',function($scope,$http){
 				$scope.oficina   = oficinaAtivaP;
 
 				$scope.menuHTML = [
-					{label: 'Plano de aula', href: 'planoDeAula.html',class: 'plano mn_professor '+inativo},
-					{label: 'Recursos de aprendizagem', href: 'recursosAprendizagem.html', class: 'recurso mn_professor rows2'},
-					{label: 'Roteiros de aula', href: 'roteiroAula.html', class: 'roteiros mn_professor '+inativo},
-					{label: 'Tutoria', href: 'grupoTutoria.html', class: 'tutores mn_professor'},
-					{label: 'Oficina', href: 'oficinaProfessor.html', class: 'oficinas mn_professor '+inativo},
-					{label: 'Registro JEIF/PEA', href: 'registroJeiffPea.html', class: 'jeiff mn_professor'},
-					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagens'},
-					{label: 'Fórum', href: 'forum.html', class: 'forum'}
+					{label: 'Plano de aula', href: m+'planoDeAula.html',class: 'plano mn_professor '+inativo},
+					{label: 'Recursos de aprendizagem', href: m+'recursosAprendizagem.html', class: 'recurso mn_professor rows2'},
+					{label: 'Roteiros de aula', href: m+'roteiroAula.html', class: 'roteiros mn_professor '+inativo},
+					{label: 'Tutoria', href: m+'grupoTutoria.html', class: 'tutores mn_professor'},
+					{label: 'Oficina', href: m+'oficinaProfessor.html', class: 'oficinas mn_professor '+inativo},
+					{label: 'Registro JEIF/PEA', href: m+'registroJeiffPea.html', class: 'jeiff mn_professor'},
+					{label: 'Mensagens', href: m+'mensagens.html', class: 'mensagens'},
+					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
 
 				//Visibilidade do perfil

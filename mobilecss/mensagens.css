@@ -52,6 +52,8 @@
 #Col_Menu{
     display: block;
     float: left;
+    width: 13%;
+    margin-right: 8px;
 }
 
 #Col_CaixaDeMensagens {
@@ -62,6 +64,7 @@
     height: 500px;
     display: block;
     float: left;
+    margin-top: 10px;
 }
 
 #boxMensagens .mCSB_inside > .mCSB_container{
@@ -71,8 +74,8 @@
 #boxCaixa{
     height:381px;
 }
-.caixa_Menu{
-    width: 67%;
+.caixa_Menu {
+    width: 100%;
     height: 238px;
     background-color: #1E8290;
     color: white;

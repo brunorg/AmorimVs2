@@ -1,9 +1,11 @@
 $(document).ready(function() {
-    $('.btnMenu.Active').click(function(){
-        trocarConteudoInicial($(this).index());
-        $(".btnMenu.Active").removeClass("btClicked");
-        $(this).addClass("btClicked");
-    });
+	// Navegação entre menus na home desativado.
+    // $('.btnMenu.Active').click(function(){
+    // 	debugger;
+    //     trocarConteudoInicial($(this).index());
+    //     $(".btnMenu.Active").removeClass("btClicked");
+    //     $(this).addClass("btClicked");
+    // });
 
     
     $('#Conteudo_Corpo .rightSide .contentRightSide .contentItem').mouseover(function(){

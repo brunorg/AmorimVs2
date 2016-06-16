@@ -141,13 +141,17 @@ function atribuiRolagemAgrup () {
             whileScrolling: function() {
                 if(this.mcs.topPct > 95 && !acabouDeCarregar)
                 {
+                    //arraySelecionados = resetArea();
+                    if($('#txtPesqAgrup').val() == "")
                         carregaAlunos();   
                 }
             },
             onTotalScroll:function(){
                 if (!acabouDeCarregar)
                 {
-                    carregaAlunos();
+                    //arraySelecionados = resetArea();
+                    if($('#txtPesqAgrup').val() == "")
+                        carregaAlunos();
                 }
             }
         }

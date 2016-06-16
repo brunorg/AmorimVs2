@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plataforma Amorim</title>
+        <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+ 
+        <!--Style!-->
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />          
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="css/roteiroAula.css" />
+        <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+        <!--Fim Style-->
+        
+        <!--Script JS-->
+        <script type="text/javascript" src="js/path.js"></script>
+		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>       
+        <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/autenticador.js"></script>
+                        
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>  
+        <script type="text/javascript" src="js/roteiroAula.js"></script>
+    </head>
+
+    <body>
+        <!--Conteudo Geral-->
+		<div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: m_header.html -->
+            </div>
+            <div id="Conteudo_Area">
+                <!--Coluna geral central-->
+                <div id="m_blocoGeral">             
+                    <div class="Conteudo_Coluna">                
+                        <div id="roteiros_cabecalho">
+                            <div id="cabecalho_pesquisa" class="pesquisaMargin cabecalho_aba">MEUS ROTEIROS</div>
+                            <div id="cabecalho_roteiro" class="roteiroMargin cabecalho_aba">CRIAR ROTEIRO AULA</div>
+                            <div id="cabecalho_pesquisaOficial" class="pesquisaOficialMargin cabecalho_aba">PESQUISA</div>
+                        </div>                    
+                        <div id="roteiros_content"> 
+                            <!-- Conteudo da aba de Meus Roteiro -->
+                            <div id="Pesquisa" class="aba_roteiro">
+                                <div id="Inserir_roteiro">
+                                    <div id="conteudo_principal_roteiroExtra">                                
+                                        <div id="Inserir_roteiroExtra">
+                                            <input id="pesquisaRoteiro" class="Buscar_Roteiro" placeholder="Buscar Roteiro" oninput="carregaRoteiro('like')" required> </input>
+                                        </div>                                                          
+                              
+                                    </div>
+                                    <div id="box_barra1">
+                                        <div id="box_roteiroAula"></div>
+                                    </div>
+                                    <div id="box_barra1" style="margin-top:50px;">
+                                            <div id=""></div>
+                                        </div>
+                                </div>
+                            </div>                    
+                            <!-- Conteudo da aba de Roteiro -->
+                            <div id="Roteiro" class="aba_roteiro">
+                                <div id="Inserir_roteiro">
+                                    <!--<div id="conteudo_principal_roteiro"> -->                          
+                                        <p id="roteiroSalvo"></p>
+                                        <div id="linha1"> 
+                                            <div class="celulaGrande">
+                                                <div class="infoM"> Roteiro </div>
+                                                <div class="infoValueM">
+                                                   <input type="text" class="Roteiro_Nome" id="val_roteiro">
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div id="linha2"> 
+                                            <div class="celulaGrande">
+                                                <div class="infoM"> Descrição </div>
+                                                <div class="infoValueM">
+                                                    <input type="text" class="Roteiro_Descricao" id="val_descricao">
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div class="linha4" style="display:none">
+                                            <div id="Rot_Inserido_Info"> 
+                                                <p id="Rot_inserido_Nome" class="Rot_Inserido_Nome"></p>
+                                                <div id="Obj_Inserido_Btns_1" class="Rot_Inserido_Btns">
+                                                    <div id="Btn_Editar_Rot" class="Btn_Rot Btn_Editar_Rot" onClick="utilizarRoteiroAula("+data[i].idroteiro_aula+")"></div>
+                                                    <div id="Btn_Del_Rot" class="Btn_Rot Btn_Del_Rot" onClick="excluirRoteiroAula("+data[i].idroteiro_aula+")"></div>
+                                                </div>
+                                            </div>
+                                            <div id="Desc_Inserido_Info" class="Obj_Inserido_Info">
+                                                <div id="Desc_Inserido_Nome" class="Desc_Inserido_Nome"></div>
+                                            </div>                                        
+                                        </div>
+                                        
+                                        <div class="linha3"> 
+                                           	<div id="box_objetivoAula">
+                                                <div class="celulaGrandeOB" style="display:none">
+                                                    <div class="infoM"> Objetivo </div>
+                                                    <div>
+                                                        <input type="text" id="val_objetivo_1" class="infoValueM objetivos">
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        
+                                        <div>  
+                                        <input type="hidden" id="idRoteiro" value="">                                  
+                                        <p id="btnSalvar" value=""> Salvar </p>
+                                        <!--<p id="btnNovoOB" style="display:none" value="">Novo</p>-->
+                                        <p id="btnSalvarObjetivo" style="display:none" value=""> Salvar </p>
+                                        <!--<p id="btnEditOB" style="display:none" value="">Editar Objetivo(s)</p>-->
+                                        <p id="btnEdit" style="display:none" value="">Salvar</p>
+                                    </div>                                    
+                                    </div>
+                                    
+                                    <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
+                                <!--</div> -->
+                            </div>                                                                      
+                             
+                            <!-- Conteudo da aba de Pesquisa -->
+                            <div id="PesquisaOficial" class="aba_roteiro">
+                                <div id="conteudo_principal_pesquisaOficial">                           
+                                    <div id="Inserir_roteiro">
+                                        <div id="linha5">                          
+                                        <div id="conteudo_principal_pesquisa">                                
+                                        <div id="Inserir_pesquisa">
+                                            <div class="celulaGrande">
+                                                <div class="infoG"> Pesquisa </div>
+                                                <div class="infoValueG">
+                                                    <input type="text" id="pesqRoteiro" class="pesqRoteiro" style="margin-top: 4px; width: 100%;" oninput="carregaRoteiroPesquisa('like')">
+                                                </div>
+                                            </div>                                        
+                                        </div> 
+                                        <div id="box_barra">
+                                            <div id="boxRoteiroAulaPesquisa"></div>
+                                        </div>      
+                                    </div>
+                                        <input type="hidden" id="id"> </input>
+                                        <div id="btnEditar" value="" onClick="alterarROA('Roteiro')"> Salvar </div>
+                                    </div>
+                                    <div class="celulaGrande" id="linha8" style="display:none" value="">
+                                            <div class="infoG"> Pesquisa </div>
+                                            <div class="infoValueG">
+                                                <input type="text" id="pesqRoteiro" style="margin-top: 4px;" oninput="buscaRoteirAula()">
+                                            </div>
+                                        </div>
+                                        <div id="box_barra" style="margin-top:50px;">
+                                            <div id=""></div>
+                                        </div>
+                                    <div class="boxROA"> 
+                                        <div id="roteiros_listados"><!--Listagem de roteiros carregada pelo JS--></div>
+                                    </div>                                                      
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>              
+        </div>
+
+        <div id="boxMensagemGeral"></div>
+        <div class="boxGlobal"></div>
+        <div id="boxModal"></div>
+    </body>
+</html>

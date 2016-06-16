@@ -6,15 +6,13 @@
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
  
         <!--Style-->
-        
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />
         <link rel="stylesheet" type="text/css" href="css/home.css" />
         <!-- <link rel="stylesheet" type="text/css" href="css/grupoTutoria.css" /> -->
-        
+        <link rel="stylesheet" type="text/css" href="css/grupoTutoria.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
-        <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />
-        <link rel="stylesheet" type="text/css" href="mobilecss/relatorioProfessor.css" />
         <!--Fim Style-->
         
         <!--Script JS-->
@@ -24,6 +22,7 @@
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script src="js/jquery-1.10.2.js"></script>
         <script src="js/jquery-ui.js"></script>
+
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
         <script type="text/javascript" src="js/calendario.js"></script>
@@ -38,44 +37,53 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
+        <script src="js/anoLetivo.js"></script>
         <script src="js/grupoTutoria.js"></script>
         <!--Fim JS-->
     
     </head>
 
     <body>
-
-        <div id="Container">
-            <div id="Cabecalho_Menu_Area" class="row">
-                <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a id="area_acesso"></a></div>
-                <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">                   <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-                    <a href="javascript:history.back()">Voltar</a> | 
-                    <a id="logout" href="#">Sair</a>
-                </div>    
+        <!--Conteudo Geral-->
+        <div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: m_header.html -->
             </div>
+            <div id="Conteudo_Area">
+                <div class="Conteudo_Coluna" id="content_central">
+                    <div class="grupoLegenda">
+                        <div class="Content_Legenda_Grade_Aluno">                            
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno marginDireita">Corrigidos</div>
+                            </div>                          
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Próxima</div>
+                            </div>                          
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Anterior</div>
+                            </div>                          
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Atual</div>
+                            </div>
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Nome_Legenda_Grade_Aluno">OBJETIVOS</div>
+                            </div>
+                        </div>
+                    </div>                    
 
-            <div id="Cabecalho_Perfil_Area" class="row">
-                <div id="Cabecalho_Perfil_Area_Foto_Content" class="col-1">
-                    <div id="Cabecalho_Perfil_Area_Foto"></div>
-                </div>
-                <div id="Cabecalho_Perfil_Area_Descricao_Content" class="col-1">
-                    <div id="Cabecalho_Perfil_Area_Descricao"></div>
-                </div>
-                <div id="Content_lateral_Menu" class="row col-10">
-                </div>
-            </div>
+                    <div id="divPrincipalGrupos">
 
-            <div id="Conteudo_Area" class="row">
-                <div class="Conteudo_Coluna col-12" id="content_central">
-                    <div id="Grupos_box">                       
                     </div>
+
+
                 </div>
-            </div>
-
-            <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
-            <div class="boxGlobal" style="width: 100%; left: auto;"></div>
-
+            </div>  
         </div>
-
+        <div class="boxGlobal"></div>
+        <div id="boxMensagemGeral"></div>      
     </body>
 </html>

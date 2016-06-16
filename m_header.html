@@ -1,0 +1,29 @@
+<div>
+    <div id="Cabecalho_Menu_Area">
+        <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
+        <div id="Cabecalho_Menu_Area_Menu2">
+            <div ng-init="usuario()">
+                <div id="Cabecalho_Perfil_Area_Foto_Content">
+                    <!--Foto do usuário, neste caso, do aluno-->
+                    <div id="Cabecalho_Perfil_Area_Foto">  
+                        <img id='_foto' src='{{usuarioFoto}}'/>                          
+                    </div>
+                     <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
+                </div>                            
+            </div>
+        </div>  
+    </div>                
+</div>
+<div class="Conteudo_Coluna" id="Content_lateral_left">
+    <div id="Content_lateral_Menu">    
+        <div  ng-repeat="menu in menuHTML">                         
+            <a href="{{menu.href}}">
+                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
+                    <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
+                    <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
+                    {{menu.label}}
+                </div>
+            </a>
+        </div>
+    </div>    
+</div>
