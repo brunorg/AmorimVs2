@@ -491,6 +491,7 @@ function uploadArquivo(idpost) {
 /* ------ Funções SHOW ------ */
 
 function showAcordeonOficinas() {
+	debugger;
 	var listaOficinas = getOficinasAluno();
 	var acordeonHtml = new String();
 
@@ -550,7 +551,7 @@ function showOficinaContent(id) {
 		$(this).find('.Prod_Oficina_Content').slideUp();
 	});
 }
-function showAtividadesExtraContent() {
+function showAtividadesExtraContent(){
 	if ( !$('#AtvExtra').hasClass('atividadesListadas') ) {
 		var atividades = getAtividadesExtras();
 		var htmlAtividades = new String();

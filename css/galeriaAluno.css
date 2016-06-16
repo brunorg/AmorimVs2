@@ -130,6 +130,10 @@
             border-bottom: 2px solid #fff;
         }
 
+        .Prod_Atv_Extra{
+            background-color: #fbb040;
+        }
+
         .Oficina_Content_Item:first-child {
             border-top: none;
         }
@@ -221,6 +225,10 @@
             height: 100%;
             display: none;
             position:relative;
+        }
+
+        #Oficina{
+            display:block !important; /*remover depois*/
         }
 
         #Oficina > div.mCustomScrollBox{

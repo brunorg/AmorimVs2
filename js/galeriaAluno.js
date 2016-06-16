@@ -673,6 +673,7 @@ function getAtividadesRecentes(){
 }
 
 function showAcordeonOficinas() {
+    debugger;
     var listaOficinas = getOficinasAluno();
     var acordeonHtml = new String();
 
@@ -688,7 +689,7 @@ function showAcordeonOficinas() {
             '</div>';
     }
 
-    $('#Prod_Oficina_Acordeon_Itens').prepend(acordeonHtml);
+    $('.Prod_Oficina_Acordeon_Itens').prepend(acordeonHtml);
 }
 
 function showOficinaContent(id) {
@@ -797,5 +798,18 @@ function getAnoLetivo(formato){
     }
 
     return anoAtual;
+}
+
+function getAtividadesOficina(idoficina){
+    var retorno;
+    $.ajax({
+        url: path + 'ProducaoAluno/OficinaAluno/'+idoficina+'/'+alunoID+'/',
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dAtvOficina) { retorno = dAtvOficina; },
+        error: function(e) { mensagem("Erro ao retornar as produções dessa oficina.","OK","bt_ok","erro"); }
+    });
+    return retorno;
 }
 
