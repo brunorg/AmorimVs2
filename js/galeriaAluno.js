@@ -271,7 +271,7 @@ $(document).ready(function(){
         
     });
 
-    $("#Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
+    $(".Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
 
 });
 
@@ -673,7 +673,6 @@ function getAtividadesRecentes(){
 }
 
 function showAcordeonOficinas() {
-    debugger;
     var listaOficinas = getOficinasAluno();
     var acordeonHtml = new String();
 

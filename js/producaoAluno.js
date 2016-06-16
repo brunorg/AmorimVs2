@@ -492,7 +492,6 @@ function uploadArquivo(idpost) {
 /* ------ Funções SHOW ------ */
 
 function showAcordeonOficinas() {
-	debugger;
 	var listaOficinas = getOficinasAluno();
 	var acordeonHtml = new String();
 

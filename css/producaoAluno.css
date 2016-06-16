@@ -117,7 +117,7 @@
 		}
 		#Oficinas {
 			position: relative;
-			display: block !important;
+			display: block;
 		}
 
 		.itemExpandido > .Prod_Oficina_Nome {
@@ -333,7 +333,7 @@
 
 		#Portfolio{
 			height: 100%;
-			display:none !important;
+			display:none;
 		}
 		#Atividade,
 		#Fichas
