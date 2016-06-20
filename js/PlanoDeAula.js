@@ -330,7 +330,7 @@ function reSetPlano(ID) {
 		crossDomain: true,
 		success: function(data)
 		{
-			planoAula = data;
+			planoAula = data[0];
 		}
 	});
 
