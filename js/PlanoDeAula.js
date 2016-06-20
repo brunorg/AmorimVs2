@@ -580,6 +580,7 @@ function carregarPlano(){
 			$('#roteiros').attr('href','m_roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
 		else
 			$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		$('.dataPassada').unbind('click');
 		$('#roteiros').removeClass('dataPassada');
 		$('#btnSubmit').show();
 	} else {
