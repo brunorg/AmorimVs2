@@ -280,9 +280,13 @@ function CarregaProducao(){
     HtmlContent1="";
     HtmlContent2="";
     HtmlContent3="";
-    for(var a = 0; a < dataProducaoAluno.length; a++)
-    {
-        extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
+    for(var a = 0; a < dataProducaoAluno.length; a++){
+
+        if(dataProducaoAluno.arquivo != null){
+            extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
+        } else{
+            extensao = ".jpg";
+        }
 
         if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 5)
         {
@@ -809,6 +813,37 @@ function getAtividadesOficina(idoficina){
         success: function(dAtvOficina) { retorno = dAtvOficina; },
         error: function(e) { mensagem("Erro ao retornar as produções dessa oficina.","OK","bt_ok","erro"); }
     });
+    return retorno;
+}
+
+function verifyTamanhoNomeRoteiro(parent, element) {
+    var widthParent = $(parent).outerWidth();
+    var widthElement = $(element).outerWidth();
+
+    if (widthElement > widthParent) {
+        $(parent).mouseover(function() {
+            var diferenca = widthElement - widthParent;
+            $(element).animate({ left: -diferenca }, 1500, function() {
+                setTimeout(function() {
+                    $(element).css("left", "0");
+                }, 1000)
+            });
+        });
+    }
+}
+
+function getNovaAtividade(idAtividade){
+    var retorno;
+
+    $.ajax({
+        url: path + 'ProducaoAluno/' + idAtividade,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(dAtividade) { retorno = dAtividade; },
+        error: function(e) { mensagem("Erro ao exibir a nova atividade.","OK","bt_ok","erro"); }
+    });
+
     return retorno;
 }
 

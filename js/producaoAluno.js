@@ -44,7 +44,6 @@ var tipoSelecao = GetURLParameter('tipoProducao');
 
 $(document).ready(function(){
 	//carregaCategoria(); <<<<----- Será implementado
-
 	$("#Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
 
 	//Navegação por abas
@@ -113,10 +112,6 @@ $(document).ready(function(){
 
     $('#btn_Sub_AE').click(function(){
     	validarCampos();
-    	var nmAtividade = $("#atividadeNova").val();
-    	var dsArquivo = $("#inputLink").val();
-    	var nrAnoLetivo = getAnoLetivo('idAnoLetivo');
-    	salvarAtividade(nrAnoLetivo, dsArquivo, nmAtividade);
     });
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
@@ -125,16 +120,20 @@ $(document).ready(function(){
 });
 
 function validarCampos(){
+	var uploadUrl = 'url("http://localhost:8080/AmorimVs2/img/foto_verde.png")';
 	if($("#atividadeNova").val() == "")
 		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
 	else if(!$(".inputImg").hasClass("clicado"))
 		mensagem("Escolha um tipo de atividade.","OK","bt_ok","erro");
-	else if($("#foto").html() == "" && $(".clicado").prev().attr("id") == "arquivo-icon")
+	else if($("#foto").css("background-image") == uploadUrl && $(".clicado").prev().attr("id") == "arquivo-icon")
 		mensagem("Escolha um arquivo.","OK","bt_ok","erro");
-	else if($("#inputLink").val() == "")
+	else if($("#inputLink").val() == "" && $(".clicado").prev().attr("id") != "arquivo-icon")
 		mensagem("Preencha com o link.", "OK","bt_ok","erro");
+	else
+		buscarValores();
 }
 function salvarAtividade(pAnoLetivo, pArquivo, pAtividade){
+	var retorno = "";
 	$.ajax({
 		url: path + "ProducaoAluno",
 		type: "POST",
@@ -145,8 +144,9 @@ function salvarAtividade(pAnoLetivo, pArquivo, pAtividade){
 			loading("inicial");
 		},
 		success:function(data){
-			mensagem("Atividade extra cadastrada com sucesso.","OK","bt_ok","sucesso");
+			retorno = mensagem("Atividade extra cadastrada com sucesso.","OK","bt_ok","sucesso");
 			uploadArquivo(data);
+			limparAtividade();
 		}, 
 		complete:function(){
 			loading("final");
@@ -155,6 +155,24 @@ function salvarAtividade(pAnoLetivo, pArquivo, pAtividade){
 			mensagem("Erro, atividade extra não cadastrada.","OK","bt_ok","alerta");
 		}
 	});
+	return retorno;
+}
+function limparAtividade(){
+	$("#atividadeNova, #inputLink").val("");
+	$("#atividadeNova").focus();
+	var ckTipoArquivo = $(".inputImg");
+	for(var i = 0; i < ckTipoArquivo.length; i++){
+		if(ckTipoArquivo.hasClass("clicado"))
+			$(".inputImg").css("background-position", "0px 0px").removeClass("clicado");
+	}
+	$("#foto").css("background-image","url(http://localhost:8080/AmorimVs2/img/foto_verde.png)");	
+	$("#link,#arquivo").hide();
+}
+function buscarValores(){
+	var nmAtividade = $("#atividadeNova").val();
+    var dsArquivo = $("#inputLink").val();
+    var nrAnoLetivo = getAnoLetivo('idAnoLetivo');
+    salvarAtividade(nrAnoLetivo, dsArquivo, nmAtividade);	
 }
 function CarregaProducao()
 {
@@ -466,6 +484,7 @@ function postProducaoOficina()
 			uploadArquivo(idPost);
 			mensagem("Produção cadastrada com sucesso!","OK","bt_ok","sucesso");
 			showNovaAtividade(idPost);
+			limparProducaoOficina();
         },
         complete: function () { loading("final"); },
 		error: function(e) { mensagem("Erro ao cadastrar uma nova produção.","OK","bt_ok","erro"); }
@@ -487,6 +506,11 @@ function uploadArquivo(idpost) {
         processData:false,
         data: formData,
     });
+}
+
+function limparProducaoOficina(){
+	$("#texto").val("");
+	$("#texto").focus();
 }
 
 /* ------ Funções SHOW ------ */
