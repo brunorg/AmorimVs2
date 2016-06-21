@@ -117,6 +117,7 @@
 		}
 		#Oficinas {
 			position: relative;
+			display: block;
 		}
 
 		.itemExpandido > .Prod_Oficina_Nome {
