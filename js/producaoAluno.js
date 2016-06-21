@@ -117,6 +117,11 @@ $(document).ready(function(){
 	$("#Arquivo_Foto_Aluno").change(function(e){
     	$("#LegendaUpload").html("Arquivo Carregado");
     });
+
+    $("#adicionarProducao").on("click", function(){
+		debugger;
+		validarOficina();
+	});
 });
 
 function validarCampos(){
@@ -463,8 +468,7 @@ function getAtividadesRecentes()
 }
 
 // Requisições POST
-function postProducaoOficina()
-{
+function postProducaoOficina(){
     var d = new Date();
     var data = { ano: d.getFullYear(), mes: d.getMonth()+1, dia: d.getDate() }
     var anoLetivo = getAnoLetivo('idAnoLetivo');
@@ -708,6 +712,13 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 			});
 		});
 	}
+}
+
+function validarOficina(){
+	if($("#texto").val() == "")
+		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+	else
+		postProducaoOficina();
 }
 
 // function carregaCategoria(){
