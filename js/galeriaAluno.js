@@ -1,13 +1,10 @@
 //Murano Design
 
-//------------------------------------------------------------------------------------------------------------------------
-
 //Get Usuario Efetivado
 
-    var aluno = 1;
-    var UsuarioAtivo = 2;
-    var tipoArquivo = '';
-//------------------------------------------------------------------------------------------------------------------------
+var aluno = 1;
+var UsuarioAtivo = 2;
+var tipoArquivo = '';
 
 //Carrega os valores utilizados do BD
 var alunoID = base64_decode(GetURLParameter("ID"));
@@ -47,18 +44,7 @@ var alunoVar = dataAlunoVariavel.idalunoVariavel;
 var oficinas = [];
 var oficinasLista;
 var oficinasItens;
-
-$("#postagemImagem").change(function(e) {
-    var FR = new FileReader();
-    FR.onload = function(e) {
-        $("#imagemArquivo").val(e.target.result);
-    };
-    Arquivo = this.files[0];
-});
-
-$('#addArquivo').click(function() {
-    $('#postagemImagem').trigger('click');
-});
+var Arquivo = "";
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -272,6 +258,22 @@ $(document).ready(function(){
     });
 
     $(".Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
+
+    $('#addArquivo').click(function() {
+        $('#postagemImagem').trigger('click');
+    });
+
+    $("#adicionarProducao").click(function(){
+        validarOficina();
+    });
+
+    $("#postagemImagem").change(function(e) {
+    var FR = new FileReader();
+    FR.onload = function(e) {
+        $("#imagemArquivo").val(e.target.result);
+    };
+    Arquivo = this.files[0];
+});
 
 });
 
@@ -603,6 +605,7 @@ function postProducaoOficina(){
             uploadArquivo(idPost);
             mensagem("Produção cadastrada com sucesso!","OK","bt_ok","sucesso");
             showNovaAtividade(idPost);
+            limparProducaoOficina();
         },
         complete: function () { loading("final"); },
         error: function(e) { mensagem("Erro ao cadastrar uma nova produção.","OK","bt_ok","erro"); }
@@ -707,9 +710,8 @@ function showOficinaContent(id) {
                 htmlAtividades +=           "<span>"+atividades[a].texto+"</span>";
                 htmlAtividades +=       "</div>";
                 htmlAtividades +=   "</div>";
-
-                $('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
             }
+            $('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
             $('#oficina'+id).addClass('atividadesListadas')
         }
     }
@@ -845,5 +847,20 @@ function getNovaAtividade(idAtividade){
     });
 
     return retorno;
+}
+
+function validarOficina(){
+    if($("#texto").val() == "")
+        mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+    else if(Arquivo == "")
+        mensagem("Escolha um arquivo.","OK","bt_ok","erro");
+    else
+        postProducaoOficina();
+}
+
+function limparProducaoOficina(){
+    $("#texto").val("");
+    $("#texto").focus();
+    Arquivo = "";
 }
 

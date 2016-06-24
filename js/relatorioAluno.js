@@ -462,6 +462,7 @@ $(document).ready(function(){
 	
 function init(ano, alunoVar){
 	//loading("inicial");
+	console.log(ano + "/ " + alunoVar);
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();		
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano)[0];
@@ -544,7 +545,8 @@ function init(ano, alunoVar){
 	//Daqui para baixo, nada foi alterado.
 	for(var i = 0; i < planejamentosAluno.length; i++){
 		for(var j = 0; j < roteirosFiltrados.length; j++){				
-			if(planejamentosAluno[i].objetivo.roteiro.nome == roteirosFiltrados[j][0].nome){
+			if(planejamentosAluno[i].objetivo.roteiro.idroteiro == roteirosFiltrados[j][0].idroteiro){
+				console.log(i + " - " + j);
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][1]=planejamentosAluno[i].status;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][2]=planejamentosAluno[i].idplanejamentoRoteiro;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][3]=planejamentosAluno[i].objetivo.idobjetivo;
