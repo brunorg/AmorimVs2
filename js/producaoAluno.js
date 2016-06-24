@@ -12,7 +12,7 @@ var oficinasItens;
 var oficinas = [];
 
 //Arquivo
-var Arquivo;
+var Arquivo = "";
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
@@ -69,7 +69,6 @@ $(document).ready(function(){
 
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
-
 	$("#postagemImagem").change(function(e) {
 	    var FR = new FileReader();
 	    FR.onload = function(e) {
@@ -119,7 +118,6 @@ $(document).ready(function(){
     });
 
     $("#adicionarProducao").on("click", function(){
-		debugger;
 		validarOficina();
 	});
 });
@@ -406,8 +404,8 @@ function getOficinasAluno(){
 
 	return retorno;
 }
-function getAtividadesOficina(idoficina)
-{
+
+function getAtividadesOficina(idoficina){
 	var retorno;
 
 	$.ajax({
@@ -515,6 +513,7 @@ function uploadArquivo(idpost) {
 function limparProducaoOficina(){
 	$("#texto").val("");
 	$("#texto").focus();
+	Arquivo = "";
 }
 
 /* ------ Funções SHOW ------ */
@@ -549,9 +548,8 @@ function showOficinaContent(id) {
 				htmlAtividades +=			"<span>"+atividades[a].texto+"</span>";
 				htmlAtividades +=		"</div>";
 				htmlAtividades +=	"</div>";
-
-				$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			}
+			$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			$('#oficina'+id).addClass('atividadesListadas')
 		}
 	}
@@ -717,6 +715,8 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 function validarOficina(){
 	if($("#texto").val() == "")
 		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+	else if(Arquivo == "")
+		mensagem("Escolha um arquivo.","OK","bt_ok","erro");
 	else
 		postProducaoOficina();
 }
