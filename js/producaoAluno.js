@@ -320,7 +320,7 @@ function getAlunoByUsuario()
 }
 
 function reLoadClick(){
-	var itensNav = $("#menu_lateral_atividade li,#menu_lateral_portfolio li");
+	var itensNav = $("#menu_lateral_atividade li,#menu_lateral_portfolio li, #menu_lateral_fichas li");
 	$(itensNav).click(function(){
         var ex = true;
 		var arquivo = $(this).attr('arquivoselect');
