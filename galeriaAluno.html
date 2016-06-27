@@ -62,8 +62,7 @@
                             <p id="apontar">Apontar presença grupo</p>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
 
                 <!--Coluna geral central-->
                 <!--  bloqueio para a rolagem top-->                
@@ -219,7 +218,7 @@
                                 <div class="Prod_Oficina_Acordeon">
                                     <div class="Prod_Oficina_Acordeon_Itens">
                                         <div id="AtvExtra" class="Prod_Oficina_Item">
-                                            <div class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="ShowAtividadeExtrasContent()">Atividades Extras</div>
+                                            <div class="Prod_Oficina_Nome Prod_Atv_Extra" onclick="showAtividadesExtraContent()">Atividades Extras</div>
                                             <div class="Prod_Oficina_Content">
                                                 <div id="AtvExtraAdd" class="Oficina_Content_Item Prod_Oficina_Item Add_Item" onclick="showFormNovaProd(0,6)">Inserir Novo</div>
                                             </div>    
@@ -229,9 +228,8 @@
                             </nav>
 
                             <div id="conteudo_principal_oficinas">
-                                <div id="container_tela_padrao" class="container_tela_padrao">
-                                <h1 class="tela_padrao_titulo">Atividades recentes</h1>
-
+                                <div id="id_tela_padrao" class="container_tela_padrao">
+                                    <h1 class="tela_padrao_titulo">Atividades recentes</h1>
                                 </div>
                                 <div id="container_Nova_Producao" style="display: none">
                                     <form id="form_Nova_Producao">
@@ -257,7 +255,7 @@
                                         <input name="categoria" id="categoria" type="hidden" value="1" />
                                         <input name="oficina" id="oficina" type="hidden" value="" />
                                     </form>
-                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao" onclick="postProducaoOficina()">Salvar</div>
+                                    <div id="adicionarProducao" class="bt bt_Salvar_Producao">Salvar</div>
                                 </div>
                                 <iframe id="Prod_Oficina_View" class="Prod_Oficina_View" src="" frameborder="0" style="width:720px; height:430px;">
                                     <!-- Conteúdo gerado por JS -->
