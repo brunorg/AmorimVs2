@@ -43,15 +43,13 @@ p{
 }
 .oficina_titulo {
 	padding: 0 10px;
-	white-space: nowrap;
-  	overflow: hidden;
-  	text-overflow: ellipsis;
-	position: relative;
+	position: absolute;
 	width: 100%;
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
-	line-height: 50px;
+	top: 50%;
+	transform: translate(0, -50%);
 }
 .feedback_oficinas_false
 {
