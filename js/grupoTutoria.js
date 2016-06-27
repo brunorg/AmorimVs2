@@ -61,11 +61,16 @@ function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId, 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL").append('<div class="grupoLinhaAluno borderLeft" id="aluno' + i + '"></div>')
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoFotoAluno"></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a	>')
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="m_relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a>');
+		else
+			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="m_relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a>');
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
-		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<span>' + grupoAlunos[i].nome + '</span>' + '</a>')
-
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<a href="m_relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<span>' + grupoAlunos[i].nome + '</span>' + '</a>')
+		else
+			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoNomeAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<span>' + grupoAlunos[i].nome + '</span>' + '</a>')
 
 		var funcao = 'onclick="mudarLider('+grupoId+', '+grupoAlunos[i].idAluno+')"'
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoCurtir"></div>')

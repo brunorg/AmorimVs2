@@ -71,7 +71,10 @@ function carregaForumCompleto () {
 			for (var i = 0; i < forumData.length; i++) {
 				Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
 				Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-       			Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+       				Html+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+       			else
+       				Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
 				Html+= '<div class="info_secao_forum">';
 
 				//Html+= getResultadoForumQuestao(forumData[i].idroteiro);
@@ -120,7 +123,10 @@ function rolagemForum () {
 								for (var i = 0; i < forumData.length; i++) {
 									Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
 									Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-									Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+									if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+										Html+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+									else
+										Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
 									Html+= '<div class="info_secao_forum">';
 									Html+= '</div>';
 									Html+= '</div>';
@@ -162,7 +168,10 @@ function rolagemForum () {
 								for (var i = 0; i < forumData.length; i++) {
 									Html+= '<div class="secao_forum" id="btn'+forumData[i].idroteiro+'">';
 									Html+= '<a href="#" class="barra_titulo accordion"><span id="'+forumData[i].idroteiro+'">'+forumData[i].nome+'</span>' + getCountQuestoes(forumData[i].idroteiro) + '</a>';
-									Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+									if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+										Html+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+									else
+										Html+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumData[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
 									Html+= '<div class="info_secao_forum">';				
 									Html+= '</div>';
 									Html+= '</div>';
@@ -211,7 +220,10 @@ function efetuarBusca() {
 				for (var i = 0; i < forumBusca.length; i++) {
 					HtmlContentBusca+= '<div class="secao_forum" id="btn'+forumBusca[i].idroteiro+'">';
 					HtmlContentBusca+= '<a href="#" class="barra_titulo accordion"><span id="'+forumBusca[i].idroteiro+'">'+forumBusca[i].nome+'</span>' + getCountQuestoes(forumBusca[i].idroteiro) + '</a>';
-					HtmlContentBusca+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+						HtmlContentBusca+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+					else
+						HtmlContentBusca+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumBusca[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
     	    		HtmlContentBusca+= '<div class="info_secao_forum">';	
 					HtmlContentBusca+= '</div>';
 					HtmlContentBusca+= '</div>';
@@ -275,7 +287,10 @@ function getResultadoForumQuestao(ID)
 	{
 
 			HtmlContent+= '<div class="info_secao_forum_div">';
-			HtmlContent+= '	<a href="forumSecao.html?IdRoteiro='+base64_encode(""+ID)+'&IdQuestao='+base64_encode(""+dataForumQuestao[b].idforumQuestao)+'" class="btn_forum">';
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+				HtmlContent+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+ID)+'&IdQuestao='+base64_encode(""+dataForumQuestao[b].idforumQuestao)+'" class="btn_forum">';
+        	else 
+				HtmlContent+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+ID)+'&IdQuestao='+base64_encode(""+dataForumQuestao[b].idforumQuestao)+'" class="btn_forum">';
         	HtmlContent+= '		<div class="esquerda">'+dataForumQuestao[b].questao+'</div>';
 			HtmlContent+= '		<div class="direita2"> | Professor: '+getResultadoForumResposta(dataForumQuestao[b].idforumQuestao, "professor")+'<span class="star_forum_prof"></span></div>';
 			HtmlContent+= '		<div class="direita1">'+getResultadoForumResposta(dataForumQuestao[b].idforumQuestao, "aluno")+' respostas</div>';
@@ -314,7 +329,10 @@ function recarregaForumAnoEstudo (ano) {
 			for (var i = 0; i < forumAno.length; i++) {
 				HtmlContentRecarregar+= '<div class="secao_forum" id="btn'+forumAno[i].idroteiro+'">';
 				HtmlContentRecarregar+= '<a href="#" class="barra_titulo accordion"><span id="'+forumAno[i].idroteiro+'">'+forumAno[i].nome+'</span>' + getCountQuestoes(forumAno[i].idroteiro) + '</a>';
-				HtmlContentRecarregar+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+					HtmlContentRecarregar+= '<a href="m_forumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
+				else
+					HtmlContentRecarregar+= '<a href="forumSecao.html?IdRoteiro='+base64_encode(""+forumAno[i].idroteiro)+'" class="btn_topico">criar novo tópico<span class="criar_topico"></span></a>';
         		HtmlContentRecarregar+= '<div class="info_secao_forum">';
 				HtmlContentRecarregar+= '</div>';
 				HtmlContentRecarregar+= '</div>';

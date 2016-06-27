@@ -1,0 +1,13 @@
+#cabecalho_portfolio, #cabecalho_atividade, #cabecalho_fichas, #cabecalho_oficina{
+	height: auto;
+	padding: 8px;
+	font-size: 16px;
+}
+
+#producao_aluno_content{
+	height: 348px;
+}
+
+iframe{
+	top: 33%;
+}
