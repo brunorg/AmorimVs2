@@ -221,6 +221,17 @@ app.controller('geralCTRL',function($scope,$http){
 			}
 			location.reload();
 		}
+
+		$scope.nameInputAlterarFoto = function() {
+			if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23)
+				return "fotoAluno";
+			else
+				return "imagem";
+		}
+
+		$scope.alterarFoto = function() {
+			//
+		}
 	}
 });
 
