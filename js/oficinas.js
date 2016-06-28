@@ -4,6 +4,8 @@ $(document).ready(function(){
 	$(".scroll_receiver").mCustomScrollbar({ axis: "y" });
 
 	requestOficinasAluno();
+
+	$('td.aba_oficina').css("width", "calc(100%/"+$('td.aba_oficina').length+")");
 });
 
 function getOficinasAluno(idalunoVariavel) {

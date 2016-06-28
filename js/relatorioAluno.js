@@ -462,6 +462,7 @@ $(document).ready(function(){
 	
 function init(ano, alunoVar){
 	//loading("inicial");
+	console.log(ano + "/ " + alunoVar);
 	if(!base64_decode(GetURLParameter('TU'))){
 		var data = new Date();		
 		var tutoria = getProfessorTutoria(localStorage.getItem("professorId"),ano)[0];
@@ -544,7 +545,8 @@ function init(ano, alunoVar){
 	//Daqui para baixo, nada foi alterado.
 	for(var i = 0; i < planejamentosAluno.length; i++){
 		for(var j = 0; j < roteirosFiltrados.length; j++){				
-			if(planejamentosAluno[i].objetivo.roteiro.nome == roteirosFiltrados[j][0].nome){
+			if(planejamentosAluno[i].objetivo.roteiro.idroteiro == roteirosFiltrados[j][0].idroteiro){
+				console.log(i + " - " + j);
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][1]=planejamentosAluno[i].status;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][2]=planejamentosAluno[i].idplanejamentoRoteiro;
 				roteirosFiltrados[j][planejamentosAluno[i].objetivo.numero][3]=planejamentosAluno[i].objetivo.idobjetivo;
@@ -734,7 +736,10 @@ function init(ano, alunoVar){
 
 				if (fichaFinalizacao != "")
 				{
-					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='m_galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+					else
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
 				}else{
 					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
 				}
@@ -746,7 +751,10 @@ function init(ano, alunoVar){
 
 			if (portfolio != "")
 			{
-				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))	
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='m_galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+				else
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
 			}
 			else{
 				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");	
@@ -1103,6 +1111,7 @@ function graficoBarra(alunoID, planejamentosAluno){
 function visualizarDados(){
 	//console.log(base64_decode(GetURLParameter('ID')));
 	localStorage.setItem("alunoEdt",base64_decode(GetURLParameter('ID')));	
+	
 	$(location).attr('href','visualizarDados.html');
 }
 

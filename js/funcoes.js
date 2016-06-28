@@ -380,8 +380,9 @@ $(document).ready(function(){
 	
 	$('#rodape_calendario').after('<a href="index.html?ref=calendario" id="linkParaAgenda" target="_blank">VER AGENDA COMPLETA</a>')
 
-	menuHamburguer('.menuHamb','left','Content_lateral_left');
-
+	window.setTimeout(function(){
+		menuHamburguer('.menuHamb','left','Content_lateral_left');
+	},1000)
 
 	$("#box_logout").click(function(){
 		$(this).css('transform','translate(300px)');

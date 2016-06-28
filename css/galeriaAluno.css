@@ -1,9 +1,8 @@
     #producao_aluno_cabecalho 
     {
-        width: 99%;
-        height: 10%;
+        width: 100%;
         position: relative;
-        overflow: auto;
+        overflow: hidden;
     }
             /*-------- bt portifolio ------*/
             
@@ -17,9 +16,9 @@
                 background-color: rgb(143, 174, 56);
             }
             
-            #cabecalho_portfolio, #cabecalho_atividade, #cabecalho_fichas
+            #cabecalho_portfolio, #cabecalho_atividade, #cabecalho_fichas, #cabecalho_oficina
             {
-                width: 33%;
+                width: 24.6%;
                 height: 55px;
                 position: relative;
                 font-size: 20px;
@@ -29,17 +28,12 @@
                 float: left;
                 cursor:pointer;
                 text-align: center;
-            }
-            
-            #cabecalho_atividade{
-                margin: 0 0.5%;
-            }
-
-            
+                margin-right: 1.4px;
+            }            
         
         #producao_aluno_content{
             height: 500px;
-            width: 99%;
+            width: 98.8%;
             padding: 20px;
             background-color: #E5E5DC;
         }
@@ -79,8 +73,105 @@
             Cor de fundo quando o item do menu 
             estiver ativo: background-color: #D6E5A9 
         */
+        #menu_lateral_oficinas {
+            width: 100%;
+            display: inline-block;
+            float: left;
+        }
+        .Prod_Oficina_Acordeon {
+            width: 150px;
+            height: 460px;
+            overflow: hidden;
+        }
+        .Prod_Oficina_Nome {
+            min-height: 30px;
+            padding: 7px;
+            text-transform: uppercase;
+            font-size: 12px;
+            border-left: 2px solid #fff;
+            border-right: none;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            cursor: pointer;
+        }
 
+        .itemExpandido > .Prod_Oficina_Nome {
+            border-bottom: 2px solid #fff;
+        }
+
+        .itemExpandido + .Prod_Oficina_Item > .Prod_Oficina_Nome {
+            border-top: 2px solid #fff;
+        }
+
+        .container_tela_padrao{
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .tela_padrao_titulo{
+            display: block;
+            margin: 0;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #8FAE38;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        .Prod_Oficina_Item:first-of-type .Prod_Oficina_Nome {
+            border-top: 2px solid #fff;
+        }
+
+        .Prod_Oficina_Item:last-of-type .Prod_Oficina_Nome {
+            border-bottom: 2px solid #fff;
+        }
+
+        .Prod_Atv_Extra{
+            background-color: #fbb040;
+        }
+
+        .Oficina_Content_Item:first-child {
+            border-top: none;
+        }
+        .Oficina_Content_Item:last-child {
+            border-bottom: none;
+        }
+
+        .Prod_Oficina_Item:last-of-type > .Prod_Oficina_Content > .Oficina_Content_Item:last-of-type {
+            border-bottom: 2px solid #fff;
+        }
+
+        .Prod_Oficina_Content {
+            display: none;
+        }
+
+        .Prod_Oficina_Content::after {
+            content: '';
+            display: block;
+            width: 100%;
+            clear: both;
+        }
         
+        .bt{
+            display: inline-block;
+            height: 35px;
+            background-color: rgb(173, 204, 83);
+            color: white;
+            padding: 10px;
+            padding-left: 33px;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .bt:hover {
+            background-color: #8FAE38;
+        }
         #menu_lateral_portfolio li:last-child,
         #menu_lateral_atividade li:last-child
         #menu_lateral_fichas li:last-child{
@@ -94,8 +185,35 @@
             height: 100%;
             background-color: white;
             float: left;
-            padding: 5px;
             overflow: auto;
+        }
+
+        #conteudo_principal_oficinas {
+            height: 100%;
+            min-height: 460px;
+            width: 755px;
+            background-color: #fff;
+            padding: 15px;
+            position: absolute;
+            left: 150px;
+        }
+
+        .Prod_Oficina_View {
+            display: none;
+            position: static;
+        }
+
+        .Item_Prod_Titulo {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .Item_Prod_Titulo > span{
+            position: absolute;
+            white-space: nowrap;
         }
         
         #Titulo_objeto{
@@ -111,15 +229,73 @@
             margin: 0 auto;
         }
         
-        #Portfolio{
-            height: 100%;
-            display:none;
-        }
         #Atividade,
-        #Fichas
+        #Fichas, 
+        #Portfolio,
+        #Oficina
         {
             height: 100%;
             display: none;
+            position:relative;
+        }
+
+        #Oficina > div.mCustomScrollBox{
+            background-color: rgba(255,255,255,0);
+        }
+
+        .Item_Selected {
+            background-color: #fff;
+        }
+
+        .Titulo_Nova_Prod_Oficina{
+            display: inline-block;
+            margin: 0;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #8FAE38;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        *[class*="infoValue"] {
+            height: 39px;
+        }
+
+        *[class*="infoValue"] input {
+            height: 100%;
+            width: 100%;
+        }
+
+        .celulaGrande_container::after{
+            content: '';
+            display: block;
+            width: 100%;
+            clear:both
+        }
+
+        .Oficina_Content_Item {
+            width: 130px;
+            height: 30px;
+            float: right;
+            padding: 7px;
+            background-color: #ecebe5;
+            border-top: 1px solid #fff;
+            border-left: 2px solid #fff;
+            border-bottom: 1px solid #fff;
+            border-right: 2px solid #fff;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .Add_Item {
+            background-color: #d9d7cc;
+            padding: 7px 7px 7px 25px;
+            background-image: url(../img/ic_add_peq.png);
+            background-repeat: no-repeat;
+            background-position: 7px center;
+            background-size: 13px;
         }
         
     /*----Mensagem Exclusao---------*/
@@ -261,7 +437,7 @@
   width: 100%;
   height: 42px;
   margin-bottom: 0.9%;
-  overflow: auto;
+  overflow: hidden;
   border: 2px solid rgb(173, 204, 83);
   float: left;
   background-color: #F2F1ED;
@@ -269,7 +445,7 @@
 }
 
 .infoG {
-  width: 20%;
+  width: 15%;
   height: 100%;
   padding: 10px;
   background-color:  rgb(214, 229, 169); 
@@ -409,7 +585,7 @@
 }
 
 iframe{
-    top: 27%;
+    top: 0%;
 }
 
 

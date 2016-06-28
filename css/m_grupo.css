@@ -1,0 +1,15 @@
+.Box_Area_Select{
+	margin-right: 6px;
+}
+
+.Box_Area_Select:last-of-type{
+	margin-right: 0;
+}
+
+.input_Pesq_Aluno{
+	width: 100%;
+}
+
+.Area_Alunos_Container{
+	max-height: 247px;
+}

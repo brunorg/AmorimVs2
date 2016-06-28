@@ -19,7 +19,6 @@ if (urlParams["ref"] === "calendario") {
     var buttons = document.getElementsByClassName('btnMenu')
 
     for (var i = buttons.length - 1; i >= 0; i--) {
-
     	if (buttons[i].innerText == "início") {
     		buttons[i].className = 'btnMenu Active'
     	}

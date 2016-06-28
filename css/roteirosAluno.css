@@ -101,8 +101,8 @@
 
 
 .td_roteiro_numero_tabela{
-	background-color:#60c9d7;
-	color: #fff;
+	background-color:#DDD8D8;
+	color: #666;
 	width: 28px !important;
 	height:27px;
 	text-align: center;
@@ -160,9 +160,9 @@
 }
 
 .td_titulo_tabela{
-	background-color: #b4e2ea;
+	background-color: #ecebe5;
     border-right: 1px solid #fff;
-    color: rgb(2, 129, 141);
+    color: #666;
     cursor: pointer;
     float: left;
     font-size: 13px !important;
@@ -189,7 +189,7 @@
 
 .titulo_infos_roteiro{
 	margin-left: 30px;
-	background-color: #b4e2ea;
+	/*background-color: #b4e2ea;*/
 	height: 27px;
 	margin-bottom: 1px;
 	width: 729px;
@@ -267,7 +267,7 @@
 	min-height: 223px;
 	height: auto;
 	border-left: 1px solid #FFF;
-	background-color: #b4e2ea;
+	background-color: #ecebe5;
 	margin:0 0 2px 758px;
 	position:relative;
 	display: none;	
@@ -291,7 +291,7 @@
 }*/
 .td_titulo_recurso{
 	font-size: 13px;
-	color: rgb(2,129,141);
+	color: #666;
 	margin-top: 0;
 	text-align: center;
 	padding: 5px;

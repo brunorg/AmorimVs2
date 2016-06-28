@@ -6,194 +6,152 @@
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
 
         <!--Style-->
-        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
+        <link rel="stylesheet" type="text/css" href="css/m_style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/m_plugins.css"/>
+        <link rel="stylesheet" type="text/css" href="css/recursosAprendizagem.css"/>
+        <link rel="stylesheet" type="text/css" href="css/m_recursosAprendizagem.css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">        
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
-        <link rel="stylesheet" type="text/css" href="css/m_style.css" />
-        <link rel="stylesheet" type="text/css" href="mobilecss/recursosAprendizagem.css"/>
         <!--Fim Style-->
-      
+
         <!--Script JS-->
         <script type="text/javascript" src="js/path.js"></script>
         <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="js/funcoes.js"></script> 
+        <script type="text/javascript" src="js/funcoes.js"></script>
         <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>       
-        <script type="text/javascript" src="js/calendario.js"></script>         
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/recursosAprendizagem.js"></script>
-                
+
         <script type="text/javascript" src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>        
-        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>                    
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
         <!--Fim JS-->
 
     </head>
 
     <body>
         <!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">
-            <div>
-                <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
-                    <div id="Cabecalho_Menu_Area_Menu2">
-                        <div ng-init="usuario()">
-                            <div id="Cabecalho_Perfil_Area_Foto_Content">
-                                <!--Foto do usuário, neste caso, do aluno-->
-                                <div id="Cabecalho_Perfil_Area_Foto">  
-                                    <img id='_foto' src='{{usuarioFoto}}'/>                          
-                                </div>
-                                 <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
-                            </div>                            
-                        </div>
-                    </div>  
-                </div>                
+        <div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: topo.html -->
             </div>
             <div id="Conteudo_Area">
-                <!--Coluna a esquerda-->    
-                <div class="Conteudo_Coluna" id="Content_lateral">    
-                    <!--Menu lateral-->
-                    <!--Perfil do usuário, neste caso, o aluno--> 
-                    <!--Nome | Serie do usuário-->                      
-                    <!--Calendario-->
-                    <div id="Content_lateral_Calendario" style="display:none">
-                        <div id="datepicker"></div>
-                        <div id="rodape_calendario">
-                            <p id="apontar">Apontar Presença grupo</p>
-                        </div>                      
-                    </div>    
-                </div>
-
-                <div class="Conteudo_Coluna" id="Content_lateral_left">
-                    <div id="Content_lateral_Menu">    
-                        <div  ng-repeat="menu in menuHTML">                         
-                            <a href="{{menu.href}}">
-                                <div class="Content_lateral_Menu_Opcao {{menu.class}}">
-                                    <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
-                                    <div ng-if="menu.class== 'forum' && menuInfoF != '0' && menuInfoF != ''" class="label" id="num_msg_nLidas">{{menuInfoF}}</div>
-                                    {{menu.label}}
-                                </div>
-                            </a>
-                        </div>
-                    </div>    
-                </div>
-                <div class="Conteudo_Coluna" id="content_central_fixa">
+                <!--Coluna geral central-->
+                <div id="m_blocoGeral">
                     <div id="boxBarraRec">
+                        <!--Conteudo geral vai aqui quando acrescentar o html apagar o comentario-->
                         <div id="PesquisarInserir">
-                                <div id="bt_Pesquisar" class="bt_Pesquisar_Ativo bt_Off col-8"> Pesquisar 
+                            <div id="bt_Pesquisar" class="bt_Pesquisar_Ativo bt_Off"> Pesquisar </div>
+                            <div id="bt_Inserir" class="bt_Off"> Inserir </div>
+                            <div id="bt_Curtidos" class="bt_Off"> + Curtidos </div>
+
+                            <div id="container_Pesquisa">
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Roteiro </div>
+                                    <div class="styled-select">
+                                        <select id="roteiro"></select>
+                                    </div>
                                 </div>
-                                    <div id="bt_Inserir" class="bt_Off"> Inserir </div>
-                                    
-                                    <div id="container_Pesquisa">                       
-                                        <div class="celulaGrande"> 
-                                            <div class="infoG"> Roteiro </div>
-                                            <div class="styled-select">
-                                                <select id="roteiro"></select>
-                                            </div>
-                                        </div>                      
-                                        <div class="celulaGrande">
-                                            <div class="infoG"> Disciplina </div>
-                                            <div class="styled-select">
-                                                <select id="materia"></select>
-                                            </div>
-                                        </div>                      
-                                        <div id="Tipo">
-                                            <div class="infoG"> Tipo </div>
-                                            <div id="Foto" class="infoValueP BorderBottom"> Foto </div> <div class="inputImg tipoP BorderBottom" id="6"> </div>
-                                            <div id="Video" class="infoValueP BorderBottom"> Vídeo </div> <div class="inputImg tipoP BorderBottom" id="2"> </div>
-                                            <div id="Audio"class="infoValueP BorderBottom"> Áudio </div> <div class="inputImg tipoP BorderBottom" id="3"> </div>
-                                            <div id="Link" class="infoValueP"> Link </div> <div class="inputImg tipoP" id="4"> </div>
-                                            <div id="Jogo" class="infoValueP"> Jogo </div> <div class="inputImg tipoP" id="5"> </div>
-                                            <div id="Livro" class="infoValueP"> Livro </div> <div class="inputImg tipoP" id="1"> </div>
-                                        </div>                      
-                                        <div><a href="#" id="bt_Buscar">Buscar</a></div>                            
-                                        <div id="boxResultado">
-                                            <div id="resultado">
-                                                <!--Lista o resultado de uma pesquisa de recursos de aprendizagem-->
-                                            </div>
-                                        </div>                            
-                                    </div>                            
-                                    <div id="container_Inserir">                        
-                                        <div class="celulaGrande">
-                                            <div class="infoG"> Nome </div>
-                                            <input id="nomeIn"></input>
-                                        </div>
-                                        <div class="celulaGrande">
-                                            <div class="infoG"> Roteiro </div>
-                                                <div class="styled-select">
-                                                    <select id="roteiroIn"></select>
-                                                </div>
-                                        </div>                                
-                                        <div class="celulaGrande">
-                                            <div class="infoG"> Disciplina </div>
-                                                <div class="styled-select">
-                                                    <select id="materiaIn"></select>
-                                                </div>
-                                        </div>                                
-                                        <div id="Tipo">
-                                            <div class="infoG"> Tipo </div>
-                                                <div id="Foto" class="infoValueP BorderBottom"> Foto </div><div class="inputImg tipoIn BorderBottom" id="inserir-6"> </div>
-                                                <div id="Video" class="infoValueP BorderBottom"> Vídeo </div><div class="inputImg tipoIn BorderBottom" id="inserir-2"> </div>
-                                                <div id="Audio"class="infoValueP BorderBottom"> Áudio </div><div class="inputImg tipoIn BorderBottom" id="inserir-3"> </div>
-                                                <div id="Link" class="infoValueP"> Link </div><div class="inputImg tipoIn" id="inserir-4"> </div>
-                                                <div id="Jogo" class="infoValueP"> Jogo </div><div class="inputImg tipoIn" id="inserir-5"> </div>
-                                                <div id="Livro" class="infoValueP"> Livro </div><div class="inputImg tipoIn" id="inserir-1"> </div>
-                                        </div>                                
-                                        <div class="celulaGrande">
-                                            <div class="infoG"> Descrição </div>
-                                                <input id="descricao"></input>
-                                        </div>
-                                        <div id="inputEscolha" >
-                                            <div id="LinkEscolha" class="infoValueEscolha"> Link </div><div class="inputImg tipoRec" id="inserir-7"> </div>
-                                            <div id="ArquivoEscolha" class="infoValueEscolha"> Arquivo </div><div class="inputImg tipoRec" id="inserir-8"> </div>
-                                        </div>
-                                        <div class="celulaGrande" id="inputLink">
-                                            <div class="infoG"> URL </div>
-                                                <input id="url"></input>
-                                        </div>                                
-                                        <div class="celulaGrande" id="inputArquivo">
-                                            <div class="infoG"> Arquivo </div>
-                                            <form id="inserirArquivo">
-                                                <input type="hidden" id="action" name="action" value="update">
-                                                <input type="file" id="tipo" name="imagem">
-                                                <input type="hidden" id="idrecursoAprendizagem" value="">
-                                            </form>                                          
-                                        </div>
-                                        <div id="bt_Salvar" class="submitUpload"> </div> 
-                                        <div id="bt_Salvar" class="submitInserir"> </div>   
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Disciplina </div>
+                                    <div class="styled-select">
+                                        <select id="materia"></select>
                                     </div>
-                                <div id="PesquisarInserir_Complementar">
-                                    <div id="MaisCurtidos"> </div>
-                                    <div id="Curtidos">
-                                        <ul>
-                                            <!--Listagem mais curtidos--> 
-                                        </ul>
+                                </div>
+                                <div id="Tipo">
+                                    <div class="infoG"> Tipo </div>
+                                    <div id="Foto" class="infoValueP BorderBottom"> Foto </div> <div class="inputImg tipoP BorderBottom" id="6"> </div>
+                                    <div id="Video" class="infoValueP BorderBottom"> Vídeo </div> <div class="inputImg tipoP BorderBottom" id="2"> </div>
+                                    <div id="Audio"class="infoValueP BorderBottom"> Áudio </div> <div class="inputImg tipoP BorderBottom" id="3"> </div>
+                                    <div id="Link" class="infoValueP"> Link </div> <div class="inputImg tipoP" id="4"> </div>
+                                    <div id="Jogo" class="infoValueP"> Jogo </div> <div class="inputImg tipoP" id="5"> </div>
+                                    <div id="Livro" class="infoValueP"> Livro </div> <div class="inputImg tipoP" id="1"> </div>
+                                </div>
+                                <div><a href="#" id="bt_Buscar">Buscar</a></div>
+                                <div id="boxResultado">
+                                    <div id="resultado">
+                                        <!--Lista o resultado de uma pesquisa de recursos de aprendizagem-->
                                     </div>
-                                    <div id="Participe"> </div>
-                                </div>                                     
-                        </div>
-                        <div id="PesquisarInserir_Complementar">
-                            <div id="MaisCurtidos"> </div>
-                            <div id="Curtidos">
-                                <ul>
-                                    <!--Listagem mais curtidos--> 
-                                </ul>
+                                </div>
                             </div>
-                            <div id="Participe"> </div>
+                            <div id="container_Inserir">
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Nome </div>
+                                    <input id="nomeIn"></input>
+                                </div>
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Roteiro </div>
+                                        <div class="styled-select">
+                                            <select id="roteiroIn"></select>
+                                        </div>
+                                </div>
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Disciplina </div>
+                                        <div class="styled-select">
+                                            <select id="materiaIn"></select>
+                                        </div>
+                                </div>
+                                <div id="Tipo">
+                                    <div class="infoG"> Tipo </div>
+                                        <div id="Foto" class="infoValueP BorderBottom"> Foto </div><div class="inputImg tipoIn BorderBottom" id="inserir-6"> </div>
+                                        <div id="Video" class="infoValueP BorderBottom"> Vídeo </div><div class="inputImg tipoIn BorderBottom" id="inserir-2"> </div>
+                                        <div id="Audio"class="infoValueP BorderBottom"> Áudio </div><div class="inputImg tipoIn BorderBottom" id="inserir-3"> </div>
+                                        <div id="Link" class="infoValueP"> Link </div><div class="inputImg tipoIn" id="inserir-4"> </div>
+                                        <div id="Jogo" class="infoValueP"> Jogo </div><div class="inputImg tipoIn" id="inserir-5"> </div>
+                                        <div id="Livro" class="infoValueP"> Livro </div><div class="inputImg tipoIn" id="inserir-1"> </div>
+                                </div>
+                                <div class="celulaGrande">
+                                    <div class="infoG"> Descrição </div>
+                                        <input id="descricao"></input>
+                                </div>
+                                <div id="inputEscolha" >
+                                    <div id="LinkEscolha" class="infoValueEscolha"> Link </div><div class="inputImg tipoRec" id="inserir-7"> </div>
+                                    <div id="ArquivoEscolha" class="infoValueEscolha"> Arquivo </div><div class="inputImg tipoRec" id="inserir-8"> </div>
+                                </div>
+                                <div class="celulaGrande" id="inputLink">
+                                    <div class="infoG"> URL </div>
+                                        <input id="url"></input>
+                                </div>
+                                <div class="celulaGrande" id="inputArquivo">
+                                    <div class="infoG"> Arquivo </div>
+                                    <form id="inserirArquivo">
+                                        <input type="hidden" id="action" name="action" value="update">
+                                        <input type="file" id="tipo" name="imagem">
+                                        <input type="hidden" id="idrecursoAprendizagem" value="">
+                                    </form>
+                                </div>
+                                <div id="bt_Salvar" class="submitUpload"> </div>
+                                <div id="bt_Salvar" class="submitInserir"> </div>
+                            </div>
+                            <div id="container_Curtidos">
+                                <div id="Curtidos">
+                                    <ul>
+                                    </ul>
+                                </div>
+                                <div id="textoSugestao">
+                                    <p>Conhece algum recurso de aprendizagem legal? Conte para a gente!</p>
+                                    <div>
+                                        <textarea placeholder="Escreva aqui suas sugestões." id="sugestao"></textarea>
+                                    </div>
+                                    <p id="enviar_sugestao">
+                                        <img src="img/salvar_ed.png" onclick="EnviarMSG()">
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div id="boxMensagemGeral" style="width: 100%; left: auto;"></div>
-                <div class="boxGlobal" style="width: 100%; left: auto;  "></div>
-            </div>           
-
-        </div>
-  
+            </div>
+        </div><!--Fim Conteudo-->
+        <div id="boxMensagemGeral"></div>
+        <div class="boxGlobal"></div>
     </body>
 </html>

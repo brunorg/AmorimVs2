@@ -119,10 +119,10 @@ function LoadObjetivos(idRoteiro){
     		
     		HtmlContent +=  "<div class='conteudo_do_roteiro' style='display:block'>"+
     							"<div class='titulo_infos_roteiro' style='margin-left:-60px; width: 944px'>"+
-    								"<div class='td_roteiro_numero_tabela' style='background-color:"+cor.medio+"'>"+
+    								"<div class='td_roteiro_numero_tabela'>"+
     									num+
     								"</div>"+
-	    							"<div class='td_titulo_tabela' style='width: 915px; color: "+cor.forte+";background-color: "+cor.fraco+"'>"+
+	    							"<div class='td_titulo_tabela' style='width: 915px;'>"+
 	    								dataObjetivo[a].objetivo+
 	    								"<div class='titulo_infos_roteiro_botoes'>"+
 	    									"<div id='ObjStatus_"+dataObjetivo[a].idobjetivo_aula+"' class='titulo_infos_roteiro_estrela'>";

@@ -6,10 +6,11 @@
 		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
  
  		<!--Style-->
-		<link rel="stylesheet" type="text/css" href="css/style.css" />	
+		<link rel="stylesheet" type="text/css" href="css/m_style.css" />	
         <link rel="stylesheet" type="text/css" href="css/roteirosAluno.css" />
+        <link rel="stylesheet" type="text/css" href="css/m_roteirosAluno.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+        <link rel="stylesheet" type="text/css" href="css/m_plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
     	<!--Fim Style-->
         
@@ -19,17 +20,18 @@
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>		                			
       	<script src="js/jquery-ui.js"></script>
-	    <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
-        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
-        <script type="text/javascript" src="js/funcoes.js"></script>
-		<script type="text/javascript" src="js/calendario.js"></script>		
-        <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-        <script type="text/javascript" src="js/roteiroPlanejamento.js"></script>                
+                	
+        <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+        <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>         
+        <script type="text/javascript" src="js/funcoes.js"></script>
+		<script type="text/javascript" src="js/calendario.js"></script>		
+        <script type="text/javascript" src="js/autenticador.js"></script>
+        <script type="text/javascript" src="js/roteiroPlanejamentoAula.js"></script>                
         <!--Fim JS-->
         
 	</head>
@@ -37,25 +39,12 @@
 	<body>
 		<!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-            <div ng-include="'template/topo.html'">
+            <div ng-include="'m_header.html'">
                 <!-- Template: topo.html -->
             </div>
             <div id="Conteudo_Area">
                 <!--Coluna a esquerda-->
-                <div class="Conteudo_Coluna" id="Content_lateral">
-                    <!--Menu lateral-->
-                    <div ng-include="'template/menu.html'">
-                        <!--  Template: menu.html -->
-                    </div>
-                    <!--Calendario-->
-                    <div id="Content_lateral_Calendario">
-                        <div id="datepicker"></div>
-                        <div id="rodape_calendario">
-                            <p id="apontar">Apontar presença grupo</p>
-                        </div>
-                    </div>
-                </div>	
-                <div class="Conteudo_Coluna" id="content_central">
+                <div class="Conteudo_Coluna" id="m_blocoGeral">
 					<div id="conteudo_roteiro_aluno">
                          <div class="menu_roteiro">
                             <div class="menu_roteiro_laranja">
@@ -66,14 +55,15 @@
                                 <div class="menu_roteiro_texto">Concluído</div>
                                 <div class="titulo_infos_roteiro_caixa_verde_menu"></div>
 							</div>
-                        </div>                      
+                        </div>
+                        <br/>                      
+                        <br/>
                     	<div class="total"></div>
                     </div>
-                </div>      
+                </div>                
             </div>             
-		</div><!--Fim Conteudo-->
+		</div><!--Fim Conteudo--> 
         <div class="boxGlobal"></div>
-        <div id="boxMensagemGeral"></div>
-        <div class="blackPainel"></div>               
+		<div id="boxMensagemGeral"></div>              
 	</body>
 </html>

@@ -308,7 +308,7 @@
 		background: #F1F1EC;
 	}
 	.abas {
-		width: 228.4px;
+		width: 230px;
 		background-color: #FBB040;
 		font-size: 20px;
 		color: white;
@@ -316,6 +316,14 @@
 		float: left;
 		text-align: center;
 	}
+	.abas_ativa {
+	    width: 230px;
+	    background-color: #F7941E;
+	    font-size: 20px;
+	    color: white;
+	    padding: 9px;
+	    float: left;
+	}	
 }
 
 

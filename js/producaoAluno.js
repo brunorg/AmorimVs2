@@ -12,18 +12,17 @@ var oficinasItens;
 var oficinas = [];
 
 //Arquivo
-var Arquivo;
+var Arquivo = "";
 //------------------------------------------------------------------------------------------------------------------------
 
 //Get Usuario Efetivado
 
 	var aluno=1;
     var UsuarioAtivo = 2;
-	var tipoArquivo = '';
-	var categoria = '';
+	// var tipoArquivo = '';
+	// var categoria = '';
 	var alunoVarObj = localStorage.objetoAlunoVariavel;
 	var alunoVar = parseInt(alunoVarObj.substring(19).split(",",1));
-
 //------------------------------------------------------------------------------------------------------------------------
 
 //Carrega os valores utilizados do BD
@@ -37,7 +36,6 @@ var dataProducaoAluno 	=	getData("ProducaoAluno", null);
 
 var userID = usuarioId;
 var alunoID = getAlunoByUsuario();
-
 var tipoSelecao = GetURLParameter('tipoProducao');
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -46,10 +44,7 @@ var tipoSelecao = GetURLParameter('tipoProducao');
 
 $(document).ready(function(){
 	//carregaCategoria(); <<<<----- Será implementado
-
 	$("#Prod_Oficina_Acordeon").mCustomScrollbar({axis: "y"});
-
-	//----------------------------------------------------------
 
 	//Navegação por abas
 	navItens 		= $('.Prod_Aluno_Nav_Item');
@@ -74,11 +69,9 @@ $(document).ready(function(){
 
 	oficinasLista = $('.Prod_Oficina_Nome');
 	oficinasItens = $('.Prod_Oficina_Content');
-
 	$("#postagemImagem").change(function(e) {
 	    var FR = new FileReader();
 	    FR.onload = function(e) {
-	    	console.log(e.target);
 	        $("#imagemArquivo").val(e.target.result);
 	    };
 	    Arquivo = this.files[0];
@@ -88,6 +81,25 @@ $(document).ready(function(){
 		$('#postagemImagem').trigger('click');
 	});
 
+	$("div.inputImg").click(function(){
+		for(var i = 0; i < $(".inputImg").length; i++){
+				$($(".inputImg").get(i)).css("background-position", "0px 0px").removeClass("clicado");
+		}
+		if($(this).hasClass("clicado") == false){
+			$(this).css("background-position", "-39px 0px").addClass("clicado");
+		} else {
+			$(".inputImg").css("background-position", "0px 0px").removeClass("clicado");
+		}
+
+		if($(this).prev().attr("id") != "arquivo-icon"){
+			$("#link").show();
+			$("#arquivo").hide();
+		} else {
+			$("#arquivo").show();
+			$("#link").hide();
+		}				
+	});
+
 	//----------------------------------------------------------
 
 	CarregaProducao();
@@ -95,88 +107,83 @@ $(document).ready(function(){
 	var background = $(".inputImg").css("background");
 	background = background.replace("no-repeat", "repeat");
 	$(".inputImg").not($(".vazio")).css("background",background);
-
-
-	GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'))
-
-
+	GerarUpload($('#foto'), $("#Arquivo_Foto_Aluno"), $('#Dados_Foto_Aluno'));
 
     $('#btn_Sub_AE').click(function(){
-
-    	if ($('#atividadeNova').val() == ''){
-			return mensagem("Preencha o campo da atividade!","OK","bt_ok","erro");
-		}
-
-		if (categoria == ''){
-			return mensagem("Escolha a categoria!","OK","bt_ok","erro");
-		}
-
-		if (tipoArquivo == ''){
-			return mensagem("Escolha um tipo de arquivo!","OK","bt_ok","erro");
-		}
-
-    	if (tipoArquivo == 'video'){
-    		Arquivo = $('#linkVideo').val();
-    		arq = $('#linkVideo').val();
-			if (arq == ''){
-				return mensagem("Preencha o link do vídeo!","OK","bt_ok","erro");
-			}
-    	}else var arq = '';
-
-        if (Arquivo != "" && Arquivo != undefined){
-
-        	var atv = $('#atividadeNova').val();
-
-
-        	var valores = "anoLetivo=80&texto="+atv+"&data=21-09-2014&aluno="+alunoID+"&tipo=6&categoria="+categoria+"&arquivo="+arq;
-
-			var retorno = setCreateData("ProducaoAluno",valores);
-
-
-			if(retorno != "erro"){
-
-				$('#Cadastro_Form_imagem_PA #id').val(retorno);
-				if (arq == '') {
-					loading("inicial");
-					addFileTo(retorno);
-				}else{
-		            dataProducaoAluno 	=	getData("ProducaoAluno", null);
-		            tipoSelecao = "atividade";
-					mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-					CarregaProducao();
-				}
-
-				//Limpa os campos!!
-				$('#atividadeNova').val('');
-				$('#linkVideo').val('');
-				$("div.inputImg").css("background-position","0px 0px");
-				tipoArquivo = '';
-				categoria = '';
-				$("#arquivo, #link").hide();
-
-			}else{
-				return mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
-			}
-			return false;
-
-        } else {
-            return mensagem("Por Favor, adicione um arquivo!","OK","bt_ok","erro");
-        }
+    	validarCampos();
     });
 
 	$("#Arquivo_Foto_Aluno").change(function(e){
     	$("#LegendaUpload").html("Arquivo Carregado");
     });
+
+    $("#adicionarProducao").on("click", function(){
+		validarOficina();
+	});
 });
 
+function validarCampos(){
+	var uploadUrl = 'url("http://localhost:8080/AmorimVs2/img/foto_verde.png")';
+	if($("#atividadeNova").val() == "")
+		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+	else if(!$(".inputImg").hasClass("clicado"))
+		mensagem("Escolha um tipo de atividade.","OK","bt_ok","erro");
+	else if($("#foto").css("background-image") == uploadUrl && $(".clicado").prev().attr("id") == "arquivo-icon")
+		mensagem("Escolha um arquivo.","OK","bt_ok","erro");
+	else if($("#inputLink").val() == "" && $(".clicado").prev().attr("id") != "arquivo-icon")
+		mensagem("Preencha com o link.", "OK","bt_ok","erro");
+	else
+		buscarValores();
+}
+function salvarAtividade(pAnoLetivo, pArquivo, pAtividade){
+	var retorno = "";
+	$.ajax({
+		url: path + "ProducaoAluno",
+		type: "POST",
+		data: "action=create&anoLetivo=" +pAnoLetivo+"&texto="+pAtividade+"&aluno="+alunoID+"&tipo=6&categoria=1&arquivo="+pArquivo,
+		async: false,
+		crossDomain: true,
+		beforeSend: function(){
+			loading("inicial");
+		},
+		success:function(data){
+			retorno = mensagem("Atividade extra cadastrada com sucesso.","OK","bt_ok","sucesso");
+			uploadArquivo(data);
+			limparAtividade();
+		}, 
+		complete:function(){
+			loading("final");
+		},
+		erro: function(){
+			mensagem("Erro, atividade extra não cadastrada.","OK","bt_ok","alerta");
+		}
+	});
+	return retorno;
+}
+function limparAtividade(){
+	$("#atividadeNova, #inputLink").val("");
+	$("#atividadeNova").focus();
+	var ckTipoArquivo = $(".inputImg");
+	for(var i = 0; i < ckTipoArquivo.length; i++){
+		if(ckTipoArquivo.hasClass("clicado"))
+			$(".inputImg").css("background-position", "0px 0px").removeClass("clicado");
+	}
+	$("#foto").css("background-image","url(http://localhost:8080/AmorimVs2/img/foto_verde.png)");	
+	$("#link,#arquivo").hide();
+}
+function buscarValores(){
+	var nmAtividade = $("#atividadeNova").val();
+    var dsArquivo = $("#inputLink").val();
+    var nrAnoLetivo = getAnoLetivo('idAnoLetivo');
+    salvarAtividade(nrAnoLetivo, dsArquivo, nmAtividade);	
+}
 function CarregaProducao()
 {
 	var PrimeiroAtividade = false;
-
 	HtmlContent1="";
 	HtmlContent2="";
 	HtmlContent3="";
-
+	
 	if(!PrimeiroAtividade)
 	{
 		HtmlContent2 += "<li id='List_ADD' ArquivoSelect=''> Nova Atividade </li>";
@@ -185,7 +192,6 @@ function CarregaProducao()
 
 	for(var a = 0; a < dataProducaoAluno.length; a++)
 	{
-
 		if(dataProducaoAluno[a].arquivo){
 			extensao = (dataProducaoAluno[a].arquivo.substring(dataProducaoAluno[a].arquivo.lastIndexOf("."))).toLowerCase();
 		}
@@ -205,7 +211,6 @@ function CarregaProducao()
 
 			else if(dataProducaoAluno[a].tipo.idtipoProducaoAluno == 6)
 			{
-
 				if (extensao == ".docx" || extensao == ".doc")
 				{
 					HtmlContent2 += "<a href='" + dataProducaoAluno[a].arquivo + "'><li ArquivoSelect='"+dataProducaoAluno[a].arquivo+"' ImgSelect='"+dataProducaoAluno[a].imagem+"'> "+dataProducaoAluno[a].texto+" </li></a>";
@@ -288,7 +293,8 @@ function getAlunoByUsuario()
 }
 
 function reLoadClick(){
-	$("#menu_lateral_portfolio li").click(function(){
+	var itensNav = $("#menu_lateral_atividade li,#menu_lateral_portfolio li, #menu_lateral_fichas li");
+	$(itensNav).click(function(){
         var ex = true;
 		var arquivo = $(this).attr('arquivoselect');
 		extensao = (arquivo.substring(arquivo.lastIndexOf("."))).toLowerCase();
@@ -301,7 +307,6 @@ function reLoadClick(){
 
 		if(ex){
 			if($(this).html().length != 1){
-
 				$("#Prod_Aluno_Content li").not(':hidden').css("background-color", "#ECEBE5");
 				$(this).not(':hidden').css("background-color", "#D6E5A9");
 
@@ -329,7 +334,6 @@ function reLoadClick(){
 
 function addFileTo(ID)
 {
-
     var formData = new FormData($('#Cadastro_Form_imagem_PA')[0]);
     formData.append("arquivo", Arquivo);
 
@@ -349,7 +353,6 @@ function addFileTo(ID)
             dataProducaoAluno 	=	getData("ProducaoAluno", null);
             tipoSelecao = "atividade";
             CarregaProducao();
-
             $("#LegendaUpload").html("Aguardando Arquivo");
 
             //CarregaProducao();
@@ -387,8 +390,7 @@ function getAnoLetivo(formato){
 /* ------ Requisições Ajax ------ */
 
 // Requisições GET
-function getOficinasAluno()
-{
+function getOficinasAluno(){
 	var retorno;
 
     $.ajax({
@@ -402,8 +404,8 @@ function getOficinasAluno()
 
 	return retorno;
 }
-function getAtividadesOficina(idoficina)
-{
+
+function getAtividadesOficina(idoficina){
 	var retorno;
 
 	$.ajax({
@@ -464,8 +466,7 @@ function getAtividadesRecentes()
 }
 
 // Requisições POST
-function postProducaoOficina()
-{
+function postProducaoOficina(){
     var d = new Date();
     var data = { ano: d.getFullYear(), mes: d.getMonth()+1, dia: d.getDate() }
     var anoLetivo = getAnoLetivo('idAnoLetivo');
@@ -485,26 +486,34 @@ function postProducaoOficina()
 			uploadArquivo(idPost);
 			mensagem("Produção cadastrada com sucesso!","OK","bt_ok","sucesso");
 			showNovaAtividade(idPost);
+			limparProducaoOficina();
         },
         complete: function () { loading("final"); },
 		error: function(e) { mensagem("Erro ao cadastrar uma nova produção.","OK","bt_ok","erro"); }
     });
 }
 function uploadArquivo(idpost) {
-    var formData = new FormData($("#form_Nova_Producao")[0]);
+
+    var formData = new FormData($("#Cadastro_Form_imagem_PA")[0]);
     formData.append("arquivo", Arquivo);
 
     $.ajax({
     	url: path + 'ProducaoAluno/upload/producaoAluno/arquivo/' + idpost,
     	type: "POST",
     	crossDomain: true,
-    	async: false,
+    	async: true,
 		mimeType:"multipart/form-data",
         contentType: false,
         cache: false,
         processData:false,
         data: formData,
     });
+}
+
+function limparProducaoOficina(){
+	$("#texto").val("");
+	$("#texto").focus();
+	Arquivo = "";
 }
 
 /* ------ Funções SHOW ------ */
@@ -539,9 +548,8 @@ function showOficinaContent(id) {
 				htmlAtividades +=			"<span>"+atividades[a].texto+"</span>";
 				htmlAtividades +=		"</div>";
 				htmlAtividades +=	"</div>";
-
-				$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			}
+			$('#oficina'+id).find('.Prod_Oficina_Content').append(htmlAtividades);
 			$('#oficina'+id).addClass('atividadesListadas')
 		}
 	}
@@ -569,7 +577,7 @@ function showOficinaContent(id) {
 		$(this).find('.Prod_Oficina_Content').slideUp();
 	});
 }
-function showAtividadesExtraContent() {
+function showAtividadesExtraContent(){
 	if ( !$('#AtvExtra').hasClass('atividadesListadas') ) {
 		var atividades = getAtividadesExtras();
 		var htmlAtividades = new String();
@@ -618,7 +626,7 @@ function showNovaAtividade(idNovaAtividade) {
 	}
 }
 function showAtividadesRecentes() {
-	if ( ! $('#container_tela_padrao').hasClass('Atividades_Recentes_Listadas') ) {
+	if ( ! $('#id_tela_padrao').hasClass('Atividades_Recentes_Listadas') ) {
 		var atividades = getAtividadesRecentes();
 		var htmlRecentes = new String();
 		var tipoAtividade;
@@ -704,16 +712,23 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 	}
 }
 
+function validarOficina(){
+	if($("#texto").val() == "")
+		mensagem("Preencha o nome da atividade.","OK","bt_ok","erro");
+	else if(Arquivo == "")
+		mensagem("Escolha um arquivo.","OK","bt_ok","erro");
+	else
+		postProducaoOficina();
+}
+
 // function carregaCategoria(){
 // 	htmlCategoria = "";
-// 	debugger;
 // 	$.ajax({
 // 		url: path + "CategoriaProducaoAluno",
 // 		async: false,
 // 		crossDomain: true,
 // 		type: "GET",
 // 		success: function(dataCategoria){
-// 			debugger;
 // 			for(var i = 0; i < dataCategoria.length; i++){
 // 				htmlCategoria += '<div class="infoValueP BorderBottom " style="height: 42px"> '+dataCategoria[i].categoria+' </div> <div class="inputImg tipoP BorderBottom categoria" style="height: 42px " value="'+dataCategoria[i].idcategoriaProducaoAluno+'"> </div>';
 // 			}
@@ -726,7 +741,7 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 // 				$(this).css("background-position","-39px 0px");
 // 				categoria = $(this).attr('value');
 // 			});
-// 			$("div.inputImg").not(".vazio, .categoria").click(function(){
+// 			$(" inputImg").not(".vazio, .categoria").click(function(){
 // 				$("div.inputImg").not('.categoria').css("background-position","0px 0px");
 // 				$(this).css("background-position","-39px 0px");
 
@@ -743,3 +758,4 @@ function verifyTamanhoNomeRoteiro(parent, element) {
 // 		}
 // 	});
 // }
+

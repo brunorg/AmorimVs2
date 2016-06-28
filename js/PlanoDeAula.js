@@ -133,22 +133,22 @@ $(document).ready(function() {
 		   mensagem("Data ínicio deve ser menor que data de término!","OK","bt_ok","erro");
 		   erro = true;
 		}
-		if (dataAtual > dataInicioV){
-			 mensagem("Data ínicio deve ser maior que a data de hoje!","OK","bt_ok","erro");
-			 erro = true;
-		}
+		// if (dataAtual > dataInicioV){
+		// 	 mensagem("Data ínicio deve ser maior que a data de hoje!","OK","bt_ok","erro");
+		// 	 erro = true;
+		// }
 		dataInicio = changeDatePosition(dataInicio, 1, '-');
 		dataFim = changeDatePosition(dataFim, 1, '-');
 		idOficina = JSON.parse(localStorage.oficinaProfessor).oficina.idoficina;
 
-		postData = "action=create&idOficina="+idOficina+"&data_ini="+dataInicio+"&objetivos=&idBlog=&tarefa_casa=&registro_atividade=&data_fim="+dataFim+"&idProfessor="+professorID;
+		postData = "idOficina="+idOficina+"&data_ini="+dataInicio+"&objetivos=&idBlog=&tarefa_casa=&registro_atividade=&data_fim="+dataFim+"&idProfessor="+professorID;
 
 		if (erro == true){
 			return false;
 		} else {
 
 			$.ajax({
-				url: path+"PlanoAula/",
+				url: path+"PlanoAula/CriarPlanoAula",
 				type: "POST",
 				crossDomain: true,
 				beforeSend: function(){
@@ -158,7 +158,7 @@ $(document).ready(function() {
 
 				data: postData,
 				success: function(d) {
-					if (d>0){
+					if (d.idplano_aula != 0){
 					//IdentificadorPlanoEstudo = d;
 						$("#box_novo").removeClass('exibir');
 						loading("final");
@@ -166,7 +166,7 @@ $(document).ready(function() {
 						return mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
 					}else{
 						loading("final");
-						return mensagem("Data do plano de estudo deve ser maior que o último cadastrado!","OK","bt_ok","erro");
+						return mensagem("Não é possível cadastar um plano de aula na mesma data que um já existente","OK","bt_ok","erro");
 					}
 				}
 			});
@@ -330,7 +330,7 @@ function reSetPlano(ID) {
 		crossDomain: true,
 		success: function(data)
 		{
-			planoAula = data;
+			planoAula = data[0];
 		}
 	});
 
@@ -576,7 +576,11 @@ function carregarPlano(){
 	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula.tarefa_casa+"</textarea>");
 	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula.registro_atividade+"</textarea>");
 	if (confEditar == true) {
-		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+			$('#roteiros').attr('href','m_roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		else
+			$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+		$('.dataPassada').unbind('click');
 		$('#roteiros').removeClass('dataPassada');
 		$('#btnSubmit').show();
 	} else {

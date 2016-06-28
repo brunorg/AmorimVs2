@@ -14,6 +14,7 @@ tr.linha_abas{
 	background:#bfbda9;
 }
 td.aba_oficina{
+	box-sizing: border-box;
 	font-size:13px;
 	padding:0;
 	height: 53px;
@@ -23,7 +24,6 @@ td.aba_oficina{
 	position: relative;
 	cursor: pointer;
 	border-right: 2px solid #fff;
-	width: 79px;
     display: block;
     float: left;
 }
@@ -42,12 +42,14 @@ p{
 	opacity: 0;
 }
 .oficina_titulo {
-	position: relative;
+	padding: 0 10px;
+	position: absolute;
 	width: 100%;
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
-	line-height: 50px;
+	top: 50%;
+	transform: translate(0, -50%);
 }
 .feedback_oficinas_false
 {
