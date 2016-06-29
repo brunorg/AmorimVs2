@@ -6,36 +6,37 @@
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
 
         <!--Style-->
-        <link rel="stylesheet" type="text/css" href="css/style.css" />  
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />
         <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
-        <link rel="stylesheet" type="text/css" href="css/planoDeEstudo.css" />  
+        <link rel="stylesheet" type="text/css" href="css/m_planoDeEstudo.css" />
         <!--Fim Style-->
-        
+
         <!--Script JS-->
-        <script type="text/javascript" src="js/path.js"></script>        
-        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>        
+        <script type="text/javascript" src="js/path.js"></script>
+        <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        
+
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
-              
-        <script type="text/javascript" src="js/funcoes.js"></script>       
+
+        <script type="text/javascript" src="js/funcoes.js"></script>
         <script type="text/javascript" src="js/autenticador.js"></script>
-                        
+
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
-        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script> 
-        <script type="text/javascript" src="js/calendario.js"></script>        
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/PlanoDeEstudo.js"></script>
-         
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
         <script src="js/jquery.secret-source.min.js"></script>
-        <script src="js/bjqs-1.3.min.js"></script> 
+        <script src="js/bjqs-1.3.min.js"></script>
         <script>
             $(document).ready(function($) {
                 $('#banner-fade').bjqs({
@@ -44,35 +45,18 @@
                     responsive  : true
                 });
             });
-         </script>    
+         </script>
          <!--Fim JS-->
-        
+
     </head>
 
     <body>
         <!--Conteudo Geral-->
         <div id="Container" ng-controller="geralCTRL">
             <div ng-include="'m_header.html'">
-                 <!-- Template: m_header.html -->
+                <!-- Template: m_header.html -->
             </div>
-            <div id="Conteudo_Area">
-                <!--Coluna a esquerda-->
-                <div class="Conteudo_Coluna" id="Content_lateral">
-                    <!--Menu lateral-->
-                    <div ng-include="'template/menu.html'">
-                        <!--  Template: menu.html -->
-                    </div>
-                    <!--Calendario-->
-                    <div id="Content_lateral_Calendario">
-                        <div id="datepicker"></div>
-                        <div id="rodape_calendario">
-                            <p id="apontar">Apontar presença grupo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Coluna geral central-->
-                <!--bloqueio para a rolagem top-->              
+                <!--bloqueio para a rolagem top-->
                 <div class="Conteudo_Coluna" id="content_central">
                     <div id="conteudo_plano">
                         <div class="Plano_Estudo_Content_Titulo">
@@ -81,8 +65,8 @@
                             <a href="#" class="historico"></a>
                             <a href="#" class="novo"></a>
                         </span>
-                    </div>           
-                    
+                    </div>
+
                     <div id="box_historico" class="esconder">
                         <div id="container">
                             <div id="banner-fade">
@@ -125,10 +109,10 @@
                                     </li>
 
                                 </ul>
-                            </div>      
-                        </div>                        
+                            </div>
+                        </div>
                     </div>
-                    
+
                     <div id="box_novo" class="esconder">
                       <form>
                         <div id="linha1" class="bloco_campo">
@@ -142,7 +126,7 @@
                             <div class="input_data_value">
                                 <input type="text" id="data_fim">
                             </div>
-                        </div>                 
+                        </div>
                       </form>
                       <div id="botoes">
                             <input type="submit" id="enviar" value="">
@@ -152,17 +136,17 @@
                     <div class="Plano_Estudo_Content">
                             <!-- <form name="frmPlanoEstudo" id="frmPlanoEstudo" method="POST" > -->
 
-                            <input type="hidden" name="id" id="id"  /> 
-                            <input type="hidden" name="action" id="action"  /> 
-                            <input type="hidden" name="dataInicio" id="dataInicio"  /> 
-                            <!-- <input type="hidden" name="objetivoTutoria" id="objetivoTutoria"  /> 
+                            <input type="hidden" name="id" id="id"  />
+                            <input type="hidden" name="action" id="action"  />
+                            <input type="hidden" name="dataInicio" id="dataInicio"  />
+                            <!-- <input type="hidden" name="objetivoTutoria" id="objetivoTutoria"  />
                             <input type="hidden" name="objetivoPessoal" id="objetivoPessoal"  />  -->
                             <!-- <input type="hidden" name="tarefaDeCasa" id="tarefaDeCasa"  />  -->
                             <!-- <input type="hidden" name="observacoesTutor" id="observacoesTutor"  />  -->
-                            <input type="hidden" name="status" id="status"  /> 
-                            <input type="hidden" name="dataFim" id="dataFim"  /> 
+                            <input type="hidden" name="status" id="status"  />
+                            <input type="hidden" name="dataFim" id="dataFim"  />
                             <input type="hidden" name="aluno" id="aluno"  />
-                                                    
+
                         <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja">
                             <a id="L_Novo_Plano" href="#">
                                 <div class="Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content Bg_Imagem_Calendario"></div>
@@ -186,15 +170,15 @@
 
                         <div class="Plano_Estudo_Content_Tarefas_Casa_Content">
                             <div class="Plano_Estudo_Content_Tarefas_Casa_Content_Titulos">
-                                <div class="Plano_Estudo_Content_Tarefas_Casa_Content_Titulo1">Tarefa de casa</div>                             
+                                <div class="Plano_Estudo_Content_Tarefas_Casa_Content_Titulo1">Tarefa de casa</div>
                             </div>
 
                             <div class="Plano_Estudo_Content_Tarefas_Casa_Conteudo">
                                 <div class="Plano_Estudo_Content_Tarefas_Casa_Conteudo_Texto"></div>
-                                
+
                             </div>
 
-                                    
+
 
                         </div>
 
@@ -213,7 +197,7 @@
                             </div>
 
                             <div class="Objetivos_Semana_Conteudo_Titulo_Tarefas">
-                                
+
                             </div>
 
                             <div class="Objetivos_Semana_Conteudo_Tarefas_Content">
@@ -245,7 +229,7 @@
                             <!-- Conteúdo gerado por javascript -->
                             </table>
 
-                            
+
 
                         </div>
 
@@ -276,7 +260,7 @@
                                 <div class="Plano_Estudo_Content_Observacoes_Tutor_Content_Titulo">Mensagem</div>
                             </div>
 
-                            
+
                                 <table id="Observacoes_Tutor" class="Plano_Estudo_Content_Observacoes_Tutor_Tabela_Parent" style='width: 92% !important;'>
 
                                     <tr class="Plano_Estudo_Content_Registro_Diario_Tabela">
@@ -284,7 +268,7 @@
 
 
                                         <td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto">
-                                            
+
 
                                         </td>
                                     </tr>
@@ -303,23 +287,24 @@
 
                         <div class="Plano_Estudo_Content_Registro_Diario_Content" id="Observacao_Pais">
                             <div class="Plano_Estudo_Content_Registro_Diario_Content_Titulos">
-                                
+
                                 <div class="Plano_Estudo_Content_Observacoes_Pais_Content_Titulo">Mensagem</div>
                             </div>
                                 <div class="overtable">
                             <table class="Plano_Estudo_Content_Observacao_Pais">
-                            
+
                                 <!--<tr class="Plano_Estudo_Content_Registro_Diario_Tabela">-->
-                            
-                            
+
+
                                     <td class="Plano_Estudo_Content_Registro_Diario_Tabela_Texto">
                                         <!-- <textarea id="observacoesPais" name="observacoesPais" class="Plano_Estudo_Content_Observacoes_Pais_Textarea"></textarea>  -->
-                            
-                            
+
+
                                     </td></table></div>
                                     <!--
-                                </tr>
-                                </div>-->
+                                        </tr>
+                                        </div>
+                                    -->
 
                     </div>
 
@@ -333,12 +318,12 @@
 
                     <!-- </form> -->
 
-                </div> 
-                </div>           
-                </div>                
-            </div>                   
+                </div>
+                </div>
+                </div>
+            </div>
         </div><!--Fim Conteudo-->
         <div id="boxMensagemGeral"></div>
-        <div class="boxGlobal"></div>       
+        <div class="boxGlobal"></div>
     </body>
 </html>

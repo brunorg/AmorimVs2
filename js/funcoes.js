@@ -1410,19 +1410,19 @@ function showUploadFileBox() {
 	var html = "";
 
 	html += '<div class="blackPainel">';
-	html += 	'<div id="JanelaUploadPortifolio">';
-	html += 		'<div class="Titulo_janela_upload">';
+	html += 	'<div class="uploadFileBox">';
+	html += 		'<div class="uploadFileBoxTitulo">';
 	html += 			'Upload Foto Aluno';
-	html += 			'<div class="close_upload_producao"></div>';
+	html += 			'<div class="close_upload_producao" onclick="hideUploadFileBox()"></div>';
 	html += 		'</div>';
-	html += 		'<div id="box_foto">';
-	html += 			'<div id="foto"></div>';
+	html += 		'<div class="uploadFileBoxImg">';
+	html += 			'<div class="uploadFileBoxIcon"></div>';
 	html += 		'</div>';
 	html += 		'<div id="LegendaUpload">Aguardando Arquivo</div>';
 	html += 		'<form id="inserirArquivo">';
 	html += 			'<input type="hidden" id="action" name="action" value="update">';
 	html += 			'<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
-	html += 			'<input type="hidden" class="perfil" id="idAluno" value="">                           ';
+	html += 			'<input type="hidden" class="perfil" id="idAluno" value="">';
 	html += 			'<div class="campoConfirmaUpload">';
 	html += 				'<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="salvarFoto()">';
 	html += 			'</div>';
@@ -1432,6 +1432,10 @@ function showUploadFileBox() {
 
 	$("body").append(html);
 	$(".blackPainel").show();
+}
+
+function hideUploadFileBox() {
+	$(".blackPainel").remove();
 }
 
 function alterarFoto() {

@@ -5,18 +5,30 @@
             <div ng-init="usuario()">
                 <div id="Cabecalho_Perfil_Area_Foto_Content">
                     <!--Foto do usuário, neste caso, do aluno-->
-                    <div id="Cabecalho_Perfil_Area_Foto">  
-                        <img id='_foto' src='{{usuarioFoto}}'/>                          
+                    <div id="Cabecalho_Perfil_Area_Foto">
+                        <label for="sessionOptions">
+                            <img id='_foto' src='{{usuarioFoto}}'/>
+                        </label>
+                        <div style="display:none">
+                            <input type="checkbox" ng-model="sessionOptions" id="sessionOptions" name="session_options" />
+                        </div>
+                        <div class="session_options_panel" ng-show="sessionOptions">
+                            <ul class="session_options">
+                                <li>Alterar senha</li>
+                                <li ng-click="logout()">Sair</li>
+                            </ul>
+                        </div>
+
                     </div>
-                     <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
-                </div>                            
+                     <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div>
+                </div>
             </div>
-        </div>  
-    </div>                
+        </div>
+    </div>
 </div>
 <div class="Conteudo_Coluna" id="Content_lateral_left">
-    <div id="Content_lateral_Menu">    
-        <div  ng-repeat="menu in menuHTML">                         
+    <div id="Content_lateral_Menu">
+        <div  ng-repeat="menu in menuHTML">
             <a href="{{menu.href}}">
                 <div class="Content_lateral_Menu_Opcao {{menu.class}}">
                     <div ng-if="menu.class== 'mensagens' && menuInfoM != '0' && menuInfoM != ''" class="label" id="num_msg_nLidas">{{menuInfoM}}</div>
@@ -25,5 +37,5 @@
                 </div>
             </a>
         </div>
-    </div>    
+    </div>
 </div>
