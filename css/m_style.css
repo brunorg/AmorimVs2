@@ -22,10 +22,13 @@ html, body
 }
 #Container{
 	width: 100%;
-	height: 607px;
+	height: 100%;
 	margin:0 auto;
+	overflow-y: scroll;
 }
 #Cabecalho_Menu_Area{
+	position: fixed;
+	z-index: 2;
 	width:100%;
 	height:40px;
 	font-size: 18px;
@@ -151,7 +154,7 @@ ul.session_options > li:last-child {
 /*Conteudo geral*/		
 #Conteudo_Area{
 	width:100%;
-	height:100%;
+	height: calc(100% - 40px);
 	background-color: #FFF;
 	float:left;
 }
@@ -168,6 +171,7 @@ ul.session_options > li:last-child {
 #Content_lateral_left{
 	background-color: #F2F2ED;
 	position: absolute;
+	top: 40px;
 	left: -330px;
 	z-index: 9;
 	width: 330px;
@@ -639,7 +643,8 @@ ul.session_options > li:last-child {
 #m_blocoGeral{
 	position: relative;
 	width: 100%;
-	height: 574px;
+	height: auto;
+	top: 40px;
 	padding: 24px;
 	z-index: 1;
 	background: #FFF;
