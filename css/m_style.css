@@ -47,6 +47,30 @@ html, body
 	background: url(../img/ic_menu_hamburger.png) no-repeat;
 	padding: 3px 15px;
 }
+.session_options_panel {
+	position: absolute;
+	width: auto;
+	height: auto;
+	background-color: #fff;
+	color: #666;
+	padding: 5px 15px;
+	right: 0;
+	z-index: 2;
+}
+ul.session_options {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+ul.session_options > li {
+	margin: 0;
+	padding: 10px 0;
+	font-size: 17px;
+	border-bottom: 1px solid #ccc;
+}
+ul.session_options > li:last-child {
+	border-bottom: none;
+}
 
 #Cabecalho_Perfil_Area{
 	width:100%;
@@ -58,6 +82,7 @@ html, body
 #Cabecalho_Perfil_Area_Foto_Content{
 	height: 100%;
 	float:left;
+	position: relative;
 }
 #Cabecalho_Perfil_Area_Foto {
     height: 33px;
