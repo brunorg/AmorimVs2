@@ -1063,6 +1063,11 @@ function chamaFormSenha(){
 	$( "#boxMensagemGeral" ).load("AlterPass.html");
 }
 
+function chamarFormSenhaMobile() {
+	$( "#boxMensagemGeral" ).css("display","block");
+	$( "#boxMensagemGeral" ).load("m_AlterPass.html");
+}
+
 function atualizarCadastroModal(perfil){		 
 	$(".box_margin_alter").css("display","block");
 

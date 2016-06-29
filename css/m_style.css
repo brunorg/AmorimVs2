@@ -7,6 +7,8 @@ html, body
 	background:#d6d6d3;
 	-webkit-transform-origin: top left;
 	-moz-transform-origin: top left;
+	height: 100%;
+	width: 100%;
 
 }
 
@@ -46,30 +48,6 @@ html, body
 .menuHamb{
 	background: url(../img/ic_menu_hamburger.png) no-repeat;
 	padding: 3px 15px;
-}
-.session_options_panel {
-	position: absolute;
-	width: auto;
-	height: auto;
-	background-color: #fff;
-	color: #666;
-	padding: 5px 15px;
-	right: 0;
-	z-index: 2;
-}
-ul.session_options {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-ul.session_options > li {
-	margin: 0;
-	padding: 10px 0;
-	font-size: 17px;
-	border-bottom: 1px solid #ccc;
-}
-ul.session_options > li:last-child {
-	border-bottom: none;
 }
 
 #Cabecalho_Perfil_Area{
@@ -139,6 +117,34 @@ ul.session_options > li:last-child {
 
 #Cabecalho_Perfil_Area_Descricao_Content #home{
 	margin-left: 13px;
+}
+
+/* Menu de sessão */
+.session_options_panel {
+	position: absolute;
+	width: auto;
+	height: auto;
+	background-color: #fff;
+	color: #666;
+	padding: 5px 15px;
+	right: 0;
+	z-index: 2;
+	border: 1pt solid #16becf;
+	border-top: none;
+}
+ul.session_options {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+ul.session_options > li {
+	margin: 0;
+	padding: 10px 0;
+	font-size: 17px;
+	border-bottom: 1px solid #ccc;
+}
+ul.session_options > li:last-child {
+	border-bottom: none;
 }
 
 
@@ -1296,6 +1302,30 @@ font-family: "proxima-nova",sans-serif;
 	width: 287%;
 }
 
+
+/* Modal geral mobile */
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 22px;
+	z-index: 10;
+}
+
+.modal-geral {
+	background-color: #f2f2fe;
+	width: 600px;
+	height: 224px;
+}
+
+.modal-geral-content::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+/* Fim modal geral mobile */
 
 .celulaMedia{
 	width: 66.2%;
