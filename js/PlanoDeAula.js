@@ -566,29 +566,19 @@ function trataDatas(data_ini, data_fim){
 }
 
 function carregarPlano(){
-	var dataN = Date.UTC(planoAula.data_fim.split("-")[0].toString(), planoAula.data_fim.split("-")[1].toString(), planoAula.data_fim.split("-")[2].toString());
-	if (dataN >= dataAtual) confEditar = true;
-	else confEditar = false;
 
 	trataDatas(planoAula.data_ini, planoAula.data_fim);
 
 	$('#divObjetivos').html("<textarea name='objetivo' id='objetivo' >"+planoAula.objetivos+"</textarea>");
 	$('#divTarefas').html("<textarea name='tarefaDeCasa' id='tarefaDeCasa' >"+planoAula.tarefa_casa+"</textarea>");
-	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula.registro_atividade+"</textarea>");
-	if (confEditar == true) {
-		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
-			$('#roteiros').attr('href','m_roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
-		else
-			$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
-		$('.dataPassada').unbind('click');
-		$('#roteiros').removeClass('dataPassada');
-		$('#btnSubmit').show();
-	} else {
-		$('#roteiros').attr('href','#');
-		$('#roteiros').addClass('dataPassada');
-		$('textarea').attr('readonly','true');
-		$('#btnSubmit').hide();
-	}
+	$('#divRegAtividade').html("<textarea name='regAtividade' id='regAtividade' >"+planoAula.registro_atividade+"</textarea>")
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+		$('#roteiros').attr('href','m_roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+	else
+		$('#roteiros').attr('href','roteirosPlanejamentoAula.html?planoAula='+planoAula.idplano_aula);
+	$('.dataPassada').unbind('click');
+	$('#roteiros').removeClass('dataPassada');
+	$('#btnSubmit').show();
 	listaObjetivos(planoAula.idplano_aula);
 
 	$('#id').val(planoAula.idplano_aula);
