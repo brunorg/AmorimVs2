@@ -1068,3 +1068,12 @@ p.bjqs-caption{
 .ui-datepicker-header a.ui-state-hover{
 	background-color: #bbb !important;
 }
+
+
+.grande{
+	height: 500px;
+}
+
+.grande textarea{
+	height: 480px;
+}
