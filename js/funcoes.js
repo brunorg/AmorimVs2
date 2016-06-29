@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 
 	var altura = window.innerHeight; 
-	$('#m_blocoGeral').css('height',altura-30);
+	//$('#m_blocoGeral').css('height',altura-30);
 	
 	setTimeout(function(){
 
