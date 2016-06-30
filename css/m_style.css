@@ -923,11 +923,9 @@ ul.session_options > li:last-child {
 /* CSS das celulas grandes(ocupam toda a linha)*/
 .celulaGrande{
 	position:relative;
-	bottom:-8px;
 	width: 100%;
 	overflow: auto;
 	border: 2px solid #B6B6B0;
-	float: left;
 	background-color: #F2F1ED;
 	margin-bottom: 6px;
 }
@@ -1310,9 +1308,9 @@ font-family: "proxima-nova",sans-serif;
 /* Modal geral mobile */
 .modal {
 	position: fixed;
-	top: 50%;
+	top: 25%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	margin-left: -300px;
 	padding: 22px;
 	z-index: 10;
 }
@@ -1320,16 +1318,62 @@ font-family: "proxima-nova",sans-serif;
 .modal-geral {
 	background-color: #f2f2fe;
 	width: 600px;
-	height: 224px;
 }
 
-.modal-geral-content::after {
+.modal-geral-content,
+.modal-top-content {
+	margin-bottom: 10px;
+}
+
+.modal-top-content > .modal-title {
+    color: #999;
+    font-family: Proxima Nova, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: .05em;
+    margin: 0;
+}
+
+.modal-geral-content::after,
+.modal-geral-content::after > div::after {
 	content: "";
 	display: block;
 	width: 100%;
 	clear: both;
 }
+
+.half-size {
+	float: left;
+	width: 50%;
+}
+
+.half-size:first-child {
+	padding-right: 5px;
+}
+.half-size:last-child {
+	padding-left: 5px;
+}
 /* Fim modal geral mobile */
+.transparent-full {
+	background-color: rgba(0,0,0,0);
+}
+
+.input-btn {
+	border: none;
+	border-radius: 0;
+    width: 120px;
+}
+.btn-full {
+	display: block;
+	width: 100%;
+}
+.btn-general {
+    background-color: #02818d;
+    color: white;
+}
+.text-white { color: #fff; }
 
 .celulaMedia{
 	width: 66.2%;
