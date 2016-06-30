@@ -30,7 +30,7 @@
     overflow: hidden;
     background-color: rgb(250,248,246);
     float: left;
-}
+}/*
 
 #btnCancelar{
     overflow: auto;
@@ -52,24 +52,16 @@
     left: 304px;
     position: relative;
     color: white;
-}
+}*/
 
-#btnEnviar:hover{
-    background-color: rgba(22, 190, 207, 0.79);
-}
-
-#btnCancelar:hover{
-    background-color: rgba(22, 190, 207, 0.79);
-}
-
-#btnCancelar input, #btnEnviar input{
+/*#btnCancelar input, #btnEnviar input{
     color: white;
     cursor: pointer;
     width: 100% !important;
     background: transparent !important;
     font-size: 13px !important;
     padding: 10px !important;
-}
+}*/
 
 .bt_ok{
     font-size: 13px !important;
@@ -122,32 +114,47 @@ function alterarSenha(){
 				returnDadosInvalidos();
 			}
 		}
-	}); 
+	});
 }
 </script>
 </head>
 <div id="modalAlterarSenha" class="modal modal-geral">
+    <div class="modal-top-content">
+        <h1 class="modal-title">Alterar senha</h1>
+    </div>
     <div class="modal-geral-content">
         <form id="frm" method="POST" name="frm">
             <div class="celulaGrande">
-                <div class="infoM">Senha atual</div>
+                <div class="infoM">Atual</div>
                 <div class="infoValueM">
                     <input id="senhaAtu" name="numero"  value="" type="password" />
                 </div>
             </div>
             <div class="celulaGrande">
-                <div class="infoM">Senha nova</div>
+                <div class="infoM">Nova</div>
                 <div class="infoValueM">
                     <input id="senhaNova" value="" type="password" maxlength="6" title="Sua senha deve conter no máximo 6 caracteres!"></input>
                 </div>
             </div>
             <div class="celulaGrande">
-                <div class="infoM">Confirmar senha nova</div>
+                <div class="infoM">Confirmação</div>
                 <div class="infoValueM">
                     <input id="senhaConfirma" value="" type="password" maxlength="6" title="Sua senha deve conter no máximo 6 caracteres!"></input>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="modal-bottom-content">
+        <div class="half-size">
+            <div id="btnCancelar" class="btn-full btn-general">
+                <input type="button" class="btn-full text-white transparent-full" id="btnCancelarAlterarSenha" name="btnUser" value="Cancelar" onClick="cancelaAlter()"/>
+            </div>
+        </div>
+        <div class="half-size">
+            <div id="btnEnviar" class="btn-full btn-general">
+                <input type="button" class="btn-full text-white transparent-full" id="btnEnviarAlterarSenha" name="btnUser" value="Enviar"  onClick="alterarSenha()" />
+            </div>
+        </div>
     </div>
 </div>
 <!--
