@@ -639,7 +639,10 @@ function getUserRemetente(idUser){
 		crossDomain: true,
 		url: path + "Usuario/" + idUser,
 		success:function(dataUser){
-			html += '<div class="caixa_remetente"> ' +dataUser.professor.nome+ ' </div>';			
+			if (dataUser.professor != undefined)
+				html += '<div class="caixa_remetente"> ' +dataUser.professor.nome+ ' </div>';			
+			else
+				html += '<div class="caixa_remetente"> ' +dataUser.aluno.nome+ ' </div>';			
 		}
 	});
 	return html;

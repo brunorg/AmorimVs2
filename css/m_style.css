@@ -1671,7 +1671,7 @@ object{
 	height: 100%;
 }
 .mCSB_inside > .mCSB_container{
-	margin-right: 0;
+	margin-right: 0 !important;
 }
 
 .Objetivos_Resultado_Desempenho{

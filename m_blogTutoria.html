@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8" />
+		<title> Tutoria </title>
+		<link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon" />
+
+		<!-- Style -->
+        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+		<link rel="stylesheet" type="text/css" href="css/m_style.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="css/oficinas_vs2.css" />
+		<link rel="stylesheet" type="text/css" href="css/blogTutoria.css" />
+		<link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
+
+		<!-- Script JS -->
+		<script type="text/javascript" src="js/path.js"></script>
+		<script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/malihu.3.0.3/mCustomScrollbar.js"></script>
+		<script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/calendario.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="js/blogTutoria.js"></script>
+        <script type="text/javascript" src="js/autenticador.js"></script>
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
+        <script type="text/javascript" src="angular/app/app.js"></script>
+        <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
+	</head>
+	<body>
+		<!--Conteudo Geral-->
+		<div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: topo.html -->
+            </div>
+            <div id="Conteudo_Area">
+            	<!--Coluna geral central-->
+                <div id="m_blocoGeral">
+					<div id="oficinasContainer" class="tutorias_container">
+                
+                        <div class="tutoria_boxes_container">
+                            <div id="blogTutoria" class="blog_tutoria box_blog scroll_receiver">
+                            	<div id="postagensContainer" class="blog_postagens scroll_limiter"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+        <!--Fim Conteudo-->
+        <div id="boxMensagemGeral" ></div>
+        <div class="boxGlobal"></div>
+	</body>
+</html>
