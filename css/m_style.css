@@ -225,13 +225,19 @@ ul.session_options > li:last-child {
 	    border-radius: 50%;
 	}
 
+	/* Início */
+	.home {
+		background-image: url(../img/ic_home.png);
+	}
+	
+	.home-active {
+		background-image: url(../img/ic_home-ativo.png);	
+		background-color: rgba(22, 190, 207, 0.79);	
+	}
+
 	/*Menu Plano de estudo*/
 	.plano { 
 		background-image: url(../img/ic_plano-ativo.png);
-	}
-	
-	.plano:hover { 
-		background-image: url(../img/ic_plano.png); 
 	}
 	
 	.plano-active {
@@ -244,10 +250,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_livro-ativo.png); 
 	}
 
-	.recurso:hover { 
-		background-image: url(../img/ic_livro.png); 
-	}
-
 	.recurso-active {
 		background-image: url(../img/ic_livro.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -255,10 +257,6 @@ ul.session_options > li:last-child {
 	/* Menu roteiros */
 	.roteiros { 
 		background-image: url(../img/ic_menu_roteiros.png); 
-	}
-
-	.roteiros:hover { 
-		background-image:  url(../img/ic_menu_roteiros_ativo.png) 
 	}
 	
 	.roteiros-active {
@@ -269,10 +267,6 @@ ul.session_options > li:last-child {
 	/* Menu Jeiff */
 	.jeiff { 
 		background-image: url(../img/ic_menu_jeiff_pea.png); 
-	}
-
-	.jeiff:hover { 
-		background-image:  url(../img/ic_registroJEIF_ativo.png);
 	}
 	
 	.jeiff-active {
@@ -285,10 +279,6 @@ ul.session_options > li:last-child {
 		background-image:url(../img/ic_menu_rotina.png);
 	}
 
-	.rotinas:hover { 
-		background-image:url(../img/ic_menu_rotina_ativo.png);
-	}
-
 	.rotinas-active {
 		background-image:  url(../img/ic_menu_rotina_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -297,10 +287,6 @@ ul.session_options > li:last-child {
 	/*Menu oficinas*/
 	.oficinas { 
 		background-image: url(../img/ic_oficinas.png); 
-	}
-
-	.oficinas:hover { 
-		background-image: url(../img/ic_oficinas-ativo.png); 
 	}
 
 	.oficinas-active {
@@ -313,10 +299,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_prodAluno.png);						
 	 }
 
-	.prodAluno:hover { 
-		background-image: url(../img/ic_prodAluno-ativo.png);
-	}
-
 	.prodAluno-active {
 		background-image: url(../img/ic_prodAluno-ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -327,21 +309,14 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_forum-ativo.png);
 	}
 
-	.forum:hover { 
-		background-image: url(../img/ic_forum.png); 
-	}
-
 	.forum-active {
 		background-image: url(../img/ic_forum.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
 	}
 	
 	/*Menu mensagens*/				
-	.mensagens { background-image: url(../img/Ic_mensagens-ativo.png);
-			 }
-
-	.mensagens:hover { 
-		background-image: url(../img/ic_mensagens.png); 
+	.mensagens {
+		background-image: url(../img/Ic_mensagens-ativo.png);
 	}
 
 	.mensagens-active {
@@ -354,10 +329,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/bt_tutores_normal.png);
 	}
 
-	.tutoria:hover { 
-		background-image: url(../img/bt_tutores_ativo.png); 
-	}
-
 	.tutoria-active {
 		background-image: url(../img/bt_tutores_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -366,10 +337,6 @@ ul.session_options > li:last-child {
 	/*Menu Tutores*/
 	.tutores { 
 		background-image: url(../img/bt_tutores_normal.png);
-	}
-
-	.tutores:hover { 
-		background-image: url(../img/bt_tutores_ativo.png); 
 	}
 
 	.tutores-active {
@@ -382,10 +349,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/bt_grupo_normal.png);
 	}
 
-	.grupos:hover { 
-		background-image: url(../img/bt_grupo_ativo.png); 
-	}
-
 	.grupos-active {
 		background-image: url(../img/bt_grupo_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -394,7 +357,6 @@ ul.session_options > li:last-child {
 	/*Menu Cadastro*/
 	.cadastro { background-image: url(../img/ic_cadastro-ativo.png); }
 
-	.cadastro:hover { background-image: url(../img/ic_cadastro.png); }
 
 	.cadastro-active {
 		background-image: url(../img/ic_cadastro.png);	
@@ -404,9 +366,6 @@ ul.session_options > li:last-child {
 	/*Menu Agenda*/
 	.agenda{
 		background-image: url(../img/agenda-ativo.png);
-	}				
-	.agenda:hover{
-		background-image: url(../img/agenda.png);
 	}
 	.agenda-active{
 		background-image: url(../img/agenda.png);	
@@ -417,9 +376,6 @@ ul.session_options > li:last-child {
 	/*Menu PresenÃ§a*/
 	.presenca{
 		background-image: url(../img/presencas-ativo.png);
-	}				
-	.presenca:hover{
-		background-image: url(../img/presencas.png);
 	}
 	.presenca-active{
 		background-image: url(../img/presencas.png);	
@@ -431,10 +387,8 @@ ul.session_options > li:last-child {
 	.carteirinhas{
 		background-image: url(../img/ic_carteirinha-ativo.png);
 		
-	}				
-	.carteirinhas:hover{
-		background-image: url(../img/ic_carteirinha.png);
 	}
+
 	.carteirinhas-active{
 		background-image: url(../img/ic_carteirinha.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -446,21 +400,23 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_plano-ativo.png);
 		background-repeat: no-repeat;
 		background-position: 21px 26px;
-	}				
-	.Content_lateral_Menu_Opcao .notificacoes:hover{
-		background-image: url(../img/ic_plano.png);
 	}
+
 	.Content_lateral_Menu_Opcao .notificacoes-active{
 		background-image: url(../img/ic_mensagens.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
 	}
+
 	/*Fim menu NotificaÃ§Ãµes*/
-	
-	.Content_lateral_Menu_Opcao:hover{
-		background-color: rgba(22, 190, 207, 0.79);
-		cursor: pointer;
-	}	
-	
+	.inativo {
+		pointer-events: none;
+	    -webkit-filter: saturate(0%);
+	    -moz-filter: saturate(0%);
+	    -o-filter: saturate(0%);
+	    filter: saturate(0%);
+	    color: #ccc;
+	}
+
 	#menuCalendario{
 		display:none;	
 	}					
@@ -625,10 +581,9 @@ ul.session_options > li:last-child {
 /*Coluna central*/	
 #content_central{
 	position: relative;
+	top: 40px;
 	width: 100%;
     padding: 15px 15px 15px 15px;
-    height: 448px;
-	float:left;
 	overflow:auto;
 }
 #content_central_fixa{

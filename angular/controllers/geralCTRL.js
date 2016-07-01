@@ -79,10 +79,10 @@ app.controller('geralCTRL',function($scope,$http){
 
 				$scope.menuInfoM = localStorage.getItem("textoMsgNLida");
 				$scope.menuInfoF = localStorage.getItem("totalForum");
-				var mobile = redirecionaMobile();
+
 				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
 				var m = ""; 
-				if(mobile){
+				if(isMobile()){
 					m = "m_";					
 				}
 
@@ -95,6 +95,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Mensagens', href: m+'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
+
+				if (isMobile())
+					$scope.menuHTML.unshift({label: "Início", href: "m_areaAluno.html", class: "home"});
 
 				$('#Content_lateral').addClass('Content_Menu_Net');
 				$('#boxBanner').load('banner.html').css('display','block');				
@@ -123,10 +126,9 @@ app.controller('geralCTRL',function($scope,$http){
 					inativo = "inativo";
 				}
 
-				var mobile = redirecionaMobile();
 				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
 				var m = ""; 
-				if(mobile){
+				if(isMobile()){
 					m = "m_";					
 				}
 
@@ -151,6 +153,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
 
+				if (isMobile())
+					$scope.menuHTML.unshift({label: "Início", href: "m_areaProfessor.html", class: "home"});
+
 				//Visibilidade do perfil
 				$(".total").addClass("semTop");
 				if(confTutor==true){
@@ -162,10 +167,9 @@ app.controller('geralCTRL',function($scope,$http){
 
 			case "Coordenacao":
 
-				var mobile = redirecionaMobile();
 				//Esse váriavel acrescenta uma letra 'm' nos links assim ele vai redirecionar para o arquivo de mobile
 				var m = ""; 
-				if(mobile){
+				if(isMobile()){
 					m = "m_";					
 				}
 
@@ -184,6 +188,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Mensagens', href: m+'mensagens.html', class: 'mensagens'},
 					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
+
+				if (isMobile())
+					$scope.menuHTML.unshift({label: "Início", href: "m_areaCoordenacao.html", class: "home"});
 
 				//Visibilidade do perfil
 				$("#bt_Inserir").show();
@@ -207,6 +214,9 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Carterinhas', href: 'carteirinhas.html', class: 'carteirinhas'},
 					{label: 'Mensagens', href: 'mensagens.html', class: 'mensagensSecretaria'},
 				];
+
+				if (isMobile())
+					$scope.menuHTML.unshift({label: "Início", href: "m_areaSecretaria.html", class: "areaAluno"});
 
 				//Classe responsável por organizar o layout do menu da área da secretaria
 				$('#Content_lateral').addClass('Content_Menu_Secretaria');

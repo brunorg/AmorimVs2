@@ -613,8 +613,11 @@ function InitSetPlanoEstudo()
 					}
 					
 				}else{
-					confData = dataFinal;		
-					$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','roteirosPlanejamento.html');
+					confData = dataFinal;
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+						$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','m_roteirosPlanejamento.html');
+					else
+						$('.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja a').attr('href','roteirosPlanejamento.html');
 				}
 			}
 		});    	
