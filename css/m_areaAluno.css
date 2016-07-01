@@ -1,0 +1,36 @@
+.microfiche-prev-button, .microfiche-next-button{
+	top: 118px;
+}
+
+.microfiche-prev-button{
+	left: 17px;
+
+}
+
+.microfiche-next-button{
+	left: 570px;
+}
+
+.Objetivos_Semana_Cabecalho_Nome{
+	font-size: 18px;
+}
+
+.Portfolio_Conteudo_Container{
+	height: 90% !important;
+}
+
+.Objetivos_Resultado_Desempenho{
+	height: 256px;
+}
+
+.microfiche-screen{
+	width: 93.2% !important;
+}
+
+.microfiche-film{
+	width: 500000px !important;
+}
+
+.Nome_Roteiro{
+	height: 15%;
+}
