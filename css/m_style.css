@@ -175,6 +175,7 @@ ul.session_options > li:last-child {
 	z-index: 9;
 	width: 330px;
 	height: 100%;
+	overflow-y: scroll;
 }
 
 #Content_lateral_Menu{
