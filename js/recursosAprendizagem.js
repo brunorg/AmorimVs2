@@ -32,8 +32,10 @@ $(document).ready(function(){
 		{
 			$("#bt_Pesquisar").addClass("bt_Pesquisar_Ativo");
 			$("#bt_Inserir").removeClass("bt_Inserir_Ativo");
+			$("#bt_Curtidos").removeClass("bt_Curtidos_Ativo");
 			$("#container_Pesquisa").css("display", "block");
 			$("#container_Inserir").css("display", "none");
+			$("#container_Curtidos").css("display", "none");
 		}
 	});
 	
@@ -43,8 +45,22 @@ $(document).ready(function(){
 		{
 			$("#bt_Inserir").addClass("bt_Inserir_Ativo");
 			$("#bt_Pesquisar").removeClass("bt_Pesquisar_Ativo");
+			$("#bt_Curtidos").removeClass("bt_Curtidos_Ativo");
 			$("#container_Inserir").css("display", "block");
 			$("#container_Pesquisa").css("display", "none");
+			$("#container_Curtidos").css("display", "none");
+		}
+	});
+
+	$("#bt_Curtidos").click(function(){
+		if($("#bt_Curtidos").hasClass("bt_Pesquisar_Curtidos") == false)
+		{
+			$("#bt_Curtidos").addClass("bt_Curtidos_Ativo");
+			$("#bt_Pesquisar").removeClass("bt_Pesquisar_Ativo");
+			$("#bt_Inserir").removeClass("bt_Inserir_Ativo");
+			$("#container_Curtidos").css("display", "block");
+			$("#container_Pesquisa").css("display", "none");
+			$("#container_Inserir").css("display", "none");
 		}
 	});
 	
@@ -356,7 +372,8 @@ $(document).ready(function(){
 
 		var recurso = dataRecursoAprendizagem[i].nomeRecurso;
 
-		if(recurso.length>25){
+		if(recurso.length>25 && 
+		   !/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
 			recurso = recurso.substr(0,25)+'...'; 
 		}
 

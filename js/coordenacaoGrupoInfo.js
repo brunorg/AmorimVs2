@@ -33,18 +33,6 @@ $(document).ready(function() {
 
 	$(".oficinaO").change(function() {
 		mostrarAgrupamentos();
-		$('.area_rotinas_oficina').click(function() {
-			if($(this).find('.container_rotinas').css('display') === 'none')
-			{
-				$(this).find('.btn_drop').attr('src', 'img/ic_retract_claro.png');
-				$(this).find('.container_rotinas').slideDown();
-			}
-			else
-			{
-				$(this).find('.btn_drop').attr('src', 'img/ic_drop_claro.png');
-				$(this).find('.container_rotinas').slideUp();
-			}
-		});
 	});
 	//Verificar funcionamento.
 	$("#txtPesq").keyup(function(){ //Evento que acontece toda vez que o usuário solta uma tecla
@@ -276,6 +264,48 @@ function adicionarRotinasOficina (idOficina) {
 		}
 	});
 	$('#idOficina_'+idOficina+' .area_rotinas_oficina').html(htmlOficina);
+	if($('#idOficina_'+idOficina+' .dados_rotina').length == 0 )
+	{
+		adicionarBotaoDeletarOficina(idOficina);
+	}
+	adicionarDropRotina(idOficina);
+}
+
+function adicionarBotaoDeletarOficina (idOficina) {
+	htmlDeletarOficina = '<p class="nova_rotina" id="deletar_'+idOficina+'">Deletar esta oficina</p>';
+	$('#idOficina_'+idOficina+' .container_rotinas').append(htmlDeletarOficina);
+	$('#deletar_'+idOficina).click(function() {
+		mensagem("Deseja excluir essa oficina?","Cancelar","bt_cancelar","confirm",'',idOficina,"deletarOficina");	
+	});
+}
+
+function adicionarDropRotina (idOficina) {
+	$('#idOficina_'+idOficina+' .btn_mostrar_rotinas').click(function() {
+		if($(this).parent().find('.container_rotinas').css('display') === 'none')
+		{
+			$(this).parent().find('.btn_drop').attr('src', 'img/ic_retract_claro.png');
+			$(this).parent().find('.container_rotinas').slideDown();
+		}
+		else
+		{
+			$(this).parent().find('.btn_drop').attr('src', 'img/ic_drop_claro.png');
+			$(this).parent().find('.container_rotinas').slideUp();
+		}
+	});
+}
+
+function deletarOficina (servico, id) {
+	$.ajax({
+		url: path + "Oficina",
+		type: "POST",
+		async: false,
+		crossDomain: true,
+		data: "action=delete&id="+id,
+		success: function(){
+			$('#idOficina_'+id).remove();
+			mensagem("Oficina deletada","OK","bt_ok","sucesso");
+		}
+	});
 }
 
 function pesquisaGrupoAluno(){

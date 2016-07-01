@@ -18,6 +18,9 @@
 <!--Perfil do usuário, neste caso, o aluno-->
 <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
     <div id="Cabecalho_Perfil_Area_Foto_Content">
+        <div style="display: none;">
+            <input type="file" name="{{nameInputAlterarFoto()}}" id="inputFotoUsuario" />
+        </div>
         <!--Foto do usuário, neste caso, do aluno-->
         <div id="Cabecalho_Perfil_Area_Foto">
         	<img id='_foto' src='{{usuarioFoto}}'/>

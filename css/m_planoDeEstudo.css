@@ -5,29 +5,26 @@ input[type=radio]{
 textarea:disabled{
 	background: transparent;
 }
-textarea{
-	width: 100%;
-    height: 50px;
-    resize: none;
-    border: none;
-    padding: 8px;
-    line-height: 1.2em;
+.mCSB_inside > .mCSB_container {
+	margin-right: 0 !important;
 }
+.mCSB_scrollTools_vertical {
+	visibility: hidden !important;
 }
 
+#Container {
+	height: 100%;
+}
 
 #btnSubmit:disabled{
 	opacity: 0.4;
 	cursor: default;
 }
-#conteudo_plano {
-	margin: 0 12px 0 0;
-}
 .Plano_Estudo_Content
 {
 	height:auto;
 	background-color: rgb(236, 235, 229);
-	padding: 40px 20px 20px 20px;
+	padding: 40px 20px;
 }
 
 	.Plano_Estudo_Content_Titulo
@@ -38,21 +35,23 @@ textarea{
 		width: 100%;
 		text-align: left;
 		color: #FFF;
+		background: rgb(255,120,0);
 		text-transform:uppercase;
 	}
 
 	.Plano_Estudo_Content_Titulo .titulo
 	{
 		text-align: left;
+		color: #FFF;
 		text-transform:uppercase;
 		margin-left: 19px;
 	}
-
+	
 	.Plano_Estudo_Content_Titulo .botoes
 	{
 		text-align: left;
 		color: #FFF;
-		width: 102px;
+		width: 103px;
 		float: right;
 		height: 37px;
 	}
@@ -64,19 +63,19 @@ textarea{
 		float: left;
 		background-position-y: 3px;
 		margin-top: -13px;
-		background-repeat:no-repeat;
+		border-top: #ff9333 1px solid;	
+		background-repeat:no-repeat;	
 	}
 	.Plano_Estudo_Content_Titulo .botoes .historico_ativo
 	{
+		background:#FFFFFF url(../img/plano_estudo_historico_ativo.png);
 		width: 51px;
 		height: 51px;
 		float: left;
 		background-position-y: 3px;
 		margin-top: -13px;
-		background-repeat:no-repeat;
-	}
-	#Plano_Estudo_Content_Titulo_Registro {
-		padding-left: 0;
+		border-top: #ff9333 1px solid;
+		background-repeat:no-repeat;	
 	}
 	.esconder{
 		display:none;
@@ -98,10 +97,12 @@ textarea{
 		width: 645px;
 		height: 130px;
 		background-color: #FFFFFF;
+		border: 1px solid #ff9333;
+		border-top: #FFFFFF;
 		position: absolute;
 		right: 12px;
 		padding: 26px;
-		z-index: 1;
+		z-index: 1;	
 	}
 	.grande{
 		height: 350px;
@@ -128,25 +129,29 @@ textarea{
 		cursor:pointer;
 	}
 	#box_novo form{
-		width: 774px;
+		width: 774px;	
 	}
 	.bloco_campo {
 		width:40%;
 		float: left;
+		/*margin: 25px 2px 25px 26px;*/
 	}
 	.bloco_campo_fim {
 		width: 40%;
 		float: left;
+		/*margin:25px 0px;*/
 	}
 	.input_data{
 		width: 86px;
 		float: left;
 		padding: 17px 9px 15px 8px;
 		text-align: right;
+		background: #ff9333;
 		color:#FFFFFF;
-	}
+	}	
 	#data_inicio{
 		width: 47%;
+		background-color: #fbeece;
 		float: left;
 		margin-top: 0px;
 		height:50px;
@@ -155,13 +160,14 @@ textarea{
 	}
 	#data_fim{
 		width: 47%;
+		background-color: #fbeece;
 		float: left;
 		margin-top: 0px;
 		height:50px;
 		font-size: 18px;
 		color:#878787;
 	}
-
+	
 	.Plano_Estudo_Content_Titulo .botoes .novo
 	{
 		background-image: url(../img/plano_estudo_novo_normal.png);
@@ -175,15 +181,17 @@ textarea{
 	}
 	.Plano_Estudo_Content_Titulo .botoes .novo_ativo
 	{
+		background:#FFFFFF url(../img/plano_estudo_novo_ativo.png);
 		width: 51px;
 		height: 51px;
 		float: left;
 		background-repeat: no-repeat;
 		background-position-y: 3px;
 		margin-top: -13px;
+		border-top: #ff9333 1px solid;
 		background-repeat:no-repeat;
 	}
-
+	
 	.Plano_Estudo_Content_Titulo
 	{
 		height: 51px;
@@ -192,6 +200,7 @@ textarea{
 		width: 100%;
 		text-align: left;
 		color: #FFF;
+		background: rgb(255,120,0);
 		text-transform:uppercase;
 	}
 
@@ -200,6 +209,7 @@ textarea{
 		height:51px;
 		width:100%;
 		position: relative;
+		/*background-color: red;*/
 	}
 
 		.Plano_Estudo_Content_Titulo_Categoria_Titulo_Laranja_Icone_Content
@@ -207,6 +217,7 @@ textarea{
 			height:51px;
 			width:51px;
 			float:left;
+			background-color: rgb(255, 120, 0) !important;
 		}
 		.Plano_Estudo_Content_Titulo_Categoria_Titulo_vazio_Icone_Content {
 			height: 51px;
@@ -225,19 +236,23 @@ textarea{
 		{
 			height:25.5px;
 			width:90%;
+			/*background-color: blue;*/
 			font-size: 24px;
+			color:rgb(255,120,0);
 			float:left;
 			padding-left: 10px;
+			/*font-weight: bold;*/
 		}
 
 		.Plano_Estudo_Content_Titulo_Categoria_Titulo_Texto2
 		{
 			height:25.5px;
 			width:90%;
+			/*background-color: gray;*/
 			font-size: 24px;
+			color:rgb(255,120,0);
 			float:left;
 			padding-left: 10px;
-			margin-bottom: 10px;
 		}
 
 	.Plano_Estudo_Content_Objetivos_Conteudo
@@ -259,10 +274,10 @@ textarea{
 		.Plano_Estudo_Content_Objetivos_Conteudo_Texto
 		{
 			height: auto;
-			width: 93%;
+			width: 92%;
 			font-size: 18px;
 			padding: 10px 0;
-			margin: 0 0 44px 62px;
+			margin: 0 0 44px 74px;
 		}
 
 	.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo
@@ -284,10 +299,10 @@ textarea{
 		.Plano_Estudo_Content_Objetivos_Pessoal_Conteudo_Texto
 		{
 			height: auto;
-			width: 92%;
+			width: 93%;
 			font-size: 18px;
 			padding: 10px 0;
-			margin: 0 0 44px 74px;
+			margin: 0 0 44px 64px;
 		}
 
 	.Plano_Estudo_Content_Tarefas_Casa_Content
@@ -316,7 +331,7 @@ textarea{
 			{
 				height:100%;
 				width:30%;
-				float:left;
+				float:left;	
 			}
 
 
@@ -324,7 +339,7 @@ textarea{
 		{
 			height:auto;
 			width:100%;
-
+			
 			margin-bottom: 12px;
 			float:left;
 		}
@@ -435,7 +450,7 @@ textarea{
 				.Objetivos_Semana_Conteudo_Tarefas_Texto
 				{
 					width:97%;
-					/*height:24px;*/
+					height:24px;
 					font-size: 14px;
 					padding-top:4px;
 					float:left;
@@ -486,7 +501,7 @@ textarea{
 				{
 					height:100%;
 					width:90%;
-					float:left;
+					float:left;	
 				}
 
 
@@ -551,7 +566,7 @@ textarea{
 
 		.Plano_Estudo_Content_Auto_Avaliacao_Conteudo
 		{
-
+			
 		}
 
 	.Bg_Imagem_Observacao{
@@ -586,7 +601,7 @@ textarea{
 		background-repeat: no-repeat;
 		float: left;
 		background-position: 3px 5px;
-
+		
 	}
 
 	.Plano_Estudo_Content_Download{
@@ -620,7 +635,7 @@ textarea{
     #Conteudo_Inteiro_Rodape_right{
         float:right;
     }
-
+	
 	.Plano_Estudo_Content_Registro_Diario_Tabela_Textarea{
 		width: 100%;
 		resize: none;
@@ -642,23 +657,23 @@ textarea{
 		padding:10px;
 		border:0;
 	}
-
+	
 	#Auto_Avaliacao{
-
+	
 	width:100%;
 	margin-left:0px;
 	margin-right:0px;
 	}
-
+	
 	.Plano_Estudo_Content_Observacao_Pais{
 		height: auto;
 		width: 93%;
 		float: left;
 		font-size: 18px;
 		color: rgb(120, 119, 107);
-		margin: 0 0 64px 64px;
+		margin: 0 0 64px 64px;	
 	}
-
+	
 	.Plano_Estudo_Content_Observacao_Pais_tabela
 	{
 		width:100%;
@@ -670,24 +685,15 @@ textarea{
 	.Plano_Estudo_Content_Observacoes_Tutor_Content_Titulo, .Plano_Estudo_Content_Observacoes_Tutor_Tabela_Parent, .Plano_Estudo_Content_Observacoes_Pais_Content_Titulo, .Plano_Estudo_Content_Observacao_Pais
 	{
 		margin-left:62px;
+		/*width: 92%;*/
 	}
 
 	/*Falme*/
 
 	.btPadrao
 	{
+		background: url("../img/bt_salvar_laranja.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 		cursor: pointer;
-		border-radius: 0;
-		height: 40px;
-		padding: 10px 10px 10px 34px;
-	}
-
-	.btSalvar {
-		background-image: url(../img/ic_salvar.png);
-		background-repeat: no-repeat;
-		background-position: 12px 5px;
-		margin: 10px 0 0 -2px;
-		font-size: 18px;
 	}
 
 	.btSalvarDiario
@@ -714,7 +720,7 @@ textarea{
 	.box_roteiros{
 		background:#FFFFFF;
 		margin:0 0 12px 64px;
-		padding: 10px;
+		padding: 10px 0;
 	}
 
 	.overtable
@@ -760,8 +766,8 @@ textarea{
 
 
 ul.bjqs{
-	width:85% !important;
-	position:relative;
+	width:85% !important; 
+	position:relative; 
 	list-style:none;
 	padding:0;
 	margin: 0 28px;
@@ -780,9 +786,8 @@ li.bloco_historico p:nth-child(odd){
 li.bloco_historico p:nth-child(even){
 	background-color: #faeac2;
 }
-
 .historico_mes{
-	background-color: #f7941e;
+	background-color: #f7941e !important;
 	color: #FFFFFF !important;
 	margin: 0;
 	text-align: center;
@@ -790,7 +795,7 @@ li.bloco_historico p:nth-child(even){
 
 
 li.bjqs-slide{
-	position:absolute;
+	position:absolute; 
 	display:none;
 }
 ul.bjqs-controls{
@@ -884,10 +889,10 @@ ul.bjqs-controls.v-centered li a{
 	padding:14px;
 	background:#fff;
 	color:#000;
-	text-decoration: none;
+	text-decoration: none;	
 }
 ol.bjqs-markers li a{
-	/*ol.bjqs-markers*/
+	ol.bjqs-markers
 }
 
 ol.bjqs-markers li.active-marker a,
@@ -912,14 +917,15 @@ p.bjqs-caption{
 	text-align: center;
 	padding: 0;
 	border: 0;
-}
-
+}	
+		
 .ui-widget-header{
 	border:0 !important;
+	background:#FF7800 !important;
 }
 .ui-datepicker th{
 	padding: 4px !important;
-	color:#FFF;
+	color:#FFF !important;
 	font-weight:normal !important;
 	font-size:.9em !important;
 	border:1px solid #FFFFFF !important;
@@ -928,9 +934,9 @@ p.bjqs-caption{
 .ui-corner-all{
 	border-radius: 0 !important;
 }
-.ui-datepicker
+.ui-datepicker 
 .ui-datepicker-header{
-	padding: 0px !important;
+	padding: 0px !important;	
 	height: 26px !important;
 }
 .ui-widget-content {
@@ -938,7 +944,7 @@ p.bjqs-caption{
 }
 .ui-datepicker-title
 {
-	background-color: #FF9333;
+	background-color: #FF9333 !important;
 	color: white !important;
 	height: 26px !important;
 	padding: 2px !important;
@@ -969,9 +975,10 @@ p.bjqs-caption{
 	height: 100%
 }
 .ui-datepicker-week-end{
-	color:white ;
+	color:white !important;
 }
 .ui-datepicker-calendar{
+	background-color: #ffea8d !important;
 	border: solid thin white !important;
 	height: 100px;
 }
@@ -993,10 +1000,10 @@ p.bjqs-caption{
 }
 .ui-datepicker th{
 	padding: 4px !important;
-	color: #FFF;
+	color:#FFF !important;
 	font-weight:normal !important;
 	font-size:.9em !important;
-	background-color:#fcc066;
+	background-color:#fcc066 !important;
 }
 .ui-state-default{
 	font-size: .9em !important;
@@ -1009,21 +1016,23 @@ p.bjqs-caption{
 	font-size: .9em !important;
 	background-repeat: no-repeat !important;
 	color: rgb(102,102,102) !important;
-	text-align: center !important;
+	text-align: center !important;								
 }
 .ui-datepicker-week-end,
 .ui-datepicker-other-month,
-.ui-datepicker-unselectable,
+.ui-datepicker-unselectable, 
 .ui-state-disabled{
 	background:#E6E6E6 !important;
-}
+}	
 .ui-state-highlight{
+	background-color:#FF7800 !important;
 }
 #ui-datepicker-div .ui-datepicker-next {
 	right: -7px !important;
 	background-position: 2px 1px !important;
 }
 #ui-datepicker-div .ui-datepicker-prev:hover{
+	background-color: #FF9333 !important;
 	background-repeat: no-repeat !important;
 	width: 25px !important;
 	height: 25px !important;
@@ -1034,6 +1043,7 @@ p.bjqs-caption{
 	margin-left: 0px;
 }
 #ui-datepicker-div .ui-datepicker-next:hover{
+	background-color: #FF9333 !important;
 	background-repeat: no-repeat !important;
 	width: 25px !important;
 	height: 26px !important;
@@ -1043,10 +1053,14 @@ p.bjqs-caption{
 	right: 0px !important;
 }
 #diaCorrido{
-	color:#FFF !important;
+	color:#FFF !important;	
 }
 .ui-state-highlight{
+	background-color:#fcc468 !important;
 	color:#FFFFFF !important;
+}
+.ui-datepicker-trigger{
+	background-color:#fcc468 !important;
 }
 /*Fim calendário relatório*/
 .bjqs p
@@ -1061,19 +1075,5 @@ p.bjqs-caption{
 }
 
 .ui-widget-content .ui-state-hover{
-	background-color: #ffffff !important;
-	color: #666 !important;
-}
-
-.ui-datepicker-header a.ui-state-hover{
-	background-color: #bbb !important;
-}
-
-
-.grande{
-	height: 500px;
-}
-
-.grande textarea{
-	height: 480px;
+	background-color: #FFAA00 !important; 
 }

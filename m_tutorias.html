@@ -9,8 +9,9 @@
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
         <link rel="stylesheet" href="js/malihu.3.0.3/mCustomScrollbar.css" />
-        <link rel="stylesheet" type="text/css" href="mobilecss/style.css" />  
-        <link rel="stylesheet" type="text/css" href="mobilecss/tutorias.css" />   
+        <link rel="stylesheet" type="text/css" href="css/m_style.css" />  
+        <link rel="stylesheet" type="text/css" href="css/tutorias.css" />   
+        <link rel="stylesheet" type="text/css" href="css/m_tutorias.css" />   
         <!--Fim Style-->
         
         <!--Script JS-->
@@ -24,14 +25,14 @@
         <script src="js/malihu.3.0.3/mCustomScrollbar.concat.min.js"></script>                
         <script type="text/javascript" src="js/calendario.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="js/anoLetivo.js"></script>
         <script type="text/javascript" src="js/autenticador.js"></script>
                         
         <script type="text/javascript" src="angular/angular.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js "></script>
         <script type="text/javascript" src="angular/app/app.js"></script>
         <script type="text/javascript" src="angular/controllers/geralCTRL.js"></script>
-        <script type="text/javascript" src="js/tutorias.js"></script>
-        <script src="js/relatorioProfessor.js"></script>       
+        <script type="text/javascript" src="js/tutorias.js"></script>     
         <!--Fim JS-->     
      
      </head>
@@ -39,33 +40,51 @@
     <body>
         <!--Conteudo Geral-->
 		<div id="Container" ng-controller="geralCTRL">
-            <div id="Cabecalho_Menu_Area" class="row">
-                <div id="Cabecalho_Menu_Area_Menu1" class="col-4"><a id="home">Home</a> | <a href="#" id="area_acesso"></a></div>
-                <div id="Cabecalho_Menu_Area_Menu2" class="col-3 offset-5">
-                    <a id="senha" onClick="chamaFormSenha();">Alterar Senha</a> | 
-                    <a href="javascript:history.back()">Voltar</a> | 
-                    <a id="logout" href="#">Sair</a>
-                </div>    
+            <div ng-include="'m_header.html'">
+                <!-- Template: topo.html -->
+            </div>  
+            <div id="Conteudo_Area">
+                <div id="m_blocoGeral">
+                    <!--Lista de Alunos/Grafico-->
+
+                    <div class="grupoLegenda">
+                        <div class="Content_Legenda_Grade_Aluno">
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno marginDireita">Corrigidos</div>
+                            </div>
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Próxima</div>
+                            </div>
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Anterior</div>
+                            </div>
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Cor_Legenda_Grade_Aluno"></div>
+                                <div class="Nome_Legenda_Grade_Aluno">Atual</div>
+                            </div>
+                            <div class="Legenda_Grade_Aluno">
+                                <div class="Nome_Legenda_Grade_Aluno">OBJETIVOS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="divPrincipalGrupos">
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="boxCalendario"></div>
             </div>
-
-            <div id="Cabecalho_Perfil_Area" class="row">
-                <div id="Cabecalho_Perfil_Area_Foto_Content" class="col-1">
-                    <div id="Cabecalho_Perfil_Area_Foto"></div>
-                </div>
-                <div id="Cabecalho_Perfil_Area_Descricao_Content" class="col-1">
-                    <div id="Cabecalho_Perfil_Area_Descricao"></div>
-                </div>
-                <div id="Content_lateral_Menu" class="row col-10">
-                </div>
-            </div>
-
-            <div class="Conteudo_Coluna" id="content_central">              
-                    <div id="boxGeralAlunos">
-                        
-                    </div>           
-                </div>
-            <div id="bloqueio_bottom_content_central_1"></div>
-
-        </div><!--Fim Conteudo-->         
+        </div><!--Fim Conteudo--> 
+        <div id="boxMensagemGeral"></div>
+        <div class="boxGrafico">
+        </div>
+        <div class="boxGlobal"></div>     
     </body>    
 </html>

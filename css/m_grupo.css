@@ -1,0 +1,68 @@
+.Box_Area_Select{
+	margin-right: 6px;
+}
+
+.Box_Area_Select:last-of-type{
+	margin-right: 0;
+}
+
+.input_Pesq_Aluno{
+	width: 100%;
+}
+
+.Area_Alunos_Container{
+	max-height: 220px;
+}
+
+.Unico_Linha{
+	width: 100%;
+}
+
+.Unico_Linha .Select_Grupo_Input{
+	width: 769px;
+}
+
+.Container_Professores{
+	height: 265px;
+}
+
+#listarAluno{
+	margin: 16px 0 0 0;
+	height: 204px;
+}
+
+.mCSB_container{
+	height: auto;
+}
+
+.mCustomScrollBox{
+	height: 457px;
+}
+
+#PesquisarInserir{
+	height: 457px;
+}
+
+#boxListaAluno{
+	height: 176px;
+}
+
+#mCSB_2{
+	height: 176px;
+}
+
+#box_grupo_info_barra{
+	height: 271px;
+}
+
+#mCSB_5{
+	height: 271px;
+}
+
+.editar{
+	display: block;
+}
+
+.excluir{
+	display: block;
+}

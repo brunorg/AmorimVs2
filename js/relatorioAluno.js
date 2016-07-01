@@ -736,7 +736,10 @@ function init(ano, alunoVar){
 
 				if (fichaFinalizacao != "")
 				{
-					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='m_galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
+					else
+						$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Ficha de Finalização </a></td>");
 				}else{
 					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Ficha de Finalização</td>");							
 				}
@@ -748,7 +751,10 @@ function init(ano, alunoVar){
 
 			if (portfolio != "")
 			{
-				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))	
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='m_galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
+				else
+					$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port verdePort'><a href='galeriaAluno.html?ID="+ base64_encode((""+alunoID))+"'> Portfolio </a></td>");
 			}
 			else{
 				$("#" + roteirosFiltrados[i][0].idroteiro + " tbody tr").append("<td class='link_port cinza'>Portfolio</td>");	
@@ -1105,6 +1111,7 @@ function graficoBarra(alunoID, planejamentosAluno){
 function visualizarDados(){
 	//console.log(base64_decode(GetURLParameter('ID')));
 	localStorage.setItem("alunoEdt",base64_decode(GetURLParameter('ID')));	
+	
 	$(location).attr('href','visualizarDados.html');
 }
 
