@@ -1058,6 +1058,14 @@ function idade(ano_aniversario, mes_aniversario, dia_aniversario) {
     return quantos_anos < 0 ? 0 : quantos_anos;
 }
 
+// Verificar se é um dispositivo mobile
+function isMobile() {
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+		return true;
+	else
+		return false;
+}
+
 function chamaFormSenha(){
 	$( "#boxMensagemGeral" ).css("display","block");
 	$( "#boxMensagemGeral" ).load("AlterPass.html");
