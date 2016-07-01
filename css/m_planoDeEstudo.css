@@ -20,6 +20,9 @@ textarea:disabled{
 	opacity: 0.4;
 	cursor: default;
 }
+.Conteudo_Coluna {
+	background-color: #fff;
+}
 .Plano_Estudo_Content
 {
 	height:auto;

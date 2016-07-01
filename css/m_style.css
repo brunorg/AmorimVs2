@@ -625,10 +625,9 @@ ul.session_options > li:last-child {
 /*Coluna central*/	
 #content_central{
 	position: relative;
+	top: 40px;
 	width: 100%;
     padding: 15px 15px 15px 15px;
-    height: 448px;
-	float:left;
 	overflow:auto;
 }
 #content_central_fixa{
