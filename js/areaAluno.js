@@ -554,7 +554,10 @@ function CarregarPlanos() {
         $('.linha_datas_registro').append(HtmlContentData);
         $('.botao_novo_plano').click(function () {
             localStorage.setItem("novoPlano", 'true');
-            window.location.href = "planoDeEstudo.html";
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+                window.location.href = "m_planoDeEstudo.html";
+            else
+                window.location.href = "planoDeEstudo.html";
         });
     }
 };

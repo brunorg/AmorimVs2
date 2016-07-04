@@ -1,0 +1,97 @@
+﻿<head>
+<style>
+
+.bt_ok{
+    font-size: 13px !important;
+}
+
+.bt_ok:hover{
+    background-color: rgba(22, 190, 207, 0.79) !important;
+}
+
+</style>
+
+<script>
+function alterarSenha(){
+    var objetoUsuario = JSON.parse(localStorage.getItem("objetoUsuario"));
+    var user = objetoUsuario.login
+    var senhaAtu = $("#senhaAtu").val();
+    var senha = $("#senhaNova").val();
+    var senhaNova = $("#senhaConfirma").val();
+    
+	var valores =  "login="+user+"&senhaAnt="+senhaAtu+"&senha="+senha+"&senhaNova="+senhaNova;		
+
+    this.returnDadosInvalidos = function() {
+
+        var htmlMensagem = new String();
+
+        htmlMensagem = "<div class='mensagem_erro_modal'>Não foi possível alterar sua senha.<br />Verifique os dados inseridos.</div>";
+
+        $(".boxForm").css("height", "253px");
+        $("#frm").find("div").filter(":nth-child(3)").after(htmlMensagem);
+
+        window.setTimeout(function() {
+            $("#frm").find("div").filter(":nth-child(4)").fadeOut(500, function() {
+                $(".boxForm").css("height", "224px");
+            });
+        }, 3000);
+    };
+
+	$.ajax({
+		url: path+"Logar/alterarSenha",
+		type: "POST",
+		async:true,
+		crossDomain: true,
+		dataType:"text",
+		data: "action=update&"+valores,
+		success: function(d) {
+			if(d=="ok"){
+				loading("final");				
+				return mensagem("Senha alterada com sucesso!","OK","bt_ok","sucesso");
+			}else{
+				returnDadosInvalidos();
+			}
+		}
+	});
+}
+</script>
+</head>
+<div id="modalAlterarSenha" class="modal modal-geral">
+    <div class="modal-top-content">
+        <h1 class="modal-title">Alterar senha</h1>
+    </div>
+    <div class="modal-geral-content">
+        <form id="frm" method="POST" name="frm">
+            <div class="celulaGrande">
+                <div class="infoM">Atual</div>
+                <div class="infoValueM">
+                    <input id="senhaAtu" name="numero"  value="" type="password" />
+                </div>
+            </div>
+            <div class="celulaGrande">
+                <div class="infoM">Nova</div>
+                <div class="infoValueM">
+                    <input id="senhaNova" value="" type="password" maxlength="6" title="Sua senha deve conter no máximo 6 caracteres!"></input>
+                </div>
+            </div>
+            <div class="celulaGrande">
+                <div class="infoM">Confirmação</div>
+                <div class="infoValueM">
+                    <input id="senhaConfirma" value="" type="password" maxlength="6" title="Sua senha deve conter no máximo 6 caracteres!"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-bottom-content">
+        <div class="half-size">
+            <div id="btnCancelar" class="btn-full btn-general">
+                <input type="button" class="btn-full text-white transparent-full" id="btnCancelarAlterarSenha" name="btnUser" value="Cancelar" onClick="cancelaAlter()"/>
+            </div>
+        </div>
+        <div class="half-size">
+            <div id="btnEnviar" class="btn-full btn-general">
+                <input type="button" class="btn-full text-white transparent-full" id="btnEnviarAlterarSenha" name="btnUser" value="Enviar"  onClick="alterarSenha()" />
+            </div>
+        </div>
+    </div>
+</div>

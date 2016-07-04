@@ -1,5 +1,4 @@
-html, body
-{
+html, body {
 	padding:0;
 	margin:0;
 	font-family: "proxima-nova",sans-serif;
@@ -7,6 +6,8 @@ html, body
 	background:#d6d6d3;
 	-webkit-transform-origin: top left;
 	-moz-transform-origin: top left;
+	height: 100%;
+	width: 100%;
 
 }
 
@@ -20,10 +21,13 @@ html, body
 }
 #Container{
 	width: 100%;
-	height: 607px;
+	height: 100%;
 	margin:0 auto;
+	overflow-y: scroll;
 }
 #Cabecalho_Menu_Area{
+	position: fixed;
+	z-index: 10;
 	width:100%;
 	height:40px;
 	font-size: 18px;
@@ -46,30 +50,6 @@ html, body
 .menuHamb{
 	background: url(../img/ic_menu_hamburger.png) no-repeat;
 	padding: 3px 15px;
-}
-.session_options_panel {
-	position: absolute;
-	width: auto;
-	height: auto;
-	background-color: #fff;
-	color: #666;
-	padding: 5px 15px;
-	right: 0;
-	z-index: 2;
-}
-ul.session_options {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-ul.session_options > li {
-	margin: 0;
-	padding: 10px 0;
-	font-size: 17px;
-	border-bottom: 1px solid #ccc;
-}
-ul.session_options > li:last-child {
-	border-bottom: none;
 }
 
 #Cabecalho_Perfil_Area{
@@ -141,11 +121,39 @@ ul.session_options > li:last-child {
 	margin-left: 13px;
 }
 
+/* Menu de sessão */
+.session_options_panel {
+	position: absolute;
+	width: auto;
+	height: auto;
+	background-color: #fff;
+	color: #666;
+	padding: 5px 15px;
+	right: 0;
+	z-index: 2;
+	border: 1pt solid #16becf;
+	border-top: none;
+}
+ul.session_options {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+ul.session_options > li {
+	margin: 0;
+	padding: 10px 0;
+	font-size: 17px;
+	border-bottom: 1px solid #ccc;
+}
+ul.session_options > li:last-child {
+	border-bottom: none;
+}
+
 
 /*Conteudo geral*/		
 #Conteudo_Area{
 	width:100%;
-	height:100%;
+	height: calc(100% - 40px);
 	background-color: #FFF;
 	float:left;
 }
@@ -160,12 +168,14 @@ ul.session_options > li:last-child {
 }
 
 #Content_lateral_left{
-	background-color: #F2F2ED;
-	position: absolute;
-	left: -330px;
-	z-index: 9;
-	width: 330px;
-	height: 100%;
+    background-color: #F2F2ED;
+    position: absolute;
+    top: 40px;
+    left: -330px;
+    z-index: 9;
+    width: 330px;
+    height: calc(100% - 40px);
+    overflow-y: scroll;
 }
 
 #Content_lateral_Menu{
@@ -216,13 +226,19 @@ ul.session_options > li:last-child {
 	    border-radius: 50%;
 	}
 
+	/* Início */
+	.home {
+		background-image: url(../img/ic_home.png);
+	}
+	
+	.home-active {
+		background-image: url(../img/ic_home-ativo.png);	
+		background-color: rgba(22, 190, 207, 0.79);	
+	}
+
 	/*Menu Plano de estudo*/
 	.plano { 
 		background-image: url(../img/ic_plano-ativo.png);
-	}
-	
-	.plano:hover { 
-		background-image: url(../img/ic_plano.png); 
 	}
 	
 	.plano-active {
@@ -235,10 +251,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_livro-ativo.png); 
 	}
 
-	.recurso:hover { 
-		background-image: url(../img/ic_livro.png); 
-	}
-
 	.recurso-active {
 		background-image: url(../img/ic_livro.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -246,10 +258,6 @@ ul.session_options > li:last-child {
 	/* Menu roteiros */
 	.roteiros { 
 		background-image: url(../img/ic_menu_roteiros.png); 
-	}
-
-	.roteiros:hover { 
-		background-image:  url(../img/ic_menu_roteiros_ativo.png) 
 	}
 	
 	.roteiros-active {
@@ -260,10 +268,6 @@ ul.session_options > li:last-child {
 	/* Menu Jeiff */
 	.jeiff { 
 		background-image: url(../img/ic_menu_jeiff_pea.png); 
-	}
-
-	.jeiff:hover { 
-		background-image:  url(../img/ic_registroJEIF_ativo.png);
 	}
 	
 	.jeiff-active {
@@ -276,10 +280,6 @@ ul.session_options > li:last-child {
 		background-image:url(../img/ic_menu_rotina.png);
 	}
 
-	.rotinas:hover { 
-		background-image:url(../img/ic_menu_rotina_ativo.png);
-	}
-
 	.rotinas-active {
 		background-image:  url(../img/ic_menu_rotina_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -288,10 +288,6 @@ ul.session_options > li:last-child {
 	/*Menu oficinas*/
 	.oficinas { 
 		background-image: url(../img/ic_oficinas.png); 
-	}
-
-	.oficinas:hover { 
-		background-image: url(../img/ic_oficinas-ativo.png); 
 	}
 
 	.oficinas-active {
@@ -304,10 +300,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_prodAluno.png);						
 	 }
 
-	.prodAluno:hover { 
-		background-image: url(../img/ic_prodAluno-ativo.png);
-	}
-
 	.prodAluno-active {
 		background-image: url(../img/ic_prodAluno-ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -318,21 +310,14 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_forum-ativo.png);
 	}
 
-	.forum:hover { 
-		background-image: url(../img/ic_forum.png); 
-	}
-
 	.forum-active {
 		background-image: url(../img/ic_forum.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
 	}
 	
 	/*Menu mensagens*/				
-	.mensagens { background-image: url(../img/Ic_mensagens-ativo.png);
-			 }
-
-	.mensagens:hover { 
-		background-image: url(../img/ic_mensagens.png); 
+	.mensagens {
+		background-image: url(../img/Ic_mensagens-ativo.png);
 	}
 
 	.mensagens-active {
@@ -345,10 +330,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/bt_tutores_normal.png);
 	}
 
-	.tutoria:hover { 
-		background-image: url(../img/bt_tutores_ativo.png); 
-	}
-
 	.tutoria-active {
 		background-image: url(../img/bt_tutores_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -357,10 +338,6 @@ ul.session_options > li:last-child {
 	/*Menu Tutores*/
 	.tutores { 
 		background-image: url(../img/bt_tutores_normal.png);
-	}
-
-	.tutores:hover { 
-		background-image: url(../img/bt_tutores_ativo.png); 
 	}
 
 	.tutores-active {
@@ -373,10 +350,6 @@ ul.session_options > li:last-child {
 		background-image: url(../img/bt_grupo_normal.png);
 	}
 
-	.grupos:hover { 
-		background-image: url(../img/bt_grupo_ativo.png); 
-	}
-
 	.grupos-active {
 		background-image: url(../img/bt_grupo_ativo.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -385,7 +358,6 @@ ul.session_options > li:last-child {
 	/*Menu Cadastro*/
 	.cadastro { background-image: url(../img/ic_cadastro-ativo.png); }
 
-	.cadastro:hover { background-image: url(../img/ic_cadastro.png); }
 
 	.cadastro-active {
 		background-image: url(../img/ic_cadastro.png);	
@@ -395,9 +367,6 @@ ul.session_options > li:last-child {
 	/*Menu Agenda*/
 	.agenda{
 		background-image: url(../img/agenda-ativo.png);
-	}				
-	.agenda:hover{
-		background-image: url(../img/agenda.png);
 	}
 	.agenda-active{
 		background-image: url(../img/agenda.png);	
@@ -408,9 +377,6 @@ ul.session_options > li:last-child {
 	/*Menu PresenÃ§a*/
 	.presenca{
 		background-image: url(../img/presencas-ativo.png);
-	}				
-	.presenca:hover{
-		background-image: url(../img/presencas.png);
 	}
 	.presenca-active{
 		background-image: url(../img/presencas.png);	
@@ -422,10 +388,8 @@ ul.session_options > li:last-child {
 	.carteirinhas{
 		background-image: url(../img/ic_carteirinha-ativo.png);
 		
-	}				
-	.carteirinhas:hover{
-		background-image: url(../img/ic_carteirinha.png);
 	}
+
 	.carteirinhas-active{
 		background-image: url(../img/ic_carteirinha.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
@@ -437,21 +401,23 @@ ul.session_options > li:last-child {
 		background-image: url(../img/ic_plano-ativo.png);
 		background-repeat: no-repeat;
 		background-position: 21px 26px;
-	}				
-	.Content_lateral_Menu_Opcao .notificacoes:hover{
-		background-image: url(../img/ic_plano.png);
 	}
+
 	.Content_lateral_Menu_Opcao .notificacoes-active{
 		background-image: url(../img/ic_mensagens.png);	
 		background-color: rgba(22, 190, 207, 0.79);				
 	}
+
 	/*Fim menu NotificaÃ§Ãµes*/
-	
-	.Content_lateral_Menu_Opcao:hover{
-		background-color: rgba(22, 190, 207, 0.79);
-		cursor: pointer;
-	}	
-	
+	.inativo {
+		pointer-events: none;
+	    -webkit-filter: saturate(0%);
+	    -moz-filter: saturate(0%);
+	    -o-filter: saturate(0%);
+	    filter: saturate(0%);
+	    color: #ccc;
+	}
+
 	#menuCalendario{
 		display:none;	
 	}					
@@ -616,10 +582,9 @@ ul.session_options > li:last-child {
 /*Coluna central*/	
 #content_central{
 	position: relative;
+	top: 40px;
 	width: 100%;
     padding: 15px 15px 15px 15px;
-    height: 448px;
-	float:left;
 	overflow:auto;
 }
 #content_central_fixa{
@@ -633,7 +598,8 @@ ul.session_options > li:last-child {
 #m_blocoGeral{
 	position: relative;
 	width: 100%;
-	height: 574px;
+	height: auto;
+	top: 40px;
 	padding: 24px;
 	z-index: 1;
 	background: #FFF;
@@ -913,11 +879,9 @@ ul.session_options > li:last-child {
 /* CSS das celulas grandes(ocupam toda a linha)*/
 .celulaGrande{
 	position:relative;
-	bottom:-8px;
 	width: 100%;
 	overflow: auto;
 	border: 2px solid #B6B6B0;
-	float: left;
 	background-color: #F2F1ED;
 	margin-bottom: 6px;
 }
@@ -1297,6 +1261,76 @@ font-family: "proxima-nova",sans-serif;
 }
 
 
+/* Modal geral mobile */
+.modal {
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	margin-left: -300px;
+	padding: 22px;
+	z-index: 10;
+}
+
+.modal-geral {
+	background-color: #f2f2fe;
+	width: 600px;
+}
+
+.modal-geral-content,
+.modal-top-content {
+	margin-bottom: 10px;
+}
+
+.modal-top-content > .modal-title {
+    color: #999;
+    font-family: Proxima Nova, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: .05em;
+    margin: 0;
+}
+
+.modal-geral-content::after,
+.modal-geral-content::after > div::after {
+	content: "";
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.half-size {
+	float: left;
+	width: 50%;
+}
+
+.half-size:first-child {
+	padding-right: 5px;
+}
+.half-size:last-child {
+	padding-left: 5px;
+}
+/* Fim modal geral mobile */
+.transparent-full {
+	background-color: rgba(0,0,0,0);
+}
+
+.input-btn {
+	border: none;
+	border-radius: 0;
+    width: 120px;
+}
+.btn-full {
+	display: block;
+	width: 100%;
+}
+.btn-general {
+    background-color: #02818d;
+    color: white;
+}
+.text-white { color: #fff; }
+
 .celulaMedia{
 	width: 66.2%;
 }
@@ -1591,6 +1625,9 @@ object{
 }
 .mCSB_container{
 	height: 100%;
+}
+.mCSB_inside > .mCSB_container{
+	margin-right: 0 !important;
 }
 
 .Objetivos_Resultado_Desempenho{

@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 
 	var altura = window.innerHeight; 
-	$('#m_blocoGeral').css('height',altura-30);
+	//$('#m_blocoGeral').css('height',altura-30);
 	
 	setTimeout(function(){
 
@@ -1058,9 +1058,22 @@ function idade(ano_aniversario, mes_aniversario, dia_aniversario) {
     return quantos_anos < 0 ? 0 : quantos_anos;
 }
 
+// Verificar se é um dispositivo mobile
+function isMobile() {
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
+		return true;
+	else
+		return false;
+}
+
 function chamaFormSenha(){
 	$( "#boxMensagemGeral" ).css("display","block");
 	$( "#boxMensagemGeral" ).load("AlterPass.html");
+}
+
+function chamarFormSenhaMobile() {
+	$( "#boxMensagemGeral" ).css("display","block");
+	$( "#boxMensagemGeral" ).load("m_AlterPass.html");
 }
 
 function atualizarCadastroModal(perfil){		 
