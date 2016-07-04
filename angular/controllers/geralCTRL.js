@@ -231,7 +231,10 @@ app.controller('geralCTRL',function($scope,$http){
 		//Logout do usuário
 		$scope.logout = function(){
 			localStorage.clear();
-			window.location = 'index.html';
+			if (isMobile())
+				window.location = "mobile.html";
+			else
+				window.location = 'index.html';
 		},
 
 		$scope.alteraOficina = function(oficina){

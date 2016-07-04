@@ -1,4 +1,5 @@
 // JavaScript Document
+
 $(document).ready(atribuirEventos);
 
 function caixaEsqueci() {

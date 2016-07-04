@@ -1626,7 +1626,7 @@ object{
 .mCSB_container{
 	height: 100%;
 }
-.mCSB_inside > .mCSB_container{
+.mCustomScrollbar > .mCSB_inside > .mCSB_container{
 	margin-right: 0 !important;
 }
 

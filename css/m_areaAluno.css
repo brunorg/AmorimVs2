@@ -55,7 +55,7 @@ div[class*="box_col"]:last-of-type {
 }
 .box_col4 {
 	height: auto;
-	width: 33%;
+	width: 33.3%;
 	box-sizing: border-box;
 }
 .box_col6 {
@@ -65,7 +65,7 @@ div[class*="box_col"]:last-of-type {
 }
 .box_col8 {
 	height: auto;
-	width: 66%;
+	width: 66.6%;
 	padding-right: 15px;
 	box-sizing: border-box;
 }
