@@ -10,3 +10,11 @@
 .educador_nome{
 	width: 170px;
 }
+
+.textarea_mural {
+	height: 130px;
+}
+
+input.input_data_jeiff {
+	min-height: 28px;
+}

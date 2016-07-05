@@ -7,5 +7,13 @@
 }
 
 .grupoGraficoFreqTitulo h1{
-	width: 60px;
+	width: 65px;
+}
+.grupoGraficoFreqTitulo h2{
+	width: 14px;
+}
+
+table.grupoTabela
+{
+	z-index: 8;
 }

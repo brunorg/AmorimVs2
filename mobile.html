@@ -14,6 +14,32 @@
     <!--Fim Style-->
 
     <!--Script JS-->
+    <script>
+        // Verificar se está num dispositivo mobile e se há algum perfil logado
+        (function verificarDispositivoSessao() {
+            var m = "";
+
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                m = "m_";
+            }
+
+            if (localStorage.length > 0) {
+                if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23)
+                    window.location = m + "areaAluno.html";
+                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
+                    window.location = m + "areaProfessor.html";
+                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 26)
+                    window.location = m + "areaCoordenacao.html";
+                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 25)
+                    window.location = m + "areaSecretaria.html";
+            } else if (m === "m_" && (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/"))) {
+                window.location = "mobile.html";
+            } else if (m === "" && (window.location.pathname.endsWith("mobile.html"))) {
+                window.location = "index.html";
+            }
+
+        })();
+    </script>
     <script type="text/javascript" src="js/path.js"></script>
     <script type="text/javascript" src="//use.typekit.net/cjh0uzc.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>

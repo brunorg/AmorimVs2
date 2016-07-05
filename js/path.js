@@ -1,5 +1,7 @@
 var path = "http://177.55.99.90/WebServicePlataformaAmorimTesteV2/";
 
+//var path = "http://localhost:8888/plataformaAmorim/";
+
 function loading(estado) {
     if(estado == "inicial"){
 		$('.boxGlobal').load("preloader_JS.html").css({"display":"block","padding-top":"300px"});

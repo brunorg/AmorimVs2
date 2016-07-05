@@ -90,7 +90,7 @@ table.grupoTabela{
 	width:105%;
 	border-collapse: collapse;
 	position:relative;
-	z-index:999;
+	z-index:8;
 	table-layout: fixed;
 }
 .grupoTabelaFreq{
