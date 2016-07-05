@@ -2471,6 +2471,10 @@ font-family: "proxima-nova",sans-serif;
 		background: #FFF;
 		right: 0;
 	}
+	#Content_lateral_Calendario {
+	    margin-top: 15px;
+	    height: auto;
+	}
 	.Content_lateral_Menu_Opcao{
 		position: relative;
 		box-sizing: border-box;
@@ -2598,7 +2602,7 @@ font-family: "proxima-nova",sans-serif;
 		height: 13%;
 	}
 	#datepicker {
-		height: 198px !important;
+		height: 174px !important;
 	}
 	.microfiche-next-button, .microfiche-prev-button{
 		top:-121px !important;
@@ -2722,6 +2726,10 @@ font-family: "proxima-nova",sans-serif;
 	}
 	.Content_lateral_Menu_Opcao {
 		height: 18%;
+	}
+	#Content_lateral_Calendario {
+	    margin-top: 15px;
+	    height: auto;
 	}
 	#box_oficinas {
 	    position: absolute;
