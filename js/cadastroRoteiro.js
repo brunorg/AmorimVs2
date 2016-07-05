@@ -1667,7 +1667,7 @@ function cadastrarAtividade(){
 		return false;
 	}
 
-	if (id = criarAtividade(nomeAtv,numeroAtv,"",objetivo,paginaAtv,livroAtv)){
+	if (id = criarAtividade(nomeAtv,numeroAtv,nomeAtv,objetivo,paginaAtv,livroAtv)){
 
 		//procedimentos para listar automaticamente!!
 
