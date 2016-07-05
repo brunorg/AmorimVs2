@@ -375,9 +375,6 @@ $(document).ready(function(){
 		$(".tela_over").hide();	
 	});
 
-	//$.ajax({url: "http://plataformaamorim.org:8090/plataformaAmorim/AmorimVS2015/js/falme.js",dataType: "script"});
-	//$.getScript( "http://plataformaamorim.org:8090/plataformaAmorim/AmorimVS2015/js/falme.js", function() {});
-	
 	$('#rodape_calendario').after('<a href="index.html?ref=calendario" id="linkParaAgenda" target="_blank">VER AGENDA COMPLETA</a>')
 
 	window.setTimeout(function(){
