@@ -1,15 +1,28 @@
-.mCSB_container{
+.mCSB_container
+{
 	height: auto;
 }
 
-#content_central{
-	height: 505px;
-}
-
-.plano{
+.plano
+{
 	background-image: none;
 }
 
-.box_grafico{
+.box_grafico
+{
 	margin-top: 0;
+}
+
+#legenda
+{
+    width: 100%;
+    margin-right: 0;
+}
+
+#legenda p
+{
+	width: auto;
+	margin-right: 15px;
+	float: right;
+	margin-bottom: 0;
 }

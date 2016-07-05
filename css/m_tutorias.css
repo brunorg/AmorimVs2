@@ -12,3 +12,8 @@
 .grupoGraficoFreqTitulo h2{
 	width: 14px;
 }
+
+table.grupoTabela
+{
+	z-index: 8;
+}

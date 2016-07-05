@@ -20,6 +20,11 @@ textarea:disabled{
 	opacity: 0.4;
 	cursor: default;
 }
+#content_central
+{
+	position: relative;
+	top: 40px;
+}
 .Conteudo_Coluna {
 	background-color: #fff;
 }
