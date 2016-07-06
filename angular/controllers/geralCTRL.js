@@ -153,8 +153,13 @@ app.controller('geralCTRL',function($scope,$http){
 					{label: 'Fórum', href: m+'forum.html', class: 'forum'}
 				];
 
-				if (isMobile())
+
+				if (isMobile()) {
+					if (getTutoria(dadosUsuario.professor.idprofessorFuncionario) != "Não é tutor!")
+						$scope.menuHTML.unshift({label: "Apontar presença", href: "m_presencaGrupos.html", class: "presenca"});
+
 					$scope.menuHTML.unshift({label: "Início", href: "m_areaProfessor.html", class: "home"});
+				}
 
 				//Visibilidade do perfil
 				$(".total").addClass("semTop");
