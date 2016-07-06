@@ -325,7 +325,7 @@ function CarregaServicoProducaoAluno()
             $('.microfiche-film').css('transform', 'matrix(1,0,0,1,'+ (parseInt($('.microfiche-film').css('transform').split(',')[4]) + 592) + ',0)');
     });
 
-    $('.microfiche-film').css('width', '5000px');
+    $('.microfiche-film').css('width', ($('.Portfolio_Conteudo_Container').length*590)+'px');
 
 }
 
