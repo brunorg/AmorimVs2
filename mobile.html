@@ -24,15 +24,10 @@
             }
 
             if (localStorage.length > 0) {
-                if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23)
-                    window.location = m + "areaAluno.html";
-                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
-                    window.location = m + "areaProfessor.html";
-                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 26)
-                    window.location = m + "areaCoordenacao.html";
-                else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 25)
-                    window.location = m + "areaSecretaria.html";
-            } else if (m === "m_" && (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/"))) {
+                localStorage.clear();
+            }
+
+            if (m === "m_" && (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/"))) {
                 window.location = "mobile.html";
             } else if (m === "" && (window.location.pathname.endsWith("mobile.html"))) {
                 window.location = "index.html";
