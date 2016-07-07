@@ -27,8 +27,7 @@ $(document).ready(function(){
 	    });
 	});
 
-	var altura = window.innerHeight; 
-	//$('#m_blocoGeral').css('height',altura-30);
+	var altura = window.innerHeight;
 	
 	setTimeout(function(){
 
@@ -385,7 +384,7 @@ $(document).ready(function(){
 		$(this).css('transform','translate(300px)');
 	});
 
-	$("#alterar_foto").click(showUploadFileBox);
+	//$("#alterar_foto").click(showUploadFileBox);
 });	
 
 function menuHamburguer(btn, posicao, classDivMenu){
@@ -1416,44 +1415,13 @@ function ativaMenu(){
 	var classe = $('a[href="'+retorno[4]+'"] .Content_lateral_Menu_Opcao').attr("class");	
 	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
 }
-function showUploadFileBox() {
-	var html = "";
-
-	html += '<div class="blackPainel">';
-	html += 	'<div class="uploadFileBox">';
-	html += 		'<div class="uploadFileBoxTitulo">';
-	html += 			'Upload Foto Aluno';
-	html += 			'<div class="close_upload_producao" onclick="hideUploadFileBox()"></div>';
-	html += 		'</div>';
-	html += 		'<div class="uploadFileBoxImg">';
-	html += 			'<div class="uploadFileBoxIcon"></div>';
-	html += 		'</div>';
-	html += 		'<div id="LegendaUpload">Aguardando Arquivo</div>';
-	html += 		'<form id="inserirArquivo">';
-	html += 			'<input type="hidden" id="action" name="action" value="update">';
-	html += 			'<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
-	html += 			'<input type="hidden" class="perfil" id="idAluno" value="">';
-	html += 			'<div class="campoConfirmaUpload">';
-	html += 				'<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="salvarFoto()">';
-	html += 			'</div>';
-	html += 		'</form> ';
-	html += 	'</div>';
-	html += '</div>';
-
-	$("body").append(html);
-	$(".blackPainel").show();
-}
-
-function hideUploadFileBox() {
-	$(".blackPainel").remove();
-}
 
 function alterarFoto() {
-	if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
+	if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23)
 	{
 		salvarFotoAluno();
 	}
-	else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 25)
+	else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
 	{
 		salvarFotoProfessor();
 	}
