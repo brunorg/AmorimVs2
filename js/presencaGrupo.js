@@ -97,7 +97,6 @@ var globalMonth;
     }
 
     $.fn.weekdisplay = function( offset ) {
-
         var months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
         var thisNode = this[0];
@@ -119,7 +118,7 @@ var globalMonth;
             createDivDays(thisNode, "daysName", ["D", "S", "T", "Q", "Q", "S", "S"], "weekCalendarName")
             createDivDays(thisNode, "daysNumber", getAtualWeek(todayNumber, todayName, todayMonth), "weekCalendarDay")
 
-        } else {
+        }else{
 
             date.setDate(date.getDate() + offset)
 
@@ -245,7 +244,9 @@ function atualizarCalendario(idGrupo){
 
 function carregaFaltas(idGrupo){
     var date = new Date();
+    date.setDate(date.getDate() + window.dayOffsetWeekCalendar);
     var todayMonth = date.getMonth();
+    console.log(todayMonth);
     $.ajax({
         url: path + 'Chamada/ListarGrupo/'+idGrupo+'/'+$('#weekCalendarDay0').html()+'/'+todayMonth,
         async: false,
@@ -312,6 +313,7 @@ function habilitaSalvarPresenca(idGrupo){
     $("#btnSalvarPresenca").click(function(){
        date = new Date()
        date.setDate(date.getDate() + window.dayOffsetWeekCalendar)
+       console.log(window.dayOffsetWeekCalendar)
        var todayMonth = date.getMonth()
 
         var objetoASerEnviado = {}
