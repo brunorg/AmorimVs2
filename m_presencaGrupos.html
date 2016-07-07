@@ -5,6 +5,7 @@
         <meta charset="UTF-8" />
         <title>Plataforma Amorim</title>
         <link rel="shortcut icon" href="img/Amorim_favicon.png" type="image/x-icon"/>
+        <meta name="theme-color" content="#16becf" />
  
         <!--Style-->
         <link rel="stylesheet" type="text/css" href="css/m_style.css" />  
@@ -37,22 +38,9 @@
 
     <body>
         <!--Conteudo Geral-->
-		<div id="Container" ng-controller="geralCTRL">
-          <div>
-                <div id="Cabecalho_Menu_Area">
-                    <div id="Cabecalho_Menu_Area_Menu1"><a class="menuHamb">&nbsp</a></div>
-                    <div id="Cabecalho_Menu_Area_Menu2">
-                        <div ng-init="usuario()">
-                            <div id="Cabecalho_Perfil_Area_Foto_Content">
-                                <!--Foto do usuário, neste caso, do aluno-->
-                                <div id="Cabecalho_Perfil_Area_Foto">  
-                                    <img id='_foto' src='{{usuarioFoto}}'/>                          
-                                </div>
-                                 <div id="Cabecalho_Perfil_Area_Descricao">{{usuarioCabecalho}}</div> 
-                            </div>                            
-                        </div>
-                    </div>  
-                </div>                
+         <div id="Container" ng-controller="geralCTRL">
+            <div ng-include="'m_header.html'">
+                <!-- Template: m_header.html -->
             </div>
             <div id="Conteudo_Area">
                     <!--Coluna a esquerda-->    

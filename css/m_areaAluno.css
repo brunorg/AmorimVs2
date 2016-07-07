@@ -55,7 +55,7 @@ div[class*="box_col"]:last-of-type {
 }
 .box_col4 {
 	height: auto;
-	width: 33%;
+	width: 33.3%;
 	box-sizing: border-box;
 }
 .box_col6 {
@@ -65,7 +65,7 @@ div[class*="box_col"]:last-of-type {
 }
 .box_col8 {
 	height: auto;
-	width: 66%;
+	width: 66.6%;
 	padding-right: 15px;
 	box-sizing: border-box;
 }
@@ -111,7 +111,7 @@ div[class*="box_col"]:last-of-type {
 	left: 15px;
 }
 .microfiche-next-button {
-	left: 587px;
+	right: 15px;
 }
 
 .microfiche-screen{
@@ -578,15 +578,6 @@ tr.Rotina_Semanal_Linha_Recreio { height: 25px !important; background-color: rgb
 	top: 118px;
 }
 
-.microfiche-prev-button{
-	left: 17px;
-
-}
-
-.microfiche-next-button{
-	left: 570px;
-}
-
 .Objetivos_Semana_Cabecalho_Nome{
 	font-size: 18px;
 }
@@ -596,6 +587,7 @@ tr.Rotina_Semanal_Linha_Recreio { height: 25px !important; background-color: rgb
 }
 
 .Objetivos_Resultado_Desempenho{
+	position: relative;
 	height: 256px;
 }
 

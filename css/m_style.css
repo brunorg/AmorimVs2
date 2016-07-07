@@ -152,8 +152,10 @@ ul.session_options > li:last-child {
 
 /*Conteudo geral*/		
 #Conteudo_Area{
+	position: relative;
+	top: 40px;
 	width:100%;
-	height: calc(100% - 40px);
+	height: auto;
 	background-color: #FFF;
 	float:left;
 }
@@ -580,9 +582,9 @@ ul.session_options > li:last-child {
 
 /*Coluna central sem divisoes*/
 /*Coluna central*/	
-#content_central{
+#content_central{/*
 	position: relative;
-	top: 40px;
+	top: 40px;*/
 	width: 100%;
     padding: 15px 15px 15px 15px;
 	overflow:auto;
@@ -596,10 +598,10 @@ ul.session_options > li:last-child {
 	overflow:hidden;
 }
 #m_blocoGeral{
-	position: relative;
+	/*position: relative;
+	top: 40px;*/
 	width: 100%;
 	height: auto;
-	top: 40px;
 	padding: 24px;
 	z-index: 1;
 	background: #FFF;
@@ -1626,7 +1628,7 @@ object{
 .mCSB_container{
 	height: 100%;
 }
-.mCSB_inside > .mCSB_container{
+.mCustomScrollbar > .mCSB_inside > .mCSB_container{
 	margin-right: 0 !important;
 }
 
@@ -1743,22 +1745,4 @@ object{
     background-position: 21px 50%;
     background-size: 25px;
     border-bottom: 1px solid #999;
-}
-
-
-/* Smartphone*/
-@media only screen and (max-width : 600px) {
-    #content_central {
-	    height: 350px;
-	}
-}
-
-/* Smartphone*/
-@media only screen and (max-width : 480px) {
-      /* estilos */
-}
-
-/* iPads*/
-@media only screen and (max-device-width : 1024px) {
-      /* estilos */
 }

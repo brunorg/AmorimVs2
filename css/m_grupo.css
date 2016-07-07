@@ -66,3 +66,8 @@
 .excluir{
 	display: block;
 }
+
+.bt_Off 
+{
+	width: calc(25% - 3px);
+}

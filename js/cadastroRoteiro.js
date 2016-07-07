@@ -11,15 +11,15 @@ var objCount = 1;
 $(document).ready(function(){
 
 	$('#cabecalho_roteiro').addClass('Item_Ativo');
-	
+
 	/*Function do accordion*/
 	$('a.accordion').click(function(){
 		$(this).parent().find('div.secao_cadastro').slideToggle("slow");
 		$(this).closest('div.secao_bloco').attr('id') ;
 	});
-	
+
 	/*lista anoEstudo e cadastra roteiros*/
-    HtmlContent = ""; 
+    HtmlContent = "";
     for(var b=0;b<dataAnoEstudo.length; b++)
     {
         HtmlContent += "<option value='"+dataAnoEstudo[b].idanoEstudo+"'>"+(dataAnoEstudo[b].ano)+"º</option>";
@@ -28,8 +28,8 @@ $(document).ready(function(){
     //Carrega os selects com os anos!!!
     $('.anoEstudoRoteiro').html(HtmlContent);
     $("#anoEObj").html("<option value=''></option>"+HtmlContent);
-	$("#anoEAtv").html("<option value=''></option>"+HtmlContent);	
-	
+	$("#anoEAtv").html("<option value=''></option>"+HtmlContent);
+
 	//Evento ao clicar no menu principal ('Inserir Roteiro', 'Pesquisa' e 'Atribuir Roteiro Extra')
 	$('.Cabecalho_Roteiro_Item').click(function(){
 
@@ -37,48 +37,48 @@ $(document).ready(function(){
 		if ($(this).hasClass('Item_Ativo')){
 			return false;
 		}
-		
+
 		aba = $(this).attr('aba');		//Pega o valor do atributo aba para utilizar posteriormente
 		$('.Conteudo_Aba_Cabecalho').hide();	//Esconde a div visivel
 		$('.Cabecalho_Roteiro_Item').removeClass('Item_Ativo'); //Remove todas as classes item Ativo do menu
-		
+
 		//Verifica o valor da variavel aba.
-		
+
 		if (aba == 'inserirRoteiro'){ //Se for inserirRoteiro limpa os campos, adiciona a classe item_ativo e manda exibir a div correspondente
 			limparCamposRoteiro();
 			$('#cabecalho_roteiro').addClass('Item_Ativo');
 			$('#Roteiro').show();
 			$('#Inserir_roteiroExtra').hide();
 			return false;
-			
+
 		}else if (aba == 'pesquisa'){	//Se for pesquisa limpa os campo de pesquisa, adiciona a classe item_ativo e manda exibir a div correspondente
 										//E carrega os roteiros de acordo com o ano selecionado no inbox.
 			$('#cabecalho_pesquisa').addClass('Item_Ativo');
 			$('#Pesquisar_Roteiro').val('');
-			
+
 			$('#Pesquisa').show();
 			carregarPesquisaByAno($('#Input_Roteiro_Ano_Pesquisa').val());
 			$('#Inserir_roteiroExtra').hide();
 			return false;
-			
-		}else if (aba == 'atribuirRoteiro'){	//Se for para atrbuir roteiro extra, apenas adiciona a classe e exibe a div. 
+
+		}else if (aba == 'atribuirRoteiro'){	//Se for para atrbuir roteiro extra, apenas adiciona a classe e exibe a div.
 			$('#cabecalho_roteiroExtra').addClass('Item_Ativo');
 			$('#RoteiroExtra').show();
 			$('#Inserir_roteiroExtra').show();
 			return false;
 		}
 	})
-	
+
 	//Evento ao digitar algo no campo de pesquisa de roteiros
 	$('#Pesquisar_Roteiro').keyup(function(){
-		
+
 		texto = $(this).val().toUpperCase();	//Tranforma tudo em maiusculo.
 		$('.roteiro_nenhum').css('display','none');
 		contRoteiros = 0;	//variavel contadora
-		
+
 		//Se houver um texto digitado
 		if (texto != ''){
-			
+
 			//Percorre todas as linhas dos roteiros
 			$('.roteiro_listado').each(function(){
 
@@ -93,67 +93,67 @@ $(document).ready(function(){
 					contRoteiros++;
 				}
 			});//Fim do laço
-			
+
 		}else{
 			//Se não tiver texto para pesquisar lista todos e deixa a variavel contadora diferente de 0
 			$('.roteiro_listado').css('display','block');
 			contRoteiros++;
 		}
-		
+
 		//Se a variavel contadora for igual a 0 exibe uma div com a mensagem dizendo não ter nenhum resultado
 		if (contRoteiros == 0) $('.roteiro_nenhum').css('display','block');
 		return false;
 	})
-	
+
 	//Evento ao mudar select da pesquisa dos roteiros
 	$('#Input_Roteiro_Ano_Pesquisa').change(function(){
 		$('#Pesquisar_Roteiro').val('');	//Zera o input text e chama a função para listar os roteiros referentes ao ano
-		carregarPesquisaByAno($('#Input_Roteiro_Ano_Pesquisa').val());	
+		carregarPesquisaByAno($('#Input_Roteiro_Ano_Pesquisa').val());
 		return false;
 	})
 
 	//Lista os objetivos de um roteiro ao clicar na linha correspondente
 	$('body').delegate('.roteiro_listado', 'click', function(){
-		
+
 		idRoteiro = $(this).attr('idRoteiro');	//Pega o idRoteiro
 		$('.Roteiro_Listado_Btns').show();		//Lista todos os botões
-		
-		$('.spanObjetivo').css('display','none');	//Esconde as divs das atividades que não devem aparecer 
-	
+
+		$('.spanObjetivo').css('display','none');	//Esconde as divs das atividades que não devem aparecer
+
 		//Verifica se a div clicada está visivel, se sim apenas esconde todas as divs
 		if ($('#objetivosRoteiro'+idRoteiro).hasClass('Atvs_Expandido')) {
 			$('.Objetivos_Lista').removeClass('Atvs_Expandido').css('height','0px');
 			return false;
 		}
-		
+
 		$('#Roteiro_Listado_Btns'+idRoteiro).hide();
-		
+
 		//Esconde todas as divs para mostrar a div com os objetivos corretos
 		$('.Objetivos_Lista').removeClass('Atvs_Expandido').css('height','0px');
-		
+
 		//Depois...
-		//Verifica se a a linha já foi clicada alguma vez, se sim, faz apenas os procedimentos para mostrar a div no tamanho certo  
-		if ($('#objetivosRoteiro'+idRoteiro).hasClass('clicado')) {			
+		//Verifica se a a linha já foi clicada alguma vez, se sim, faz apenas os procedimentos para mostrar a div no tamanho certo
+		if ($('#objetivosRoteiro'+idRoteiro).hasClass('clicado')) {
 			tamanhoDiv = $('.objetivoRoteiro'+idRoteiro).length * 33;
 			$('#objetivosRoteiro'+idRoteiro).addClass('Atvs_Expandido').css('height',tamanhoDiv+'px');
 			return false;
 		}
-		
-		
-		
+
+
+
 		//Lista os objetivos do roteiro.
 		listarObjetivos(idRoteiro);
-		
+
 		return false;
-		
-	});	
-		
-	
+
+	});
+
+
 	$('body').delegate('.Btn_AddAtv_Obj', 'click', function(){
 
 		idObjetivo = $(this).attr('idObjetivo');
 		idRoteiro = $(this).attr('idRoteiro');
-		
+
 		//Verifica se a classe existe para o objetivo que deverá ser adicionado a atividade
 		if (!$('#spanObjetivo'+idObjetivo).hasClass('clicado')){
 			//Se não existir. ele chama a função para listar as atividades para saber quantas atividades já existem...
@@ -161,16 +161,16 @@ $(document).ready(function(){
 		}
 		//...Esconde todas as atividades
 		esconderAtividades(idObjetivo);
-		
-		
+
+
 		if ($('.Item_Ativo').text() == 'Pesquisa') {
 			num = $('#spanObjetivo'+idObjetivo+' .Atv_ObjList_Info:not(.Vazio)').length + 1;
 		}else{
 			num = $('.Atv_Obj'+idObjetivo).length + 1;
 		}
-		
+
 		//Monta Html para exibir o modal.
-		var trechoFormAtv = 
+		var trechoFormAtv =
 			'<div class="box_mensagem_atividades">'+
 				'<div class="txt_mensagem">'+
 					'<div class="Item_Roteiro_Linha No_Padding_Itens">'+
@@ -222,22 +222,22 @@ $(document).ready(function(){
 					'</div>'+
 				'</div>'+
 			'</div>';
-		
+
 		//Coloca o html no modal e manda exibi-lo
 		$('#boxModal').html(trechoFormAtv).css('display','block');
 		return false;
 	})
-	
-	
-	
-	
+
+
+
+
 	//Procedimentos para listar as atividades de cada objetivo.
 	$('body').delegate('.Obj_Inserido_Nome', 'click', function(){
 
 		//Salva os ids em variaveis
 		idObjetivo = $(this).parent().parent().attr('idObjetivo');
 		idRoteiro = $(this).parent().parent().attr('idRoteiro');
-		
+
 		//Chama a função para listar as atividades
 		listarAtividades(idObjetivo, idRoteiro);
 	})
@@ -246,26 +246,26 @@ $(document).ready(function(){
 		//Salva os ids em variaveis
 		idObjetivo = $(this).parent().parent().attr('idObjetivo');
 		idRoteiro = $(this).parent().parent().attr('idRoteiro');
-		
+
 		//Chama a função para listar as atividades
 		listarAtividades(idObjetivo, idRoteiro);
 	})
-	
+
 	//Monta o modal para adicionar um objetivo a um roteiro já existente
 	$('body').delegate('.Roteiro_Listado_Add', 'click', function(){
 		idRoteiro = $(this).attr('idRoteiro');
-		
+
 		//Verifica se os dados do roteiro ja foram carregados
 		if (!$('#objetivosRoteiro'+idRoteiro).hasClass('clicado')) {
-			//Se não, lista os objetivos para conseguir 
+			//Se não, lista os objetivos para conseguir
 			listarObjetivos(idRoteiro);
 			$('#objetivosRoteiro'+idRoteiro).removeClass('Atvs_Expandido').css('height','0px');
 		}
 		//Pega o proximo numero a ser exibido
 		num = $('.objetivoRoteiro'+idRoteiro).length + 1;
-		
+
 		//Monta o hrtml do modal.
-		HtmlContent = 
+		HtmlContent =
 			'<div class="box_mensagem_rotcad">'+
 				'<div class="txt_mensagem">'+
 					'<div class="Roteiro_Col_4" style="width: 53.33%;">'+
@@ -284,29 +284,29 @@ $(document).ready(function(){
 						'<div class="Roteiro_Col_2">'+
 							'<div class="Input_Info">Número</div>'+
 						'</div>'+
-						'<div class="Roteiro_Col_10">'+                     
+						'<div class="Roteiro_Col_10">'+
 							'<input type="hidden" id="idRoteiro" value="'+idRoteiro+'">'+
 							'<input id="Input_Numero_Obj" class="Input_Area" required="" value="'+num+'" readonly>'+
 						'</div>'+
-					'</div>'+												
+					'</div>'+
 				'</div>'+
 				'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 					'<input type="button" class="bt_ok left" value="OK" onclick="criarObjetivoExtra()"/>'+
 					'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 				'</div>'+
 			'</div>';
-		
+
 		//Limpa os objetivos listados!!
 		$('.Objetivos_Lista').removeClass('Atvs_Expandido').css('height','0px');
-		
+
 		//Coloca o html no modal e deixa visivel.
 		$('#boxModal').html(HtmlContent).css('display','block');
 		return false;
-	})	
+	})
 
 	//Evento quando clicar no botão para editar um roteiro
 	$('body').delegate('.Roteiro_Listado_Edit', 'click', function(){
-		
+
 		//Pega o id do roteiro
 		idRoteiro = $(this).attr('idRoteiro');
 
@@ -316,7 +316,7 @@ $(document).ready(function(){
 			type: "GET",
 			success: function(d) {
 				//monta o html
-				HtmlContent = 
+				HtmlContent =
 					'<div class="box_mensagem_rotcad">'+
 						'<div class="txt_mensagem">'+
 							'<div class="Roteiro_Col_4" style="width: 53.33%;">'+
@@ -337,35 +337,35 @@ $(document).ready(function(){
 								'<div class="Roteiro_Col_2">'+
 									'<div class="Input_Info">Roteiro</div>'+
 								'</div>'+
-								'<div class="Roteiro_Col_10">'+                     
+								'<div class="Roteiro_Col_10">'+
 									'<input type="hidden" id="id">'+
 									'<input id="Input_Roteiro_Nome_edt" class="Input_Area" placeholder="Nome do roteiro" required="" value="'+d.nome+'">'+
 								'</div>'+
-							'</div>'+												
+							'</div>'+
 						'</div>'+
 						'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiroLista('+idRoteiro+')"/>'+
 							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 						'</div>'+
 					'</div>';
-				
+
 				//Habiliita o modal com o html criado
 				$('#boxModal').html(HtmlContent).css('display','block');
-				
+
 				//Seta o valor do select e esconde o campo em branco que é criado na função.
 				$('#Input_Roteiro_Ano_edt').html(carregaAno(d.anoEstudo.idanoEstudo));
 				$('#Input_Roteiro_Ano_edt option').eq(0).hide();
-				
+
 			}
 		});
-		
-				
+
+
 	return false
 	})
-		
+
 	//Evento para excluir um roteiro
 	// $('body').delegate('.Roteiro_Listado_Del', 'click', function(){
-		
+
 	// 	//Pega o id do roteiro
 	// 	idRoteiro = $(this).attr('idRoteiro');
 
@@ -375,33 +375,33 @@ $(document).ready(function(){
 	// 		type: "GET",
 	// 		async:false,
 	// 		crossDomain: true,
-	// 		beforeSend: function(){		
+	// 		beforeSend: function(){
 	// 			loading("inicial");
 	// 		},success: function(d) {
 	// 			//Esconde a div do roteiro e a div com seus objetivos
 	// 			$('#objetivosRoteiro'+idRoteiro).hide();
 	// 			$('#roteiro'+idRoteiro).hide();
 	// 		},complete: function(){
-	// 			loading("final");	
+	// 			loading("final");
 	// 		},error: function() {
 	// 			retorno = "erro";
 	// 		}
 	// 	});
 	// 	return false
 	// })
-	
+
 	//Montao html da edição do objetivo na página de pesquisa
     $('body').delegate('.Btn_Editar_Obj_Pesq', 'click', function(){
 
     	//Pega o id do roteiro e do objetivo
 		idRoteiro = $(this).attr('idRoteiro');
 		idObjetivo = $(this).attr('idObjetivo');
-		
+
 		var HtmlContent;
 	  	var objetivoNome = $('#Obj_Listado_Nome_'+idObjetivo).text();
 	  	var objetivoNumero = $('#Obj_Listado_Num_'+idObjetivo).text();
-	  	
-	  	//Objeto com as propriedades do objetivo a ser inserido	
+
+	  	//Objeto com as propriedades do objetivo a ser inserido
 	  	HtmlContent = '<div class="box_mensagem_rotcad">'+
   					'<div class="txt_mensagem">'+
   						'<div class="Roteiro_Linha">'+
@@ -432,25 +432,25 @@ $(document).ready(function(){
   							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
   						'</div>'+
   					'</div>'+
-  				'</div>';		
+  				'</div>';
 
 	  	$('#boxModal').html(HtmlContent).css('display','block');
 	  	return false;
   	})
-  
+
 	/* Selecionando item dos menus */
 	$("body").on("click", ".item", function(){
 		$(".item").removeClass("selecionado");
 		$(this).addClass("selecionado");
 	});
-	
+
 	/* Hover do botão inserir atividade */
 	$("#inserir_atividade").hover(function(){
 		$("#over_inserir").css("opacity", "1");
 	}, function(){
 		$("#over_inserir").css("opacity", "0")
 	});
-		
+
 	$("#inserir_atividade").click(function(){
 		$("#separador").append(
 		"<input id='nomeAtv' name='novaAtividade' placeholder='Atividade'> </div>")
@@ -459,18 +459,18 @@ $(document).ready(function(){
 	$.ajax({
 	   type: "GET",
 	   crossDomain: true,
-	   url: path+"AlunoVariavel/listar/1"           
+	   url: path+"AlunoVariavel/listar/1"
 	}).then(function(data) {
 		var aluSelecao=[[]];
-		$("#alunos_listados").empty();	
+		$("#alunos_listados").empty();
 		//lista todos os alunos
 		for(var i = 0; i < data.length;i++){
 			if(data[i].aluno != null){
-								
+
 				$('#alunos_listados').append('<div class="box_item_aluno">'+
 					'<div class="item" onclick="abreCombo(\'lista_combo_'+data[i].idalunoVariavel+'\',\''+data[i].anoEstudo.idanoEstudo+'\');">'+
 						'<div class="titulo_objetivo">'+data[i].aluno.nome+'</div>'+
-					'</div>'+                                            
+					'</div>'+
 					'<div class="lista_combo" id="lista_combo_'+data[i].idalunoVariavel+'">'+
 						'<div class="celulaPequena rightMargin">'+
 							'<div class="infoP"> Ano estudo </div>'+
@@ -480,7 +480,7 @@ $(document).ready(function(){
 									'<select class="anoEstudo Input_Area" name="ano_'+data[i].idalunoVariavel+'" id="ano_'+data[i].idalunoVariavel+'" onchange="listaRoteiroMultiplaEscolhas(\'ano_'+data[i].idalunoVariavel+'\',\'roteiro_'+data[i].idalunoVariavel+'\',\''+data[i].aluno.idAluno+'\')"></select>'+
 								'</div>'+
 							'</div>'+
-						'</div>'+                   
+						'</div>'+
 						'<div class="celulaMedia">'+
 							'<div class="infoM"> Motivo </div>'+
 							'<div class="infoValueM">'+
@@ -495,15 +495,15 @@ $(document).ready(function(){
 						'<div class="btnAtribuirRoteiro" idVar="'+data[i].idalunoVariavel+'" id="'+data[i].aluno.idAluno+'" anoLetivo="'+data[i].anoLetivo.idanoLetivo+'"> Salvar </div>'+
 					'</div>'+
 				'</div>');
-			}	
-			
+			}
+
 			aluSelecao[i]=[];
 			aluSelecao[i][0]=data[i];
 			aluSelecao[i][1]=0;
 		}
-		
+
 		var texto;
-		
+
 		//Mesmo procedimento anterior ocorre ao pesquisar um aluno, Deve ser alterado de forma semelhante mudando apenas o nome das variaveis
 		$("#pesquisaAluno").keyup(function(){
 
@@ -521,10 +521,10 @@ $(document).ready(function(){
 			$("#alunos_listados").empty();
 			for(var i = 0; i < aux.length;i++){
 
-				$('#alunos_listados').append('<div class="box_item_aluno">'+ 
+				$('#alunos_listados').append('<div class="box_item_aluno">'+
 						'<div class="item" onclick="abreCombo(\'lista_combo_'+aux[i][0].idalunoVariavel+'\',\''+aux[i][0].anoEstudo.idanoEstudo+'\');">'+
 							'<div class="titulo_objetivo">'+aux[i][0].aluno.nome+'</div>'+
-						'</div>'+                                            
+						'</div>'+
 						'<div class="lista_combo" id="lista_combo_'+aux[i][0].idalunoVariavel+'">'+
 							'<div class="celulaPequena rightMargin">'+
 								'<div class="infoP"> Ano estudo </div>'+
@@ -533,7 +533,7 @@ $(document).ready(function(){
 										'<select class="anoEstudo" name="ano_'+aux[i][0].idalunoVariavel+'" id="ano_'+aux[i][0].idalunoVariavel+'" onchange="listaRoteiroMultiplaEscolhas(\'ano_'+aux[i][0].idalunoVariavel+'\',\'roteiro_'+aux[i][0].idalunoVariavel+'\',\''+aux[i][0].aluno.idAluno+'\')"></select>'+
 									'</div>'+
 								'</div>'+
-							'</div>'+                   
+							'</div>'+
 							'<div class="celulaMedia">'+
 								'<div class="infoM"> Motivo </div>'+
 								'<div class="infoValueM">'+
@@ -550,11 +550,11 @@ $(document).ready(function(){
 							'<div class="btnAtribuirRoteiro" idVar="'+aux[i][0].idalunoVariavel+'" id="'+aux[i][0].aluno.idAluno+'" anoLetivo="'+data[i].anoLetivo.idanoLetivo+'"> Salvar </div>'+
 						'</div>'+
 					'</div>');
-					
+
 				}
 		});
 	});
-	
+
 	//Salvar roteiro extra
 	$("body").delegate(".btnAtribuirRoteiro", "click", function() {
 
@@ -570,10 +570,10 @@ $(document).ready(function(){
 
 		var valoresEnviar = '';
 		var action = 'AtribuicaoRoteiroExtra';
-		
+
 		//Percorre apenas as opções do roteiro referentes
 		$('.op_roteiro_'+idVar).each(function(){
-			
+
 			//Se tiver estiver checado....
 			if($(this).is(':checked')){
 				//Concatena os valores fixo com o valor do roteiro
@@ -582,7 +582,7 @@ $(document).ready(function(){
 				if (setCreateData('AtribuicaoRoteiroExtra/',valoresEnviar) != 'erro'){
 					//Muda o valor da var conf
 					conf = true;
-					//remove a linha adicionada 
+					//remove a linha adicionada
 					var i = $(this).attr('id');
 					$('.'+i).remove();
 				}
@@ -599,31 +599,31 @@ $(document).ready(function(){
 			$(".infoValueM").find("input").val("");
 			$(".checkboxes").empty();
 			$(".selectBox").find("select").val("");
-		}		
+		}
 		return false;
 	});
-	
-	
+
+
 	/*Cadastro Roteiro*/
-	botaoEditarRoteiro();	
+	botaoEditarRoteiro();
 	$('#Btn_Del_Rot_1').click(function(){
 		var idRoteiro = $('#id').val();
 		mensagem("Deseja realmente excluir?","Cancelar","bt_cancelar","confirm","Roteiro",idRoteiro,"excluirRoteiro");
-	});	
-	
+	});
+
 });
 
 function abreCombo(item_linha, ano){
-	
+
 	$("#"+item_linha).toggle();
-	
+
 	//Se a div estiver visivel, as opções no select e esconde o ano do aluno
 	if ($('#'+item_linha).css('display') == 'block'){
 		var id = item_linha.replace(/[^0-9]+/g,'');
 		$('#ano_'+id).html("<option value=''></option>"+HtmlContent);
 		$('#ano_'+id+' option[value='+ano+']').hide();
 	}
-	
+
 	return false;
 }
 
@@ -653,32 +653,32 @@ function botaoEditarRoteiro(){
 								'<div class="Roteiro_Col_2">'+
 									'<div class="Input_Info">Roteiro</div>'+
 								'</div>'+
-								'<div class="Roteiro_Col_10">'+                     
+								'<div class="Roteiro_Col_10">'+
 									'<input type="hidden" id="id">'+
 									'<input id="Input_Roteiro_Nome_edt" class="Input_Area" placeholder="Nome do roteiro" required="">'+
 								'</div>'+
-							'</div>'+												
+							'</div>'+
 						'</div>'+
 						'<div class="btn_mensagemCad" style="margin: 39px 199px">'+
 							'<input type="button" class="bt_ok left" value="OK" onclick="EditarRoteiro('+idRoteiro+')"/>'+
 							'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 						'</div>'+
 					'</div>';
-		
+
 		$('#boxModal').html(HtmlContent).css('display','block');
 		window.setTimeout(function(){
-			$('#id').val(idRoteiro);			
+			$('#id').val(idRoteiro);
 			var anoEditar,roteiroNome;
-			
+
 			if(contador==1){
 				roteiroNome = $('#Input_Roteiro_Nome').val();
-				anoEditar = $("#Input_Roteiro_Ano :selected").val();				
+				anoEditar = $("#Input_Roteiro_Ano :selected").val();
 				$('#Input_Roteiro_Nome_edt').val(roteiroNome);
-				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));				
-				contador++;	
+				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));
+				contador++;
 			}else{
 				roteiroNome = $('#roteiroNomeEditado').val();
-				anoEditar = $("#anoEditado").val();				
+				anoEditar = $("#anoEditado").val();
 				$('#Input_Roteiro_Nome_edt').val(roteiroNome);
 				$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEditar));
 			}
@@ -687,7 +687,7 @@ function botaoEditarRoteiro(){
 }
 
 function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
-	
+
 	$('.roteiroLista').css('display','block');
 
 	//Retira ano_ da variavel 'anoEstudo' e coloca lista_combo_
@@ -695,7 +695,7 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 
 	//Pega o valor do input com o ano do estudo
 	var anoEstudo = $("#"+anoEstudo).val();
-	
+
 	//Busca os roteiros que podem ser atribuidos ao aluno (apenas os roteiros do ano seguinte)
 	var dataRoteiroAno = getData("Roteiro/RoteiroAno", anoEstudo);
 	var cont = 0;
@@ -704,7 +704,7 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 	HtmlContentR = '<div class="multiselect">';
 	HtmlContentR += '<div class="selectBox" onclick="showCheckboxes(\'check_'+comboRoteiro+'\')" name="ok">';
 	HtmlContentR += '<div class="boxNomes">'
-	//Passa por todos os roteiros...	
+	//Passa por todos os roteiros...
 	for(var a=0;a<dataRoteiroAno.length; a++){
 		//e verifica se não está atribuido ao aluno
 		if(VerificaAtribuicaoRoteiroExtra(idAluno, dataRoteiroAno[a].idroteiro)==0){
@@ -712,21 +712,21 @@ function listaRoteiroMultiplaEscolhas(anoEstudo,comboRoteiro,idAluno){
 			HtmlContentR += '<label class="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'" for="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'"><input type="checkbox" id="'+comboRoteiro+'_'+dataRoteiroAno[a].idroteiro+'" name="'+dataRoteiroAno[a].idroteiro+'" class="op op_'+comboRoteiro+'" />'+dataRoteiroAno[a].nome+'</label>';
 			cont++;
 		}
-	}	
+	}
 	HtmlContentR += '</div>';
 	HtmlContentR += '<div class="overSelect"></div>';
 	HtmlContentR += '</div>';
 	HtmlContentR += '<div class="checkboxes check_'+comboRoteiro+'">';
 
 	//variavel para contar quantos roteiros estão disponiveis
-	
+
 
 	HtmlContentR += '</div>';
 	HtmlContentR += '</div>';
 	if (cont > 0){
 		$('#'+comboRoteiro).html(HtmlContentR);
 	}else $('#'+comboRoteiro).html('<div class="celulaGrande"><div class="infoTotal"> Nenhum roteiro disponível!!</div></div>');
-	
+
 	return false;
 }
 
@@ -735,10 +735,10 @@ function inserirRoteiro () {
 	var anoRoteiro = $("#Input_Roteiro_Ano :selected").html();
 	var anoEstudo = $("#Input_Roteiro_Ano").val();
 	var nomeRoteiro = $("#Input_Roteiro_Nome").val();
-	
+
 	if (anoEstudo == '' || nomeRoteiro == '')
 		return mensagem("Todos os campos são obrigatórios!","OK","bt_ok","erro");
-		
+
 	$("#Roteiro_Inserido_Container").show();
 	$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoRoteiro+' ano | ');
 	$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nomeRoteiro);
@@ -756,12 +756,12 @@ function criarRoteiro(anoEstudo,nome,descricao){
 	var retorno;
 	var status;
 	var valores = "action=create&nome="+nome+"&descricao="+descricao+"&anoEstudo="+anoEstudo+"&ativo=1";
-	
+
 	retorno = setCreateDataRoteiro("Roteiro",valores);
 	$('#idRoteiro').val(retorno);
 	if(retorno != "erro"){
 		mensagem("Cadastrado com sucesso!","OK","bt_ok","sucesso");
-		status = retorno;		
+		status = retorno;
 	}else{
 		mensagem("Erro ao cadastrar!","OK","bt_ok","erro");
 		status = "erro";
@@ -770,7 +770,7 @@ function criarRoteiro(anoEstudo,nome,descricao){
 }
 
 /*Function base para criar registro*/
-function setCreateDataRoteiro(Tabela,Valores){	
+function setCreateDataRoteiro(Tabela,Valores){
 	var retorno;
 	$.ajax({
 		url: path+Tabela,
@@ -778,12 +778,12 @@ function setCreateDataRoteiro(Tabela,Valores){
 		async:false,
 		crossDomain: true,
 		data: Valores,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 			retorno = d;
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		},error: function() {
 			retorno = "erro";
 		}
@@ -792,7 +792,7 @@ function setCreateDataRoteiro(Tabela,Valores){
 }
 
 //Edita o roteiro que acabou de ser cadastrado
-function EditarRoteiro(idRoteiro){	
+function EditarRoteiro(idRoteiro){
 	var anoEstudo = $("#Input_Roteiro_Ano_edt").val();
 	var anoEstudoTexto = $("#Input_Roteiro_Ano_edt :selected").html();
 	var nome = $("#Input_Roteiro_Nome_edt").val();
@@ -801,26 +801,26 @@ function EditarRoteiro(idRoteiro){
 		mensagem("Todos os campos são obrigatórios!","OK","bt_ok","erro");
 		return false;
 	}
-	
+
 	$('#Input_Roteiro_Ano_edt').html(carregaAno(anoEstudo));
 	$("#Input_Roteiro_Nome_edt").val(nome);
-	
+
 	$('#boxModal').css('display','none');
 	$.ajax({
 		url: path+"Roteiro",
 		type: "POST",
 		data: "action=update&nome="+nome+"&descricao=&anoEstudo="+anoEstudo+"&ativo=1&id="+idRoteiro,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 			$("#Rot_Inserido_Info .Rot_Inserido_Ano").html(anoEstudoTexto+' ano | ');
 			$("#Rot_Inserido_Info .Rot_Inserido_Nome").html(nome);
-			$("#Input_Roteiro_Nome_edt").val(nome);	
-			$("#anoEditado").val(anoEstudo);	
-			$('#roteiroNomeEditado').val(nome);				
+			$("#Input_Roteiro_Nome_edt").val(nome);
+			$("#anoEditado").val(anoEstudo);
+			$('#roteiroNomeEditado').val(nome);
 			mensagem("Roteiro alterado com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		}
 	});
 }
@@ -829,35 +829,35 @@ function EditarRoteiro(idRoteiro){
 
 //Edita oroteiro que está na lista das pesquisas....
 //Diferente os campos que serão editados automaticamente
-function EditarRoteiroLista(idRoteiro){	
+function EditarRoteiroLista(idRoteiro){
 	var anoEstudo = $("#Input_Roteiro_Ano_edt").val();
 	var anoEstudoTexto = $("#Input_Roteiro_Ano_edt :selected").html();
 	var nome = $("#Input_Roteiro_Nome_edt").val();
-		
+
 	if (nome == ''){
 		mensagem("Todos os campos são obrigatórios!","OK","bt_ok","erro");
 		return false;
 	}
-	
+
 	//Verifica se realmente foi mudado alguma coisa para não chamar serviços atoa
 	if (($('#Input_Roteiro_Ano_Pesquisa').val() == anoEstudo) && $('#nome_roteiro_listado_'+idRoteiro).text() == nome){
 		mensagem("Roteiro alterado com sucesso!","OK","bt_ok","sucesso");
 		fecharBoxModal();
 		return false;
 	}
-	
+
 	//$('#boxModal').css('display','none');
 	$.ajax({
 		url: path+"Roteiro",
 		type: "POST",
 		data: "action=update&nome="+nome+"&descricao=&anoEstudo="+anoEstudo+"&ativo=1&id="+idRoteiro,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 
 			//Se mudar de classe esconde
 			if ($('#Input_Roteiro_Ano_Pesquisa').val() != anoEstudo){
-				
+
 				$('#roteiro'+idRoteiro).hide();
 				$('#objetivosRoteiro'+idRoteiro).hide();
 				//tamanhoDiv = $('.objetivoRoteiro'+idRoteiro).length * 33;
@@ -870,31 +870,31 @@ function EditarRoteiroLista(idRoteiro){
 			mensagem("Roteiro alterado com sucesso!","OK","bt_ok","sucesso");
 			fecharBoxModal();
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		}
 	});
 }
 
 
-  
+
 function fecharBoxModal(){
 	$('#boxModal').css('display','none');
 }
 
 function carregaAno(anoParaEditar){
-	Html = "<option value=''></option>"; 
+	Html = "<option value=''></option>";
 	var selecionado = "";
 
     for(var b=0;b<dataAnoEstudo.length; b++)
     {
-		if(anoParaEditar == dataAnoEstudo[b].idanoEstudo){	
-			selecionado = 'selected';	
+		if(anoParaEditar == dataAnoEstudo[b].idanoEstudo){
+			selecionado = 'selected';
 		}else{
 			selecionado = '';
 		}
         Html += "<option value='"+dataAnoEstudo[b].idanoEstudo+"' "+selecionado+" >"+(dataAnoEstudo[b].ano)+"º</option>";
-    }	
-    
+    }
+
 	return Html
 }
 
@@ -908,64 +908,64 @@ function confereLinhasObj() {
 function inserirObjetivoAtividade(){
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário
 	var atividadesLista = [];						//Matriz com todos os atributos referentes às atividades do objetivo
-	
+
 	if ($(".Nome_Objetivo_Input").val() == ''){
 		$(".Nome_Objetivo_Input").focus();
 		return mensagem("O campo objetivo é obrigatório!","OK","bt_ok","erro");
 	}
-	
+
 	cont = 1;
 	var erroAtv = false;
-	
+
 	for ( var i = 0; i < atividadesCont.length; i++ ){ //Verificação para ver se as atividades estão salvas de maneira correta.
 
 		//Primeiro verifica se todos os campos estão vazios, se estiver, não precisa salvar
 		if($(".nomeAtv").eq(i).val() == "" && $(".livroAtv").eq(i).val() == "" && $(".paginaAtv").eq(i).val() == ""){
-		
-			$('.Atividade_Linha').eq(i).hide();//apenas escondo a div para depois excluir. Excluir agora atrapalha o resultado do for  
-		
-		}else{	//Veriica se um campo esta em vazio de forma incorreta. 
+
+			$('.Atividade_Linha').eq(i).hide();//apenas escondo a div para depois excluir. Excluir agora atrapalha o resultado do for
+
+		}else{	//Veriica se um campo esta em vazio de forma incorreta.
 			if($(".nomeAtv").eq(i).val() == "" || $(".livroAtv").eq(i).val() == "" || $(".paginaAtv").eq(i).val() == ""){
 				erroAtv = true;
 			}
 		}
 	}
-	
+
 	//Remove as divs com campos que não precisarão ser salvos
 	$('.Atividade_Linha').each(function(){
 		if (!($(this).is(':visible'))) {
 			$(this).remove();
 		}
 	})
-	
+
 	//Enumera corretamente as atividades restantes
 	$('.numeroAtv').each(function(){
 		$(this).val(cont);
 		cont++;
 	})
-	
+
 	atvCount = cont; //seta o valor da atvCount de acordo com a quantidade de atividades.
-	
+
 	if (erroAtv == true){
 		return mensagem("Título da atividade e informações do livro são obrigatórios. Caso não queira cadastrar, deixe os campos da atividade vazios.","OK","bt_ok","alerta");
 	}
 	//Seta um novo valor na variavel para verificar se estão corretos.
 	var atividadesCont = $('.Atividade_Linha');		//Contagem de quantos campos de atividade existem no formulário após excluir os inválidos
-	
+
 	console.log($(".Numero_Objetivo_Input").val());
 
 	var objetivo = { 								//Objeto com as propriedades do objetivo a ser inserido
 		nome: $(".Nome_Objetivo_Input").val(),
 		numero: $(".Numero_Objetivo_Input").val()
-	}; 
+	};
 
 
 	var roteiro = $('#id').val();
-	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);	
-	
+	var idObjetivo = criarObjetivo(objetivo.nome,objetivo.numero,"",roteiro);
+
 	if (atividadesCont.length > 0){
-		for ( var i = 0; i < atividadesCont.length; i++ ) {		
-				var idAtividade = criarAtividade($($(".nomeAtv").get(i)).val(),$($(".numeroAtv").get(i)).val(),"",idObjetivo,$($(".paginaAtv").get(i)).val(),$($(".livroAtv").get(i)).val());	
+		for ( var i = 0; i < atividadesCont.length; i++ ) {
+				var idAtividade = criarAtividade("",$($(".numeroAtv").get(i)).val(),$($(".nomeAtv").get(i)).val(),idObjetivo,$($(".paginaAtv").get(i)).val(),$($(".livroAtv").get(i)).val());
 				atividadesLista[i] = {
 					numero: $($(".numeroAtv").get(i)).val(),
 					nome: $($(".nomeAtv").get(i)).val(),
@@ -977,7 +977,7 @@ function inserirObjetivoAtividade(){
 	}
 
 	if(idObjetivo){
-		var linhaObjHtml = 
+		var linhaObjHtml =
 		'<div id="Obj_Inserido_'+objCount+'" class="Obj_Inserido objetivo'+idObjetivo+'">'+
 			'<div id="Obj_Inserido_Info_'+objCount+'" class="Obj_Inserido_Info">'+
 				'<div id="Obj_Inserido_Num_'+objCount+'" class="Obj_Inserido_Num">'+objetivo.numero+'</div>'+
@@ -989,11 +989,11 @@ function inserirObjetivoAtividade(){
 				'</div>'+
 			'</div>';
 	}
-	
+
 	//Salva as linhas das atividades!!
 	linhaObjHtml += '<div id="Atvs_Obj_Inserido_'+idObjetivo+'" class="Atvs_Obj_Inserido">';
-	if (idAtividade){        
-		
+	if (idAtividade){
+
 		var alturaDiv=0;
 		for(var i = 0; i < atividadesCont.length; i++) {
 			id = atividadesLista[i].atividadeId;
@@ -1018,7 +1018,7 @@ function inserirObjetivoAtividade(){
 	}
 	linhaObjHtml +=
 		'</div>';
-	
+
 //	linhaObjHtml +=
 //	'</div>';
 
@@ -1028,11 +1028,11 @@ function inserirObjetivoAtividade(){
 	num = $(".Obj_Inserido").length * 33;
 	$("#Objetivos_Inseridos_Container").css('height',num+'px');
 	$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
-	
+
 	objCount++;
 	atvCount = 2;
 
-	var objLimpo = 
+	var objLimpo =
 	'<div class="Roteiro_Linha">'+
         '<div class="Roteiro_Col_8">'+
             '<div class="Roteiro_Linha No_Padding_Itens">'+
@@ -1117,7 +1117,7 @@ function inserirObjetivoAtividade(){
 		var HtmlContent;
 		var objetivoLinha = $('#Obj_Inserido_Nome_'+objetivo.numero).text();
 		var objetivoLinhaN = $('#Obj_Inserido_Num_'+objetivo.numero).text();
-		//Objeto com as propriedades do objetivo a ser inserido	
+		//Objeto com as propriedades do objetivo a ser inserido
 		HtmlContent = '<div class="box_mensagem_rotcad">'+
 						'<div class="txt_mensagem">'+
 							'<div class="Roteiro_Linha">'+
@@ -1148,10 +1148,10 @@ function inserirObjetivoAtividade(){
 								'<input type="button" class="bt_cancelar" value="Cancelar" onclick="fecharBoxModal()" />'+
 							'</div>'+
 						'</div>'+
-					'</div>';		
+					'</div>';
 		$('#boxModal').html(HtmlContent).css('display','block');
-	});	
-		
+	});
+
 }
 
 /*Function para cadastrar objetivo*/
@@ -1179,29 +1179,29 @@ function editarObjetivo(idObjetivo,roteiro,numero){//var numero nao esra sendo u
 	var nome = $("#nomeObj_edt").val();
 	var retorno;
 	var valores = "nome="+nome+"&numero=&descricao=&roteiro="+roteiro+"&ativo=1&id="+idObjetivo;
-	
+
 	if ($('.Item_Ativo').text() == 'Pesquisa') {
 		numero = idObjetivo;
 	}
-	
+
 	else numero = $("#numeroObj_edt").val();
-	
+
 	$('#boxModal').css('display','none');
 	$.ajax({
 		url: path+"Objetivo",
 		type: "POST",
 		crossDomain: true,
 		data: "action=update&"+valores,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},
 		success: function(d) {
 			$("#Obj_Inserido_Nome_"+numero).html(nome);	//Muda esta div se estiver na tela de cadastro
-			$('#Obj_Listado_Nome_'+idObjetivo).text(nome);	//E muda esta div se estiver na tela de pesquisa. 
-			
-			mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");	
+			$('#Obj_Listado_Nome_'+idObjetivo).text(nome);	//E muda esta div se estiver na tela de pesquisa.
+
+			mensagem("Objetivo alterado com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		}
 	});
 }
@@ -1211,7 +1211,7 @@ function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
 {
 	var retorno;
 	var valores = "nome="+nome+"&numero=&descricao="+descricao+"&objetivo="+objetivo+"&paginaLivro="+pagina+"&livro="+livro+"&ativo=1";
-	
+
 	$.ajax({
 		url: path+"Atividade",
 		type: "POST",
@@ -1225,11 +1225,11 @@ function criarAtividade(nome,numero,descricao,objetivo,pagina,livro)
 	return retorno;
 }
 
-function editarAtividade(idAtividade,idObjetivo){	//idAtividade será vazio quando for adicionar uma atividade em um roteiro já cadastrado 
+function editarAtividade(idAtividade,idObjetivo){	//idAtividade será vazio quando for adicionar uma atividade em um roteiro já cadastrado
 
 	if (idAtividade != ''){
 		var atividadeNome = $('#Atv_ObjList_Nome_'+idAtividade).text();
-				
+
 		if (atividadeNome == ''){
 			var atividadeNome = $('#Atv_Obj_Nome_'+idAtividade).text();
 			var atividadeLivro = $('#Atv_Obj_Livro_'+idAtividade).text();
@@ -1246,10 +1246,10 @@ function editarAtividade(idAtividade,idObjetivo){	//idAtividade será vazio quan
 		var atividadeLivro = '';
 		var atividadePagina = '';
 		var botao = '<input type="button" class="bt_ok left" value="OK" onclick="cadastrarAtividade()"/>';
-		
+
 		//Verifica qual o número deverá aparecer e
 		qtdAtv = $("#Atvs_Obj_Inserido_"+idObjetivo+" .Atv_Obj_Num").length;
-		
+
 		if (qtdAtv > 1){
 			var atividadeNumero = qtdAtv+1;
 		}else if (qtdAtv==0){
@@ -1260,8 +1260,8 @@ function editarAtividade(idAtividade,idObjetivo){	//idAtividade será vazio quan
 			var atividadeNumero = 2;
 		}
 	}
-		
-	var trechoFormAtv = 
+
+	var trechoFormAtv =
 		'<div class="box_mensagem_atividades">'+
 			'<div class="txt_mensagem">'+
 				'<div class="Item_Roteiro_Linha No_Padding_Itens">'+
@@ -1312,51 +1312,51 @@ function editarAtividade(idAtividade,idObjetivo){	//idAtividade será vazio quan
 				'</div>'+
 			'</div>'+
 		'</div>';
-	
+
 	$('#boxModal').html(trechoFormAtv).css('display','block');
 	//return false;
 }
 
-function alterarAtividade(idAtividade){				
+function alterarAtividade(idAtividade){
 	var nomeAtv = $("#nomeAtv_edt").val();
-	var numeroAtv = $("#numeroAtv_edt").val();		
+	var numeroAtv = $("#numeroAtv_edt").val();
 	var livroAtv = $("#livroAtv_edt").val();
 	var paginaAtv = $("#paginaAtv_edt").val();
 	var objetivo = $("#objetivoAtv_edt").val();
-	
+
 	if(nomeAtv == "" || livroAtv=="" || paginaAtv == ""){
 		mensagem("Todos os campos são obrigatórios!","OK","bt_ok","alerta");
 		return false;
-	}else{	
-		
+	}else{
+
 		var valores = "action=update&id="+idAtividade+"&nome="+nomeAtv+"&numero=&descricao=&objetivo="+objetivo+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1";
-		
+
 		$.ajax({
 			url: path+"Atividade",
 			type: "POST",
 			crossDomain: true,
 			data: valores,
-			beforeSend: function(){		
+			beforeSend: function(){
 				loading("inicial");
 			},
 			success: function(d) {
-				
+
 				//Divs editadas na aba de criação de roteiro
 				$("#Atv_Obj_Nome_"+idAtividade).html(nomeAtv);
 				$("#Atv_Obj_Livro_"+idAtividade).html(livroAtv);
 				$("#Atv_Obj_Pag_"+idAtividade+" .Atv_Obj_Pag_OK").html(paginaAtv);
-				
+
 				//Divs com conteúdos alterados na aba de pesquisa.
 				$("#Atv_ObjList_Nome_"+idAtividade).html(nomeAtv);
 				$("#Atv_ObjList_Livro_"+idAtividade).html(livroAtv);
 				$("#Atv_ObjList_Pag"+idAtividade+" .Atv_Obj_Pag_OK").html(paginaAtv);
-				
+
 				$('#boxModal').css('display','none');
 				return mensagem("Atividade alterada com sucesso!","OK","bt_ok","sucesso");
 			},complete: function(){
-				loading("final");	
+				loading("final");
 			}
-		});	
+		});
 	}
 }
 // Expandir roteiro inserido
@@ -1366,7 +1366,7 @@ function expandirRot() {
 	var objsCount = $('.Obj_Inserido_Info');
 	var alturaContainer = objsCount.length*33;
 
-	
+
 	if ( $('#Objetivos_Inseridos_Container').hasClass('rotExpandido') ) {
 		$('#Objetivos_Inseridos_Container').css('height','0');
 		for (var i = 0; i < atvsCont.length; i++) {
@@ -1391,7 +1391,7 @@ function expandirObj(id) {
 	var alturaContainer = objsCount.length * 33;
 
 	if (!( $('#Atvs_Obj_Inserido_'+id).hasClass('Atvs_Expandido') )) {
-		
+
 		if ($('#Atvs_Obj_Inserido_'+id).text() == ''){
 			$('#Atvs_Obj_Inserido_'+id).html(
 			    	'<div class="Atv_Obj_Info">'+
@@ -1400,7 +1400,7 @@ function expandirObj(id) {
 			);
 			var alturaAtvContainer = 30; //Como foi adicionado uma linha, o altura recebe o valor do tamanho
 		}
-		
+
 		$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
 		$('#Atvs_Obj_Inserido_'+id).addClass('Atvs_Expandido');
 		$('#Atvs_Obj_Inserido_'+id).height(alturaAtvContainer);
@@ -1413,9 +1413,9 @@ function expandirObj(id) {
 
 // Adicionar campos para nova atividade
 function adicionarAtividade() {
-	
+
 	//Cria o html com os campos necessários.
-	var trechoFormAtv = 
+	var trechoFormAtv =
 	'<div class="Atividade_Linha" id="atv'+atvCount+'">'+
 	    '<div class="Item_Roteiro_Linha No_Padding_Itens">'+
 	        '<div class="Roteiro_Col_2">'+
@@ -1460,7 +1460,7 @@ function adicionarAtividade() {
 	    '</div>'+
 	'</div>';
 
-	//Insere o html criado no local correto. 
+	//Insere o html criado no local correto.
 	$('#Inserir_Atividades_Container').append(trechoFormAtv);
 	atvCount++;
 }
@@ -1475,8 +1475,8 @@ function alterarROA(servico){
 	var descricao="";
 	var msg;
 	HtmlContent="";
-	
-	if(servico == "Roteiro"){		
+
+	if(servico == "Roteiro"){
 		var anoEstudo = $("#anoEstudo").val();
 		var nome = $("#nome").val();
 		var id = $("#id").val();
@@ -1485,51 +1485,51 @@ function alterarROA(servico){
 		alterar = "&nome="+nome+"&descricao="+descricao+"&anoEstudo="+anoEstudo+"&ativo=1&id="+id;
 		HtmlContent = "<div class='item selecionado'><div class='titulo_roteiro'>"+nome+"</div> <span class='editar' onclick='editarROA(\"Roteiro\","+id+")'></span><span class='excluir' onclick='excluirROA(\"Roteiro\","+id+")'></div>";
 		msg = "Roteiro alterado com sucesso!";
-	
-	}else if(servico == "Objetivo"){		
+
+	}else if(servico == "Objetivo"){
 		var roteiroObj = $("#roteiroObj").val();
 		var anoEObj = $("#anoEObj").val();
-		var numeroObj = $("#numeroObj").val();		
+		var numeroObj = $("#numeroObj").val();
 		var nomeObj = $("#nomeObj").val();
-		var idObj = $("#idObj").val();		
+		var idObj = $("#idObj").val();
 		linha = "obj_"+idObj;
-		var descricao = "";			
-		alterar = "&nome="+nomeObj+"&numero=&descricao="+descricao+"&roteiro="+roteiroObj+"&ativo=1&id="+id;		
+		var descricao = "";
+		alterar = "&nome="+nomeObj+"&numero=&descricao="+descricao+"&roteiro="+roteiroObj+"&ativo=1&id="+id;
 		HtmlContent = "<div class='item selecionado'><div class='titulo_objetivo'>"+nomeObj+"</div> <span class='editar' onclick='editarROA(\"Objetivo\","+id+")'></span><span class='excluir' onclick='excluirROA(\"Objetivo\","+id+")'></div>";
 		msg = "Objetivo alterado com sucesso!";
-	
+
 	}else if(servico == "Atividade"){
-		var objetivoAtv = $("#objetivoAtv").val();			
+		var objetivoAtv = $("#objetivoAtv").val();
 		var idAtv = $("#idAtv").val();
 		var descricao = $("#nomeAtv").val();
 		var nomeAtv = '';
-		var numeroAtv = $("#numeroAtv").val();		
+		var numeroAtv = $("#numeroAtv").val();
 		var livroAtv = $("#livroAtv").val();
-		var paginaAtv = $("#paginaAtv").val();			
+		var paginaAtv = $("#paginaAtv").val();
 		linha = "atv_"+idAtv;
-		alterar ="&nome="+nomeAtv+"&numero=&descricao="+descricao+"&objetivo="+objetivoAtv+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1&id="+idAtv,				
+		alterar ="&nome="+nomeAtv+"&numero=&descricao="+descricao+"&objetivo="+objetivoAtv+"&paginaLivro="+paginaAtv+"&livro="+livroAtv+"&ativo=1&id="+idAtv,
 		HtmlContent = "<div class='item selecionado'><div class='titulo_objetivo'>"+descricao+"</div> <span class='editar' onclick='editarROA(\"Atividade\","+idAtv+")'></span><span class='excluir' onclick='excluirROA(\"Atividade\","+idAtv+")'></div>";
 		msg = "Atividade alterada com sucesso!";
-		
+
 		if(descricao=="" || numeroAtv=="" || objetivoAtv=="" || livroAtv==""){
 			mensagem("Os campos nome, número, objetivo e livro são obrigatórios!","OK","bt_ok","alerta");
 			return false;
 		}else{
-			
-			
+
+
 			$("#idAtv").val('');
 			$("#nomeAtv").val('');
 			$("#numeroAtv").val('');
 			$("#livroAtv").val('');
-			$("#paginaAtv").val('');				
+			$("#paginaAtv").val('');
 			$("#btnSalvarAtividade").css("display","block");
 			$("#btnEditarAtividade").css("display","none");
 		}
-	}	
+	}
 	var retorno = setUpdateData(servico,alterar,id);
 	loading('inicial');
 	if(retorno != "erro"){
-		
+
 		$('#'+linha).html(HtmlContent);
 		mensagem(msg,"OK","bt_ok","sucesso")
 		loading('final');
@@ -1543,7 +1543,7 @@ function alterarROA(servico){
 
 function VerificaAtribuicaoRoteiroExtra(idAluno, idRoteiro){
     var ValorRetorno;
- 
+
     $.ajax({
         type: "GET",
         async:false,
@@ -1563,33 +1563,33 @@ function excluirObj(idObjetivo){
 	}else{
 		url = path+"Atividade/DeletarAtividade/"+idObjetivo;
 	}
-	
+
 	$.ajax({
 		url: url,
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
-			
+
 			//Se tiver na página de cadastro
 			if ($('.Item_Ativo').text() != 'Pesquisa'){
 				$('.objetivo'+idObjetivo).remove();		//Remove a linha
 				num = $(".Obj_Inserido").length * 33;	//Pega o tamanho que a div deve ficar
 				$("#Objetivos_Inseridos_Container").css('height',num+'px');	//Insere o tamanho.
 				enumerarObjetivos()	//Enumera os objetivos
-				
+
 			}else{	//Senão estará na página de pesquisas
 				idRoteiro = $('#Obj_Inserido_'+idObjetivo).attr('idRoteiro');	//Pega o iidRoteiro
 				$('#Obj_Inserido_'+idObjetivo).remove();	//Remove a linha
 				esconderAtividades(idObjetivo);			//Esconde as atividades, se estiverem abertas,
 				listarObjetivos(idRoteiro);				//Lista os objetivos novamente.
 			}
-			
+
 			return mensagem("Objetivo excluido com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		},error: function() {
 			return mensagem("Erro ao excluir objetivo!","OK","bt_ok","erro");
 		}
@@ -1597,36 +1597,36 @@ function excluirObj(idObjetivo){
 }
 
 function excluirAtividade(idAtividade){
-	
+
 	//Verifica o local atual para definir se o roteiro será excluido ou inativado.
 	if ($('.Item_Ativo').text() == 'Pesquisa'){
 		excluir = 'Inativar';
 	}else excluir = 'Delete';
-		
+
 	$.ajax({
 		url: path+"Atividade/"+excluir+"/"+idAtividade,
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 			//Procedimentos para pegar o id e remover a div correta
-			
+
 			idObjetivo = $('#Atv_Obj_Info_'+idAtividade).attr('idObjetivo');;
-			
+
 			$('#Atv_Obj_Info_'+idAtividade).remove();
 			$('#Atv_ObjList_Info_'+idAtividade).remove();
-			
+
 			//Remove as classes e exibe da maneira correta as atividades.
 			$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
 			expandirObj(idObjetivo);
 			enumerarAtividades(idObjetivo);
 			//enumerarAtividadesPesquisa(idObjetivo);
-			
+
 			return mensagem("Atividade excluida com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		},error: function() {
 			return mensagem("Erro ao excluir atividade!","OK","bt_ok","erro");
 		}
@@ -1641,13 +1641,13 @@ function excluirRoteiro(){
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 			limparCamposRoteiro();
 			return mensagem("Roteiro excluido com sucesso!","OK","bt_ok","sucesso");
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		},error: function() {
 			return mensagem("Erro ao excluir roteiro!","OK","bt_ok","erro");
 		}
@@ -1656,25 +1656,25 @@ function excluirRoteiro(){
 
 function cadastrarAtividade(){
 	var nomeAtv = $("#nomeAtv_edt").val();
-	var numeroAtv = $("#numeroAtv_edt").val();		
+	var numeroAtv = $("#numeroAtv_edt").val();
 	var livroAtv = $("#livroAtv_edt").val();
 	var paginaAtv = $("#paginaAtv_edt").val();
 	var objetivo = $("#objetivoAtv_edt").val();
 	var idRoteiro = $("#roteiro_hide").val();
-	
+
 	if ((nomeAtv == '') || (livroAtv == '') || (paginaAtv == '')){
 		mensagem("Todos os campos são obrigatórios!","OK","bt_ok","alerta");
 		return false;
 	}
-	
-	if (id = criarAtividade(nomeAtv,numeroAtv,"",objetivo,paginaAtv,livroAtv)){
+
+	if (id = criarAtividade(nomeAtv,numeroAtv,nomeAtv,objetivo,paginaAtv,livroAtv)){
 
 		//procedimentos para listar automaticamente!!
-		
+
 		//Verifica se existe alguma atividade adicionada e se está na página de pesquisa ou cadastros.
 		if ($('.Item_Ativo').text() == 'Pesquisa'){
-			
-			var novaLinha = 
+
+			var novaLinha =
 				'<div id="Atv_Obj_Info_'+id+'" class="Atv_ObjList_Info atividadeObjetivo'+objetivo+'" idObjetivo="'+objetivo+'">'+
 		    		'<div id="Atv_ObjList_Num_'+id+'" class="Atv_ObjList_Num Atv_ObjList Atv_ObjList'+objetivo+'">'+numeroAtv+'</div>'+
 		    		'<span id="Atv_ObjList_Nome_'+id+'" class="Atv_ObjList_Nome">'+nomeAtv+'</span> '+
@@ -1685,21 +1685,21 @@ function cadastrarAtividade(){
 		    			'<div id="Btn_Del_Atv_'+id+'" class="Btn_AtvList Btn_Del_Atv" onclick=excluirAtividade('+id+')></div>'+
 		    		'</div>'+
 		    	'</div>';
-		
+
 			if (($('#spanObjetivo'+objetivo).text() == 'Nenhuma atividade cadastrada.') || ($('#spanObjetivo'+objetivo).text() == '')){
 				$('#spanObjetivo'+objetivo).html(novaLinha);
-				
+
 			}else{
 				//Remove o conteudo da div e chama a função para listar as atividades...
 				$('#spanObjetivo'+objetivo).html('');
 				$('#spanObjetivo'+objetivo).removeClass('clicado');
-								
+
 			}
 			listarAtividades(objetivo, idRoteiro);
-			
+
 		}else{
-			
-			var novaLinha = 
+
+			var novaLinha =
 				'<div id="Atv_Obj_Info_'+id+'" class="Atv_Obj_Info atividadeObjetivo'+objetivo+'" idObjetivo="'+idObjetivo+'">'+
 		        	'<div id="Atv_Obj_Num_'+id+'" class="Atv_Obj_Num Atv_Obj'+objetivo+'">'+numeroAtv+'</div>'+
 		        	'<span id="Atv_Obj_Nome_'+id+'" class="Atv_Obj_Nome">'+nomeAtv+'</span>'+
@@ -1710,10 +1710,10 @@ function cadastrarAtividade(){
 		        		'<div id="Btn_Del_Atv_'+id+'" class="Btn_Atv Btn_Del_Atv" onclick=excluirAtividade('+id+')></div>'+
 		        	'</div>'+
 		        '</div>';
-			
+
 //			 '<div id="Atv_Obj_Info_'+id+'" class="Atv_Obj_Info" idObjetivo="'+idObjetivo+'">'+
 //			    '<div id="Atv_Obj_Num_'+id+'" class="Atv_Obj_Num Atv_Obj'+idObjetivo+'">'+atividadesLista[i].numero+'</div>'+
-//			    
+//
 //		        '<span id="Atv_Obj_Nome_'+id+'" class="Atv_Obj_Nome">'+atividadesLista[i].nome+'</span>'+
 //		        '<span id="Atv_Obj_Livro_'+id+'" class="Atv_Obj_Livro">'+atividadesLista[i].livro+'</span>'+
 //		        '<span id="Atv_Obj_Pag_'+id+'" class="Atv_Obj_Pag">p. <span class="Atv_Obj_Pag_OK">'+atividadesLista[i].pagLivro+'</span></span>'+
@@ -1722,23 +1722,23 @@ function cadastrarAtividade(){
 //		            '<div id="Btn_Del_Atv_'+id+'" class="Btn_Atv Btn_Del_Atv" onclick=excluirAtividade('+id+')></div>'+
 //		        '</div>'+
 //		    '</div>';
-			
-			
-			
-			
+
+
+
+
 			if (($('#Atvs_Obj_Inserido_'+objetivo).text() == 'Nenhuma atividade cadastrada.') || ($('#Atvs_Obj_Inserido_'+objetivo).text() == '')){
 				$('#Atvs_Obj_Inserido_'+objetivo).html(novaLinha);
 			}else{
 				$('#Atvs_Obj_Inserido_'+objetivo).append(novaLinha);
 			}
-			
+
 			$('.Atvs_Obj_Inserido').removeClass('Atvs_Expandido').css('height','0px');
 			expandirObj(objetivo);
 		}
-		
+
 		mensagem("Atividade criada  com sucesso!","OK","bt_ok","sucesso");
 	}else mensagem("Erro ao criar atividade!","OK","bt_ok","erro");
-	
+
 	$('#boxModal').css('display','none');
 	return false;
 }
@@ -1750,7 +1750,7 @@ function enumerarAtividades(idObjetivo){
 		console.log('dsadsad');
 		i++;
 	})
-	
+
 	if (i == 1){
 		$('.Atv_ObjList'+idObjetivo).each(function(){
 			console.log('3678216');
@@ -1784,7 +1784,7 @@ function carregarPesquisaByAno(idAno){
 		type: "GET",
 		async:false,
 		crossDomain: true,
-		beforeSend: function(){		
+		beforeSend: function(){
 			loading("inicial");
 		},success: function(d) {
 			htmlConteudo = '';
@@ -1795,7 +1795,7 @@ function carregarPesquisaByAno(idAno){
 			 } else{
 				 for(var i=0;i<d.length; i++){
 					 id = d[i].idroteiro;
-					 htmlConteudo += 
+					 htmlConteudo +=
 						 '<div id="roteiro'+id+'" idRoteiro="'+id+'" class="roteiro_listado" style="cursor:pointer">'+
 						 	'<span id="nome_roteiro_listado_'+id+'" class="nome_roteiro_listado">'+d[i].nome+'</span>'+
 						 	'<div class="Roteiro_Listado_Btns" id="Roteiro_Listado_Btns'+id+'">'+
@@ -1810,27 +1810,27 @@ function carregarPesquisaByAno(idAno){
                  					'<span id="nome_roteiro_listado_" class="roteiro_nenhum">Nenhum Roteiro encontrado</span>'+
                					'</div>';
 			 }
-			 
+
 			 $('#roteiros_listados_container').html(htmlConteudo);
-			 
+
 			//Editar e excluir!!
 			return false;
 		},complete: function(){
-			loading("final");	
+			loading("final");
 		},error: function() {
 			retorno = "erro";
 		}
-	});	
+	});
 }
 
 function limparCamposRoteiro(){
 	$('#boxMensagemGeral').css('display','none');
 	$('#btnSalvarObj').css('display','none');
-	$('#Roteiro_Inserido_Container').css('display','none'); 
+	$('#Roteiro_Inserido_Container').css('display','none');
 	$('#Inserir_roteiro').css('display','block');
-	$('#btnInserirRoteiro').css('display','block');	
+	$('#btnInserirRoteiro').css('display','block');
 	$('#Input_Roteiro_Nome').val('');
-	
+
 	$(".nomeObj, .paginaAtv, .nomeAtv, .livroAtv").val('');
 	$('.Obj_Inserido').remove('');
 	$('#Objetivos_Inseridos_Container').css('height','0px');
@@ -1845,14 +1845,14 @@ function criarObjetivoExtra(){
 	idRoteiro = $("#idRoteiro").val();
 	numero = $('#Input_Numero_Obj').val();
 	nome = $('#Input_Objetivo_Nome').val();
-	
+
 	if (nome == ''){
 		return mensagem("Todos os campos são obrigatórios!","OK","bt_ok","erro");
-	} 
-	
+	}
+
 	idObjetivo = criarObjetivo(nome,numero,'',idRoteiro);
-	
-	
+
+
 	htmlContent +=
 					'<div id="Obj_Inserido_'+idObjetivo+'" class="Obj_Inserido objetivo'+idObjetivo+' objetivoRoteiro'+idRoteiro+'" idRoteiro="'+idRoteiro+'" idObjetivo="'+idObjetivo+'">'+
 					'<div id="Obj_Inserido_Info_'+idObjetivo+'" class="Obj_Inserido_Info">'+
@@ -1867,45 +1867,43 @@ function criarObjetivoExtra(){
 					'</div>'+
 					'<span id="spanObjetivo'+idObjetivo+'" class="spanObjetivo"></span>'+
 					'</div>';
-	
-	
-	
+
+
+
 	$("#objetivosRoteiro"+idRoteiro).html(htmlContent);
-	
+
 	$('.Roteiro_Listado_Btns').show();
 	$('#Roteiro_Listado_Btns'+idRoteiro).hide();
-	
+
 	listarObjetivos(idRoteiro);
-	
+
 	fecharBoxModal();
-	
+
 	return false;
 }
 
 function listarAtividades(idObjetivo, idRoteiro){
-	
+
 	//Adiciona a classe clicado para verificar se já foi clicado
 	$('#spanObjetivo'+idObjetivo).addClass('clicado')
-	
+
 	//Se a div estiver visivel, esconde todas e arruma o tamanho da div pai
 	if($('#spanObjetivo'+idObjetivo).is(':visible')){
 		$('#spanObjetivo'+idObjetivo).css('display','none');
-		tamanhoDiv = ($('.objetivoRoteiro'+idRoteiro).length * 33);
-		$('#spanObjetivo'+idObjetivo).parent().parent().css('height',tamanhoDiv+'px');
+		$('#spanObjetivo'+idObjetivo).parent().parent().slideDown();
 		return false;
 	}
-	
+
 	//Esconde todas as divs que listam atividades
 	$('.spanObjetivo').css('display','none');
-	
+
 	//Verifica se a div já tem conteudo. Se sim, apenas mostra a div e coloca o tamanho correto.
 	if ($('#spanObjetivo'+idObjetivo).html() != ''){
-		tamanhoDiv = ($('.atividadeObjetivo'+idObjetivo).length * 30) + ($('.objetivoRoteiro'+idRoteiro).length * 33);
 		$('#spanObjetivo'+idObjetivo).css('display','block');
-		$('#spanObjetivo'+idObjetivo).parent().parent().css('height',tamanhoDiv+'px');
+		$('#spanObjetivo'+idObjetivo).parent().parent().slideDown();
 		return false;
 	}
-	
+
 	//Ajax para buscar as atividades do objetivo clicado
 	$.ajax({
 		url: path+'Atividade/atividadeObjetivo/'+idObjetivo,
@@ -1921,7 +1919,7 @@ function listarAtividades(idObjetivo, idRoteiro){
 				for(var i = 0; i < data.length;i++){
 					console.log(data);
 					idAtividade = data[i].idatividade;
-					htmlContent += 
+					htmlContent +=
 					'<div id="Atv_Obj_Info_'+idAtividade+'" class="Atv_ObjList_Info atividadeObjetivo'+idObjetivo+'" idObjetivo="'+idObjetivo+'">'+
 		        		'<div id="Atv_ObjList_Num_'+idAtividade+'" class="Atv_ObjList_Num Atv_ObjList Atv_ObjList'+idObjetivo+'">'+cont+'</div>'+
 		        		'<span id="Atv_ObjList_Nome_'+idAtividade+'" class="Atv_ObjList_Nome">'+data[i].nome+'</span> '+
@@ -1932,9 +1930,9 @@ function listarAtividades(idObjetivo, idRoteiro){
 		        			'<div id="Btn_Del_Atv_'+idAtividade+'" class="Btn_AtvList Btn_Del_Atv" onclick=excluirAtividade('+idAtividade+')></div>'+
 		        		'</div>'+
 		        	'</div>';
-					
+
 					cont++;
-					
+
 				}
 			}else {
 				htmlContent +=
@@ -1950,14 +1948,14 @@ function listarAtividades(idObjetivo, idRoteiro){
 			$('#spanObjetivo'+idObjetivo).html(htmlContent).css('display', 'block');
 			//Altera o tamanho da div pai
 			$('#spanObjetivo'+idObjetivo).parent().parent().css('height',tamanhoDiv+'px');
-	
+
 		}
 	});
 	return false;
 }
 
 function listarObjetivos(idRoteiro){
-	
+
 	htmlContent = '';
 	//Ajax para buscar os objetivos referentes ao roteiro clicado
 	$.ajax({
@@ -1969,7 +1967,7 @@ function listarObjetivos(idRoteiro){
 			cont=1;
 			//Faz as verificações e salva o resultado em uma string
 			if (data.length>0){
-	
+
 				for(var i = 0; i < data.length;i++){
 
 					idObjetivo = data[i].idobjetivo;
@@ -1986,10 +1984,10 @@ function listarObjetivos(idRoteiro){
 						'</div>'+
 					'<span id="spanObjetivo'+idObjetivo+'" class="spanObjetivo"></span>'+
 					'</div>'				;
-					
+
 					cont++;
 				}
-				
+
 			}else{
 				htmlContent +=
 				'<div id="Obj_Listado_" class="Obj_Listado objetivo objetivoRoteiro'+idRoteiro+'">'+
@@ -1999,23 +1997,23 @@ function listarObjetivos(idRoteiro){
 				'</div>';
 				i = 1;
 			}
-			
+
 			//Calcula o tamanho da div de acordo com a quantidade de objetivos
 			tamanhoDiv = 33*i;
-			
+
 			//Coloca o conteudo da string na div adequada e coloca o tamanho correto
 			$('#objetivosRoteiro'+idRoteiro).html(htmlContent).addClass('Atvs_Expandido clicado').css('height',tamanhoDiv+'px');;
-				
+
 	}
 		})
 		return false
 	}
 
 function esconderAtividades(idObjetivo){
-	
+
 	$('.spanObjetivo').css('display','none');
 	tamanhoDiv = ($('.objetivoRoteiro'+idRoteiro).length * 33);
 	$('#spanObjetivo'+idObjetivo).parent().parent().css('height',tamanhoDiv+'px');
-	
+
 	return false;
 }
