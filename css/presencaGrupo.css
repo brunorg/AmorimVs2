@@ -290,18 +290,6 @@
 #calendarioFaltas .ui-state-default, #calendarioFaltas .ui-widget-content #calendarioFaltas .ui-state-default, #calendarioFaltas .ui-widget-header #calendarioFaltas .ui-state-default{
     text-align:center !important;
 }
-#rodape_calendario{
-    border: 1px solid #000;
-    width: 182px;
-    height: 26px;
-    margin:-25px auto;
-    background-color: rgb(22,190,207) !important;
-    border:none !important;
-    color:white !important;
-    font-weight: bold;
-    font-size: 11px;
-    display:none;           
-}
 #rodape_calendario p {
     height: 26px;
     text-align: center;
