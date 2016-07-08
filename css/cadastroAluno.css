@@ -415,18 +415,6 @@ select{
 	 display:none;
 }
 
-.blackPainel
-{
-    display:none;
-    background-color: rgba(0, 0, 0, 0.7);
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 999;
-}
-
 #JanelaUploadPortifolio
 {
 	width:300px;
@@ -511,6 +499,17 @@ select{
 	background-color:white;
 }
 
+.blackPainel
+{
+    display:none;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
 
 .close_upload_producao
 {

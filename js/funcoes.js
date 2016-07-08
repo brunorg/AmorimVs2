@@ -27,8 +27,7 @@ $(document).ready(function(){
 	    });
 	});
 
-	var altura = window.innerHeight; 
-	//$('#m_blocoGeral').css('height',altura-30);
+	var altura = window.innerHeight;
 	
 	setTimeout(function(){
 
@@ -385,7 +384,7 @@ $(document).ready(function(){
 		$(this).css('transform','translate(300px)');
 	});
 
-	$("#alterar_foto").click(showUploadFileBox);
+	//$("#alterar_foto").click(showUploadFileBox);
 });	
 
 function menuHamburguer(btn, posicao, classDivMenu){
@@ -1416,45 +1415,139 @@ function ativaMenu(){
 	var classe = $('a[href="'+retorno[4]+'"] .Content_lateral_Menu_Opcao').attr("class");	
 	$('.Content_lateral_Menu_Opcao a[href="'+retorno[4]+'"]').addClass(classe+'-active');
 }
-function showUploadFileBox() {
-	var html = "";
-
-	html += '<div class="blackPainel">';
-	html += 	'<div class="uploadFileBox">';
-	html += 		'<div class="uploadFileBoxTitulo">';
-	html += 			'Upload Foto Aluno';
-	html += 			'<div class="close_upload_producao" onclick="hideUploadFileBox()"></div>';
-	html += 		'</div>';
-	html += 		'<div class="uploadFileBoxImg">';
-	html += 			'<div class="uploadFileBoxIcon"></div>';
-	html += 		'</div>';
-	html += 		'<div id="LegendaUpload">Aguardando Arquivo</div>';
-	html += 		'<form id="inserirArquivo">';
-	html += 			'<input type="hidden" id="action" name="action" value="update">';
-	html += 			'<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
-	html += 			'<input type="hidden" class="perfil" id="idAluno" value="">';
-	html += 			'<div class="campoConfirmaUpload">';
-	html += 				'<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="salvarFoto()">';
-	html += 			'</div>';
-	html += 		'</form> ';
-	html += 	'</div>';
-	html += '</div>';
-
-	$("body").append(html);
-	$(".blackPainel").show();
-}
-
-function hideUploadFileBox() {
-	$(".blackPainel").remove();
-}
 
 function alterarFoto() {
-	if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
+	if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23)
 	{
 		salvarFotoAluno();
 	}
-	else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 25)
+	else if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24)
 	{
 		salvarFotoProfessor();
 	}
+}
+
+/**
+ *
+ * Alterar foto do usuário
+ *
+ */
+
+function showInputFileBox() {
+    var html = "";
+
+    html += '<div class="blackPainel">';
+    html +=     '<div class="uploadFileBox">';
+    html +=         '<div class="uploadFileBoxTitulo">';
+    html +=             'Upload Foto Aluno';
+    html +=             '<div class="close_upload_producao" onclick="closeInputFileBox()"></div>';
+    html +=         '</div>';
+    html +=         '<div class="uploadFileBoxImg">';
+    html +=             '<div class="uploadFileBoxIcon" onclick="getFileFotoUsuario()"></div>';
+    html +=         '</div>';
+    html +=         '<div id="LegendaUpload">Aguardando Arquivo</div>';
+    html +=         '<form id="inserirArquivo">';
+    html +=             '<input type="hidden" id="action" name="action" value="update">';
+    html +=             '<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
+    html +=             '<input type="hidden" class="perfil" id="idAluno" value="">';
+    html +=             '<div class="campoConfirmaUpload">';
+    html +=                 '<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="requestPostNovaFotoUsuario()">';
+    html +=             '</div>';
+    html +=         '</form> ';
+    html +=     '</div>';
+    html += '</div>';
+
+    $("body").append(html);
+    $(".blackPainel").show();
+}
+
+function requestPostNovaFotoUsuario() {
+    var arquivo = document.querySelector("#inputFotoUsuario").files[0];
+    var idusuario = 0;
+    var servicePath = "";
+    var extensaoArquivo = "";
+    var nomeParam = "";
+    var formData = new FormData();
+
+    if (JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 23) {
+        servicePath = "Alunos/upload/aluno/";
+        nomeParam = "fotoAluno";
+        idusuario = localStorage.alunoId;
+    } else {
+        servicePath = "ProfessorFuncionario/upload/ProfessorFuncionario/imagem/";
+        nomeParam = "imagem";
+        idusuario = localStorage.professorId;
+    }
+
+    if (arquivo.name.endsWith("png") ||
+        arquivo.name.endsWith("jpg") ||
+        arquivo.name.endsWith("jpeg")) {
+            formData.append(nomeParam, arquivo);
+            postNovaFotoUsuario(servicePath, idusuario, formData);
+    } else {
+        throw "Formato inválido.";
+    }
+}
+
+function getFileFotoUsuario() {
+    $("#inputFotoUsuario").trigger("click");
+}
+
+function updateThumbnailFotoUsuario() {
+    var fileReader = new FileReader();
+    var arquivo = document.querySelector("#inputFotoUsuario").files[0];
+
+    fileReader.onload = function(e) {
+        if (arquivo) {
+            $(".uploadFileBoxIcon").css("background-image", "url("+e.target.result+")");
+            $("#LegendaUpload").text(arquivo.name);
+        } else {
+            $(".uploadFileBoxIcon").css("background-image", "url('../img/foto.png')");
+            $("#LegendaUpload").text("Aguardando arquivo");
+        }
+    }
+
+    fileReader.readAsDataURL(arquivo);
+}
+
+function postNovaFotoUsuario(servicePath, idusuario, formData) {
+    $.ajax({
+        url: path + servicePath + idusuario,
+        type: "POST",
+        mimeType:"multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData:false,
+        data: formData,
+        beforeSend: function(){
+            closeInputFileBox();
+            loading("inicial");
+        },
+        success: function(d) {
+            showNovaFotoUsuario(d);
+            mensagem("Arquivo salvo com sucesso!","OK","bt_ok","sucesso");
+        },complete: function() {
+            loading("final");
+        }
+    });
+}
+
+function closeInputFileBox() {
+    $(".blackPainel").remove();
+}
+
+function showNovaFotoUsuario(objPerfil) {
+    objPerfil = JSON.parse(objPerfil);
+    var objUsuario = JSON.parse(localStorage.objetoUsuario);
+    var fotoUsuario = document.querySelector("#_foto");
+
+    if (objUsuario.perfil.idperfil === 23) {
+        objUsuario.aluno.fotoAluno = objPerfil.fotoAluno;
+        fotoUsuario.src = objPerfil.fotoAluno;
+    } else {
+        objUsuario.professor.fotoProfessorFuncionario = objPerfil.fotoProfessorFuncionario;
+        fotoUsuario.src = objPerfil.fotoProfessorFuncionario;
+    }
+
+    localStorage.setItem("objetoUsuario", JSON.stringify(objUsuario));
 }

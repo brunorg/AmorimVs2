@@ -379,6 +379,7 @@ ul.session_options > li:last-child {
 	/*Menu PresenÃ§a*/
 	.presenca{
 		background-image: url(../img/presencas-ativo.png);
+		background-size: 35px;
 	}
 	.presenca-active{
 		background-image: url(../img/presencas.png);	

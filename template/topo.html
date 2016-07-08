@@ -19,12 +19,17 @@
 <div id="Cabecalho_Perfil_Area" ng-init="usuario()">
     <div id="Cabecalho_Perfil_Area_Foto_Content">
         <div style="display: none;">
-            <input type="file" name="{{nameInputAlterarFoto()}}" id="inputFotoUsuario" />
+            <form id="fotoUsuarioForm">
+                <input type="file" name="{{nameInputAlterarFoto()}}" id="inputFotoUsuario" onchange="updateThumbnailFotoUsuario()" />
+            </form>
         </div>
         <!--Foto do usuário, neste caso, do aluno-->
         <div id="Cabecalho_Perfil_Area_Foto">
         	<img id='_foto' src='{{usuarioFoto}}'/>
-            <p id="alterar_foto" onclick="showUploadFileBox()"><span>Alterar foto</span></p>
+            <p id="alterar_foto" onclick="showInputFileBox()"><span>Alterar foto</span></p>
+        </div>
+        <div id="inputFileFotoContainer" style="display: none;">
+            <input type="file">
         </div>
     </div>
     <!--Nome | Serie do usuário-->

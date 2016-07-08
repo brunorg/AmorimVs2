@@ -493,7 +493,6 @@ function postProducaoOficina(){
     });
 }
 function uploadArquivo(idpost) {
-
     var formData = new FormData($("#Cadastro_Form_imagem_PA")[0]);
     formData.append("arquivo", Arquivo);
 
