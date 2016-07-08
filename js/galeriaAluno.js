@@ -460,7 +460,7 @@ function reLoadClick(){
         if((extensao == ".docx")||(extensao == ".doc")){
             ex = false;
             $("#producao_aluno_content li").not(':hidden').css("background-color", "#ECEBE5");
-            
+            window.open(arquivo, "_blank");
             $("#producao_aluno_content li").not(':hidden').children(".botao_roteiro_portfolio").css("display", "none");
             $(this).not(':hidden').css("background-color", "#D6E5A9");     
         }
