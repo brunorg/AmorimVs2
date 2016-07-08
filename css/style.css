@@ -615,6 +615,18 @@ html, body
 	color: #878787;
 }
 
+#LegendaUpload.txt-vermelho {
+	color: #b52f2f;
+}
+
+.btn-disabled {
+	-webkit-filter: opacity(.5);
+	-moz-filter: opacity(.5);
+	-o-filter: opacity(.5)
+	filter: opacity(.5);
+	pointer-events: none;
+}
+
 #fotoAluno
 {
 	display:none;
