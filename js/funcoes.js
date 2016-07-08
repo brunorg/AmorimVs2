@@ -1451,7 +1451,7 @@ function showInputFileBox() {
     html +=             '<input type="file" class="arquivo" id="fotoAluno" name="fotoAluno">';
     html +=             '<input type="hidden" class="perfil" id="idAluno" value="">';
     html +=             '<div class="campoConfirmaUpload">';
-    html +=                 '<input type="button" class="btnSubmit" name="btnSubmit" value="" onclick="requestPostNovaFotoUsuario()">';
+    html +=                 '<input id="btnEnviarNovaFotoUsuario" type="button" class="btnSubmit btn-disabled" name="btnSubmit" value="" onclick="requestPostNovaFotoUsuario()">';
     html +=             '</div>';
     html +=         '</form> ';
     html +=     '</div>';
@@ -1479,14 +1479,8 @@ function requestPostNovaFotoUsuario() {
         idusuario = localStorage.professorId;
     }
 
-    if (arquivo.name.endsWith("png") ||
-        arquivo.name.endsWith("jpg") ||
-        arquivo.name.endsWith("jpeg")) {
-            formData.append(nomeParam, arquivo);
-            postNovaFotoUsuario(servicePath, idusuario, formData);
-    } else {
-        throw "Formato inválido.";
-    }
+    formData.append(nomeParam, arquivo);
+    postNovaFotoUsuario(servicePath, idusuario, formData);
 }
 
 function getFileFotoUsuario() {
@@ -1499,11 +1493,24 @@ function updateThumbnailFotoUsuario() {
 
     fileReader.onload = function(e) {
         if (arquivo) {
-            $(".uploadFileBoxIcon").css("background-image", "url("+e.target.result+")");
-            $("#LegendaUpload").text(arquivo.name);
+        	if (arquivo.name.endsWith("png") ||
+        		arquivo.name.endsWith("jpg") ||
+        		arquivo.name.endsWith("jpeg")) {
+            		$(".uploadFileBoxIcon").css("background-image", "url("+e.target.result+")");
+            		$("#LegendaUpload").text(arquivo.name);
+            		$("#LegendaUpload").removeClass("txt-vermelho");
+            		$("#btnEnviarNovaFotoUsuario").removeClass("btn-disabled");
+            } else {
+           		$(".uploadFileBoxIcon").css("background-image", "url('img/foto.png')");
+            	$("#LegendaUpload").text("Formato inválido. Apenas imagens com formato .png e .jpg são aceitas.");
+            	$("#LegendaUpload").addClass("txt-vermelho");
+            	$("#btnEnviarNovaFotoUsuario").addClass("btn-disabled");
+            }
         } else {
-            $(".uploadFileBoxIcon").css("background-image", "url('../img/foto.png')");
+            $(".uploadFileBoxIcon").css("background-image", "url('img/foto.png')");
             $("#LegendaUpload").text("Aguardando arquivo");
+            $("#LegendaUpload").removeClass("txt-vermelho");
+            $("#btnEnviarNovaFotoUsuario").addClass("btn-disabled");
         }
     }
 
