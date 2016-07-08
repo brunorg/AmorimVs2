@@ -64,7 +64,7 @@ function criarPaineisDosAlunos(idDivGrupo, grupoAlunos, professorId, tutoriaId, 
 		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
 			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="m_relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a>');
 		else
-			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="m_relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a>');
+			$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i + " .grupoFotoAluno").append('<a href="relatorioAluno.html?ID='+(base64_encode(""+grupoAlunos[i].idAluno))+'&TU='+(base64_encode(""+tutoriaId))+'">'+'<img src="' + grupoAlunos[i].foto + '"></img>' + '</a>');
 
 		$('#' + idDivGrupo + " .grupoBlocoNomes .caixaGL .grupoLinhaAluno#aluno" + i).append('<div class="grupoNomeAluno"></div>')
 		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
