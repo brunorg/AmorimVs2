@@ -1581,6 +1581,11 @@ font-family: "proxima-nova",sans-serif;
   		width: 63% !important;
  	}
 
+
+	#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+		transform: translate(0, -56px);
+	}
+
 	#content_central {
 		position: absolute;
 		width: 100%;
@@ -2099,6 +2104,9 @@ font-family: "proxima-nova",sans-serif;
 		right: 0;
 		padding: 24px 36px;
 	} 
+	#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+		transform: translate(0, -56px);
+	}
 	#content_central_fixa{
 		position: absolute;
 		width: 101%;
@@ -2573,6 +2581,11 @@ font-family: "proxima-nova",sans-serif;
 
 	.label { padding: 4.5px; }
 
+
+	#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+		transform: translate(0, -56px);
+	}
+
 	#content_central_fixa{
 		overflow: hidden;
 		padding:37px;
@@ -2834,6 +2847,10 @@ font-family: "proxima-nova",sans-serif;
 
 	.label { padding: 4.5px; }
 
+	#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+		transform: translate(0, -56px);
+	}
+
 	#content_central_fixa{
 		padding: 36px 34px 36px 36px;
 		overflow: hidden;
@@ -3080,6 +3097,10 @@ font-family: "proxima-nova",sans-serif;
 	}
 
 	.label { padding: 4.5px; }
+
+	#Cabecalho_Perfil_Area_Foto:hover > #alterar_foto {
+		transform: translate(0, -56px);
+	}
 
 	#content_central {
 		overflow: auto;
