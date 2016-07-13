@@ -50,10 +50,17 @@ function verificarImagemTipoBlog(dados) {
 		$("#conteudoPostagens").attr("class", "boxTextInput postagemOficinaSemImagem");
 }
 
-function carregaOficinaPostagens () {
-    var htmlOficinas =  "";
+function carregaOficinaPostagens(idoficina, idagrupamento) {
+    var htmlOficinas =  "<option class=\"placeholder\" value=\"0\" selected>Tutoria</option>";
 
-    htmlOficinas +=     "<option class=\"placeholder\" value=\"0\" selected>Tutoria</option>";
+    // Verifica se o parametro idoficina foi passado. Se não, considera como tutoria
+    if (idoficina === undefined) {
+        idoficina = "0";
+        idagrupamento = "0";
+    } else {
+        idoficina = idoficina.toString();
+        idagrupamento =  idagrupamento.toString();
+    }
 
     $.ajax({
         url: path + 'Oficina/ListaPorProfessor/' +  professorId,
@@ -61,55 +68,88 @@ function carregaOficinaPostagens () {
         crossDomain: true,
         type: "GET",
         success: function(d) {
+            // Pega o <select> de oficinas
+            var comboOficinas = document.querySelector("#oficinaSelecionada");
+            var oficinas;
+
             for (var i = 0; i < d.length; i++) {
-                htmlOficinas += "<option value=\""+d[i]["idoficina"]+"\">"+d[i]["nome"]+"</option>";
+                htmlOficinas += "<option value=\"" + d[i]["idoficina"] + "\">" + d[i]["nome"] + "</option>";
             }
-            console.log(htmlOficinas);
-            $('#oficinaSelecionada').html(htmlOficinas);
 
-
-            $('#oficinaSelecionada').change(function(){
-                var oficinaEscolhida = $('#oficinaSelecionada').val();
-                if (oficinaEscolhida != 0) {
-                    $.ajax({
-                        url: path + "Agrupamento/ListarPorOficina/" + oficinaEscolhida,
-                        async: false,
-                        crossDomain: true,
-                        type: "GET",
-                        success: function(retornoAjax){
-
-                            var htmlAgrupamentos = "";
-
-                            for (var i = 0; i < retornoAjax.length; i++) {
-                                htmlAgrupamentos += "<option value=\""+retornoAjax[i].idagrupamento+"\" "+(i == 0 ? "selected" : "")+">"+retornoAjax[i].nome+"</option>";
-                            }
-
-                            htmlAgrupamentos += "</select>";
-
-                            $('#agrupamentoSelecionado').html(htmlAgrupamentos);
-
-                        },
-                        error: function(a, status, error) {
-                            console.log(status + " /// " + error)
-                        }
-                    });
-                    $("#agrupamentoSelecionado").show();
-
-					if ($("#miniaturaDaFoto").css("display") == "none")
-						verificarImagemTipoBlog({imagem: "remover", tipo: "oficina"});
-					else
-						verificarImagemTipoBlog({imagem: "adicionar", tipo: "oficina"});
+            // Insere os <option> e atribui o evento de mudança de valor
+            comboOficinas.innerHTML = htmlOficinas;
+            comboOficinas.onchange = function() {
+                if (this.value != "0") {
+                    listarAgrupamentosPorOficina(this.value, idagrupamento);
                 } else {
-                	$("#agrupamentoSelecionado").html("<option value=\"0\" selected></option>");
-                    $("#agrupamentoSelecionado").hide();
-
-					if ($("#miniaturaDaFoto").css("display") == "none")
-						verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
-					else
-						verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
+                    $('#agrupamentoSelecionado').hide();
+                    verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
                 }
+            }
+
+            // Pega os <option> do <select> de oficinas
+            oficinas = comboOficinas.querySelectorAll("option");
+
+            // Seleciona a oficina com id igual ao parâmetro idoficina, em caso de edição
+            oficinas.forEach(function(oficina) {
+                if (oficina.value == idoficina)
+                    oficina.setAttribute("selected", "selected");
+                else
+                    oficina.removeAttribute("selected");
             });
 
+            // Verifica se o parâmetro idoficina passado é uma oficina ou se é tutoria
+            if (idoficina != "0") {
+                listarAgrupamentosPorOficina(idoficina, idagrupamento);
+            } else {
+                $('#agrupamentoSelecionado').hide();
+                verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+            }
+        }
+    });
+}
+
+function listarAgrupamentosPorOficina(idoficina, idagrupamento) {
+    $.ajax({
+        url: path + "Agrupamento/ListarPorOficina/" + idoficina,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(retornoAjax){
+            var htmlAgrupamentos = "";
+
+            // Pega o <select> de agrupamentos
+            var comboAgrupamentos = document.querySelector("#agrupamentoSelecionado");
+            var agrupamentos;
+
+            for (var i = 0; i < retornoAjax.length; i++) {
+                htmlAgrupamentos += "<option value=\""+retornoAjax[i].idagrupamento+"\" "+(i == 0 ? "selected" : "")+">"+retornoAjax[i].nome+"</option>";
+            }
+
+            htmlAgrupamentos += "</select>";
+
+            // Insere os <option>
+            comboAgrupamentos.innerHTML = htmlAgrupamentos;
+
+            // Pega os <option> do <select> de agrupamentos
+            agrupamentos = comboAgrupamentos.querySelectorAll("option");
+
+            // Verifica se foi passado algum agrupamento, em caso de edição, e o seleciona
+            if (idagrupamento != "0") {
+                agrupamentos.forEach(function(agrupamento) {
+                    if (agrupamento.value == idagrupamento)
+                        agrupamento.setAttribute("selected", "selected");
+                    else
+                        agrupamento.removeAttribute("selected");
+                });
+            }
+
+            // Exibe o <select> de agrupamentos
+            $('#agrupamentoSelecionado').show();
+            verificarImagemTipoBlog({imagem: "remover", tipo: "oficina"});
+        },
+        error: function(a, status, error) {
+            console.log(status + " /// " + error)
         }
     });
 }
@@ -154,7 +194,6 @@ function carregaGrupoTutoriaMural(professorId) {
 
 function clickPostagens() {
     $("#novoPostagens").click(function() {
-
         $("#miniaturaDaFoto").hide();
 
         $("#conteudoPostagens").html("");
@@ -174,6 +213,7 @@ function clickPostagens() {
 }
 
 function cancelarPostagens () {
+
     $("#cancelarPostagens").click(function() {
         $("#postagensConteudo").show();
         $("#novoPostagens").show();
@@ -356,6 +396,8 @@ function addPost (post) {
     var titulo = post.titulo;
     var corpo = post.descricao.split("\n");
     var oficina = post.oficina !== null ? post.oficina.tipoOficina.nome : "Tutoria";
+    var idoficina = post.oficina.idoficina;
+    var idagrupamento = post.agrupamento.idagrupamento;
 
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
@@ -367,7 +409,7 @@ function addPost (post) {
     for (var a in corpo) { htmlPosts += "<p>"+corpo[a]+"</p>"; }
 
     htmlPosts +=            '</div>' +
-                            '<div class="postDestinatario" id="blogPostOficina'+id+'">' +
+                            '<div class="postDestinatario" id="blogPostOficina'+idoficina+'">' +
                                 oficina +
                             '</div>'+
                             '<div class="linhaConteudo">' +
@@ -378,7 +420,7 @@ function addPost (post) {
                                         '</div>' +
                                     '</div>' +
                                     '<div class="containerIcone">' +
-                                        '<div class="botaoIcone" onclick="editPost(' + id + ')">' +
+                                        '<div class="botaoIcone" onclick="editPost(' + id + ', ' + idoficina + ', ' + idagrupamento + ')">' +
                                             '<img src="img/ic_editar_peq.png">' +
                                         '</div>' +
                                     '</div>' +
@@ -389,41 +431,42 @@ function addPost (post) {
     $("#mCSB_2_container").append(htmlPosts);
 }
 
-function editPost(id) {
+function editPost(id, idoficina, idagrupamento) {
     removerImagemPostagem(id);
 
+    // Esconde a <div> com a listagem de blog e o botão de inserir nova postagem
     $("#postagensConteudo").hide();
     $("#novoPostagens").hide();
+
+    // Mostra a <div> com o formulário para inserir nova postagem
     $("#postagensNova").show();
     $("#miniaturaDaFoto").hide();
 
-    $.ajax({
-        url: path + "Blog/ImagemMin/" + id,
-        async: false,
-        crossDomain: true,
-        type: "GET",
-        success: function(data){
-            if (data !== '') {
-                $('#miniaturaDaFoto').attr('src', data);
-                $("#miniaturaDaFoto").show();
-                $("#arquivoUpload").show();
+        $.ajax({
+            url: path + "Blog/ImagemMin/" + id,
+            async: false,
+            crossDomain: true,
+            type: "GET",
+            success: function(data){
+                if (data !== '') {
+                    $('#miniaturaDaFoto').attr('src', data);
+                    $("#miniaturaDaFoto").show();
+                    $("#arquivoUpload").show();
+                }
+                if ($("#miniaturaDaFoto").css("display") == "none")
+                    verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+                else
+                    verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
             }
-            if ($("#miniaturaDaFoto").css("display") == "none")
-                verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
-            else
-                verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
-        }
-    });
+        });
 
-    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html());
+    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html().replace(/<\/p>/g, "").replace(/<p>/g,""));
     $("#selectOficina select").html($("#blogPostOficina"+id).html());
     $("#tituloPostagens").html($("#blogPostTitulo"+id).html());
-
-
     $("#postagemAction").val("update")
     $("#postagemId").val(id)
 
-    carregaOficinaPostagens();
+    carregaOficinaPostagens(idoficina, idagrupamento);
 }
 
 function deletePost(id) {
