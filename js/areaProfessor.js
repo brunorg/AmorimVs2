@@ -433,6 +433,17 @@ function addPost (post) {
 
 function editPost(id, idoficina, idagrupamento) {
     removerImagemPostagem(id);
+    var post = document.getElementById("blogPost" + id)
+    var dados = {
+        titulo: post.querySelector(".postTitulo").textContent,
+        corpo: post.querySelector(".postCorpo").innerHTML
+    }
+
+    var form = document.getElementById("postagensNova");
+    var campos = {
+        titulo: form.querySelector("#tituloPostagens"),
+        corpo: form.querySelector("#conteudoPostagens")
+    }
 
     // Esconde a <div> com a listagem de blog e o botão de inserir nova postagem
     $("#postagensConteudo").hide();
@@ -442,29 +453,30 @@ function editPost(id, idoficina, idagrupamento) {
     $("#postagensNova").show();
     $("#miniaturaDaFoto").hide();
 
-        $.ajax({
-            url: path + "Blog/ImagemMin/" + id,
-            async: false,
-            crossDomain: true,
-            type: "GET",
-            success: function(data){
-                if (data !== '') {
-                    $('#miniaturaDaFoto').attr('src', data);
-                    $("#miniaturaDaFoto").show();
-                    $("#arquivoUpload").show();
-                }
-                if ($("#miniaturaDaFoto").css("display") == "none")
-                    verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
-                else
-                    verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
+    $.ajax({
+        url: path + "Blog/ImagemMin/" + id,
+        async: false,
+        crossDomain: true,
+        type: "GET",
+        success: function(data){
+            if (data !== '') {
+                $('#miniaturaDaFoto').attr('src', data);
+                $("#miniaturaDaFoto").show();
+                $("#arquivoUpload").show();
             }
-        });
+            if ($("#miniaturaDaFoto").css("display") == "none")
+                verificarImagemTipoBlog({imagem: "remover", tipo: "tutoria"});
+            else
+                verificarImagemTipoBlog({imagem: "adicionar", tipo: "tutoria"});
+        }
+    });
 
-    $("#conteudoPostagens").html($("#blogPostCorpo"+id).html().replace(/<\/p>/g, "").replace(/<p>/g,""));
+    campos.titulo.value = dados.titulo;
+    campos.corpo.value = dados.corpo.replace(/<\/p>/g, "").replace(/<p>/g, "");
+
     $("#selectOficina select").html($("#blogPostOficina"+id).html());
-    $("#tituloPostagens").html($("#blogPostTitulo"+id).html());
-    $("#postagemAction").val("update")
-    $("#postagemId").val(id)
+    $("#postagemAction").val("update");
+    $("#postagemId").val(id);
 
     carregaOficinaPostagens(idoficina, idagrupamento);
 }
