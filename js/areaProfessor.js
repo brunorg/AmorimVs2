@@ -433,23 +433,23 @@ function addPost (post) {
 
 function editPost(id, idoficina, idagrupamento) {
     removerImagemPostagem(id);
+
+    // Pega a <div> com a postagem a ser editava e os valores do post
     var post = document.getElementById("blogPost" + id)
     var dados = {
         titulo: post.querySelector(".postTitulo").textContent,
         corpo: post.querySelector(".postCorpo").innerHTML
     }
 
+    // Pega o <div> e os campos de edição da postagem
     var form = document.getElementById("postagensNova");
     var campos = {
         titulo: form.querySelector("#tituloPostagens"),
         corpo: form.querySelector("#conteudoPostagens")
     }
 
-    // Esconde a <div> com a listagem de blog e o botão de inserir nova postagem
     $("#postagensConteudo").hide();
     $("#novoPostagens").hide();
-
-    // Mostra a <div> com o formulário para inserir nova postagem
     $("#postagensNova").show();
     $("#miniaturaDaFoto").hide();
 
@@ -471,6 +471,7 @@ function editPost(id, idoficina, idagrupamento) {
         }
     });
 
+    // Insere os valores do objeto "dados" nos campos de edição de post
     campos.titulo.value = dados.titulo;
     campos.corpo.value = dados.corpo.replace(/<\/p>/g, "").replace(/<p>/g, "");
 
@@ -478,6 +479,7 @@ function editPost(id, idoficina, idagrupamento) {
     $("#postagemAction").val("update");
     $("#postagemId").val(id);
 
+    // Chama a funçnao de carregar a oficina e o agrupamento do post a ser editado
     carregaOficinaPostagens(idoficina, idagrupamento);
 }
 
