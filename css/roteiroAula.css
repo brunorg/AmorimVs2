@@ -217,10 +217,16 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
 
 .item{
 	width: 100%;
-	float: left;
-	height: 40px;
+	height: auto;
 	margin-bottom: 1px;
 	cursor: pointer;
+    position: relative;
+}
+.item::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
 }
 
 .aparecer{
@@ -249,7 +255,7 @@ div.item:nth-child(even){
 .titulo_roteiro, .titulo_objetivo, .titulo_atividade{
 	position: relative;
     cursor: default;
-	width: 95%;
+	width: 85%;
 	float: left;
 	padding: 12px;
 }
@@ -303,11 +309,20 @@ div.item:nth-child(even){
     .Roteiro_Inserido_Container { position: relative; }
     
     #Rot_Inserido_Info {
-        height: 35px;
+        min-height: 35px;
+        height: auto;
         background: #259eb0;
         color: #fff;
         cursor: pointer;
+        position: relative;
         border: 1px solid #fff;
+    }
+
+    #Rot_Inserido_Info::after {
+        content: "";
+        display: block;
+        width: 100%;
+        clear: both;
     }
 
     .Rot_Inserido_Nome{
@@ -327,7 +342,8 @@ div.item:nth-child(even){
     #Desc_Inserido_Info {
        margin-left: 35px;
     width: 96.1%;
-    height: 35px;
+    height: auto;
+    min-height: 35px;
     background-color: #b5e1e7;
     background-position: 14%;
     padding: 8px 81px 8px 10px;
@@ -356,11 +372,12 @@ div.item:nth-child(even){
         border-left: 1px solid #fff;
         position: absolute;
         right: 1px;
+        height: 100%;
     }
     .Obj_Inserido_Btns{
         border-left: 1px solid #fff;
         width: 70px;
-        height: 35px;
+        height: 100%;
         position: absolute;
         right: 1px;
         top: 0;
@@ -368,7 +385,7 @@ div.item:nth-child(even){
     .Btn_Obj, .Btn_Rot{
         display: inline-block;
         width: 35px;
-        height: 33px;
+        height: 100%;
         background-repeat: no-repeat;
         float: left;
         cursor: pointer;
@@ -394,7 +411,7 @@ div.item:nth-child(even){
         background-image: url(../img/ic_editar_peq.png);
         background-repeat: no-repeat;
         width: 35px;
-        height: 34px;
+        height: 100%;
         position: relative;
         left: 0;
         display: inline-block;
@@ -410,7 +427,7 @@ div.item:nth-child(even){
         position: relative;
         display: inline-block;
         width: 35px;
-        height: 34px;
+        height: 100%;
         background-repeat: no-repeat;
         cursor: pointer;
     }
@@ -423,7 +440,7 @@ div.item:nth-child(even){
     left: -6px;
     display: inline-block;
     width: 33px;
-    height: 34px;
+    height: 100%;
     background-repeat: no-repeat;
     cursor: pointer;
     background-position: 7px 5px;
@@ -436,7 +453,7 @@ div.item:nth-child(even){
         left: 35px;
         display: inline-block;
         width: 35px;
-        height: 34px;
+        height: 100%;
         float: left;
         cursor: pointer;
         background-position: center;
@@ -449,7 +466,7 @@ div.item:nth-child(even){
 .Atv_Obj_Info {
     margin-left: 35px;
     width: 96.1%;
-    height: 35px;
+    height: auto;
     border: 1px solid #fff;
     border-top: none;
     background-color: #d9eff2;
@@ -568,18 +585,6 @@ div.item:nth-child(even){
     background-position: 2px;
     cursor: pointer;
 }
-.editar{
-	position: relative;
-    right: 44px;
-    float: right;
-    padding: 29px 26px 11px 15px;
-    background-color: #C9C9C4;
-    background-image: url(../img/bt_editar.png);
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: center;
-    cursor: pointer;	
-}
 .nomeObj{
 	background-color: #dfded4;
     position: relative;
@@ -590,11 +595,35 @@ div.item:nth-child(even){
     margin: 0px;
     border: 1px solid #e5e5dc;
 }
+.btns-rot {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+.btns-rot::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
+.editar{
+    display: block;
+    float: left;
+    margin-right: 1px;
+    width: 40px;
+    height: 100%;
+    background-color: #C9C9C4;
+    background-image: url(../img/bt_editar.png);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+}
 .excluir{
-	position: absolute;
-    right: 0px;
-    float: right;
-    padding: 29px 26px 11px 15px;
+    display: block;
+    float: left;
+    width: 40px;
+    height: 100%;
     background-color: #C9C9C4;
     background-image: url(../img/fechar.png);
     background-repeat: no-repeat;
@@ -811,7 +840,12 @@ div.item:nth-child(even){
     width: 98%;
     height: auto;
 }
-
+#box_roteiroAula::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
 
 
 /*Modal do cadastro*/

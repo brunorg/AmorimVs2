@@ -200,8 +200,10 @@ function carregaRoteiro(){
 			for (var i = 0 ; i < data.length; i++) {
 				rotHTML += '<div class="item" id="Roteiro_'+data[i].idroteiro_aula+'">'+
 				'<div class="titulo_roteiro">'+data[i].roteiro+'</div>'+ 
-				'<span class="editar" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
-				'<span class="excluir" onclick="excluirRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
+				'<div class="btns-rot">'+
+				'<div class="editar" onclick="utilizarRoteiroAula('+data[i].idroteiro_aula+')"></div>'+
+				'<div class="excluir" onclick="excluirRoteiroAula('+data[i].idroteiro_aula+')"></div>'+
+				'</div>'+
 				'</div>';	
 			};
 			$('#box_roteiroAula').html(rotHTML);
@@ -227,7 +229,7 @@ function carregaRoteiroPesquisa(){
 		success: function (data) {
 			for (var i = 0 ; i < data.length; i++) {
 				roteiroHTML += '<div class="item">'+
-				'<div class="titulo_roteiro1">'+data[i].roteiro+'</div>'+ 
+				'<div class="titulo_roteiro1">'+data[i].roteiro+'</div>'+
 				'<span class="listarObjetivo" id="setaObjetivo_'+data[i].idroteiro_aula+'" onclick="ListarObjetivos('+data[i].idroteiro_aula+','+i+')"></span>'+
 				'<span class="utilizarRoteiro" onclick="clonarRoteiroAula('+data[i].idroteiro_aula+')"></span>'+
 				'</div>'+
