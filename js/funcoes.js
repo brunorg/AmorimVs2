@@ -759,7 +759,7 @@ function listarEstadoCidade(id){
 				HtmlContentEstados += "<option value='"+data['estados'][f].sigla+"'>"+data['estados'][f].sigla+"</option>";
 			}
 		});
-	$("#"+id).html("<option value='0'>Selecione</option>"+HtmlContentEstados);
+	$("#"+id).html("<option value='0' selected disabled>SP</option>"+HtmlContentEstados);
 }
 
 function selectCidade(idEstado,idCidade){
