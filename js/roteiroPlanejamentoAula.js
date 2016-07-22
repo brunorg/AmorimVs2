@@ -100,8 +100,8 @@ function LoadObjetivos(idRoteiro){
 	var idativ = 0;
 	var dataObjetivo =	getData("ObjetivoAula/ListarPorRoteiro/"+id);
 
-    num = 1;
 	Limite = dataObjetivo.length;
+	num = Limite;
 	if (Limite > 0){
         for(var a = 0; a < Limite; a++){
         	removeClick = false;
@@ -132,10 +132,10 @@ function LoadObjetivos(idRoteiro){
 	    							"</div>"+
 	    						"</div>"+
 	    					"</div>";
-    		num++;
+    		num--;
 
 			if(dataObjetivo[a].objetivo!=null){
-				$('.box_'+id).append(HtmlContent);
+				$('.box_'+id).prepend(HtmlContent);
 				//console.log('.box_'+id);
 			}
         }
@@ -255,7 +255,7 @@ function _getObjetivos(Identificador)
 		async:false,
 		crossDomain: true,
 		success: function(dataObjetivoByRoteiro) {
-		
+			var num = dataObjetivoByRoteiro.length;
 			for(var a = 0; a < dataObjetivoByRoteiro.length; a++){ 			
 
 				status = getData("PlanejamentoAula/listarProfessorObjetivoAula/"+professorID+"/"+dataObjetivoByRoteiro[a].idobjetivo_aula+"/"+planoAulaID);
@@ -267,16 +267,15 @@ function _getObjetivos(Identificador)
 					Cor = "branco";
 				}
 				
-				num = a+1;
-				
 				RetornoHtml +=	'</div>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
 				'</div>';	
 		
-				$('.QuadObj_'+dataObjetivoByRoteiro[a].roteiro.idroteiro_aula).append('<td  class="td_roteiro_'+Cor+'" id="td_roteiro_squr_'+dataObjetivoByRoteiro[a].idobjetivo_aula+'">'+num+'</td>');
+				$('.QuadObj_'+dataObjetivoByRoteiro[a].roteiro.idroteiro_aula).prepend('<td  class="td_roteiro_'+Cor+'" id="td_roteiro_squr_'+dataObjetivoByRoteiro[a].idobjetivo_aula+'">'+num+'</td>');
 
+				num--;
 			}
 
 			
