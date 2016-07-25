@@ -809,9 +809,13 @@ function init(ano, alunoVar){
 	}
 
 	listaObservacao();
-	
+
 	//Passa o id do aluno para o cadastro de observação
 	$('#aluno').val(alunoID);
+
+	//Pega o valor do <input>#tutoria e coloca no formulario como parametro 'tutoria'
+	$("#idtutoria").val( $("#tutoria").val() );
+
 	//Passa o id do aluno para o cadastro de observação
 	//Passa a data para o cadastro de observação
 	var data = new Date();
@@ -819,7 +823,7 @@ function init(ano, alunoVar){
 	var mes = data.getMonth()+1;
 	var ano = data.getFullYear();	
 	$('#data').val(ano+"-"+mes+"-"+dia);
-	
+
 	//Cadastro de observação
 	$("#btnSalvar").click(function(){
 		var obs = $("#observacao").val();		
