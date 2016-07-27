@@ -396,8 +396,8 @@ function addPost (post) {
     var titulo = post.titulo;
     var corpo = post.descricao.split("\n");
     var oficina = post.oficina !== null ? post.oficina.tipoOficina.nome : "Tutoria";
-    var idoficina = post.oficina.idoficina;
-    var idagrupamento = post.agrupamento.idagrupamento;
+    var idoficina = post.oficina !== null ? post.oficina.tipoOficina.idoficina : "0";
+    var idagrupamento = post.agrupamento !== null ? post.agrupamento.idagrupamento : "0";
 
     htmlPosts +=    '<div class="areaPost" id="blogPost' + id + '">' +
                         '<div class="post postMedio">' +
