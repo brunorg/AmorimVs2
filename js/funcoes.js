@@ -39,7 +39,12 @@ $(document).ready(function(){
 		if(typeof teste != "undefined"){
 			var classe = teste.split(" ");
 			$('a[href="'+retorno[retorno.length-1]+'"] > .Content_lateral_Menu_Opcao').addClass(classe[1]+'-active');
-		}	
+		}
+
+		$('#trocarOficina').click(function(){
+			$(this).toggleClass('down');
+			$('#box_oficinas').toggleClass('exibe');
+		});	
 		
 	},500);
 	
@@ -53,10 +58,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#trocarOficina').click(function(){
-		$(this).toggleClass('down');
-		$('#box_oficinas').toggleClass('exibe');
-	});
+	
 	
 	$(".scroll_receiver").mCustomScrollbar({
 		axis: "y",

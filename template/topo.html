@@ -3,7 +3,7 @@
     <div id="Cabecalho_Menu_Trocar_Oficina" class="Cabecalho_Menu_Area_Menu2_Inicial" ng-show="mostra">
     	<a>{{oficinaAtiva}}<span id="trocarOficina" class="up">&nbsp;</span></a> |
     </div>
-    <div id="box_oficinas" ng-repeat="oficina in oficinaHTML" ng-if="JSON.parse(localStorage.objetoUsuario).perfil.idperfil === 24">
+    <div id="box_oficinas" ng-repeat="oficina in oficinaHTML">
     	<div ng-repeat="(key, val) in oficina">
         	<p ng-click="alteraOficina(val.oficina.idoficina)">
         		{{val.oficina.tipoOficina.nome}}
