@@ -1795,6 +1795,13 @@ font-family: "proxima-nova",sans-serif;
 		height:24px;
 		padding-top: 3px;
 	}
+
+	#Cabecalho_Menu_Trocar_Oficina.Cabecalho_Menu_Area_Menu2_Inicial {
+	    width: 422px;
+	    height: 24px;
+	    padding-top: 3px;
+	}	
+
 	#Cabecalho_Perfil_Area_Foto{
 		height: 50px;
 		width: 50px;
