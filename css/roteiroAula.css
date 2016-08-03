@@ -104,6 +104,23 @@ input, select, .celulaPequena div, .celulaMedia div, .celulaGrande div,.novaCelu
     bottom: 1px;
 }
 
+.box_scroll{
+    max-height: 335px;
+    margin-bottom: 15px;
+}
+
+
+.mCS_y_hidden > .linha4{
+    width: 100%;
+}
+
+.linha4{
+    position: relative;
+    width: 98%;
+    margin-bottom: 27px;
+    height: auto;
+}
+
 #Inserir_roteiro input{
 	background-color: white;
 	font-size: 18px;
@@ -519,12 +536,7 @@ div.item:nth-child(even){
     margin-bottom: 4px;
     height: 43px;
 }
-.linha4{
-    position: relative;
-    width: 100%;
-    margin-bottom: 27px;
-    height: auto;
-}
+
 .linhaObj{
     width: 100%;
 }    
