@@ -42,12 +42,23 @@
 		<script type="text/javascript" src="js/relatorioAluno.js"></script> 
         <script type="text/javascript" src="js/calendarioFaltas.js"></script>		
 		<script language="javascript">
-			function imprimir(){ 
+
+            function autoResize() {
+                var texto = $("#texto").val();
+                var num_linhas = texto.split('\n').length;
+                return num_linhas;
+            }
+
+			function imprimir(){
 				$(".btnRT").css("display","none");	
 				$(".fechar").css("display","none");
 				$(".n_exibir").css("display","none");
-				$('#subir_div').css("margin","-26px 17px 35px");
-				$("#texto").css({"margin-top":"15px","margin-right":"0px","height": "70%","border":"0",    "background":"none","resize": "none","background-color":"rgb(250,248,246)"});
+				$('#subir_div').css("margin","-26px 17px 35px");				
+                $('.selectArea').css("display","none");
+                
+                $("#texto").css({"margin-top":"15px","margin-right":"0px","widows":"3","border":"0","background":"none","resize": "none","overflow":"hidden","background-color":"rgb(250,248,246)"});
+                $("#texto").css({"height":23*autoResize()+"px","orphans":"3"});
+
                 var conteudo1 = $('.linha_aluno').html();
 				var conteudo2 = $('.boxRT').html(); 
 				var win = window.open();
@@ -64,7 +75,10 @@
                 	win.close();
 				}, 100);
 				$("#caixaRelatorio").hide();
-			}			
+                
+			}		
+
+
 		</script>      
         <!--Fim JS-->
      </head>
