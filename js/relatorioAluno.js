@@ -935,7 +935,7 @@ function verificaPendencias(alunoID,roteiroID){
 					crossDomain: true,
 					dataType: 'json',
 					async: false,
-					data: "action=create&idaluno="+alunoID+"&idroteiro="+roteiroID,		
+					data: "action=create&idaluno="+alunoID+"&idroteiro="+roteiroID+"&ano="+$('#SelecionaAno').val(),		
 					success: function(d){
 						//console.log("salvou pendencia");	
 					},
