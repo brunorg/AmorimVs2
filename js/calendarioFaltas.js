@@ -4,7 +4,7 @@ $(document).ready(function()
 {	
 	var calendarioP = new Array();
 	var chamadaP = new Array();
-	
+
 	chamadaP = chamadaPresente();
 	//console.log(chamadaP);
 	
@@ -86,13 +86,21 @@ $(document).ready(function()
 });
 
 function chamadaPresente(){
-	var chamada = getData("Chamada", null);
+
+	var ONE_YEAR = 12*30*24*60*60*1000;
+
+	var d = new Date();
+	var endDate = d.getTime();
+	var startDate = endDate - ONE_YEAR;
+
+
+	var chamada = getData("Chamada/list", alunoID + "?startDate=" + startDate + "&endDate=" + endDate);
+
 	//console.log(chamada);
 	var chamadaP = new Array();
-	$.each(chamada, function(n, val){		
-		if(alunoID == val.aluno.idAluno){							
-			chamadaP.push(val);				
-		}
+	$.each(chamada, function(n, val){
+		chamadaP.push(val);
 	});
 	return chamadaP;
+
 }
